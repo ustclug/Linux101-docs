@@ -1,0 +1,4 @@
+site_name: Linux 101
+theme:
+    name: 'material'
+    language: 'zh'
