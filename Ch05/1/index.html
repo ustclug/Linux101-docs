@@ -875,7 +875,7 @@
 <div class="admonition danger">
 <p class="admonition-title">谨慎使用 <code>root</code> 用户权限执行命令！</p>
 <p>我们知道，<code>root</code> 用户可以对系统做及其危险的操作。当使用 <code>root</code> 权限执行命令时（如使用 <code>sudo</code>），一定要<strong>小心、谨慎，理解命令的含义之后再按下回车</strong>。<strong>请不要复制网络上所谓的「Linux 优化命令」等</strong>，以 <code>root</code> 权限执行，否则<strong>可能会带来灾难性的后果</strong>。</p>
-<p>以下是一些会对系统带来<mark>毁灭性破坏</mark>的例子。 <strong><mark>再重复一遍，不要执行下面的命令！</mark></strong></p>
+<p>以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 <strong><span class=red>再重复一遍，不要执行下面的命令！</span></strong></p>
 <ul>
 <li><code>rm -rf /</code>（删除系统中的所有可以删除的文件，<strong>包括被挂载的其他分区</strong>。<strong>即使不以 <code>root</code> 权限执行，也可以删掉自己的所有文件。</strong>）</li>
 <li><code>mkfs.ext4 /dev/sda</code>（将系统的第一块硬盘直接格式化为 ext4 文件系统。这会破坏其上所有的文件。）</li>
