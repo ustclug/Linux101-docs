@@ -4,6 +4,9 @@ theme:
     name: 'material'
     language: 'zh'
 
+markdown_extensions:
+    - admonition
+
 nav:
     - 前言: index.md
     - 一：初识 Linux: 
