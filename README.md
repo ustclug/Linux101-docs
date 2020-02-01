@@ -1,4 +1,4 @@
-# Linux101-docs
+# Linux 101 Docs
 
 ## 如何构建？
 
@@ -6,3 +6,6 @@
 2. 使用 `pip install -r requirements.txt` 安装依赖。
 3. 使用 `mkdocs serve` 构建并查看效果。
 
+## 许可
+
+本文档以 Creative Commons BY-SA 4.0 协议发布。详情请见 [LICENSE](LICENSE)
