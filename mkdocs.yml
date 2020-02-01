@@ -6,11 +6,13 @@ theme:
 
 markdown_extensions:
     - admonition
+    - footnotes
 
 extra_css:
     - 'css/extra.css'
 
 nav:
+    - 编写建议: advice.md
     - 前言: index.md
     - 一：初识 Linux: 
         - 讲义: Ch01/1.md
