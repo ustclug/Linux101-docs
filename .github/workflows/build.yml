@@ -30,7 +30,7 @@ jobs:
     - name: Deploy to GitHub Pages
       run: |
         git clone --depth=1 --branch=gh-pages --single-branch --no-checkout \
-          https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git test
+          "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" test
         mv test/.git site/.git && rmdir test/
         git add -A
         git -c user.name=GitHub -c user.email=noreply@github.com commit -m 'Auto deploy from GitHub Actions'
