@@ -57,6 +57,8 @@
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
+      <link rel="stylesheet" href="../../css/extra.css">
+    
     
       
     
@@ -868,12 +870,12 @@
 <h3 id="linux">Linux 下的用户简介</h3>
 <h4 id="_5">根用户</h4>
 <p>在前文中我们知道，在使用 <code>apt</code> 安装软件时，我们需要在前面加上 <code>sudo</code>。这可以使我们以根用户 (<code>root</code>) 的身份安装软件。</p>
-<p>根用户/<code>root</code> 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类<strong>极端危险的操作</strong>）。<code>root</code> 用户的用户数据存储在 <code>/root</code> 下。</p>
+<p>根用户 / <code>root</code> 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类<strong>极端危险的操作</strong>）。<code>root</code> 用户的用户数据存储在 <code>/root</code> 下。</p>
 <p>在我们使用 <code>sudo</code> 的时候，输入自己的密码后，在验证正确之后，<code>sudo</code> 就会以 <code>root</code> 用户的身份，执行后面我们希望执行的命令。而使用 <code>apt</code> 安装的软件存储在了系统的目录下，所以必须要以 <code>root</code> 用户的身份安装。这就是我们平时需要 <code>sudo</code> 来安装软件的原因。</p>
 <div class="admonition danger">
 <p class="admonition-title">谨慎使用 <code>root</code> 用户权限执行命令！</p>
 <p>我们知道，<code>root</code> 用户可以对系统做及其危险的操作。当使用 <code>root</code> 权限执行命令时（如使用 <code>sudo</code>），一定要<strong>小心、谨慎，理解命令的含义之后再按下回车</strong>。<strong>请不要复制网络上所谓的「Linux 优化命令」等</strong>，以 <code>root</code> 权限执行，否则<strong>可能会带来灾难性的后果</strong>。</p>
-<p>以下是一些会对系统带来<font color='red'>毁灭性破坏</font>的例子。<strong><font color='red'> 再重复一遍，不要执行下面的命令！</font></strong></p>
+<p>以下是一些会对系统带来<mark>毁灭性破坏</mark>的例子。 <strong><mark>再重复一遍，不要执行下面的命令！</mark></strong></p>
 <ul>
 <li><code>rm -rf /</code>（删除系统中的所有可以删除的文件，<strong>包括被挂载的其他分区</strong>。<strong>即使不以 <code>root</code> 权限执行，也可以删掉自己的所有文件。</strong>）</li>
 <li><code>mkfs.ext4 /dev/sda</code>（将系统的第一块硬盘直接格式化为 ext4 文件系统。这会破坏其上所有的文件。）</li>
