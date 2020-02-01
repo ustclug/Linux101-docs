@@ -1,0 +1,37 @@
+name: build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Setup cache for PyPI
+      uses: actions/cache@v1
+      id: cache-pip
+      with:
+        path: env/
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: ""
+    - name: Create venv and Install dependencies
+      if: steps.cache-pip.outputs.cache-hit != 'true'
+      run: |
+        python3 -m venv env
+        env/bin/pip3 install -r requirements.txt
+    - name: Build docs
+      run: |
+        env/bin/mkdocs -v build
+        : > site/.nojekyll
+        echo -n '101.ustclug.org' > site/CNAME
+    - name: Deploy to GitHub Pages
+      run: |
+        git clone --depth=1 --branch=gh-pages --single-branch --no-checkout \
+          https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git test
+        mv test/.git site/.git && rmdir test/
+        git add -A
+        git -c user.name=GitHub -c user.email=noreply@github.com commit -m 'Auto deploy from GitHub Actions'
+        git push
