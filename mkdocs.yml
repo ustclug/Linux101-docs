@@ -7,6 +7,9 @@ theme:
 markdown_extensions:
     - admonition
 
+extra_css:
+    - 'css/extra.css'
+
 nav:
     - 前言: index.md
     - 一：初识 Linux: 
