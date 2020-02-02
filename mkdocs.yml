@@ -8,6 +8,7 @@ markdown_extensions:
     - admonition
     - footnotes
     - pymdownx.superfences
+    - pymdownx.details
 
 extra_css:
     - 'css/extra.css'
