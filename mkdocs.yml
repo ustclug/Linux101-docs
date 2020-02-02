@@ -7,13 +7,14 @@ theme:
 markdown_extensions:
     - admonition
     - footnotes
+    - pymdownx.superfences
 
 extra_css:
     - 'css/extra.css'
 
 nav:
-    - 编写建议: advice.md
-    - 前言: index.md
+    - 负一：编写建议: advice.md
+    - 零：前言: index.md
     - 一：初识 Linux: 
         - 讲义: Ch01/1.md
         - 补充内容: Ch01/1-supplement.md
