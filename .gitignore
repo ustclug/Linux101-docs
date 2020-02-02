@@ -2,3 +2,4 @@
 env/
 venv/
 site/
+.env/
