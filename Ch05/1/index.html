@@ -511,27 +511,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    用户组简介
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    课后阅读
+    文件权限
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
     引用来源
   </a>
   
@@ -889,27 +903,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    用户组简介
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    课后阅读
+    文件权限
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
     引用来源
   </a>
   
@@ -950,7 +978,7 @@
 <p>在服务器环境中，「用户」的概念是明确的：服务器的管理员可以为不同的使用者创建用户，分配不同的权限，保障系统的正常运行。也可以为网络服务创建用户（此时，用户就不再是一个有血有肉的人），通过权限限制，以减小服务被攻击时对系统安全的破坏。</p>
 <p>而对于个人用户来说，他们的设备不会有第二个人在使用。此时，现代操作系统一般区分使用者的用户与「系统用户」，并且划分权限，以尽可能保证系统的完整性不会因为用户的误操作，或恶意程序破坏。</p>
 <h3 id="linux">Linux 下的用户简介</h3>
-<p>你可以查看 <code>/etc/passwd</code> 文件，来得到系统中用户的配置信息。</p>
+<p>你可以查看 <code>/etc/passwd</code> 文件，来得到系统中用户的配置信息。<strong>下文的内容，在没有特殊说明的情况下，都假设你的用户名是 <code>me</code></strong>。</p>
 <div class="admonition example">
 <p class="admonition-title"><code>/etc/passwd</code> 示例</p>
 <p>以下是一个例子：</p>
@@ -959,7 +987,7 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 （中间内容省略）
 sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
-tao:x:1000:1000:tao:/home/tao:/bin/bash
+me:x:1000:1000:me:/home/me:/bin/bash
 lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
 mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 </pre></div>
@@ -1010,7 +1038,7 @@ W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Pe
 W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
 $ sudo !!
 sudo apt update
-[sudo] password for tao:
+[sudo] password for me:
 Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
 （以下内容省略）
 </pre></div>
@@ -1038,10 +1066,55 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
 </div>
 <h4 id="su"><code>su</code></h4>
-<p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。</p>
-<h2 id="_7">思考题</h2>
-<h2 id="_8">课后阅读</h2>
-<h2 id="_9">引用来源</h2>
+<p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
+<p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
+<div class="highlight"><pre><span></span>$ su
+Password:
+（密码？什么密码？输我自己的密码试试？）
+su: Authentication failure
+$ 
+</pre></div>
+
+<p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
+<div class="highlight"><pre><span></span>$ sudo su
+Password:
+（没错，是我自己的密码）
+# id
+uid=0(root) gid=0(root) groups=0(root)
+# exit
+$ 
+</pre></div>
+
+<p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。</p>
+<h3 id="_7">用户组简介</h3>
+<p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
+<div class="highlight"><pre><span></span>$ groups
+me adm cdrom sudo dip plugdev lxd
+</pre></div>
+
+<p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。</p>
+<p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
+<p>同样，用户组和用户一样，也有编号：GID (Group ID)。</p>
+<!--
+### 命令行的用户配置操作 (*)
+
+#### 修改密码：`passwd`
+
+可以使用此命令修改用户密码，格式为 `passwd 用户名`。如果没有输入用户名，则修改自己的密码。
+
+#### 修改用户配置：`adduser`
+
+!!! warning "`adduser` 是 Debian 及其衍生发行版的专属命令"
+
+    在其他发行版（如 Fedora, CentOS 等）中，需要使用 `usermod`, `useradd`, `groupadd` 等替代。具体信息详询各自的 `man` 文档。
+
+这里有些问题：`adduser` 不能完全替代 `usermod` 等命令，要介绍的话也非常繁杂。暂时注释掉。
+-->
+
+<h2 id="_8">文件权限</h2>
+<h2 id="_9">思考题</h2>
+<h2 id="_10">课后阅读</h2>
+<h2 id="_11">引用来源</h2>
 <p>TBD</p>
 <div class="footnote">
 <hr />
