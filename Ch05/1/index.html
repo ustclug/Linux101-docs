@@ -532,20 +532,27 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    思考题
+    文件系统层次结构
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
-    课后阅读
+    思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -924,20 +931,27 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    思考题
+    文件系统层次结构
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
-    课后阅读
+    思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -1112,9 +1126,65 @@ me adm cdrom sudo dip plugdev lxd
 -->
 
 <h2 id="_8">文件权限</h2>
-<h2 id="_9">思考题</h2>
-<h2 id="_10">课后阅读</h2>
-<h2 id="_11">引用来源</h2>
+<p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
+<div class="highlight"><pre><span></span>$ ls -l
+total 8
+-rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
+drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
+</pre></div>
+
+<p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
+<p>第三、四列为文件所属用户和用户组。</p>
+<p>对于每个权限，第一位 <code>r</code> 代表读取 (<strong>R</strong>ead)，第二位 <code>w</code> 代表写入 (<strong>W</strong>rite)，第三位 <code>x</code> 代表执行 (E<strong>x</strong>ecute)，<code>-</code> 代表没有对应的权限。</p>
+<div class="admonition tip">
+<p class="admonition-title">执行权限意味着什么？</p>
+<p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
+<p>而对于文件夹来说，拥有执行权限，你就可以遍历这个文件夹下的内容。以下是一个例子：</p>
+<div class="highlight"><pre><span></span>$ ls -l
+total 8
+-rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
+drw-rw-r-- 2 me me 4096 Feb  3 22:38 a_folder
+$ （与上面不同，我们去掉了 a_folder 的执行权限）
+$ cd a_folder
+-bash: cd: a_folder/: Permission denied
+$ （失败了，这说明，如果没有执行权限，我们无法进入这个目录）
+$ ls a_folder
+ls: cannot access &#39;a_folder/test&#39;: Permission denied
+test
+$ （列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件 test）
+$ cat a_folder/test
+cat: a_folder/test: Permission denied
+$ cp a_folder/test test
+cp: cannot stat &#39;a_folder/test&#39;: Permission denied
+$ mv a_folder/test a_folder/test2
+mv: failed to access &#39;a_folder/test2&#39;: Permission denied
+$ touch a_folder/test2
+touch: cannot touch &#39;a_folder/test2&#39;: Permission denied
+$ rm a_folder/test
+rm: cannot remove &#39;a_folder/test&#39;: Permission denied
+$ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
+</pre></div>
+
+</div>
+<p>可以使用 <code>chmod</code> (<strong>ch</strong>ange file <strong>mod</strong>e bits) 修改权限，<code>chown</code> (<strong>ch</strong>ange file <strong>own</strong>er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。</p>
+<div class="admonition example">
+<p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
+<p>有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：</p>
+<div class="highlight"><pre><span></span>$ ./program
+-bash: ./program: Permission denied
+</pre></div>
+
+<p>这说明，这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
+<div class="highlight"><pre><span></span>$ chmod +x program
+$ ./program
+（可以执行了）
+</pre></div>
+
+</div>
+<h2 id="_9">文件系统层次结构</h2>
+<h2 id="_10">思考题</h2>
+<h2 id="_11">课后阅读</h2>
+<h2 id="_12">引用来源</h2>
 <p>TBD</p>
 <div class="footnote">
 <hr />
