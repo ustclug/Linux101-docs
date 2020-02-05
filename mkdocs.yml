@@ -6,6 +6,7 @@ theme:
 
 markdown_extensions:
     - admonition
+    - codehilite
     - footnotes
     - pymdownx.superfences
     - pymdownx.details
