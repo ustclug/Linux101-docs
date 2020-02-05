@@ -942,15 +942,15 @@
 <h4 id="_4">搜索</h4>
 <p>在安装前，使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code></p>
 <p>下面是 <code>apt search firefox</code> 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包</p>
-<div class="highlight"><pre><span></span>➜  ~ apt search firefox
-Sorting... Done
-Full Text Search... Done
-(Ouput Omitted)
+<div class="codehilite"><pre><span></span><span class="err">➜</span>  <span class="o">~</span> <span class="n">apt</span> <span class="k">search</span> <span class="n">firefox</span>
+<span class="n">Sorting</span><span class="p">...</span> <span class="n">Done</span>
+<span class="k">Full</span> <span class="nb">Text</span> <span class="k">Search</span><span class="p">...</span> <span class="n">Done</span>
+<span class="p">(</span><span class="n">Ouput</span> <span class="n">Omitted</span><span class="p">)</span>
 
-firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
-  Safe and easy web browser from Mozilla
+<span class="n">firefox</span><span class="o">/</span><span class="n">bionic</span><span class="o">-</span><span class="n">updates</span><span class="p">,</span><span class="n">bionic</span><span class="o">-</span><span class="k">security</span><span class="p">,</span><span class="n">now</span> <span class="mi">72</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="o">+</span><span class="n">build1</span><span class="o">-</span><span class="mi">0</span><span class="n">ubuntu0</span><span class="p">.</span><span class="mi">18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">1</span> <span class="n">amd64</span>
+  <span class="n">Safe</span> <span class="k">and</span> <span class="n">easy</span> <span class="n">web</span> <span class="n">browser</span> <span class="k">from</span> <span class="n">Mozilla</span>
 
-(Ouput Omitted)
+<span class="p">(</span><span class="n">Ouput</span> <span class="n">Omitted</span><span class="p">)</span>
 </pre></div>
 
 <p>中间两行每个的字段的含义</p>
@@ -987,31 +987,31 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 <h4 id="_5">安装</h4>
 <p>在确定了软件包的包名后，可以通过<code>apt install 包名</code>进行安装</p>
 <p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
-<div class="highlight"><pre><span></span>➜  ~ apt install firefox
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-The following additional packages will be installed:
-  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig
-  (Output Omitted)
-Suggested packages:
-  fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common
-  gvfs liblcms2-utils librsvg2-bin
-The following NEW packages will be installed:
-  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service firefox fontconfig
-  (Output omitted)
-0 upgraded, 87 newly installed, 0 to remove and 1 not upgraded.
-Need to get 64.5 MB of archives.
-After this operation, 264 MB of additional disk space will be used.
-Do you want to continue? [Y/n]
+<div class="codehilite"><pre><span></span><span class="err">➜  ~ apt install firefox</span>
+<span class="err">Reading package lists... Done</span>
+<span class="err">Building dependency tree</span>
+<span class="err">Reading state information... Done</span>
+<span class="err">The following additional packages will be installed:</span>
+<span class="err">  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig</span>
+<span class="err">  (Output Omitted)</span>
+<span class="err">Suggested packages:</span>
+<span class="err">  fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common</span>
+<span class="err">  gvfs liblcms2-utils librsvg2-bin</span>
+<span class="err">The following NEW packages will be installed:</span>
+<span class="err">  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service firefox fontconfig</span>
+<span class="err">  (Output omitted)</span>
+<span class="err">0 upgraded, 87 newly installed, 0 to remove and 1 not upgraded.</span>
+<span class="err">Need to get 64.5 MB of archives.</span>
+<span class="err">After this operation, 264 MB of additional disk space will be used.</span>
+<span class="err">Do you want to continue? [Y/n]</span>
 </pre></div></p>
 <p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 回车确定进行安装</p>
 <div class="admonition tip">
 <p class="admonition-title">可能会出现的权限问题</p>
 <p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
-<div class="highlight"><pre><span></span>➜  ~ apt install firefox
-E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
-E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+<div class="codehilite"><pre><span></span><span class="err">➜  ~ apt install firefox</span>
+<span class="c">E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)</span>
+<span class="c">E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?</span>
 </pre></div></p>
 <p>这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 <code>sudo</code></p>
 <p>即使用 <code>sudo apt install firefox</code></p>
@@ -1027,8 +1027,8 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 </div>
 <h2 id="_7">操作文件与文件夹</h2>
 <h3 id="_8">拷贝文件、文件夹</h3>
-<div class="highlight"><pre><span></span>cp [OPTION] SOURCE DEST
-cp [OPTION] SOURCE... DIRECTORY
+<div class="codehilite"><pre><span></span><span class="n">cp</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="w"> </span><span class="n">SOURCE</span><span class="w"> </span><span class="n">DEST</span><span class="w"></span>
+<span class="n">cp</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">...</span><span class="w"> </span><span class="n">DIRECTORY</span><span class="w"></span>
 </pre></div>
 
 <p>常用的选项</p>
@@ -1065,25 +1065,25 @@ cp [OPTION] SOURCE... DIRECTORY
 <details class="example"><summary>Copy files</summary><ul>
 <li>
 <p>将 <code>file1.txt</code> 复制一份到同目录，命名为 <code>file2.txt</code>
-<div class="highlight"><pre><span></span>cp file1.txt file2.txt
+<div class="codehilite"><pre><span></span>cp file1.txt file2.txt
 </pre></div></p>
 </li>
 <li>
 <p>将 <code>file1.txt</code>、<code>file2.txt</code> 文件复制到同目录下的 <code>file</code> 文件夹中
-<div class="highlight"><pre><span></span>cp file1.txt file2.txt ./file/
+<div class="codehilite"><pre><span></span>cp file1.txt file2.txt ./file/
 </pre></div></p>
 </li>
 <li>
 <p>将 <code>dir1</code> 文件夹及其所有子文件复制到同目录下的 <code>test</code> 文件夹中
-<div class="highlight"><pre><span></span>cp -r dir1 ./test/
+<div class="codehilite"><pre><span></span>cp -r dir1 ./test/
 </pre></div></p>
 </li>
 </ul>
 </details>
 <h3 id="_9">移动文件、文件夹</h3>
 <p><code>mv</code> 与 <code>cp</code> 的使用方式相似</p>
-<div class="highlight"><pre><span></span>mv [OPTION] SOURCE DEST
-mv [OPTION] SOURCE... DIRECTORY
+<div class="codehilite"><pre><span></span><span class="n">mv</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="w"> </span><span class="n">SOURCE</span><span class="w"> </span><span class="n">DEST</span><span class="w"></span>
+<span class="n">mv</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">...</span><span class="w"> </span><span class="n">DIRECTORY</span><span class="w"></span>
 </pre></div>
 
 <p>常用的选项</p>
@@ -1110,7 +1110,7 @@ mv [OPTION] SOURCE... DIRECTORY
 </tbody>
 </table>
 <h3 id="_10">删除文件、文件夹</h3>
-<div class="highlight"><pre><span></span>rm [OPTION] FILE...
+<div class="codehilite"><pre><span></span><span class="n">rm</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="w"> </span><span class="k">FILE</span><span class="p">...</span><span class="w"></span>
 </pre></div>
 
 <p>常用的选项</p>
@@ -1137,21 +1137,21 @@ mv [OPTION] SOURCE... DIRECTORY
 </tbody>
 </table>
 <details class="example"><summary>Delete files</summary><p>删除 <code>file1.txt</code> 文件
-<div class="highlight"><pre><span></span>rm file1.txt
+<div class="codehilite"><pre><span></span><span class="err">rm file1.txt</span>
 </pre></div></p>
 <p>删除 <code>test</code> 文件夹及其下的所有文件
-<div class="highlight"><pre><span></span>rm -r test/
+<div class="codehilite"><pre><span></span><span class="err">rm -r test/</span>
 </pre></div></p>
 <p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、文件夹。其中，这些文件或者文件夹可能不存在、写保护或者没有权限读写
-<div class="highlight"><pre><span></span>rm -rf test1/ test2/ file1.txt
+<div class="codehilite"><pre><span></span><span class="err">rm -rf test1/ test2/ file1.txt</span>
 </pre></div></p>
 </details>
 <h3 id="_11">创建目录</h3>
-<div class="highlight"><pre><span></span>mkdir DIR_NAME...
+<div class="codehilite"><pre><span></span><span class="err">mkdir DIR_NAME...</span>
 </pre></div>
 
 <details class="example"><summary>Create directory</summary><p>创建名为 <code>test1</code>、<code>test2</code> 的目录
-<div class="highlight"><pre><span></span>mkdir test1 test2
+<div class="codehilite"><pre><span></span><span class="err">mkdir test1 test2</span>
 </pre></div></p>
 </details>
                 
