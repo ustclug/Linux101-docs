@@ -657,74 +657,27 @@
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    输出命令
+    算术运算
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    算术运算
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
     条件表达式
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    流程控制
+  </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
-    流程控制
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if" class="md-nav__link">
-    if
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case" class="md-nav__link">
-    case
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
-    for
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#while" class="md-nav__link">
-    while
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
     函数
   </a>
   
@@ -741,21 +694,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     课后阅读
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     引用来源
   </a>
   
@@ -1163,74 +1116,27 @@
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    输出命令
+    算术运算
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    算术运算
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
     条件表达式
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    流程控制
+  </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
-    流程控制
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if" class="md-nav__link">
-    if
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case" class="md-nav__link">
-    case
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
-    for
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#while" class="md-nav__link">
-    while
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
     函数
   </a>
   
@@ -1247,21 +1153,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     课后阅读
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     引用来源
   </a>
   
@@ -1488,7 +1394,8 @@ temp
 <h5 id="_3">用户自定义变量</h5>
 <p>变量定义：<code>&lt;name&gt;=串</code>，其中「=」两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$&lt;name&gt;</code> 或 <code>${&lt;name&gt;}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset &lt;name&gt;</code> 来删除。</p>
-<details class="example"><summary>范例</summary><p><div class="highlight"><pre><span></span><span class="k">for</span> skill in Ada Coffe Action Java<span class="p">;</span> <span class="k">do</span>
+<details class="example"><summary>范例</summary><p>变量定义：
+<div class="highlight"><pre><span></span><span class="k">for</span> skill in Ada Coffe Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
 </pre></div>
@@ -1498,7 +1405,8 @@ I am good at CoffeScript
 I am good at ActionScript
 I am good at JavaScript
 </pre></div>
-如果不给skill变量加花括号，写成echo "I am good at $skillScript"，解释器就会把$skillScript当成一个变量（其值为空）。
+如果不给skill变量加花括号，写成echo "I am good at $skillScript"，解释器就会把$skillScript当成一个变量（其值为空）。</p>
+<p>删除变量：
 <div class="highlight"><pre><span></span><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
 <span class="nb">unset</span> Today
 <span class="nb">echo</span> <span class="nv">$Today</span>
@@ -1533,18 +1441,20 @@ I am good at JavaScript
 <p>shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>,<code>$2</code>,<code>$3</code>,...,<code>$9</code>，程序名本身对应 <code>$0</code>。</p>
 </li>
 <li>
-<p>可通过 <code>shift [n]</code> 命令，改变命令行参数与 <code>$1</code>,<code>$2</code>,<code>$3</code>,... 的对应关系；</p>
+<p>可通过 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>,<code>$2</code>,<code>$3</code>,... 的对应关系；</p>
 </li>
 <li>
 <p>可用set命令，直接给 <code>$1</code>,<code>$2</code>,<code>$3</code>,...等赋值</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><p><div class="highlight"><pre><span></span>➜  ~ <span class="nb">set</span> one two three
+<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span>➜  ~ <span class="nb">set</span> one two three
+➜  ~ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>    
+one two three
+➜  ~ <span class="nb">shift</span> <span class="m">2</span>          
 ➜  ~ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
+three
 </pre></div>
-输出结果为：
-<div class="highlight"><pre><span></span>one two three
-</pre></div></p>
+
 </details>
 <h5 id="_6">特殊变量</h5>
 <p>shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用不能改变或重置这些变量。</p>
@@ -1597,19 +1507,28 @@ I am good at JavaScript
 <p>反斜杠，消除单个字符的特殊含义。</p>
 </li>
 </ul>
-<h4 id="_8">输出命令</h4>
-<ul>
-<li>
-<p>echo</p>
-</li>
-<li>
-<p>printf</p>
-</li>
-</ul>
-<h4 id="_9">算术运算</h4>
-<p>在bash中进行算术运算，需要使用expr计算算术表达式值或let命令赋值表达式值到变量。基本运算符是：+(加)、-(减)、*(乘，要转义)、/(整除)、%(取余)。在expr中，运算符两边与操作数之间必须有空格，小括号要转义；但let则没有这个要求，运算符前后有无空格均可，小括号不需转义，但=前后不能有空格。</p>
-<h5 id="_10">条件表达式</h5>
-<p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意要在条件两边加空格。</p>
+<h4 id="_8">算术运算</h4>
+<p>在 bash 中进行算术运算，需要使用 expr 计算算术表达式值或 let 命令赋值表达式值到变量。基本运算符是：<code>+</code>、<code>-</code>、<code>\*</code>(转义)、<code>/</code>、<code>%</code>。在 expr 中，运算符两边与操作数之间必须有空格，小括号要转义；但 let 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
+<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
+<span class="m">7</span>
+<span class="c1">#------</span>
+➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
+➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>
+<span class="m">0</span>
+➜  ~ <span class="nb">let</span> a++
+➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>
+<span class="m">1</span>
+➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">+=</span><span class="m">1</span>
+➜  ~ <span class="nb">echo</span> <span class="nv">$a</span> 
+<span class="m">2</span>
+➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">+=</span>a/a
+➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>   
+<span class="m">3</span>
+</pre></div>
+
+</details>
+<h4 id="_9">条件表达式</h4>
+<p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意在条件两边加空格。</p>
 <ul>
 <li>字符串比较</li>
 </ul>
@@ -1634,7 +1553,7 @@ I am good at JavaScript
 <td>如果字符串 String 长度不为 0，则结果为真</td>
 </tr>
 <tr>
-<td><code>test string或  test -z string</code></td>
+<td><code>test -z string</code></td>
 <td>如果字符串 String 长度为 0，则结果为真</td>
 </tr>
 </tbody>
@@ -1739,22 +1658,152 @@ I am good at JavaScript
 </tr>
 </tbody>
 </table>
-<h4 id="_11">流程控制</h4>
-<h5 id="if">if</h5>
-<h5 id="case">case</h5>
-<h5 id="for">for</h5>
-<h5 id="while">while</h5>
-<h4 id="_12">函数</h4>
-<h2 id="_13">思考题</h2>
-<p>蛤</p>
-<h2 id="_14">课后阅读</h2>
-<p>蛤</p>
-<h2 id="_15">引用来源</h2>
+<h4 id="_10">流程控制</h4>
 <ul>
-<li><a href="https://catonmat.net/cookbooks/wget">wget cookbook</a></li>
-<li><a href="https://catonmat.net/cookbooks/curl">curl cookbook</a></li>
-<li><a href="http://cn.linux.vbird.org/">vbird</a></li>
+<li>if</li>
+</ul>
+<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 「fi」 就是 「if」 倒过来写，后面还会遇到类似的。</p>
+<div class="highlight"><pre><span></span><span class="k">if</span>  <span class="o">[</span> condition1 <span class="o">]</span>
+<span class="k">then</span>
+  command1
+<span class="k">elif</span> <span class="o">[</span> condition2 <span class="o">]</span>
+<span class="k">then</span>
+  command2
+<span class="k">else</span> 
+  commandN
+<span class="k">fi</span>
+</pre></div>
+
+<ul>
+<li>case</li>
+</ul>
+<p>选项值必须以右括号「)」结尾，若匹配多个离散值，用「|」分隔。这里的 「esac」 也是 「case」 倒着写。</p>
+<div class="highlight"><pre><span></span><span class="k">case</span> &lt;variable&gt; in
+value1<span class="p">|</span>value2<span class="o">)</span>
+  command1
+  command2
+  <span class="p">;;</span>
+value3<span class="o">)</span>
+  command3
+  <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+
+<ul>
+<li>for</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">for</span> var in list
+<span class="k">do</span>
+  command1
+<span class="k">done</span>
+</pre></div>
+
+<ul>
+<li>while</li>
+</ul>
+<p>while 循环用于不断执行一系列命令，命令通常为测试条件。</p>
+<div class="highlight"><pre><span></span><span class="k">while</span> condition
+<span class="k">do</span>
+  <span class="nb">command</span>
+<span class="k">done</span>
+</pre></div>
+
+<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span> -n <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span>
+<span class="nb">read</span> MAX_NO
+<span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&quot;I ask to enter number between 5 and 9, Okay&quot;</span>
+  <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+
+clear
+
+<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i&lt;<span class="o">=</span>MAX_NO<span class="p">;</span> i++ <span class="o">))</span>
+<span class="k">do</span>
+  <span class="k">for</span> <span class="o">((</span> <span class="nv">s</span><span class="o">=</span>MAX_NO<span class="p">;</span> s&gt;<span class="o">=</span>i<span class="p">;</span> s-- <span class="o">))</span>
+  <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot; &quot;</span>
+  <span class="k">done</span>
+  <span class="k">for</span> <span class="o">((</span> <span class="nv">j</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> j&lt;<span class="o">=</span>i<span class="p">;</span>  j++ <span class="o">))</span>
+  <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot; .&quot;</span> 
+  <span class="k">done</span>
+  <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+<span class="k">done</span>
+
+<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>MAX_NO<span class="p">;</span> i&gt;<span class="o">=</span><span class="m">1</span><span class="p">;</span> i-- <span class="o">))</span>
+<span class="k">do</span>
+  <span class="k">for</span> <span class="o">((</span> <span class="nv">s</span><span class="o">=</span>i<span class="p">;</span> s&lt;<span class="o">=</span>MAX_NO<span class="p">;</span> s++ <span class="o">))</span>
+  <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot; &quot;</span>
+  <span class="k">done</span>
+  <span class="k">for</span> <span class="o">((</span> <span class="nv">j</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> j&lt;<span class="o">=</span>i<span class="p">;</span>  j++ <span class="o">))</span>
+  <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot; .&quot;</span>
+  <span class="k">done</span>
+  <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+<span class="k">done</span>
+</pre></div>
+
+<p>得到输出结果：</p>
+<div class="highlight"><pre><span></span>Enter Number between <span class="o">(</span><span class="m">5</span> to <span class="m">9</span><span class="o">)</span> : <span class="m">9</span>
+
+         .
+        . .
+       . . .
+      . . . .
+     . . . . .
+    . . . . . .
+   . . . . . . .
+  . . . . . . . .
+ . . . . . . . . .
+ . . . . . . . . .
+  . . . . . . . .
+   . . . . . . .
+    . . . . . .
+     . . . . .
+      . . . .
+       . . .
+        . .
+         .
+</pre></div>
+
+</details>
+<p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break &lt;n&gt;</code> 和 <code>continute &lt;n&gt;</code>（参数 n 均表示跳过 n 层循环）。</p>
+<h4 id="_11">函数</h4>
+<p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
+<p><div class="highlight"><pre><span></span><span class="o">[</span> <span class="k">function</span> <span class="o">]</span> funname <span class="o">[()]</span>
+<span class="o">{</span>
+    action<span class="p">;</span>
+    <span class="o">[</span><span class="k">return</span> int<span class="p">;</span><span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+其中 「function」 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
+<p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
+<details class="example"><summary>范例</summary><p>某带函数的某脚本程序内容如下：</p>
+<p><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+hello<span class="o">()</span>
+<span class="o">{</span>
+  <span class="nb">echo</span> “hello, today’s date is <span class="sb">`</span>date<span class="sb">`</span>”
+<span class="o">}</span>
+<span class="nb">echo</span> “going to call <span class="nb">test</span> <span class="k">function</span>:”
+hello
+</pre></div>
+运行脚本，输出结果：
+<div class="highlight"><pre><span></span>”going to call test function:“
+”hello, today’s date is &lt;当前日期显示输出串&gt;“
+</pre></div></p>
+</details>
+<h2 id="_12">思考题</h2>
+<p>蛤</p>
+<h2 id="_13">课后阅读</h2>
+<p>蛤</p>
+<h2 id="_14">引用来源</h2>
+<ul>
+<li><a href="https://catonmat.net/cookbooks">catonmat</a></li>
+<li><a href="http://cn.linux.vbird.org">vbird</a></li>
 <li><a href="https://www.runoob.com/linux/linux-shell.html">runoob</a></li>
+<li><a href="https://man.linuxde.net">linuxde</a></li>
 </ul>
                 
                   
