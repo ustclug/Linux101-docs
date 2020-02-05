@@ -508,7 +508,7 @@
         
           <li class="md-nav__item">
   <a href="#wget_1" class="md-nav__link">
-    wget 有以下特性
+    wget 的特点
   </a>
   
 </li>
@@ -527,7 +527,7 @@
         
           <li class="md-nav__item">
   <a href="#curl" class="md-nav__link">
-    curl
+    cURL
   </a>
   
     <nav class="md-nav">
@@ -582,7 +582,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_1" class="md-nav__link">
-    bash 有以下特点：
+    bash 的特点
   </a>
   
 </li>
@@ -594,7 +594,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_2" class="md-nav__link">
-    bash 脚本基础
+    Bash 脚本基础
   </a>
   
     <nav class="md-nav">
@@ -602,7 +602,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_3" class="md-nav__link">
-    bash 脚本的运行
+    Bash 脚本的运行
   </a>
   
 </li>
@@ -967,7 +967,7 @@
         
           <li class="md-nav__item">
   <a href="#wget_1" class="md-nav__link">
-    wget 有以下特性
+    wget 的特点
   </a>
   
 </li>
@@ -986,7 +986,7 @@
         
           <li class="md-nav__item">
   <a href="#curl" class="md-nav__link">
-    curl
+    cURL
   </a>
   
     <nav class="md-nav">
@@ -1041,7 +1041,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_1" class="md-nav__link">
-    bash 有以下特点：
+    bash 的特点
   </a>
   
 </li>
@@ -1053,7 +1053,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_2" class="md-nav__link">
-    bash 脚本基础
+    Bash 脚本基础
   </a>
   
     <nav class="md-nav">
@@ -1061,7 +1061,7 @@
         
           <li class="md-nav__item">
   <a href="#bash_3" class="md-nav__link">
-    bash 脚本的运行
+    Bash 脚本的运行
   </a>
   
 </li>
@@ -1205,7 +1205,7 @@
 <p>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</p>
 </li>
 <li>
-<p>Bash script 出 <code>bug</code> 我该如何调试呢？</p>
+<p>Bash script 出 <code>bug</code> 的时候我该如何调试呢？</p>
 </li>
 </ul>
 <p>下面内容可以解答你的疑问。</p>
@@ -1215,7 +1215,7 @@
 <p>在 Windows 下，很多人下载文件时会使用「迅雷」、「QQ 旋风」（停止运营）、「IDM」之类的软件来实现下载。那么在 Linux 环境下呢？在终端下，没有可视化软件提供点击下载。即使有桌面环境，有 Firefox 可以很方便地下载文件，硬件资源也会被很多不必要的服务浪费。通过以下内容讲述的 wget (<code>wget</code>) 和 cURL (<code>curl</code>) 工具，我们可以 Linux 上进行轻量的下载活动。</p>
 <h3 id="wget">Wget</h3>
 <p><code>wget</code> 是强力方便的下载工具，可以通过 HTTP 和 FTP 协议从因特网中检索并获取文件。</p>
-<h4 id="wget_1"><code>wget</code> 有以下特性</h4>
+<h4 id="wget_1"><code>wget</code> 的特点</h4>
 <ul>
 <li>
 <p>支持以非交互方式工作，能够在用户注销后在后台进行工作。</p>
@@ -1245,28 +1245,28 @@
 </thead>
 <tbody>
 <tr>
-<td><code>-i，--input-file=文件</code></td>
+<td><code>-i, --input-file=文件</code></td>
 <td>下载本地或外部文件中的 URL</td>
 </tr>
 <tr>
-<td><code>-O，--output-document=文件</code></td>
-<td>将文档写入 FILE</td>
+<td><code>-O, --output-document=文件</code></td>
+<td>将输出写入文件</td>
 </tr>
 <tr>
-<td><code>-b，--background</code></td>
-<td>wget 运行在后台</td>
+<td><code>-b, --background</code></td>
+<td>在后台运行 wget</td>
 </tr>
 <tr>
-<td><code>-d，--debug</code></td>
-<td>调试模式，打印出wget运行时的调试信息</td>
+<td><code>-d, --debug</code></td>
+<td>调试模式，打印出 wget 运行时的调试信息</td>
 </tr>
 </tbody>
 </table>
 <details class="example"><summary>范例</summary><p><code>wget -i filelist.txt</code> 批量下载 filelist.txt 中给出的链接</p>
-<p><code>wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh</code> 将下载的文件输出至 install.sh （宝塔示例）</p>
+<p><code>wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh</code> 将下载的文件输出至 <code>install.sh</code>（宝塔示例）</p>
 </details>
-<h3 id="curl">curl</h3>
-<p><code>cURL</code> 是一个利用 <code>URL</code> 语法在命令行下工作的文件传输工具，<code>c</code> 意为 <code>client</code>。虽然 <code>curl</code> 和 <code>wget</code> 基础功能有诸多重叠如下载，但 <code>curl</code> 由于可自定义各种请求参数所以在模拟 web 请求方面更擅长；<code>wget</code> 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
+<h3 id="curl">cURL</h3>
+<p>cURL (<code>curl</code>) 是一个利用 <code>URL</code> 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
 <h4 id="curl_1"><code>curl</code> 使用</h4>
 <p>同 <code>wget</code> 部分，我们可以查看帮助 <code>curl -h</code> 了解其用法。</p>
 <p>常用的选项</p>
@@ -1280,7 +1280,7 @@
 <tbody>
 <tr>
 <td><code>-o</code></td>
-<td>把远程下载的数据保存到文件中，需要制定文件名</td>
+<td>把远程下载的数据保存到文件中，需要指定文件名</td>
 </tr>
 <tr>
 <td><code>-O</code></td>
@@ -1295,7 +1295,7 @@
 <details class="example"><summary>范例</summary><p><code>curl "http://cn.bing.com"</code> 会看到必应页面代码输出</p>
 <p><code>curl "http://cn.bing.com" &gt; bing.html</code> 把必应页面保存至 <code>bing.html</code> 本地，源码就被重定向到工作目录</p>
 <p><code>curl -o bing.html "http://cn.bing.com"</code> 同时也可以使用 <code>-o</code> 选项指定输出文件</p>
-<p><code>curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"</code> 下载 「ustclug」 的 logo</p>
+<p><code>curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"</code> 下载 LUG 的 logo</p>
 <p><code>curl -I "http://cn.bing.com"</code> 只展示文件头内容</p>
 </details>
 <h3 id="_2">其他</h3>
@@ -1304,12 +1304,12 @@
 <h3 id="shell_1">什么是 Shell</h3>
 <p>Shell 是 Linux 的命令解释程序，是用户和内核之间的接口。除了作为命令解释程序外， Shell 同时还提供了一个可支持强大脚本语言的程序环境。</p>
 <h3 id="bash">bash</h3>
-<p>Bourne Shell（<code>sh</code>），是 Unix 系统的默认 Shell，脚本编程功能强，但交互性差。</p>
+<p>Bourne Shell (<code>sh</code>)，是 Unix 系统的默认 Shell，脚本编程功能强，但交互性差。</p>
 <p>Bourne Again Shell，即 bash，是 GNU 开发的一个 Shell，也是大部分 Linux 系统的默认 Shell，是 Bourne Shell 的扩展。</p>
-<h4 id="bash_1">bash 有以下特点：</h4>
+<h4 id="bash_1"><code>bash</code> 的特点</h4>
 <ul>
 <li>
-<p>支持I/O重定向（<code>&gt;</code>，<code>&gt;&gt;</code>，<code>&lt;</code>）和管道（<code>|</code>）等。</p>
+<p>支持 I/O 重定向（<code>&gt;</code>, <code>&gt;&gt;</code>, <code>&lt;</code>）和管道（<code>|</code>）等。</p>
 </li>
 <li>
 <p>环境控制，允许用户定制环境以满足自己需要。环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>。通过配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
@@ -1324,21 +1324,28 @@
 <p>允许应用别名代替命令关键字（<code>alias name='命令'</code>）。</p>
 </li>
 </ul>
-<h3 id="bash_2">bash 脚本基础</h3>
-<h4 id="bash_3">bash 脚本的运行</h4>
+<h3 id="bash_2">Bash 脚本基础</h3>
+<h4 id="bash_3">Bash 脚本的运行</h4>
 <p>可以使用几种方法运行 bash 脚本：</p>
 <ul>
-<li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。
+<li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。</li>
+</ul>
 <div class="highlight"><pre><span></span>➜  ~ bash show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div></li>
-<li>使用「.」命令执行脚本，「.」后要有空格。
+</pre></div>
+
+<ul>
+<li>使用「.」命令执行脚本，「.」后要有空格。</li>
+</ul>
 <div class="highlight"><pre><span></span>➜  ~ . ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div></li>
-<li>将脚本设置为可执行，然后当做外部命令执行执行。
+</pre></div>
+
+<ul>
+<li>将脚本设置为可执行，然后当做外部命令执行执行。</li>
+</ul>
 <div class="highlight"><pre><span></span>➜  ~ chmod a+x showinfo
 ➜  ~ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div></li>
-</ul>
+</pre></div>
+
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
 <thead>
@@ -1361,7 +1368,7 @@
 <td>先执行前面的命令，若成功，不执行后面命令；若失败，才执行后面命令</td>
 </tr>
 <tr>
-<td><code>后缀&amp;</code></td>
+<td>后缀 <code>&amp;</code></td>
 <td>后台方式执行命令</td>
 </tr>
 </tbody>
@@ -1369,13 +1376,13 @@
 <p>命令组：</p>
 <ul>
 <li>
-<p>使用 <code>{命令1；命令2；…}</code>，命令组在shell内执行，不会产生新的进程。</p>
+<p>使用 <code>{命令1; 命令2; …}</code>，命令组在 shell 内执行，不会产生新的进程。</p>
 </li>
 <li>
-<p>使用 <code>(命令1；命令2；…)</code>，命令组会建立独立的 shell 子进程来执行命令组。</p>
+<p>使用 <code>(命令1; 命令2; …)</code>，命令组会建立独立的 shell 子进程来执行命令组。</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><p><div class="highlight"><pre><span></span>➜  ~ tree tmp 
+<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span>➜  ~ tree tmp 
 tmp
 └── temp
 <span class="c1">#------</span>
@@ -1387,37 +1394,41 @@ temp
 temp
 ➜  tmp
 </pre></div>
-执行命令组 <code>{cd tmp; ls;}</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
+
+<p>执行命令组 <code>{cd tmp; ls;}</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
 </details>
 <h4 id="shell_2">shell 变量</h4>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
 <h5 id="_3">用户自定义变量</h5>
-<p>变量定义：<code>&lt;name&gt;=串</code>，其中「=」两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$&lt;name&gt;</code> 或 <code>${&lt;name&gt;}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
-<p>已定义的变量可以通过 <code>unset &lt;name&gt;</code> 来删除。</p>
-<details class="example"><summary>范例</summary><p>变量定义：
-<div class="highlight"><pre><span></span><span class="k">for</span> skill in Ada Coffe Action Java<span class="p">;</span> <span class="k">do</span>
+<p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
+<p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
+<details class="example"><summary>范例</summary><p>变量定义：</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> skill in Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
 </pre></div>
-输出：
+
+<p>输出：</p>
 <div class="highlight"><pre><span></span>I am good at AdaScript
-I am good at CoffeScript
+I am good at CoffeeScript
 I am good at ActionScript
 I am good at JavaScript
 </pre></div>
-如果不给skill变量加花括号，写成echo "I am good at $skillScript"，解释器就会把$skillScript当成一个变量（其值为空）。</p>
-<p>删除变量：
+
+<p>如果不给 <code>skill</code> 加花括号，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
+<p>删除变量：</p>
 <div class="highlight"><pre><span></span><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
 <span class="nb">unset</span> Today
 <span class="nb">echo</span> <span class="nv">$Today</span>
 </pre></div>
-输出为空</p>
+
+<p>输出为空</p>
 </details>
 <h5 id="_4">环境变量</h5>
-<p>每个用户登录系统后，Linux都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 bash 中，可用 <code>env</code> 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：</p>
+<p>每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 <code>env</code> 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：</p>
 <ul>
 <li>
-<p><code>HOME</code>：用户主目录，默认值为/home/&lt;用户名&gt;。</p>
+<p><code>HOME</code>：用户主目录，一般情况下为 <code>/home/用户名</code>。</p>
 </li>
 <li>
 <p><code>LOGNAME</code>：登录用户名。</p>
@@ -1438,13 +1449,13 @@ I am good at JavaScript
 <h5 id="_5">位置变量</h5>
 <ul>
 <li>
-<p>shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>,<code>$2</code>,<code>$3</code>,...,<code>$9</code>，程序名本身对应 <code>$0</code>。</p>
+<p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>, <code>$2</code>, <code>$3</code>, ..., <code>$9</code>，程序名本身对应 <code>$0</code>。</p>
 </li>
 <li>
-<p>可通过 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>,<code>$2</code>,<code>$3</code>,... 的对应关系；</p>
+<p>可用 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 的对应关系；</p>
 </li>
 <li>
-<p>可用set命令，直接给 <code>$1</code>,<code>$2</code>,<code>$3</code>,...等赋值</p>
+<p>可用 <code>set</code> 命令，直接给 <code>$1</code>,<code>$2</code>,<code>$3</code>,...等赋值</p>
 </li>
 </ul>
 <details class="example"><summary>范例</summary><div class="highlight"><pre><span></span>➜  ~ <span class="nb">set</span> one two three
@@ -1457,7 +1468,7 @@ three
 
 </details>
 <h5 id="_6">特殊变量</h5>
-<p>shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用不能改变或重置这些变量。</p>
+<p>Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。</p>
 <table>
 <thead>
 <tr>
@@ -1476,11 +1487,11 @@ three
 </tr>
 <tr>
 <td><code>$$</code></td>
-<td>当前进程的 pid</td>
+<td>当前进程的 PID</td>
 </tr>
 <tr>
 <td><code>$!</code></td>
-<td>最后一个后台运行进程的进程号</td>
+<td>最近一个后台运行进程的进程号</td>
 </tr>
 <tr>
 <td><code>$*</code></td>
@@ -1508,10 +1519,9 @@ three
 </li>
 </ul>
 <h4 id="_8">算术运算</h4>
-<p>在 bash 中进行算术运算，需要使用 expr 计算算术表达式值或 let 命令赋值表达式值到变量。基本运算符是：<code>+</code>、<code>-</code>、<code>\*</code>(转义)、<code>/</code>、<code>%</code>。在 expr 中，运算符两边与操作数之间必须有空格，小括号要转义；但 let 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
+<p>在 bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是：<code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
 <details class="example"><summary>范例</summary><div class="highlight"><pre><span></span>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
 <span class="m">7</span>
-<span class="c1">#------</span>
 ➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 ➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>
 <span class="m">0</span>
@@ -1528,7 +1538,7 @@ three
 
 </details>
 <h4 id="_9">条件表达式</h4>
-<p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意在条件两边加空格。</p>
+<p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意表达式与方括号之间有空格。</p>
 <ul>
 <li>字符串比较</li>
 </ul>
@@ -1542,15 +1552,15 @@ three
 <tbody>
 <tr>
 <td><code>string1 = string2</code></td>
-<td>如果两个串相等，则结果为真(true:0)</td>
+<td>如果两个串相等，则结果为真 (true:0)</td>
 </tr>
 <tr>
 <td><code>string1 != string2</code></td>
 <td>如果两个串不相等，则结果为真</td>
 </tr>
 <tr>
-<td><code>test -n string</code></td>
-<td>如果字符串 String 长度不为 0，则结果为真</td>
+<td><code>test string</code> 或 <code>test -n string</code></td>
+<td>如果字符串 string 长度不为 0，则结果为真</td>
 </tr>
 <tr>
 <td><code>test -z string</code></td>
@@ -1629,7 +1639,7 @@ three
 </tr>
 <tr>
 <td><code>-s file</code></td>
-<td>文件存在且长度大于0</td>
+<td>文件存在且长度大于 0</td>
 </tr>
 </tbody>
 </table>
@@ -1645,8 +1655,8 @@ three
 </thead>
 <tbody>
 <tr>
-<td><code>!expr</code></td>
-<td>逆否运算</td>
+<td><code>! expr</code></td>
+<td>否运算</td>
 </tr>
 <tr>
 <td><code>expr1 –a expr2</code></td>
@@ -1662,8 +1672,8 @@ three
 <ul>
 <li>if</li>
 </ul>
-<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 「fi」 就是 「if」 倒过来写，后面还会遇到类似的。</p>
-<div class="highlight"><pre><span></span><span class="k">if</span>  <span class="o">[</span> condition1 <span class="o">]</span>
+<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的。</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> condition1 <span class="o">]</span>
 <span class="k">then</span>
   command1
 <span class="k">elif</span> <span class="o">[</span> condition2 <span class="o">]</span>
@@ -1677,7 +1687,7 @@ three
 <ul>
 <li>case</li>
 </ul>
-<p>选项值必须以右括号「)」结尾，若匹配多个离散值，用「|」分隔。这里的 「esac」 也是 「case」 倒着写。</p>
+<p>选项值必须以右括号 <code>)</code> 结尾，若匹配多个离散值，用 <code>|</code> 分隔。这里的 <code>esac</code> 也是 <code>case</code> 倒着写。</p>
 <div class="highlight"><pre><span></span><span class="k">case</span> &lt;variable&gt; in
 value1<span class="p">|</span>value2<span class="o">)</span>
   command1
@@ -1769,7 +1779,7 @@ clear
 </pre></div>
 
 </details>
-<p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break &lt;n&gt;</code> 和 <code>continute &lt;n&gt;</code>（参数 n 均表示跳过 n 层循环）。</p>
+<p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break n</code> 和 <code>continute n</code>（参数 <code>n</code> 均表示跳过 n 层循环）。</p>
 <h4 id="_11">函数</h4>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
 <p><div class="highlight"><pre><span></span><span class="o">[</span> <span class="k">function</span> <span class="o">]</span> funname <span class="o">[()]</span>
@@ -1778,21 +1788,23 @@ clear
     <span class="o">[</span><span class="k">return</span> int<span class="p">;</span><span class="o">]</span>
 <span class="o">}</span>
 </pre></div>
-其中 「function」 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
+其中 function 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
 <p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
 <details class="example"><summary>范例</summary><p>某带函数的某脚本程序内容如下：</p>
-<p><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 hello<span class="o">()</span>
 <span class="o">{</span>
-  <span class="nb">echo</span> “hello, today’s date is <span class="sb">`</span>date<span class="sb">`</span>”
+  <span class="nb">echo</span> <span class="s2">&quot;hello, today’s date is `date`&quot;</span>
 <span class="o">}</span>
-<span class="nb">echo</span> “going to call <span class="nb">test</span> <span class="k">function</span>:”
+<span class="nb">echo</span> <span class="s2">&quot;going to call test function:&quot;</span>
 hello
 </pre></div>
-运行脚本，输出结果：
-<div class="highlight"><pre><span></span>”going to call test function:“
-”hello, today’s date is &lt;当前日期显示输出串&gt;“
-</pre></div></p>
+
+<p>运行脚本，输出结果：</p>
+<div class="highlight"><pre><span></span>going to call test function:
+hello, today’s date is &lt;当前日期显示输出串&gt;
+</pre></div>
+
 </details>
 <h2 id="_12">思考题</h2>
 <p>蛤</p>
