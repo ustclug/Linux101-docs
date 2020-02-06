@@ -535,6 +535,40 @@
     文件系统层次结构
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    /bin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    /boot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    /dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etc" class="md-nav__link">
+    /etc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -934,6 +968,40 @@
     文件系统层次结构
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    /bin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    /boot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    /dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etc" class="md-nav__link">
+    /etc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1183,9 +1251,27 @@ $ ./program
 </div>
 <h2 id="_9">文件系统层次结构</h2>
 <p>相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，以盘符的形式（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (<code>Program Files</code>)，系统运行需要的文件 (<code>Windows</code>)，用户文件 (<code>Users</code>) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。</p>
-<p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根）开始，像一棵树一样，类似于下图。</p>
+<p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根目录）开始，像一棵树一样，类似于下图。</p>
 <p><img alt="Unix 下的文件系统结构简图" src="../assets/unix_filesystem.png" /></p>
 <p>其他的分区等以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 <code>/mnt/windows_disk/</code>。</p>
+<p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在(官网)[https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html]查看标准的具体内容。</p>
+<h3 id="bin"><code>/bin</code></h3>
+<p>存储必须的程序文件，对所有用户都可用。</p>
+<h3 id="boot"><code>/boot</code></h3>
+<p>存储在启动系统时需要的文件。</p>
+<h3 id="dev"><code>/dev</code></h3>
+<p>存储设备文件。</p>
+<div class="admonition tip">
+<p class="admonition-title">什么是设备文件？</p>
+<p>设备文件是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。</p>
+</div>
+<h3 id="etc"><code>/etc</code></h3>
+<p>存储系统和程序的配置文件。</p>
+<div class="admonition tip">
+<p class="admonition-title">注册表与配置文件</p>
+<p>Windows 系统与其上很多程序都使用注册表，而非文件的形式存储配置信息。注册表是一个数据库，拥有数据库的优点（如原子性），集中地管理配置项。而 Linux 下的程序更喜欢将配置以文件的形式存储，保持配置简单，便于用户编辑与备份。</p>
+<p>当然，这不是绝对的。现在 Windows 下的 .NET 程序更偏向于将配置存储在 XML 文件中，而 Linux 下的 GNOME 桌面环境也采取了类似于注册表的形式: <code>GConf</code>，存储自己的配置信息。</p>
+</div>
 <h2 id="_10">思考题</h2>
 <h2 id="_11">课后阅读</h2>
 <h2 id="_12">引用来源</h2>
