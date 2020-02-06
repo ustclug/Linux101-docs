@@ -1408,7 +1408,7 @@ $ ./program
 <p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根目录）开始，像一棵树一样，类似于下图。</p>
 <p><img alt="Unix 下的文件系统结构简图" src="../assets/unix_filesystem.png" /></p>
 <p>其他的分区等以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 <code>/mnt/windows_disk/</code>。</p>
-<p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在(官网)[https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html]查看标准的具体内容。</p>
+<p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在<a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html">官网</a>查看标准的具体内容。</p>
 <p>当然，实际情况不一定会和以下介绍的内容完全一致。可以使用 <code>man hier</code> 和 <code>man file-hierarchy</code> 查看你的系统中关于文件系统层次结构的文档。</p>
 <h3 id="bin"><code>/bin</code></h3>
 <p>存储必须的程序文件，对所有用户都可用。</p>
