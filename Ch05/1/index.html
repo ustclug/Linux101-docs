@@ -566,6 +566,83 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    /home
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lib" class="md-nav__link">
+    /lib
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-mnt" class="md-nav__link">
+    /media 和 /mnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt" class="md-nav__link">
+    /opt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    /root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    /run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbin" class="md-nav__link">
+    /sbin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srv" class="md-nav__link">
+    /srv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    /tmp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usr" class="md-nav__link">
+    /usr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var" class="md-nav__link">
+    /var
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -999,6 +1076,83 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    /home
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lib" class="md-nav__link">
+    /lib
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-mnt" class="md-nav__link">
+    /media 和 /mnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt" class="md-nav__link">
+    /opt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    /root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    /run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbin" class="md-nav__link">
+    /sbin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srv" class="md-nav__link">
+    /srv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    /tmp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usr" class="md-nav__link">
+    /usr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var" class="md-nav__link">
+    /var
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1255,6 +1409,7 @@ $ ./program
 <p><img alt="Unix 下的文件系统结构简图" src="../assets/unix_filesystem.png" /></p>
 <p>其他的分区等以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 <code>/mnt/windows_disk/</code>。</p>
 <p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在(官网)[https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html]查看标准的具体内容。</p>
+<p>当然，实际情况不一定会和以下介绍的内容完全一致。可以使用 <code>man hier</code> 和 <code>man file-hierarchy</code> 查看你的系统中关于文件系统层次结构的文档。</p>
 <h3 id="bin"><code>/bin</code></h3>
 <p>存储必须的程序文件，对所有用户都可用。</p>
 <h3 id="boot"><code>/boot</code></h3>
@@ -1272,6 +1427,39 @@ $ ./program
 <p>Windows 系统与其上很多程序都使用注册表，而非文件的形式存储配置信息。注册表是一个数据库，拥有数据库的优点（如原子性），集中地管理配置项。而 Linux 下的程序更喜欢将配置以文件的形式存储，保持配置简单，便于用户编辑与备份。</p>
 <p>当然，这不是绝对的。现在 Windows 下的 .NET 程序更偏向于将配置存储在 XML 文件中，而 Linux 下的 GNOME 桌面环境也采取了类似于注册表的形式: <code>GConf</code>，存储自己的配置信息。</p>
 </div>
+<h3 id="home"><code>/home</code></h3>
+<p>用户的家目录。存储用户自己的信息。</p>
+<h3 id="lib"><code>/lib</code></h3>
+<p>存放系统运行必须的程序库文件。</p>
+<h3 id="media-mnt"><code>/media</code> 和 <code>/mnt</code></h3>
+<p>这两个目录都用于挂载其他的文件系统。<code>/media</code> 用于可移除的文件系统（如光盘），而 <code>/mnt</code> 用于临时使用。</p>
+<h3 id="opt"><code>/opt</code></h3>
+<p>存放额外的程序包。一般将一些大型的、商业的应用程序放置在这个目录。</p>
+<h3 id="root"><code>/root</code></h3>
+<p><code>root</code> 用户的家目录。</p>
+<h3 id="run"><code>/run</code></h3>
+<p>系统运行时的数据。在每次启动时，里面的数据都会被删除。</p>
+<h3 id="sbin"><code>/sbin</code></h3>
+<p>存储用于系统管理，以及仅允许 <code>root</code> 用户使用的程序。如 <code>fsck</code>（文件系统修复程序）、<code>reboot</code>（重启系统）等。</p>
+<h3 id="srv"><code>/srv</code></h3>
+<p>存储网络服务的数据。</p>
+<h3 id="tmp"><code>/tmp</code></h3>
+<p>临时文件夹，所有用户都可使用。</p>
+<h3 id="usr"><code>/usr</code></h3>
+<p>大多数软件都会安装在此处。其下有一些目录与 <code>/</code> 下的结构相似，如：</p>
+<ul>
+<li><code>/usr/bin</code></li>
+<li><code>/usr/lib</code></li>
+<li><code>/usr/sbin</code></li>
+</ul>
+<p>此外，还有一些目录：</p>
+<ul>
+<li><code>/usr/include</code>: 存储系统通用的 C 头文件。当然，里面会有你非常熟悉的头文件，如 <code>stdio.h</code>。</li>
+<li><code>/usr/local</code>: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 <code>apt</code>）控制。<code>/usr/local</code> 里面的层次结构和 <code>/usr</code> 相似。</li>
+<li><code>/usr/share</code>: 存储程序的数据文件（如 <code>man</code> 文档、GUI 程序使用的图片等）</li>
+</ul>
+<h3 id="var"><code>/var</code></h3>
+<p>存储会发生变化的程序相关文件。</p>
 <h2 id="_10">思考题</h2>
 <h2 id="_11">课后阅读</h2>
 <h2 id="_12">引用来源</h2>
