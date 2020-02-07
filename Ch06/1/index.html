@@ -688,6 +688,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bash_4" class="md-nav__link">
+    Bash 脚本调试
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1147,6 +1154,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bash_4" class="md-nav__link">
+    Bash 脚本调试
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1382,7 +1396,7 @@
 <p>使用 <code>(命令1; 命令2; …)</code>，命令组会建立独立的 shell 子进程来执行命令组。</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span>➜  ~ tree tmp 
+<details class="example"><summary>命令组示例</summary><div class="codehilite"><pre><span></span>➜  ~ tree tmp 
 tmp
 └── temp
 <span class="c1">#------</span>
@@ -1402,7 +1416,7 @@ temp
 <h5 id="_3">用户自定义变量</h5>
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
-<details class="example"><summary>范例</summary><p>变量定义：</p>
+<details class="example"><summary>变量使用示例</summary><p>变量定义：</p>
 <div class="codehilite"><pre><span></span><span class="k">for</span> skill in Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
@@ -1455,7 +1469,7 @@ temp
 <p>可用 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 的对应关系。</p>
 </li>
 <li>
-<p>可用 <code>set</code> 命令，直接给 <code>$1</code>,<code>$2</code>,<code>$3</code>,...等赋值。</p>
+<p>可用 <code>set</code> 命令，直接给 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 等赋值。</p>
 </li>
 </ul>
 <details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span>➜  ~ <span class="nb">set</span> one two three
@@ -1520,7 +1534,7 @@ three
 </ul>
 <h4 id="_8">算术运算</h4>
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是：<code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
-<details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
+<details class="example"><summary><code>expr</code> 和 <code>let</code> 使用示例</summary><div class="codehilite"><pre><span></span>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
 <span class="m">7</span>
 ➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 ➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>
@@ -1680,7 +1694,7 @@ three
 <span class="k">then</span>
   command2
 <span class="k">else</span> 
-  commandN
+  command3
 <span class="k">fi</span>
 </pre></div>
 
@@ -1718,7 +1732,7 @@ value3<span class="o">)</span>
 <span class="k">done</span>
 </pre></div>
 
-<details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
+<details class="example"><summary>流程控制样例脚本</summary><div class="codehilite"><pre><span></span><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
 <span class="nb">echo</span> -n <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span>
 <span class="nb">read</span> MAX_NO
 <span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
@@ -1755,7 +1769,7 @@ clear
 <span class="k">done</span>
 </pre></div>
 
-<p>得到输出结果：</p>
+<p>输出结果：</p>
 <div class="codehilite"><pre><span></span>Enter Number between <span class="o">(</span><span class="m">5</span> to <span class="m">9</span><span class="o">)</span> : <span class="m">9</span>
 
          .
@@ -1806,10 +1820,23 @@ hello
 </pre></div>
 
 </details>
+<h3 id="bash_4">Bash 脚本调试</h3>
+<p>Bash shell 本身提供了调试方法：</p>
+<ul>
+<li>
+<p>命令行中：<code>➜  ~ sh -x script.sh</code>。</p>
+</li>
+<li>
+<p>脚本开头：<code>#!/bin/sh -x</code>。</p>
+</li>
+<li>
+<p>在脚本中用 set 命令调整（<code>set -x</code> 启用，<code>set +x</code> 禁用）。</p>
+</li>
+</ul>
+<p>其中参数选项可以更改，<code>-n</code>：读一遍脚本中的命令但不执行，用于检查语法错误；<code>-v</code>：一边执行脚本、一边将执行过的脚本命令打印到标准输出；<code>-x</code>：提供跟踪执行信息，将执行的每一条命令和结果依次打印出来。注意避免几种调试选项混用。</p>
+<p>除了 Bash shell 内置的选项，还有 <a href="http://bashdb.sourceforge.net/">BASH Debugger</a>、<a href="https://github.com/koalaman/shellcheck">shellcheck</a> 等第三方脚本分析工具。</p>
 <h2 id="_12">思考题</h2>
-<p>蛤</p>
 <h2 id="_13">课后阅读</h2>
-<p>蛤</p>
 <h2 id="_14">引用来源</h2>
 <ul>
 <li><a href="https://catonmat.net/cookbooks">catonmat</a></li>
