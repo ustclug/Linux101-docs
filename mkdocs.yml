@@ -9,8 +9,9 @@ markdown_extensions:
     - attr_list
     - codehilite
     - footnotes
-    - pymdownx.superfences
     - pymdownx.details
+    - pymdownx.superfences
+    - markdown.extensions.def_list
 
 extra_css:
     - 'css/extra.css'
