@@ -1387,16 +1387,16 @@
 </tr>
 </tbody>
 </table>
-<p>命令组：</p>
+<p>组命令：</p>
 <ul>
 <li>
-<p>使用 <code>{命令1; 命令2; …}</code>，命令组在 shell 内执行，不会产生新的进程。</p>
+<p>使用 <code>{ 命令1; 命令2; … }</code>，组命令在 shell 内执行，不会产生新的进程，注意括号和命令之间的空格。</p>
 </li>
 <li>
-<p>使用 <code>(命令1; 命令2; …)</code>，命令组会建立独立的 shell 子进程来执行命令组。</p>
+<p>使用 <code>(命令1; 命令2; …)</code>，组命令会建立独立的 shell 子进程来执行组命令。</p>
 </li>
 </ul>
-<details class="example"><summary>命令组示例</summary><div class="codehilite"><pre><span></span>➜  ~ tree tmp 
+<details class="example"><summary>组命令示例</summary><div class="codehilite"><pre><span></span>➜  ~ tree tmp 
 tmp
 └── temp
 <span class="c1">#------</span>
@@ -1404,12 +1404,12 @@ tmp
 temp
 ➜  ~
 <span class="c1">#------</span>
-➜  ~ <span class="o">{</span><span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span><span class="o">}</span>
+➜  ~ <span class="o">{</span> <span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span> <span class="o">}</span>
 temp
 ➜  tmp
 </pre></div>
 
-<p>执行命令组 <code>{cd tmp; ls;}</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
+<p>执行组命令 <code>{ cd tmp; ls; }</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
 </details>
 <h4 id="shell_2">shell 变量</h4>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
