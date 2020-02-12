@@ -77,6 +77,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -266,10 +270,102 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        讲义
+      </label>
     
     <a href="./" title="讲义" class="md-nav__link md-nav__link--active">
       讲义
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    桌面环境
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    桌面环境的选择
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kde-plasma" class="md-nav__link">
+    KDE Plasma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnome" class="md-nav__link">
+    GNOME
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ...
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    桌面环境的安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    桌面环境的个性化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    终端的个性化
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -670,15 +766,161 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    桌面环境
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    桌面环境的选择
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kde-plasma" class="md-nav__link">
+    KDE Plasma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnome" class="md-nav__link">
+    GNOME
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ...
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    桌面环境的安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    桌面环境的个性化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    终端的个性化
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>讲义</h1>
-                
-                
+                <h1 id="_1">个性化配置与建站体验</h1>
+<div class="admonition abstract">
+<p class="admonition-title">导言</p>
+<p>Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：</p>
+<ul>
+<li>如何选择并安装桌面环境。</li>
+<li>如何打造自己独特的桌面。</li>
+<li>如何配置美化命令行终端。</li>
+</ul>
+</div>
+<h2 id="_2">桌面环境</h2>
+<p>早期的 Linux 是不带图形界面的，只能通过命令行管理。随着时代的发展，人们不再满足于黑底白字的命令行界面，开发出来了 Linux 图形环境。
+Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。</p>
+<h3 id="_3">桌面环境的选择</h3>
+<p>Linux的桌面环境可不止一种，下面介绍几个流行的桌面环境。</p>
+<h4 id="kde-plasma">KDE Plasma</h4>
+<p>KDE软件社区提供的Plasma Linux桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。</p>
+<p><a href="https://www.kde.org/plasma-desktop">Plasma官方网站</a></p>
+<h4 id="gnome">GNOME</h4>
+<p>GNOME的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME得到了普及。 </p>
+<p><a href="https://www.gnome.org/">GNOME官网</a></p>
+<h3 id="_4">...</h3>
+<h3 id="_5">桌面环境的安装</h3>
+<p>Ubuntu 18.04 LTS Desktop系统中已经预先安装好了GNOME桌面环境。若是没有预装桌面环境的系统，或者想要更换其他桌面环境的情况就需要我们自己安装桌面环境。</p>
+<p>下面就来介绍如何安装桌面环境。</p>
+<p>以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装 KDE 桌面环境为例。只需要执行以下步骤：</p>
+<p>在源列表中添加科大的镜像</p>
+<div class="codehilite"><pre><span></span><span class="err">sudo sed -i &#39;s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list</span>
+</pre></div>
+
+<p>更新索引</p>
+<div class="codehilite"><pre><span></span><span class="err">➜  ~ sudo apt update</span>
+</pre></div>
+
+<p>成功之后提示信息的末尾会出现下面的信息</p>
+<div class="codehilite"><pre><span></span><span class="err">Reading package lists... Done</span>
+<span class="err">Building dependency tree       </span>
+<span class="err">Reading state information... Done</span>
+<span class="err">158 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.</span>
+</pre></div>
+
+<p>Ubuntu 配置的默认源并不是国内的服务器，下载更新软件都比较慢。</p>
+<p>上述操作是将软件源换到国内的服务器，如果没有理解也没有关系，我们将在第三章软件安装部分给大家详细讲解。</p>
+<p>安装 kde-plasma-desktop 软件</p>
+<div class="codehilite"><pre><span></span><span class="err">➜  ~ sudo apt install kde-plasma-desktop</span>
+</pre></div>
+
+<p>接下来的提示中按输入Y回车即安装</p>
+<p>安装完成后输入</p>
+<div class="codehilite"><pre><span></span><span class="err">➜  ~ sudo reboot</span>
+</pre></div>
+
+<p>重启后可以看到，KDE Plasma 桌面已经安装完成。</p>
+<p><img alt="" src="../images/Plasma-desktop.png" /></p>
+<p>可以看到，通过简单几步，我们的桌面环境就安装成功了，我们将在下一小节给大家介绍桌面的个性化。</p>
+<h2 id="_6">桌面环境的个性化</h2>
+<h2 id="_7">终端的个性化</h2>
                 
                   
                 
