@@ -356,7 +356,7 @@
         
           <li class="md-nav__item">
   <a href="#aptyumpacman" class="md-nav__link">
-    使用 apt、yum、pacman等软件仓库安装
+    使用 apt、yum、pacman 等软件仓库安装
   </a>
   
     <nav class="md-nav">
@@ -884,7 +884,7 @@
         
           <li class="md-nav__item">
   <a href="#aptyumpacman" class="md-nav__link">
-    使用 apt、yum、pacman等软件仓库安装
+    使用 apt、yum、pacman 等软件仓库安装
   </a>
   
     <nav class="md-nav">
@@ -1055,16 +1055,16 @@
 <p>软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法</p>
 <h3 id="_3">使用应用商店安装</h3>
 <p>使用应用商店安装比较符合我们在 Google Play 和 App Store 安装应用的习惯，无需用户的干预，只需轻点鼠标即可完成安装。</p>
-<p>在 Ubunt 下，我们可以使用 Ubuntu Application Store 来进行安装，下图为应用商店中的 vscode 应用页面。</p>
+<p>在 Ubuntu 下，我们可以使用 Ubuntu Application Store 来进行安装，下图为应用商店中的 VSCode 应用页面。</p>
 <p><img alt="Ubuntu Application Store" src="../images/vscode-ubuntu-application-store.png" /></p>
 <div class="admonition info">
 <p>常见于自带应用商店的发行版，如 Ubuntu，Manjaro，Deepin 等</p>
 <p>在其他的发行版上，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店</p>
 </div>
-<h3 id="aptyumpacman">使用 apt、yum、pacman等软件仓库安装</h3>
+<h3 id="aptyumpacman">使用 apt、yum、pacman 等软件仓库安装</h3>
 <p>使用软件仓库使用得要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
 <div class="admonition abstract">
-<p class="admonition-title">什么是apt、yum、pacman</p>
+<p class="admonition-title">什么是 apt、yum、pacman</p>
 <p><em>以 Ubuntu 下的 apt 展开</em></p>
 <p>apt，全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。它可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。</p>
 <p>apt 常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
@@ -1116,7 +1116,7 @@
 </tbody>
 </table>
 <h4 id="_5">安装</h4>
-<p>在确定了软件包的包名后，可以通过<code>apt install 包名</code>进行安装</p>
+<p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装</p>
 <p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
 <div class="codehilite"><pre><span></span><span class="err">➜  ~ apt install firefox</span>
 <span class="err">Reading package lists... Done</span>
@@ -1151,7 +1151,7 @@
 <h3 id="_6">使用包管理器进行安装</h3>
 <p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
 <div class="admonition example">
-<p class="admonition-title">Install vscode from deb file</p>
+<p class="admonition-title">Install VSCode from deb file</p>
 <p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
 <p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868"><code>deb</code> 文件</a></p>
 <p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）</p>
@@ -1365,7 +1365,7 @@
 </pre></div></p>
 </details>
 <h2 id="_14">操作存档、压缩文件</h2>
-<p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件，通常，可以使用其自带的 gzip 或 BZIP 算法进行压缩，生成压缩文件</p>
+<p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件，通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件</p>
 <div class="codehilite"><pre><span></span><span class="n">tar</span><span class="w"> </span><span class="o">[</span><span class="n">OPTIONS</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">FILE</span><span class="o">]</span><span class="p">...</span><span class="w"></span>
 </pre></div>
 
@@ -1420,6 +1420,10 @@
 <tr>
 <td><code>-z, --gzip, --gunzip, --ungzip</code></td>
 <td>使用 gzip 算法处理存档文件</td>
+</tr>
+<tr>
+<td><code>-j, --bzip2</code></td>
+<td>使用 bzip2 算法处理存档文件</td>
 </tr>
 <tr>
 <td><code>-J, --xz</code></td>
