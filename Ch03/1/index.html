@@ -469,14 +469,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    操作存档、压缩文件
+  <a href="#tar" class="md-nav__link">
+    使用 tar 操作存档、压缩文件
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     软件的使用文档
   </a>
   
@@ -490,8 +490,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tldr 软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    使用
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    引用来源
+  </a>
   
 </li>
       
@@ -997,14 +1045,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    操作存档、压缩文件
+  <a href="#tar" class="md-nav__link">
+    使用 tar 操作存档、压缩文件
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     软件的使用文档
   </a>
   
@@ -1018,8 +1066,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tldr 软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    使用
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    课后阅读
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    引用来源
+  </a>
   
 </li>
       
@@ -1220,7 +1316,7 @@
 <p>官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。</p>
 <p>镜像缓存了官方源中的软件列表，与官方源基本一致</p>
 <div class="admonition example">
-<p class="admonition-title">修改官方源为镜像，加快更新速度</p>
+<p class="admonition-title">修改官方源为镜像，加快更新速度<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p><em>以修改官方源为 USTC Mirror 为例</em></p>
 <div class="admonition warning">
 <p class="admonition-title">Warn</p>
@@ -1364,7 +1460,7 @@
 <div class="codehilite"><pre><span></span><span class="err">mkdir test1 test2</span>
 </pre></div></p>
 </details>
-<h2 id="_14">操作存档、压缩文件</h2>
+<h2 id="tar">使用 tar 操作存档、压缩文件</h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件，通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件</p>
 <div class="codehilite"><pre><span></span><span class="n">tar</span><span class="w"> </span><span class="o">[</span><span class="n">OPTIONS</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">FILE</span><span class="o">]</span><span class="p">...</span><span class="w"></span>
 </pre></div>
@@ -1478,10 +1574,11 @@ tar -tv -f target.tar
 </li>
 </ul>
 </div>
-<h2 id="_15">软件的使用文档</h2>
+<h2 id="_14">软件的使用文档</h2>
 <p>面对一个新的软件，比如上面提到的 tar 存档软件，除了使用搜索引擎在互联网上搜索使用方法外，还可以通过软件安装时自带的使用文档来学习。</p>
 <h3 id="man">man 命令</h3>
-<p>通过 <code>man + 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册</p>
+<p>通过 <code>man + 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册。</p>
+<p>大部分软件在安装时会将它的软件手册安装在系统的特定目录， <code>man</code> 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。</p>
 <div class="codehilite"><pre><span></span><span class="err">man tar</span>
 <span class="err">man ls</span>
 </pre></div>
@@ -1517,6 +1614,64 @@ tar -tv -f target.tar
 
 <span class="p">(</span><span class="n">Ouput</span><span class="w"> </span><span class="n">omitted</span><span class="p">)</span><span class="w"></span>
 </pre></div>
+
+<h3 id="tldr">tldr 软件</h3>
+<p>通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 <code>tldr</code> 软件。</p>
+<p><code>tldr</code> 软件中包含有一个由<a href="https://github.com/tldr-pages/tldr">社区</a>维护的精简版文档，通过几个简单的例子让用户可以快速地一窥软件的使用方法。</p>
+<h4 id="_15">安装</h4>
+<p>在 Debian 系下，可以直接通过 <code>apt</code> 进行安装：</p>
+<p><code>apt install tldr</code></p>
+<h4 id="_16">使用</h4>
+<p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
+<p>输入 <code>tldr ls</code> 的样例</p>
+<div class="codehilite"><pre><span></span><span class="x">➜  ~ tldr tar</span>
+<span class="x">tar</span>
+<span class="x">Archiving utility.</span>
+<span class="x">Often combined with a compression method, such as gzip or bzip.</span>
+<span class="x">More information:</span>
+<span class="x">https://www.gnu.org/software/tar</span>
+
+<span class="x"> - Create an archive from files:</span>
+<span class="x">   tar cf </span><span class="cp">{{</span><span class="nv">target.tar</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Create a gzipped archive:</span>
+<span class="x">   tar czf </span><span class="cp">{{</span><span class="nv">target.tar.gz</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract a (compressed) archive into the current directory:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="o">[</span><span class="nv">.gz</span><span class="err">|</span><span class="nv">.bz2</span><span class="err">|</span><span class="nv">.xz</span><span class="o">]</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract an archive into a target directory:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"> -C </span><span class="cp">{{</span><span class="nv">directory</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Create a compressed archive, using archive suffix to determine the compression program:</span>
+<span class="x">   tar caf </span><span class="cp">{{</span><span class="nv">target.tar.xz</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - List the contents of a tar file:</span>
+<span class="x">   tar tvf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract files matching a pattern:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"> --wildcards </span><span class="cp">{{</span><span class="s2">&quot;*.html&quot;</span><span class="cp">}}</span><span class="x"></span>
+</pre></div>
+
+<p>可以从输出中快速地了解到
+* 创建存档文件
+* 创建压缩的存档文件
+* 解压一个存档文件
+* 解压一个存档文件到指定目录
+* 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 <code>tar.gz</code> ，即希望创建由 gzip 压缩的存档文件
+* 给出一个存档文件中的文件列表
+* 解压一个存档文件，但是只有特定的文件名的文件才会被解压。在例子中，使用了通配符 <code>*.html</code> ，即只有以 <code>.html</code> 结尾的文件才会被解压</p>
+<h2 id="_17">思考题</h2>
+<h2 id="_18">课后阅读</h2>
+<h2 id="_19">引用来源</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://mirrors.ustc.edu.cn/help/ubuntu.html">Ubuntu 源使用帮助</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 

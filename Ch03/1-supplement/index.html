@@ -356,6 +356,101 @@
     编译安装
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    下载 Nginx 源代码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    从源码进行安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    配置编译选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    编译并安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    总结
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wgettar" class="md-nav__link">
+    下载源码，并解压（wget、tar）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure" class="md-nav__link">
+    运行 ./configure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" class="md-nav__link">
+    执行 make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo-make-install" class="md-nav__link">
+    执行 sudo make install
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    引用来源
+  </a>
+  
 </li>
       
       
@@ -723,6 +818,101 @@
     编译安装
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    下载 Nginx 源代码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    从源码进行安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    配置编译选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    编译并安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    总结
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wgettar" class="md-nav__link">
+    下载源码，并解压（wget、tar）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure" class="md-nav__link">
+    运行 ./configure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" class="md-nav__link">
+    执行 make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo-make-install" class="md-nav__link">
+    执行 sudo make install
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    引用来源
+  </a>
+  
 </li>
       
       
@@ -744,6 +934,112 @@
                 
                 <h1 id="_1">附录</h1>
 <h2 id="_2">编译安装</h2>
+<p><em>参见：Compiling and Installing from Source <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></em></p>
+<p><em>以下在 Ubuntu 18.04 下操作</em></p>
+<p>除了在正文中提到的几种常见的安装方法外，还有从源码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，既可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。</p>
+<p>以 Nginx 软件为例</p>
+<div class="admonition tip">
+<p class="admonition-title">Nginx 软件简介<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>Nginx 是一个异步框架的网页服务器，也可以用作反向代理、负载平衡器和 HTTP 缓存。</p>
+<p>Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx，通常作为负载均衡器。</p>
+</div>
+<h3 id="_3">安装依赖</h3>
+<p>在从源码安装 Nginx 前，需要为它的库安装依赖</p>
+<ul>
+<li>PCRE - 用于支持正则表达式</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
+$ tar -zxf pcre-8.43.tar.gz
+$ <span class="nb">cd</span> pcre-8.43
+$ ./configure
+$ make
+$ sudo make install
+</pre></div>
+
+<ul>
+<li>zlib - 用于支持 HTTP 头部压缩</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ wget http://zlib.net/zlib-1.2.11.tar.gz
+$ tar -zxf zlib-1.2.11.tar.gz
+$ <span class="nb">cd</span> zlib-1.2.11
+$ ./configure
+$ make
+$ sudo make install
+</pre></div>
+
+<ul>
+<li>OpenSSL - 用于支持 HTTPS 协议</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ wget http://www.openssl.org/source/openssl-1.1.1c.tar.gz
+$ tar -zxf openssl-1.1.1c.tar.gz
+$ <span class="nb">cd</span> openssl-1.1.1c
+$ ./Configure linux-x86_64 --prefix<span class="o">=</span>/usr
+$ make
+$ sudo make install
+</pre></div>
+
+<h3 id="nginx">下载 Nginx 源代码</h3>
+<div class="codehilite"><pre><span></span>$ wget https://nginx.org/download/nginx-1.16.1.tar.gz
+$ tar zxf nginx-1.17.6.tar.gz
+$ <span class="nb">cd</span> nginx-1.17.6
+</pre></div>
+
+<h3 id="_4">从源码进行安装</h3>
+<h4 id="_5">配置编译选项</h4>
+<div class="codehilite"><pre><span></span>$ ./configure <span class="se">\</span>
+--sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\</span>
+--conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\</span>
+--pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid <span class="se">\</span>
+--with-http_ssl_module <span class="se">\</span>
+--with-stream <span class="se">\</span>
+--with-pcre<span class="o">=</span>../pcre-8.43 <span class="se">\</span>
+--with-zlib<span class="o">=</span>../zlib-1.2.11 <span class="se">\</span>
+--without-http_empty_gif_module
+</pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>使用 <code>\</code> 符号将一行长命令分解为多行书写，便于阅读</p>
+</div>
+<h4 id="_6">编译并安装</h4>
+<div class="codehilite"><pre><span></span>$ make
+$ sudo make install
+</pre></div>
+
+<h2 id="_7">总结</h2>
+<p>从 Nginx 的从源码编译安装可以看出，无论是它的依赖还是主程序，主要过程均为如下几个</p>
+<h3 id="wgettar">下载源码，并解压（wget、tar）</h3>
+<blockquote>
+<p>wget 将会在第五章进行详细阐述</p>
+</blockquote>
+<h3 id="configure">运行 <code>./configure</code></h3>
+<p><code>configure</code> 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 <code>make</code> 编译源代码之前，<code>configure</code> 会根据自己所依赖的库而在目标机器上进行匹配。<code>configure</code> 文件一般为可执行文件（与权限位有关的将在第五章讲述）。</p>
+<p><code>configure</code> 脚本可以根据所在的系统环境生成相对应的 <code>Makefile</code> 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错</p>
+<p>在执行 <code>configure</code> 脚本时，可以传递相对应的参数达到生成不同的 <code>Makefile</code> 文件的目的。</p>
+<div class="admonition example">
+<p>在上面的对 Nginx 源代码进行 <code>./configure</code> 时，传入了一些参数，实现了：</p>
+<ul>
+<li>指定了一部分配置文件的位置（<code>sbin-path</code>、<code>conf-path</code>、<code>pid-path</code>）</li>
+<li>说明了需要添加或删除的模块（<code>http_ssl_module</code>、<code>steam</code>、<code>pcre</code>、<code>zlib</code>、<code>http_empty_gif_module</code>）</li>
+<li>指定了依赖库的位置（<code>../pcre-8.43</code> 与 <code>../zlib-1.2.11</code>）</li>
+</ul>
+</div>
+<h3 id="make">执行 <code>make</code></h3>
+<p><code>make</code> 程序会根据 <code>configure</code> 生成的 <code>Makefile</code> 文件，执行一系列的命令，调用 <code>gcc</code>、<code>cc</code> 等程序，将源代码编译为二进制文件。</p>
+<h3 id="sudo-make-install">执行 <code>sudo make install</code></h3>
+<p>在这个过程中，<code>make</code> 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等</p>
+<h2 id="_8">引用来源</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>https://zh.wikipedia.org/wiki/Nginx&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
