@@ -532,31 +532,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    编程语言简介
+  <a href="#c" class="md-nav__link">
+    C 语言开发
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    从单文件开始
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    编程语言是什么？
+    多文件的状况
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gcc" class="md-nav__link">
+    gcc 所有文件
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    编程语言的分类
+  <a href="#gcc_1" class="md-nav__link">
+    gcc 一步步编译，最后统一链接
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    必要之物：多文件
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -746,31 +759,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    编程语言简介
+  <a href="#c" class="md-nav__link">
+    C 语言开发
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    从单文件开始
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    编程语言是什么？
+    多文件的状况
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gcc" class="md-nav__link">
+    gcc 所有文件
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    编程语言的分类
+  <a href="#gcc_1" class="md-nav__link">
+    gcc 一步步编译，最后统一链接
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    必要之物：多文件
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -799,74 +825,172 @@
                 <h1 id="linux">七：Linux 上的编程</h1>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
+<p>作为一个成熟而实用的系统，在 Linux 上如何进行日常的编程开发呢？
+这一章将解答一下几个问题：</p>
+<ul>
+<li>Linux 上的 C/C++ 开发</li>
+<li>Linux 上的 Python 开发</li>
+<li>Linux 上编程语言开发的范式与共性</li>
+</ul>
 </div>
-<p>经过前面章节的介绍，我们相信大家已经有了一定的 Linux 知识。
-  在接下来的这个章节中，我们将综合利用前面学到的概念，在 Linux 上完成一些常见编程语言的开发。
-  包括：</p>
+<h2 id="c">C 语言开发</h2>
+<p>C 语言是大学编程语言教学中几乎必定讲解的一门编程语言。
+在 Linux 上，C 语言拥有着近乎系统级的支持。
+在 Linux 上开发 C 语言（以及 C++）是一件非常简单的事。</p>
+<h3 id="_1">从单文件开始</h3>
+<p>让我们从单个文件的 C 语言代码开始。</p>
+<p>使用任意一个文本编辑器，利用前面讲过的知识，新建一个文件。
+我们假设这个文件叫 main.c。
+为这个文件填上以下内容：</p>
+<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>这是一个简单的 Hello World 程序。
+让我们从它开始。</p>
+<p>我们使用系统自带的 C 编译器：gcc，对这个文件进行编译，生成二进制文件：</p>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<span class="go">main.c</span>
+<span class="gp">$</span> gcc main.c -o main
+<span class="gp">$</span> ls
+<span class="go">main.c main</span>
+<span class="gp">$</span> ./main
+<span class="go">Hello World!</span>
+</pre></div>
+
+<p>让我们分析一下上面几个指令：</p>
+<p><code>gcc</code> 是 gcc 这个编译器对应的指令，一般位于 /usr/bin/gcc，是一个 C 编译器。</p>
+<p>后面的 <code>main.c</code> 是源文件名。</p>
+<p><code>-o</code> 是一个选项（option），紧随 <code>-o</code> 指定了输出的二进制文件的文件名 <code>main</code>。</p>
+<p>我们应当注意到，<code>gcc main.c -o main</code> 这条指令没有打印出任何内容。
+这是因为整个编译过程是成功的，gcc 没有需要报告的内容，因此保持沉默。</p>
+<p>运行生成的 <code>main</code> 后，我们成功地看到了 "Hello World!"。</p>
+<h3 id="_2">多文件的状况</h3>
+<p>只在一个文件中填写代码对于开发而言是不够的：
+个人维护一个小项目时尚且可行，但当你面临的是一个多人开发、模块复杂、功能繁多的大项目时
+（无论是在公司工程中还是在实验室科研里，这都是普遍的情况），
+拆分代码到多个文件才是一个明智的决定。</p>
+<div class="admonition info">
+<p class="admonition-title">C 语言的多文件实现</p>
+<p>我们假设你对于 C 语言的多文件实现有着基本的认知：
+即能够在之前的系统（Windows 或 Mac OS，或其他，如果你是的话）中的 IDE 内完成 C 语言的多文件开发。</p>
+<p>如果你不会，别急，这里将做一个简单的介绍：</p>
+<p>假设你拥有一下两个文件：</p>
+<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1">// print.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>那为了在 main.c 中引用 <code>void print()</code> 这个函数，你需要做以下几件事：</p>
 <ul>
-<li>主要内容<ul>
-<li>编程语言的概念和分类</li>
-<li>C</li>
-<li>Python</li>
+<li>在当前目录下新建一个头文件 print.h；</li>
+<li>在 print.h 中填入以下内容：</li>
 </ul>
-</li>
-<li>补充内容<ul>
-<li>Java</li>
-<li>More, in-building...</li>
-</ul>
-</li>
-</ul>
-<h2 id="_1">编程语言简介</h2>
-<h3 id="_2">编程语言是什么？</h3>
-<p>以下的这段是 Wikipedia 上的说明：</p>
-<blockquote>
-<p>编程语言（英语：programming language），是用来定义计算机程序的形式语言。
-它是一种被标准化的交流技巧，用来向计算机发出指令。
-一种计算机语言让程序员能够准确地定义计算机所需要使用的数据，并精确地定义在不同情况下所应当采取的行动。
-<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-</blockquote>
-<p>我们引用这段，并不是希望为编程语言下定义，而是希望借这段文字说明以下几点：</p>
+<div class="codehilite"><pre><span></span><span class="c1">// print.h</span>
+<span class="cp">#ifndef PRINT</span>
+<span class="cp">#define PRINT</span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">();</span>
+
+<span class="cp">#endif  </span><span class="c1">// PRINT</span>
+</pre></div>
+
+<p>这里的 <code>#ifndef ... #define ... #endif</code> 是头文件保护，防止同一头文件被 <code>#include</code> 两次造成重复声明的错误，
+如果你不理解这部分也没关系，只需保证 <code>void print();</code> 这一行声明存在即可。</p>
 <ul>
-<li>编程语言描述了程序如何运行，这必须是完备的。即借助一段代码，在特定的输入下，你应当能够明确这段代码生成的程序的行为。</li>
-<li>编程语言是一种标准化的交流技巧，借助它，你可以依赖编程语言的规范，完成对底层复杂的、不特定的硬件的控制。</li>
+<li>在 main.c 和 print.c 中同时 <code>#include "print.h"</code>。</li>
 </ul>
-<p>在接下来的内容中，我们将看到以上特点的深刻表现。</p>
-<h3 id="_3">编程语言的分类</h3>
-<p>为编程语言分类是学习、研究编程语言的好方法。
-通过分出不同类别的编程语言，你将发现，编程语言之间一方面有众多相似之处，另一方面一门热门编程语言的存在，往往是由于它有着某个独特的特点。</p>
-<p>我们不会在这里详细讲解分类，而是会在下面的内容中，通过对某一编程语言的介绍，引出相应的类别。</p>
-<h3 id="_4">必要之物：多文件</h3>
-<p>在下面的内容中，我们将重点介绍在多个文件中编写代码的实现。</p>
-<p>为什么呢？这是因为：</p>
-<ul>
-<li>把所有代码写到一个文件中，并不方便管理代码</li>
-</ul>
-<p>在之后的程序开发中，常见的情况是多人同时完成一个程序的开发。
-让所有人同时修改一份文件是一个麻烦的操作：
-想象以下：100 人的团队同时修改一个文件，人与人之间还可能互相修改到对方负责的部分，这是非常低效——近乎不可实现的。
-多文件能够有效地完成对工作的划分，使得不同人专注于自己的那几份文件。</p>
-<ul>
-<li>在一些编程语言中，多文件是实现某些功能所必要的</li>
-</ul>
-<p>文件的放置方法，文件的特定名字，等等，都是良好的机制。
-相当一部分编程语言将文件系统包括进了设计之中，从而使得语言更加优雅、易读、易维护。</p>
-<p>下面的 Python 章节中所会介绍的 <code>__init__.py</code> 就是一个典型的例子。</p>
-<ul>
-<li>在我们开发的程序之中，并不只有代码</li>
-</ul>
-<p>一个项目是众多部分的集合。
-一个程序除了代码以外，还需要诸如文档、代码规范、编译配置、测试套件、CI/CD 配置等诸多额外部件。
-这些部件的内容是无法全部放到一个文件中的，而且应代码内容不同而具有特定的内容。</p>
-<p>下面的 C 章节中 makefile 的使用就是一个例子。</p>
-<p>以上即是对于编程语言的一些基本介绍。
-接下来，我们将针对特定的编程语言进行讲解，并展示其在 Linux 上对应的开发流程。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>来自 <a href="https://zh.wikipedia.org/wiki/编程语言">编程语言 - 维基百科，自由的百科全书</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
+<p>这样，程序就可以被成功编译了。
+具体的操作过程将在下方的正文中讲解。</p>
+</div>
+<p>我们首先创建以下三个文件：</p>
+<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1">// print.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1">// print.h</span>
+<span class="cp">#ifndef PRINT</span>
+<span class="cp">#define PRINT</span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">();</span>
+
+<span class="cp">#endif  </span><span class="c1">// PRINT</span>
+</pre></div>
+
+<p>怎么编译它们呢？
+我们将介绍以下几种方法：</p>
+<h4 id="gcc">gcc 所有文件</h4>
+<p>gcc 可以自动进行简单的分析完成编译。
+你可以使用以下的指令：</p>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<span class="go">main.c print.c print.h</span>
+<span class="gp">$</span> gcc main.c print.c -o main
+<span class="gp">$</span> ls
+<span class="go">main.c print.c print.h main</span>
+<span class="gp">$</span> ./main
+<span class="go">Hello World!</span>
+</pre></div>
+
+<p>同样让我们分析以下指令：</p>
+<p><code>gcc main.c print.c -o main</code> 中没用包含 print.h 这个头文件。
+gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到这个文件。
+当然，加上 print.h，变成 <code>gcc main.c print.c print.h -o main</code> 也是可以的，并不会有错误出现。</p>
+<h4 id="gcc_1">gcc 一步步编译，最后统一链接</h4>
+<p>首先让我们看一下指令：</p>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<span class="go">main.c print.c print.h</span>
+<span class="gp">$</span> gcc main.c -c
+<span class="gp">$</span> ls
+<span class="go">main.c print.c print.h main.o</span>
+<span class="gp">$</span> gcc print.c -c
+<span class="gp">$</span> ls
+<span class="go">main.c print.c print.h main.o print.o</span>
+<span class="gp">$</span> ld main.o print.o -o main
+<span class="gp">$</span> ls
+<span class="go">main.c print.c print.h main.o print.o main</span>
+<span class="gp">$</span> ./main
+<span class="go">Hello World!</span>
+</pre></div>
+
+<p>这里我们使用了 <code>gcc -c</code>。
+<code>-c</code> 将会把源文件编译为对象文件（object file， .o 这个后缀就来源于 object 的首字母）。
+对象文件是二进制文件，不过它不可执行，因为对应到其中一些需要引用外部代码的地方，是用占位数替代的，无法实现函数调用。</p>
+<p>注意到我们在 <code>gcc -c</code> 中没有添加 <code>-o</code> 选项，因为 <code>-c</code> 存在时 gcc 总会生成相同文件名（这里特指 basename，main.c 的 main 部分）的、
+后缀名为 .o 的对象文件。</p>
+<p>生成了对象文件之后，我们使用了 <code>ld</code> 来生成二进制目标文件。
+这是在完成链接过程，使得对象文件中的机器指令调用能够成功调用。
+在这里，你可以把 <code>ld</code> 替换为 <code>gcc</code>，<code>gcc</code> 这一指令会根据输入的文件调用相应的程序（如 ld）完成整个编译流程。
+即 <code>gcc main.o print.o -o main</code> 也是可行的。</p>
+<div class="admonition info">
+<p class="admonition-title">gcc 的四个部分，编译的过程</p>
+<!--TODO-->
+
 </div>
                 
                   
