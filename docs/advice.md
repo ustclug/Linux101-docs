@@ -47,7 +47,7 @@
 	
 更多种类的提示框请参考 [提示框一览](https://https://squidfunk.github.io/mkdocs-material/extensions/admonition/)。
 
-## 自主阅读节*
+## 自主阅读节 \*
 
 可以在章节主体中包括若干自主阅读节，原则上这一部分的结构与其它章节主体并无不同，只是不会在课堂上讲授。
 
