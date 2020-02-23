@@ -715,8 +715,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#interrupt" class="md-nav__link">
-    中断（interrupt）
+  <a href="#irqinterrupt-request" class="md-nav__link">
+    中断（irq：interrupt request）
   </a>
   
 </li>
@@ -724,6 +724,13 @@
           <li class="md-nav__item">
   <a href="#systemcall" class="md-nav__link">
     系统调用（systemcall）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posix" class="md-nav__link">
+    POSIX标准
   </a>
   
 </li>
@@ -766,11 +773,14 @@
 <p>~~理论上应该继续加入自由软件原则~~</p>
 <p>这里有一份<a href="https://www.redhat.com/en/command-line-heroes">Redhat公司制作的录音节目↗</a>，纪念开源历史与开源文化，对自己英语听力有自信的同学可以选择收听一下。</p>
 <h3 id="shell">Shell</h3>
-<p>但凡使用Linux，必然要与之交互。广义上讲，能与之交互的程序都符合shell的定义（比如图形界面识别鼠标位置信息，点击操作和键盘快捷键）。然而Linux作为命令行</p>
+<p>但凡使用Linux，必然要与之交互。广义上讲，能与用户交互的程序都符合shell的定义（比如图形界面识别鼠标位置信息，点击操作和键盘快捷键）。然而Linux本身以命令行工具为主，而shell狭义上就是命令行解释工具，即允许用户说一定程度的人话来调用程序。如果发行版中根本没有shell，计算机没有办法理解从键盘控制器发来的字符说的都是啥，系统也就不能为我所用了。所以，用好shell，才能真正用懂Linux。</p>
+<p>没有图形界面时，shell一般为控制台（tty）的子进程，在图形界面上shell建立在虚拟终端之上。</p>
 <h3 id="kernel">Kernel</h3>
 <p>有壳（shell）必有核（kernel），只有这里的核才是操作系统本体，真正负责调度程序的部分。而Linux发行版本身则是一个套装，一个核用不同的软件包装出来。可见</p>
-<h3 id="interrupt">中断（interrupt）</h3>
+<h3 id="irqinterrupt-request">中断（irq：interrupt request）</h3>
+<p>你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。从程序的角度来看，中断对应着程序正常执行逻辑被打断，跳转到特定的中断处理程序。上面的电话铃代表硬件上的中断信号，产生后送达CPU，</p>
 <h3 id="systemcall">系统调用（systemcall）</h3>
+<h3 id="posix">POSIX标准</h3>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
                 
                   
