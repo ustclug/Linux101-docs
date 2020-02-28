@@ -678,7 +678,34 @@
                 
                   <h1>补充内容</h1>
                 
-                
+                <p><strong><em>以下内容为编者认为有参考价值应当提及的内容。为了不破坏章节主旨的连续性与阅读体验连续性，特置于此。</em></strong></p>
+<p>类 C 语言的 for 循环：</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span><span class="o">((</span>assignment<span class="p">;</span>condition<span class="p">;</span>next<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+    command_1<span class="p">;</span>
+    command_2<span class="p">;</span>
+<span class="k">done</span><span class="p">;</span>
+</pre></div>
+
+<p>这里的 for 循环与 C 中的相似。我们知道，在 shell 里变量调用需要加 <code>$</code>，但是 for 中的 <code>(())</code> 中不需要。</p>
+<div class="admonition example">
+<p class="admonition-title">范例</p>
+<p>shell 脚本内容：</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="k">for</span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>i&lt;<span class="o">=</span><span class="m">5</span><span class="p">;</span>i++<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;这是第 </span><span class="nv">$i</span><span class="s2"> 次调用&quot;</span><span class="p">;</span>
+<span class="k">done</span><span class="p">;</span>
+</pre></div>
+
+<p>输出结果：</p>
+<div class="codehilite"><pre><span></span><span class="err">这是第1次调用</span>
+<span class="err">这是第2次调用</span>
+<span class="err">这是第3次调用</span>
+<span class="err">这是第4次调用</span>
+<span class="err">这是第5次调用</span>
+</pre></div>
+
+</div>
+<p>与 C 中相似，赋值和下一步执行可以放到代码之前循环语句之中执行，这里要注意一点：如果要在循环体中进行 for 中的 next 操作，记得变量要加 $，不然程序会变成死循环。</p>
                 
                   
                 
