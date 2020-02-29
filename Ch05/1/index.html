@@ -1099,7 +1099,7 @@ Password:
 $ 
 </pre></div>
 
-<p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。</p>
+<p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
 <h3 id="_6">用户组简介</h3>
 <p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
 <div class="codehilite"><pre><span></span>$ groups
@@ -1174,7 +1174,7 @@ $ （可以看到，即使我们有写入权限，向此目录添加、删除、
 -bash: ./program: Permission denied
 </pre></div>
 
-<p>这说明，这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
+<p>大多数情况下，这说明这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
 <div class="codehilite"><pre><span></span>$ chmod +x program
 $ ./program
 （可以执行了）
@@ -1263,6 +1263,10 @@ $ ./program
 <dd>存储会发生变化的程序相关文件。</dd>
 </dl>
 <h2 id="_9">思考题</h2>
+<ol>
+<li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有系统服务都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
+<li>(*) 当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</li>
+</ol>
 <h2 id="_10">课后阅读</h2>
 <h2 id="_11">引用来源</h2>
 <p>TBD</p>
