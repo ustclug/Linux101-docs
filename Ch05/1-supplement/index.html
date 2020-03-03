@@ -701,8 +701,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Appendix/1/" title="内容一" class="md-nav__link">
-      内容一
+    <a href="../../Appendix/man/" title="man 文档的一些示例" class="md-nav__link">
+      man 文档的一些示例
     </a>
   </li>
 
@@ -770,7 +770,7 @@
               
                 
                 
-                <h1 id="_1">五：用户与用户组、文件权限、文件系统层次结构（补充材料）</h1>
+                <h1 id="_1">用户与用户组、文件权限、文件系统层次结构（补充材料）</h1>
 <h2 id="_2">文件系统的特殊权限位</h2>
 <p>有一个有趣的问题：众所周知（只要你看过了本章的主要内容），存储密码的 <code>/etc/shadow</code> 只有 <code>root</code> 用户可以查看和修改。但是，我作为一个普通用户，可以使用 <code>passwd</code> 修改自己的密码。而要修改密码，就必须修改 <code>/etc/shadow</code>，而我执行的 <code>passwd</code> 程序（应该）只拥有我的权限（否则用户权限就没有任何意义了）。难道 <code>passwd</code> 有什么魔法可以去动 <code>/etc/shadow</code> 吗？</p>
 <p>是的。这样的「魔法」，是由文件系统特殊权限位 <code>setuid</code> 赋予的。有三个特殊权限位：setuid, setgid 和 sticky。</p>
