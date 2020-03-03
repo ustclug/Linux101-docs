@@ -47,5 +47,5 @@ nav:
         - 讲义: Ch09/1.md
         - 补充内容: Ch09/1-supplement.md
     - 附录:
-        - 内容一: Appendix/1.md
+        - man 文档的一些示例: Appendix/man.md
 
