@@ -518,41 +518,68 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    命令行的用户配置操作
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passwd" class="md-nav__link">
+    修改密码：passwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adduser" class="md-nav__link">
+    (*) 简单的用户配置：adduser
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     文件权限
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     文件系统层次结构
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     课后阅读
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -917,41 +944,68 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    命令行的用户配置操作
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passwd" class="md-nav__link">
+    修改密码：passwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adduser" class="md-nav__link">
+    (*) 简单的用户配置：adduser
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     文件权限
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     文件系统层次结构
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     课后阅读
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -1106,26 +1160,30 @@ $
 me adm cdrom sudo dip plugdev lxd
 </pre></div>
 
-<p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。</p>
+<p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。</p>
 <p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
 <p>同样，用户组和用户一样，也有编号：GID (Group ID)。</p>
-<!--
-### 命令行的用户配置操作 (*)
+<h3 id="_7">命令行的用户配置操作</h3>
+<h4 id="passwd">修改密码：<code>passwd</code></h4>
+<p>可以使用此命令修改用户密码，格式为 <code>passwd 用户名</code>。如果没有输入用户名，则修改自己的密码。</p>
+<h4 id="adduser">(*) 简单的用户配置：<code>adduser</code></h4>
+<div class="admonition warning">
+<p class="admonition-title"><code>adduser</code> 是 Debian 及其衍生发行版的专属命令</p>
+<p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
+</div>
+<p><code>adduser</code> 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：</p>
+<div class="codehilite"><pre><span></span>$ sudo adduser 用户名
+</pre></div>
 
-#### 修改密码：`passwd`
+<p>即可添加此用户。而输入</p>
+<div class="codehilite"><pre><span></span>$ sudo adduser --group 组名
+</pre></div>
 
-可以使用此命令修改用户密码，格式为 `passwd 用户名`。如果没有输入用户名，则修改自己的密码。
+<p>即可添加此用户组。将用户加入指定用户组也非常简单：</p>
+<div class="codehilite"><pre><span></span>$ sudo adduser 用户名 组名
+</pre></div>
 
-#### 修改用户配置：`adduser`
-
-!!! warning "`adduser` 是 Debian 及其衍生发行版的专属命令"
-
-    在其他发行版（如 Fedora, CentOS 等）中，需要使用 `usermod`, `useradd`, `groupadd` 等替代。具体信息详询各自的 `man` 文档。
-
-这里有些问题：`adduser` 不能完全替代 `usermod` 等命令，要介绍的话也非常繁杂。暂时注释掉。
--->
-
-<h2 id="_7">文件权限</h2>
+<h2 id="_8">文件权限</h2>
 <p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
 <div class="codehilite"><pre><span></span>$ ls -l
 total <span class="m">8</span>
@@ -1181,7 +1239,7 @@ $ ./program
 </pre></div>
 
 </div>
-<h2 id="_8">文件系统层次结构</h2>
+<h2 id="_9">文件系统层次结构</h2>
 <p>相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，以盘符的形式（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (<code>Program Files</code>)，系统运行需要的文件 (<code>Windows</code>)，用户文件 (<code>Users</code>) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。</p>
 <p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根目录）开始，像一棵树一样，类似于下图。</p>
 <p><img alt="Unix 下的文件系统结构简图" src="../assets/unix_filesystem.png" /></p>
@@ -1262,13 +1320,15 @@ $ ./program
 <dt><code>/var</code></dt>
 <dd>存储会发生变化的程序相关文件。</dd>
 </dl>
-<h2 id="_9">思考题</h2>
+<h2 id="_10">思考题</h2>
 <ol>
-<li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有系统服务都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
+<li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
+<li>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</li>
+<li>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</li>
 <li>(*) 当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</li>
 </ol>
-<h2 id="_10">课后阅读</h2>
-<h2 id="_11">引用来源</h2>
+<h2 id="_11">课后阅读</h2>
+<h2 id="_12">引用来源</h2>
 <p>TBD</p>
 <div class="footnote">
 <hr />
