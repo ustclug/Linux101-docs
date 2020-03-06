@@ -17,12 +17,11 @@ jobs:
         path: ~/.cache/pip
         key: ${{ runner.os }}-p-${{ hashFiles('requirements.txt') }}
     - name: Install dependencies
-      if: steps.cache-pip.outputs.cache-hit != 'true'
       run: |
         pip3 install -r requirements.txt
     - name: Build docs
       run: |
-        python3 -m mkdocs -v build
+        mkdocs -v build
         : > site/.nojekyll
         echo -n '101.ustclug.org' > site/CNAME
     - name: Deploy to GitHub Pages
