@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
@@ -40,12 +40,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#man" tabindex="1" class="md-skip">
+      <a href="#man" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" class="md-header-nav__button md-logo">
+        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -117,7 +117,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -773,7 +773,7 @@
                 <h1 id="man">man 文档的一些示例</h1>
 <p>man 文档非常详细。当然，详细的后果，就是我们在阅读的时候很容易变得一头雾水。必须承认的是，尽管 man 文档有一些有中文翻译（安装 <code>manpages-zh</code>），但是阅读它们，仍然是一件非常痛苦的事情。况且中文翻译有一些也已经十分老旧（例如，<code>execve()</code> 文档的最新翻译在 2003 年 5 月，而现在已经过去 17 年了），且有一些错误（例如，<code>man</code> 的文档中介绍 <code>-a|-b</code> 的含义的时候，将 "cannot be used together" 翻译为了「可以一起使用」）。下面会给出一些 man 文档以及其内容结构的解释，以帮助你更好地理解，man 文档到底在做什么长篇大论。</p>
 <h2 id="su">命令行工具：以 <code>su</code> 为例</h2>
-<div class="codehilite"><pre><span></span><span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                            <span class="n">User</span> <span class="n">Commands</span>                           <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                            <span class="n">User</span> <span class="n">Commands</span>                           <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="err">（第一行的标题是</span> <span class="n">User</span> <span class="n">Commands</span><span class="err">，两边的</span> <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="err">代表这篇文档是关于</span> <span class="ss">`su`</span> <span class="err">的，在文档第一卷。</span>
 <span class="err">第一卷与</span> <span class="n">Shell</span> <span class="err">命令和程序有关。更多信息可以查看</span> <span class="n">man</span> <span class="n">man</span> <span class="err">中</span> <span class="n">DESCRIPTION</span> <span class="err">一节的内容。）</span>
 
@@ -982,11 +982,11 @@
        <span class="n">linux</span><span class="o">/</span><span class="err">⟩</span><span class="p">.</span>
 
 <span class="n">util</span><span class="o">-</span><span class="n">linux</span>                         <span class="n">July</span> <span class="mi">2014</span>                             <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 <h2 id="strcmp">程序库函数：以 <code>strcmp()</code> 为例</h2>
 <p>文档第三卷是程序库函数的信息，包括了 C 语言的标准库函数。</p>
-<div class="codehilite"><pre><span></span><span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                  <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                 <span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                  <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                 <span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">NAME</span>
        <span class="n">strcmp</span><span class="p">,</span> <span class="n">strncmp</span> <span class="o">-</span> <span class="n">compare</span> <span class="n">two</span> <span class="n">strings</span>
@@ -1037,11 +1037,11 @@
        <span class="nl">https</span><span class="p">:</span><span class="c1">//www.kernel.org/doc/man-pages/.</span>
 
                                   <span class="mi">2015</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span>                         <span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 <h2 id="kill">系统调用：以 <code>kill()</code> 为例</h2>
 <p>文档第二卷是关于系统调用的信息。当然，很多系统调用都由 C 运行时库包装了一层，否则用起来很麻烦。一个目前还没有被包装的系统调用的例子是 <code>copy_file_range()</code>，你需要在你的代码里面使用 <code>syscall()</code> 去手动包装它，才能方便地使用。</p>
-<div class="codehilite"><pre><span></span><span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                    <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                   <span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                    <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                   <span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">NAME</span>
        <span class="n">kill</span> <span class="o">-</span> <span class="n">send</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">a</span> <span class="n">process</span>
@@ -1158,7 +1158,7 @@
        <span class="nl">https</span><span class="p">:</span><span class="c1">//www.kernel.org/doc/man-pages/.</span>
 
 <span class="n">Linux</span>                             <span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">15</span>                           <span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
                 
                   
                 
@@ -1203,9 +1203,9 @@
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1215,7 +1215,7 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
         
         
@@ -1234,7 +1234,7 @@
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>

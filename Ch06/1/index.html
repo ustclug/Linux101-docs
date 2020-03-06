@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
@@ -40,12 +40,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#curl-wget-shell" tabindex="1" class="md-skip">
+      <a href="#curl-wget-shell" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" class="md-header-nav__button md-logo">
+        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -117,7 +117,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -1344,21 +1344,21 @@
 <ul>
 <li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。</li>
 </ul>
-<div class="codehilite"><pre><span></span>➜  ~ bash show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code>➜  ~ bash show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+</code></pre></div>
 
 <ul>
 <li>使用「.」命令执行脚本，「.」后要有空格。</li>
 </ul>
-<div class="codehilite"><pre><span></span>➜  ~ . ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code>➜  ~ . ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+</code></pre></div>
 
 <ul>
 <li>将脚本设置为可执行，然后当做外部命令执行执行。</li>
 </ul>
-<div class="codehilite"><pre><span></span>➜  ~ chmod a+x showinfo
+<div class="codehilite"><pre><span></span><code>➜  ~ chmod a+x showinfo
 ➜  ~ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
@@ -1396,7 +1396,7 @@
 <p>使用 <code>(命令1; 命令2; …)</code>，组命令会建立独立的 shell 子进程来执行组命令。</p>
 </li>
 </ul>
-<details class="example"><summary>组命令示例</summary><div class="codehilite"><pre><span></span>➜  ~ tree tmp 
+<details class="example"><summary>组命令示例</summary><div class="codehilite"><pre><span></span><code>➜  ~ tree tmp 
 tmp
 └── temp
 <span class="c1">#------</span>
@@ -1407,7 +1407,7 @@ temp
 ➜  ~ <span class="o">{</span> <span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span> <span class="o">}</span>
 temp
 ➜  tmp
-</pre></div>
+</code></pre></div>
 
 <p>执行组命令 <code>{ cd tmp; ls; }</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
 </details>
@@ -1417,24 +1417,24 @@ temp
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
 <details class="example"><summary>变量使用示例</summary><p>变量定义：</p>
-<div class="codehilite"><pre><span></span><span class="k">for</span> skill in Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> skill in Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 
 <p>输出：</p>
-<div class="codehilite"><pre><span></span><span class="err">I am good at AdaScript</span>
+<div class="codehilite"><pre><span></span><code><span class="err">I am good at AdaScript</span>
 <span class="err">I am good at CoffeeScript</span>
 <span class="err">I am good at ActionScript</span>
 <span class="err">I am good at JavaScript</span>
-</pre></div>
+</code></pre></div>
 
 <p>如果不给 <code>skill</code> 加花括号，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
 <p>删除变量：</p>
-<div class="codehilite"><pre><span></span><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
 <span class="nb">unset</span> Today
 <span class="nb">echo</span> <span class="nv">$Today</span>
-</pre></div>
+</code></pre></div>
 
 <p>输出为空</p>
 </details>
@@ -1472,13 +1472,13 @@ temp
 <p>可用 <code>set</code> 命令，直接给 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 等赋值。</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span>➜  ~ <span class="nb">set</span> one two three
+<details class="example"><summary>范例</summary><div class="codehilite"><pre><span></span><code>➜  ~ <span class="nb">set</span> one two three
 ➜  ~ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>    
 one two three
 ➜  ~ <span class="nb">shift</span> <span class="m">2</span>          
 ➜  ~ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
 three
-</pre></div>
+</code></pre></div>
 
 </details>
 <h5 id="_6">特殊变量</h5>
@@ -1534,7 +1534,7 @@ three
 </ul>
 <h4 id="_8">算术运算</h4>
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是：<code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
-<details class="example"><summary><code>expr</code> 和 <code>let</code> 使用示例</summary><div class="codehilite"><pre><span></span>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
+<details class="example"><summary><code>expr</code> 和 <code>let</code> 使用示例</summary><div class="codehilite"><pre><span></span><code>➜  ~ expr length <span class="s2">&quot;ustclug&quot;</span>
 <span class="m">7</span>
 ➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 ➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>
@@ -1548,7 +1548,7 @@ three
 ➜  ~ <span class="nb">let</span> <span class="nv">a</span><span class="o">+=</span>a/a
 ➜  ~ <span class="nb">echo</span> <span class="nv">$a</span>   
 <span class="m">3</span>
-</pre></div>
+</code></pre></div>
 
 </details>
 <h4 id="_9">条件表达式</h4>
@@ -1687,7 +1687,7 @@ three
 <li>if</li>
 </ul>
 <p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的。</p>
-<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="o">[</span> condition1 <span class="o">]</span>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="o">[</span> condition1 <span class="o">]</span>
 <span class="k">then</span>
   command1
 <span class="k">elif</span> <span class="o">[</span> condition2 <span class="o">]</span>
@@ -1696,13 +1696,13 @@ three
 <span class="k">else</span> 
   command3
 <span class="k">fi</span>
-</pre></div>
+</code></pre></div>
 
 <ul>
 <li>case</li>
 </ul>
 <p>选项值必须以右括号 <code>)</code> 结尾，若匹配多个离散值，用 <code>|</code> 分隔。这里的 <code>esac</code> 也是 <code>case</code> 倒着写。</p>
-<div class="codehilite"><pre><span></span><span class="k">case</span> &lt;variable&gt; in
+<div class="codehilite"><pre><span></span><code><span class="k">case</span> &lt;variable&gt; in
 value1<span class="p">|</span>value2<span class="o">)</span>
   command1
   command2
@@ -1711,28 +1711,28 @@ value3<span class="o">)</span>
   command3
   <span class="p">;;</span>
 <span class="k">esac</span>
-</pre></div>
+</code></pre></div>
 
 <ul>
 <li>for</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="k">for</span> var in list
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> var in list
 <span class="k">do</span>
   command1
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 
 <ul>
 <li>while</li>
 </ul>
 <p>while 循环用于不断执行一系列命令，命令通常为测试条件。</p>
-<div class="codehilite"><pre><span></span><span class="k">while</span> condition
+<div class="codehilite"><pre><span></span><code><span class="k">while</span> condition
 <span class="k">do</span>
   <span class="nb">command</span>
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 
-<details class="example"><summary>流程控制样例脚本</summary><div class="codehilite"><pre><span></span><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
+<details class="example"><summary>流程控制样例脚本</summary><div class="codehilite"><pre><span></span><code><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
 <span class="nb">echo</span> -n <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span>
 <span class="nb">read</span> MAX_NO
 <span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
@@ -1767,10 +1767,10 @@ clear
   <span class="k">done</span>
   <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
 
 <p>输出结果：</p>
-<div class="codehilite"><pre><span></span>Enter Number between <span class="o">(</span><span class="m">5</span> to <span class="m">9</span><span class="o">)</span> : <span class="m">9</span>
+<div class="codehilite"><pre><span></span><code>Enter Number between <span class="o">(</span><span class="m">5</span> to <span class="m">9</span><span class="o">)</span> : <span class="m">9</span>
 
          .
         . .
@@ -1790,34 +1790,34 @@ clear
        . . .
         . .
          .
-</pre></div>
+</code></pre></div>
 
 </details>
 <p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break n</code> 和 <code>continute n</code>（参数 <code>n</code> 均表示跳过 n 层循环）。</p>
 <h4 id="_11">函数</h4>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
-<p><div class="codehilite"><pre><span></span><span class="o">[</span> <span class="k">function</span> <span class="o">]</span> funname <span class="o">[()]</span>
+<p><div class="codehilite"><pre><span></span><code><span class="o">[</span> <span class="k">function</span> <span class="o">]</span> funname <span class="o">[()]</span>
 <span class="o">{</span>
     action<span class="p">;</span>
     <span class="o">[</span><span class="k">return</span> int<span class="p">;</span><span class="o">]</span>
 <span class="o">}</span>
-</pre></div>
+</code></pre></div>
 其中 function 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
 <p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
 <details class="example"><summary>范例</summary><p>某带函数的某脚本程序内容如下：</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 hello<span class="o">()</span>
 <span class="o">{</span>
   <span class="nb">echo</span> <span class="s2">&quot;hello, today’s date is `date`&quot;</span>
 <span class="o">}</span>
 <span class="nb">echo</span> <span class="s2">&quot;going to call test function:&quot;</span>
 hello
-</pre></div>
+</code></pre></div>
 
 <p>运行脚本，输出结果：</p>
-<div class="codehilite"><pre><span></span><span class="err">going to call test function:</span>
+<div class="codehilite"><pre><span></span><code><span class="err">going to call test function:</span>
 <span class="err">hello, today’s date is &lt;当前日期显示输出串&gt;</span>
-</pre></div>
+</code></pre></div>
 
 </details>
 <h3 id="bash_4">Bash 脚本调试</h3>
@@ -1902,9 +1902,9 @@ hello
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1914,7 +1914,7 @@ hello
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
         
         
@@ -1933,7 +1933,7 @@ hello
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>

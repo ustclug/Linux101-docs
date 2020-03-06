@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
@@ -40,12 +40,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#linux" tabindex="1" class="md-skip">
+      <a href="#linux" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" class="md-header-nav__button md-logo">
+        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -117,7 +117,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -842,26 +842,26 @@
 <p>使用任意一个文本编辑器，利用前面讲过的知识，新建一个文件。
 我们假设这个文件叫 main.c。
 为这个文件填上以下内容：</p>
-<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// main.c</span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 <p>这是一个简单的 Hello World 程序。
 让我们从它开始。</p>
 <p>我们使用系统自带的 C 编译器：gcc，对这个文件进行编译，生成二进制文件：</p>
-<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<div class="codehilite"><pre><span></span><code><span class="gp">$</span> ls
 <span class="go">main.c</span>
 <span class="gp">$</span> gcc main.c -o main
 <span class="gp">$</span> ls
 <span class="go">main.c main</span>
 <span class="gp">$</span> ./main
 <span class="go">Hello World!</span>
-</pre></div>
+</code></pre></div>
 
 <p>让我们分析一下上面几个指令：</p>
 <p><code>gcc</code> 是 gcc 这个编译器对应的指令，一般位于 /usr/bin/gcc，是一个 C 编译器。</p>
@@ -881,34 +881,34 @@
 即能够在之前的系统（Windows 或 Mac OS，或其他，如果你是的话）中的 IDE 内完成 C 语言的多文件开发。</p>
 <p>如果你不会，别急，这里将做一个简单的介绍：</p>
 <p>假设你拥有一下两个文件：</p>
-<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// main.c</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">print</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1">// print.c</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// print.c</span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 <p>那为了在 main.c 中引用 <code>void print()</code> 这个函数，你需要做以下几件事：</p>
 <ul>
 <li>在当前目录下新建一个头文件 print.h；</li>
 <li>在 print.h 中填入以下内容：</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="c1">// print.h</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// print.h</span>
 <span class="cp">#ifndef PRINT</span>
 <span class="cp">#define PRINT</span>
 
 <span class="kt">void</span> <span class="nf">print</span><span class="p">();</span>
 
 <span class="cp">#endif  </span><span class="c1">// PRINT</span>
-</pre></div>
+</code></pre></div>
 
 <p>这里的 <code>#ifndef ... #define ... #endif</code> 是头文件保护，防止同一头文件被 <code>#include</code> 两次造成重复声明的错误，
 如果你不理解这部分也没关系，只需保证 <code>void print();</code> 这一行声明存在即可。</p>
@@ -919,43 +919,43 @@
 具体的操作过程将在下方的正文中讲解。</p>
 </div>
 <p>我们首先创建以下三个文件：</p>
-<div class="codehilite"><pre><span></span><span class="c1">// main.c</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// main.c</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">print</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1">// print.c</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// print.c</span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1">// print.h</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// print.h</span>
 <span class="cp">#ifndef PRINT</span>
 <span class="cp">#define PRINT</span>
 
 <span class="kt">void</span> <span class="nf">print</span><span class="p">();</span>
 
 <span class="cp">#endif  </span><span class="c1">// PRINT</span>
-</pre></div>
+</code></pre></div>
 
 <p>怎么编译它们呢？
 我们将介绍以下几种方法：</p>
 <h4 id="gcc">gcc 所有文件</h4>
 <p>gcc 可以自动进行简单的分析完成编译。
 你可以使用以下的指令：</p>
-<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<div class="codehilite"><pre><span></span><code><span class="gp">$</span> ls
 <span class="go">main.c print.c print.h</span>
 <span class="gp">$</span> gcc main.c print.c -o main
 <span class="gp">$</span> ls
 <span class="go">main.c print.c print.h main</span>
 <span class="gp">$</span> ./main
 <span class="go">Hello World!</span>
-</pre></div>
+</code></pre></div>
 
 <p>同样让我们分析以下指令：</p>
 <p><code>gcc main.c print.c -o main</code> 中没用包含 print.h 这个头文件。
@@ -963,7 +963,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 当然，加上 print.h，变成 <code>gcc main.c print.c print.h -o main</code> 也是可以的，并不会有错误出现。</p>
 <h4 id="gcc_1">gcc 一步步编译，最后统一链接</h4>
 <p>首先让我们看一下指令：</p>
-<div class="codehilite"><pre><span></span><span class="gp">$</span> ls
+<div class="codehilite"><pre><span></span><code><span class="gp">$</span> ls
 <span class="go">main.c print.c print.h</span>
 <span class="gp">$</span> gcc main.c -c
 <span class="gp">$</span> ls
@@ -976,7 +976,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 <span class="go">main.c print.c print.h main.o print.o main</span>
 <span class="gp">$</span> ./main
 <span class="go">Hello World!</span>
-</pre></div>
+</code></pre></div>
 
 <p>这里我们使用了 <code>gcc -c</code>。
 <code>-c</code> 将会把源文件编译为对象文件（object file， .o 这个后缀就来源于 object 的首字母）。
@@ -1050,9 +1050,9 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1062,7 +1062,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
         
         
@@ -1081,7 +1081,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>

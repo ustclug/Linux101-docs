@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
@@ -40,12 +40,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" class="md-header-nav__button md-logo">
+        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -117,7 +117,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -1050,7 +1050,7 @@
 <div class="admonition example">
 <p class="admonition-title"><code>/etc/passwd</code> 示例</p>
 <p>以下是一个例子：</p>
-<div class="codehilite"><pre><span></span><span class="n">root</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="n">root</span><span class="o">:/</span><span class="n">root</span><span class="o">:/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
+<div class="codehilite"><pre><span></span><code><span class="n">root</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="n">root</span><span class="o">:/</span><span class="n">root</span><span class="o">:/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
 <span class="n">daemon</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">daemon</span><span class="o">:/</span><span class="n">usr</span><span class="sr">/sbin:/usr/sbin/</span><span class="n">nologin</span>
 <span class="n">bin</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="n">bin</span><span class="o">:/</span><span class="n">bin</span><span class="o">:/</span><span class="n">usr</span><span class="sr">/sbin/</span><span class="n">nologin</span>
 <span class="err">（中间内容省略）</span>
@@ -1058,7 +1058,7 @@
 <span class="n">me</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">1000</span><span class="o">:</span><span class="mi">1000</span><span class="o">:</span><span class="n">me</span><span class="o">:/</span><span class="n">home</span><span class="sr">/me:/bin/</span><span class="n">bash</span>
 <span class="n">lxd</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">998</span><span class="o">:</span><span class="mi">100</span><span class="o">::/</span><span class="n">var</span><span class="sr">/snap/lxd/common/lxd:/bin/</span><span class="kc">false</span>
 <span class="n">mysql</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">111</span><span class="o">:</span><span class="mi">116</span><span class="o">:</span><span class="n">MySQL</span> <span class="n">Server</span><span class="o">,,,:/</span><span class="n">nonexistent</span><span class="o">:/</span><span class="n">bin</span><span class="o">/</span><span class="kc">false</span>
-</pre></div>
+</code></pre></div>
 
 <p>在此文件中，每一行都是一个用户，每行中用户信息由冒号 <code>:</code> 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 <code>man 5 passwd</code> 查阅。</p>
 </div>
@@ -1098,7 +1098,7 @@
 <div class="admonition tip">
 <p class="admonition-title">以 <code>root</code> 用户执行上一条命令</p>
 <p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
-<div class="codehilite"><pre><span></span><span class="err">$</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="k">update</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="k">update</span><span class="w"></span>
 <span class="n">Reading</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="n">lists</span><span class="p">...</span><span class="w"> </span><span class="n">Done</span><span class="w"></span>
 <span class="nl">E</span><span class="p">:</span><span class="w"> </span><span class="n">Could</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/</span><span class="n">lock</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="err">:</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="n">denied</span><span class="p">)</span><span class="w"></span>
 <span class="nl">E</span><span class="p">:</span><span class="w"> </span><span class="n">Unable</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/</span><span class="w"></span>
@@ -1109,56 +1109,56 @@
 <span class="o">[</span><span class="n">sudo</span><span class="o">]</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nl">me</span><span class="p">:</span><span class="w"></span>
 <span class="nl">Hit</span><span class="p">:</span><span class="mi">1</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="w"> </span><span class="n">InRelease</span><span class="w"></span>
 <span class="err">（</span><span class="n">以下内容省略</span><span class="err">）</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 
 <p>其实，在 Shell 中，<code>!!</code> 即代表上一条命令，也可以和其他的命令结合使用。</p>
 </div>
 <p>那么，如何以 <code>root</code> 之外的用户的身份执行命令呢？加上 <code>-u 用户名</code> 的参数即可。</p>
-<div class="codehilite"><pre><span></span>$ sudo -u nobody id
+<div class="codehilite"><pre><span></span><code>$ sudo -u nobody id
 <span class="nv">uid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nobody<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 <p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
 <div class="admonition example">
 <p class="admonition-title">修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</p>
 <p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
 <p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
-<div class="codehilite"><pre><span></span><span class="cp"># Allow members of group sudo to execute any command</span>
+<div class="codehilite"><pre><span></span><code><span class="cp"># Allow members of group sudo to execute any command</span>
 <span class="nf">%sudo</span>   <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="nl">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">ALL</span>
-</pre></div>
+</code></pre></div>
 
 <p>将配置行修改成以下即可。</p>
-<div class="codehilite"><pre><span></span><span class="nf">%sudo</span>   <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="nl">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="nl">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nf">%sudo</span>   <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="nl">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="nl">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+</code></pre></div>
 
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
 </div>
 <h4 id="su"><code>su</code></h4>
 <p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
 <p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
-<div class="codehilite"><pre><span></span>$ su
+<div class="codehilite"><pre><span></span><code>$ su
 Password:
 （密码？什么密码？输我自己的密码试试？）
 su: Authentication failure
 $ 
-</pre></div>
+</code></pre></div>
 
 <p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
-<div class="codehilite"><pre><span></span>$ sudo su
+<div class="codehilite"><pre><span></span><code>$ sudo su
 Password:
 （没错，是我自己的密码）
 <span class="c1"># id</span>
 <span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span>
 <span class="c1"># exit</span>
 $ 
-</pre></div>
+</code></pre></div>
 
 <p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
 <h3 id="_6">用户组简介</h3>
 <p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
-<div class="codehilite"><pre><span></span>$ groups
+<div class="codehilite"><pre><span></span><code>$ groups
 me adm cdrom sudo dip plugdev lxd
-</pre></div>
+</code></pre></div>
 
 <p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。</p>
 <p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
@@ -1172,24 +1172,24 @@ me adm cdrom sudo dip plugdev lxd
 <p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
 </div>
 <p><code>adduser</code> 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：</p>
-<div class="codehilite"><pre><span></span>$ sudo adduser 用户名
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo adduser 用户名
+</code></pre></div>
 
 <p>即可添加此用户。而输入</p>
-<div class="codehilite"><pre><span></span>$ sudo adduser --group 组名
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo adduser --group 组名
+</code></pre></div>
 
 <p>即可添加此用户组。将用户加入指定用户组也非常简单：</p>
-<div class="codehilite"><pre><span></span>$ sudo adduser 用户名 组名
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo adduser 用户名 组名
+</code></pre></div>
 
 <h2 id="_8">文件权限</h2>
 <p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
-<div class="codehilite"><pre><span></span>$ ls -l
+<div class="codehilite"><pre><span></span><code>$ ls -l
 total <span class="m">8</span>
 -rwxrw-r-- <span class="m">1</span> me me   <span class="m">40</span> Feb  <span class="m">3</span> <span class="m">22</span>:37 a_file
 drwxrwxr-x <span class="m">2</span> me me <span class="m">4096</span> Feb  <span class="m">3</span> <span class="m">22</span>:38 a_folder
-</pre></div>
+</code></pre></div>
 
 <p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
 <p>第三、四列为文件所属用户和用户组。</p>
@@ -1198,7 +1198,7 @@ drwxrwxr-x <span class="m">2</span> me me <span class="m">4096</span> Feb  <span
 <p class="admonition-title">执行权限意味着什么？</p>
 <p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
 <p>而对于文件夹来说，拥有执行权限，你就可以遍历这个文件夹下的内容。以下是一个例子：</p>
-<div class="codehilite"><pre><span></span>$ ls -l
+<div class="codehilite"><pre><span></span><code>$ ls -l
 total <span class="m">8</span>
 -rwxrw-r-- <span class="m">1</span> me me   <span class="m">40</span> Feb  <span class="m">3</span> <span class="m">22</span>:37 a_file
 drw-rw-r-- <span class="m">2</span> me me <span class="m">4096</span> Feb  <span class="m">3</span> <span class="m">22</span>:38 a_folder
@@ -1221,22 +1221,22 @@ touch: cannot touch <span class="s1">&#39;a_folder/test2&#39;</span>: Permission
 $ rm a_folder/test
 rm: cannot remove <span class="s1">&#39;a_folder/test&#39;</span>: Permission denied
 $ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
-</pre></div>
+</code></pre></div>
 
 </div>
 <p>可以使用 <code>chmod</code> (<strong>ch</strong>ange file <strong>mod</strong>e bits) 修改权限，<code>chown</code> (<strong>ch</strong>ange file <strong>own</strong>er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。</p>
 <div class="admonition example">
 <p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
 <p>有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：</p>
-<div class="codehilite"><pre><span></span>$ ./program
+<div class="codehilite"><pre><span></span><code>$ ./program
 -bash: ./program: Permission denied
-</pre></div>
+</code></pre></div>
 
 <p>大多数情况下，这说明这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
-<div class="codehilite"><pre><span></span>$ chmod +x program
+<div class="codehilite"><pre><span></span><code>$ chmod +x program
 $ ./program
 （可以执行了）
-</pre></div>
+</code></pre></div>
 
 </div>
 <h2 id="_9">文件系统层次结构</h2>
@@ -1399,9 +1399,9 @@ $ ./program
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1411,7 +1411,7 @@ $ ./program
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
         
         
@@ -1430,7 +1430,7 @@ $ ./program
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>

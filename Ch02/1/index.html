@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
@@ -40,12 +40,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" class="md-header-nav__button md-logo">
+        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -117,7 +117,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -370,7 +370,7 @@
         
           <li class="md-nav__item">
   <a href="#shell" class="md-nav__link">
-    更换shell
+    更换 Shell
   </a>
   
     <nav class="md-nav">
@@ -378,7 +378,7 @@
         
           <li class="md-nav__item">
   <a href="#zsh" class="md-nav__link">
-    zsh
+    Zsh
   </a>
   
 </li>
@@ -435,14 +435,14 @@
         
           <li class="md-nav__item">
   <a href="#wordpress" class="md-nav__link">
-    wordpress
+    WordPress
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#jekyll" class="md-nav__link">
-    jekyll
+    Jekyll
   </a>
   
 </li>
@@ -951,7 +951,7 @@
         
           <li class="md-nav__item">
   <a href="#shell" class="md-nav__link">
-    更换shell
+    更换 Shell
   </a>
   
     <nav class="md-nav">
@@ -959,7 +959,7 @@
         
           <li class="md-nav__item">
   <a href="#zsh" class="md-nav__link">
-    zsh
+    Zsh
   </a>
   
 </li>
@@ -1016,14 +1016,14 @@
         
           <li class="md-nav__item">
   <a href="#wordpress" class="md-nav__link">
-    wordpress
+    WordPress
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#jekyll" class="md-nav__link">
-    jekyll
+    Jekyll
   </a>
   
 </li>
@@ -1055,177 +1055,180 @@
 <p class="admonition-title">导言</p>
 <p>Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：</p>
 <ul>
-<li>如何选择并安装桌面环境。</li>
-<li>如何打造自己独特的桌面。</li>
-<li>如何配置美化命令行终端。</li>
-<li>如何简单快速地搭建网站。</li>
+<li>如何选择并安装桌面环境</li>
+<li>如何打造自己独特的桌面</li>
+<li>如何配置美化命令行终端</li>
+<li>如何简单快速地搭建网站</li>
 </ul>
 </div>
 <h2 id="_2">桌面环境</h2>
 <p>早期的 Linux 是不带图形界面的，只能通过命令行管理。随着时代的发展，人们不再满足于黑底白字的命令行界面，开发出来了 Linux 图形环境。
 Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。</p>
 <h3 id="_3">桌面环境的选择</h3>
-<p>Linux的桌面环境可不止一种，下面介绍几个流行的桌面环境。</p>
+<p>Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境。</p>
 <h4 id="kde-plasma">KDE Plasma</h4>
-<p>KDE软件社区提供的Plasma Linux桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
-<a href="https://www.kde.org/plasma-desktop">Plasma官方网站</a></p>
+<p>KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
+<a href="https://www.kde.org/plasma-desktop">Plasma 官方网站</a></p>
 <h4 id="gnome">GNOME</h4>
-<p>GNOME的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME得到了普及。
-<a href="https://www.gnome.org/">GNOME官网</a></p>
+<p>GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
+<a href="https://www.gnome.org/">GNOME 官网</a></p>
 <div class="admonition info">
-<p>除了上面两款常见的桌面环境，还有Xfce，CINNAMON，Unity等，可以自行了解。</p>
+<p>除了上面两款常见的桌面环境，还有 Xfce, Cinnamon, Unity 等，可以自行了解。</p>
 </div>
 <h3 id="_4">桌面环境的安装</h3>
 <p>Ubuntu 18.04 LTS Desktop 系统中已经预先安装好了 GNOME 桌面环境。如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就要自己安装桌面环境。</p>
 <p>下面就来介绍如何手动安装桌面环境。</p>
 <p>以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：</p>
 <p>安装 kde-plasma-desktop 软件</p>
-<div class="codehilite"><pre><span></span>~ $ sudo apt install kde-plasma-desktop
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install kde-plasma-desktop
+</code></pre></div>
 
 <p>接下来的提示中按输入Y回车即安装</p>
 <div class="admonition tip">
 <p class="admonition-title">注意</p>
-<p>若安装非常缓慢可以尝试更换国内源。<a href="http://mirrors.ustc.edu.cn/help/ubuntu.html">科大源更换教程</a></p>
+<p>若安装非常缓慢，可以尝试更换国内源。<a href="http://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">科大源更换教程</a></p>
 </div>
 <p>安装完成后输入</p>
-<div class="codehilite"><pre><span></span>~ $ sudo reboot
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo reboot
+</code></pre></div>
 
 <p>重启后可以看到，KDE Plasma 桌面已经安装完成。我们拥有了图形界面。</p>
 <p><img alt="" src="../images/Plasma-desktop.png" /></p>
-<details class="example"><summary>安装Gnome桌面</summary><p>同理，如果你喜欢Gnome桌面，只需要执行
-<div class="codehilite"><pre><span></span>~ $ sudo apt install ubuntu-gnome-desktop
-~ $ sudo reboot
-</pre></div></p>
+<p>可以看到，通过简单几步，我们的桌面环境就安装成功了。</p>
+<details class="example"><summary>安装 GNOME 桌面</summary><p>同理，如果你喜欢 GNOME 桌面，只需要执行</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
+$ sudo reboot
+</code></pre></div>
+
 </details>
 <p>我们将在下一小节给大家介绍桌面的个性化。</p>
 <h3 id="_5">桌面环境的个性化</h3>
-<p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，dock样式，指针样式等等。</p>
+<p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Docker 样式，指针样式等等。</p>
 <h4 id="_6">主题更换</h4>
-<p>在GNOME桌面下用户可以轻松更换主题
-首先安装 gnome-tweak-tool 软件
-<div class="codehilite"><pre><span></span><span class="err">sudo apt install gnome-tweak-tool</span>
-</pre></div></p>
+<p>在 GNOME 桌面下用户可以轻松更换主题。
+首先安装 gnome-tweak-tool 软件</p>
+<div class="codehilite"><pre><span></span><code><span class="err">sudo apt install gnome-tweak-tool</span>
+</code></pre></div>
+
 <p>在 <a href="https://www.gnome-look.org/">ubuntu-look</a> 中找到自己喜欢的主题。</p>
 <div class="admonition tip">
 <p class="admonition-title">注意</p>
 <p>不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。</p>
 </div>
-<p>点击download下载一个压缩包
-<img alt="" src="../images/themes-download-icon.png" />
-解压后放到<code>~./themes</code>
-文件夹，若不存在该文件夹则创建一个。</p>
-<div class="codehilite"><pre><span></span>~ $ mkdir ~./themes
-</pre></div>
+<p>点击 Download 下载一个压缩包</p>
+<p><img alt="" src="../images/themes-download-icon.png" /></p>
+<p>解压后放到 <code>~/.themes</code> 文件夹，若不存在该文件夹则创建一个。</p>
+<div class="codehilite"><pre><span></span><code>$ mkdir ~/.themes
+</code></pre></div>
 
-<p>输入
-<div class="codehilite"><pre><span></span>~ $ gnome-tweak-tool
-</pre></div>
-打开gnome-tweak-tool，在外观选项中选中想要的主题。</p>
-<p>最后alt+F2 在弹出的输入框输入r确定，重启GNOME即可完成主题更换。</p>
+<p>输入</p>
+<div class="codehilite"><pre><span></span><code>$ gnome-tweak-tool
+</code></pre></div>
+
+<p>打开 gnome-tweak-tool，在外观选项中选中想要的主题。</p>
+<p>最后 Alt+F2 在弹出的输入框输入 r 确定，重启 GNOME 即可完成主题更换。</p>
 <p>如果你觉得商店中的主题都丑爆了，完全不符合你的美学，你也可以自己制作一款独一无二的主题。下面将给大家详细讲解如何自己制作主题。</p>
 <h4 id="_7">主题定制</h4>
 <p>(待补充)</p>
 <h3 id="_8">终端的个性化</h3>
 <p>使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。</p>
-<h4 id="shell">更换shell</h4>
-<p>在那之前我们可以通过
-<div class="codehilite"><pre><span></span>~ $ <span class="nb">echo</span> <span class="nv">$SHELL</span>
-</pre></div>
-检查目前我们正在用的是什么 shell</p>
-<p>ubuntu 默认会使用</p>
-<div class="codehilite"><pre><span></span><span class="err">/bin/bash</span>
-</pre></div>
+<h4 id="shell">更换 Shell</h4>
+<p>在那之前我们可以通过</p>
+<div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
+</code></pre></div>
 
+<p>检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具—— zsh。</p>
+<h5 id="zsh">Zsh</h5>
+<p>首先通过 apt 安装 zsh</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install zsh
+</code></pre></div>
 
-<p>在这里推荐一个更加强大的shell工具—— zsh</p>
-<h5 id="zsh">zsh</h5>
-<p>首先通过apt安装 zsh</p>
-<p><div class="codehilite"><pre><span></span>~ $ sudo apt install zsh
-</pre></div>
-将zsh设定为默认 shell</p>
-<p><div class="codehilite"><pre><span></span>~ $ chsh -s /bin/zsh
-</pre></div>
-重启后打开终端就会发现shell已经变成了zsh。
-第一次打开zsh会有首次使用提示，这里我们按0跳过。</p>
-<p>接下来的提示中按输入 <code>Y</code> 回车即安装</p>
-<p>然而这时的zsh仍然是黑底白字，要让它变好看，我们需要对zsh进行配置。</p>
+<p>将 zsh 设定为默认 shell</p>
+<div class="codehilite"><pre><span></span><code>$ chsh -s /bin/zsh
+</code></pre></div>
+
+<p>重启后打开终端就会发现 shell 已经变成了 zsh。</p>
+<p>第一次打开 zsh 会有首次使用提示，这里我们按 0 跳过。</p>
+<p>接下来的提示中按 Y 回车即安装</p>
+<p>然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。</p>
 <h5 id="oh-my-zsh">oh-my-zsh</h5>
-<p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
-<div class="codehilite"><pre><span></span>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-安装完成后就可以看到shell不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。
-我们可以修改<code>~/.zshrc</code>里的一行</p>
-<div class="codehilite"><pre><span></span><span class="err">ZSH_THEME=&quot;robbyrussell&quot;</span>
-</pre></div>
+<p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。</p>
+<div class="codehilite"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。</p>
+<p>我们可以修改 <code>~/.zshrc</code>里的一行</p>
+<div class="codehilite"><pre><span></span><code><span class="err">ZSH_THEME=&quot;robbyrussell&quot;</span>
+</code></pre></div>
 
 
-<p>中引号部分切换主题，具体主题可以在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">oh-my-zsh官网</a>中找到。
+<p>中引号部分切换主题，具体主题可以在 <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">oh-my-zsh 官网</a>中找到。
 当然你也可以自己尝试自己做一个主题。</p>
 <h2 id="_9">其它的个性化</h2>
 <p>上面内容都是外观上的个性化，更多地，Linux系统的可客制化还体现在一些配置文件上。</p>
 <h3 id="etc">etc目录</h3>
-<p><code>/etc</code>目录是包含几乎所有 Linux 系统配置的一个文件夹。</p>
+<p><code>/etc</code> 目录是包含几乎所有 Linux 系统配置的一个文件夹。</p>
 <div class="admonition info">
 <p class="admonition-title">tips</p>
-<p>etc 是"etcetera" 的全称，意思是 "and so on"，在UNIX初期人们实现 "etc" 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 "etc" 没有更改。现在 "etc" 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。</p>
+<p>etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 <code>etc</code> 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 <code>/etc</code> 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。</p>
 </div>
 <p>下面介绍几个常用的配置文件</p>
 <ul>
-<li>/etc/profile 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置</li>
-<li>/etc/bashrc 启动bash时读取的环境</li>
-<li>/etc/sudoers sudo 权限的配置</li>
-<li>/etc/protocols 网络协议簇的配置</li>
+<li><code>/etc/profile</code> 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置</li>
+<li><code>/etc/bash.bashrc</code> 启动 Bash 时读取的环境</li>
+<li><code>/etc/sudoers</code> sudo 权限的配置</li>
+<li><code>/etc/protocols</code> 网络协议簇的配置</li>
 </ul>
-<details class="example"><summary>example</summary><p>当我们登录用户成功时
-<div class="codehilite"><pre><span></span><span class="err">~ $ sudo login</span>
-</pre></div>
-会提示以下信息
-<div class="codehilite"><pre><span></span><span class="n">Welcome</span> <span class="k">to</span> <span class="n">Ubuntu</span> <span class="mi">18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">3</span> <span class="n">LTS</span> <span class="p">(</span><span class="n">GNU</span><span class="o">/</span><span class="n">Linux</span> <span class="mi">5</span><span class="p">.</span><span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">28</span><span class="o">-</span><span class="n">generic</span> <span class="n">x86_64</span><span class="p">)</span>
- <span class="o">*</span> <span class="n">Documentation</span><span class="p">:</span>  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">help</span><span class="p">.</span><span class="n">ubuntu</span><span class="p">.</span><span class="n">com</span>
- <span class="o">*</span> <span class="n">Management</span><span class="p">:</span>     <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">landscape</span><span class="p">.</span><span class="n">canonical</span><span class="p">.</span><span class="n">com</span>
- <span class="o">*</span> <span class="n">Support</span><span class="p">:</span>        <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">advantage</span>
- <span class="o">*</span> <span class="n">Canonical</span> <span class="n">Livepatch</span> <span class="k">is</span> <span class="n">available</span> <span class="k">for</span> <span class="n">installation</span><span class="p">.</span>
-   <span class="o">-</span> <span class="n">Reduce</span> <span class="k">system</span> <span class="n">reboots</span> <span class="k">and</span> <span class="n">improve</span> <span class="n">kernel</span> <span class="k">security</span><span class="p">.</span> <span class="n">Activate</span> <span class="k">at</span><span class="p">:</span>
-     <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">livepatch</span>
-<span class="mi">125</span> <span class="err">个可升级软件包。</span>
-<span class="mi">0</span> <span class="err">个安全更新。</span>
-<span class="n">Your</span> <span class="n">Hardware</span> <span class="n">Enablement</span> <span class="n">Stack</span> <span class="p">(</span><span class="n">HWE</span><span class="p">)</span> <span class="k">is</span> <span class="n">supported</span> <span class="k">until</span> <span class="n">April</span> <span class="mi">2023</span><span class="p">.</span>
-<span class="o">***</span> <span class="err">需要重启系统</span> <span class="o">***</span>
-<span class="n">The</span> <span class="n">programs</span> <span class="n">included</span> <span class="k">with</span> <span class="n">the</span> <span class="n">Ubuntu</span> <span class="k">system</span> <span class="k">are</span> <span class="k">free</span> <span class="n">software</span><span class="p">;</span>
-<span class="n">the</span> <span class="n">exact</span> <span class="n">distribution</span> <span class="n">terms</span> <span class="k">for</span> <span class="k">each</span> <span class="n">program</span> <span class="k">are</span> <span class="n">described</span> <span class="k">in</span> <span class="n">the</span>
-<span class="n">individual</span> <span class="n">files</span> <span class="k">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">share</span><span class="o">/</span><span class="n">doc</span><span class="cm">/*/copyright.</span>
+<details class="example"><summary>示例</summary><p>当我们登录用户成功时</p>
+<div class="codehilite"><pre><span></span><code>$ sudo login
+</code></pre></div>
 
-<span class="cm">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span>
-<span class="cm">applicable law.</span>
-</pre></div></p>
+<p>会提示以下信息</p>
+<div class="codehilite"><pre><span></span><code>Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+125 个可升级软件包。
+0 个安全更新。
+Your Hardware Enablement Stack (HWE) is supported until April 2023.
+*** 需要重启系统 ***
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+</code></pre></div>
+
+<p>Ubuntu 下这些提示信息都可以在 <code>/etc/update-motd.d/</code> 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。</p>
 <div class="admonition info">
 <p class="admonition-title">提示</p>
-<p>有的 Linux 发行版的motd配置在/etc/motd</p>
+<p>有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 <code>/etc/motd</code></p>
 </div>
-<p>我们在<code>/etc/update-motd.d/</code>目录下新建一个文件，写入下面内容
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<p>我们在 <code>/etc/update-motd.d/</code> 目录下新建一个文件 <code>99-test</code>，写入下面内容</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 <span class="nb">echo</span> helloworld
-</pre></div>
-通过
-<div class="codehilite"><pre><span></span>~ $ sudo chmod +x /etc/update-motd.d/99-test
-</pre></div>
-设置好权限。</p>
-<p>登录后就可以看到在末尾加上了我们在<code>99-test</code>文件中echo的内容。</p>
+</code></pre></div>
+
+<p>然后</p>
+<div class="codehilite"><pre><span></span><code>$ sudo chmod +x /etc/update-motd.d/99-test
+</code></pre></div>
+
+<p>设置好权限，登录后就可以看到在末尾加上了我们在 <code>99-test</code> 文件中 echo 的内容。</p>
 <p>当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。</p>
 </details>
 <h2 id="_10">搭建简易的网站</h2>
-<p>Linux 中环境较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
-<h3 id="wordpress">wordpress</h3>
-<p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。
-下面我们直接安装
-<div class="codehilite"><pre><span></span>~ $ sudo apt install wordpress 
-</pre></div>
-这样就已经把 wordpress 所依赖的环境搭建好了。我们只需要稍微配置一下它。</p>
-<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件</p>
-<p>把下面内容填入</p>
-<div class="codehilite"><pre><span></span>Alias /blog /usr/share/wordpress
+<p>Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
+<h3 id="wordpress">WordPress</h3>
+<p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。下面我们直接安装</p>
+<p><div class="codehilite"><pre><span></span><code>$ sudo apt install wordpress 
+</code></pre></div>
+这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。</p>
+<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，把下面内容填入</p>
+<div class="codehilite"><pre><span></span><code>Alias /blog /usr/share/wordpress
 <span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress</span><span class="nt">&gt;</span>
     Options FollowSymLinks
     AllowOverride Limit Options FileInfo
@@ -1238,47 +1241,46 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
     Order allow,deny
     Allow from all
 <span class="nt">&lt;/Directory&gt;</span>
-</pre></div>
+</code></pre></div>
 
 <p>保存后输入命令来重启 apache2</p>
-<div class="codehilite"><pre><span></span>~ $ sudo a2ensite wordpress
-~ $ sudo a2enmod rewrite
-~ $ sudo service apache2 reload
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo a2ensite wordpress
+$ sudo a2enmod rewrite
+$ sudo service apache2 reload
+</code></pre></div>
 
 <p>再配置数据库相关内容</p>
-<p><div class="codehilite"><pre><span></span>~ $ sudo mysql -u root
-</pre></div>
+<p><div class="codehilite"><pre><span></span><code>$ sudo mysql -u root
+</code></pre></div>
 出现以下信息时</p>
-<div class="codehilite"><pre><span></span><span class="err">Welcome to the MySQL monitor.  Commands end with ; or \g.</span>
-<span class="err">Your MySQL connection id is 2</span>
-<span class="err">Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)</span>
-<span class="err">Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.</span>
-<span class="err">Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.</span>
-<span class="err">Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+</code></pre></div>
 
-
-<p>输入 <strong>其中&lt;your-password>为你自己创建的密码</strong>
-<div class="codehilite"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
+<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码**</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
     <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
     <span class="o">-&gt;</span> <span class="k">TO</span> <span class="n">wordpress</span><span class="o">@</span><span class="n">localhost</span>
     <span class="o">-&gt;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div></p>
-<p>这里每次执行成功都会得到得到</p>
-<div class="codehilite"><pre><span></span><span class="err">Query OK, 1 row affected (0,00 sec)</span>
-</pre></div>
+</code></pre></div>
 
+<p>这里每次执行成功都会得到</p>
+<div class="codehilite"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
+</code></pre></div>
 
 <p>退出</p>
-<div class="codehilite"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
+</code></pre></div>
 
-<p>编辑我们的wordpress配置<code>/etc/wordpress/config-localhost.php</code></p>
-<p>写入以下内容 <strong>其中&lt;your-password>为你自己创建的密码</strong></p>
-<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<p>编辑我们的 WordPress 配置 <code>/etc/wordpress/config-localhost.php</code></p>
+<p>写入以下内容，其中 <code>&lt;your-password&gt;</code> 为刚才设定的数据库密码。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
@@ -1286,36 +1288,35 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
+</code></pre></div>
 
 <p>最后输入</p>
-<p><div class="codehilite"><pre><span></span><span class="err">~ $ sudo service mysql start</span>
-</pre></div>
-启动 mysql 数据库，即可在浏览器输入地址</p>
-<div class="codehilite"><pre><span></span><span class="err">localhost/blog</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code>$ sudo service mysql start
+</code></pre></div>
 
+<p>启动 mysql 数据库，即可在浏览器输入地址</p>
+<div class="codehilite"><pre><span></span><code>http://localhost/blog
+</code></pre></div>
 
 <p>来完成安装。</p>
 <p><img alt="" src="../images/wordpress-installation.png" /></p>
-<h3 id="jekyll">jekyll</h3>
-<p>jekyll 是一个将纯文本转化为静态博客和网站的工具。
-我们只需要安装它。</p>
-<p><div class="codehilite"><pre><span></span><span class="err">~ $ apt install bundler jekyll</span>
-</pre></div>
-再输入几行命令用于创建网站
-<div class="codehilite"><pre><span></span><span class="err">~ $ jekyll new my-awesome-site</span>
-<span class="err">~ $ cd my-awesome-site</span>
-<span class="err">~ $ mkdir .bundle</span>
-<span class="err">~/my-awesome-site $ bundle exec jekyll serve</span>
-</pre></div></p>
+<h3 id="jekyll">Jekyll</h3>
+<p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。我们只需要安装它。</p>
+<div class="codehilite"><pre><span></span><code>$ apt install jekyll
+</code></pre></div>
+
+<p>再输入几行命令用于创建网站</p>
+<div class="codehilite"><pre><span></span><code>~ $ jekyll new my-awesome-site
+~ $ <span class="nb">cd</span> my-awesome-site
+~/my-awesome-site $ jekyll serve
+</code></pre></div>
+
 <p>打开浏览器，在浏览器中输入 并打开</p>
-<div class="codehilite"><pre><span></span><span class="n">localhost</span><span class="o">:</span><span class="mi">4000</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code>http://localhost:4000
+</code></pre></div>
 
-
-<p>即可打开我们搭建的网站。
-<img alt="" src="../images/jekyll-installation.png" /></p>
+<p>即可打开我们搭建的网站。</p>
+<p><img alt="" src="../images/jekyll-installation.png" /></p>
                 
                   
                 
@@ -1374,9 +1375,9 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1386,7 +1387,7 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
         
         
@@ -1405,7 +1406,7 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>
