@@ -1,6 +1,7 @@
 site_name: Linux 101
 
 theme:
+    font: false
     name: 'material'
     language: 'zh'
 
