@@ -569,13 +569,6 @@
       
         <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
-    课后阅读
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -995,13 +988,6 @@
       
         <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
-    课后阅读
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
     引用来源
   </a>
   
@@ -1081,8 +1067,8 @@
 <h4 id="_4">系统用户</h4>
 <p>除了你、<code>root</code> 和其他在用你的电脑/服务器的人（如果有）以外，剩下还有很多用户，如 <code>nobody</code>, <code>www-data</code> 等。它们由系统或相关程序创建，用于执行服务等系统任务。<strong>不要随意删除这些用户</strong>，以免系统运行出现问题。</p>
 <div class="admonition tip">
-<p class="admonition-title">技术层面上，系统用户和普通用户的区别</p>
-<p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
+<p class="admonition-title">技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</p>
+<p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
 <p>此外，由于系统用户的特殊性，它们一般默认禁止登录。</p>
 </div>
 <h4 id="_5">普通用户</h4>
@@ -1323,17 +1309,27 @@ $ ./program
 <li>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</li>
 <li>(*) 当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</li>
 </ol>
-<h2 id="_11">课后阅读</h2>
-<h2 id="_12">引用来源</h2>
-<p>TBD</p>
+<!-- ## 课后阅读
+
+- -->
+
+<h2 id="_11">引用来源</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Passwd">https://en.wikipedia.org/wiki/Passwd</a></li>
+<li><a href="https://askubuntu.com/questions/118204/sudoers-simple-explanation-requested">https://askubuntu.com/questions/118204/sudoers-simple-explanation-requested</a></li>
+<li><a href="https://help.ubuntu.com/community/Sudoers">https://help.ubuntu.com/community/Sudoers</a></li>
+</ul>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p>这里的哈希，指经过了<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8">密码哈希函数</a> (<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">Cryptographic hash function</a>) 的处理。密码哈希函数是一种特殊的单向函数，将任意大小的数据映射到一串长度固定的字符串，并且拥有一些优良的性质（如难以找到两个不同的数据，使得映射后的字符串相同），使其破解难度加大。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
+<li id="fn:3">
+<p><a href="https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes">https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
 <li id="fn:2">
-<p><a href="https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes">https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>然而，对于 Linux 内核来说，系统用户和真实的用户其实没有区别，除了 UID = 0 的用户 (root) 以外。「系统用户」是一个约定俗成而产生的概念。&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
