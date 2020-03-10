@@ -653,6 +653,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    单双引号
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -705,7 +712,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     正则表达式
   </a>
   
@@ -713,21 +720,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     特殊字符
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     简单示例
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     基本/扩展正则表达式
   </a>
   
@@ -886,6 +893,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    单双引号
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -938,7 +952,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     正则表达式
   </a>
   
@@ -946,21 +960,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     特殊字符
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     简单示例
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     基本/扩展正则表达式
   </a>
   
@@ -1028,7 +1042,7 @@
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
-<p>本章节将介绍一些常用的shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
+<p>本章节将介绍一些常用的 shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
 <p>为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
 </div>
 <h2 id="_1">一些铺垫</h2>
@@ -1040,13 +1054,13 @@
 <p>下面简单介绍重定向和管道，为后续知识做铺垫</p>
 <h4 id="_2">重定向</h4>
 <p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
-<div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span>&gt; output_file
+<div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file
 $ cat output_file
 Hello Linux!
-$ <span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span>&gt; output_file
+$ <span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span> &gt; output_file
 $ cat output_file
 rewrite it
-$ <span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span>&gt; output_file
+$ <span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span> &gt;&gt; output_file
 $ cat output_file
 rewrite it
 append it
@@ -1076,6 +1090,9 @@ bin
 sbin
 </code></pre></div>
 
+<h4 id="_4">单双引号</h4>
+<p>当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。</p>
+<p>然而单双引号会带来不同的影响。单双引号中的 <code>`</code> 和 <code>\</code> 都会被解释，而 <code>$</code>只在双引号中被解释，单引号中被视为普通字符。</p>
 <h2 id="shell_1">常用 shell 文字处理工具</h2>
 <h3 id="diff">diff</h3>
 <p>diff 工具用于比较两个文件的不同，并列出差异。</p>
@@ -1101,7 +1118,7 @@ $ diff file1 file2
 <li>不加参数的时候默认显示前 10 行</li>
 <li><code>-n [NUM]</code> 指定行数，可简化为 <code>-[NUM]</code></li>
 <li><code>-c [NUM]</code> 指定字节数</li>
-<li><code>-n +[NUM]</code> 输出从开头到倒数第 [NUM] 行，可简化为 <code>+[NUM]</code></li>
+<li><code>-n +[NUM]</code> 输出从开头到倒数第 [NUM] 行，tail 可简化为 <code>+[NUM]</code></li>
 <li><code>-c +[NUM]</code> 输出从开头到倒数第 [NUM] 字节</li>
 </ul>
 <div class="codehilite"><pre><span></span><code>head file
@@ -1112,7 +1129,7 @@ head -c <span class="m">20</span> file
 
 <div class="codehilite"><pre><span></span><code>head -10 file
 tail -10 file
-head +10 file
+head -n +10 file
 tail +10 file
 </code></pre></div>
 
@@ -1189,14 +1206,19 @@ $ sort -n numbers
 <div class="codehilite"><pre><span></span><code>sort animals <span class="p">|</span> uniq 
 </code></pre></div>
 
-<p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途，<code>uniq -d</code> 可以用于仅输出重复行：</p>
+<p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途。</p>
+<p><code>uniq -d</code> 可以用于仅输出重复行：</p>
 <div class="codehilite"><pre><span></span><code>sort animals <span class="p">|</span> uniq -d
 </code></pre></div>
 
-<h2 id="_4">正则表达式</h2>
+<p><code>uniq -c</code> 可以用于统计各行重复次数：</p>
+<div class="codehilite"><pre><span></span><code>sort animals <span class="p">|</span> uniq -c
+</code></pre></div>
+
+<h2 id="_5">正则表达式</h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
 <p>此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步补充内容。</p>
-<h3 id="_5">特殊字符</h3>
+<h3 id="_6">特殊字符</h3>
 <table>
 <thead>
 <tr>
@@ -1252,7 +1274,7 @@ $ sort -n numbers
 </tbody>
 </table>
 <p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符“\”</p>
-<h3 id="_6">简单示例</h3>
+<h3 id="_7">简单示例</h3>
 <p>匹配正整数：</p>
 <div class="codehilite"><pre><span></span><code><span class="err">[1-9][0-9]*</span>
 </code></pre></div>
@@ -1268,7 +1290,7 @@ $ sort -n numbers
 <p>匹配“ter”结尾的单词：
 <div class="codehilite"><pre><span></span><code><span class="err">ter\b</span>
 </code></pre></div></p>
-<h3 id="_7">基本/扩展正则表达式</h3>
+<h3 id="_8">基本/扩展正则表达式</h3>
 <p>基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。</p>
 <p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如 <code>+</code>, <code>?</code>, <code>|</code>, <code>{</code>）需要加上转义符 <code>\</code> 才能表达其特殊含义。</p>
 <p>ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符默认发挥特殊作用，加上 <code>\</code> 之后表达普通含义。</p>
@@ -1316,8 +1338,8 @@ sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo
 <h3 id="awk">awk</h3>
 <p>awk 是一种用于处理文本的编程语言工具，名字来源于三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。</p>
 <p>awk 使用 ERE。</p>
-<p>命令格式：<code>awk [options] 'pattern {action}'</code></p>
-<p>awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的是，awk 只能使用单引号。</p>
+<p>命令格式：<code>awk [options] 'pattern {action}' [file]</code></p>
+<p>awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的是，awk 使用单引号时可以直接用 <code>$</code>，使用双引号则要用 <code>\$</code>。</p>
 <p>一些示例：</p>
 <div class="codehilite"><pre><span></span><code>$ cat awk_demo
 Beth    <span class="m">4</span>.00    <span class="m">0</span>
