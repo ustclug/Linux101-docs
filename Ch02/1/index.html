@@ -1140,31 +1140,31 @@ $ sudo reboot
 <p>重启 GNOME 即可完成主题更换。</p>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
-<p>你也可以使用ocs-url软件，在网页中直接安装主题，参考本章附录</p>
+<p>你也可以使用 ocs-url 软件，在网页中直接安装主题，参考本章附录</p>
 </div>
 <p>如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。</p>
 <h3 id="gnome_1">GNOME 的拓展程序</h3>
-<p>GNOME支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
+<p>GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
 <p>要使用Gnome拓展程序我们要先安装 gnome-shell-extensions</p>
 <div class="codehilite"><pre><span></span><code>$ sudo apt install gnome-shell-extensions
 </code></pre></div>
 
 <p>接下来进入拓展插件的网站并选择其中一款拓展。</p>
 <p><img alt="" src="../images/caffeine.png" /></p>
-<p>Caffeine是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
+<p>Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
 <p>我们可以输入</p>
 <div class="codehilite"><pre><span></span><code>$ gnome-shell --version
 </code></pre></div>
 
 <p>查看版本。</p>
 <p>在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。</p>
-<p>这时我们打开文件夹里的<code>meta.json</code>文件。</p>
+<p>这时我们打开文件夹里的<code>metadata.json</code>文件。</p>
 <p>将文件夹的名字改为<code>metadata.json</code>中的uuid</p>
 <p><img alt="" src="../images/metadata.png" /></p>
-<p>uuid为caffeine@patapon.info</p>
+<p>uuid 为 "caffeine@patapon.info"</p>
 <p><img alt="" src="../images/caffeine-folder.png" /></p>
 <p>并将该文件夹放到<code>~/.local/share/gnome-shell/extensions/</code>中。</p>
-<p>打开gnome-tweaks</p>
+<p>打开 gnome-tweaks</p>
 <div class="codehilite"><pre><span></span><code>$ gnome-tweaks
 </code></pre></div>
 
