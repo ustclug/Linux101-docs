@@ -52,6 +52,8 @@ $ make
 $ sudo make install
 ```
 
+> 在文档中第 4 步使用的是 `./Configure darwin64-x86_64-cc --prefix=/usr`，这个是在 macOS 下进行配置时使用的参数，对于在 Ubuntu 64bit 下，需要修改为 `linux-x86_64`
+
 ### 下载 Nginx 源代码
 ```
 $ wget https://nginx.org/download/nginx-1.16.1.tar.gz
