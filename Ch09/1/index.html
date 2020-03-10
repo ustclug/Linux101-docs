@@ -658,13 +658,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    空白字符
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -712,7 +705,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     正则表达式
   </a>
   
@@ -720,15 +713,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     特殊字符
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     简单示例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    基本/扩展正则表达式
   </a>
   
 </li>
@@ -891,13 +891,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    空白字符
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -945,7 +938,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     正则表达式
   </a>
   
@@ -953,15 +946,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     特殊字符
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     简单示例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    基本/扩展正则表达式
   </a>
   
 </li>
@@ -1022,12 +1022,14 @@
               
                 
                 
-                <h1 id="shell">九：Shell 文字处理工具与正则表达式</h1>
+                <h1 id="shell">九：Shell 文本处理工具与正则表达式</h1>
 <div class="admonition failure">
 <p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
+<p>本章节将介绍一些常用的shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
+<p>为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
 </div>
 <h2 id="_1">一些铺垫</h2>
 <h3 id="io">I/O 重定向和管道</h3>
@@ -1037,7 +1039,7 @@
 </blockquote>
 <p>下面简单介绍重定向和管道，为后续知识做铺垫</p>
 <h4 id="_2">重定向</h4>
-<p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以<code>echo</code>为例的重定向输出：</p>
+<p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
 <div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span>&gt; output_file
 $ cat output_file
 Hello Linux!
@@ -1050,34 +1052,33 @@ rewrite it
 append it
 </code></pre></div>
 
-<p>无论是"&gt;"还是"&gt;&gt;"，输出文件不存在时都会创建文件</p>
-<p>重定向输入使用符号 "&lt;"：</p>
+<p>无论是“&gt;”还是“&gt;&gt;”，当输出文件不存在时都会创建该文件</p>
+<p>重定向输入使用符号“&lt;”：</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">command</span> &lt; inputfile
 <span class="nb">command</span> &lt; inpufile &gt; outputfile
 </code></pre></div>
 
 <div class="admonition tip">
 <p class="admonition-title">小知识</p>
-<p>除了stdin和stdout还有标准错误（stderr），0、1、2分别是他们的编号。stderr可以用"2&gt;"重定向。s使用"2&amp;&gt;1"可以将stderr合并到stdout。</p>
+<p>除了 stdin 和 stdout 还有标准错误（stderr），0、1、2分别是他们的编号。stderr 可以用“2 &gt;”重定向。</p>
+<p>使用“2&amp;&gt;1”可以将 stderr 合并到 stdout。</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">思考题</p>
-<p><code>wc -l file</code>和<code>wc -l &lt; file</code>输出有什么区别？为什么？
-<code>echo &lt; file</code>会输出什么？</p>
+<p><code>wc -l file</code> 和 <code>wc -l &lt; file</code> 输出有什么区别？为什么？</p>
+<p><code>echo &lt; file</code> 会输出什么？</p>
 </div>
 <h4 id="_3">管道</h4>
-<p>管道（pipe），命令操作符"|"，作用为将pipe之前的命令的stdout接到之后的命令的stdin。pipe不处理stderr。</p>
+<p>管道（pipe），命令操作符“|”，作用为将pipe之前的命令的 stdout 接到之后的命令的 stdin。pipe 不会处理 stderr。</p>
 <p>//TBC picture</p>
 <div class="codehilite"><pre><span></span><code>$ ls /<span class="p">|</span>grep bin
 bin
 sbin
 </code></pre></div>
 
-<h3 id="_4">空白字符</h3>
 <h2 id="shell_1">常用shell文字处理工具</h2>
-<p>diff sort, head, tail, uniq</p>
 <h3 id="diff">diff</h3>
-<p>diff工具用于比较两个文件的不同并列出差异。</p>
+<p>diff 工具用于比较两个文件的不同，并列出差异。</p>
 <div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> hello &gt; file1
 $ <span class="nb">echo</span> hallo &gt; file2
 $ diff file1 file1
@@ -1090,16 +1091,16 @@ $ diff file1 file2
 
 <div class="admonition tip">
 <p class="admonition-title">小知识</p>
-<p>加参数 -w 可忽略所有空白字符， -b 可忽略空白字符的数量变化。
-假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。</p>
+<p>加参数 <code>-w</code> 可忽略所有空白字符， <code>-b</code> 可忽略空白字符的数量变化。</p>
+<p>假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。</p>
 </div>
 <h3 id="head-tail">head &amp; tail</h3>
-<p>顾名思义，head和tail分别用来显示开头和结尾指定数量的文字。</p>
-<p>head为例的共同用法：</p>
+<p>顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。</p>
+<p>以 head 为例的共同用法：</p>
 <ul>
-<li>不加参数的时候默认显示前10行</li>
-<li>-n [NUM] 指定行数，可简化为 -[NUM]</li>
-<li>-c [NUM] 指定字节数</li>
+<li>不加参数的时候默认显示前 10 行</li>
+<li><code>-n [NUM]</code> 指定行数，可简化为 <code>-[NUM]</code></li>
+<li><code>-c [NUM]</code> 指定字节数</li>
 </ul>
 <div class="codehilite"><pre><span></span><code>head file
 head -n <span class="m">25</span> file
@@ -1109,24 +1110,24 @@ head -c <span class="m">20</span> file
 
 <p>tail比head多出的用法：</p>
 <ul>
-<li>-n +[NUM] 输出从第 [NUM] 行开始到结尾</li>
-<li>-c +[NUM] 输出从第 [NUM] 字节开始到结尾</li>
-<li>-f 当文件末尾内容增长时，持续输出末尾增加的内容</li>
+<li><code>-n +[NUM]</code> 输出从第 [NUM] 行开始到结尾</li>
+<li><code>-c +[NUM]</code> 输出从第 [NUM] 字节开始到结尾</li>
+<li><code>-f</code> 当文件末尾内容增长时，持续输出末尾增加的内容</li>
 </ul>
-<p>tail -f 常用于动态显示log文件的更新</p>
-<p>head和tail组合使用：</p>
+<p><code>tail -f file</code> 常用于动态显示 log 文件的更新</p>
+<p>head 和 tail 组合使用：</p>
 <div class="codehilite"><pre><span></span><code>head -20 file <span class="p">|</span> tail -5
 head -20 file <span class="p">|</span> tail +5
 </code></pre></div>
 
 <h3 id="sort">sort</h3>
-<p>sort用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
+<p>sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
 <p>一些基本用法：</p>
 <ul>
-<li>-r 变成降序</li>
-<li>-u 去除重复行</li>
-<li>-o [file] 指定输出文件</li>
-<li>-n 用于数值排序，否则“15”会排在“2”前</li>
+<li><code>-r</code> 变成降序</li>
+<li><code>-u</code>去除重复行</li>
+<li><code>-o [file]</code> 指定输出文件</li>
+<li><code>-n</code> 用于数值排序，否则“15”会排在“2”前</li>
 </ul>
 <div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> -e <span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span> &gt; animals
 $ sort animals
@@ -1173,22 +1174,22 @@ $ sort -n numbers
 
 <div class="admonition tip">
 <p class="admonition-title">小知识</p>
-<p>为什么有必要存在-o参数？试试重定向输出到原文件。</p>
+<p>为什么有必要存在 <code>-o</code> 参数？试试重定向输出到原文件。</p>
 </div>
 <h3 id="uniq">uniq</h3>
-<p>uniq也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
-<p>通常会和sort一起使用：</p>
+<p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
+<p>通常会和 sort 一起使用：</p>
 <div class="codehilite"><pre><span></span><code>sort animals<span class="p">|</span> uniq 
 </code></pre></div>
 
-<p>只是去重排序明明可以用<code>sort -u</code>，uniq工具是否多余了呢？实际上uniq还有其他用途，uniq -d可以做到仅输出重复行：</p>
+<p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途，<code>uniq -d</code> 可以用于仅输出重复行：</p>
 <div class="codehilite"><pre><span></span><code>sort animals<span class="p">|</span> uniq -d
 </code></pre></div>
 
-<h2 id="_5">正则表达式</h2>
+<h2 id="_4">正则表达式</h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
 <p>此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步补充内容。</p>
-<h3 id="_6">特殊字符</h3>
+<h3 id="_5">特殊字符</h3>
 <table>
 <thead>
 <tr>
@@ -1243,26 +1244,86 @@ $ sort -n numbers
 </tr>
 </tbody>
 </table>
-<p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符"\"</p>
-<h3 id="_7">简单示例</h3>
-<p>各示例中，正则表达式首尾均有“/”</p>
+<p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符“\”</p>
+<h3 id="_6">简单示例</h3>
 <p>匹配正整数：
-<div class="codehilite"><pre><span></span><code><span class="err">/[1-9][0-9]*/</span>
+<div class="codehilite"><pre><span></span><code><span class="err">[1-9][0-9]*</span>
 </code></pre></div></p>
-<p>匹配仅由26个英文字母组成的字符串：
-<div class="codehilite"><pre><span></span><code><span class="err">/^[A-Za-z]+$/</span>
+<p>匹配仅由 26 个英文字母组成的字符串：
+<div class="codehilite"><pre><span></span><code><span class="err">^[A-Za-z]+$</span>
 </code></pre></div></p>
-<p>匹配Chapter 1-99或Section 1-99
-<div class="codehilite"><pre><span></span><code><span class="err">/^(Chapter|Section) [1-9][0-9]{0,1}$/</span>
+<p>匹配 Chapter 1-9 或 Section 1-99
+<div class="codehilite"><pre><span></span><code><span class="err">^(Chapter|Section) [1-9][0-9]{0,1}$</span>
 </code></pre></div></p>
-<p>匹配ter结尾的单词：
-<div class="codehilite"><pre><span></span><code><span class="err">/ter\b/</span>
+<p>匹配“ter”结尾的单词：
+<div class="codehilite"><pre><span></span><code><span class="err">ter\b</span>
 </code></pre></div></p>
+<h3 id="_7">基本/扩展正则表达式</h3>
+<p>基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。</p>
+<p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如：‘+’‘?’‘|’‘{’）需要加上转义符“\”才能表达其特殊含义。</p>
+<p>ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符默认发挥特殊作用，加上“\”之后表达普通含义。</p>
+<p>具体的例子在下文介绍工具时可以看到。</p>
 <h2 id="shell_2">常用Shell 文字处理工具（正则）</h2>
 <h3 id="grep">grep</h3>
-<p>grep全称Global Regular Expression Print，是一个强大的文本搜索工具。</p>
+<p>grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个/多个文件中搜索指定 pattern 并显示相关行。</p>
+<p>grep 默认使用 BRE，要使用 ERE 可以 grep -E 或 egrep。</p>
+<p>命令格式：<code>grep [option] pattern file</code></p>
+<p>一些用法：</p>
+<ul>
+<li>-n 显示匹配到内容的行号</li>
+<li>-v 显示不被匹配到的行</li>
+<li>-i 忽略字符大小写</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>ls /bin<span class="p">|</span>grep -n <span class="s2">&quot;^man</span>$<span class="s2">&quot;</span>
+ls /bin<span class="p">|</span>grep -v <span class="s2">&quot;[a-z]\|[0-9]&quot;</span>
+ls /bin<span class="p">|</span>grep -iv <span class="s2">&quot;[A-Z]\|[0-9]&quot;</span>
+</code></pre></div>
+
 <h3 id="sed">sed</h3>
+<p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
+<p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
+<p>命令格式：</p>
+<div class="codehilite"><pre><span></span><code>sed <span class="o">[</span>options<span class="o">]</span> <span class="s1">&#39;command&#39;</span> file<span class="o">(</span>s<span class="o">)</span>
+sed <span class="o">[</span>options<span class="o">]</span> -f scriptfile file<span class="o">(</span>s<span class="o">)</span>
+</code></pre></div>
+
+<p>此处的“commond”和“scriptfile”中的命令均指的是 sed 命令。</p>
+<p>常见 sed 命令：</p>
+<ul>
+<li>s 替换</li>
+<li>d 删除</li>
+<li>c 选定行改成新文本</li>
+<li>a 当前行下插入文本</li>
+<li>i 当前行上插入文本</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span> -e <span class="s2">&quot;seD\nIS\ngOod&quot;</span> &gt; sed_demo
+sed <span class="s2">&quot;2d&quot;</span> sed_demo
+sed <span class="s2">&quot;2d&quot;</span> sed_demo
+sed <span class="s2">&quot;s/[a-z]/~/g&quot;</span> sed_demo
+sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo
+</code></pre></div>
+
 <h3 id="awk">awk</h3>
+<p>awk 是一种用于处理文本的编程语言工具，“a” “w” “k”分别是三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。</p>
+<p>awk 使用 ERE。</p>
+<p>命令格式：<code>awk [options] 'pattern {action}'</code></p>
+<p>awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的是，awk 只能使用单引号。</p>
+<p>一些示例：</p>
+<div class="codehilite"><pre><span></span><code>$ cat awk_demo
+Beth    <span class="m">4</span>.00    <span class="m">0</span>
+Dan     <span class="m">3</span>.75    <span class="m">0</span>
+kathy   <span class="m">4</span>.00    <span class="m">10</span>
+Mark    <span class="m">5</span>.00    <span class="m">20</span>
+Mary    <span class="m">5</span>.50    <span class="m">22</span>
+Susie   <span class="m">4</span>.25    <span class="m">18</span>
+$ awk <span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span> awk_demo
+kathy <span class="m">40</span>
+Mark <span class="m">100</span>
+Mary <span class="m">121</span>
+Susie <span class="m">76</span>.5
+</code></pre></div>
+
+<p>示例中 $1，$2，$3 分别指代本行的第 1，2，3，列。特别地，$0 指代本行。</p>
                 
                   
                 
