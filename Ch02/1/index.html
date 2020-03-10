@@ -334,30 +334,24 @@
     桌面环境的个性化
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnome_1" class="md-nav__link">
+    GNOME 的拓展程序
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    主题更换
+    桌面小部件的应用 *
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    主题定制
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     终端的个性化
   </a>
   
@@ -402,7 +396,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     其它的个性化
   </a>
   
@@ -422,7 +416,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     搭建简易的网站
   </a>
   
@@ -445,6 +439,20 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    引用来源
+  </a>
   
 </li>
       
@@ -915,30 +923,24 @@
     桌面环境的个性化
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnome_1" class="md-nav__link">
+    GNOME 的拓展程序
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    主题更换
+    桌面小部件的应用 *
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    主题定制
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     终端的个性化
   </a>
   
@@ -983,7 +985,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     其它的个性化
   </a>
   
@@ -1003,7 +1005,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     搭建简易的网站
   </a>
   
@@ -1026,6 +1028,20 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    引用来源
+  </a>
   
 </li>
       
@@ -1069,14 +1085,14 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 <p>GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
 <a href="https://www.gnome.org/">GNOME 官网</a></p>
 <div class="admonition info">
-<p>除了上面两款常见的桌面环境，还有 Xfce, Cinnamon, Unity 等，可以自行了解。</p>
+<p>除了上面两款常见的桌面环境，还有 Xfce, Cinnamon, Unity 等，同学们可以自行了解。</p>
 </div>
 <h3 id="_4">桌面环境的安装</h3>
 <p>Ubuntu 18.04 LTS Desktop 系统中已经预先安装好了 GNOME 桌面环境。如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就要自己安装桌面环境。</p>
 <p>下面就来介绍如何手动安装桌面环境。</p>
 <p>以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：</p>
-<p>安装 kde-plasma-desktop 软件</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install kde-plasma-desktop
+<p>安装 ubuntu-gnome-desktop 软件</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
 </code></pre></div>
 
 <p>接下来的提示中按输入Y回车即安装</p>
@@ -1088,19 +1104,18 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 <div class="codehilite"><pre><span></span><code>$ sudo reboot
 </code></pre></div>
 
-<p>重启后可以看到，KDE Plasma 桌面已经安装完成。我们拥有了图形界面。</p>
-<p><img alt="" src="../images/Plasma-desktop.png" /></p>
+<p>重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。</p>
+<p><img alt="" src="../images/gnome-desktop.png" /></p>
 <p>可以看到，通过简单几步，我们的桌面环境就安装成功了。</p>
-<details class="example"><summary>安装 GNOME 桌面</summary><p>同理，如果你喜欢 GNOME 桌面，只需要执行</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
+<details class="example"><summary>安装 Plasma 桌面</summary><p>同理，如果你喜欢 KDE plasma 桌面，只需要执行</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install kde-plasma-desktop
 $ sudo reboot
 </code></pre></div>
 
 </details>
 <p>我们将在下一小节给大家介绍桌面的个性化。</p>
 <h3 id="_5">桌面环境的个性化</h3>
-<p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Docker 样式，指针样式等等。</p>
-<h4 id="_6">主题更换</h4>
+<p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。</p>
 <p>在 GNOME 桌面下用户可以轻松更换主题。
 首先安装 gnome-tweak-tool 软件</p>
 <div class="codehilite"><pre><span></span><code><span class="err">sudo apt install gnome-tweak-tool</span>
@@ -1122,11 +1137,71 @@ $ sudo reboot
 </code></pre></div>
 
 <p>打开 gnome-tweak-tool，在外观选项中选中想要的主题。</p>
-<p>最后 Alt+F2 在弹出的输入框输入 r 确定，重启 GNOME 即可完成主题更换。</p>
-<p>如果你觉得商店中的主题都丑爆了，完全不符合你的美学，你也可以自己制作一款独一无二的主题。下面将给大家详细讲解如何自己制作主题。</p>
-<h4 id="_7">主题定制</h4>
-<p>(待补充)</p>
-<h3 id="_8">终端的个性化</h3>
+<p>重启 GNOME 即可完成主题更换。</p>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>你也可以使用ocs-url软件，在网页中直接安装主题，参考本章附录</p>
+</div>
+<p>如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。</p>
+<h3 id="gnome_1">GNOME 的拓展程序</h3>
+<p>GNOME支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
+<p>要使用Gnome拓展程序我们要先安装 gnome-shell-extensions</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install gnome-shell-extensions
+</code></pre></div>
+
+<p>接下来进入拓展插件的网站并选择其中一款拓展。</p>
+<p><img alt="" src="../images/caffeine.png" /></p>
+<p>Caffeine是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
+<p>我们可以输入</p>
+<div class="codehilite"><pre><span></span><code>$ gnome-shell --version
+</code></pre></div>
+
+<p>查看版本。</p>
+<p>在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。</p>
+<p>这时我们打开文件夹里的<code>meta.json</code>文件。</p>
+<p>将文件夹的名字改为<code>metadata.json</code>中的uuid</p>
+<p><img alt="" src="../images/metadata.png" /></p>
+<p>uuid为caffeine@patapon.info</p>
+<p><img alt="" src="../images/caffeine-folder.png" /></p>
+<p>并将该文件夹放到<code>~/.local/share/gnome-shell/extensions/</code>中。</p>
+<p>打开gnome-tweaks</p>
+<div class="codehilite"><pre><span></span><code>$ gnome-tweaks
+</code></pre></div>
+
+<p>在拓展一栏即可启用我们刚刚装的caffeine</p>
+<p><img alt="" src="../images/gnome-extensions.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。</p>
+<p>首先安装浏览器插件：</p>
+<p>对于 Google Chrome、Chromium 和 Vivaldi： <a href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep">Chrome Web 商店</a></p>
+<p>对于 Firefox： <a href="https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/">Mozilla Addons</a></p>
+<p>再安装本地连接器
+<div class="codehilite"><pre><span></span><code>$ sudo apt install chrome-gnome-shell
+</code></pre></div></p>
+<p>即可在 https://extensions.gnome.org/ 网页中管理、安装插件。</p>
+<p><img alt="" src="../images/extensions-management.png" /></p>
+</div>
+<h3 id="_6">桌面小部件的应用 *</h3>
+<p>如果你觉得你的桌面平平无奇，总是觉得缺了什么东西，也许桌面的小部件可以画龙点睛。</p>
+<p>Conky 是一个用于X窗口系统的系统监视软件。它可以运行在 GNU/Linux 和 FreeBSD 上，是一个基于GPL协议的免费软件。Conky 可以监控许多系统变量，包括 CPU，内存，交换分区，磁盘空间，温度，top，上传，下载，系统消息，以及更多。它具有很高的可配置性，但配置有一些难于理解</p>
+<p>首先，当然是安装 Conky</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install conky
+</code></pre></div>
+
+<p>运行 Conky</p>
+<div class="codehilite"><pre><span></span><code>$ conky
+</code></pre></div>
+
+<p>我们的桌面就多了这个东西</p>
+<p><img alt="" src="../images/conky.png" /></p>
+<p>这里显示了系统的状态各种状态。</p>
+<p>我们可以通过修改<code>.conkyrc</code>文件自由配置显示的内容、方式。</p>
+<div class="admonition info">
+<p class="admonition-title">注意</p>
+<p>该软件配置文件是用lua语法编写的，比较复杂。这里我们不详细说明。有兴趣的同学可以参考附加文件中的样例配置文件写入你的配置文件中，</p>
+</div>
+<h3 id="_7">终端的个性化</h3>
 <p>使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。</p>
 <h4 id="shell">更换 Shell</h4>
 <p>在那之前我们可以通过</p>
@@ -1160,7 +1235,7 @@ $ sudo reboot
 
 <p>中引号部分切换主题，具体主题可以在 <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">oh-my-zsh 官网</a>中找到。
 当然你也可以自己尝试自己做一个主题。</p>
-<h2 id="_9">其它的个性化</h2>
+<h2 id="_8">其它的个性化</h2>
 <p>上面内容都是外观上的个性化，更多地，Linux系统的可客制化还体现在一些配置文件上。</p>
 <h3 id="etc">etc目录</h3>
 <p><code>/etc</code> 目录是包含几乎所有 Linux 系统配置的一个文件夹。</p>
@@ -1216,7 +1291,7 @@ applicable law.
 <p>设置好权限，登录后就可以看到在末尾加上了我们在 <code>99-test</code> 文件中 echo 的内容。</p>
 <p>当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。</p>
 </details>
-<h2 id="_10">搭建简易的网站</h2>
+<h2 id="_9">搭建简易的网站</h2>
 <p>Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
 <h3 id="wordpress">WordPress</h3>
 <p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。下面我们直接安装</p>
@@ -1313,6 +1388,8 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 
 <p>即可打开我们搭建的网站。</p>
 <p><img alt="" src="../images/jekyll-installation.png" /></p>
+<h2 id="_10">思考题</h2>
+<h2 id="_11">引用来源</h2>
                 
                   
                 
