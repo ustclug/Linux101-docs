@@ -26,11 +26,14 @@ jobs:
         echo -n '101.ustclug.org' > site/CNAME
     - name: Deploy to GitHub Pages
       run: |
+        CINFO="$(git log -1 --pretty="%an: [%h] %s")"
         git clone --depth=1 --branch=gh-pages --single-branch --no-checkout \
           "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" test
         mv test/.git site/.git && rmdir test/
         pushd site/ &>/dev/null
         git add -A
-        git -c user.name=GitHub -c user.email=noreply@github.com commit -m 'Auto deploy from GitHub Actions'
+        git -c user.name=GitHub -c user.email=noreply@github.com commit \
+          -m 'Auto deploy from GitHub Actions' \
+          -m "$CINFO"
         git push
         popd &>/dev/null
