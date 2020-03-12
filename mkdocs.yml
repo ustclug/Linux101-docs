@@ -19,8 +19,12 @@ extra_css:
 
 nav:
     - 负一：编写建议: advice.md
-    - 零：前言: index.md
-    - 一：初识 Linux: 
+    - 序: preface.md
+    - 零：前言:
+        - 前言: index.md
+        - 记号约定: notation.md
+        - 功劳簿: credit.md
+    - 一：初识 Linux:
         - 讲义: Ch01/1.md
         - 补充内容: Ch01/1-supplement.md
     - 二：个性化配置与建站体验:
@@ -50,4 +54,4 @@ nav:
     - 附录:
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
-
+    - 跋: postface.md
