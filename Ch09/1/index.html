@@ -1121,8 +1121,8 @@
                 
                 
                 <h1 id="shell">九：Shell 文本处理工具与正则表达式</h1>
-<div class="admonition failure">
-<p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
+<div class="admonition warning">
+<p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
@@ -1168,7 +1168,7 @@ append it
 </div>
 <h4 id="_3">管道</h4>
 <p>管道（pipe），操作符 <code>|</code>，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。</p>
-<p>//TBC picture</p>
+<p><img alt="管道示例" src="../images/%E7%AE%A1%E9%81%93%E7%A4%BA%E4%BE%8B.png" /></p>
 <div class="codehilite"><pre><span></span><code>$ ls / <span class="p">|</span> grep bin
 bin
 sbin
@@ -1440,6 +1440,10 @@ Susie <span class="m">76</span>.5
 </code></pre></div>
 
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1，2，3，列。特别地，$0 指代本行。</p>
+<div class="admonition question">
+<p class="admonition-title">思考题</p>
+<p>如何使用 <code>sed</code> 对示例中文本的第二列数值求和？</p>
+</div>
                 
                   
                 
