@@ -17,4 +17,5 @@
 .md-typeset p.caption {
   text-align: center;
   font-size: 0.94em;
-  color: grey; }
+  color: grey;
+  margin: -1em 0 0; }
