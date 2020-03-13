@@ -37,7 +37,7 @@ SELinux 是由 NSA 编写的开源的 Linux 安全模块，在 CentOS 和 Fedora
 
 虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些「奇怪的」权限问题，或是让某些程序运行失败。
 
-在 Ubuntu 等发行版中，与 SELinux 相对应的是 Apparmor。
+在 Ubuntu 等发行版中，与 SELinux 相对应的是 AppArmor。
 
 ## Arch Linux
 
@@ -53,7 +53,7 @@ Arch 使用的默认软件包管理器是 `pacman`。以下是一些常用的命
 $ sudo pacman -Syu  # 更新系统所有软件包
 $ sudo pacman -S firefox  # 安装 Firefox
 $ sudo pacman -Rs chromium  # 卸载 Chromium 和它的所有依赖
-$ sudo pacman -Ss audacity  # 搜索 audacity
+$ sudo pacman -Ss audacity  # 搜索 Audacity
 ```
 
 #### 手动介入 (manual intervention)：更新失败时的处理方式
