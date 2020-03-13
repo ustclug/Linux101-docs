@@ -998,7 +998,7 @@ $ sudo dnf upgrade  <span class="c1"># 更新系统</span>
 <li>用户的进程继承用户的权限，如果进程本身有问题或是不安全，那么攻击者可以以该用户的权限作任何事情。例如，如果浏览器被攻击，它可以读取到用户的 SSH 密钥，但浏览器显然不应该做这种事情。</li>
 </ul>
 <p>虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些「奇怪的」权限问题，或是让某些程序运行失败。</p>
-<p>在 Ubuntu 等发行版中，与 SELinux 相对应的是 Apparmor。</p>
+<p>在 Ubuntu 等发行版中，与 SELinux 相对应的是 AppArmor。</p>
 <h2 id="arch-linux">Arch Linux<a class="headerlink" href="#arch-linux" title="Permanent link">&para;</a></h2>
 <h3 id="arch-wiki">Arch Wiki<a class="headerlink" href="#arch-wiki" title="Permanent link">&para;</a></h3>
 <p>Arch Wiki (<a href="https://wiki.archlinux.org/">https://wiki.archlinux.org/</a>) 是安装和使用 Arch Linux 必读的资料，内容非常详细。就算不是 Arch 的使用者，Wiki 的内容也非常有参考价值。</p>
@@ -1007,7 +1007,7 @@ $ sudo dnf upgrade  <span class="c1"># 更新系统</span>
 <div class="codehilite"><pre><span></span><code>$ sudo pacman -Syu  <span class="c1"># 更新系统所有软件包</span>
 $ sudo pacman -S firefox  <span class="c1"># 安装 Firefox</span>
 $ sudo pacman -Rs chromium  <span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$ sudo pacman -Ss audacity  <span class="c1"># 搜索 audacity</span>
+$ sudo pacman -Ss audacity  <span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 
 <h4 id="manual-intervention">手动介入 (manual intervention)：更新失败时的处理方式<a class="headerlink" href="#manual-intervention" title="Permanent link">&para;</a></h4>
