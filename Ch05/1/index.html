@@ -1095,6 +1095,9 @@
                 
                 
                 <h1 id="_1">用户与用户组、文件权限、文件系统层次结构</h1>
+<div class="admonition warning">
+<p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
+</div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
 <p>很多 Linux 的初学者都会对以下这些问题感到迷惑：</p>
@@ -1391,6 +1394,7 @@ $ ./program
 <li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
 <li>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</li>
 <li>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</li>
+<li>如果向一个 MP3 音频文件添加「可执行」(<code>x</code>) 属性，那么这个文件就可以被执行吗？为什么？</li>
 <li>(*) 当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</li>
 </ol>
 <!-- ## 课后阅读
