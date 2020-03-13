@@ -890,7 +890,7 @@
               
                 
                 
-                <h1 id="docker">Docker</h1>
+                <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
 <div class="admonition failure">
 <p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
 </div>
@@ -899,7 +899,7 @@
 <p>「容器」，是近年来非常热门的一个概念。它通过操作系统内核提供的隔离技术，实现轻量级的虚拟化环境。目前，它在软件的开发、部署等方面有着非常广泛的应用。</p>
 <p>而 Docker，是 Linux 容器技术中的代表性软件，它为用户提供了方便的接口来创建、使用 Linux 容器。下面，就让我们简单地入门一下 Docker。</p>
 </div>
-<h2 id="docker_1">为什么使用 Docker？</h2>
+<h2 id="docker_1">为什么使用 Docker？<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h2>
 <p>Docker 能够利用 Linux 内核的容器特性，隔离出一个轻便的环境来运行程序。这有什么意义呢？试想以下这些情况：</p>
 <ul>
 <li>你运行的 Linux 发行版很老，而你需要运行一个给新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。</li>
@@ -908,9 +908,9 @@
 <li>…………</li>
 </ul>
 <p>Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 上使用 CentOS 的环境），部署应用。</p>
-<h2 id="docker_2">安装 Docker</h2>
+<h2 id="docker_2">安装 Docker<a class="headerlink" href="#docker_2" title="Permanent link">&para;</a></h2>
 <p>Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容都基于 Docker 免费的社区版本。</p>
-<h3 id="windows-macos">在 Windows 或 macOS 上安装</h3>
+<h3 id="windows-macos">在 Windows 或 macOS 上安装<a class="headerlink" href="#windows-macos" title="Permanent link">&para;</a></h3>
 <p>上面提到，Docker 使用了 Linux 内核的容器特性，它依赖于 Linux。所以在 Windows 和 macOS 上，Docker 不得不通过虚拟 Linux 内核的方式来完成任务。其提供了一套被称为 Docker Desktop 的软件来帮助在 Windows 和 macOS 上配置 Docker。直接从<a href="https://www.docker.com/products/docker-desktop">官网下载</a>即可。</p>
 <div class="admonition info">
 <p class="admonition-title">Docker Desktop on Windows 的环境要求</p>
@@ -920,7 +920,7 @@
 <p class="admonition-title">Windows 容器</p>
 <p>你可能会搜索到，Docker 也支持「Windows 容器」。是的，在新版本（1607 之后）的 Windows 10 中，Windows 内核支持 Windows 容器。可以在这样的容器中运行 Windows 程序。如果你感兴趣，可以阅读<a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/">微软的 Containers on Windows Documentation</a> 和 <a href="https://www.docker.com/products/windows-containers">Docker Windows Containers 的介绍</a>。这样的容器无法运行 Linux 程序，下面也不会涉及到。</p>
 </div>
-<h3 id="linux">在 Linux 上安装</h3>
+<h3 id="linux">在 Linux 上安装<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <p>各大发行版的软件源包含 Docker，也可以跟从<a href="https://docs.docker.com/install/linux/docker-ce/debian/">官方文档</a>，安装其提供的 Docker 社区版本。</p>
 <div class="admonition info">
 <p class="admonition-title">docker, docker.io 和 docker-ce</p>
@@ -932,7 +932,7 @@
 <p class="admonition-title">不要在 WSL1 上安装 Docker</p>
 <p>WSL1 在 Windows 上提供了方便的 Linux 环境。但很遗憾，Docker 的核心服务无法在 WSL1 上运行，直接安装是无法使用的。虽然可以把 WSL 中的 Docker 的命令行工具连接到 Docker for Windows 的核心服务上，但是比较麻烦，这里不推荐这样做。</p>
 </div>
-<h3 id="registry-mirror">配置 Registry Mirror</h3>
+<h3 id="registry-mirror">配置 Registry Mirror<a class="headerlink" href="#registry-mirror" title="Permanent link">&para;</a></h3>
 <p>Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。</p>
                 
                   

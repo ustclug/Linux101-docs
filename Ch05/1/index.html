@@ -1094,7 +1094,7 @@
               
                 
                 
-                <h1 id="_1">用户与用户组、文件权限、文件系统层次结构</h1>
+                <h1 id="_1">用户与用户组、文件权限、文件系统层次结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
 </div>
@@ -1109,12 +1109,12 @@
 </ul>
 <p>以下内容将会解答你的疑问。</p>
 </div>
-<h2 id="users-and-groups">用户与用户组</h2>
-<h3 id="_2">为何需要「用户」</h3>
+<h2 id="users-and-groups">用户与用户组<a class="headerlink" href="#users-and-groups" title="Permanent link">&para;</a></h2>
+<h3 id="_2">为何需要「用户」<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>早期的操作系统没有用户的概念（如 MS-DOS），或者有「用户」的概念，但是几乎不区分用户的权限（如 Windows 9x）。而现在，这不管对于服务器，还是个人用户来说，都是无法接受的。</p>
 <p>在服务器环境中，「用户」的概念是明确的：服务器的管理员可以为不同的使用者创建用户，分配不同的权限，保障系统的正常运行。也可以为网络服务创建用户（此时，用户就不再是一个有血有肉的人），通过权限限制，以减小服务被攻击时对系统安全的破坏。</p>
 <p>而对于个人用户来说，他们的设备不会有第二个人在使用。此时，现代操作系统一般区分使用者的用户与「系统用户」，并且划分权限，以尽可能保证系统的完整性不会因为用户的误操作，或恶意程序破坏。</p>
-<h3 id="linux">Linux 下的用户简介</h3>
+<h3 id="linux">Linux 下的用户简介<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <p>你可以查看 <code>/etc/passwd</code> 文件，来得到系统中用户的配置信息。<strong>下文的内容，在没有特殊说明的情况下，都假设你的用户名是 <code>me</code></strong>。</p>
 <div class="admonition example">
 <p class="admonition-title"><code>/etc/passwd</code> 示例</p>
@@ -1136,7 +1136,7 @@
 <p class="admonition-title">小知识：<code>/etc/passwd</code> 作用的变化</p>
 <p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
 </div>
-<h4 id="_3">根用户</h4>
+<h4 id="_3">根用户<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>在前文中我们知道，在使用 <code>apt</code> 安装软件时，我们需要在前面加上 <code>sudo</code>。这可以使我们以根用户 (<code>root</code>) 的身份安装软件。</p>
 <p>根用户 / <code>root</code> 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类<strong>极端危险的操作</strong>）。<code>root</code> 用户的用户数据存储在 <code>/root</code> 下。</p>
 <p>在我们使用 <code>sudo</code> 的时候，输入自己的密码后，在验证正确之后，<code>sudo</code> 就会以 <code>root</code> 用户的身份，执行后面我们希望执行的命令。而使用 <code>apt</code> 安装的软件存储在了系统的目录下，所以必须要以 <code>root</code> 用户的身份安装。这就是我们平时需要 <code>sudo</code> 来安装软件的原因。</p>
@@ -1151,18 +1151,18 @@
 <li><code>:(){ :|: &amp; };:</code>（被称为「Fork 炸弹」，会消耗系统所有的资源。在未对进程资源作限制的情况下，只能通过重启系统解决，所有未保存的数据会丢失。）</li>
 </ul>
 </div>
-<h4 id="_4">系统用户</h4>
+<h4 id="_4">系统用户<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>除了你、<code>root</code> 和其他在用你的电脑/服务器的人（如果有）以外，剩下还有很多用户，如 <code>nobody</code>, <code>www-data</code> 等。它们由系统或相关程序创建，用于执行服务等系统任务。<strong>不要随意删除这些用户</strong>，以免系统运行出现问题。</p>
 <div class="admonition tip">
 <p class="admonition-title">技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</p>
 <p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
 <p>此外，由于系统用户的特殊性，它们一般默认禁止登录。</p>
 </div>
-<h4 id="_5">普通用户</h4>
+<h4 id="_5">普通用户<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p>普通用户可以登录系统，并对自己的家目录下的文件进行操作。所有普通用户的家目录都在 <code>/home/</code> 下，位于 <code>/home/username/</code> 的位置，其中 <code>username</code> 是用户名。</p>
 <p>普通用户无法直接进行修改系统配置，安装或卸载软件等操作。</p>
-<h3 id="su-sudo">切换用户：使用 <code>su</code> 和 <code>sudo</code></h3>
-<h4 id="sudo"><code>sudo</code></h4>
+<h3 id="su-sudo">切换用户：使用 <code>su</code> 和 <code>sudo</code><a class="headerlink" href="#su-sudo" title="Permanent link">&para;</a></h3>
+<h4 id="sudo"><code>sudo</code><a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h4>
 <p><code>sudo</code> 命令可以让你以另一个用户的身份执行指定的命令。当然，它最常见的用途，就是能让普通用户以 <code>root</code> 的身份执行命令：不加入其他参数，<code>sudo</code> 后面直接加命令，我们在前面的课程中也见到很多次了。</p>
 <div class="admonition tip">
 <p class="admonition-title">以 <code>root</code> 用户执行上一条命令</p>
@@ -1202,7 +1202,7 @@
 
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
 </div>
-<h4 id="su"><code>su</code></h4>
+<h4 id="su"><code>su</code><a class="headerlink" href="#su" title="Permanent link">&para;</a></h4>
 <p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
 <p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
 <div class="codehilite"><pre><span></span><code>$ su
@@ -1223,7 +1223,7 @@ $
 </code></pre></div>
 
 <p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
-<h3 id="_6">用户组简介</h3>
+<h3 id="_6">用户组简介<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
 <div class="codehilite"><pre><span></span><code>$ groups
 me adm cdrom sudo dip plugdev lxd
@@ -1232,10 +1232,10 @@ me adm cdrom sudo dip plugdev lxd
 <p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。</p>
 <p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
 <p>同样，用户组和用户一样，也有编号：GID (Group ID)。</p>
-<h3 id="_7">命令行的用户配置操作</h3>
-<h4 id="passwd">修改密码：<code>passwd</code></h4>
+<h3 id="_7">命令行的用户配置操作<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h4 id="passwd">修改密码：<code>passwd</code><a class="headerlink" href="#passwd" title="Permanent link">&para;</a></h4>
 <p>可以使用此命令修改用户密码，格式为 <code>passwd 用户名</code>。如果没有输入用户名，则修改自己的密码。</p>
-<h4 id="adduser">(*) 简单的用户配置：<code>adduser</code></h4>
+<h4 id="adduser">(*) 简单的用户配置：<code>adduser</code><a class="headerlink" href="#adduser" title="Permanent link">&para;</a></h4>
 <div class="admonition warning">
 <p class="admonition-title"><code>adduser</code> 是 Debian 及其衍生发行版的专属命令</p>
 <p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
@@ -1252,7 +1252,7 @@ me adm cdrom sudo dip plugdev lxd
 <div class="codehilite"><pre><span></span><code>$ sudo adduser 用户名 组名
 </code></pre></div>
 
-<h2 id="_8">文件权限</h2>
+<h2 id="_8">文件权限<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
 <div class="codehilite"><pre><span></span><code>$ ls -l
 total <span class="m">8</span>
@@ -1308,7 +1308,7 @@ $ ./program
 </code></pre></div>
 
 </div>
-<h2 id="_9">文件系统层次结构</h2>
+<h2 id="_9">文件系统层次结构<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，以盘符的形式（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (<code>Program Files</code>)，系统运行需要的文件 (<code>Windows</code>)，用户文件 (<code>Users</code>) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。</p>
 <p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根目录）开始，像一棵树一样，类似于下图。</p>
 <p><img alt="Unix 下的文件系统结构简图" src="../assets/unix_filesystem.png" /></p>
@@ -1389,7 +1389,7 @@ $ ./program
 <dt><code>/var</code></dt>
 <dd>存储会发生变化的程序相关文件。</dd>
 </dl>
-<h2 id="_10">思考题</h2>
+<h2 id="_10">思考题<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ol>
 <li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
 <li>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</li>
@@ -1401,7 +1401,7 @@ $ ./program
 
 - -->
 
-<h2 id="_11">引用来源</h2>
+<h2 id="_11">引用来源<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Passwd">https://en.wikipedia.org/wiki/Passwd</a></li>
 <li><a href="https://askubuntu.com/questions/118204/sudoers-simple-explanation-requested">https://askubuntu.com/questions/118204/sudoers-simple-explanation-requested</a></li>

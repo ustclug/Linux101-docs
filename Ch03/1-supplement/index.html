@@ -1012,8 +1012,8 @@
               
                 
                 
-                <h1 id="_1">附录</h1>
-<h2 id="_2">编译安装</h2>
+                <h1 id="_1">附录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">编译安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><em>参见：Compiling and Installing from Source <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></em></p>
 <p><em>以下在 Ubuntu 18.04 下操作</em></p>
 <p>除了在正文中提到的几种常见的安装方法外，还有从源码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，既可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。</p>
@@ -1023,7 +1023,7 @@
 <p>Nginx 是一个异步框架的网页服务器，也可以用作反向代理、负载平衡器和 HTTP 缓存。</p>
 <p>Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx，通常作为负载均衡器。</p>
 </div>
-<h3 id="_3">安装依赖</h3>
+<h3 id="_3">安装依赖<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>在从源码安装 Nginx 前，需要为它的库安装依赖</p>
 <ul>
 <li>PCRE - 用于支持正则表达式</li>
@@ -1061,14 +1061,14 @@ $ sudo make install
 <blockquote>
 <p>在文档中第 4 步使用的是 <code>./Configure darwin64-x86_64-cc --prefix=/usr</code>，这个是在 macOS 下进行配置时使用的参数，对于在 Ubuntu 64bit 下，需要修改为 <code>linux-x86_64</code></p>
 </blockquote>
-<h3 id="nginx">下载 Nginx 源代码</h3>
+<h3 id="nginx">下载 Nginx 源代码<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>$ wget https://nginx.org/download/nginx-1.16.1.tar.gz
 $ tar zxf nginx-1.17.6.tar.gz
 $ <span class="nb">cd</span> nginx-1.17.6
 </code></pre></div>
 
-<h3 id="_4">从源码进行安装</h3>
-<h4 id="_5">配置编译选项</h4>
+<h3 id="_4">从源码进行安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">配置编译选项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code>$ ./configure <span class="se">\</span>
 --sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\</span>
 --conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\</span>
@@ -1084,18 +1084,18 @@ $ <span class="nb">cd</span> nginx-1.17.6
 <p class="admonition-title">Tip</p>
 <p>使用 <code>\</code> 符号将一行长命令分解为多行书写，便于阅读</p>
 </div>
-<h4 id="_6">编译并安装</h4>
+<h4 id="_6">编译并安装<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code>$ make
 $ sudo make install
 </code></pre></div>
 
-<h2 id="_7">总结</h2>
+<h2 id="_7">总结<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>从 Nginx 的从源码编译安装可以看出，无论是它的依赖还是主程序，主要过程均为如下几个</p>
-<h3 id="wgettar">下载源码，并解压（wget、tar）</h3>
+<h3 id="wgettar">下载源码，并解压（wget、tar）<a class="headerlink" href="#wgettar" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>wget 将会在第五章进行详细阐述</p>
 </blockquote>
-<h3 id="configure">运行 <code>./configure</code></h3>
+<h3 id="configure">运行 <code>./configure</code><a class="headerlink" href="#configure" title="Permanent link">&para;</a></h3>
 <p><code>configure</code> 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 <code>make</code> 编译源代码之前，<code>configure</code> 会根据自己所依赖的库而在目标机器上进行匹配。<code>configure</code> 文件一般为可执行文件（与权限位有关的将在第五章讲述）。</p>
 <p><code>configure</code> 脚本可以根据所在的系统环境生成相对应的 <code>Makefile</code> 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错</p>
 <p>在执行 <code>configure</code> 脚本时，可以传递相对应的参数达到生成不同的 <code>Makefile</code> 文件的目的。</p>
@@ -1107,11 +1107,11 @@ $ sudo make install
 <li>指定了依赖库的位置（<code>../pcre-8.43</code> 与 <code>../zlib-1.2.11</code>）</li>
 </ul>
 </div>
-<h3 id="make">执行 <code>make</code></h3>
+<h3 id="make">执行 <code>make</code><a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
 <p><code>make</code> 程序会根据 <code>configure</code> 生成的 <code>Makefile</code> 文件，执行一系列的命令，调用 <code>gcc</code>、<code>cc</code> 等程序，将源代码编译为二进制文件。</p>
-<h3 id="sudo-make-install">执行 <code>sudo make install</code></h3>
+<h3 id="sudo-make-install">执行 <code>sudo make install</code><a class="headerlink" href="#sudo-make-install" title="Permanent link">&para;</a></h3>
 <p>在这个过程中，<code>make</code> 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等</p>
-<h2 id="_8">引用来源</h2>
+<h2 id="_8">引用来源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>

@@ -1,8 +1,8 @@
 .red {
   color: red !important; }
-.more {
-  color: darkred;
-}
+
+.darkred {
+  color: darkred !important; }
 
 .md-typeset h2, .md-typeset h3 {
   padding-bottom: 0.2em;

@@ -904,15 +904,15 @@
               
                 
                 
-                <h1 id="_1">补充内容</h1>
-<h2 id="_2">正则</h2>
+                <h1 id="_1">补充内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">正则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>注：以下正则语法如需在 <code>grep</code> 中使用，需要加上参数 <code>-P</code>，表示使用 Perl 语法。</p>
-<h3 id="_3">懒惰和贪婪</h3>
+<h3 id="_3">懒惰和贪婪<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>使用 <code>*</code> <code>+</code> 的时候默认是贪婪模式，即尽可能匹配更多的子表达式。在 <code>*</code> <code>+</code> 之后加上 <code>?</code>变为懒惰模式，即尽可能匹配更少的子表达式。</p>
 <p>例如：<code>123456456</code></p>
 <p>贪婪：<code>1.+6</code> -&gt; <code>123456456</code></p>
 <p>懒惰：<code>1.+?6</code> -&gt; <code>123456</code></p>
-<h3 id="_4">后向引用</h3>
+<h3 id="_4">后向引用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>后向引用可以将之前匹配到的具体内容再次利用。在正则表达式中，<code>()</code> 以及它们包含的内容为一个分组，每个分组默认拥有一个组号。</p>
 <p>组号分配规则：</p>
 <ul>
@@ -922,12 +922,12 @@
 </ul>
 <p>例如 <code>\b(\w+)\b\s+\1\b</code> 可以用来匹配用空白字符分割的两个重复的单词，<code>\1</code> 是对组号为 1 的组 <code>(\w+)</code> 的引用。</p>
 <p>例如 <code>\b(?'Word'\w+)\b\s+\k'Word'\b</code> 也可以起到同样的效果，其中 <code>?'Word'</code> 用于命名组，<code>\k'Word'</code> 用于引用组。                   </p>
-<h3 id="_5">零宽断言</h3>
+<h3 id="_5">零宽断言<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>零宽断言用于查找某些内容进行定位，但内容并不放入匹配结果，就像 <code>\b</code> <code>^</code> <code>$</code> 的定位一样。<code>(?=exp)</code> 用于匹配表达式 <code>exp</code> 前面的位置，<code>(?&lt;=exp)</code> 用于匹配后面的位置。</p>
 <p>例如，<code>\b\w+(?=ing\b)</code> 可以匹配 <code>ing</code> 结尾的单词前面的部分，<code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开开头的单词的后面一部分。</p>
-<h3 id="_6">扩展阅读</h3>
+<h3 id="_6">扩展阅读<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/46294360">乱用正则引发的惨案</a></p>
-<h2 id="shell">shell 文字处理工具</h2>
+<h2 id="shell">shell 文字处理工具<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
 <p><a href="https://awk.readthedocs.io/en/latest/chapter-one.html">awk指南</a></p>
                 
                   

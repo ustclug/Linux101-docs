@@ -1122,7 +1122,7 @@
               
                 
                 
-                <h1 id="linux">七：Linux 上的编程</h1>
+                <h1 id="linux">七：Linux 上的编程<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
 <div class="admonition failure">
 <p class="admonition-title">本文主体内容已完成，但尚有几个补充小知识未完成，整体上应不影响阅读。</p>
 </div>
@@ -1136,11 +1136,11 @@
 <li>Linux 上编程语言开发的范式与共性</li>
 </ul>
 </div>
-<h2 id="c">C 语言开发</h2>
+<h2 id="c">C 语言开发<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <p>C 语言是大学编程语言教学中几乎必定讲解的一门编程语言。
 在 Linux 上，C 语言拥有着近乎系统级的支持。
 在 Linux 上开发 C 语言（以及 C++）是一件非常简单的事。</p>
-<h3 id="_1">从单文件开始</h3>
+<h3 id="_1">从单文件开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>让我们从单个文件的 C 语言代码开始。</p>
 <p>使用任意一个文本编辑器，利用前面讲过的知识，新建一个文件。
 我们假设这个文件叫 main.c。
@@ -1173,7 +1173,7 @@
 <p>我们应当注意到，<code>gcc main.c -o main</code> 这条指令没有打印出任何内容。
 这是因为整个编译过程是成功的，gcc 没有需要报告的内容，因此保持沉默。</p>
 <p>运行生成的 <code>main</code> 后，我们成功地看到了 "Hello World!"。</p>
-<h3 id="_2">多文件的状况</h3>
+<h3 id="_2">多文件的状况<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>只在一个文件中填写代码对于开发而言是不够的：
 个人维护一个小项目时尚且可行，但当你面临的是一个多人开发、模块复杂、功能繁多的大项目时
 （无论是在公司工程中还是在实验室科研里，这都是普遍的情况），
@@ -1248,7 +1248,7 @@
 
 <p>怎么编译它们呢？
 我们将介绍以下几种方法：</p>
-<h4 id="gcc">gcc 所有文件</h4>
+<h4 id="gcc">gcc 所有文件<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h4>
 <p>gcc 可以自动进行简单的分析完成编译。
 你可以使用以下的指令：</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">$</span> ls
@@ -1264,7 +1264,7 @@
 <p><code>gcc main.c print.c -o main</code> 中没用包含 print.h 这个头文件。
 gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到这个文件。
 当然，加上 print.h，变成 <code>gcc main.c print.c print.h -o main</code> 也是可以的，并不会有错误出现。</p>
-<h4 id="gcc_1">gcc 一步步编译，最后统一链接</h4>
+<h4 id="gcc_1">gcc 一步步编译，最后统一链接<a class="headerlink" href="#gcc_1" title="Permanent link">&para;</a></h4>
 <p>首先让我们看一下指令：</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">$</span> ls
 <span class="go">main.c print.c print.h</span>
@@ -1295,7 +1295,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 <!--TODO-->
 
 </div>
-<h4 id="build-toolmakefile">构建工具（build tool）：Makefile</h4>
+<h4 id="build-toolmakefile">构建工具（build tool）：Makefile<a class="headerlink" href="#build-toolmakefile" title="Permanent link">&para;</a></h4>
 <p>另一个选择是使用构建工具 Makefile。让我们继续之前的例子：</p>
 <p>在同一目录下创建一个名为 <code>Makefile</code> 的文件，其内容为：</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">c</span> <span class="n">print</span>.<span class="n">h</span>
@@ -1342,7 +1342,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 <!--TODO-->
 
 </div>
-<h4 id="cmakeninja">其他的构建工具：CMake，ninja……</h4>
+<h4 id="cmakeninja">其他的构建工具：CMake，ninja……<a class="headerlink" href="#cmakeninja" title="Permanent link">&para;</a></h4>
 <p>一个大的工程可能有上十万行代码，上万文件，如果一一写进 Makefile，那会非常痛苦，且几乎不可能维护。</p>
 <p>为了更好的构建程序，大家想出了“套娃”的办法：用一个程序来生成构建所需的配置，CMake 在这一想法下诞生了。</p>
 <p>CMake 在默认情况下，可以通过 <code>cmake</code> 指令生成 Makefile，再进一步进行 <code>make</code>。</p>
@@ -1353,17 +1353,17 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 <p>另一个需要提一下的是 ninja。ninja 和 Makefile、autoconf 较类似，是构建工具，所属抽象层次低于 CMake。</p>
 <p>ninja 的特点的是相较与 Makefile 更快，对于多线程编译的支持更好。
 详细信息可以到 ninja 的官方网站查看。</p>
-<h3 id="c_1">关于 C++</h3>
+<h3 id="c_1">关于 C++<a class="headerlink" href="#c_1" title="Permanent link">&para;</a></h3>
 <p>C++ 的工具链与 C 的是相似的。实际上，只需将上面内容中的 <code>gcc</code> 指令改为 <code>g++</code>，你就能同样的完成 C++ 的开发。</p>
 <p>实际上 gcc 这个软件包，本身就包括了 C、C++、Objective C 等语言的各种开发工具。</p>
-<h2 id="python">Python 语言开发</h2>
+<h2 id="python">Python 语言开发<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>Python 作为一门年长但恰逢新春的解释型语言，也被业界广泛使用。
 相较于 Windows，在 Linux 上开发 Python 或许会更加简单。</p>
-<h3 id="python_1">解释器 python</h3>
+<h3 id="python_1">解释器 python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h3>
 <p>Python，或者说一般的 Python（CPython）程序的运行，依靠的是 Python 解释器（interpreter）。
 在 Python 解释器中，Python 代码首先被处理成一种字节码（bytecode，与 JVM 运行的字节码不是一个东西，但有相似之处），
 然后再交由 PVM（Python virtual machine）进行执行，从而实现跨平台和动态等特性。</p>
-<h3 id="pip">包管理器 pip</h3>
+<h3 id="pip">包管理器 pip<a class="headerlink" href="#pip" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">模块，包</p>
 <!--TODO-->
@@ -1405,10 +1405,10 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 </code></pre></div>
 
 <p>这样，我们就完成了对外部 Python 包的安装和引用。</p>
-<h3 id="_3">依赖管理</h3>
+<h3 id="_3">依赖管理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>一个软件一般含有众多依赖，尤其是对于追求易用、外部库众多的 Python 而言，使用外部库作为依赖是常事。</p>
 <p>此处我们将尝试给出各种使用较多的 Python 依赖管理方案。</p>
-<h4 id="requirementstxt">requirements.txt</h4>
+<h4 id="requirementstxt">requirements.txt<a class="headerlink" href="#requirementstxt" title="Permanent link">&para;</a></h4>
 <p>在一些项目下，你可能会发现一个名为 <code>requirement.txt</code> 的文件，里面是一行行的 Python 包名和一些对于软件版本的限制，例如：</p>
 <div class="codehilite"><pre><span></span><code><span class="err"># requirements.txt</span>
 <span class="err">django</span>
@@ -1422,7 +1422,7 @@ gcc 可以根据 <code>#include</code> 和系统中的一些环境变量找到�
 
 <p>这将从 <code>requirements.txt</code> 文件中逐行读取包名和版本限制，并由 pip 完成安装。</p>
 <p>这种方案特点是简单明了，但对于依赖的处理能力不足。</p>
-<h4 id="setuptools">setuptools</h4>
+<h4 id="setuptools">setuptools<a class="headerlink" href="#setuptools" title="Permanent link">&para;</a></h4>
 <p>在 PyPI，即 pip 获取 Python 包的来源中，更多的选择是使用 setuptools。
 setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。</p>
 <p>常见的状况是目录下会有一个名为 <code>setup.py</code> 的文件。
@@ -1433,7 +1433,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 </code></pre></div>
 
 <p>这种方案特点是使用广泛，能提供的信息和配置较全，但配置起来也较复杂。</p>
-<h4 id="pip-toolspipenv">其他的：pip-tools、pipenv……</h4>
+<h4 id="pip-toolspipenv">其他的：pip-tools、pipenv……<a class="headerlink" href="#pip-toolspipenv" title="Permanent link">&para;</a></h4>
 <!--conda-->
 
 <p>pip-tools 是对于 requirements.txt 方案的增强。
@@ -1442,7 +1442,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 但其完成度和工业中的稳定性尚有待证明。</p>
 <p>Python 有非常多的依赖管理方案，某种意义上讲是自带的 pip 管理功能不足所造成的。
 一般而言，只需熟悉常用的 requirements.txt 和 setuptools 方案即可。</p>
-<h3 id="virtualenv">Virtualenv</h3>
+<h3 id="virtualenv">Virtualenv<a class="headerlink" href="#virtualenv" title="Permanent link">&para;</a></h3>
 <p>让我们考虑以下情况：</p>
 <p>Python 通过 pip 安装的包，默认安装在系统目录 <code>/usr/lib/python[version]</code> 下，
 当传入了一个 <code>--user</code> 选项时，则会安装在用户目录 <code>~/.local/lib/python[version]</code> 下。
@@ -1467,7 +1467,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 这些包也只有在你 <code>source venv/bin/activate</code> 之后才可见，外部无法找到这些包。通过 <code>deactivate</code> 可以退出 Virtualenv，
 回到之前的环境中。</p>
 <p>这样，就实现了程序间依赖的隔离。</p>
-<h3 id="python_2">Python 的版本</h3>
+<h3 id="python_2">Python 的版本<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h3>
 <p>正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
 实际上还在使用中的 Python，主要在 2.17、3.5——3.8 这个区间内。</p>
@@ -1481,7 +1481,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 <p>实际上，Python 2 已在 2020 年初正式宣告停止维护。
 现在如果我们要使用 Python，最好使用 3 版本者。</p>
 <p>而在 3 版本中，3.5 将在今年年底 EOL（end of life），因此实际上选用 Python 3.6 及以上者更佳。</p>
-<h3 id="python_3">Python 的其他实现</h3>
+<h3 id="python_3">Python 的其他实现<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h3>
 <p>Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
 CPython 中的 C 是指此解释器底层是用 C 实现。</p>
 <p>相应的，Python 还有其他的一些实现：</p>
@@ -1493,7 +1493,7 @@ CPython 中的 C 是指此解释器底层是用 C 实现。</p>
 </ul>
 <p>视情况使用不同的 Python 实现能够很大程度地提升性能。
 但如果你不确定自己的意向，且性能需求不大，使用官方的 CPython 是明智之选。</p>
-<h2 id="_4">总结与拓展</h2>
+<h2 id="_4">总结与拓展<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>在 Linux 下，大多编程语言都会提供适合命令行的、足够方便的运行方案，
 往往也带有配套的工具如编译器、调试器、代码格式化工具等。
 善于运用这些工具，能够极大地提升你的开发效率，支持你完成自己的项目。</p>

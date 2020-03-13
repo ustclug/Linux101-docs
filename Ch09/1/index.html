@@ -1120,7 +1120,7 @@
               
                 
                 
-                <h1 id="shell">九：Shell 文本处理工具与正则表达式</h1>
+                <h1 id="shell">九：Shell 文本处理工具与正则表达式<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
 </div>
@@ -1129,14 +1129,14 @@
 <p>本章节将介绍一些常用的 shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
 <p>为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
 </div>
-<h2 id="_1">一些铺垫</h2>
-<h3 id="io">I/O 重定向和管道</h3>
+<h2 id="_1">一些铺垫<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="io">I/O 重定向和管道<a class="headerlink" href="#io" title="Permanent link">&para;</a></h3>
 <p>在 <a href="../../Ch06/1/">六：网络下载工具与 Shell 脚本</a> 中提到过：</p>
 <blockquote>
 <p>Bash 支持 I/O 重定向（&gt;, &gt;&gt;, &lt;）和管道（|）等</p>
 </blockquote>
 <p>下面简单介绍重定向和管道，为后续知识做铺垫</p>
-<h4 id="_2">重定向</h4>
+<h4 id="_2">重定向<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
 <div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file
 $ cat output_file
@@ -1166,7 +1166,7 @@ append it
 <p><code>wc -l file</code> 和 <code>wc -l &lt; file</code> 输出有什么区别？为什么？</p>
 <p><code>echo &lt; file</code> 会输出什么？</p>
 </div>
-<h4 id="_3">管道</h4>
+<h4 id="_3">管道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>管道（pipe），操作符 <code>|</code>，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。</p>
 <p><img alt="管道示例" src="../images/pipe.png" /></p>
 <div class="codehilite"><pre><span></span><code>$ ls / <span class="p">|</span> grep bin
@@ -1174,11 +1174,11 @@ bin
 sbin
 </code></pre></div>
 
-<h4 id="_4">单双引号</h4>
+<h4 id="_4">单双引号<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。</p>
 <p>然而单双引号会带来不同的影响。单双引号中的 <code>`</code> 和 <code>\</code> 都会被解释，而 <code>$</code>只在双引号中被解释，单引号中被视为普通字符。</p>
-<h2 id="shell_1">常用 shell 文字处理工具</h2>
-<h3 id="diff">diff</h3>
+<h2 id="shell_1">常用 shell 文字处理工具<a class="headerlink" href="#shell_1" title="Permanent link">&para;</a></h2>
+<h3 id="diff">diff<a class="headerlink" href="#diff" title="Permanent link">&para;</a></h3>
 <p>diff 工具用于比较两个文件的不同，并列出差异。</p>
 <div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> hello &gt; file1
 $ <span class="nb">echo</span> hallo &gt; file2
@@ -1195,7 +1195,7 @@ $ diff file1 file2
 <p>加参数 <code>-w</code> 可忽略所有空白字符， <code>-b</code> 可忽略空白字符的数量变化。</p>
 <p>假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。</p>
 </div>
-<h3 id="head-tail">head &amp; tail</h3>
+<h3 id="head-tail">head &amp; tail<a class="headerlink" href="#head-tail" title="Permanent link">&para;</a></h3>
 <p>顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。</p>
 <p>以 head 为例的共同用法：</p>
 <ul>
@@ -1228,7 +1228,7 @@ tail +10 file
 head -20 file <span class="p">|</span> tail +5
 </code></pre></div>
 
-<h3 id="sort">sort</h3>
+<h3 id="sort">sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h3>
 <p>sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
 <p>一些基本用法：</p>
 <ul>
@@ -1284,7 +1284,7 @@ $ sort -n numbers
 <p class="admonition-title">小知识</p>
 <p>为什么有必要存在 <code>-o</code> 参数？试试重定向输出到原文件。</p>
 </div>
-<h3 id="uniq">uniq</h3>
+<h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
 <p>通常会和 sort 一起使用：</p>
 <div class="codehilite"><pre><span></span><code>sort animals <span class="p">|</span> uniq 
@@ -1299,10 +1299,10 @@ $ sort -n numbers
 <div class="codehilite"><pre><span></span><code>sort animals <span class="p">|</span> uniq -c
 </code></pre></div>
 
-<h2 id="_5">正则表达式</h2>
+<h2 id="_5">正则表达式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
 <p>此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步补充内容。</p>
-<h3 id="_6">特殊字符</h3>
+<h3 id="_6">特殊字符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1358,7 +1358,7 @@ $ sort -n numbers
 </tbody>
 </table>
 <p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符“\”</p>
-<h3 id="_7">简单示例</h3>
+<h3 id="_7">简单示例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>匹配正整数：</p>
 <div class="codehilite"><pre><span></span><code><span class="err">[1-9][0-9]*</span>
 </code></pre></div>
@@ -1374,13 +1374,13 @@ $ sort -n numbers
 <p>匹配“ter”结尾的单词：
 <div class="codehilite"><pre><span></span><code><span class="err">ter\b</span>
 </code></pre></div></p>
-<h3 id="_8">基本/扩展正则表达式</h3>
+<h3 id="_8">基本/扩展正则表达式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。</p>
 <p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如 <code>+</code>, <code>?</code>, <code>|</code>, <code>{</code>）需要加上转义符 <code>\</code> 才能表达其特殊含义。</p>
 <p>ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符默认发挥特殊作用，加上 <code>\</code> 之后表达普通含义。</p>
 <p>具体的例子在下文介绍工具时可以看到。</p>
-<h2 id="shell_2">常用 Shell 文字处理工具（正则）</h2>
-<h3 id="grep">grep</h3>
+<h2 id="shell_2">常用 Shell 文字处理工具（正则）<a class="headerlink" href="#shell_2" title="Permanent link">&para;</a></h2>
+<h3 id="grep">grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p>grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个或多个文件中搜索指定 pattern 并显示相关行。</p>
 <p>grep 默认使用 BRE，要使用 ERE 可以 grep -E 或 egrep。</p>
 <p>命令格式：<code>grep [option] pattern file</code></p>
@@ -1395,7 +1395,7 @@ ls /bin <span class="p">|</span> grep -v <span class="s2">&quot;[a-z]\|[0-9]&quo
 ls /bin <span class="p">|</span> grep -iv <span class="s2">&quot;[A-Z]\|[0-9]&quot;</span>
 </code></pre></div>
 
-<h3 id="sed">sed</h3>
+<h3 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
 <p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
 <p>命令格式：</p>
@@ -1419,7 +1419,7 @@ sed <span class="s2">&quot;s/[a-z]/~/g&quot;</span> sed_demo
 sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo
 </code></pre></div>
 
-<h3 id="awk">awk</h3>
+<h3 id="awk">awk<a class="headerlink" href="#awk" title="Permanent link">&para;</a></h3>
 <p>awk 是一种用于处理文本的编程语言工具，名字来源于三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。</p>
 <p>awk 使用 ERE。</p>
 <p>命令格式：<code>awk [options] 'pattern {action}' [file]</code></p>

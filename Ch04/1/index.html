@@ -1000,7 +1000,7 @@
               
                 
                 
-                <h1 id="_1">进程、前后台、服务与例行性任务</h1>
+                <h1 id="_1">进程、前后台、服务与例行性任务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Not complete.</p>
@@ -1037,7 +1037,7 @@
 </li>
 </ol>
 </div>
-<h2 id="_2">进程</h2>
+<h2 id="_2">进程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><strong>现在设想你有一堆任务在一周之内完成，应该如何下手呢？</strong></p>
 <p>一些情况下，我们或许会随机选择一个做，但也许拿出日历，根据轻重缓急排出一个先后来更为合适。计算机同样面临着繁多的事务，CPU的时间也同样需要被安排。</p>
 <p><strong>那么在计算机中，操作系统又是如何实现各项工作的安排呢？</strong></p>
@@ -1057,7 +1057,7 @@
 <p>（注：以下内容建议使用 <code>sudo apt install htop</code> 安装并运行htop，即时查看进程的各个属性。同时伴随htop的应用讲解）</p>
 <p><img alt="htop-sample" src="../img/htop_sample.png" />
 <p class="caption">htop 示例 | <abbr title="链接到htop主页"><a href="https://hisham.hm/htop/">htop HomePage➚</a></abbr></p></p>
-<h3 id="process-id">Process ID</h3>
+<h3 id="process-id">Process ID<a class="headerlink" href="#process-id" title="Permanent link">&para;</a></h3>
 <p>首先，有区分才有管理。进程号（PID）作为进程的唯一标识，最左侧一列即为PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用PID作为索引。</p>
 <p><em>在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 序列排列，再次点击为反向排序，同理可应用于其他列。</em></p>
 <p><img alt="PID" src="../img/PID.png" /></p>
@@ -1066,7 +1066,7 @@
 <details class="tip"><summary>Linux进程启动顺序</summary><p>按照PID排序时，我们可以观察系统启动的过程。Linux系统内核从引导程序接手控制权后，开始内核初始化，随后手撸<strong>init_task</strong>，初始化自己的PID为0。随后创建出1号进程（init or systemd）衍生出用户空间的所有进程，创建2号进程ktheadd衍生出所有内核线程。随后0号进程成为idle进程，1号，2号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p><em>由于ktheadd运行于内核空间，故需按大写K（shift + k）显示内核进程后才能看到。然而无论如何也不可能在htop中看到0号进程本体，只能发现1号和2号进程的PPID是0。</em></p>
 </details>
-<h3 id="_3">进程父子关系/进程组/会话——前台与后台</h3>
+<h3 id="_3">进程父子关系/进程组/会话——前台与后台<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>除了最开始的0号进程外，其他进程一定由另一个进程通过fork产生，显然产生进程的一方为父进程，被产生的是子进程。在Linux中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
 <p>父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生孤儿进程（orphan）和僵尸进程（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给init领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况），此时进程资源大部分已释放，但占用一个PID（上文已述，PID个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。</p>
 <p>进程组大体上是执行同一工作的进程形成的一个团体，通常是由于父进程fork出子进程后子进程继承父进程的组ID而逐渐形成。设计进程组机制主要是面向协作任务，比如Firefox工作是网页浏览，那么其相关的进程一定属于一个进程组。<span class="more">进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个工作整体。</span></p>
@@ -1106,7 +1106,7 @@
 <p>同时由shell进程创立的forking进程的进程组号（PGRP）为自己的PID，剩余进程的PGRP则继承自最开始的forking进程，当然PGRP可以通过系统调用修改为自己，从原进程组中独立出去另起门户。</p>
 <p>接下来会看到进程SID一律为该进程的控制shell的PID。<p class="more">随后观察守护进程，可以看到守护进程的SID一般是其本身PID。</p></p>
 </details>
-<h3 id="nice">优先级，NICE值</h3>
+<h3 id="nice">优先级，NICE值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h3>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分CPU时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与NICE值则反映操作系统调度进程的核心手段。</p>
 <p>若想了解调度，必有中断的概念做铺垫。因为调度本身即是打断正在运行的程序，唤起下一个的过程。<span class="red">此处应有引用</span>简言之，中断即是为操作系统或是其他程序提供切入运行状态程序的执行逻辑的手段。那么Linux系统如何利用中断进行调度呢？</p>
 <p>系统进行调度，主要面临这样几个问题：①何时（什么契机）可以进行调度？</p>
@@ -1158,15 +1158,15 @@
 </tbody>
 </table></div></p>
 </details>
-<h2 id="_4">用戶进程控制</h2>
+<h2 id="_4">用戶进程控制<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>要想控制进程，首先要与进程对话，那么首先便需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
-<h3 id="_5">信号</h3>
+<h3 id="_5">信号<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的linux命令都叫<code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
 <p>那到底都有什么信号呢？emmm... <code>man 7 signal</code>？</p>
 <p>可这实在是太长了，还是来一个简明实用的吧。那么，</p>
 <p><img alt="signal_slide" src="../img/signal_slide.png" /></p>
 <p class="caption">（来自上一次Linux101——进程、服务、任务的slide截图）</p>
-<h3 id="_6">前后台切换</h3>
+<h3 id="_6">前后台切换<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了<code>fg bg</code>和<code>ctrl + z</code>，涉及到的正是shell中前后台的概念。在shell中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>前后台切换的一般流程是，使用CTRL + Z发送SIGTSTP使进程挂起，控制权还给shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为stopped，命令为<code>ping localhost</code>。</p>
 <div id="part"><img id="bg" src="../img/bg.png"/></div>
@@ -1180,7 +1180,7 @@
 <p>在htop中，按照前面的提示添加额外的TPGID（前台进程组号）列可以看出如图所示的规律：</p>
 <p><img alt="fg_bg" src="../img/fg_bg.png" /></p>
 <p>即一个shell及其创建的所有进程都知道shell中前台进程是谁。</p>
-<h3 id="_7">干掉进程</h3>
+<h3 id="_7">干掉进程<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是SIGTERM，意味着一个进程的自然死亡。</p>
 <div class="admonition info">
 <p class="admonition-title">SIGTERM、SIGKILL</p>
@@ -1224,7 +1224,7 @@
 <p>随后，在文件所在目录下打开shell，运行<code>gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle</code>三连，就可以在另一终端打开htop查看成果了。</p>
 </details>
 <p>不过···我们的程序去哪了？别急，F3或者<code>/</code>，都可以实现搜索。（<code>/</code>是许多界面如vim、man、aptitude的默认搜索键）</p>
-<h3 id="_8">一些其他的发送终止信号的方式</h3>
+<h3 id="_8">一些其他的发送终止信号的方式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>以下命令请勿生产环境中使用。</p>
@@ -1240,14 +1240,14 @@
 <p>如何描述用户按下CTRL+C后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
 <p>答：键盘按下CTRL，CPU将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后C键扫描码，断码（代表抬起），以及CTRL断码依次放入缓冲区。</p>
 </div>
-<h3 id="_9">后台任务</h3>
+<h3 id="_9">后台任务<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>除nohup外，bash及其他的shell还可以有内建命令完成脱离</p>
 <div class="admonition question">
 <p class="admonition-title">问题</p>
 <p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（详见流的重定向）</p>
 </div>
-<h2 id="_10">服务</h2>
-<h2 id="_11">例行性任务</h2>
+<h2 id="_10">服务<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_11">例行性任务<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <!--
 ## 下载链接(已失效)
 <div class="more">
