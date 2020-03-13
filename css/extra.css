@@ -5,7 +5,7 @@
   padding-bottom: 0.2em;
   border-bottom: 1px solid #d3d3d3; }
 .md-typeset h3 {
-  border-style: dashed; }
+  border-bottom-style: dashed; }
 .md-typeset img {
   display: block;
   margin-left: auto;
