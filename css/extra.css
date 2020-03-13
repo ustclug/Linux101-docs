@@ -1,3 +1,20 @@
 .red {
 	color: red !important;
 }
+
+.md-typeset img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.md-typeset .md-typeset__table {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.md-typeset .md-typeset__table > table {
+	width: auto;
+	margin: 0 auto;
+}
