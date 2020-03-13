@@ -1100,8 +1100,8 @@
 <p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的linux命令都叫<code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
 <p>那到底都有什么信号呢？emmm... <code>man 7 signal</code>？</p>
 <p>可这实在是太长了，还是来一个简明实用的吧。那么，</p>
-<p><img alt="signal_slide" src="../img/signal_slide.png" />
-<p align="center" style="font-size: 94%">（来自上一次Linux101——进程、服务、任务的slide截图）</p></p>
+<p><img alt="signal_slide" src="../img/signal_slide.png" /></p>
+<p class="caption">（来自上一次Linux101——进程、服务、任务的slide截图）</p>
 <h3 id="_6">前后台切换</h3>
 <p>上面的图片中，出现了<code>fg bg</code>和<code>ctrl + z</code>，涉及到shell中前后台的概念。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个shell，只能有一个前台进程（组），其余进程只能在后台默默运行。在shell中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>前后台切换的一般流程是，使用CTRL + Z发送SIGTSTP使进程挂起，控制权还给shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为stopped，命令为<code>ping localhost</code>。</p>
