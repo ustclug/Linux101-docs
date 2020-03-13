@@ -465,13 +465,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    进程父子关系/进程组/会话——前台与后台
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice" class="md-nav__link">
+    优先级，NICE值
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     用戶进程控制
   </a>
   
@@ -479,21 +493,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     信号
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     前后台切换
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
+    干掉进程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     一些其他的发送终止信号的方式
   </a>
   
@@ -501,40 +522,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    程序状态转换
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    后台任务
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    服务
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    例行性任务
-  </a>
   
 </li>
       
@@ -908,13 +895,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    进程父子关系/进程组/会话——前台与后台
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice" class="md-nav__link">
+    优先级，NICE值
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     用戶进程控制
   </a>
   
@@ -922,21 +923,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     信号
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     前后台切换
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
+    干掉进程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     一些其他的发送终止信号的方式
   </a>
   
@@ -944,40 +952,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    程序状态转换
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    后台任务
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    服务
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    例行性任务
-  </a>
   
 </li>
       
@@ -999,7 +973,12 @@
                 
                 
                 <h1 id="_1">进程、前后台、服务与例行性任务</h1>
-<p>对于第一遍阅读，建议<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>隐藏细节</a>/<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not complete.</p>
+</div>
+<p>本讲义前后文之间有交叉（前文可能出现后面的内容），对于初次接触相关概念的同学，为避免混乱，可以<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>将这些内容隐藏</a>。第二次回顾时通过<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a>，建立上下文更深层的连系。</p>
+<p>当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。</p>
 <p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用...建议阅读intro文档后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
@@ -1030,8 +1009,6 @@
 </li>
 </ol>
 </div>
-<p class="more">用来激活正文的html代码提示，编写完成即删去</p>
-
 <h2 id="_2">进程</h2>
 <p><strong>现在设想你有一堆任务在一周之内完成，应该如何下手呢？</strong></p>
 <p>一些情况下，我们或许会随机选择一个做，但也许拿出日历，根据轻重缓急排出一个先后来更为合适。计算机同样面临着繁多的事务，CPU的时间也同样需要被安排。</p>
@@ -1043,10 +1020,27 @@
 <p>在以上过程中，操作系统直接面临的就是一个个等待运行的任务，随后演变为<strong>进程</strong>。</p>
 <details class="info"><summary>任务（task）与进程（process）</summary><p>事实上，任务只是那么一段需要运行的代码（重点强调完成一件事），而进程是一个任务管理意义上的实体，不仅包括代码，还有自己的状态信息（下面介绍）。</p>
 </details>
-<p><strong>进程</strong>是计算机系统三大抽象之一，操作系统秉承“为进程服务”的理念而设计。</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes
+<strong>进程</strong>是计算机系统三大抽象之一，操作系统秉承“为进程服务”的理念而设计。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <p><img alt="abstract" src="../img/abstract.png" /></p>
 <p>程序由数据结构和算法构成，程序需要存储资源安身，需要计算资源运行。而一个程序占有资源并运行便成为了进程。程序希望有CPU运行它，希望它需要的数据唾手可得，希望输出的数据可以被正确及时地送达。早期的系统不需要操心进程运行的顺序。然而随着人们对计算机需求越来越高，操作系统除了为进程提供基础服务之外，更需要管理好进程所竞争的资源，甚至要为实时交互提供方案。</p>
-<details class="tip"><summary>需求推动操作系统的发展（一点题外话）</summary><p>早期采用单道批处理策略的计算机如果有程序等待IO，处理器只能傻等。为了更高效地利用处理器，出现 <strong>多道程序设计</strong>方案，允许充分利用程序IO的时间；为了响应实时性要求，出现了<strong>中断(interrupt)</strong>概念<ref>，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时一致······正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
+<details class="tip"><summary>需求推动操作系统的发展（一点题外话）</summary><p>早期采用单道批处理策略的计算机如果有程序等待IO，处理器只能傻等。为了更高效地利用处理器，出现 <strong>多道程序设计</strong>方案，允许充分利用程序IO的时间；为了响应实时性要求，出现了<strong>中断(interrupt)</strong>概念<ref>，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时策略一致······正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
 </details>
 <p><strong>有了进程的抽象后，操作系统又将如何以进程为单位，协调并保证工作的顺利进行呢？</strong></p>
 <p>（注：以下内容建议使用 <code>sudo apt install htop</code> 安装并运行htop，即时查看进程的各个属性。同时伴随htop的应用讲解）</p>
@@ -1061,14 +1055,34 @@
 <details class="tip"><summary>Linux进程启动顺序</summary><p>按照PID排序时，我们可以观察系统启动的过程。Linux系统内核从引导程序接手控制权后，开始内核初始化，随后手撸<strong>init_task</strong>，初始化自己的PID为0。随后创建出1号进程（init or systemd）衍生出用户空间的所有进程，创建2号进程ktheadd衍生出所有内核线程。随后0号进程成为idle进程，1号，2号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p><em>由于ktheadd运行于内核空间，故需按大写K（shift + k）显示内核进程后才能看到。然而无论如何也不可能在htop中看到0号进程本体，只能发现1号和2号进程的PPID是0。</em></p>
 </details>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
 <h3 id="_3">进程父子关系</h3>
-<p>除了最开始的0号进程外，其他进程一定由另一个进程通过fork产生，显然产生进程的一方为父进程，被产生的是子进程。在Linux中，父进程可以等待子进程，接收子进程退出信号以及返回值。父子关系引出了两个特殊现象——父进程先去世和子进程先去世，产生孤儿进程（orphan）和僵尸进程（zombie）现象。孤儿进程由操作系统回收，交给init领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况）；此时进程资源大部分已释放，但占用一个PID，并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程也不能主动脱离父子关系（至少没有改变父子关系的系统调用），于是守护进程们使用两次fork的特殊技巧，留待服务部分讲解。</p>
-<p><em>按F2，随后可以自主选择进程的属性列在面板上，以Parent PID为例（PPID），点击colomns，点击PPID，注意到下方提示 F5 add 添加到左侧，再依照下方提示调整顺序。如果有兴趣，可以顺便在PPID后顺序添加PGRP，TTY_NR，TPGID，SESSION列便于后续讲解。</em></p>
+<p>=======</p>
+<h3 id="_4">进程父子关系/进程组/会话——前台与后台</h3>
+<p>除了最开始的0号进程外，其他进程一定由另一个进程通过fork产生，显然产生进程的一方为父进程，被产生的是子进程。在Linux中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生孤儿进程（orphan）和僵尸进程（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给init领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况），此时进程资源大部分已释放，但占用一个PID（上文已述，PID个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。</p>
+<p>进程组大体上是执行同一工作的进程形成的一个团体，通常是由于父进程fork出子进程后子进程继承父进程的组ID而逐渐形成。设计进程组机制主要是面向协作任务，比如Firefox工作是网页浏览，那么其相关的进程一定属于一个进程组。<span class="more">进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个工作整体。</span></p>
+<p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入shell，以该shell为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己PID为session ID。）</span>session中包含着n个进程组，分别完成不同的工作。用户退出时，session不一定会结束，有些进程仍然可以驻留系统中，以该session ID继续运行。</p>
+<p>说到会话，就必然涉及到Linux会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中n个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台的相关操作。</p>
+<p><em>按F2，随后可以自主选择进程的属性列在面板上，以Parent PID为例（PPID），点击colomns，点击PPID，注意到下方提示 F5 add 添加到左侧，再依照下方提示调整顺序。同理可以顺便在PPID后顺序添加 PGRP，TTY_NR，TPGID，SESSION列以便观察下面实验结果。</em></p>
 <p><img alt="add_column" src="../img/add_column.png" /></p>
 <p>（F10被终端程序占用了怎么办？其实终端上的选项是可以用鼠标点击的，点一下<code>done</code>即可返回。）</p>
-<div class="admonition example">
-<p class="admonition-title">小实验</p>
-<p>通过以下实验，我们可以尝试使用fork系统调用体验建立父子进程关系。
+<details class="example"><summary>小实验</summary><p>通过以下实验，我们可以尝试使用fork系统调用体验建立父子进程关系。
 打开任何一个文本编辑器（或者之前安装的vscode），将以下内容复制粘贴进去，命名文件为<strong>forking.c</strong>：
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;  //unix standard header，提供POSIX标准api</span><span class="cp"></span>
@@ -1085,25 +1099,110 @@
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span>  <span class="c1">//父进程返回子进程pid。</span>
         <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
     <span class="p">}</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p>随后可以来到htop中检验成果。</p>
-</div>
-<h2 id="_4">用戶进程控制</h2>
+</details>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<div class="codehilite"><pre><span></span><code><span class="err">随后可以来到htop中检验成果。</span>
+</code></pre></div>
+
+
+<p>=======</p>
+<div class="codehilite"><pre><span></span><code>随后，在文件所在目录下打开shell，运行`gcc forking.c -o forking <span class="err">&amp;&amp;</span> chmod +x forking <span class="err">&amp;&amp;</span> ./forking`三连，就可以在另一终端打开htop查看成果了。
+
+![forking](img/forking.png)
+
+按下`t`键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID等于父进程的 PPID。
+
+同时由shell进程创立的forking进程的进程组号（PGRP）为自己的PID，剩余进程的PGRP则继承自最开始的forking进程，当然PGRP可以通过系统调用修改为自己，从原进程组中独立出去另起门户。
+
+接下来会看到进程SID一律为该进程的控制shell的PID。<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;more&quot;</span><span class="nt">&gt;</span>随后观察守护进程，可以看到守护进程的SID一般是其本身PID。<span class="nt">&lt;/p&gt;</span>
+</code></pre></div>
+
+
+<h3 id="nice">优先级，NICE值</h3>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分CPU时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与NICE值则反映操作系统调度进程的核心手段。</p>
+<p>若想了解调度，必有中断的概念做铺垫。因为调度本身即是打断正在运行的程序，唤起下一个的过程。<span class="red">此处应有引用</span>简言之，中断即是为操作系统或是其他程序提供切入运行状态程序的执行逻辑的手段。那么Linux系统如何利用中断进行调度呢？</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>系统进行调度，主要面临这样几个问题：①何时（什么契机）可以进行调度？</p>
+<p>一般说来，</p>
+<details class="info"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
+<thead>
+<tr>
+<th>进程属性</th>
+<th>意义/目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PID</td>
+<td>标识进程的唯一性</td>
+</tr>
+<tr>
+<td>PPID</td>
+<td>标识进程父子关系</td>
+</tr>
+<tr>
+<td>PGID</td>
+<td>标识共同完成一个任务的整体。如果子进程完成的任务与父进程迥异，应当重设其PGID</td>
+</tr>
+<tr>
+<td>TPGID</td>
+<td>标识一组会话中与用户交流的进程（组）</td>
+</tr>
+<tr>
+<td>SID</td>
+<td>标识一组会话，传统意义上标识一次登陆所做的任务的集合，如果是与具体登陆无关的进程，其SID被重置</td>
+</tr>
+<tr>
+<td class="red" colspan="2">以上除pid的其他属性，ID值实际为父进程，组长进程，会话首进程的PID。以上概念囊括范围递增。</td>
+<td></td>
+</tr>
+<tr>
+<td>USER/UID</td>
+<td>标识进程的权限</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>标识进程的重要性，值越小越得到优先处理</td>
+</tr>
+<tr>
+<td>NICE</td>
+<td>标识进程的好坏程度（×），值越大进程越具有谦让精神（√）</td>
+</tr>
+</tbody>
+</table></div></p>
+</details>
+<h2 id="_5">用戶进程控制</h2>
 <p>要想控制进程，首先要与进程对话，那么首先便需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
-<h3 id="_5">信号</h3>
+<h3 id="_6">信号</h3>
 <p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的linux命令都叫<code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
 <p>那到底都有什么信号呢？emmm... <code>man 7 signal</code>？</p>
 <p>可这实在是太长了，还是来一个简明实用的吧。那么，</p>
 <p><img alt="signal_slide" src="../img/signal_slide.png" /></p>
 <p class="caption">（来自上一次Linux101——进程、服务、任务的slide截图）</p>
-<h3 id="_6">前后台切换</h3>
-<p>上面的图片中，出现了<code>fg bg</code>和<code>ctrl + z</code>，涉及到shell中前后台的概念。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个shell，只能有一个前台进程（组），其余进程只能在后台默默运行。在shell中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
+<h3 id="_7">前后台切换</h3>
+<p>上面的图片中，出现了<code>fg bg</code>和<code>ctrl + z</code>，涉及到的正是shell中前后台的概念。在shell中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>前后台切换的一般流程是，使用CTRL + Z发送SIGTSTP使进程挂起，控制权还给shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为stopped，命令为<code>ping localhost</code>。</p>
 <div id="part"><img id="bg" src="../img/bg.png"/></div>
 
@@ -1113,8 +1212,11 @@
 <p class="admonition-title">一点细节</p>
 <p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了fg和bg命令的默认选项，像上面的命令也可以直接简化为<code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被<code>%+</code>（或<code>%%</code>）、<code>%-</code>指代。当然，加号减号都只能出现一次。</p>
 </div>
-<p>在htop中，按照前面的提示添加额外的TPGID列可以看出如图所示的规律：</p>
+<p>在htop中，按照前面的提示添加额外的TPGID（前台进程组号）列可以看出如图所示的规律：</p>
 <p><img alt="fg_bg" src="../img/fg_bg.png" /></p>
+<p>即一个shell及其创建的所有进程都知道shell中前台进程是谁。</p>
+<h3 id="_8">干掉进程</h3>
+<p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是SIGTERM，意味着一个进程的自然死亡。</p>
 <div class="admonition info">
 <p class="admonition-title">SIGTERM、SIGKILL</p>
 <p>root from bash：发送SIGTERM给PID为1234的进程。</p>
@@ -1154,10 +1256,34 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>随后，在文件所在目录下打开shell，运行<code>gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle</code>三连，就可以打开htop查看成果了。</p>
 </details>
-<p>不过···我们的程序去哪了？别急，F3或者<code>/</code>，都可以实现搜索。（<code>/</code>是许多界面如vim、man、aptitude的默认搜索键）</p>
-<h3 id="_7">一些其他的发送终止信号的方式</h3>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<div class="codehilite"><pre><span></span><code><span class="err">随后，在文件所在目录下打开shell，运行`gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle`三连，就可以打开htop查看成果了。</span>
+</code></pre></div>
+
+
+<p>=======</p>
+<div class="codehilite"><pre><span></span><code><span class="err">随后，在文件所在目录下打开shell，运行`gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle`三连，就可以在另一终端打开htop查看成果了。</span>
+</code></pre></div>
+
+
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes
+不过···我们的程序去哪了？别急，F3或者<code>/</code>，都可以实现搜索。（<code>/</code>是许多界面如vim、man、aptitude的默认搜索键）</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="_9">一些其他的发送终止信号的方式</h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>以下命令请勿生产环境中使用。</p>
@@ -1166,31 +1292,63 @@
 
 
 </div>
-<p>其实kill命令在部分发行版上有约定，~~负数PID死全家~~，但<code>man kill</code>只介绍了<code>-1</code>参数。（负号还可以理解为参数选项）
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<h1 id="killpidman-kill-1">其实kill命令在部分发行版上有约定，~~负数PID死全家~~，但<code>man kill</code>只介绍了<code>-1</code>参数。（负号还可以理解为参数选项）</h1>
+<p>其实kill命令在部分发行版上有约定，~~负数PID死全家~~<span class="red">（我为什么不能打删除线）</span>，但<code>man kill</code>只介绍了<code>-1</code>参数。（负号还可以理解为参数选项）</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes
 简单介绍一下kill，在靶机上root执行kill -9 -1</p>
-<h2 id="_8">程序状态转换</h2>
-<h3 id="_9">后台任务</h3>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="admonition question">
+<p class="admonition-title">思考</p>
+<p>如何描述用户按下CTRL+C后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
+<p>答：键盘按下CTRL，CPU将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后C键扫描码，断码（代表抬起），以及CTRL断码依次放入缓冲区。</p>
+</div>
+<h3 id="_10">后台任务</h3>
 <p>除nohup外，bash及其他的shell还可以有内建命令完成脱离</p>
 <div class="admonition question">
 <p class="admonition-title">问题</p>
 <p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（详见流的重定向）</p>
 </div>
-<h2 id="_10">服务</h2>
-<h2 id="_11">例行性任务</h2>
-<!--
-##下载链接
-<div class="more">
-*尚未commit
-
-[《现代操作系统》](pdfs/现代操作系统.pdf)
-
-[《linux内核设计与实现》](pdfs/linux内核设计与实现.pdf)
-
-<div class="codehilite"><pre><span></span><code>    git clone https://github.com/torvalds/linux  <span class="c1">#linux内核源码</span>
+<h2 id="_11">服务</h2>
+<h2 id="_12">例行性任务</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+&lt;!--</p>
+<h2 id="_13">下载链接</h2>
+<p>=======</p>
+<h2 id="_14">下载链接(已失效)</h2>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes
+<div class="more"></p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><div class="codehilite"><pre><span></span><code>    git clone https://github.com/torvalds/linux  <span class="c1">#linux内核源码</span>
 </code></pre></div>
 </div>
--->
-
+--&gt;</p>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <script type="text/javascript">
