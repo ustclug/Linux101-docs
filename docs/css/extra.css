@@ -1,20 +1,20 @@
 .red {
-	color: red !important;
-}
+  color: red !important; }
 
 .md-typeset img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+  .md-typeset img.inline {
+    display: inline-block; }
 .md-typeset .md-typeset__table {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.md-typeset .md-typeset__table > table {
-	width: auto;
-	margin: 0 auto;
-}
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+  .md-typeset .md-typeset__table > table {
+    width: auto;
+    margin: 0 auto; }
+.md-typeset p.caption {
+  text-align: center;
+  font-size: 0.94em;
+  color: grey; }
