@@ -13,6 +13,8 @@ markdown_extensions:
     - pymdownx.details
     - pymdownx.superfences
     - markdown.extensions.def_list
+    - toc:
+        permalink: true
 
 extra_css:
     - 'css/extra.css'
