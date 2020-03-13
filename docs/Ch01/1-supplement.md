@@ -1,5 +1,7 @@
 # 拓展阅读
 
-## Android/Linux
+!!! failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-## 关闭 SELinux
+## Android/Linux {#Android-Linux}
+
+## 关闭 SELinux {#Close-SELinux}
