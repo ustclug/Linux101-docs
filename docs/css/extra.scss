@@ -10,13 +10,26 @@
 }
 
 .md-typeset {
-	h2, h3 {
+	h2 {
 		padding-bottom: 0.2em;
 		border-bottom: 1px solid #d3d3d3;
+
+		&.no-underline {
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border: none;
+		}
 	}
 
 	h3 {
-		border-bottom-style: dashed;
+		padding-bottom: 0.2em;
+		border-bottom: 1px dashed #d3d3d3;
+
+		&.no-underline {
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border: none;
+		}
 	}
 
 	img {
@@ -45,5 +58,9 @@
 		font-size: 0.94em;
 		color: grey;
 		margin: -1em 0 0;
+	}
+
+	.footnote hr {
+		margin-top: 0.2em;
 	}
 }

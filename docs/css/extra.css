@@ -4,11 +4,18 @@
 .darkred {
   color: darkred !important; }
 
-.md-typeset h2, .md-typeset h3 {
+.md-typeset h2 {
   padding-bottom: 0.2em;
   border-bottom: 1px solid #d3d3d3; }
+  .md-typeset h2.no-underline {
+    padding-bottom: 0;
+    border: none; }
 .md-typeset h3 {
-  border-bottom-style: dashed; }
+  padding-bottom: 0.2em;
+  border-bottom: 1px dashed #d3d3d3; }
+  .md-typeset h3.no-underline {
+    padding-bottom: 0;
+    border: none; }
 .md-typeset img {
   display: block;
   margin-left: auto;
@@ -27,3 +34,5 @@
   font-size: 0.94em;
   color: grey;
   margin: -1em 0 0; }
+.md-typeset .footnote hr {
+  margin-top: 0.2em; }
