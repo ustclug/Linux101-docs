@@ -216,6 +216,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#heading-ids" class="md-nav__link">
+    为标题和小标题添加 ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-caption" class="md-nav__link">
+    为图片添加配字
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -859,6 +873,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#heading-ids" class="md-nav__link">
+    为标题和小标题添加 ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-caption" class="md-nav__link">
+    为图片添加配字
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -935,6 +963,19 @@
 <p>使用形如 <code>!!! tip "小知识"</code> 的方式添加一个小知识框。</p>
 </div>
 <p>更多种类的提示框请参考 <a href="https://squidfunk.github.io/mkdocs-material/extensions/admonition/">提示框一览</a>。</p>
+<h3 id="heading-ids">为标题和小标题添加 ID</h3>
+<p>由于文章篇目较长，使用时会经常遇到需要链接到文章某一段的情况。受限于 MkDocs 对于自动生成 ID 的功能（只支持英文字符），纯中文的标题会导致生成 <code>_1</code>, <code>_2</code> 这样的 ID。一方面这样的 ID 看起来不直观，另一方面每当标题发生增减时这些 ID 都会变，因此请为每个标题（最上方的 H1 不用）手动添加一个有意义的 ID，方法如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="err">### 为标题和小标题添加 ID {#heading-ids}</span>
+</code></pre></div>
+
+<h3 id="image-caption">为图片添加配字</h3>
+<p>在图片下方写一行文字作为配字，并在这行字<strong>紧接着的下一行</strong>（不能有空行）写上 <code>{: .caption }</code>，这样配的这行字渲染成 HTML 时就加上了 <code>class="caption"</code>，显示为 0.94 倍的字体、灰色、贴近图片。</p>
+<div class="codehilite"><pre><span></span><code><span class="err">!</span><span class="o">[</span><span class="n">image</span><span class="o">]</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">图</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">这张图片的一行配字</span><span class="w"></span>
+<span class="err">{:</span><span class="w"> </span><span class="p">.</span><span class="n">caption</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
 <h2 id="_3">自主阅读节 *</h2>
 <p>可以在章节主体中包括若干自主阅读节，原则上这一部分的结构与其它章节主体并无不同，只是不会在课堂上讲授。</p>
 <p>在所有自主阅读节的标题后面打上星号 * ，并建议尽可能放在后面。</p>
