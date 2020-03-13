@@ -767,14 +767,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#operating-system" class="md-nav__link">
     操作系统
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#gnugnu-is-not-unixis-not-unixis-not-unixis-not-unix" class="md-nav__link">
+  <a href="#gnu" class="md-nav__link">
     GNU：GNU is Not UNIX!（回音：...is not unix...is not unix...is not unix...）
   </a>
   
@@ -795,14 +795,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#irqinterrupt-request" class="md-nav__link">
+  <a href="#irq" class="md-nav__link">
     中断（irq：interrupt request）
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#systemcall" class="md-nav__link">
+  <a href="#system-call" class="md-nav__link">
     系统调用（systemcall）
   </a>
   
@@ -816,7 +816,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#buildin-command" class="md-nav__link">
     内建命令
   </a>
   
@@ -848,10 +848,10 @@
 <p><strong>在本次Linux101介绍活动中，你会遇到许多可能从来没有概念的名词，为了便于大致理解概念与作为讲义辅助查阅，将涉及到的基本概念编写于此，正文可在适当位置加以引用。</strong></p>
 <p><em>部分词条并非使用专业而严格的方式解释，仅为快速理解而编写，更加严格的定义可参阅各大百科</em></p>
 <h2 id="whatis">Whatis<a class="headerlink" href="#whatis" title="Permanent link">&para;</a></h2>
-<h3 id="_1">操作系统<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="operating-system">操作系统<a class="headerlink" href="#operating-system" title="Permanent link">&para;</a></h3>
 <p>我们的计算机无时无刻不在同时管理着多个任务，运行着多个程序。然而对于只有单个单核CPU的计算机来说，正常情况下只能顺序执行一串代码，意味着多个程序总要以某种方式连接起来。而CPU的算力是程序的竞争资源之一，必须有一个管理者出现来保证资源分配的相对公平。这位管理者便是操作系统，其本身也是程序，任务便是将应用程序接成一条线，自己负责切换程序，决定谁来使用CPU，用多长时间。这样既能适配硬件的CPU，满足其某一时刻只能执行一条指令的要求，也能促进应用程序合理运行，满足用户的功能需求。可见，操作系统的核心功能在于伺候程序。</p>
 <p>那么，操作系统如何安排程序呢？<a href="javascript:void(0)" onclick='$("//a[href=\\.\\.\\/Ch04\\/1\\/]")[0].click()'>第四章，详细介绍↗</a></p>
-<h3 id="gnugnu-is-not-unixis-not-unixis-not-unixis-not-unix">GNU：GNU is Not UNIX!（回音：...is not unix...is not unix...is not unix...）<a class="headerlink" href="#gnugnu-is-not-unixis-not-unixis-not-unixis-not-unix" title="Permanent link">&para;</a></h3>
+<h3 id="gnu">GNU：GNU is Not UNIX!（回音：...is not unix...is not unix...is not unix...）<a class="headerlink" href="#gnu" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>时间回到上世纪70-80年代，一代操作系统巨星UNIX在AT&amp;T的商业化策略下选择了自闭，不再提供源代码给使用者。这不仅意味着金钱上的制约，更是一种对修改研究软件权力的制约。想想看，如果想对一个文本编辑器添加一个小功能，却由于版权原因被逼写一份自己的编辑器，可以说相当令人绝望。于是，Richard Stallman带着他的GNU emacs站了出来，号召hacker们搭建起自由的软件平台——GNU。</p>
@@ -863,12 +863,13 @@
 <p>没有图形界面时，shell一般为控制台（tty）的子进程，在图形界面上shell建立在虚拟终端之上。</p>
 <h3 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h3>
 <p>有壳（shell）必有核（kernel），只有这里的核才是操作系统本体，真正负责调度程序的部分。而Linux发行版本身则是一个套装，一个核用不同的软件包装出来。可见</p>
-<h3 id="irqinterrupt-request">中断（irq：interrupt request）<a class="headerlink" href="#irqinterrupt-request" title="Permanent link">&para;</a></h3>
+<h3 id="irq">中断（irq：interrupt request）<a class="headerlink" href="#irq" title="Permanent link">&para;</a></h3>
 <p>你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。从程序的角度来看，中断对应着程序正常执行逻辑被打断，跳转到特定的中断处理程序。上面的电话铃代表是哪个硬件上产生的中断信号，告诉CPU应当如何处理。处理完之后自然回到正在运行的程序中（或者电话中老妈让你把饭热上，对应CPU进行调度切换更高“优先级”任务）。在中断机制中，中断号与其处理程序的映射尤为重要，这些映射储存在中断向量<abbr title="一种数据结构，在case语句中用到">表</abbr>中。</p>
 <p>没有中断，计算机仍将停留在批处理年代的早期，只能管理IO，无法调度。</p>
-<h3 id="systemcall">系统调用（systemcall）<a class="headerlink" href="#systemcall" title="Permanent link">&para;</a></h3>
+<h3 id="system-call">系统调用（systemcall）<a class="headerlink" href="#system-call" title="Permanent link">&para;</a></h3>
+<p>如果说进程调度体现了系统进程与资源的管理作用，那么系统调用体现的是系统为进程提供服务的功能。那为什么要有系统调用呢？</p>
 <h3 id="posix">POSIX标准<a class="headerlink" href="#posix" title="Permanent link">&para;</a></h3>
-<h3 id="_2">内建命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="buildin-command">内建命令<a class="headerlink" href="#buildin-command" title="Permanent link">&para;</a></h3>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
                 
                   
