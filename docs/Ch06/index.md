@@ -16,9 +16,9 @@
 
     下面内容可以解答你的疑问。
 
-## 网络下载 {#download utils}
+## 网络下载 {#download-utils}
 
-### 为何使用 wget 和 cURL {#why wget and curl}
+### 为何使用 wget 和 cURL {#why-wget-and-curl}
 
 在 Windows 下，很多人下载文件时会使用「迅雷」、「QQ 旋风」（停止运营）、「IDM」之类的软件来实现下载。那么在 Linux 环境下呢？在终端下，没有可视化软件提供点击下载。即使有桌面环境，有 Firefox 可以很方便地下载文件，硬件资源也会被很多不必要的服务浪费。通过以下内容讲述的 wget (`wget`) 和 cURL (`curl`) 工具，我们可以 Linux 上进行轻量的下载活动。
 
@@ -38,7 +38,7 @@
 
 - 支持代理服务器，以减轻网络负载，加快检索速度。
 
-#### `wget` 使用 {#wget usage}
+#### `wget` 使用 {#wget-usage}
 
 使用 `man wget` 得到的结果为 `wget [option]... [URL]...`，其中的更多参数可以通过查看帮助 `wget -h` 来获取。
 
@@ -61,7 +61,7 @@
 
 cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。
 
-#### `curl` 使用 {#curl usage}
+#### `curl` 使用 {#curl-usage}
 
 同 `wget` 部分，我们可以查看帮助 `curl -h` 了解其用法。
 
@@ -89,7 +89,7 @@ cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输�
 
 除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。
 
-## Shell 脚本 {#shell scripts}
+## Shell 脚本 {#shell-scripts}
 
 ### 什么是 Shell
 
@@ -113,7 +113,7 @@ Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 
 
 - 允许应用别名代替命令关键字（`alias name='命令'`）。
 
-### Bash 脚本基础 {#bash usage}
+### Bash 脚本基础 {#bash-usage}
 
 #### Bash 脚本的运行
 
@@ -171,7 +171,7 @@ Bash 也支持在同一个行中安排多个命令：
 
     执行组命令 `{ cd tmp; ls; }` 后，当前目录会被修改，但是执行 `(cd tmp; ls;)` 不会修改当前目录。
 
-#### shell 变量 {#bash variable}
+#### shell 变量 {#bash-variable}
 
 像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。
 
@@ -271,7 +271,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 - 反斜杠，消除单个字符的特殊含义。
 
-#### 算术运算 {#arithmetic ops}
+#### 算术运算 {#arithmetic-ops}
 
 在 Bash 中进行算术运算，需要使用 `expr` 计算算术表达式值或 `let` 命令赋值表达式值到变量。基本运算符是：`+`、`-`、`\*` (转义)、`/`、`%`。在 `expr` 中，运算符两边与操作数之间必须有空格，小括号要转义；但 `let` 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 `=` 前后不能有空格。
 
@@ -496,7 +496,7 @@ done
     hello, today’s date is <当前日期显示输出串>
     ```
 
-### Bash 脚本调试 {#bash debugger}
+### Bash 脚本调试 {#bash-debugger}
 
 Bash shell 本身提供了调试方法：
 
