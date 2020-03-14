@@ -10,7 +10,13 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Linux 101 课程讲义">
       
+      
+        <link rel="canonical" href="https://101.ustclug.org/Ch07/1/">
+      
+      
+        <meta name="author" content="LUG@USTC">
       
       
         <meta name="lang:clipboard.copy" content="复制">
@@ -57,6 +63,31 @@
     
     
       
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-160637954-1", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
     
     
   </head>
@@ -82,7 +113,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
+        <a href="https://101.ustclug.org/" title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -152,7 +183,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../.." title="Linux 101" class="md-nav__button md-logo">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1555,6 +1586,10 @@ CPython 中的 C 是指此解释器底层是用 C 实现。</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
+          <div class="md-footer-copyright__highlight">
+            Brought to you by LUG@USTC. Available freely under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+          </div>
+        
         powered by
         <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
@@ -1562,6 +1597,13 @@ CPython 中的 C 是指此解释器底层是用 C 实现。</p>
           Material for MkDocs</a>
       </div>
       
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="globe" class="md-footer-social__link fa fa-globe"></a>
+    
+  </div>
+
     </div>
   </div>
 </footer>
