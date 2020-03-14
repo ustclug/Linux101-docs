@@ -349,6 +349,7 @@ function defer(f) {
     f();
   } else {
     setTimeout(() => defer(f), 100);
+  }
 }
 defer(function() {
   $("#part").css("height", $("#bg").width() * 181 / 618 + "px");
