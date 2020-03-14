@@ -1,4 +1,8 @@
 site_name: Linux 101
+site_description: Linux 101 课程讲义
+site_author: LUG@USTC
+site_url: https://101.ustclug.org/
+copyright: Brought to you by LUG@USTC. Available freely under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
 
 theme:
     font: false
@@ -13,40 +17,59 @@ markdown_extensions:
     - pymdownx.details
     - pymdownx.superfences
     - markdown.extensions.def_list
+    - toc:
+        permalink: true
+
+extra:
+  social:
+    - type: globe
+      link: https://lug.ustc.edu.cn/
+
+extra_javascript:
+    - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
 
 extra_css:
     - 'css/extra.css'
 
+google_analytics:
+  - 'UA-160637954-1'
+  - 'auto'
+
 nav:
     - 负一：编写建议: advice.md
-    - 零：前言: index.md
-    - 一：初识 Linux: 
+    - 序: preface.md
+    - 零：欢迎:
+        - 欢迎: index.md
+        - 记号约定: notation.md
+        - 功劳簿: credit.md
+    - 一：初识 Linux:
         - 讲义: Ch01/1.md
-        - 补充内容: Ch01/1-supplement.md
+        - 拓展阅读: Ch01/1-supplement.md
     - 二：个性化配置与建站体验:
         - 讲义: Ch02/1.md
-        - 补充内容: Ch02/1-supplement.md
+        - 拓展阅读: Ch02/1-supplement.md
     - 三：软件安装与文件操作:
         - 讲义: Ch03/1.md
-        - 补充内容: Ch03/1-supplement.md
+        - 拓展阅读: Ch03/1-supplement.md
     - 四：进程、前后台、服务与例行性任务:
         - 讲义: Ch04/1.md
-        - 补充内容: Ch04/1-supplement.md
+        - 拓展阅读: Ch04/1-supplement.md
     - 五：用户与用户组、文件权限、文件系统层次结构:
         - 讲义: Ch05/1.md
-        - 补充内容: Ch05/1-supplement.md
+        - 拓展阅读: Ch05/1-supplement.md
     - 六：网络下载工具与 Shell 脚本:
         - 讲义: Ch06/1.md
-        - 补充内容: Ch06/1-supplement.md
+        - 拓展阅读: Ch06/1-supplement.md
     - 七：Linux 上的编程:
         - 讲义: Ch07/1.md
-        - 补充内容: Ch07/1-supplement.md
+        - 拓展阅读: Ch07/1-supplement.md
     - 八：Docker:
         - 讲义: Ch08/1.md
-        - 补充内容: Ch08/1-supplement.md
+        - 拓展阅读: Ch08/1-supplement.md
     - 九：Shell 文字处理工具与正则表达式:
         - 讲义: Ch09/1.md
-        - 补充内容: Ch09/1-supplement.md
+        - 拓展阅读: Ch09/1-supplement.md
     - 附录:
         - man 文档的一些示例: Appendix/man.md
-
+        - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
+    - 跋: postface.md
