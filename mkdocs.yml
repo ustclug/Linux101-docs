@@ -1,4 +1,8 @@
 site_name: Linux 101
+site_description: Linux 101 课程讲义
+site_author: LUG@USTC
+site_url: https://101.ustclug.org/
+copyright: Brought to you by LUG@USTC. Available freely under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
 
 theme:
     font: false
@@ -16,11 +20,20 @@ markdown_extensions:
     - toc:
         permalink: true
 
+extra:
+  social:
+    - type: globe
+      link: https://lug.ustc.edu.cn/
+
 extra_javascript:
     - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
 
 extra_css:
     - 'css/extra.css'
+
+google_analytics:
+  - 'UA-160637954-1'
+  - 'auto'
 
 nav:
     - 负一：编写建议: advice.md
