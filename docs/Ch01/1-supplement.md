@@ -5,3 +5,5 @@
 ## Android/Linux {#Android-Linux}
 
 ## 关闭 SELinux {#Close-SELinux}
+
+## Windows Subsystem for Linux {#WSL}
