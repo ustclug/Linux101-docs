@@ -203,6 +203,11 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 	![](images/Xubuntu-Logo.png)
 	<p class="caption">Xubuntu 图标</p>
 
+如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
+
+- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibugone.com/p/15-cn)（另有[英文版](https://ibugone.com/p/15)）
+- [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
+
 ### 启动虚拟机 {#Start-VM}
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
