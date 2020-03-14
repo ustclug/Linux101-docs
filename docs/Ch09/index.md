@@ -8,17 +8,17 @@
 
     为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。
 
-## 一些铺垫
+## 一些铺垫 {#prerequisite}
 
-### I/O 重定向和管道
+### I/O 重定向和管道 {#redirect-and-pipe}
 
-在 [六：网络下载工具与 Shell 脚本](../Ch06/1.md) 中提到过：
+在 [六：网络下载工具与 Shell 脚本](../Ch06/index.md) 中提到过：
 
 > Bash 支持 I/O 重定向（>, >>, <）和管道（|）等
 
 下面简单介绍重定向和管道，为后续知识做铺垫
 
-#### 重定向
+#### 重定向 {#redirect}
 
 一般情况下命令从**标准输入（stdin）**读取输入，并输出到**标准输出（stdout）**，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 `echo` 为例的重定向输出：
 
@@ -56,7 +56,7 @@ command < inpufile > outputfile
 
     `echo < file` 会输出什么？
 
-#### 管道
+#### 管道 {#pipe}
 
 管道（pipe），操作符 `|`，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。
 
@@ -68,15 +68,15 @@ bin
 sbin
 ```
 
-#### 单双引号
+#### 单双引号 {#qoutes}
 
 当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。
 
 然而单双引号会带来不同的影响。单双引号中的 `` ` `` 和 `\` 都会被解释，而 `$`只在双引号中被解释，单引号中被视为普通字符。
 
-## 常用 shell 文字处理工具
+## 常用 shell 文字处理工具 {#tools-in-shell}
 
-### diff
+### diff {#diff}
 
 diff 工具用于比较两个文件的不同，并列出差异。
 
@@ -97,7 +97,7 @@ $ diff file1 file2
 
     假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。
 
-### head & tail
+### head & tail {#head-and-tail}
 
 顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。
 
@@ -138,7 +138,7 @@ head -20 file | tail -5
 head -20 file | tail +5
 ```
 
-### sort
+### sort {#sort}
 
 sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。
 
@@ -197,7 +197,7 @@ $ sort -n numbers
 
     为什么有必要存在 `-o` 参数？试试重定向输出到原文件。
 
-### uniq
+### uniq {#uniq}
 
 uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。
 
@@ -221,13 +221,13 @@ sort animals | uniq -d
 sort animals | uniq -c
 ```
 
-## 正则表达式
+## 正则表达式 {#regular-expression}
 
 正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。
 
 此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步补充内容。
 
-### 特殊字符
+### 特殊字符 {#special-char}
 
 |特殊字符|描述|
 |-|-|
@@ -245,7 +245,7 @@ sort animals | uniq -c
 
 以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符“\”
 
-### 简单示例
+### 简单示例 {#re-example}
 
 匹配正整数：
 
@@ -270,7 +270,7 @@ sort animals | uniq -c
 ter\b
 ```
 
-### 基本/扩展正则表达式
+### 基本/扩展正则表达式 {#bre-ere}
 
 基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。
 
@@ -280,9 +280,13 @@ ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符
 
 具体的例子在下文介绍工具时可以看到。
 
-## 常用 Shell 文字处理工具（正则）
+!!! question "思考题"
 
-### grep
+    什么是 DFA/NFA 正则表达式引擎？如今常见编程语言里的正则表达式实现和此处的 BRE/ERE 有什么异同？
+
+## 常用 Shell 文字处理工具（正则） {#tools-with-re}
+
+### grep {#grep}
 
 grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个或多个文件中搜索指定 pattern 并显示相关行。
 
@@ -302,7 +306,7 @@ ls /bin | grep -v "[a-z]\|[0-9]"
 ls /bin | grep -iv "[A-Z]\|[0-9]"
 ```
 
-### sed
+### sed {#sed}
 
 sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。
 
@@ -333,7 +337,7 @@ sed "s/[a-z]/~/g" sed_demo
 sed "3cpErfeCt" sed_demo
 ```
 
-### awk
+### awk {#awk}
 
 awk 是一种用于处理文本的编程语言工具，名字来源于三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。
 
