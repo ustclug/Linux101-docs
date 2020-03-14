@@ -228,7 +228,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为 stopped，命令为 `ping localhost`。
 
-<div id="part"><img id="bg" src="../images/bg.png"/></div>
+<div id="part"><img id="bg" src="images/bg.png"/></div>
 
 emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用`jobs`命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
