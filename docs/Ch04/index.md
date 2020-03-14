@@ -46,7 +46,7 @@
 
 **进程**是计算机系统三大抽象之一，操作系统秉承“为进程服务”的理念而设计。
 
-![abstract](img/abstract.png)
+![abstract](images/abstract.png)
 
 程序由数据结构和算法构成，程序需要存储资源安身，需要计算资源运行。而一个程序占有资源并运行便成为了进程。程序希望有 CPU 运行它，希望它需要的数据唾手可得，希望输出的数据可以被正确及时地送达。早期的系统不需要操心进程运行的顺序。然而随着人们对计算机需求越来越高，操作系统除了为进程提供基础服务之外，更需要管理好进程所竞争的资源，甚至要为实时交互提供方案。
 
@@ -58,7 +58,7 @@
 
 （注：以下内容建议使用 `sudo apt install htop` 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）
 
-![htop-sample](img/htop_sample.png)
+![htop-sample](images/htop_sample.png)
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页"><a href="https://hisham.hm/htop/">htop HomePage➚</a></abbr></p>
 
 ### Process ID {#pid}
@@ -67,7 +67,7 @@
 
 _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 序列排列，再次点击为反向排序，同理可应用于其他列。_
 
-![PID](img/PID.png)
+![PID](images/PID.png)
 
 **那么，PID 又是如何产生的呢？**
 
@@ -99,7 +99,7 @@ _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺�
 
 _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示 F5 add 添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY\_NR，TPGID，SESSION 列以便观察下面实验结果。_
 
-![add_column](img/add_column.png)
+![add_column](images/add_column.png)
 
 （F10 被终端程序占用了怎么办？其实终端上的选项是可以用鼠标点击的，点一下 Done 即可返回。）
 
@@ -137,7 +137,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
     随后，在文件所在目录下打开 shell，运行 `gcc forking.c -o forking && chmod +x forking && ./forking` 三连，就可以在另一终端打开 htop 查看成果了。
 
-    ![forking](img/forking.png)
+    ![forking](images/forking.png)
 
     按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
 
@@ -217,7 +217,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 可这实在是太长了，还是来一个简明实用的吧。那么，
 
-![signal_slide](img/signal_slide.png)
+![signal_slide](images/signal_slide.png)
 
 （来自上一次 Linux101——进程、服务、任务的 slide 截图）
 {: .caption }
@@ -228,7 +228,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为 stopped，命令为 `ping localhost`。
 
-<div id="part"><img id="bg" src="../img/bg.png"/></div>
+<div id="part"><img id="bg" src="../images/bg.png"/></div>
 
 emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用`jobs`命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
@@ -239,7 +239,7 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：
 
-![fg_bg](img/fg_bg.png)
+![fg_bg](images/fg_bg.png)
 
 即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。
 
