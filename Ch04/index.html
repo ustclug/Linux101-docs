@@ -1269,7 +1269,7 @@
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
-<div id="part"><img id="bg" src="../images/bg.png"/></div>
+<div id="part"><img id="bg" src="images/bg.png"/></div>
 
 <p>emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用<code>jobs</code>命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加<code>%</code>，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用<code>bg %2</code></a>，效果如图所示。</p>
