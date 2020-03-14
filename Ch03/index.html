@@ -1,0 +1,1935 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Linux 101 课程讲义">
+      
+      
+        <link rel="canonical" href="https://101.ustclug.org/Ch03/">
+      
+      
+        <meta name="author" content="LUG@USTC">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>讲义 - Linux 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-160637954-1", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="0" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://101.ustclug.org/" title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Linux 101
+            </span>
+            <span class="md-header-nav__topic">
+              
+                讲义
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Linux 101
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../advice/" title="负一：编写建议" class="md-nav__link">
+      负一：编写建议
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../preface/" title="序" class="md-nav__link">
+      序
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      零：欢迎
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        零：欢迎
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="欢迎" class="md-nav__link">
+      欢迎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../notation/" title="记号约定" class="md-nav__link">
+      记号约定
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../credit/" title="功劳簿" class="md-nav__link">
+      功劳簿
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      一：初识 Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        一：初识 Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch01/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch01/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      二：个性化配置与建站体验
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        二：个性化配置与建站体验
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch02/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch02/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      三：软件安装与文件操作
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        三：软件安装与文件操作
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        讲义
+      </label>
+    
+    <a href="./" title="讲义" class="md-nav__link md-nav__link--active">
+      讲义
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    软件安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    使用应用商店安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aptyumpacman" class="md-nav__link">
+    使用 apt、yum、pacman 等软件仓库安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    搜索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    使用包管理器进行安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    更新软件列表与更新软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt-update" class="md-nav__link">
+    apt update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apt-upgrade" class="md-nav__link">
+    apt upgrade
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    软件源
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    操作文件与文件夹
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    拷贝文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    移动文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    删除文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    创建目录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tar" class="md-nav__link">
+    使用 tar 操作存档、压缩文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    软件的使用文档
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#man" class="md-nav__link">
+    man 命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tldr 软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    引用来源
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      四：进程、前后台、服务与例行性任务
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        四：进程、前后台、服务与例行性任务
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch04/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch04/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      五：用户与用户组、文件权限、文件系统层次结构
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        五：用户与用户组、文件权限、文件系统层次结构
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch05/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch05/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      六：网络下载工具与 Shell 脚本
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        六：网络下载工具与 Shell 脚本
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch06/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch06/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      七：Linux 上的编程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        七：Linux 上的编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch07/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch07/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      八：Docker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        八：Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch08/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch08/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      九：Shell 文字处理工具与正则表达式
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        九：Shell 文字处理工具与正则表达式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch09/" title="讲义" class="md-nav__link">
+      讲义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ch09/supplement/" title="拓展阅读" class="md-nav__link">
+      拓展阅读
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Appendix/glossary/" title="词汇表" class="md-nav__link">
+      词汇表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Appendix/man/" title="man 文档的一些示例" class="md-nav__link">
+      man 文档的一些示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Appendix/distribution/" title="其他的 Linux 发行版：技术差异简介" class="md-nav__link">
+      其他的 Linux 发行版：技术差异简介
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../postface/" title="跋" class="md-nav__link">
+      跋
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    软件安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    使用应用商店安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aptyumpacman" class="md-nav__link">
+    使用 apt、yum、pacman 等软件仓库安装
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    搜索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    使用包管理器进行安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    更新软件列表与更新软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt-update" class="md-nav__link">
+    apt update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apt-upgrade" class="md-nav__link">
+    apt upgrade
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    软件源
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    操作文件与文件夹
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    拷贝文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    移动文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    删除文件、文件夹
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    创建目录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tar" class="md-nav__link">
+    使用 tar 操作存档、压缩文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    软件的使用文档
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#man" class="md-nav__link">
+    man 命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tldr 软件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    引用来源
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">软件安装与文件操作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">导言</p>
+<p>面对一个新的系统，如何将它尽快地投入使用？在这一章节中，你将可以解惑以下的几个问题：</p>
+<ul>
+<li>如何通过命令行的方式安装需要的软件</li>
+<li>创建、移动、删除等对文件与目录的操作</li>
+<li>压缩、解压一个压缩文件</li>
+<li>面对一个没有使用过的软件，如何能够更快地了解使用方法，上手使用</li>
+</ul>
+</div>
+<h2 id="_2">软件安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法</p>
+<h3 id="_3">使用应用商店安装<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>使用应用商店安装比较符合我们在 Google Play 和 App Store 安装应用的习惯，无需用户的干预，只需轻点鼠标即可完成安装。</p>
+<p>在 Ubuntu 下，我们可以使用 Ubuntu Application Store 来进行安装，下图为应用商店中的 VSCode 应用页面。</p>
+<p><img alt="Ubuntu Application Store" src="images/vscode-ubuntu-application-store.png" /></p>
+<div class="admonition info">
+<p>这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等</p>
+<p>在其他的发行版上，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店</p>
+</div>
+<h3 id="aptyumpacman">使用 apt、yum、pacman 等软件仓库安装<a class="headerlink" href="#aptyumpacman" title="Permanent link">&para;</a></h3>
+<p>软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供只有下载和安装的可用软件包。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>在 Linux 下，相比起使用应用商店安装软件，软件仓库的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
+<p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
+<div class="admonition abstract">
+<p class="admonition-title">什么是 apt、yum、pacman</p>
+<p><em>以 Ubuntu 下的 apt 为例展开</em></p>
+<p>apt，全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。它可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。</p>
+<p>apt 常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
+<p>由于可以自定义软件源，因此自由地添加第三方源以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
+</div>
+<h4 id="_4">搜索<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>在安装前，使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code></p>
+<p>下面是 <code>apt search firefox</code> 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包</p>
+<div class="codehilite"><pre><span></span><code><span class="err">➜</span>  <span class="o">~</span> <span class="n">apt</span> <span class="k">search</span> <span class="n">firefox</span>
+<span class="n">Sorting</span><span class="p">...</span> <span class="n">Done</span>
+<span class="k">Full</span> <span class="nb">Text</span> <span class="k">Search</span><span class="p">...</span> <span class="n">Done</span>
+<span class="p">(</span><span class="n">Ouput</span> <span class="n">Omitted</span><span class="p">)</span>
+
+<span class="n">firefox</span><span class="o">/</span><span class="n">bionic</span><span class="o">-</span><span class="n">updates</span><span class="p">,</span><span class="n">bionic</span><span class="o">-</span><span class="k">security</span><span class="p">,</span><span class="n">now</span> <span class="mi">72</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="o">+</span><span class="n">build1</span><span class="o">-</span><span class="mi">0</span><span class="n">ubuntu0</span><span class="p">.</span><span class="mi">18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">1</span> <span class="n">amd64</span>
+  <span class="n">Safe</span> <span class="k">and</span> <span class="n">easy</span> <span class="n">web</span> <span class="n">browser</span> <span class="k">from</span> <span class="n">Mozilla</span>
+
+<span class="p">(</span><span class="n">Ouput</span> <span class="n">Omitted</span><span class="p">)</span>
+</code></pre></div>
+
+<p>中间两行每个的字段的含义</p>
+<table>
+<thead>
+<tr>
+<th>样例中的字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>firefox</code></td>
+<td>即为在软件仓库中的包名</td>
+</tr>
+<tr>
+<td><code>bionic-updates,bionic-security,now</code></td>
+<td>为包含这个软件包的仓库源</td>
+</tr>
+<tr>
+<td><code>72.0.2+build1-0ubuntu0.18.04.1</code></td>
+<td>为软件包的版本</td>
+</tr>
+<tr>
+<td><code>amd64</code></td>
+<td>软件包的架构；还可能为<code>i386</code>、<code>all</code>等</td>
+</tr>
+<tr>
+<td><code>Safe and easy web browser from Mozilla</code></td>
+<td>在软件仓库中对这个软件包的描述</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_5">安装<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装</p>
+<p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
+<div class="codehilite"><pre><span></span><code><span class="err">➜  ~ apt install firefox</span>
+<span class="err">Reading package lists... Done</span>
+<span class="err">Building dependency tree</span>
+<span class="err">Reading state information... Done</span>
+<span class="err">The following additional packages will be installed:</span>
+<span class="err">  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig</span>
+<span class="err">  (Output Omitted)</span>
+<span class="err">Suggested packages:</span>
+<span class="err">  fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common</span>
+<span class="err">  gvfs liblcms2-utils librsvg2-bin</span>
+<span class="err">The following NEW packages will be installed:</span>
+<span class="err">  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service firefox fontconfig</span>
+<span class="err">  (Output omitted)</span>
+<span class="err">0 upgraded, 87 newly installed, 0 to remove and 1 not upgraded.</span>
+<span class="err">Need to get 64.5 MB of archives.</span>
+<span class="err">After this operation, 264 MB of additional disk space will be used.</span>
+<span class="err">Do you want to continue? [Y/n]</span>
+</code></pre></div></p>
+<p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 后回车确定进行安装</p>
+<div class="admonition tip">
+<p class="admonition-title">可能会出现的权限问题</p>
+<p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
+<div class="codehilite"><pre><span></span><code><span class="err">➜  ~ apt install firefox</span>
+<span class="c">E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)</span>
+<span class="c">E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?</span>
+</code></pre></div></p>
+<p>这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 <code>sudo</code></p>
+<p>即使用 <code>sudo apt install firefox</code></p>
+<p><strong>具体有关权限的知识点将在第五章展开</strong></p>
+</div>
+<h3 id="_6">使用包管理器进行安装<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
+<div class="admonition example">
+<p class="admonition-title">Install VSCode from deb file</p>
+<p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
+<p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868">微软提供的 <code>deb</code> 文件</a></p>
+<p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）</p>
+</div>
+<h3 id="_7">更新软件列表与更新软件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 <code>apt install</code> 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 <code>apt install some-package</code> 时安装的。</p>
+<h4 id="apt-update">apt update<a class="headerlink" href="#apt-update" title="Permanent link">&para;</a></h4>
+<p>为了将这个列表进行更新，就会用到 <code>apt update</code> 命令。获取到新的软件版本、软件依赖关系。</p>
+<p>在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本</p>
+<div class="admonition example">
+<p class="admonition-title">apt update 输出样例</p>
+<div class="codehilite"><pre><span></span><code><span class="err">➜</span><span class="w">  </span><span class="o">~</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="k">update</span><span class="w"></span>
+<span class="o">[</span><span class="n">sudo</span><span class="o">]</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nl">elsa</span><span class="p">:</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">1</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="p">.</span><span class="n">ubuntu</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="o">-</span><span class="n">security</span><span class="w"> </span><span class="n">InRelease</span><span class="w"> </span><span class="o">[</span><span class="n">88.7 kB</span><span class="o">]</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">2</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">cli</span><span class="o">-</span><span class="n">assets</span><span class="p">.</span><span class="n">heroku</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">apt</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="w"> </span><span class="n">InRelease</span><span class="w"> </span><span class="o">[</span><span class="n">2533 B</span><span class="o">]</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">5</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="o">-</span><span class="n">updates</span><span class="w"> </span><span class="n">InRelease</span><span class="w"> </span><span class="o">[</span><span class="n">88.7 kB</span><span class="o">]</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">6</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="o">-</span><span class="n">backports</span><span class="w"> </span><span class="n">InRelease</span><span class="w"> </span><span class="o">[</span><span class="n">74.6 kB</span><span class="o">]</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">7</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="o">-</span><span class="n">updates</span><span class="o">/</span><span class="n">main</span><span class="w"> </span><span class="n">amd64</span><span class="w"> </span><span class="n">Packages</span><span class="w"> </span><span class="o">[</span><span class="n">853 kB</span><span class="o">]</span><span class="w"></span>
+<span class="k">Get</span><span class="err">:</span><span class="mi">8</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="o">-</span><span class="n">updates</span><span class="o">/</span><span class="n">main</span><span class="w"> </span><span class="k">Translation</span><span class="o">-</span><span class="n">en</span><span class="w"> </span><span class="o">[</span><span class="n">298 kB</span><span class="o">]</span><span class="w"></span>
+<span class="p">(</span><span class="k">Output</span><span class="w"> </span><span class="n">ommitted</span><span class="p">)</span><span class="w"></span>
+<span class="n">Reading</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="n">lists</span><span class="p">...</span><span class="w"> </span><span class="n">Done</span><span class="w"></span>
+<span class="n">Building</span><span class="w"> </span><span class="n">dependency</span><span class="w"> </span><span class="n">tree</span><span class="w">       </span>
+<span class="n">Reading</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="n">information</span><span class="p">...</span><span class="w"> </span><span class="n">Done</span><span class="w"></span>
+<span class="mi">158</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">upgraded</span><span class="p">.</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="s1">&#39;apt list --upgradable&#39;</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">them</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<p>每一行对应获取一个软件源</p>
+<p>在最后，<code>158 packages can be upgraded</code> 表示了可以被更新的软件包的数量</p>
+</div>
+<h4 id="apt-upgrade">apt upgrade<a class="headerlink" href="#apt-upgrade" title="Permanent link">&para;</a></h4>
+<p>在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 <code>apt upgrade</code> 命令</p>
+<p><code>apt upgrade</code> 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级</p>
+<div class="admonition example">
+<p class="admonition-title">apt upgrade 输出样例</p>
+<p><div class="codehilite"><pre><span></span><code><span class="err">Reading package lists... Done</span>
+<span class="err">Building dependency tree</span>
+<span class="err">Reading state information... Done</span>
+<span class="err">Calculating upgrade... Done</span>
+<span class="err">The following packages will be upgraded:</span>
+<span class="err">  apport dmidecode landscape-common libnss-systemd libpam-systemd libsystemd0 libudev1</span>
+<span class="err">  python3-apport python3-problem-report sosreport systemd systemd-sysv udev unattended-upgrades</span>
+<span class="err">14 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</span>
+<span class="err">Need to get 5062 kB of archives.</span>
+<span class="err">After this operation, 236 kB of additional disk space will be used.</span>
+<span class="err">Do you want to continue? [Y/n]</span>
+</code></pre></div>
+在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。</p>
+</div>
+<h4 id="_8">软件源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下</p>
+<details class="example"><summary>查看本地的软件源列表</summary><div class="codehilite"><pre><span></span><code><span class="err">➜</span>  <span class="err">~</span> <span class="err">cat</span> <span class="err">/etc/apt/sources.list</span> <span class="err">|</span> <span class="err">grep</span> <span class="err">-v</span> <span class="err">&quot;</span><span class="c">#&quot;</span>
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic</span> <span class="kp">main</span> <span class="kp">restricted</span>
+
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic-updates</span> <span class="kp">main</span> <span class="kp">restricted</span>
+
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic</span> <span class="kp">universe</span>
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic-updates</span> <span class="kp">universe</span>
+
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic</span> <span class="kp">multiverse</span>
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic-updates</span> <span class="kp">multiverse</span>
+
+<span class="k">deb</span> <span class="s">http://mirrors.ustc.edu.cn/ubuntu/</span> <span class="kp">bionic-backports</span> <span class="kp">main</span> <span class="kp">restricted</span> <span class="kp">universe</span> <span class="kp">multiverse</span>
+
+
+<span class="k">deb</span> <span class="s">http://security.ubuntu.com/ubuntu/</span> <span class="kp">bionic-security</span> <span class="kp">main</span> <span class="kp">restricted</span>
+<span class="k">deb</span> <span class="s">http://security.ubuntu.com/ubuntu/</span> <span class="kp">bionic-security</span> <span class="kp">universe</span>
+<span class="k">deb</span> <span class="s">http://security.ubuntu.com/ubuntu/</span> <span class="kp">bionic-security</span> <span class="kp">multiverse</span>
+</code></pre></div>
+
+<p>每一个条目都遵循如下的格式</p>
+<div class="codehilite"><pre><span></span><code><span class="k">deb</span> <span class="s">http://site.example.com/ubuntu/</span> <span class="kp">distribution</span> <span class="kp">component1</span> <span class="kp">component2</span> <span class="kp">component3</span>
+<span class="k">deb-src</span> <span class="s">http://site.example.com/ubuntu/</span> <span class="kp">distribution</span> <span class="kp">component1</span> <span class="kp">component2</span> <span class="kp">component3</span>
+</code></pre></div>
+
+<p>分别是 Archive type，Repository URL，Distribution 和 Component</p>
+<p>在 Ubuntu 下，Component 可以为如下几个<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main</td>
+<td>包含自由软件的软件包</td>
+</tr>
+<tr>
+<td>Restricted</td>
+<td>包含通常使用的软件，由 Ubuntu 团队支持，但不是完全的自由软件许可授权</td>
+</tr>
+<tr>
+<td>Universe</td>
+<td>包含了数千个不由 Canonical 官方支持的软件包。授权于各种自由软件许可协议，来自各种公共来源。</td>
+</tr>
+<tr>
+<td>Multiverse</td>
+<td>包含非自由软件的软件包</td>
+</tr>
+</tbody>
+</table>
+<p>具体的含义见 <a href="https://wiki.debian.org/SourcesList">Source List</a></p>
+</details>
+<p>官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。</p>
+<p>镜像缓存了官方源中的软件列表，与官方源基本一致</p>
+<div class="admonition example">
+<p class="admonition-title">修改官方源为镜像，加快更新速度</p>
+<p><em>以修改官方源为 USTC Mirror 为例<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></em></p>
+<div class="admonition warning">
+<p class="admonition-title">Warn</p>
+<p>在操作前请做好备份</p>
+</div>
+<p>一般情况下，<code>/etc/apt/sources.list</code> 下的官方源地址为 <code>http://archive.ubuntu.com/</code> ，我们只需要将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>如果你在安装时选择的语言不是英语，默认的源地址通常不是 <code>http://archive.ubuntu.com/</code> ， 而是 <code>http://&lt;country-code&gt;.archive.ubuntu.com/ubuntu/</code> ，如 <code>http://cn.archive.ubuntu.com/ubuntu/</code> ， 此时只需将上面的命令进行相应的替换即可，即 <code>sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list</code></p>
+</div>
+<p>可以使用如下命令</p>
+<p><code>sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list</code></p>
+<p>当然也可以直接使用 vim、nano 等文本编辑器进行修改</p>
+</div>
+<h2 id="_9">操作文件与文件夹<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>在 Linux 在进行操作文件与文件夹是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与文件夹，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
+<h3 id="_10">拷贝文件、文件夹<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST</span>
+cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
+
+<span class="c1"># 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件</span>
+cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
+</code></pre></div>
+
+<p>常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-r, -R, --recursive</code></td>
+<td>递归复制，常用于复制文件夹</td>
+</tr>
+<tr>
+<td><code>-f, --force</code></td>
+<td>覆盖目标地址同名文件</td>
+</tr>
+<tr>
+<td><code>-u, --update</code></td>
+<td>仅当源文件比目标文件新才进行复制</td>
+</tr>
+<tr>
+<td><code>-l, --link</code></td>
+<td>创建硬链接</td>
+</tr>
+<tr>
+<td><code>-s, --symbolic-link</code></td>
+<td>创建符号链接</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>Copy files</summary><ul>
+<li>
+<p>将 <code>file1.txt</code> 复制一份到同目录，命名为 <code>file2.txt</code>
+<div class="codehilite"><pre><span></span><code>cp file1.txt file2.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>将 <code>file1.txt</code>、<code>file2.txt</code> 文件复制到同目录下的 <code>file</code> 文件夹中
+<div class="codehilite"><pre><span></span><code>cp file1.txt file2.txt ./file/
+</code></pre></div></p>
+</li>
+<li>
+<p>将 <code>dir1</code> 文件夹及其所有子文件复制到同目录下的 <code>test</code> 文件夹中
+<div class="codehilite"><pre><span></span><code>cp -r dir1 ./test/
+</code></pre></div></p>
+</li>
+</ul>
+</details>
+<h3 id="_11">移动文件、文件夹<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><code>mv</code> 与 <code>cp</code> 的使用方式相似，效果类似于 Windows 下的剪切</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 将 SOURCE 文件移动到 DEST 文件</span>
+mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
+
+<span class="c1"># 将 SOURCE 文件移动到 DIRECTORY 文件夹下，SOURCE 可以为多个文件</span>
+mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
+</code></pre></div>
+
+<p>常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-r, -R, --recursive</code></td>
+<td>递归移动，常用于移动文件夹</td>
+</tr>
+<tr>
+<td><code>-f, --force</code></td>
+<td>覆盖目标地址同名文件</td>
+</tr>
+<tr>
+<td><code>-u, --update</code></td>
+<td>仅当源文件比目标文件新才进行移动</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">删除文件、文件夹<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 删除 FILE 文件，FILE 可以为多个文件。</span>
+<span class="c1"># 如果需要删除文件夹，需要通过 -r 选项递归删除文件夹</span>
+rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
+</code></pre></div>
+
+<p>常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-f, --force</code></td>
+<td>无视不存在或者没有权限的文件和参数</td>
+</tr>
+<tr>
+<td><code>-r, -R, --recursive</code></td>
+<td>递归删除文件夹及其子文件</td>
+</tr>
+<tr>
+<td><code>-d, --dir</code></td>
+<td>删除空文件夹</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>Delete files</summary><p>删除 <code>file1.txt</code> 文件
+<div class="codehilite"><pre><span></span><code><span class="err">rm file1.txt</span>
+</code></pre></div></p>
+<p>删除 <code>test</code> 文件夹及其下的所有文件
+<div class="codehilite"><pre><span></span><code><span class="err">rm -r test/</span>
+</code></pre></div></p>
+<p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、文件夹。其中，这些文件或者文件夹可能不存在、写保护或者没有权限读写
+<div class="codehilite"><pre><span></span><code><span class="err">rm -rf test1/ test2/ file1.txt</span>
+</code></pre></div></p>
+</details>
+<h3 id="_13">创建目录<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建一个文件夹，名为 DIR_NAME</span>
+mkdir DIR_NAME...
+</code></pre></div>
+
+<details class="example"><summary>Create directory</summary><p>创建名为 <code>test1</code>、<code>test2</code> 的目录
+<div class="codehilite"><pre><span></span><code><span class="err">mkdir test1 test2</span>
+</code></pre></div></p>
+</details>
+<h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
+<p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
+<p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 命令格式如下，请参考下面的使用样例了解使用方法</span>
+tar <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FILE<span class="o">]</span>...
+</code></pre></div>
+
+<p>常用选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-A</code></td>
+<td>将一个存档文件中的内容追加到另一个存档文件中</td>
+</tr>
+<tr>
+<td><code>-r, --append</code></td>
+<td>将一些文件追加到一个存档文件中</td>
+</tr>
+<tr>
+<td><code>-c, --create</code></td>
+<td>从一些文件创建存档文件</td>
+</tr>
+<tr>
+<td><code>-t, --list</code></td>
+<td>列出一个存档文件的内容</td>
+</tr>
+<tr>
+<td><code>-x, --extract, --get</code></td>
+<td>从存档文件中提取出文件</td>
+</tr>
+<tr>
+<td><code>-f, --file=ARCHIVE</code></td>
+<td>使用指定的存档文件</td>
+</tr>
+<tr>
+<td><code>-C, --directory=DIR</code></td>
+<td>指定输出的文件夹</td>
+</tr>
+</tbody>
+</table>
+<p>添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-z, --gzip, --gunzip, --ungzip</code></td>
+<td>使用 gzip 算法处理存档文件</td>
+</tr>
+<tr>
+<td><code>-j, --bzip2</code></td>
+<td>使用 bzip2 算法处理存档文件</td>
+</tr>
+<tr>
+<td><code>-J, --xz</code></td>
+<td>使用 xz 算法处理存档文件</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Usage of TAR</p>
+<ul>
+<li>
+<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>
+<div class="codehilite"><pre><span></span><code><span class="err">tar -c -f target.tar file1 file2 file3</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 文件夹中
+<div class="codehilite"><pre><span></span><code><span class="err">tar -x -f target.tar -C test/</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> 
+<div class="codehilite"><pre><span></span><code><span class="err">tar -cz -f target.tar.gz file1 file2 file3</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 文件夹中
+<div class="codehilite"><pre><span></span><code><span class="err">tar -xz -f target.tar.gz -C test/</span>
+</code></pre></div></p>
+</li>
+</ul>
+<div class="admonition tip 存档文件的后缀名">
+<p class="admonition-title">Tip</p>
+<p>后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法</p>
+<p>在第一个例子中，创建得到的文件名为 <code>target.tar</code>，后缀名为 <code>tar</code>，表示这是一个没有进行压缩的存档文件。</p>
+<p>在第二个例子中，创建得到的文件名为 <code>target.tar.gz</code>。将 <code>tar.gz</code> 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（<code>gz</code>）的存档文件（<code>tar</code>）。可知在提取文件时，需要添加 <code>-z</code> 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。</p>
+<p>同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 <code>xz</code> 算法处理得到的存档文件，其后缀名最好选择 <code>tar.xz</code>，这样可以知道为了提取其中的文件，应该添加 <code>--xz</code> 选项</p>
+</div>
+<ul>
+<li>
+<p>将 <code>archive1.tar</code>、<code>archive2.tar</code>、<code>archive3.tar</code> 三个存档文件中的文件追加到 <code>archive.tar</code> 中
+<div class="codehilite"><pre><span></span><code><span class="err">tar -Af archive.tar archive1.tar archive2.tar archive3.tar</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>列出 <code>target.tar</code> 存档文件中的内容
+<div class="codehilite"><pre><span></span><code>tar -t -f target.tar
+
+<span class="c1"># 打印出文件的详细信息</span>
+tar -tv -f target.tar
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<h2 id="_14">软件的使用文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>面对一个新的软件，比如上面提到的 tar 存档软件，除了使用搜索引擎在互联网上搜索使用方法外，还可以通过软件安装时自带的使用文档来学习。</p>
+<p>掌握通过一些手段了解一个新的命令的使用方法的技能在 Linux 学习中是极其重要的，Linux 的命令众多，并不会有很多的命令会有详细的说明。有时候官方文档也没有解释清楚的，可能需要手动试错乃至翻阅源代码了解命令的参数含义。</p>
+<h3 id="man">man 命令<a class="headerlink" href="#man" title="Permanent link">&para;</a></h3>
+<p>通过 <code>man + 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册。</p>
+<p>大部分软件在安装时会将它的软件手册安装在系统的特定目录， <code>man</code> 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 调出 tar 命令和 ls 命令的文档</span>
+man tar
+man ls
+</code></pre></div>
+
+<p>文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具。</p>
+<div class="codehilite"><pre><span></span><code><span class="err">➜</span><span class="w">  </span><span class="o">~</span><span class="w"> </span><span class="n">man</span><span class="w"> </span><span class="n">tar</span><span class="w"></span>
+<span class="n">TAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                      </span><span class="n">GNU</span><span class="w"> </span><span class="n">TAR</span><span class="w"> </span><span class="n">Manual</span><span class="w">                     </span><span class="n">TAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">NAME</span><span class="w"></span>
+<span class="w">       </span><span class="n">tar</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">archiving</span><span class="w"> </span><span class="n">utility</span><span class="w"></span>
+
+<span class="n">SYNOPSIS</span><span class="w"></span>
+<span class="w">   </span><span class="n">Traditional</span><span class="w"> </span><span class="k">usage</span><span class="w"></span>
+<span class="w">       </span><span class="n">tar</span><span class="w"> </span><span class="err">{</span><span class="n">A</span><span class="o">|</span><span class="n">c</span><span class="o">|</span><span class="n">d</span><span class="o">|</span><span class="n">r</span><span class="o">|</span><span class="n">t</span><span class="o">|</span><span class="n">u</span><span class="o">|</span><span class="n">x</span><span class="err">}</span><span class="o">[</span><span class="n">GnSkUWOmpsMBiajJzZhPlRvwo</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ARG...</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">UNIX</span><span class="o">-</span><span class="n">style</span><span class="w"> </span><span class="k">usage</span><span class="w"></span>
+<span class="w">       </span><span class="n">tar</span><span class="w"> </span><span class="o">-</span><span class="n">A</span><span class="w"> </span><span class="o">[</span><span class="n">OPTIONS</span><span class="o">]</span><span class="w"> </span><span class="n">ARCHIVE</span><span class="w"> </span><span class="n">ARCHIVE</span><span class="w"></span>
+
+<span class="w">       </span><span class="n">tar</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="o">[</span><span class="n">-f ARCHIVE</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">OPTIONS</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">FILE...</span><span class="o">]</span><span class="w"></span>
+
+<span class="err">➜</span><span class="w">  </span><span class="o">~</span><span class="w"> </span><span class="n">man</span><span class="w"> </span><span class="n">ls</span><span class="w"></span>
+<span class="n">LS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                       </span><span class="k">User</span><span class="w"> </span><span class="n">Commands</span><span class="w">                       </span><span class="n">LS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">NAME</span><span class="w"></span>
+<span class="w">       </span><span class="n">ls</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">contents</span><span class="w"></span>
+
+<span class="n">SYNOPSIS</span><span class="w"></span>
+<span class="w">       </span><span class="n">ls</span><span class="w"> </span><span class="o">[</span><span class="n">OPTION</span><span class="o">]</span><span class="p">...</span><span class="w"> </span><span class="o">[</span><span class="n">FILE</span><span class="o">]</span><span class="p">...</span><span class="w"></span>
+
+<span class="n">DESCRIPTION</span><span class="w"></span>
+<span class="w">       </span><span class="n">List</span><span class="w">  </span><span class="n">information</span><span class="w">  </span><span class="n">about</span><span class="w">  </span><span class="n">the</span><span class="w">  </span><span class="n">FILEs</span><span class="w"> </span><span class="p">(</span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="k">by</span><span class="w"></span>
+<span class="w">       </span><span class="k">default</span><span class="p">).</span><span class="w">  </span><span class="n">Sort</span><span class="w"> </span><span class="n">entries</span><span class="w"> </span><span class="n">alphabetically</span><span class="w"> </span><span class="k">if</span><span class="w">  </span><span class="k">none</span><span class="w">  </span><span class="k">of</span><span class="w">  </span><span class="o">-</span><span class="n">cftuvSUX</span><span class="w"></span>
+<span class="w">       </span><span class="n">nor</span><span class="w"> </span><span class="c1">--sort is specified.</span>
+
+<span class="p">(</span><span class="n">Ouput</span><span class="w"> </span><span class="n">omitted</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="tldr">tldr 软件<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h3>
+<p>通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 <code>tldr</code> 软件。</p>
+<p><code>tldr</code> 软件中包含有一个由<a href="https://github.com/tldr-pages/tldr">社区</a>维护的精简版文档，通过几个简单的例子让用户可以快速地一窥软件的使用方法。</p>
+<h4 id="_15">安装<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>在 Debian 系下，可以直接通过 <code>apt</code> 进行安装：</p>
+<p><code>apt install tldr</code></p>
+<h4 id="_16">使用<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
+<p>输入 <code>tldr ls</code> 的样例</p>
+<div class="codehilite"><pre><span></span><code><span class="x">➜  ~ tldr tar</span>
+<span class="x">tar</span>
+<span class="x">Archiving utility.</span>
+<span class="x">Often combined with a compression method, such as gzip or bzip.</span>
+<span class="x">More information:</span>
+<span class="x">https://www.gnu.org/software/tar</span>
+
+<span class="x"> - Create an archive from files:</span>
+<span class="x">   tar cf </span><span class="cp">{{</span><span class="nv">target.tar</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Create a gzipped archive:</span>
+<span class="x">   tar czf </span><span class="cp">{{</span><span class="nv">target.tar.gz</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract a (compressed) archive into the current directory:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="o">[</span><span class="nv">.gz</span><span class="err">|</span><span class="nv">.bz2</span><span class="err">|</span><span class="nv">.xz</span><span class="o">]</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract an archive into a target directory:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"> -C </span><span class="cp">{{</span><span class="nv">directory</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Create a compressed archive, using archive suffix to determine the compression program:</span>
+<span class="x">   tar caf </span><span class="cp">{{</span><span class="nv">target.tar.xz</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file1</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file2</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">file3</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - List the contents of a tar file:</span>
+<span class="x">   tar tvf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x"> - Extract files matching a pattern:</span>
+<span class="x">   tar xf </span><span class="cp">{{</span><span class="nv">source.tar</span><span class="cp">}}</span><span class="x"> --wildcards </span><span class="cp">{{</span><span class="s2">&quot;*.html&quot;</span><span class="cp">}}</span><span class="x"></span>
+</code></pre></div>
+
+<p>可以从输出中快速地了解到</p>
+<ul>
+<li>创建存档文件</li>
+<li>创建压缩的存档文件</li>
+<li>解压一个存档文件</li>
+<li>解压一个存档文件到指定目录</li>
+<li>创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 <code>tar.gz</code> ，即希望创建由 gzip 压缩的存档文件</li>
+<li>给出一个存档文件中的文件列表</li>
+<li>解压一个存档文件，但是只有特定的文件名的文件才会被解压。在例子中，使用了通配符 <code>*.html</code> ，即只有以 <code>.html</code> 结尾的文件才会被解压</li>
+</ul>
+<h2 id="_17">引用来源<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://mirrors.ustc.edu.cn/help/ubuntu.html">Ubuntu 源使用帮助</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html">软件仓库</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Ch02/supplement/" title="拓展阅读" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                拓展阅读
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="supplement/" title="拓展阅读" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                拓展阅读
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Brought to you by LUG@USTC. Available freely under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="globe" class="md-footer-social__link fa fa-globe"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+      
+    
+  </body>
+</html>
