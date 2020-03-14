@@ -53,9 +53,9 @@
 
 ??? example "范例"
 
-	`wget -i filelist.txt` 批量下载 filelist.txt 中给出的链接
+	`$ wget -i filelist.txt` 批量下载 filelist.txt 中给出的链接
 
-	`wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh` 将下载的文件输出至 `install.sh`（宝塔示例）
+	`$ wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh` 将下载的文件输出至 `install.sh`（宝塔示例）
 
 ### cURL
 
@@ -75,15 +75,15 @@ cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输�
 
 ??? example "范例"
 
-	`curl "http://cn.bing.com"` 会看到必应页面代码输出
+	`$ curl "http://cn.bing.com"` 会看到必应页面代码输出
 
-	`curl "http://cn.bing.com" > bing.html` 把必应页面保存至 `bing.html` 本地，源码就被重定向到工作目录
+	`$ curl "http://cn.bing.com" > bing.html` 把必应页面保存至 `bing.html` 本地，源码就被重定向到工作目录
 
-	`curl -o bing.html "http://cn.bing.com"` 同时也可以使用 `-o` 选项指定输出文件
+	`$ curl -o bing.html "http://cn.bing.com"` 同时也可以使用 `-o` 选项指定输出文件
 
-	`curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"` 下载 LUG 的 logo
+	`$ curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"` 下载 LUG 的 logo
 
-	`curl -I "http://cn.bing.com"` 只展示文件头内容
+	`$ curl -I "http://cn.bing.com"` 只展示文件头内容
 
 ### 其他
 
@@ -122,20 +122,20 @@ Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 
 - 在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。
 
   ```shell
-  ➜  ~ bash show.sh [option];
+  $ bash show.sh [option];
   ```
 
 - 使用「.」命令执行脚本，「.」后要有空格。
 
   ```shell
-  ➜  ~ . ./show.sh [option];
+  $ . ./show.sh [option];
   ```
 
 - 将脚本设置为可执行，然后当做外部命令执行执行。
 
   ```shell
-  ➜  ~ chmod a+x showinfo
-  ➜  ~ ./show.sh [option];
+  $ chmod a+x showinfo
+  $ ./show.sh [option];
   ```
 
 Bash 也支持在同一个行中安排多个命令：
@@ -240,11 +240,11 @@ Bash 也支持在同一个行中安排多个命令：
 ??? example "范例"
 
     ```shell
-    ➜  ~ set one two three
-    ➜  ~ echo $1 $2 $3    
+    $ set one two three
+    $ echo $1 $2 $3    
     one two three
-    ➜  ~ shift 2          
-    ➜  ~ echo $1 $2 $3
+    $ shift 2          
+    $ echo $1 $2 $3
     three
     ```
 
@@ -278,19 +278,19 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 ??? example "`expr` 和 `let` 使用示例"
 
     ```shell
-    ➜  ~ expr length "ustclug"
+    $ expr length "ustclug"
     7
-    ➜  ~ let a=0
-    ➜  ~ echo $a
+    $ let a=0
+    $ echo $a
     0
-    ➜  ~ let a++
-    ➜  ~ echo $a
+    $ let a++
+    $ echo $a
     1
-    ➜  ~ let a+=1
-    ➜  ~ echo $a 
+    $ let a+=1
+    $ echo $a 
     2
-    ➜  ~ let a+=a/a
-    ➜  ~ echo $a   
+    $ let a+=a/a
+    $ echo $a   
     3
     ```
 
@@ -500,7 +500,7 @@ done
 
 Bash shell 本身提供了调试方法：
 
-- 命令行中：`➜  ~ sh -x script.sh`。
+- 命令行中：`$ sh -x script.sh`。
 
 - 脚本开头：`#!/bin/sh -x`。
 
