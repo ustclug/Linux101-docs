@@ -220,7 +220,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 ![](images/VWP-Xubuntu-32bit-Desktop.png)
 <p class="caption">Xubuntu 32 位虚拟机桌面</p>
 
-## 中科大 Linux 社群：LUG@USTC {#LUG-USTC}
+## 中科大开源社群：LUG@USTC {#LUG-USTC}
 
 LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的技术性社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像之一 [Mirrors@USTC](https://mirrors.ustc.edu.cn/)，其作为本土的软件源为国内许多开源软件用户提供了加速服务，是本社群对社会作出的一项重要贡献。
 
