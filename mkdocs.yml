@@ -4,7 +4,7 @@ site_author: LUG@USTC
 site_url: https://101.ustclug.org/
 repo_name: ustclug/Linux101-docs
 repo_url: https://github.com/ustclug/Linux101-docs
-copyright: Brought to you by LUG@USTC. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
 
 theme:
     font: false
