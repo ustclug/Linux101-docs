@@ -20,4 +20,4 @@
 
 ## 贡献者
 
-[![](https://contributors-img.web.app/image?repo=ustclug/Linux101-docs)](https://github.com/ustclug/Linux101-docs/graphs/contributors)
+[![](https://cf.ustclug.org/get/?target=https%3A%2F%2Fcontributors-img.web.app%2Fimage%3Frepo%3Dustclug%2FLinux101-docs)](https://github.com/ustclug/Linux101-docs/graphs/contributors)
