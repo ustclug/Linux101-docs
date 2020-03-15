@@ -31,7 +31,7 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
     Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。目前在 Hyper-V 开启的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
 
-!!! info "Windows 容器"
+!!! note "Windows 容器"
 
     你可能会搜索到，Docker 也支持「Windows 容器」。是的，在新版本（1607 之后）的 Windows 10 中，Windows 内核支持 Windows 容器。可以在这样的容器中运行 Windows 程序。如果你感兴趣，可以阅读[微软的 Containers on Windows Documentation](https://docs.microsoft.com/en-us/virtualization/windowscontainers/) 和 [Docker Windows Containers 的介绍](https://www.docker.com/products/windows-containers)。这样的容器无法运行 Linux 程序，下面也不会涉及到。
 
@@ -107,3 +107,38 @@ For more examples and ideas, visit:
 ```
 
 如果你看到了像上面这样的输出，说明你安装的 Docker 已经一切准备就绪，可以使用了。
+
+## 使用 Docker 容器 {#use-docker}
+
+接下来我们来尝试几个例子，体验 Docker 环境的独立性与易用性。
+
+!!! failure "以下内容均为草稿，亟待扩充，不是正式内容"
+
+### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
+
+- `docker run ubuntu` blah blah
+
+### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
+
+- `docker run python` blah blah
+
+### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
+
+- 从 GitHub 上获取本书源码
+- `docker run -v aaa:bbb -p 8000:8000 squidfunk/mkdocs-material server` blah blah
+
+## 构建自己的 Docker 镜像 {#build-docker-image}
+
+### 手工构建镜像 {#build-manually}
+
+- docker exec 进去把东西准备好，然后 `docker commit`
+
+### 使用 Dockerfile 自动化构建 {#build-with-dockerfile}
+
+!!! tip "尽量减少 Docker 镜像的层数"
+
+    TBA
+
+## 使用 Docker Compose 自动运行容器 {#docker-compose}
+
+### 子项目？
