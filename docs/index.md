@@ -57,6 +57,6 @@
 
 ## 联系我们
 
-本书的成长离不开大家的帮助。本书的源代码在 https://github.com/ustclug/Linux101-docs 以 CC-BY-SA 4.0 协议开放。
+本书的成长离不开大家的帮助。本书的源代码在 <https://github.com/ustclug/Linux101-docs>，所有内容以 CC BY-SA 4.0 协议开放。
 
 若你对本书有任何意见或建议，也欢迎致信 lug@ustc.edu.cn，我们重视你的想法。
