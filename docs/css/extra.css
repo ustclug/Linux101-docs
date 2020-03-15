@@ -8,6 +8,7 @@
 .md-typeset h3.no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset img.inline { display: inline-block; }
+.md-typeset code, .md-typeset kbd, .md-typeset pre { font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important; }
 .md-typeset .md-typeset__table { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset .md-typeset__table > table { width: auto; margin: 0 auto; }
 .md-typeset p.caption { text-align: center; font-size: 0.94em; color: grey; margin: -0.7em 0 0; }

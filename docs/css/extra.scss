@@ -42,6 +42,10 @@
 		}
 	}
 
+	code, kbd, pre {
+		font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important;
+	}
+
 	.md-typeset__table {
 		display: block;
 		margin-left: auto;
