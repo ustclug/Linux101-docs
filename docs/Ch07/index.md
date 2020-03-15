@@ -17,6 +17,13 @@ C 语言是大学编程语言教学中几乎必定讲解的一门编程语言。
 在 Linux 上，C 语言拥有着近乎系统级的支持。
 在 Linux 上开发 C 语言（以及 C++）是一件非常简单的事。
 
+### 安装 C 语言的编译器及其他开发工具
+
+大多数时候你的操作系统可能已经包含了这些必要的工具，如 GCC 编译器等。但是在一些较为精简的安装中，这些工具可能没有预装，如 Ubuntu 的 Mimimal Installation，这时候你需要手动安装开发工具。
+
+- 在 Debian/Ubuntu 系列发行版中，可以使用 `sudo apt install build-essential` 方便地安装基本的开发资源，这包含了 GCC 和 G++ 编译器、必要的 C 语言头文件，以及 Make 工具。
+- 在 CentOS/Fedora 系列发行版中，可以使用 `dnf groupinstall "Development Tools"` 来安装开发工具，内容与 Debian 中的 `build-essential` 没有太大差异。
+
 ### 从单文件开始
 
 让我们从单个文件的 C 语言代码开始。
