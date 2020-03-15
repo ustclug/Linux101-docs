@@ -10,12 +10,6 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Setup cache for PyPI
-      uses: actions/cache@v1
-      id: cache-pip
-      with:
-        path: ~/.local
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
     - name: Install dependencies
       run: |
         pip3 install -r requirements.txt
