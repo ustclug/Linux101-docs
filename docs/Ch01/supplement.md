@@ -6,4 +6,4 @@
 
 ## 关闭 SELinux {#Close-SELinux}
 
-## Windows Subsystem for Linux {#WSL}
+## 适用于 Linux 的 Windows 子系统 {#WSL}
