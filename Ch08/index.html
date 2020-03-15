@@ -758,6 +758,87 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#use-docker" class="md-nav__link">
+    使用 Docker 容器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ubuntu-bash" class="md-nav__link">
+    在 Ubuntu 容器中使用 shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-python-repl" class="md-nav__link">
+    在 Python 容器中使用 Python 命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-mkdocs-material-build" class="md-nav__link">
+    在 MkDocs 容器中构建本书
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-docker-image" class="md-nav__link">
+    构建自己的 Docker 镜像
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-manually" class="md-nav__link">
+    手工构建镜像
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-with-dockerfile" class="md-nav__link">
+    使用 Dockerfile 自动化构建
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    使用 Docker Compose 自动运行容器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    子项目？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -974,6 +1055,87 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#use-docker" class="md-nav__link">
+    使用 Docker 容器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-ubuntu-bash" class="md-nav__link">
+    在 Ubuntu 容器中使用 shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-python-repl" class="md-nav__link">
+    在 Python 容器中使用 Python 命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-mkdocs-material-build" class="md-nav__link">
+    在 MkDocs 容器中构建本书
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-docker-image" class="md-nav__link">
+    构建自己的 Docker 镜像
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-manually" class="md-nav__link">
+    手工构建镜像
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-with-dockerfile" class="md-nav__link">
+    使用 Dockerfile 自动化构建
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    使用 Docker Compose 自动运行容器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    子项目？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -1019,7 +1181,7 @@
 <p class="admonition-title">Docker Desktop on Windows 的环境要求</p>
 <p>Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。目前在 Hyper-V 开启的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用。如果环境要求无法达到，可以安装<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">老版本的 Docker Toolbox on Windows</a>。</p>
 </div>
-<div class="admonition info">
+<div class="admonition note">
 <p class="admonition-title">Windows 容器</p>
 <p>你可能会搜索到，Docker 也支持「Windows 容器」。是的，在新版本（1607 之后）的 Windows 10 中，Windows 内核支持 Windows 容器。可以在这样的容器中运行 Windows 程序。如果你感兴趣，可以阅读<a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/">微软的 Containers on Windows Documentation</a> 和 <a href="https://www.docker.com/products/windows-containers">Docker Windows Containers 的介绍</a>。这样的容器无法运行 Linux 程序，下面也不会涉及到。</p>
 </div>
@@ -1080,6 +1242,36 @@ For more examples and ideas, visit:
 </code></pre></div>
 
 <p>如果你看到了像上面这样的输出，说明你安装的 Docker 已经一切准备就绪，可以使用了。</p>
+<h2 id="use-docker">使用 Docker 容器<a class="headerlink" href="#use-docker" title="Permanent link">&para;</a></h2>
+<p>接下来我们来尝试几个例子，体验 Docker 环境的独立性与易用性。</p>
+<div class="admonition failure">
+<p class="admonition-title">以下内容均为草稿，亟待扩充，不是正式内容</p>
+</div>
+<h3 id="use-ubuntu-bash">在 Ubuntu 容器中使用 shell<a class="headerlink" href="#use-ubuntu-bash" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>docker run ubuntu</code> blah blah</li>
+</ul>
+<h3 id="use-python-repl">在 Python 容器中使用 Python 命令行<a class="headerlink" href="#use-python-repl" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>docker run python</code> blah blah</li>
+</ul>
+<h3 id="use-mkdocs-material-build">在 MkDocs 容器中构建本书<a class="headerlink" href="#use-mkdocs-material-build" title="Permanent link">&para;</a></h3>
+<ul>
+<li>从 GitHub 上获取本书源码</li>
+<li><code>docker run -v aaa:bbb -p 8000:8000 squidfunk/mkdocs-material server</code> blah blah</li>
+</ul>
+<h2 id="build-docker-image">构建自己的 Docker 镜像<a class="headerlink" href="#build-docker-image" title="Permanent link">&para;</a></h2>
+<h3 id="build-manually">手工构建镜像<a class="headerlink" href="#build-manually" title="Permanent link">&para;</a></h3>
+<ul>
+<li>docker exec 进去把东西准备好，然后 <code>docker commit</code></li>
+</ul>
+<h3 id="build-with-dockerfile">使用 Dockerfile 自动化构建<a class="headerlink" href="#build-with-dockerfile" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">尽量减少 Docker 镜像的层数</p>
+<p>TBA</p>
+</div>
+<h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
+<h3 id="_1">子项目？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
                 
                   
                 
