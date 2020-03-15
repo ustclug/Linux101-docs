@@ -14,8 +14,8 @@ jobs:
       uses: actions/cache@v1
       id: cache-pip
       with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-p-${{ hashFiles('requirements.txt') }}
+        path: ~/.local
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
     - name: Install dependencies
       run: |
         pip3 install -r requirements.txt
