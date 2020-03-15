@@ -1,6 +1,6 @@
 # 功劳簿
 
-## 主要贡献者
+## 主要贡献者 {#team}
 
 项目主策划: [RiessarSadyx](https://github.com/RiessarSadyx)
 
@@ -18,6 +18,6 @@
 
 编排与校对: [iBug](https://github.com/iBug)
 
-## 贡献者
+## 贡献者 {#contributors}
 
 [![](https://cf.ustclug.org/get/?target=https%3A%2F%2Fcontributors-img.web.app%2Fimage%3Frepo%3Dustclug%2FLinux101-docs)](https://github.com/ustclug/Linux101-docs/graphs/contributors)
