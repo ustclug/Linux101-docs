@@ -1152,32 +1152,9 @@
 <p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用...建议阅读 intro 文档后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
-<p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像 windows 一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
-<ol>
-<li>进程初探<ul>
-<li>进程存在意义，基本属性（出现在 htop 上的条目），进程间通信方式。
-<p class="more">*Linux 进程调度策略简述（增加内核书目链接以及 torvalds/linux 目录）    </p></li>
-</ul>
-</li>
-<li>htop 的使用（在进程调度方面的应用）<ul>
-<li>进程间关系演示（进程树），信号传输实现（trap）&lt;杀死几乎所有进程会如何 kill -9 -1&gt;
-<p class="more">*htop 的其他选项（查看文件描述符），从而理解一些特殊文件的存在（如 0 号 stdin，1 号 stdout，2 号 stderr）</p></li>
-</ul>
-</li>
-<li>将无需交互的程序放入后台<ul>
-<li>Ctrl + Z 挂起，bg 与 fg，nohup 过继进程</li>
-</ul>
-</li>
-<li>守护进程与服务<ul>
-<li>守护进程的工作模式，htop 中守护进程的举例。</li>
-<li>*配置 SSH 服务演示</li>
-</ul>
-</li>
-<li>例行性任务设置<ul>
-<li>定时任务，比如定时 upgrade。</li>
-</ul>
-</li>
-</ol>
+<p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
+<p>其实应当坦言，对于许多仅仅是想应用Linux的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个Linux操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解Linux的机制时，“为什么”将自有答案。</p>
+<p>Linux的特性，还需从操作系统管理进程的功能说起······</p>
 </div>
 <h2 id="process">进程<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
 <p><strong>现在设想你有一堆任务在一周之内完成，应该如何下手呢？</strong></p>
@@ -1200,7 +1177,7 @@
 <p><img alt="htop-sample" src="images/htop_sample.png" />
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页"><a href="https://hisham.hm/htop/">htop HomePage➚</a></abbr></p></p>
 <h3 id="pid">Process ID<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
-<p>首先，有区分才有管理。进程号（PID）作为进程的唯一标识，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
+<p>首先，有区分才有管理。进程号（PID）作为进程的唯一标识，便是身份证号一般的存在。在htop中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
 <p><em>在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 序列排列，再次点击为反向排序，同理可应用于其他列。</em></p>
 <p><img alt="PID" src="images/PID.png" /></p>
 <p><strong>那么，PID 又是如何产生的呢？</strong></p>
@@ -1254,7 +1231,9 @@
 </details>
 <h3 id="priority">优先级，NICE 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h3>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。</p>
-<p>若想了解调度，必有中断的概念做铺垫。因为调度本身即是打断正在运行的程序，唤起下一个的过程。<span class="red">此处应有引用</span>简言之，中断即是为操作系统或是其他程序提供切入运行状态程序的执行逻辑的手段。那么 Linux 系统如何利用中断进行调度呢？</p>
+<p>而调度这个词，指的正是我们一开始所提及的，安排各进程运行顺序及时常的过程。（严格定义：调度是分配工作（进程）所需资源的方法。）</p>
+<p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为协作式（cooperative）操作系统，往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，让每个进程在一定时间内都得到运行。</p>
+<p>若想了解调度，必有中断的概念做铺垫。因为调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？<span class="red">此处应有引用</span>简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。那么 Linux 系统如何利用中断进行调度呢？</p>
 <p>系统进行调度，主要面临这样几个问题：①何时（什么契机）可以进行调度？</p>
 <p>一般说来，</p>
 <details class="info"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
@@ -1307,7 +1286,7 @@
 <h2 id="process-control">用戶进程控制<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h2>
 <p>要想控制进程，首先要与进程对话，那么首先便需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
 <h3 id="signal">信号<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h3>
-<p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的 linux 命令都叫 <code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
+<p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的 Linux 命令都叫 <code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
 <p>那到底都有什么信号呢？emmm... <code>man 7 signal</code>？</p>
 <p>可这实在是太长了，还是来一个简明实用的吧。那么，</p>
 <p><img alt="signal_slide" src="images/signal_slide.png" /></p>
@@ -1398,7 +1377,7 @@
 ## 下载链接(已失效)
 <div class="more">
 
-<div class="codehilite"><pre><span></span><code>git clone https://github.com/torvalds/linux  <span class="c1">#linux 内核源码</span>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/torvalds/Linux  <span class="c1">#Linux 内核源码</span>
 </code></pre></div>
 </div>
 -->
