@@ -11,337 +11,147 @@
 	* 如何配置美化命令行终端
 	* 如何简单快速地搭建网站
 
+## 命令行操作
+
 ## 桌面环境
 
 早期的 Linux 是不带图形界面的，只能通过命令行管理。随着时代的发展，人们不再满足于黑底白字的命令行界面，开发出来了 Linux 图形环境。
 Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。
 
-### 桌面环境的选择
+### Xfce 桌面环境
 
-Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境。
+Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 
-#### KDE Plasma
+本次所用的系统预先安装了 Xfce 桌面环境，因此本章将主要围绕 Xfce 的个性化来开展。实际上无论是哪一款桌面系统，个性化方式大同小异。
 
-KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
-[Plasma 官方网站](https://www.kde.org/plasma-desktop)
+###  常用外观个性化
 
-#### GNOME
+跟 Windows 系统一样，大部分 Linux 桌面环境个性化功能并不比 Windows 差。
 
-GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
-[GNOME 官网](https://www.gnome.org/)
+我们直接打开 Xfce 中的设置管理器，如图所示。
 
-!!! info ""
+![](images/Xfce-settings-position.png)
 
-	除了上面两款常见的桌面环境，还有 Xfce, Cinnamon, Unity 等，同学们可以自行了解。
+这里最常见的设置，都可以找得到。
 
-### 桌面环境的安装
+![](images/Xfce-settings.png)
 
-Ubuntu 18.04 LTS Desktop 系统中已经预先安装好了 GNOME 桌面环境。如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就要自己安装桌面环境。
+#### 桌面
 
-下面就来介绍如何手动安装桌面环境。
+##### 背景
 
-以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：
+![](images/Xfce-settings-background.png)
 
-安装 ubuntu-gnome-desktop 软件
+背景设置是对壁纸的更改和个性化。
 
-```shell
-$ sudo apt install ubuntu-gnome-desktop
-```
+下表是一些配置的补充说明。
 
-接下来的提示中按输入Y回车即安装
+| 字段     | 功能                                                         |
+| -------- | ------------------------------------------------------------ |
+| 目录     | 存放壁纸的目录，默认文件夹是在`/usr/share/backgrounds/xfce/`。 |
+| 样式     | 壁纸的显示样式、包括居中、平铺等。                           |
+| 颜色     | 用于填充背景空缺部分的颜色，可以设置纯色、渐变、透明。       |
+| 修改背景 | 如果一个位置包含多张图像，则 Xfce 允许您通过循环浏览可用图像来自动更改背景。您可以通过选中**更改背景**框来启用此选项。 |
 
-!!! tip "注意"
+##### 菜单
 
-	若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](http://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+![](images/Xfce-settings-menu.png)
 
-安装完成后输入
+Xfce 允许用户自定义右键菜单和中键菜单的行为。这里可以对在桌面右键和中键的菜单进行设置。
 
-```shell
-$ sudo reboot
-```
+若「在桌面上右击时包含应用程序菜单」选项被选中，则在桌面右键时会显示下面的菜单，用于快速打开应用程序。
 
-重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。
+![](images/Xfce-menu-applocations.png)
 
-![](images/gnome-desktop.png)
+若「在桌面上中击时显示窗口列表菜单」选项被选中时，中击桌面可以弹出工作区的菜单，可以显示所有工作区正在运行的应用程序。
 
-可以看到，通过简单几步，我们的桌面环境就安装成功了。
+![](images/Xfce-menu-workspaces.png)
 
-??? example "安装 Plasma 桌面"
+##### 图标
 
-	同理，如果你喜欢 KDE plasma 桌面，只需要执行
-	
-	```shell
-	$ sudo apt install kde-plasma-desktop
-	$ sudo reboot
-	```
+![](images/Xfce-settings-icons.png)
 
-我们将在下一小节给大家介绍桌面的个性化。
+Xfce 允许用户绘制桌面图标并且设置其外观。
 
-### 桌面环境的个性化
+在图标类型项，你可以下拉菜单选择「无」来选择具有无图标的桌面，或者选择「文件/启动器图标」来选择有图标的桌面。若选择了「已最小化应用程序的图标」，桌面就会把最小化的程序变成桌面上的图标。
 
-大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
+#### 外观
 
-在 GNOME 桌面下用户可以轻松更换主题。
-首先安装 gnome-tweak-tool 软件
+##### 样式
 
-```
-sudo apt install gnome-tweak-tool
-```
+![](images/Xfce-settings-appearance.png)
 
-在 [ubuntu-look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
-
-!!! tip "注意"
-
-	不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。
-
-点击 Download 下载一个压缩包
-
-![](images/themes-download-icon.png)
-
-解压后放到 `~/.themes` 文件夹，若不存在该文件夹则创建一个。
-
-```shell
-$ mkdir ~/.themes
-```
-
-输入
-
-```shell
-$ gnome-tweak-tool
-```
-
-打开 gnome-tweak-tool，在外观选项中选中想要的主题。
-
-重启 GNOME 即可完成主题更换。
+很明显，这些就是 Xfce 的样式，这些样式可以控制控件（如按钮和菜单）的外观，直接在列表中选择即可切换样式。
 
 !!! tip "提示"
 
-	你也可以使用 ocs-url 软件，在网页中直接安装主题，参考本章附录
+	除了列表中已有的样式，我们可以自己下载更多更炫酷的样式。我们将在扩展内容中提及具体操作方法。
 
-如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。
+##### 图标
 
-### GNOME 的拓展程序
+![](images/Xfce-appearance-icons.png)
 
-GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
-
-要使用Gnome拓展程序我们要先安装 gnome-shell-extensions
-
-```shell
-$ sudo apt install gnome-shell-extensions
-```
-
-接下来进入拓展插件的网站并选择其中一款拓展。
-
-![](images/caffeine.png)
-
-Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。
-
-我们可以输入
-
-```bash
-$ gnome-shell --version
-```
-
-查看版本。
-
-在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。
-
-这时我们打开文件夹里的`metadata.json`文件。
-
-将文件夹的名字改为`metadata.json`中的uuid
-
-![](images/metadata.png)
-
-uuid 为 "caffeine@patapon.info"
-
-![](images/caffeine-folder.png)
-
-并将该文件夹放到`~/.local/share/gnome-shell/extensions/`中。
-
-打开 gnome-tweaks
-
-```shell
-$ gnome-tweaks
-```
-
-在拓展一栏即可启用我们刚刚装的caffeine
-
-![](images/gnome-extensions.png)
+这个列表控制图标的视觉外观，这些图标将会被显示在面板上，桌面上，文件管理器和菜单中。
 
 !!! tip "提示"
-	
-	手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。
-	
-	首先安装浏览器插件：
-	
-	对于 Google Chrome、Chromium 和 Vivaldi： [Chrome Web 商店](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep)
-	
-	对于 Firefox： [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/)
-	
-	再安装本地连接器
-	```shell
-	$ sudo apt install chrome-gnome-shell
-	```
-	
-	即可在 https://extensions.gnome.org/ 网页中管理、安装插件。
-	
-	![](images/extensions-management.png)
 
+	同样式一样，我们也可以自己下载安装图标。我们将在扩展内容中提及具体操作方法。
 
-### 桌面小部件的应用 *
+##### 字体
 
-如果你觉得你的桌面平平无奇，总是觉得缺了什么东西，也许桌面的小部件可以画龙点睛。
+![](/home/biuren/STUDY/linux101/Linux101-docs/docs/Ch02/images/Xfce-appearance-fonts.png)
 
-Conky 是一个用于X窗口系统的系统监视软件。它可以运行在 GNU/Linux 和 FreeBSD 上，是一个基于GPL协议的免费软件。Conky 可以监控许多系统变量，包括 CPU，内存，交换分区，磁盘空间，温度，top，上传，下载，系统消息，以及更多。它具有很高的可配置性，但配置有一些难于理解
+在「默认字体」和「默认等宽字体」中下拉菜单可以选择字体的 Family, Style 和 Size .
 
-首先，当然是安装 Conky
+「启动抗锯齿」选项可消除锯齿字体，使字符具有平滑的边缘。
 
-```shell
-$ sudo apt install conky
-```
+「提示」是一种字体渲染技术，可提高小尺寸和低屏幕分辨率时的字体质量。选择一个选项以指定如何应用提示字体。
 
-运行 Conky
+#### 窗口管理器
 
-```shell
-$ conky
-```
+##### 样式
 
-我们的桌面就多了这个东西
+![](images/Xfce-WM-style.png)
 
-![](images/conky.png)
+Xfce 允许用户自定义窗口的样式，「样式」对话框是用来控制窗口本身的，包括窗口的主题、标题和布局。
 
-这里显示了系统的状态各种状态。
+##### 键盘
 
-我们可以通过修改`.conkyrc`文件自由配置显示的内容、方式。
+![](/home/biuren/STUDY/linux101/Linux101-docs/docs/Ch02/images/Xfce-VM-keyboard.png)
 
-!!! info "注意"
+在「键盘」对话框，我们可以双击列表中的动作选项来设置或更改快捷键。
 
-	该软件配置文件是用lua语法编写的，比较复杂。这里我们不详细说明。有兴趣的同学可以参考附加文件中的样例配置文件写入你的配置文件中，
+#### 面板
 
-### 终端的个性化
+在 Xfce 中 面板指的是显示在最上方的栏。
 
-使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。
+![](/home/biuren/STUDY/linux101/Linux101-docs/docs/Ch02/images/Xfce-top-panel.png)
 
-#### 更换 Shell
+##### 显示
 
-在那之前我们可以通过
+![](images/Xfce-panel-display.png)
 
-```shell
-$ echo $SHELL
-```
+面板选项的顶部可以选择要控制的面板对象。下拉选单我们可以发现，默认的「面板2」是底部显示应用程序的 Dock。我们可以轻松得添加、删除面板（理论上可以添加无数个面板，取决与你的喜好）。
 
-检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具—— zsh。
+在「显示」选项卡中，我们可以修改面板的「模式」，可以使将面板设置为水平或者垂直于桌面栏。
 
-##### Zsh
+「锁定面板」选项选中后，面板将不能被鼠标拖拽移动。
 
-首先通过 apt 安装 zsh
+「自动隐藏」当设置为「聪明地」时，会在聚焦的窗口与面板重叠时隐藏面板。
 
-```shell
-$ sudo apt install zsh
-```
+下方的尺寸栏允许我们轻易地改变面板的尺寸。
 
-将 zsh 设定为默认 shell
+##### 项目
 
-```shell
-$ chsh -s /bin/zsh
-```
+![](images/Xfce-panel-items.png)
 
-重启后打开终端就会发现 shell 已经变成了 zsh。
+项目 (Items) 是一项非常实用的功能，实际上就是小部件，不仅可以在面板中显示软件信息（如窗口、工作区等），还可以显示硬件信息（如 CPU, 磁盘等）。我们可以在「项目」选项卡中管理它们。 另外我们也可以直接在对应的面板直接右键添加项目。
 
-第一次打开 zsh 会有首次使用提示，这里我们按 0 跳过。
+### 常用功能个性化
 
-接下来的提示中按 Y 回车即安装
+#### 文件管理器
 
-然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。
-
-##### oh-my-zsh
-
-oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
-
-```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。
-
-我们可以修改 `~/.zshrc`里的一行
-
-    ZSH_THEME="robbyrussell"
-
-中引号部分切换主题，具体主题可以在 [oh-my-zsh 官网](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)中找到。
-当然你也可以自己尝试自己做一个主题。
-
-## 其它的个性化
-
-上面内容都是外观上的个性化，更多地，Linux系统的可客制化还体现在一些配置文件上。
-
-### etc目录
-
-`/etc` 目录是包含几乎所有 Linux 系统配置的一个文件夹。
-
-!!! info "tips"
-
-	etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 `etc` 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 `/etc` 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。
-
-下面介绍几个常用的配置文件
-
-- `/etc/profile` 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置
-- `/etc/bash.bashrc` 启动 Bash 时读取的环境
-- `/etc/sudoers` sudo 权限的配置
-- `/etc/protocols` 网络协议簇的配置
-
-??? example "示例"
-
-	当我们登录用户成功时
-	
-	```shell
-	$ sudo login
-	```
-	
-	会提示以下信息
-	
-	```text
-	Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
-	 * Documentation:  https://help.ubuntu.com
-	 * Management:     https://landscape.canonical.com
-	 * Support:        https://ubuntu.com/advantage
-	 * Canonical Livepatch is available for installation.
-	   - Reduce system reboots and improve kernel security. Activate at:
-	     https://ubuntu.com/livepatch
-	125 个可升级软件包。
-	0 个安全更新。
-	Your Hardware Enablement Stack (HWE) is supported until April 2023.
-	*** 需要重启系统 ***
-	The programs included with the Ubuntu system are free software;
-	the exact distribution terms for each program are described in the
-	individual files in /usr/share/doc/*/copyright.
-	
-	Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-	applicable law.
-	```
-	
-	Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
-	
-	!!! info "提示"
-	
-		有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
-	
-	我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容
-	
-	```shell
-	#!/bin/sh
-	echo helloworld
-	```
-	
-	然后
-	
-	```shell
-	$ sudo chmod +x /etc/update-motd.d/99-test
-	```
-	
-	设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
-	
-	当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
+#### 会话管理器
 
 ## 搭建简易的网站
 
