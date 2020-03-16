@@ -2,7 +2,9 @@ site_name: Linux 101
 site_description: Linux 101 课程讲义
 site_author: LUG@USTC
 site_url: https://101.ustclug.org/
-copyright: Brought to you by LUG@USTC. Available freely under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+repo_name: ustclug/Linux101-docs
+repo_url: https://github.com/ustclug/Linux101-docs
+copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
 
 theme:
     font: false
@@ -40,8 +42,8 @@ nav:
     - 序: preface.md
     - 零：欢迎:
         - 欢迎: index.md
-        - 记号约定: notation.md
-        - 功劳簿: credit.md
+        - 记号约定: notations.md
+        - 功劳簿: credits.md
     - 一：初识 Linux:
         - 讲义: Ch01/index.md
         - 拓展阅读: Ch01/supplement.md
