@@ -15,17 +15,11 @@
 ### GNU：GNU is Not UNIX!（回音：...is not unix...is not unix...is not unix...） {#gnu}
 
 !!! tip 
-<<<<<<< HEAD:docs/0.md
-    时间回到上世纪70-80年代，一代操作系统巨星 UNIX 在 AT&T 的商业化策略下选择了自闭，不再提供源代码给使用者。这不仅意味着金钱上的制约，更是一种对修改研究软件权力的制约。想想看，如果想对一个文本编辑器添加一个小功能，却由于版权原因被逼写一份自己的编辑器，可以说相当令人绝望。于是，Richard Stallman 带着他的 GNU emacs 站了出来，号召 hacker 们搭建起自由的软件平台——GNU。
-    
-正如标题所见，GNU 的全称使用了一种递归，表达了与 Unix 这种对“自由”的限制决裂的态度。（虽然我一直在疑惑开头的 G 从哪来）而进入 Linux 世界，便一直与 GNU 软件打交道。先看看一堆字母 g 开头的：gcc-C编译器，gdb-程序调试器，gzip-压缩，gnome-桌面环境，gimp-图像编辑（对标 Photoshop），首字母 g 都是 gnu 的缩写；（当然 grep-查找，grab-启动引导程序不属此类。）我们 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件，默默地为 Linux 奉献着；还有<a href="我是给中文还是英文呢（wiki 离线为 pdf）">更多性能优异的软件↗</a>，被自由软件爱好者维护、分享······加入 Linux，便是认同了这种极客精神与开源文化。
-=======
     时间回到上世纪70-80年代，一代操作系统巨星 UNIX 在 AT&T 的商业化策略下选择了自闭，不再提供源代码给使用者。这不仅意味着金钱上的制约，更是一种对修改研究软件权力的制约。想想看，如果想对一个文本编辑器添加一个小功能，却由于版权原因被逼写一份自己的编辑器，可以说相当令人绝望。于是，Richard Stallman 带着他的 GNU Emacs 站了出来，号召 hacker 们搭建起自由的软件平台——GNU。
 
 正如标题所见，GNU 的全称使用了一种递归，表达了与 Unix 这种对“自由”的限制决裂的态度。（虽然我一直在疑惑开头的 G 从哪来）而进入 Linux 世界，便一直与 GNU 软件打交道。先看看一堆字母 g 开头的：gcc-C 编译器，gdb-程序调试器，gzip-压缩，gnome-桌面环境，gimp-图像编辑（对标 Photoshop），首字母 g 都是 gnu 的缩写；（当然 grep-查找，grab-启动引导程序不属此类。）我们 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件，默默地为 Linux 奉献着；还有<a href="我是给中文还是英文呢（wiki 离线为 pdf）">更多性能优异的软件↗</a>，被自由软件爱好者维护、分享······加入 Linux，便是认同了这种极客精神与开源文化。
->>>>>>> 8c0703f1afe37b4192e9c937f3cb31752f084dda:docs/Appendix/glossary.md
 
-这里有一份<a href="https://www.redhat.com/en/command-line-heroes">Redhat 公司制作的录音节目 command-line-heroes ↗</a>，纪念开源历史与开源文化，对自己英语听力有自信的同学可以选择收听一下。
+这里有一份[Redhat 公司制作的录音节目 command-line-heroes ↗](https://www.redhat.com/en/command-line-heroes)，纪念开源历史与开源文化，对自己英语听力有自信的同学可以选择收听一下。
 
 ### Shell {#shell}
 
@@ -37,11 +31,13 @@
 
 有壳（shell）必有核（kernel），只有这里的核才是操作系统本体，真正负责调度程序，管理硬件的部分。而 Linux 发行版本身则是一个套装，一个核用不同的软件包装出来，体现着发行版之间不同的理念。
 
-### 中断（IRQ: Interrupt ReQuest） {#irq}
+### 中断（IRQ: Interrupt Request） {#irq}
 
 你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。从程序的角度来看，中断对应着程序正常执行逻辑被打断，跳转到特定的中断处理程序。上面的电话铃代表是哪个硬件上产生的中断信号，告诉 CPU 应当如何处理。处理完之后自然回到正在运行的程序中（或者电话中老妈让你把饭热上，对应 CPU 进行调度切换更高“优先级”任务）。在中断机制中，中断号与其处理程序的映射尤为重要，这些映射储存在中断向量<abbr title="一种数据结构，在 case 语句中用到">表</abbr>中。
 
-没有中断，计算机仍将停留在批处理年代的早期，只能管理 IO，无法调度。
+没有中断，计算机仍将停留在批处理年代的早期，只能管理 IO，无法进行调度。
+
+中断向量的详细介绍，在此↗
 
 ### 系统调用（System Call） {#system-call}
 
@@ -52,7 +48,6 @@
 ### POSIX 标准 {#posix}
 
 ### 内建命令 {#buildin-command}
-<<<<<<< HEAD:docs/0.md
 
 ```bash
     $ whereis ls
@@ -82,5 +77,3 @@
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-=======
->>>>>>> 8c0703f1afe37b4192e9c937f3cb31752f084dda:docs/Appendix/glossary.md
