@@ -33,7 +33,7 @@ $ sudo make install
 * zlib - 用于支持 HTTP 头部压缩
   
 ```
-$ wget http://zlib.net/zlib-1.2.11.tar.gz
+$ wget https://zlib.net/zlib-1.2.11.tar.gz
 $ tar -zxf zlib-1.2.11.tar.gz
 $ cd zlib-1.2.11
 $ ./configure
@@ -44,7 +44,7 @@ $ sudo make install
 * OpenSSL - 用于支持 HTTPS 协议
 
 ```
-$ wget http://www.openssl.org/source/openssl-1.1.1c.tar.gz
+$ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
 $ ./Configure linux-x86_64 --prefix=/usr
