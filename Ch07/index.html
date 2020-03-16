@@ -1247,7 +1247,8 @@
 <p>大多数时候你的操作系统可能已经包含了这些必要的工具，如 GCC 编译器等。但是在一些较为精简的安装中，这些工具可能没有预装，如 Ubuntu 的 Mimimal Installation，这时候你需要手动安装开发工具。</p>
 <ul>
 <li>在 Debian/Ubuntu 系列发行版中，可以使用 <code>sudo apt install build-essential</code> 方便地安装基本的开发资源，这包含了 GCC 和 G++ 编译器、必要的 C 语言头文件，以及 Make 工具。</li>
-<li>在 CentOS/Fedora 系列发行版中，可以使用 <code>dnf groupinstall "Development Tools"</code> 来安装开发工具，内容与 Debian 中的 <code>build-essential</code> 没有太大差异。</li>
+<li>在 CentOS/Fedora 系列发行版中，可以使用 <code>sudo dnf groupinstall "Development Tools"</code> 来安装开发工具，内容与 Debian 中的 <code>build-essential</code> 没有太大差异。</li>
+<li>在 Arch Linux/Manjaro 系列发行版中，可以使用 <code>sudo pacman -S base-devel</code> 来安装开发工具。</li>
 </ul>
 <h3 id="_1">从单文件开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>让我们从单个文件的 C 语言代码开始。</p>
