@@ -5,7 +5,7 @@
 !!! abstract "导言"
 
 	Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：
-	
+
 	* 如何选择并安装桌面环境
 	* 如何打造自己独特的桌面
 	* 如何配置美化命令行终端
@@ -13,18 +13,18 @@
 
 ## 命令行操作 
 
-## 桌面环境 {# desktop-environment}
+## 桌面环境 {#desktop-environment}
 
 早期的 Linux 是不带图形界面的，只能通过命令行管理。随着时代的发展，人们不再满足于黑底白字的命令行界面，开发出来了 Linux 图形环境。
 Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。
 
-### Xfce {# Xfce}
+### Xfce {#Xfce}
 
 Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 
 本次所用的系统预先安装了 Xfce 桌面环境，因此本章将主要围绕 Xfce 的个性化来开展。实际上无论是哪一款桌面系统，个性化方式大同小异。
 
-###  常用外观个性化 {# appearance-settings}
+###  常用外观个性化 {#appearance-settings}
 
 跟 Windows 系统一样，大部分 Linux 桌面环境个性化功能并不比 Windows 差。
 
@@ -42,11 +42,11 @@ Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 图 2. 设置管理器
 {: .caption }
 
-#### 桌面 {# desktop}
+#### 桌面 {#desktop}
 
 xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面上设置背景图像/颜色和绘制图标。当您分别用鼠标右键或鼠标中键单击桌面时，它可以显示应用程序菜单和所有正在运行的应用程序的列表。
 
-##### 背景 {# desktop-background}
+##### 背景 {#desktop-background}
 
 ![](images/Xfce-settings-background.png)
 
@@ -64,7 +64,7 @@ xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面�
 | 颜色     | 用于填充背景空缺部分的颜色，可以设置纯色、渐变、透明。       |
 | 修改背景 | 如果一个位置包含多张图像，则 Xfce 允许您通过循环浏览可用图像来自动更改背景。您可以通过选中**更改背景**框来启用此选项。 |
 
-##### 菜单 {# desktop-menus}
+##### 菜单 {#desktop-menus}
 
 ![](images/Xfce-settings-menu.png)
 
@@ -87,7 +87,7 @@ Xfce 允许用户自定义右键菜单和中键菜单的行为。这里可以对
 图 6. 桌面工作区菜单
 {: .caption }
 
-##### 图标 {# desktop-icons}
+##### 图标 {#desktop-icons}
 
 ![](images/Xfce-settings-icons.png)
 
@@ -98,9 +98,9 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 在图标类型项，你可以下拉菜单选择「无」来选择具有无图标的桌面，或者选择「文件/启动器图标」来选择有图标的桌面。若选择了「已最小化应用程序的图标」，桌面就会把最小化的程序变成桌面上的图标。
 
-#### 外观 {# appearance}
+#### 外观 {#appearance}
 
-##### 样式 {# appearance-styles}
+##### 样式 {#appearance-styles}
 
 ![](images/Xfce-settings-appearance.png)
 
@@ -113,7 +113,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 	除了列表中已有的样式，我们可以自己下载更多更炫酷的样式。我们将在扩展内容中提及具体操作方法。
 
-##### 图标 {# appearance-icons}
+##### 图标 {#appearance-icons}
 
 ![](images/Xfce-appearance-icons.png)
 
@@ -126,7 +126,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 	同样式一样，我们也可以自己下载安装图标。我们将在扩展内容中提及具体操作方法。
 
-##### 字体 {# appearance-fonts}
+##### 字体 {#appearance-fonts}
 
 ![](images/Xfce-appearance-fonts.png)
 
@@ -139,11 +139,11 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 「提示」是一种字体渲染技术，可提高小尺寸和低屏幕分辨率时的字体质量。选择一个选项以指定如何应用提示字体。
 
-#### 窗口管理器 {# WM}
+#### 窗口管理器 {#WM}
 
 xfwm4 窗口管理器也是 Xfce 桌面环境的核心模块。窗口管理器负责窗口在屏幕上的放置，提供窗口装饰，并允许它们移动，调整大小或关闭。
 
-##### 样式 {# WM-styles}
+##### 样式 {#WM-styles}
 
 ![](images/Xfce-WM-style.png)
 
@@ -152,7 +152,7 @@ xfwm4 窗口管理器也是 Xfce 桌面环境的核心模块。窗口管理器�
 
 Xfce 允许用户自定义窗口的样式，「样式」对话框是用来控制窗口本身的，包括窗口的主题、标题和布局。
 
-##### 键盘 {# WM-keyboard}
+##### 键盘 {#WM-keyboard}
 
 ![](images/Xfce-VM-keyboard.png)
 
@@ -161,7 +161,7 @@ Xfce 允许用户自定义窗口的样式，「样式」对话框是用来控制
 
 在「键盘」对话框，我们可以双击列表中的动作选项来设置或更改快捷键。
 
-#### 面板 {# panels}
+#### 面板 {#panels}
 
 Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜单，工作区切换器等功能。
 
@@ -170,7 +170,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 图 13. 默认的顶部面板
 {: .caption }
 
-##### 显示 {# panels-display}
+##### 显示 {#panels-display}
 
 ![](images/Xfce-panel-display.png)
 
@@ -187,7 +187,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 
 下方的尺寸栏允许我们轻易地改变面板的尺寸。
 
-##### 项目 {# panels-items}
+##### 项目 {#panels-items}
 
 ![](images/Xfce-panel-items.png)
 
@@ -196,15 +196,15 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 
 项目 (Items) 是一项非常实用的功能，实际上就是小部件，不仅可以在面板中显示内部信息（如窗口、工作区、邮件等），还可以显示外部硬件信息（如 CPU, 磁盘等）。我们可以在「项目」选项卡中管理它们。 另外我们也可以直接在对应的面板直接右键添加项目。
 
-### 常用功能个性化 {# basic-settings}
+### 常用功能个性化 {#basic-settings}
 
-#### 文件管理器 {# FM}
+#### 文件管理器 {#FM}
 
 文件管理器是 Linux 桌面环境重要的模块之一。
 
 *Thunar* 是 Xfce 桌面环境的现代文件管理器。*Thunar* 从一开始就被设计为快速且易于使用。它的用户界面干净直观，默认情况下不包含任何令人困惑或无用的选项。*Thunar* 可以快速启动，并且浏览文件和文件夹的过程非常快速且响应迅速。
 
-##### 布局 {# FM-layout}
+##### 布局 {#FM-layout}
 
 ![](images/Xfce-FM.png)
 
@@ -229,11 +229,11 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 图 18. 文件管理器首选项
 {: .caption }
 
-##### 插件 {# FM-plugins}
+##### 插件 {#FM-plugins}
 
 Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包安装。详细按照方式将在拓展资料讲解。
 
-#### 会话管理器 {# sessions}
+#### 会话管理器 {#sessions}
 
 *Xfce4-session* 是 Xfce 的会话管理器。它的任务是保存桌面的状态（打开的应用程序及其位置），并在下次启动时将其还原。您可以创建几个不同的会话，并在启动时选择其中一个。
 
@@ -244,7 +244,7 @@ Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包
 图 19. 会话与启动
 {: .caption }
 
-##### 应用程序自启动 {# autostart}
+##### 应用程序自启动 {#autostart}
 
 ![](images/Xfce-Autostart.png)
 
