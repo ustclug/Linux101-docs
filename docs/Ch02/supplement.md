@@ -1,24 +1,6 @@
-# 个性化配置与建站体验
+# 	个性化配置与建站体验
 
-### 桌面环境的选择
-
-Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境。
-
-#### KDE Plasma
-
-KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
-[Plasma 官方网站](https://www.kde.org/plasma-desktop)
-
-#### GNOME
-
-GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
-[GNOME 官网](https://www.gnome.org/)
-
-!!! info ""
-
-	除了上面两款常见的桌面环境，还有 Xfce, Cinnamon, Unity 等，同学们可以自行了解。
-
-### 桌面环境的安装
+## 桌面环境的安装
 
 如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就要自己安装桌面环境。
 
@@ -58,8 +40,8 @@ $ sudo reboot
 	$ sudo apt install kde-plasma-desktop
 	$ sudo reboot
 	```
-
-### Gnome桌面环境的个性化
+## GNOME 相关
+### Gnome 桌面环境的个性化
 
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
 
@@ -72,7 +54,7 @@ sudo apt install gnome-tweak-tool
 
 在 [ubuntu-look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
 
-!!! tip "注意"
+!!! info "注意"
 
 	不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。
 
@@ -102,7 +84,7 @@ $ gnome-tweak-tool
 
 如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。
 
-### GNOME 的拓展程序
+#### GNOME 的拓展程序
 
 GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
 
@@ -169,42 +151,58 @@ $ gnome-tweaks
 	
 	![](images/extensions-management.png)
 
+## Xfce 联网下载安装更多主题
 
-### 桌面小部件的应用 *
+除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 [Xfce-look](https://www.xfce-look.org/) 上，就有上万个不同类型的主题。安装方法也十分简单。
 
-如果你觉得你的桌面平平无奇，总是觉得缺了什么东西，也许桌面的小部件可以画龙点睛。
+![](images/xfce-look-mainpage.png)
 
-Conky 是一个用于X窗口系统的系统监视软件。它可以运行在 GNU/Linux 和 FreeBSD 上，是一个基于GPL协议的免费软件。Conky 可以监控许多系统变量，包括 CPU，内存，交换分区，磁盘空间，温度，top，上传，下载，系统消息，以及更多。它具有很高的可配置性，但配置有一些难于理解
+我们可以选中任意一款主题。我们以下面这个为例。
 
-首先，当然是安装 Conky
+![](images/xfce-look-theme.png)
 
-```shell
-$ sudo apt install conky
-```
+点击 Download 按钮下载它，一般会得到压缩包格式的文件。我们打开设置管理器中的「外观」首选项，把下载好的压缩包文件直接拖拽到样式列表中
 
-运行 Conky
+![](images/Xfce-style-installation.png)
 
-```shell
-$ conky
-```
+选中刚刚拖拽进去的主题即可更换。
 
-我们的桌面就多了这个东西
+![](images/Xfce-style-installation_2.png)
 
-![](images/conky.png)
+!!! tip "提示"
 
-这里显示了系统的状态各种状态。
+	有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现
+	
+	![](images/Xfce-WM-style-installation.png)
+	
+	选中后，窗口样式就变了。
 
-我们可以通过修改`.conkyrc`文件自由配置显示的内容、方式。
+更换主题包后，是不是整个系统变得高大上了起来？
 
-!!! info "注意"
+!!! tip "提示"
 
-	该软件配置文件是用lua语法编写的，比较复杂。这里我们不详细说明。有兴趣的同学可以参考附加文件中的样例配置文件写入你的配置文件中，
+	我们可以安装插件在网页上直接安装主题。
+	
+	在 <https://www.pling.com/p/1136805/> 中，下载ocs-url，下载时选择deb后缀的安装包。
+	
+	![](images/ocs-url-download.png)
+	
+	命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
+	
+	```shell
+	sudo dpkg -i 下载的包.deb
+	sudo apt-get install --fix-broken
+	```
+	
+	即可完成安装。
+	
+	接下来在 <https://www.xfce-look.org/> 中所有的主题只需要点击 Install 即可自动安装	到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
 
-### 终端的个性化
+## 终端的个性化
 
 使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。
 
-#### 更换 Shell
+### 更换 Shell
 
 在那之前我们可以通过
 
@@ -214,7 +212,7 @@ $ echo $SHELL
 
 检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具—— zsh。
 
-##### Zsh
+#### Zsh
 
 首先通过 apt 安装 zsh
 
@@ -324,24 +322,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 	设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
 	
 	当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
-
-
-## 使用插件直接在网页中安装主题
-
-在 <https://www.pling.com/p/1136805/> 中，下载ocs-url，下载时选择deb后缀的安装包。
-
-![](images/ocs-url-download.png)
-
-命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
-
-```shell
-sudo dpkg -i 下载的包.deb
-sudo apt-get install --fix-broken
-```
-
-即可完成安装。
-
-接下来在 <https://www.gnome-look.org/> 中所有的主题只需要点击 Install 即可自动安装到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
 
 ## 参考资料
 - <https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098>
