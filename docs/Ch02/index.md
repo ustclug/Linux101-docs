@@ -5,7 +5,7 @@
 !!! abstract "导言"
 
 	Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：
-	
+
 	* 如何选择并安装桌面环境
 	* 如何打造自己独特的桌面
 	* 如何配置美化命令行终端
@@ -276,7 +276,7 @@ Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包
 
 ## 命令行操作 {#shell}
 
-### 为什么要用命令行{#why-shell}
+### 为什么要用命令行 {#why-shell}
 
 图形界面非常方便，为什么 Linux 的用户还热衷于命令行的使用呢？
 
@@ -306,8 +306,8 @@ shell 脚本可以帮助程序员自动执行重复的任务。例如我们想�
 // main.c
 
 #include <stdio.h>
-int main(){
-	printf("Helloworld\n");
+int main() {
+	printf("Hello world!\n");
 	return 0;
 }
 ```
