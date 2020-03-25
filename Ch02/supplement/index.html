@@ -549,6 +549,26 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    搭建简易的网站
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wordpress" class="md-nav__link">
+    WordPress 的手动配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     参考资料
   </a>
   
@@ -1113,6 +1133,26 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    搭建简易的网站
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wordpress" class="md-nav__link">
+    WordPress 的手动配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     参考资料
   </a>
   
@@ -1355,7 +1395,82 @@ applicable law.
 <p>设置好权限，登录后就可以看到在末尾加上了我们在 <code>99-test</code> 文件中 echo 的内容。</p>
 <p>当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。</p>
 </details>
-<h2 id="_5">参考资料<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_5">搭建简易的网站<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="wordpress">WordPress 的手动配置<a class="headerlink" href="#wordpress" title="Permanent link">&para;</a></h3>
+<p><div class="codehilite"><pre><span></span><code>$ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+</code></pre></div>
+这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。</p>
+<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，把下面内容填入</p>
+<div class="codehilite"><pre><span></span><code>Alias /blog /usr/share/wordpress
+<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress</span><span class="nt">&gt;</span>
+    Options FollowSymLinks
+    AllowOverride Limit Options FileInfo
+    DirectoryIndex index.php
+    Order allow,deny
+    Allow from all
+<span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress/wp-content</span><span class="nt">&gt;</span>
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+<span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div>
+
+<p>保存后输入命令来重启 apache2</p>
+<div class="codehilite"><pre><span></span><code>$ sudo a2ensite wordpress
+$ sudo a2enmod rewrite
+$ sudo service apache2 reload
+</code></pre></div>
+
+<p>再配置数据库相关内容</p>
+<p><div class="codehilite"><pre><span></span><code>$ sudo mysql -u root
+</code></pre></div>
+出现以下信息时</p>
+<div class="codehilite"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+</code></pre></div>
+
+<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
+    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
+    <span class="o">-&gt;</span> <span class="k">TO</span> <span class="n">wordpress</span><span class="o">@</span><span class="n">localhost</span>
+    <span class="o">-&gt;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
+
+<p>这里每次执行成功都会得到</p>
+<div class="codehilite"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
+</code></pre></div>
+
+<p>退出</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
+</code></pre></div>
+
+<p>编辑我们的 WordPress 配置 <code>/etc/wordpress/config-localhost.php</code></p>
+<p>写入以下内容，其中 <code>&lt;your-password&gt;</code> 为刚才设定的数据库密码。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+
+<p>然后输入</p>
+<div class="codehilite"><pre><span></span><code>$ sudo service mysql start
+</code></pre></div>
+
+<p>启动数据库。</p>
+<p>最后我们打开浏览器并进入 <code>localhost/blog</code></p>
+<p>来完成最后的配置。</p>
+<h2 id="_6">参考资料<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098">https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098</a></li>
 </ul>

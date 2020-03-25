@@ -740,7 +740,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#website" class="md-nav__link">
     搭建简易的网站
   </a>
   
@@ -755,7 +755,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jekyll" class="md-nav__link">
+  <a href="#Jekyll" class="md-nav__link">
     Jekyll
   </a>
   
@@ -767,14 +767,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     引用来源
   </a>
   
@@ -1554,7 +1554,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#website" class="md-nav__link">
     搭建简易的网站
   </a>
   
@@ -1569,7 +1569,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jekyll" class="md-nav__link">
+  <a href="#Jekyll" class="md-nav__link">
     Jekyll
   </a>
   
@@ -1581,14 +1581,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     引用来源
   </a>
   
@@ -1867,107 +1867,87 @@ $ ls
 <p class="admonition-title">注意</p>
 <p>显示内容与计算机文件状态有关，并不是每个人都会显样同的内容。</p>
 </div>
-<h2 id="_7">搭建简易的网站<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="website">搭建简易的网站<a class="headerlink" href="#website" title="Permanent link">&para;</a></h2>
 <p>Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
 <h3 id="wordpress">WordPress<a class="headerlink" href="#wordpress" title="Permanent link">&para;</a></h3>
-<p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。下面我们直接安装</p>
-<p><div class="codehilite"><pre><span></span><code>$ sudo apt install wordpress 
-</code></pre></div>
-这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。</p>
-<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，把下面内容填入</p>
-<div class="codehilite"><pre><span></span><code>Alias /blog /usr/share/wordpress
-<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress</span><span class="nt">&gt;</span>
-    Options FollowSymLinks
-    AllowOverride Limit Options FileInfo
-    DirectoryIndex index.php
-    Order allow,deny
-    Allow from all
-<span class="nt">&lt;/Directory&gt;</span>
-<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress/wp-content</span><span class="nt">&gt;</span>
-    Options FollowSymLinks
-    Order allow,deny
-    Allow from all
-<span class="nt">&lt;/Directory&gt;</span>
+<p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。</p>
+<p>由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 自动配置脚本。</p>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p>有兴趣自己配置的同学可以参阅补充材料。</p>
+</div>
+<p>创建一个文件 <code>wordpress.sh</code>，并写入下面的脚本，保存退出。</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">your_password</span><span class="o">=</span><span class="sb">`</span>head -c <span class="m">100</span> /dev/urandom <span class="p">|</span> tr -dc a-z0-9A-Z <span class="p">|</span>head -c <span class="m">8</span><span class="sb">`</span>
+
+apt update
+
+sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+
+<span class="nb">echo</span> <span class="s2">&quot;Alias /blog /usr/share/wordpress\n&lt;Directory /usr/share/wordpress&gt;\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n&lt;/Directory&gt;\n&lt;Directory /usr/share/wordpress/wp-content&gt;\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n&lt;/Directory&gt;&quot;</span> &gt; /etc/apache2/sites-available/wordpress.conf
+
+a2ensite wordpress
+
+a2enmod rewrite
+
+service apache2 reload
+
+<span class="nb">echo</span> <span class="s2">&quot;Creating database.&quot;</span>
+
+mysql -u root -e <span class="s2">&quot;CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Done!&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Configurating priviledges.&quot;</span>
+
+mysql -u root -e <span class="s2">&quot;GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY &#39;</span><span class="si">${</span><span class="nv">your_password</span><span class="si">}</span><span class="s2">&#39;;&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Done!&quot;</span>
+
+mysql -u root -e <span class="s2">&quot;FLUSH PRIVILEGES;&quot;</span>
+
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">your_password</span><span class="si">}</span> &gt; /root/mysql_wordpress_password.txt
+
+<span class="nb">echo</span> <span class="s2">&quot;&lt;?php\ndefine(&#39;DB_NAME&#39;, &#39;wordpress&#39;);\ndefine(&#39;DB_USER&#39;, &#39;wordpress&#39;);\ndefine(&#39;DB_PASSWORD&#39;, &#39;</span><span class="si">${</span><span class="nv">your_password</span><span class="si">}</span><span class="s2">&#39;);\ndefine(&#39;DB_HOST&#39;, &#39;localhost&#39;);\ndefine(&#39;DB_COLLATE&#39;, &#39;utf8_general_ci&#39;);\ndefine(&#39;WP_CONTENT_DIR&#39;, &#39;/usr/share/wordpress/wp-content&#39;);\n?&gt;&quot;</span> &gt; /etc/wordpress/config-localhost.php 
+
+service mysql start
+<span class="nb">echo</span> <span class="s2">&quot;Finished!&quot;</span>
 </code></pre></div>
 
-<p>保存后输入命令来重启 apache2</p>
-<div class="codehilite"><pre><span></span><code>$ sudo a2ensite wordpress
-$ sudo a2enmod rewrite
-$ sudo service apache2 reload
+<p>在该文件的目录下打开终端并运行</p>
+<div class="codehilite"><pre><span></span><code>$ sudo sh wordpress.sh
 </code></pre></div>
 
-<p>再配置数据库相关内容</p>
-<p><div class="codehilite"><pre><span></span><code>$ sudo mysql -u root
-</code></pre></div>
-出现以下信息时</p>
-<div class="codehilite"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 2
-Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
-</code></pre></div>
-
-<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
-    <span class="o">-&gt;</span> <span class="k">TO</span> <span class="n">wordpress</span><span class="o">@</span><span class="n">localhost</span>
-    <span class="o">-&gt;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</code></pre></div>
-
-<p>这里每次执行成功都会得到</p>
-<div class="codehilite"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
-</code></pre></div>
-
-<p>退出</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
-</code></pre></div>
-
-<p>编辑我们的 WordPress 配置 <code>/etc/wordpress/config-localhost.php</code></p>
-<p>写入以下内容，其中 <code>&lt;your-password&gt;</code> 为刚才设定的数据库密码。</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
-
-<p>最后输入</p>
-<div class="codehilite"><pre><span></span><code>$ sudo service mysql start
-</code></pre></div>
-
-<p>启动 mysql 数据库，即可在浏览器输入地址</p>
-<div class="codehilite"><pre><span></span><code>http://localhost/blog
-</code></pre></div>
-
-<p>来完成安装。</p>
+<p>等待片刻即可完成安装。</p>
+<div class="admonition info">
+<p class="admonition-title">注意</p>
+<p>这个脚本随机生成了 wordpress 数据库的密码并储存在了 <code>/root</code> 目录下。</p>
+</div>
+<p>最后我们打开浏览器并进入 <code>localhost/blog</code></p>
+<p>来完成最后的配置。</p>
 <p><img alt="" src="images/wordpress-installation.png" /></p>
-<h3 id="jekyll">Jekyll<a class="headerlink" href="#jekyll" title="Permanent link">&para;</a></h3>
-<p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。我们只需要安装它。</p>
+<h3 id="Jekyll">Jekyll<a class="headerlink" href="#Jekyll" title="Permanent link">&para;</a></h3>
+<p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。</p>
+<p>我们只需要通过命令行安装它。</p>
 <div class="codehilite"><pre><span></span><code>$ apt install jekyll
 </code></pre></div>
 
 <p>再输入几行命令用于创建网站</p>
-<div class="codehilite"><pre><span></span><code>~ $ jekyll new my-awesome-site
-~ $ <span class="nb">cd</span> my-awesome-site
-~/my-awesome-site $ jekyll serve
+<div class="codehilite"><pre><span></span><code>$ jekyll new my-awesome-site
+$ <span class="nb">cd</span> my-awesome-site
+$ jekyll serve
 </code></pre></div>
 
-<p>打开浏览器，在浏览器中输入 并打开</p>
-<div class="codehilite"><pre><span></span><code>http://localhost:4000
-</code></pre></div>
-
-<p>即可打开我们搭建的网站。</p>
+<p>打开浏览器，在浏览器中输入 <code>localhost:4000</code> 进入我们搭建的网站。</p>
 <p><img alt="" src="images/jekyll-installation.png" /></p>
-<h2 id="_8">思考题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<h2 id="_9">引用来源<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_7">思考题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_8">引用来源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://docs.xfce.org/xfce/start">xfce 文档</a></li>
+<li>
+<p><a href="https://docs.xfce.org/xfce/start">xfce 文档</a></p>
+</li>
+<li>
+<p><a href="https://ubuntu.com/tutorials/install-and-configure-wordpress">ubuntu 下安装 WordPress</a></p>
+</li>
 </ul>
                 
                   
