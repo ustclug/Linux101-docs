@@ -5,7 +5,7 @@
 !!! abstract "导言"
 
 	Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：
-	
+
 	* 如何选择并安装桌面环境
 	* 如何打造自己独特的桌面
 	* 如何配置美化命令行终端
@@ -35,7 +35,7 @@ GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性�
 	除了上面两款常见的桌面环境，还有 Cinnamon, Unity 等，同学们可以自行了解。
 
 
-### Xfce {#Xfce}
+#### Xfce
 
 Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 
@@ -45,7 +45,7 @@ Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 
 	如果你想要安装其它桌面系统（如 Gnome）或者你的系统未预装好桌面环境，可以参阅拓展阅读的内容。
 
-###  常用外观个性化 {#appearance-settings}
+### 常用外观个性化 {#appearance-settings}
 
 跟 Windows 系统一样，大部分 Linux 桌面环境个性化功能并不比 Windows 差。
 
@@ -80,10 +80,10 @@ xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面�
 
 | 字段     | 功能                                                         |
 | -------- | ------------------------------------------------------------ |
-| 目录     | 存放壁纸的目录，默认文件夹是在`/usr/share/backgrounds/xfce/`。 |
+| 目录     | 存放壁纸的目录，默认文件夹在 `/usr/share/backgrounds/xfce/`。 |
 | 样式     | 壁纸的显示样式、包括居中、平铺等。                           |
 | 颜色     | 用于填充背景空缺部分的颜色，可以设置纯色、渐变、透明。       |
-| 修改背景 | 如果一个位置包含多张图像，则 Xfce 允许您通过循环浏览可用图像来自动更改背景。您可以通过选中**更改背景**框来启用此选项。 |
+| 修改背景 | 如果一个位置包含多张图像，则 Xfce 允许你通过循环浏览可用图像来自动更改背景。您可以通过选中**更改背景**框来启用此选项。 |
 
 ##### 菜单 {#desktop-menus}
 
@@ -154,7 +154,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 图 10. 外观字体首选项
 {: .caption }
 
-在「默认字体」和「默认等宽字体」中下拉菜单可以选择字体的 Family, Style 和 Size .
+在「默认字体」和「默认等宽字体」中下拉菜单可以选择字体的 Family，Style 和 Size。
 
 「启动抗锯齿」选项可消除锯齿字体，使字符具有平滑的边缘。
 
@@ -198,7 +198,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 图 14. 面板显示首选项
 {: .caption }
 
-面板选项的顶部可以选择要控制的面板对象。下拉选单我们可以发现，默认的「面板2」是底部显示应用程序的 Dock。我们可以轻松得添加、删除面板（理论上可以添加无数个面板，取决与你的喜好）。
+面板选项的顶部可以选择要控制的面板对象。下拉选单我们可以发现，默认的「面板 2」是底部显示应用程序的 Dock。我们可以轻松得添加、删除面板（理论上可以添加无数个面板，取决与你的喜好）。
 
 在「显示」选项卡中，我们可以修改面板的「模式」，可以使将面板设置为水平或者垂直于桌面栏。
 
@@ -215,7 +215,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 图 15. 面板项目首选项
 {: .caption }
 
-项目 (Items) 是一项非常实用的功能，实际上就是小部件，不仅可以在面板中显示内部信息（如窗口、工作区、邮件等），还可以显示外部硬件信息（如 CPU, 磁盘等）。我们可以在「项目」选项卡中管理它们。 另外我们也可以直接在对应的面板直接右键添加项目。
+项目（Items）是一项非常实用的功能，实际上就是小部件，不仅可以在面板中显示内部信息（如窗口、工作区、邮件等），还可以显示外部硬件信息（如 CPU, 磁盘等）。我们可以在「项目」选项卡中管理它们。 另外我们也可以直接在对应的面板直接右键添加项目。
 
 ### 常用功能个性化 {#basic-settings}
 
@@ -223,7 +223,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 
 文件管理器是 Linux 桌面环境重要的模块之一。
 
-*Thunar* 是 Xfce 桌面环境的现代文件管理器。*Thunar* 从一开始就被设计为快速且易于使用。它的用户界面干净直观，默认情况下不包含任何令人困惑或无用的选项。*Thunar* 可以快速启动，并且浏览文件和文件夹的过程非常快速且响应迅速。
+Thunar 是 Xfce 桌面环境的现代文件管理器。Thunar 从一开始就被设计为快速且易于使用。它的用户界面干净直观，默认情况下不包含任何令人困惑或无用的选项。Thunar 可以快速启动，并且浏览文件和文件夹的过程非常快速且响应迅速。
 
 ##### 布局 {#FM-layout}
 
@@ -256,7 +256,7 @@ Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包
 
 #### 会话管理器 {#sessions}
 
-*Xfce4-session* 是 Xfce 的会话管理器。它的任务是保存桌面的状态（打开的应用程序及其位置），并在下次启动时将其还原。您可以创建几个不同的会话，并在启动时选择其中一个。
+Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态（打开的应用程序及其位置），并在下次启动时将其还原。您可以创建几个不同的会话，并在启动时选择其中一个。
 
 在「设置管理器」的「会话和启动」中可以配置它。
 
@@ -284,21 +284,21 @@ Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包
 
 使用命令行操作可以减少鼠标操作，我们经常可以使用一条命令来代替好几次的鼠标单击。例如如果我们想要移动某一个文件，我们要执行下面步骤：
 
-- 打开文件所在的文件夹 `/../source/`
-- 打开目标文件夹 `/../dest/`
-- 从`/../source/` 文件夹拖拽文件 `file.txt` 到 `/../dest/` 文件夹中
+- 打开文件所在的文件夹 `../source/`
+- 打开目标文件夹 `../dest/`
+- 从 `../source/` 文件夹拖拽文件 `file.txt` 到 `../dest/` 文件夹中
 
 然而使用命令行，我们只需要执行一条指令。
 
 ```shell
-$ mv /../source/file.txt /../dest/
+$ mv ../source/file.txt ../dest/
 ```
 
 可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。
 
 #### 自动化脚本
 
-shell 脚本可以帮助程序员自动执行重复的任务。例如我们想自动编译运行一个 C 语言程序 `main.c`，我们可以在该文件的目录新建一个脚本`run.sh`.
+Shell 脚本可以帮助程序员自动执行重复的任务。例如我们想自动编译运行一个 C 语言程序 `main.c`，我们可以在该文件的目录新建一个脚本 `run.sh`.
 
 两个文件分别下如内容。
 
@@ -336,11 +336,11 @@ $ sh run.sh
 
 影视作品中，操作命令行的总是技术高超的黑客。现在轮到你来操作命令行了，难道不是很酷的一件事情吗？
 
-### 什么是 shell {$what-shell}
+### 什么是 shell {#what-shell}
 
-上面所说的命令行，实际上指的就是 shell。shell 其实就是一个程序，它可以接受键盘输入的命令，然后把命令交给系统执行。现在几乎所有的 Linux 发行版都提供了一个叫 bash 的 shell 程序，实际上是 shell 的增强版。
+上面所说的命令行，实际上指的就是 shell。shell 其实就是一个程序，它可以接受键盘输入的命令，然后把命令交给系统执行。现在几乎所有的 Linux 发行版都提供了一个叫 bash 的 shell 程序，相当于传统 shell 的增强版。
 
-### 如何打开 shell {$how-shell}
+### 如何打开 shell {#how-shell}
 
 在图形界面中，我们需要另一个和 shell 交互的程序，叫做终端模拟器，简称「终端 (terminal)」。我们可以在「所有程序」找到它。
 
@@ -358,13 +358,13 @@ $ sh run.sh
 
 ### 几条简单的命令 {#shell-commands}
 
-- ls ——列出目录的内容
-- cd ——更改目录
-- pwd ——查看当前所在的目录
+- `ls`: 列出目录的内容
+- `cd`: 更改目录
+- `pwd`: 查看当前所在的目录
 
 更多的命令行操作我们将在第三章详细介绍。
 
-示例1
+#### 示例 1
 
 ```shell
 $ pwd
@@ -376,7 +376,7 @@ $ pwd
 /home/ustc
 ```
 
-示例2
+#### 示例 2
 
 ```shell
 $ ls
@@ -388,7 +388,7 @@ $ ls
 Desktop Documents Music Pictures Public Templates Videos
 ```
 
-示例3
+#### 示例 3
 
 ```shell
 $ cd Desktop
@@ -403,13 +403,13 @@ hi.txt
 
 !!! info "注意"
 
-	显示内容与计算机文件状态有关，并不是每个人都会显样同的内容。
+    显示内容与计算机文件状态有关，并不是每个人都会显样同的内容。
 
 ## 搭建简易的网站 {#website}
 
 Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。
 
-### WordPress {#wordpress}
+### WordPress
 
 WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。
 
@@ -422,13 +422,14 @@ WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和�
 创建一个文件 `wordpress.sh`，并写入下面的脚本，保存退出。
 
 ```shell
-your_password=`head -c 100 /dev/urandom | tr -dc a-z0-9A-Z |head -c 8`
+#!/bin/sh
+your_password=$(head -c 100 /dev/urandom | tr -dc a-z0-9A-Z | head -c 8)
 
-apt update
+sudo apt update
 
 sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 
-echo "Alias /blog /usr/share/wordpress\n<Directory /usr/share/wordpress>\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n</Directory>\n<Directory /usr/share/wordpress/wp-content>\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n</Directory>" > /etc/apache2/sites-available/wordpress.conf
+printf "Alias /blog /usr/share/wordpress\n<Directory /usr/share/wordpress>\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n</Directory>\n<Directory /usr/share/wordpress/wp-content>\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n</Directory>\n" > /etc/apache2/sites-available/wordpress.conf
 
 a2ensite wordpress
 
@@ -440,9 +441,7 @@ echo "Creating database."
 
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;"
 
-echo "Done!"
-
-echo "Configurating priviledges."
+echo "Configurating privileges."
 
 mysql -u root -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY '${your_password}';"
 
@@ -452,7 +451,7 @@ mysql -u root -e "FLUSH PRIVILEGES;"
 
 echo ${your_password} > /root/mysql_wordpress_password.txt
 
-echo "<?php\ndefine('DB_NAME', 'wordpress');\ndefine('DB_USER', 'wordpress');\ndefine('DB_PASSWORD', '${your_password}');\ndefine('DB_HOST', 'localhost');\ndefine('DB_COLLATE', 'utf8_general_ci');\ndefine('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');\n?>" > /etc/wordpress/config-localhost.php 
+printf "<?php\ndefine('DB_NAME', 'wordpress');\ndefine('DB_USER', 'wordpress');\ndefine('DB_PASSWORD', '${your_password}');\ndefine('DB_HOST', 'localhost');\ndefine('DB_COLLATE', 'utf8_general_ci');\ndefine('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');\n?>\n" > /etc/wordpress/config-localhost.php 
 
 service mysql start
 echo "Finished!"
@@ -466,23 +465,24 @@ $ sudo sh wordpress.sh
 
 等待片刻即可完成安装。
 
-!!! info "注意"
+!!! warning "注意"
+
 	这个脚本随机生成了 wordpress 数据库的密码并储存在了 `/root` 目录下。
 
-最后我们打开浏览器并进入 `localhost/blog`
+最后我们打开浏览器并进入 `http://localhost/blog`
 
 来完成最后的配置。
 
 ![](images/wordpress-installation.png)
 
-### Jekyll {#Jekyll}
+### Jekyll
 
 Jekyll 是一个将纯文本转化为静态博客和网站的工具。
 
 我们只需要通过命令行安装它。
 
 ```shell
-$ apt install jekyll
+$ sudo apt install jekyll
 ```
 
 再输入几行命令用于创建网站
@@ -500,6 +500,5 @@ $ jekyll serve
 ## 思考题
 ## 引用来源
 
-- [xfce 文档](https://docs.xfce.org/xfce/start)
-
-- [ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)
+- [Xfce 文档](https://docs.xfce.org/xfce/start)
+- [Ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)
