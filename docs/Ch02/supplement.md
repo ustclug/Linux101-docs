@@ -325,5 +325,106 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 	
 	当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
+## 搭建简易的网站
+
+### WordPress 的手动配置
+
+```shell
+$ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+```
+这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。
+
+创建一个 `/etc/apache2/sites-available/wordpress.conf` 文件，把下面内容填入
+
+```
+Alias /blog /usr/share/wordpress
+<Directory /usr/share/wordpress>
+    Options FollowSymLinks
+    AllowOverride Limit Options FileInfo
+    DirectoryIndex index.php
+    Order allow,deny
+    Allow from all
+</Directory>
+<Directory /usr/share/wordpress/wp-content>
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+</Directory>
+```
+
+保存后输入命令来重启 apache2
+
+```shell
+$ sudo a2ensite wordpress
+$ sudo a2enmod rewrite
+$ sudo service apache2 reload
+```
+
+再配置数据库相关内容
+
+```shell
+$ sudo mysql -u root
+```
+出现以下信息时
+
+```text
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+```
+
+参照下面的命令，输入，其中 `<your-password>` 替换为你自己设定的密码
+
+```mysql
+mysql> CREATE DATABASE wordpress;
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+    -> ON wordpress.*
+    -> TO wordpress@localhost
+    -> IDENTIFIED BY '<your-password>';
+mysql> FLUSH PRIVILEGES;
+```
+
+这里每次执行成功都会得到
+
+```text
+Query OK, 1 row affected (0,00 sec)
+```
+
+退出
+
+```mysql
+mysql> quit
+```
+
+编辑我们的 WordPress 配置 `/etc/wordpress/config-localhost.php`
+
+写入以下内容，其中 `<your-password>` 为刚才设定的数据库密码。
+
+```php
+<?php
+define('DB_NAME', 'wordpress');
+define('DB_USER', 'wordpress');
+define('DB_PASSWORD', '<your-password>');
+define('DB_HOST', 'localhost');
+define('DB_COLLATE', 'utf8_general_ci');
+define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
+?>
+```
+
+然后输入
+
+```shell
+$ sudo service mysql start
+```
+
+启动数据库。
+
+最后我们打开浏览器并进入 `localhost/blog`
+
+来完成最后的配置。
+
 ## 参考资料
 - <https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098>

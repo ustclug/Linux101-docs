@@ -5,7 +5,7 @@
 !!! abstract "导言"
 
 	Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：
-
+	
 	* 如何选择并安装桌面环境
 	* 如何打造自己独特的桌面
 	* 如何配置美化命令行终端
@@ -405,118 +405,81 @@ hi.txt
 
 	显示内容与计算机文件状态有关，并不是每个人都会显样同的内容。
 
-## 搭建简易的网站
+## 搭建简易的网站 {#website}
 
 Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。
 
-### WordPress
+### WordPress {#wordpress}
 
-WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。下面我们直接安装
+WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。
 
-```shell
-$ sudo apt install wordpress 
-```
-这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。
+由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 自动配置脚本。
 
-创建一个 `/etc/apache2/sites-available/wordpress.conf` 文件，把下面内容填入
+!!! tips "提示"
 
-```
-Alias /blog /usr/share/wordpress
-<Directory /usr/share/wordpress>
-    Options FollowSymLinks
-    AllowOverride Limit Options FileInfo
-    DirectoryIndex index.php
-    Order allow,deny
-    Allow from all
-</Directory>
-<Directory /usr/share/wordpress/wp-content>
-    Options FollowSymLinks
-    Order allow,deny
-    Allow from all
-</Directory>
-```
+	有兴趣自己配置的同学可以参阅补充材料。
 
-保存后输入命令来重启 apache2
+创建一个文件 `wordpress.sh`，并写入下面的脚本，保存退出。
 
 ```shell
-$ sudo a2ensite wordpress
-$ sudo a2enmod rewrite
-$ sudo service apache2 reload
+your_password=`head -c 100 /dev/urandom | tr -dc a-z0-9A-Z |head -c 8`
+
+apt update
+
+sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+
+echo "Alias /blog /usr/share/wordpress\n<Directory /usr/share/wordpress>\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n</Directory>\n<Directory /usr/share/wordpress/wp-content>\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n</Directory>" > /etc/apache2/sites-available/wordpress.conf
+
+a2ensite wordpress
+
+a2enmod rewrite
+
+service apache2 reload
+
+echo "Creating database."
+
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;"
+
+echo "Done!"
+
+echo "Configurating priviledges."
+
+mysql -u root -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY '${your_password}';"
+
+echo "Done!"
+
+mysql -u root -e "FLUSH PRIVILEGES;"
+
+echo ${your_password} > /root/mysql_wordpress_password.txt
+
+echo "<?php\ndefine('DB_NAME', 'wordpress');\ndefine('DB_USER', 'wordpress');\ndefine('DB_PASSWORD', '${your_password}');\ndefine('DB_HOST', 'localhost');\ndefine('DB_COLLATE', 'utf8_general_ci');\ndefine('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');\n?>" > /etc/wordpress/config-localhost.php 
+
+service mysql start
+echo "Finished!"
 ```
 
-再配置数据库相关内容
+在该文件的目录下打开终端并运行
 
 ```shell
-$ sudo mysql -u root
-```
-出现以下信息时
-
-```text
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 2
-Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+$ sudo sh wordpress.sh
 ```
 
-参照下面的命令，输入，其中 `<your-password>` 替换为你自己设定的密码
+等待片刻即可完成安装。
 
-```mysql
-mysql> CREATE DATABASE wordpress;
-mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
-    -> ON wordpress.*
-    -> TO wordpress@localhost
-    -> IDENTIFIED BY '<your-password>';
-mysql> FLUSH PRIVILEGES;
-```
+!!! info "注意"
+	这个脚本随机生成了 wordpress 数据库的密码并储存在了 `/root` 目录下。
 
-这里每次执行成功都会得到
+最后我们打开浏览器并进入 `localhost/blog`
 
-```text
-Query OK, 1 row affected (0,00 sec)
-```
-
-退出
-
-```mysql
-mysql> quit
-```
-
-编辑我们的 WordPress 配置 `/etc/wordpress/config-localhost.php`
-
-写入以下内容，其中 `<your-password>` 为刚才设定的数据库密码。
-
-```php
-<?php
-define('DB_NAME', 'wordpress');
-define('DB_USER', 'wordpress');
-define('DB_PASSWORD', '<your-password>');
-define('DB_HOST', 'localhost');
-define('DB_COLLATE', 'utf8_general_ci');
-define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
-?>
-```
-
-最后输入
-
-```shell
-$ sudo service mysql start
-```
-
-启动 mysql 数据库，即可在浏览器输入地址
-
-```text
-http://localhost/blog
-```
-
-来完成安装。
+来完成最后的配置。
 
 ![](images/wordpress-installation.png)
 
-### Jekyll
+### Jekyll {#Jekyll}
 
-Jekyll 是一个将纯文本转化为静态博客和网站的工具。我们只需要安装它。
+Jekyll 是一个将纯文本转化为静态博客和网站的工具。
+
+我们只需要通过命令行安装它。
 
 ```shell
 $ apt install jekyll
@@ -525,18 +488,12 @@ $ apt install jekyll
 再输入几行命令用于创建网站
 
 ```shell
-~ $ jekyll new my-awesome-site
-~ $ cd my-awesome-site
-~/my-awesome-site $ jekyll serve
+$ jekyll new my-awesome-site
+$ cd my-awesome-site
+$ jekyll serve
 ```
 
-打开浏览器，在浏览器中输入 并打开
-
-```text
-http://localhost:4000
-```
-
-即可打开我们搭建的网站。
+打开浏览器，在浏览器中输入 `localhost:4000` 进入我们搭建的网站。
 
 ![](images/jekyll-installation.png)
 
@@ -544,3 +501,5 @@ http://localhost:4000
 ## 引用来源
 
 - [xfce 文档](https://docs.xfce.org/xfce/start)
+
+- [ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)
