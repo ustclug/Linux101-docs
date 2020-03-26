@@ -38,7 +38,9 @@ google_analytics:
   - 'auto'
 
 nav:
-    - 负一：编写建议: advice.md
+    - 负一：计划规格:
+        - 章节编写规格: Spec/writing.md
+        - 演示文稿编写规格: Spec/slide.md
     - 序: preface.md
     - 零：欢迎:
         - 欢迎: index.md
