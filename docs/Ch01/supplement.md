@@ -73,7 +73,7 @@ Mode from config file:          permissive  # <- 或 disabled
 
 当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2019 上运行 ELF 格式的 Linux 程序。
 
-!!! tip 不要将 WSL 与 Windows Services for UNIX (SFU) 混淆
+??? tip "不要将 WSL 与 Windows Services for UNIX (SFU) 混淆"
 
     你可能会在老版本的 Windows 上注意到，在添加与删除 Windows 组件的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。
 
