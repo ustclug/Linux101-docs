@@ -945,6 +945,51 @@
 </div>
 <h2 id="android-linux">Android/Linux<a class="headerlink" href="#android-linux" title="Permanent link">&para;</a></h2>
 <h2 id="close-seLinux">关闭 SELinux<a class="headerlink" href="#close-seLinux" title="Permanent link">&para;</a></h2>
+<p>读者在使用 Fedora、CentOS、Scientific Linux、RHEL 等系统时，可能会遇到这样的错误：</p>
+<ul>
+<li>SELinux is preventing XXXX from read access on the file YYYY.</li>
+</ul>
+<p>这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。</p>
+<p>SELinux 的全称是 Security-Enhanced Linux，起初是为了弥补 Linux 下没有强制访问控制（Mandatory Access Control, MAC）的缺憾，但是 SELinux 的设置相当繁复，由于默认设置不可能尽善尽美，一些配置上的小问题可能会影响用户的正常使用，而初学者没有足够的技能去调试 SELinux 策略。因此在初学时，可以暂且关闭 SELinux，在掌握足够的技能后再启用它。</p>
+<details class="tip"><summary>AppArmor</summary><p>在 Debian、Ubuntu 系发行版中，默认使用的是称作 AppArmor 的同类组件。与 SELinux 相比，AppArmor 更简单一些，且一般不会对用户的正常使用造成困扰。</p>
+</details>
+<p>SELinux 有 3 种工作模式：</p>
+<ol>
+<li><code>enforcing</code>：SELinux 根据安全策略，积极阻止有潜在风险的操作。</li>
+<li><code>permissive</code>：SELinux 仅记录会被阻止的操作在日志中，但不做任何事。</li>
+<li><code>disabled</code>：SELinux 被彻底禁用，日志也不记录。</li>
+</ol>
+<p>因此，只需将 SELinux 置于 <code>permissive</code> 或 <code>disabled</code> 状态即可。</p>
+<p>使用 <code>sestatus</code> 命令查看 SELinux 状态：</p>
+<div class="codehilite"><pre><span></span><code>$ sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual <span class="o">(</span>secure<span class="o">)</span>
+Max kernel policy version:      <span class="m">31</span>
+</code></pre></div>
+
+<p>使用 <code>setenforce 0</code> <strong>临时</strong> 改变 SELinux 状态到 <code>permissive</code>，这个状态在重启后将恢复为配置文件指定的默认值。</p>
+<div class="codehilite"><pre><span></span><code><span class="err"># setenforce 0</span>
+</code></pre></div>
+
+<p>修改 SELinux 的配置文件可以永久改变 SELinux 的工作状态。</p>
+<ol>
+<li>使用 root 权限编辑 <code>/etc/selinux/config</code> 文件；</li>
+<li>将 <code>SELINUX=enforcing</code> 中的 <code>enforcing</code> 改为 <code>disabled</code> 或 <code>permissive</code>。</li>
+</ol>
+<p>编辑完成后，使用 <code>sestatus</code> 可以看到修改效果：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[...]</span>
+<span class="na">Current mode:                   permissive  # &lt;-</span>
+<span class="na">Mode from config file:          permissive  # &lt;- 或 disabled</span>
+<span class="k">[...]</span>
+</code></pre></div>
+
 <h2 id="wsl">适用于 Linux 的 Windows 子系统<a class="headerlink" href="#wsl" title="Permanent link">&para;</a></h2>
                 
                   
