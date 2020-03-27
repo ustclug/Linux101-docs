@@ -27,7 +27,7 @@ jobs:
         pushd site/ &>/dev/null
         git add -A
         git -c user.name=GitHub -c user.email=noreply@github.com commit \
-          -m 'Auto deploy from GitHub Actions build ${GITHUB_RUN_NUMBER}' \
+          -m "Auto deploy from GitHub Actions build ${GITHUB_RUN_NUMBER}" \
           -m "$CINFO"
         git push
         popd &>/dev/null
