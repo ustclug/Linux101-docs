@@ -112,7 +112,7 @@ Linux 的知识结构呈非线性，仅有单线的正文是不足的。请广�
 	本节拓展内容依赖如下额外的前置知识，建议先阅读并掌握对应内容后再研读本节：
 
 	* [第一章 中科大开源社群：LUG@USTC](../Ch01/index.md)
-	* [LUG@USTC 官方网站](https://ustclug.org)
+	* [LUG@USTC 官方网站](https://lug.ustc.edu.cn/)
 
 ## 引用与脚注 {#reference-footnote}
 
