@@ -1961,55 +1961,19 @@ $ ls
 <p>Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
 <h3 id="wordpress">WordPress<a class="headerlink" href="#wordpress" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。</p>
-<p>由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 自动配置脚本。</p>
+<p>由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 的<a href="wordpress.sh">自动配置脚本</a>。</p>
 <div class="admonition tips">
 <p class="admonition-title">提示</p>
 <p>有兴趣自己配置的同学可以参阅补充材料。</p>
 </div>
-<p>创建一个文件 <code>wordpress.sh</code>，并写入下面的脚本，保存退出。</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/sh</span>
-<span class="nv">your_password</span><span class="o">=</span><span class="k">$(</span>head -c <span class="m">100</span> /dev/urandom <span class="p">|</span> tr -dc a-z0-9A-Z <span class="p">|</span> head -c <span class="m">8</span><span class="k">)</span>
-
-sudo apt update
-
-sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
-
-<span class="nb">printf</span> <span class="s2">&quot;Alias /blog /usr/share/wordpress\n&lt;Directory /usr/share/wordpress&gt;\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n&lt;/Directory&gt;\n&lt;Directory /usr/share/wordpress/wp-content&gt;\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n&lt;/Directory&gt;\n&quot;</span> &gt; /etc/apache2/sites-available/wordpress.conf
-
-a2ensite wordpress
-
-a2enmod rewrite
-
-service apache2 reload
-
-<span class="nb">echo</span> <span class="s2">&quot;Creating database.&quot;</span>
-
-mysql -u root -e <span class="s2">&quot;CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;&quot;</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Configurating privileges.&quot;</span>
-
-mysql -u root -e <span class="s2">&quot;GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY &#39;</span><span class="si">${</span><span class="nv">your_password</span><span class="si">}</span><span class="s2">&#39;;&quot;</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Done!&quot;</span>
-
-mysql -u root -e <span class="s2">&quot;FLUSH PRIVILEGES;&quot;</span>
-
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">your_password</span><span class="si">}</span> &gt; /root/mysql_wordpress_password.txt
-
-<span class="nb">printf</span> <span class="s2">&quot;&lt;?php\ndefine(&#39;DB_NAME&#39;, &#39;wordpress&#39;);\ndefine(&#39;DB_USER&#39;, &#39;wordpress&#39;);\ndefine(&#39;DB_PASSWORD&#39;, &#39;</span><span class="si">${</span><span class="nv">your_password</span><span class="si">}</span><span class="s2">&#39;);\ndefine(&#39;DB_HOST&#39;, &#39;localhost&#39;);\ndefine(&#39;DB_COLLATE&#39;, &#39;utf8_general_ci&#39;);\ndefine(&#39;WP_CONTENT_DIR&#39;, &#39;/usr/share/wordpress/wp-content&#39;);\n?&gt;\n&quot;</span> &gt; /etc/wordpress/config-localhost.php 
-
-service mysql start
-<span class="nb">echo</span> <span class="s2">&quot;Finished!&quot;</span>
-</code></pre></div>
-
-<p>在该文件的目录下打开终端并运行</p>
-<div class="codehilite"><pre><span></span><code>$ sudo sh wordpress.sh
+<p>打开终端并运行</p>
+<div class="codehilite"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh <span class="p">|</span> sudo bash
 </code></pre></div>
 
 <p>等待片刻即可完成安装。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>这个脚本随机生成了 wordpress 数据库的密码并储存在了 <code>/root</code> 目录下。</p>
+<p>这个脚本随机生成了 WordPress 数据库的密码并储存在了 <code>/root</code> 目录下。</p>
 </div>
 <p>最后我们打开浏览器并进入 <code>http://localhost/blog</code></p>
 <p>来完成最后的配置。</p>
