@@ -1,10 +1,10 @@
-# 导言 Intro
+# 词汇表
 
 **在本次 Linux101 介绍活动中，你会遇到许多可能从来没有概念的名词，为了便于大致理解概念与作为讲义辅助查阅，将涉及到的基本概念编写于此，正文可在适当位置加以引用。**
 
 *部分词条并非使用专业而严格的方式解释，仅为快速理解而编写，更加严格的定义可参阅各大百科。*
 
-## Whatis
+## Whatis ...
 
 ### 操作系统 {#operating-system}
 
@@ -77,6 +77,12 @@
 #### which
 
 #### find（从略）
+
+##外部链接
+
+本条目致力于提供成体系介绍 Linux 的其他网站的路径。
+
+[https://cyc2018.github.io/CS-Notes/#/notes/Linux](https://cyc2018.github.io/CS-Notes/#/notes/Linux)
 
 
 
