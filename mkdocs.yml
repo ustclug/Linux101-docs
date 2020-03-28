@@ -50,6 +50,7 @@ nav:
     - 一：初识 Linux:
         - 讲义: Ch01/index.md
         - 拓展阅读: Ch01/supplement.md
+        - 思考题解答: Ch01/solution.md
     - 二：个性化配置与建站体验:
         - 讲义: Ch02/index.md
         - 拓展阅读: Ch02/supplement.md
