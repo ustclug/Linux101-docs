@@ -106,7 +106,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#intro" tabindex="0" class="md-skip">
+      <a href="#_1" tabindex="0" class="md-skip">
         跳转至
       </a>
     
@@ -844,7 +844,7 @@
       
         <li class="md-nav__item">
   <a href="#whatis" class="md-nav__link">
-    Whatis
+    Whatis ...
   </a>
   
     <nav class="md-nav">
@@ -883,6 +883,19 @@
     中断（IRQ: Interrupt Request）
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    时钟中断
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -919,7 +932,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     另一些常用小命令
   </a>
   
@@ -934,14 +947,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     .
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     四大查找
   </a>
   
@@ -983,6 +996,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    外部链接
+  </a>
   
 </li>
       
@@ -1060,7 +1080,7 @@
       
         <li class="md-nav__item">
   <a href="#whatis" class="md-nav__link">
-    Whatis
+    Whatis ...
   </a>
   
     <nav class="md-nav">
@@ -1099,6 +1119,19 @@
     中断（IRQ: Interrupt Request）
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    时钟中断
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1135,7 +1168,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     另一些常用小命令
   </a>
   
@@ -1150,14 +1183,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     .
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     四大查找
   </a>
   
@@ -1202,6 +1235,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    外部链接
+  </a>
+  
+</li>
+      
       
       
       
@@ -1221,10 +1261,10 @@
                   <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/glossary.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="intro">导言 Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h1>
+                <h1 id="_1">词汇表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><strong>在本次 Linux101 介绍活动中，你会遇到许多可能从来没有概念的名词，为了便于大致理解概念与作为讲义辅助查阅，将涉及到的基本概念编写于此，正文可在适当位置加以引用。</strong></p>
 <p><em>部分词条并非使用专业而严格的方式解释，仅为快速理解而编写，更加严格的定义可参阅各大百科。</em></p>
-<h2 id="whatis">Whatis<a class="headerlink" href="#whatis" title="Permanent link">&para;</a></h2>
+<h2 id="whatis">Whatis ...<a class="headerlink" href="#whatis" title="Permanent link">&para;</a></h2>
 <h3 id="operating-system">操作系统<a class="headerlink" href="#operating-system" title="Permanent link">&para;</a></h3>
 <p>我们的计算机无时无刻不在同时管理着多个任务，运行着多个程序。然而对于只有单个单核 CPU 的计算机来说，正常情况下只能顺序执行一串代码，意味着多个程序总要以某种方式连接起来。而 CPU 的算力是程序的竞争资源之一，必须有一个管理者出现来保证资源分配的相对公平。这位管理者便是操作系统，其本身也是程序，任务便是将应用程序接成一条线，自己负责切换程序，决定谁来使用 CPU，用多长时间。这样既能适配硬件的 CPU，满足其某一时刻只能执行一条指令的要求，也能促进应用程序合理运行，满足用户的功能需求。可见，操作系统的核心功能在于伺候程序。</p>
 <p>那么，操作系统如何安排程序呢？<a href="javascript:void(0)" onclick='$("//a[href=\\.\\.\\/Ch04\\/1\\/]")[0].click()'>第四章，详细介绍↗</a></p>
@@ -1243,6 +1283,8 @@
 <h3 id="irq">中断（IRQ: Interrupt Request）<a class="headerlink" href="#irq" title="Permanent link">&para;</a></h3>
 <p>你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。从程序的角度来看，中断对应着程序正常执行逻辑被打断，跳转到特定的中断处理程序。上面的电话铃代表是哪个硬件上产生的中断信号，告诉 CPU 应当如何处理。处理完之后自然回到正在运行的程序中（或者电话中老妈让你把饭热上，对应 CPU 进行调度切换更高“优先级”任务）。在中断机制中，中断号与其处理程序的映射尤为重要，这些映射储存在中断向量<abbr title="一种数据结构，在 case 语句中用到">表</abbr>中。</p>
 <p>没有中断，计算机仍将停留在批处理年代的早期，只能管理 IO，无法进行调度。</p>
+<h4 id="_2">时钟中断<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>操作系统之所以可以单核多任务（并发），很大程度上是由于时钟中断的存在，时钟电路</p>
 <p>中断向量的详细介绍，在此↗</p>
 <h3 id="system-call">系统调用（System Call）<a class="headerlink" href="#system-call" title="Permanent link">&para;</a></h3>
 <p>如果说进程调度体现了系统进程与资源的管理作用，那么系统调用体现的是系统为进程提供服务的功能。操作系统既然提供了对硬件的抽象，那么必然要让程序去使用这些抽象。于是系统调用可以按照其提供的抽象分为针对进程的，针对文件的，针对内存的，针对用户的调用。除此之外还有网络管理以及调节操作系统自身的调用。我们所熟悉的 read，write 读写文件，更改文件各种权限；进程设置自身的gid，sid；甚至最简单的读取目录都经过系统调用。</p>
@@ -1254,14 +1296,17 @@
 </code></pre></div>
 
 <h3 id="file-descriptor">文件描述符<a class="headerlink" href="#file-descriptor" title="Permanent link">&para;</a></h3>
-<h2 id="_1">另一些常用小命令<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_3">另一些常用小命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="alias">alias<a class="headerlink" href="#alias" title="Permanent link">&para;</a></h3>
-<h3 id="_2">.<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<h3 id="_3">四大查找<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">.<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_5">四大查找<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <h4 id="locate">locate<a class="headerlink" href="#locate" title="Permanent link">&para;</a></h4>
 <h4 id="whereis">whereis<a class="headerlink" href="#whereis" title="Permanent link">&para;</a></h4>
 <h4 id="which">which<a class="headerlink" href="#which" title="Permanent link">&para;</a></h4>
 <h4 id="find">find（从略）<a class="headerlink" href="#find" title="Permanent link">&para;</a></h4>
+<h2 id="_6">外部链接<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>本条目致力于提供成体系介绍 Linux 的其他网站的路径。</p>
+<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Linux">https://cyc2018.github.io/CS-Notes/#/notes/Linux</a></p>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
                 
                   
