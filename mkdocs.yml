@@ -29,6 +29,7 @@ extra:
 
 extra_javascript:
     - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
+    # 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/js/all.min.js'
 
 extra_css:
     - 'css/extra.css'
