@@ -413,61 +413,23 @@ Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可�
 
 WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和内容管理系统。
 
-由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 自动配置脚本。
+由于 WordPress 是一个动态的博客软件，它需要涉及到一些数据库相关的配置和 HTTP 服务器的配置，这里我们给大家准备了一个 Ubuntu 安装 WordPress 的[自动配置脚本](wordpress.sh)。
 
 !!! tips "提示"
 
 	有兴趣自己配置的同学可以参阅补充材料。
 
-创建一个文件 `wordpress.sh`，并写入下面的脚本，保存退出。
+打开终端并运行
 
 ```shell
-#!/bin/sh
-your_password=$(head -c 100 /dev/urandom | tr -dc a-z0-9A-Z | head -c 8)
-
-sudo apt update
-
-sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
-
-printf "Alias /blog /usr/share/wordpress\n<Directory /usr/share/wordpress>\n    Options FollowSymLinks\n    AllowOverride Limit Options FileInfo\n    DirectoryIndex index.php\n    Order allow,deny\n    Allow from all\n</Directory>\n<Directory /usr/share/wordpress/wp-content>\n    Options FollowSymLinks\n    Order allow,deny\n    Allow from all\n</Directory>\n" > /etc/apache2/sites-available/wordpress.conf
-
-a2ensite wordpress
-
-a2enmod rewrite
-
-service apache2 reload
-
-echo "Creating database."
-
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;"
-
-echo "Configurating privileges."
-
-mysql -u root -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY '${your_password}';"
-
-echo "Done!"
-
-mysql -u root -e "FLUSH PRIVILEGES;"
-
-echo ${your_password} > /root/mysql_wordpress_password.txt
-
-printf "<?php\ndefine('DB_NAME', 'wordpress');\ndefine('DB_USER', 'wordpress');\ndefine('DB_PASSWORD', '${your_password}');\ndefine('DB_HOST', 'localhost');\ndefine('DB_COLLATE', 'utf8_general_ci');\ndefine('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');\n?>\n" > /etc/wordpress/config-localhost.php 
-
-service mysql start
-echo "Finished!"
-```
-
-在该文件的目录下打开终端并运行
-
-```shell
-$ sudo sh wordpress.sh
+$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh | sudo bash
 ```
 
 等待片刻即可完成安装。
 
 !!! warning "注意"
 
-	这个脚本随机生成了 wordpress 数据库的密码并储存在了 `/root` 目录下。
+	这个脚本随机生成了 WordPress 数据库的密码并储存在了 `/root` 目录下。
 
 最后我们打开浏览器并进入 `http://localhost/blog`
 
