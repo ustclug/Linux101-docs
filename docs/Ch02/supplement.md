@@ -244,6 +244,14 @@ oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+!!! info "如果无法下载安装脚本"
+
+	如果遇到了网络连通性问题，命令可以替换为：
+	
+	```shell
+	sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
+	```
+
 安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。
 
 我们可以修改 `~/.zshrc`里的一行
