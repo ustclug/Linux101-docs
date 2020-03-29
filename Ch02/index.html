@@ -1730,8 +1730,8 @@
 </ul>
 </div>
 <h2 id="desktop-environment">桌面环境<a class="headerlink" href="#desktop-environment" title="Permanent link">&para;</a></h2>
-<p>早期的 Linux 是不带图形界面的，只能通过命令行管理。随着时代的发展，人们不再满足于黑底白字的命令行界面，开发出来了 Linux 图形环境。
-Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。</p>
+<p>Linux 本身并不包括图形界面。没有图形界面的 Linux 系统，只能通过命令行来管理。</p>
+<p>Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两者的开发也不是同步的；给不带界面的 Linux 系统安装上一个桌面环境，你就能看到各种漂亮的窗口，并能用鼠标点击它们了。</p>
 <h3 id="_2">桌面环境的选择<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境。</p>
 <h4 id="kde-plasma">KDE Plasma<a class="headerlink" href="#kde-plasma" title="Permanent link">&para;</a></h4>
@@ -1740,16 +1740,17 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 <h4 id="gnome">GNOME<a class="headerlink" href="#gnome" title="Permanent link">&para;</a></h4>
 <p>GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
 <a href="https://www.gnome.org/">GNOME 官网</a></p>
-<div class="admonition info">
-<p>除了上面两款常见的桌面环境，还有 Cinnamon, Unity 等，同学们可以自行了解。</p>
-</div>
 <h4 id="xfce">Xfce<a class="headerlink" href="#xfce" title="Permanent link">&para;</a></h4>
-<p>Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。</p>
-<p>本次所用的系统预先安装了 Xfce 桌面环境，因此本章将主要围绕 Xfce 的个性化来开展。实际上无论是哪一款桌面系统，个性化方式大同小异。</p>
+<p>Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
+<a href="https://www.xfce.org/">Xfce 官网</a></p>
+<div class="admonition info">
+<p>除了上面的桌面环境，常见的还有 Cinnamon, Unity 等，同学们可以自行了解。</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>如果你想要安装其它桌面系统（如 Gnome）或者你的系统未预装好桌面环境，可以参阅拓展阅读的内容。</p>
 </div>
+<p>本次教学所用的系统 Xubuntu 预先安装了 Xfce 桌面环境，因此本章将主要围绕 Xfce 的个性化来开展。实际上无论是哪一款桌面系统，个性化方式大同小异。</p>
 <h3 id="appearance-settings">常用外观个性化<a class="headerlink" href="#appearance-settings" title="Permanent link">&para;</a></h3>
 <p>跟 Windows 系统一样，大部分 Linux 桌面环境个性化功能并不比 Windows 差。</p>
 <p>我们直接打开 Xfce 中的设置管理器，如图所示。</p>
@@ -1775,7 +1776,7 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 <tbody>
 <tr>
 <td>目录</td>
-<td>存放壁纸的目录，默认文件夹在 <code>/usr/share/backgrounds/xfce/</code>。</td>
+<td>存放壁纸的目录。</td>
 </tr>
 <tr>
 <td>样式</td>
@@ -1787,7 +1788,7 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 </tr>
 <tr>
 <td>修改背景</td>
-<td>如果一个位置包含多张图像，则 Xfce 允许你通过循环浏览可用图像来自动更改背景。你可以通过选中<strong>更改背景</strong>框来启用此选项。</td>
+<td>如果一个位置包含多张图像，则 Xfce 允许你通过循环浏览可用图像来自动更改背景。</td>
 </tr>
 </tbody>
 </table>
@@ -1897,6 +1898,10 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 
 <p>可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。</p>
 <h4 id="_4">自动化脚本<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p>脚本的使用将在第六章详细讲解。</p>
+</div>
 <p>Shell 脚本可以帮助程序员自动执行重复的任务。例如我们想自动编译运行一个 C 语言程序 <code>main.c</code>，我们可以在该文件的目录新建一个脚本 <code>run.sh</code>.</p>
 <p>两个文件分别下如内容。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// main.c</span>
@@ -1967,7 +1972,7 @@ $ ls
 
 <div class="admonition info">
 <p class="admonition-title">注意</p>
-<p>显示内容与计算机文件状态有关，并不是每个人都会显样同的内容。</p>
+<p>显示内容与计算机文件状态有关，并不是每个人都会显示相同的内容。</p>
 </div>
 <h2 id="website">搭建简易的网站<a class="headerlink" href="#website" title="Permanent link">&para;</a></h2>
 <p>Linux 环境中较 Windows 更加容易搭建，仅需一两行命令，即可搭建成型的网站。</p>
@@ -1978,6 +1983,10 @@ $ ls
 <p class="admonition-title">提示</p>
 <p>有兴趣自己配置的同学可以参阅补充材料。</p>
 </div>
+<p>下载脚本要使用 <code>curl</code> 命令，我们要先安装 curl。</p>
+<div class="codehilite"><pre><span></span><code>$ sudo apt install curl
+</code></pre></div>
+
 <p>打开终端并运行</p>
 <div class="codehilite"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh <span class="p">|</span> sudo bash
 </code></pre></div>
