@@ -8,7 +8,7 @@
 
 ## 编写建议
 
-请参考 [编写建议](https://101.ustclug.org/advice/) 页面，了解我们的编写规范。
+请参考 [编写指导](https://101.ustclug.org/Spec/writing/) 页面，了解我们的编写规范。
 
 ## 许可
 
