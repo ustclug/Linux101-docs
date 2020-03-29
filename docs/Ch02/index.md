@@ -1,6 +1,6 @@
 # 个性化配置与建站体验
 
-!!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
+!!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "导言"
 
@@ -66,7 +66,7 @@ Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
 
 #### 桌面 {#desktop}
 
-xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面上设置背景图像/颜色和绘制图标。当您分别用鼠标右键或鼠标中键单击桌面时，它可以显示应用程序菜单和所有正在运行的应用程序的列表。
+xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面上设置背景图像/颜色和绘制图标。当你分别用鼠标右键或鼠标中键单击桌面时，它可以显示应用程序菜单和所有正在运行的应用程序的列表。
 
 ##### 背景 {#desktop-background}
 
@@ -257,7 +257,7 @@ Thunar 提供了一套插件接口，Thunar 插件可以作为单独的软件包
 
 #### 会话管理器 {#sessions}
 
-Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态（打开的应用程序及其位置），并在下次启动时将其还原。您可以创建几个不同的会话，并在启动时选择其中一个。
+Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态（打开的应用程序及其位置），并在下次启动时将其还原。你可以创建几个不同的会话，并在启动时选择其中一个。
 
 在「设置管理器」的「会话和启动」中可以配置它。
 
@@ -471,9 +471,7 @@ $ jekyll serve
 ![](images/jekyll-installation.png)
 
 ## 思考题
-
-
-## 引用来源
+## 引用来源 {#references}
 
 - [Xfce 文档](https://docs.xfce.org/xfce/start)
 - [Ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)
