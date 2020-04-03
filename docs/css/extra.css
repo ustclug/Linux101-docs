@@ -13,3 +13,5 @@
 .md-typeset .md-typeset__table > table { width: auto; margin: 0 auto; }
 .md-typeset p.caption { text-align: center; font-size: 0.94em; color: grey; margin: -0.7em 0 0; }
 .md-typeset .footnote hr { margin-top: 0.2em; }
+
+@media only screen and (min-width: 76.25em) { .md-tabs ~ .md-main .md-nav--primary > .md-nav__list > .md-nav__item--nested { display: none; } }

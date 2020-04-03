@@ -68,3 +68,9 @@
 		margin-top: 0.2em;
 	}
 }
+
+@media only screen and (min-width: 76.25em) {
+	.md-tabs ~ .md-main .md-nav--primary > .md-nav__list > .md-nav__item--nested {
+		display: none;
+	}
+}
