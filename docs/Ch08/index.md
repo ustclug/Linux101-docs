@@ -55,9 +55,9 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 !!! failure "此段落需要编辑，添加可用的 Registry Mirror。"
 
-Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。幸运的是，一些服务在中国提供了 Docker Hub 的镜像，~~微软 Azure 和~~网易云就是其中两个。
+Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。幸运的是，一些服务在中国提供了 Docker Hub 的镜像，<s>微软 Azure 和</s>网易云就是其中两个。
 
-为了使用~~微软 Azure 和~~网易云的 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 `/etc/docker/daemon.json` 文件（如果文件不存在，请新建一个），写入以下内容。
+为了使用<s>微软 Azure 和</s>网易云的 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 `/etc/docker/daemon.json` 文件（如果文件不存在，请新建一个），写入以下内容。
 
 ```json
 {
