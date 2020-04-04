@@ -26,7 +26,7 @@
 
 正如标题所见，GNU 的全称使用了一种递归，表达了与 Unix 这种对“自由”的限制决裂的态度。（虽然我一直在疑惑开头的 G 从哪来）
 
-而进入 Linux 世界，便意味着将一直与 GNU 软件打交道。先看看一堆字母 g 开头的：gcc-C 编译器，gdb-程序调试器，gzip-压缩，gnome-桌面环境，gimp-图像编辑（对标 Photoshop），首字母 g 都是 gnu 的缩写；（当然 grep-查找，grab-启动引导程序不属此类。）我们 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件，默默地为 Linux 奉献着；还有<a href="">更多性能优异的软件↗</a>，被自由软件爱好者维护、分享······加入 Linux，便是认同了这种极客精神与开源文化。
+而进入 Linux 世界，便意味着将一直与 GNU 软件打交道。先看看一堆字母 g 开头的：gcc-C 编译器，gdb-程序调试器，gzip-压缩，gnome-桌面环境，gimp-图像编辑（对标 Photoshop），首字母 g 都是 gnu 的缩写；（当然 grep-查找，grab-启动引导程序不属此类。）我们 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件，默默地为 Linux 奉献着；还有[更多性能优异的软件 ↗](https://www.gnu.org/software/)，被自由软件爱好者维护、分享······加入 Linux，便是认同了这种极客精神与开源文化。
 
 这里有一份[Redhat 公司制作的录音节目 command-line-heroes ↗](https://www.redhat.com/en/command-line-heroes)，纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。
 
