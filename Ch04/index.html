@@ -668,6 +668,19 @@
     后台任务
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nohup" class="md-nav__link">
+    nohup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -679,6 +692,19 @@
   <a href="#service" class="md-nav__link">
     服务
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    什么是服务？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1151,6 +1177,19 @@
     后台任务
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nohup" class="md-nav__link">
+    nohup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1162,6 +1201,19 @@
   <a href="#service" class="md-nav__link">
     服务
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    什么是服务？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1230,7 +1282,7 @@
 <p><img alt="PID" src="images/PID.png" /></p>
 <p><strong>那么，PID 又是如何产生的呢？</strong></p>
 <p>很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。</p>
-<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后手撸<strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
+<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为<strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p><em>由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。</em></p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
@@ -1279,11 +1331,27 @@
 </details>
 <h3 id="priority">优先级，NICE 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h3>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。</p>
-<p>而调度这个词，指的正是我们一开始所提及的，安排各进程运行顺序及时常的过程。（严格定义：调度是分配工作（进程）所需资源的方法。）</p>
-<p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为协作式（cooperative）操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，让每个进程在一定时间内都得到运行。</p>
-<p>系统进行调度，主要面临这样几个问题：①何时（什么契机）可以进行调度？②要不要进行调度？ ③该调度谁？</p>
+<p>优先级思想很简单，为任务的重要程度排一个序，任务越紧急，数值越低，越排在前面。而 NICE 值更加直白，数值越大说明程序<s>人品越高尚</s> ——我是说越要懂得谦让。</p>
+<p>而调度这个词，指的正是我们一开始所提及的，安排各进程运行顺序及时长的过程。（严格定义：调度是分配工作（进程）所需资源的方法。）</p>
+<div class="admonition info">
+<p class="admonition-title">协作与抢占</p>
+<p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为协作式（cooperative）操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配时间片（time slice），让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为抢占式（preemptive）操作系统。</p>
+</div>
+<p>系统进行调度，主要面临这样几个问题：</p>
+<ul>
+<li>何时（什么契机）可以进行调度？</li>
+<li>要不要进行调度切换进程？ </li>
+<li>该调度谁？</li>
+</ul>
 <p>首先若想进行调度，必有中断参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。<span class="red">此处应有引用</span>那么 Linux 系统如何利用中断进行调度呢？</p>
-<p>一般说来，</p>
+<p>已知我们一需要轮流调度算法，二需要支持高优先级抢占低优先级与事件驱动。则系统必然需要在周期性的时钟中断到来时，重新执行一遍调度，查看当前进程的时间片是否使用完毕，以及是否有高优先级程序已经准备就绪。而为了达成事件驱动，系统在一些其他中断发生后，也需要进行例行调度检查，如果响应该中断的程序更紧急，应当立即执行。</p>
+<p>如上调度策略一旦确定，则三个问题迎刃而解：</p>
+<ul>
+<li>在中断发生时进行调度。</li>
+<li>时间片使用完或有高优先级的任务就绪时选择切换进程。</li>
+<li>将高优先级任务投入运行，直到程序因时间片用完或其他原因挂起。</li>
+</ul>
+<p>以上内容听来似废话，然而这正是操作系统调度的核心（单核模型）。我们刚刚得到结论，调度算法的行为取决于时间片和优先级。它们是如何确定的，是固定的吗？</p>
 <details class="info"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
 <thead>
 <tr>
@@ -1414,12 +1482,22 @@
 <p>答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。</p>
 </div>
 <h3 id="background-task">后台任务<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>
+<h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
+<p>如果 tty/pty 被关闭，则前后台进程一起收到 SIGHUP，如果 shell 被 kill -9 （SIGTERM 无效），则后台进程保留被接管。注意，shell可以主动退出，这样后台进程不收 SIGHUP。但同时注意，ssh 的初始shell不适用于此情形，如果该 shell 主动退出，不会保留后台进程。</p>
 <p>除 nohup 外，bash 及其他的 shell 还可以有内建命令完成脱离</p>
 <div class="admonition question">
 <p class="admonition-title">问题</p>
 <p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（详见流的重定向）</p>
 </div>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
+<h3 id="_2">什么是服务？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<details class="example"><summary>首先，n 个实验</summary><p>1.按 <code>ctrl + shift + T</code>，新建一个页面。输入 <code>sleep xxx</code> 或者 <code>ping xxx</code>（尽量使命令得以区分），随后
+    - 使用</p>
+</details>
+<p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出，该 bash 的后台进程将不会接收到 SIGHUP。</p>
+<div class="admonition info">
+<p class="admonition-title">两次 fork</p>
+</div>
 <h2 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h2>
 <!--
 ## 下载链接(已失效)
