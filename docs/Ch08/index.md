@@ -62,6 +62,7 @@ Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因�
 ```json
 {
   "registry-mirrors": [
+    "https://reg-mirror.qiniu.com",
     "https://hub-mirror.c.163.com"
   ]
 }
@@ -72,6 +73,7 @@ Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因�
 
 ```text
  Registry Mirrors:
+  https://reg-mirror.qiniu.com/
   https://hub-mirror.c.163.com/
 ```
 
