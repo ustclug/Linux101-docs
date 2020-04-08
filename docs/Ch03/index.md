@@ -111,6 +111,27 @@ Do you want to continue? [Y/n]
 
     即使用 `sudo apt install firefox`
 
+    在输入之后，终端显示
+
+    ```
+    [sudo] password for ubuntu:
+    ```
+
+    这里提示的是需要用户输入密码，以提升权限来执行命令
+
+    当然，在用户输入密码的过程中，为了安全，终端是不会进行密码的回显的，即终端不会将用户的输入内容打印在屏幕上。
+    
+    因此当你发现自己输入了很多内容也没有什么反应的时候，不用惊慌，只需要像平常一样输入正确的密码、回车，即可完成密码的正确性的鉴定。
+
+    如果密码输入正确，那么就可以正常地执行命令
+
+    否则，则需要再次尝试
+
+    ```
+    Sorry, try again.
+    [sudo] password for ubuntu: 
+    ```
+
     **具体有关权限的知识点将在第五章展开**
 
 
@@ -244,6 +265,68 @@ Do you want to continue? [Y/n]
 
     当然也可以直接使用 vim、nano 等文本编辑器进行修改
 
+### 安装预编译可执行文件
+
+对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。
+
+!!! Example "安装预编译的 LLVM"
+    > LLVM 的前端 Clang 在 apt 上有提供，apt install clang 或对应版本的 clang 包名即可
+
+    在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
+
+    ```shell
+    # 下载二进制的压缩文件存档
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+
+    # 将下载得到的压缩文件解压到当前文件夹
+    tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
+
+    cd clang
+    ```
+
+    查看当前的目录下有什么内容
+
+    ```shell
+    ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 ls
+    bin  include  lib  libexec  share  
+    ```
+
+    一般而言，软件的可执行文件都位于 bin 文件夹下
+
+    ```shell
+    ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 cd bin
+    ➜  bin ls
+    (Output omitted)
+    clang                     clang-tidy            llvm-cov 
+    clang++                   clangd                llvm-cvtres
+    clang-10                  diagtool              llvm-cxxdump
+    clang-apply-replacements  dsymutil              llvm-cxxfilt
+    (Output omitted)
+    ```
+
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件
+
+    当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。
+
+    我们可以这样做
+
+    ```shell
+    # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
+    sudo cp -R * /usr/local/
+    ```
+
+    为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 文件夹是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的文件夹下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的文件夹下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
+    
+    通过这个命令可以看到当前的 PATH 环境变量有哪些目录
+
+    ```shell
+    ➜  ~ echo $PATH
+    /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    ```
+
+    在上面的复制过程中，源目录和目标目录的两个 `bin` 文件夹会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 文件夹中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
+
+
 ## 操作文件与文件夹
 
 在 Linux 在进行操作文件与文件夹是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与文件夹，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
@@ -283,6 +366,21 @@ cp [OPTION] SOURCE... DIRECTORY
     ```Bash
     cp -r dir1 ./test/
     ```
+
+!!! tips "硬链接和符号链接"
+    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和符号链接
+
+    简单而言，一个文件的硬链接和符号链接都指向文件自身，但是在底层有不同的行为。
+
+    需要先了解一个概念：inode
+
+    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和文件夹。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）
+
+    > 可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html
+
+    硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个
+
+    符号链接与源文件的 inode 不同。符号链接保存了源文件的路径，在访问符号链接的时候，访问的路径被替换为源文件的路径，因此访问符号链接也等同于访问源文件。但是如果删除了源文件，符号链接所保存的路径也就无效了，符号链接因此也是无效的。
 
 ### 移动文件、文件夹
 
