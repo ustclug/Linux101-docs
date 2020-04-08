@@ -7,32 +7,35 @@ repo_url: https://github.com/ustclug/Linux101-docs
 copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
 
 theme:
-    font: false
-    name: 'material'
-    language: 'zh'
+  font: false
+  name: 'material'
+  language: 'zh'
+  icon:
+    logo: fontawesome/brands/linux
+    repository: octicons/mark-github
 
 markdown_extensions:
-    - admonition
-    - attr_list
-    - codehilite
-    - footnotes
-    - pymdownx.details
-    - pymdownx.superfences
-    - markdown.extensions.def_list
-    - toc:
-        permalink: true
+  - admonition
+  - attr_list
+  - codehilite
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - markdown.extensions.def_list
+  - toc:
+      permalink: true
 
 extra:
   social:
-    - icon: fontawesome/solid/globe-americas
+    - icon: octicons/globe
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
-    - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
-    # 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/js/all.min.js'
+  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
+  # 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/js/all.min.js'
 
 extra_css:
-    - 'css/extra.css'
+  - 'css/extra.css'
 
 google_analytics:
   - 'UA-160637954-1'
