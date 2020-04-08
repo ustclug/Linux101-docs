@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Linux 101 课程讲义">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="LUG@USTC">
       
-      
-        <meta name="lang:clipboard.copy" content="复制">
-      
-        <meta name="lang:clipboard.copied" content="已复制">
-      
-        <meta name="lang:search.language" content="ja">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
-      
-        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
-      
-        <meta name="lang:search.result.other" content="# 个符合条件的结果">
-      
-        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
@@ -46,17 +25,14 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c3000690.min.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
-    
     
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="../css/extra.css">
@@ -64,97 +40,78 @@
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-160637954-1", "auto")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-160637954-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
-    <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    <body dir="">
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#_1" tabindex="0" class="md-skip">
-        跳转至
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://101.ustclug.org/" title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Linux 101
-            </span>
-            <span class="md-header-nav__topic">
-              
-                讲义
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-header-nav__button md-logo" aria-label="Linux 101">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Linux 101
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              讲义
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             键入以开始搜索
           </div>
@@ -164,71 +121,56 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Linux 101
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
@@ -244,13 +186,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       负一：计划规格
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="负一：计划规格" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         负一：计划规格
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -304,13 +252,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       零：欢迎
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="零：欢迎" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         零：欢迎
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -364,13 +318,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       一：初识 Linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="一：初识 Linux" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         一：初识 Linux
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -424,13 +384,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       二：个性化配置与建站体验
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="二：个性化配置与建站体验" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         二：个性化配置与建站体验
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -472,13 +438,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       三：软件安装与文件操作
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="三：软件安装与文件操作" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         三：软件安装与文件操作
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -520,13 +492,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
       四：进程、前后台、服务与例行性任务
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="四：进程、前后台、服务与例行性任务" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         四：进程、前后台、服务与例行性任务
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -570,13 +548,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
     
     <label class="md-nav__link" for="nav-8">
       五：用户与用户组、文件权限、文件系统层次结构
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="五：用户与用户组、文件权限、文件系统层次结构" data-md-level="1">
       <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         五：用户与用户组、文件权限、文件系统层次结构
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -591,13 +575,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         讲义
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
       </label>
     
     <a href="./" title="讲义" class="md-nav__link md-nav__link--active">
@@ -605,13 +592,18 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -619,7 +611,7 @@
     用户与用户组
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="用户与用户组">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -634,7 +626,7 @@
     Linux 下的用户简介
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Linux 下的用户简介">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -668,7 +660,7 @@
     切换用户：使用 su 和 sudo
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="切换用户：使用 su 和 sudo">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -702,7 +694,7 @@
     命令行的用户配置操作
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="命令行的用户配置操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -757,10 +749,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -792,13 +780,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
     <label class="md-nav__link" for="nav-9">
       六：网络下载工具与 Shell 脚本
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
       <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         六：网络下载工具与 Shell 脚本
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -840,13 +834,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
     <label class="md-nav__link" for="nav-10">
       七：Linux 上的编程
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="七：Linux 上的编程" data-md-level="1">
       <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         七：Linux 上的编程
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -888,13 +888,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
     <label class="md-nav__link" for="nav-11">
       八：Docker
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="八：Docker" data-md-level="1">
       <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         八：Docker
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -936,13 +942,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
     
     <label class="md-nav__link" for="nav-12">
       九：Shell 文字处理工具与正则表达式
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="九：Shell 文字处理工具与正则表达式" data-md-level="1">
       <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         九：Shell 文字处理工具与正则表达式
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -984,13 +996,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
       附录
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="附录" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         附录
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1060,13 +1078,18 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -1074,7 +1097,7 @@
     用户与用户组
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="用户与用户组">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1089,7 +1112,7 @@
     Linux 下的用户简介
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Linux 下的用户简介">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1123,7 +1146,7 @@
     切换用户：使用 su 和 sudo
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="切换用户：使用 su 和 sudo">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1157,7 +1180,7 @@
     命令行的用户配置操作
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="命令行的用户配置操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1212,10 +1235,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -1228,7 +1247,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch05/index.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch05/index.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
                 
                 
                 <h1 id="_1">用户与用户组、文件权限、文件系统层次结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1256,14 +1280,14 @@
 <div class="admonition example">
 <p class="admonition-title"><code>/etc/passwd</code> 示例</p>
 <p>以下是一个例子：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">root</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="n">root</span><span class="o">:/</span><span class="n">root</span><span class="o">:/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
-<span class="n">daemon</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">daemon</span><span class="o">:/</span><span class="n">usr</span><span class="sr">/sbin:/usr/sbin/</span><span class="n">nologin</span>
-<span class="n">bin</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="n">bin</span><span class="o">:/</span><span class="n">bin</span><span class="o">:/</span><span class="n">usr</span><span class="sr">/sbin/</span><span class="n">nologin</span>
-<span class="err">（中间内容省略）</span>
-<span class="n">sshd</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">110</span><span class="o">:</span><span class="mi">65534</span><span class="o">::/</span><span class="n">run</span><span class="sr">/sshd:/usr/sbin/</span><span class="n">nologin</span>
-<span class="n">me</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">1000</span><span class="o">:</span><span class="mi">1000</span><span class="o">:</span><span class="n">me</span><span class="o">:/</span><span class="n">home</span><span class="sr">/me:/bin/</span><span class="n">bash</span>
-<span class="n">lxd</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">998</span><span class="o">:</span><span class="mi">100</span><span class="o">::/</span><span class="n">var</span><span class="sr">/snap/lxd/common/lxd:/bin/</span><span class="kc">false</span>
-<span class="n">mysql</span><span class="o">:</span><span class="n">x</span><span class="o">:</span><span class="mi">111</span><span class="o">:</span><span class="mi">116</span><span class="o">:</span><span class="n">MySQL</span> <span class="n">Server</span><span class="o">,,,:/</span><span class="n">nonexistent</span><span class="o">:/</span><span class="n">bin</span><span class="o">/</span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code>root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+（中间内容省略）
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+me:x:1000:1000:me:/home/me:/bin/bash
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 </code></pre></div>
 
 <p>在此文件中，每一行都是一个用户，每行中用户信息由冒号 <code>:</code> 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 <code>man 5 passwd</code> 查阅。</p>
@@ -1304,24 +1328,24 @@
 <div class="admonition tip">
 <p class="admonition-title">以 <code>root</code> 用户执行上一条命令</p>
 <p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
-<div class="codehilite"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="k">update</span><span class="w"></span>
-<span class="n">Reading</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="n">lists</span><span class="p">...</span><span class="w"> </span><span class="n">Done</span><span class="w"></span>
-<span class="nl">E</span><span class="p">:</span><span class="w"> </span><span class="n">Could</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/</span><span class="n">lock</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="err">:</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="n">denied</span><span class="p">)</span><span class="w"></span>
-<span class="nl">E</span><span class="p">:</span><span class="w"> </span><span class="n">Unable</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/</span><span class="w"></span>
-<span class="nl">W</span><span class="p">:</span><span class="w"> </span><span class="n">Problem</span><span class="w"> </span><span class="n">unlinking</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">pkgcache</span><span class="p">.</span><span class="n">bin</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RemoveCaches</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="err">:</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="n">denied</span><span class="p">)</span><span class="w"></span>
-<span class="nl">W</span><span class="p">:</span><span class="w"> </span><span class="n">Problem</span><span class="w"> </span><span class="n">unlinking</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">srcpkgcache</span><span class="p">.</span><span class="n">bin</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RemoveCaches</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="err">:</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="n">denied</span><span class="p">)</span><span class="w"></span>
-<span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="err">!!</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="k">update</span><span class="w"></span>
-<span class="o">[</span><span class="n">sudo</span><span class="o">]</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nl">me</span><span class="p">:</span><span class="w"></span>
-<span class="nl">Hit</span><span class="p">:</span><span class="mi">1</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">ustc</span><span class="p">.</span><span class="n">edu</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="n">ubuntu</span><span class="w"> </span><span class="n">bionic</span><span class="w"> </span><span class="n">InRelease</span><span class="w"></span>
-<span class="err">（</span><span class="n">以下内容省略</span><span class="err">）</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$ apt update
+Reading package lists... Done
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Unable to lock directory /var/lib/apt/lists/
+W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
+W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
+$ sudo !!
+sudo apt update
+[sudo] password for me:
+Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
+（以下内容省略）
 </code></pre></div>
 
 <p>其实，在 Shell 中，<code>!!</code> 即代表上一条命令，也可以和其他的命令结合使用。</p>
 </div>
 <p>那么，如何以 <code>root</code> 之外的用户的身份执行命令呢？加上 <code>-u 用户名</code> 的参数即可。</p>
-<div class="codehilite"><pre><span></span><code>$ sudo -u nobody id
-<span class="nv">uid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nobody<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$ sudo -u nobody id
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 </code></pre></div>
 
 <p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
@@ -1329,12 +1353,12 @@
 <p class="admonition-title">修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</p>
 <p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
 <p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
-<div class="codehilite"><pre><span></span><code><span class="cp"># Allow members of group sudo to execute any command</span>
-<span class="nf">%sudo</span>   <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="nl">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">ALL</span>
+<div class="highlight"><pre><span></span><code># Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
 </code></pre></div>
 
 <p>将配置行修改成以下即可。</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">%sudo</span>   <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="nl">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="nl">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+<div class="highlight"><pre><span></span><code>%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 </code></pre></div>
 
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
@@ -1342,7 +1366,7 @@
 <h4 id="su"><code>su</code><a class="headerlink" href="#su" title="Permanent link">&para;</a></h4>
 <p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
 <p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
-<div class="codehilite"><pre><span></span><code>$ su
+<div class="highlight"><pre><span></span><code>$ su
 Password:
 （密码？什么密码？输我自己的密码试试？）
 su: Authentication failure
@@ -1350,19 +1374,19 @@ $
 </code></pre></div>
 
 <p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
-<div class="codehilite"><pre><span></span><code>$ sudo su
+<div class="highlight"><pre><span></span><code>$ sudo su
 Password:
 （没错，是我自己的密码）
-<span class="c1"># id</span>
-<span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span>
-<span class="c1"># exit</span>
+# id
+uid=0(root) gid=0(root) groups=0(root)
+# exit
 $ 
 </code></pre></div>
 
 <p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
 <h3 id="intro-user-group">用户组简介<a class="headerlink" href="#intro-user-group" title="Permanent link">&para;</a></h3>
 <p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
-<div class="codehilite"><pre><span></span><code>$ groups
+<div class="highlight"><pre><span></span><code>$ groups
 me adm cdrom sudo dip plugdev lxd
 </code></pre></div>
 
@@ -1378,23 +1402,23 @@ me adm cdrom sudo dip plugdev lxd
 <p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
 </div>
 <p><code>adduser</code> 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：</p>
-<div class="codehilite"><pre><span></span><code>$ sudo adduser 用户名
+<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名
 </code></pre></div>
 
 <p>即可添加此用户。而输入</p>
-<div class="codehilite"><pre><span></span><code>$ sudo adduser --group 组名
+<div class="highlight"><pre><span></span><code>$ sudo adduser --group 组名
 </code></pre></div>
 
 <p>即可添加此用户组。将用户加入指定用户组也非常简单：</p>
-<div class="codehilite"><pre><span></span><code>$ sudo adduser 用户名 组名
+<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 组名
 </code></pre></div>
 
 <h2 id="file-permission">文件权限<a class="headerlink" href="#file-permission" title="Permanent link">&para;</a></h2>
 <p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
-<div class="codehilite"><pre><span></span><code>$ ls -l
-total <span class="m">8</span>
--rwxrw-r-- <span class="m">1</span> me me   <span class="m">40</span> Feb  <span class="m">3</span> <span class="m">22</span>:37 a_file
-drwxrwxr-x <span class="m">2</span> me me <span class="m">4096</span> Feb  <span class="m">3</span> <span class="m">22</span>:38 a_folder
+<div class="highlight"><pre><span></span><code>$ ls -l
+total 8
+-rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
+drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 </code></pre></div>
 
 <p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
@@ -1404,28 +1428,28 @@ drwxrwxr-x <span class="m">2</span> me me <span class="m">4096</span> Feb  <span
 <p class="admonition-title">执行权限意味着什么？</p>
 <p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
 <p>而对于文件夹来说，拥有执行权限，你就可以遍历这个文件夹下的内容。以下是一个例子：</p>
-<div class="codehilite"><pre><span></span><code>$ ls -l
-total <span class="m">8</span>
--rwxrw-r-- <span class="m">1</span> me me   <span class="m">40</span> Feb  <span class="m">3</span> <span class="m">22</span>:37 a_file
-drw-rw-r-- <span class="m">2</span> me me <span class="m">4096</span> Feb  <span class="m">3</span> <span class="m">22</span>:38 a_folder
+<div class="highlight"><pre><span></span><code>$ ls -l
+total 8
+-rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
+drw-rw-r-- 2 me me 4096 Feb  3 22:38 a_folder
 $ （与上面不同，我们去掉了 a_folder 的执行权限）
-$ <span class="nb">cd</span> a_folder
+$ cd a_folder
 -bash: cd: a_folder/: Permission denied
 $ （失败了，这说明，如果没有执行权限，我们无法进入这个目录）
 $ ls a_folder
-ls: cannot access <span class="s1">&#39;a_folder/test&#39;</span>: Permission denied
-<span class="nb">test</span>
+ls: cannot access &#39;a_folder/test&#39;: Permission denied
+test
 $ （列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件 test）
 $ cat a_folder/test
 cat: a_folder/test: Permission denied
-$ cp a_folder/test <span class="nb">test</span>
-cp: cannot stat <span class="s1">&#39;a_folder/test&#39;</span>: Permission denied
+$ cp a_folder/test test
+cp: cannot stat &#39;a_folder/test&#39;: Permission denied
 $ mv a_folder/test a_folder/test2
-mv: failed to access <span class="s1">&#39;a_folder/test2&#39;</span>: Permission denied
+mv: failed to access &#39;a_folder/test2&#39;: Permission denied
 $ touch a_folder/test2
-touch: cannot touch <span class="s1">&#39;a_folder/test2&#39;</span>: Permission denied
+touch: cannot touch &#39;a_folder/test2&#39;: Permission denied
 $ rm a_folder/test
-rm: cannot remove <span class="s1">&#39;a_folder/test&#39;</span>: Permission denied
+rm: cannot remove &#39;a_folder/test&#39;: Permission denied
 $ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
 </code></pre></div>
 
@@ -1434,12 +1458,12 @@ $ （可以看到，即使我们有写入权限，向此目录添加、删除、
 <div class="admonition example">
 <p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
 <p>有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：</p>
-<div class="codehilite"><pre><span></span><code>$ ./program
+<div class="highlight"><pre><span></span><code>$ ./program
 -bash: ./program: Permission denied
 </code></pre></div>
 
 <p>大多数情况下，这说明这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
-<div class="codehilite"><pre><span></span><code>$ chmod +x program
+<div class="highlight"><pre><span></span><code>$ chmod +x program
 $ ./program
 （可以执行了）
 </code></pre></div>
@@ -1559,9 +1583,6 @@ $ ./program
 </ol>
 </div>
                 
-                  
-                
-                
               
               
                 
@@ -1577,34 +1598,34 @@ $ ./program
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../Ch04/supplement/" title="拓展阅读" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../Ch04/supplement/" title="拓展阅读" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
                 拓展阅读
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="supplement/" title="拓展阅读" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="supplement/" title="拓展阅读" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
                 拓展阅读
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
           </a>
         
@@ -1619,17 +1640,19 @@ $ ./program
             Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
+        Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+          Material for MkDocs
+        </a>
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
     
-      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="globe" class="md-footer-social__link fa fa-globe"></a>
+      
+      
+      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="lug.ustc.edu.cn" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm82.29 357.6c-3.9 3.88-7.99 7.95-11.31 11.28-2.99 3-5.1 6.7-6.17 10.71-1.51 5.66-2.73 11.38-4.77 16.87l-17.39 46.85c-13.76 3-28 4.69-42.65 4.69v-27.38c1.69-12.62-7.64-36.26-22.63-51.25-6-6-9.37-14.14-9.37-22.63v-32.01c0-11.64-6.27-22.34-16.46-27.97-14.37-7.95-34.81-19.06-48.81-26.11-11.48-5.78-22.1-13.14-31.65-21.75l-.8-.72a114.792 114.792 0 0 1-18.06-20.74c-9.38-13.77-24.66-36.42-34.59-51.14 20.47-45.5 57.36-82.04 103.2-101.89l24.01 12.01C203.48 89.74 216 82.01 216 70.11v-11.3c7.99-1.29 16.12-2.11 24.39-2.42l28.3 28.3c6.25 6.25 6.25 16.38 0 22.63L264 112l-10.34 10.34c-3.12 3.12-3.12 8.19 0 11.31l4.69 4.69c3.12 3.12 3.12 8.19 0 11.31l-8 8a8.008 8.008 0 0 1-5.66 2.34h-8.99c-2.08 0-4.08.81-5.58 2.27l-9.92 9.65a8.008 8.008 0 0 0-1.58 9.31l15.59 31.19c2.66 5.32-1.21 11.58-7.15 11.58h-5.64c-1.93 0-3.79-.7-5.24-1.96l-9.28-8.06a16.017 16.017 0 0 0-15.55-3.1l-31.17 10.39a11.95 11.95 0 0 0-8.17 11.34c0 4.53 2.56 8.66 6.61 10.69l11.08 5.54c9.41 4.71 19.79 7.16 30.31 7.16s22.59 27.29 32 32h66.75c8.49 0 16.62 3.37 22.63 9.37l13.69 13.69a30.503 30.503 0 0 1 8.93 21.57 46.536 46.536 0 0 1-13.72 32.98zM417 274.25c-5.79-1.45-10.84-5-14.15-9.97l-17.98-26.97a23.97 23.97 0 0 1 0-26.62l19.59-29.38c2.32-3.47 5.5-6.29 9.24-8.15l12.98-6.49C440.2 193.59 448 223.87 448 256c0 8.67-.74 17.16-1.82 25.54L417 274.25z"/></svg>
+      </a>
     
   </div>
 
@@ -1639,26 +1662,18 @@ $ ./program
       
     </div>
     
-      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
-        
-        
-          
-          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
-          
-            
-              
-                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
-              
-              
-                <script src="../assets/javascripts/lunr/lunr.ja.js"></script>
-              
-            
-          
-          
-        
-      
-      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
       

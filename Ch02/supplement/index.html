@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Linux 101 课程讲义">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="LUG@USTC">
       
-      
-        <meta name="lang:clipboard.copy" content="复制">
-      
-        <meta name="lang:clipboard.copied" content="已复制">
-      
-        <meta name="lang:search.language" content="ja">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
-      
-        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
-      
-        <meta name="lang:search.result.other" content="# 个符合条件的结果">
-      
-        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
@@ -46,17 +25,14 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c3000690.min.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
-    
     
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="../../css/extra.css">
@@ -64,97 +40,78 @@
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-160637954-1", "auto")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-160637954-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
-    <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    <body dir="">
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#_1" tabindex="0" class="md-skip">
-        跳转至
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://101.ustclug.org/" title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Linux 101
-            </span>
-            <span class="md-header-nav__topic">
-              
-                拓展阅读
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-header-nav__button md-logo" aria-label="Linux 101">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Linux 101
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              拓展阅读
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             键入以开始搜索
           </div>
@@ -164,71 +121,56 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Linux 101
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
@@ -244,13 +186,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       负一：计划规格
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="负一：计划规格" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         负一：计划规格
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -304,13 +252,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       零：欢迎
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="零：欢迎" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         零：欢迎
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -364,13 +318,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       一：初识 Linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="一：初识 Linux" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         一：初识 Linux
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -426,13 +386,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       二：个性化配置与建站体验
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="二：个性化配置与建站体验" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         二：个性化配置与建站体验
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -459,13 +425,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         拓展阅读
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
       </label>
     
     <a href="./" title="拓展阅读" class="md-nav__link md-nav__link--active">
@@ -473,13 +442,18 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -494,7 +468,7 @@
     GNOME 相关
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="GNOME 相关">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -502,7 +476,7 @@
     Gnome 桌面环境的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Gnome 桌面环境的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -534,7 +508,7 @@
     终端的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="终端的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -542,7 +516,7 @@
     更换 Shell
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="更换 Shell">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -550,7 +524,7 @@
     Zsh
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Zsh">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -580,7 +554,7 @@
     其它的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="其它的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -600,7 +574,7 @@
     搭建简易的网站
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="搭建简易的网站">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -622,10 +596,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -645,13 +615,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       三：软件安装与文件操作
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="三：软件安装与文件操作" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         三：软件安装与文件操作
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -693,13 +669,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
       四：进程、前后台、服务与例行性任务
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="四：进程、前后台、服务与例行性任务" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         四：进程、前后台、服务与例行性任务
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -741,13 +723,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       五：用户与用户组、文件权限、文件系统层次结构
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="五：用户与用户组、文件权限、文件系统层次结构" data-md-level="1">
       <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         五：用户与用户组、文件权限、文件系统层次结构
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -789,13 +777,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
     <label class="md-nav__link" for="nav-9">
       六：网络下载工具与 Shell 脚本
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
       <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         六：网络下载工具与 Shell 脚本
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -837,13 +831,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
     <label class="md-nav__link" for="nav-10">
       七：Linux 上的编程
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="七：Linux 上的编程" data-md-level="1">
       <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         七：Linux 上的编程
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -885,13 +885,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
     <label class="md-nav__link" for="nav-11">
       八：Docker
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="八：Docker" data-md-level="1">
       <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         八：Docker
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -933,13 +939,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
     
     <label class="md-nav__link" for="nav-12">
       九：Shell 文字处理工具与正则表达式
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="九：Shell 文字处理工具与正则表达式" data-md-level="1">
       <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         九：Shell 文字处理工具与正则表达式
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -981,13 +993,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
       附录
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="附录" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         附录
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1057,13 +1075,18 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -1078,7 +1101,7 @@
     GNOME 相关
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="GNOME 相关">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1086,7 +1109,7 @@
     Gnome 桌面环境的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Gnome 桌面环境的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1118,7 +1141,7 @@
     终端的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="终端的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1126,7 +1149,7 @@
     更换 Shell
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="更换 Shell">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1134,7 +1157,7 @@
     Zsh
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Zsh">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1164,7 +1187,7 @@
     其它的个性化
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="其它的个性化">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1184,7 +1207,7 @@
     搭建简易的网站
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="搭建简易的网站">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1206,10 +1229,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -1222,7 +1241,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch02/supplement.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch02/supplement.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
                 
                 
                 <h1 id="_1">个性化配置与建站体验<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1234,7 +1258,7 @@
 <p>下面就来介绍如何手动安装桌面环境。</p>
 <p>以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：</p>
 <p>安装 ubuntu-gnome-desktop 软件</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
+<div class="highlight"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
 </code></pre></div>
 
 <p>接下来的提示中按输入Y回车即安装</p>
@@ -1243,14 +1267,14 @@
 <p>若安装非常缓慢，可以尝试更换国内源。<a href="http://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">科大源更换教程</a></p>
 </div>
 <p>安装完成后输入</p>
-<div class="codehilite"><pre><span></span><code>$ sudo reboot
+<div class="highlight"><pre><span></span><code>$ sudo reboot
 </code></pre></div>
 
 <p>重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。</p>
 <p><img alt="" src="../images/gnome-desktop.png" /></p>
 <p>可以看到，通过简单几步，我们的桌面环境就安装成功了。</p>
 <details class="example"><summary>安装 Plasma 桌面</summary><p>同理，如果你喜欢 KDE plasma 桌面，只需要执行</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install kde-plasma-desktop
+<div class="highlight"><pre><span></span><code>$ sudo apt install kde-plasma-desktop
 $ sudo reboot
 </code></pre></div>
 
@@ -1260,7 +1284,7 @@ $ sudo reboot
 <p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。</p>
 <p>在 GNOME 桌面下用户可以轻松更换主题。
 首先安装 gnome-tweak-tool 软件</p>
-<div class="codehilite"><pre><span></span><code><span class="err">sudo apt install gnome-tweak-tool</span>
+<div class="highlight"><pre><span></span><code>sudo apt install gnome-tweak-tool
 </code></pre></div>
 
 <p>在 <a href="https://www.gnome-look.org/">ubuntu-look</a> 中找到自己喜欢的主题。</p>
@@ -1271,11 +1295,11 @@ $ sudo reboot
 <p>点击 Download 下载一个压缩包</p>
 <p><img alt="" src="../images/themes-download-icon.png" /></p>
 <p>解压后放到 <code>~/.themes</code> 文件夹，若不存在该文件夹则创建一个。</p>
-<div class="codehilite"><pre><span></span><code>$ mkdir ~/.themes
+<div class="highlight"><pre><span></span><code>$ mkdir ~/.themes
 </code></pre></div>
 
 <p>输入</p>
-<div class="codehilite"><pre><span></span><code>$ gnome-tweak-tool
+<div class="highlight"><pre><span></span><code>$ gnome-tweak-tool
 </code></pre></div>
 
 <p>打开 gnome-tweak-tool，在外观选项中选中想要的主题。</p>
@@ -1288,14 +1312,14 @@ $ sudo reboot
 <h4 id="gnome_2">GNOME 的拓展程序<a class="headerlink" href="#gnome_2" title="Permanent link">&para;</a></h4>
 <p>GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
 <p>要使用Gnome拓展程序我们要先安装 gnome-shell-extensions</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install gnome-shell-extensions
+<div class="highlight"><pre><span></span><code>$ sudo apt install gnome-shell-extensions
 </code></pre></div>
 
 <p>接下来进入拓展插件的网站并选择其中一款拓展。</p>
 <p><img alt="" src="../images/caffeine.png" /></p>
 <p>Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
 <p>我们可以输入</p>
-<div class="codehilite"><pre><span></span><code>$ gnome-shell --version
+<div class="highlight"><pre><span></span><code>$ gnome-shell --version
 </code></pre></div>
 
 <p>查看版本。</p>
@@ -1307,7 +1331,7 @@ $ sudo reboot
 <p><img alt="" src="../images/caffeine-folder.png" /></p>
 <p>并将该文件夹放到<code>~/.local/share/gnome-shell/extensions/</code>中。</p>
 <p>打开 gnome-tweaks</p>
-<div class="codehilite"><pre><span></span><code>$ gnome-tweaks
+<div class="highlight"><pre><span></span><code>$ gnome-tweaks
 </code></pre></div>
 
 <p>在拓展一栏即可启用我们刚刚装的caffeine</p>
@@ -1319,7 +1343,7 @@ $ sudo reboot
 <p>对于 Google Chrome、Chromium 和 Vivaldi： <a href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep">Chrome Web 商店</a></p>
 <p>对于 Firefox： <a href="https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/">Mozilla Addons</a></p>
 <p>再安装本地连接器
-<div class="codehilite"><pre><span></span><code>$ sudo apt install chrome-gnome-shell
+<div class="highlight"><pre><span></span><code>$ sudo apt install chrome-gnome-shell
 </code></pre></div></p>
 <p>即可在 https://extensions.gnome.org/ 网页中管理、安装插件。</p>
 <p><img alt="" src="../images/extensions-management.png" /></p>
@@ -1346,7 +1370,7 @@ $ sudo reboot
 <p>在 <a href="https://www.pling.com/p/1136805/">https://www.pling.com/p/1136805/</a> 中，下载ocs-url，下载时选择deb后缀的安装包。</p>
 <p><img alt="" src="../images/ocs-url-download.png" /></p>
 <p>命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。</p>
-<div class="codehilite"><pre><span></span><code>sudo dpkg -i 下载的包.deb
+<div class="highlight"><pre><span></span><code>sudo dpkg -i 下载的包.deb
 sudo apt-get install --fix-broken
 </code></pre></div>
 
@@ -1357,17 +1381,17 @@ sudo apt-get install --fix-broken
 <p>使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。</p>
 <h3 id="shell">更换 Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h3>
 <p>在那之前我们可以通过</p>
-<div class="codehilite"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
 </code></pre></div>
 
 <p>检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具—— zsh。</p>
 <h4 id="zsh">Zsh<a class="headerlink" href="#zsh" title="Permanent link">&para;</a></h4>
 <p>首先通过 apt 安装 zsh</p>
-<div class="codehilite"><pre><span></span><code>$ sudo apt install zsh
+<div class="highlight"><pre><span></span><code>$ sudo apt install zsh
 </code></pre></div>
 
 <p>将 zsh 设定为默认 shell</p>
-<div class="codehilite"><pre><span></span><code>$ chsh -s /bin/zsh
+<div class="highlight"><pre><span></span><code>$ chsh -s /bin/zsh
 </code></pre></div>
 
 <p>重启后打开终端就会发现 shell 已经变成了 zsh。</p>
@@ -1376,13 +1400,13 @@ sudo apt-get install --fix-broken
 <p>然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。</p>
 <h5 id="oh-my-zsh">oh-my-zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h5>
 <p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。</p>
-<div class="codehilite"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <div class="admonition info">
 <p class="admonition-title">如果无法下载安装脚本</p>
 <p>如果遇到了网络连通性问题，命令可以替换为：</p>
-<div class="codehilite"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 </div>
@@ -1410,11 +1434,11 @@ sudo apt-get install --fix-broken
 <li><code>/etc/protocols</code> 网络协议簇的配置</li>
 </ul>
 <details class="example"><summary>示例</summary><p>当我们登录用户成功时</p>
-<div class="codehilite"><pre><span></span><code>$ sudo login
+<div class="highlight"><pre><span></span><code>$ sudo login
 </code></pre></div>
 
 <p>会提示以下信息</p>
-<div class="codehilite"><pre><span></span><code>Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+<div class="highlight"><pre><span></span><code>Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
@@ -1439,12 +1463,12 @@ applicable law.
 <p>有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 <code>/etc/motd</code></p>
 </div>
 <p>我们在 <code>/etc/update-motd.d/</code> 目录下新建一个文件 <code>99-test</code>，写入下面内容</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 <span class="nb">echo</span> helloworld
 </code></pre></div>
 
 <p>然后</p>
-<div class="codehilite"><pre><span></span><code>$ sudo chmod +x /etc/update-motd.d/99-test
+<div class="highlight"><pre><span></span><code>$ sudo chmod +x /etc/update-motd.d/99-test
 </code></pre></div>
 
 <p>设置好权限，登录后就可以看到在末尾加上了我们在 <code>99-test</code> 文件中 echo 的内容。</p>
@@ -1452,36 +1476,36 @@ applicable law.
 </details>
 <h2 id="_5">搭建简易的网站<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="wordpress">WordPress 的手动配置<a class="headerlink" href="#wordpress" title="Permanent link">&para;</a></h3>
-<p><div class="codehilite"><pre><span></span><code>$ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+<p><div class="highlight"><pre><span></span><code>$ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 </code></pre></div>
 这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。</p>
 <p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，把下面内容填入</p>
-<div class="codehilite"><pre><span></span><code>Alias /blog /usr/share/wordpress
-<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code>Alias /blog /usr/share/wordpress
+&lt;Directory /usr/share/wordpress&gt;
     Options FollowSymLinks
     AllowOverride Limit Options FileInfo
     DirectoryIndex index.php
     Order allow,deny
     Allow from all
-<span class="nt">&lt;/Directory&gt;</span>
-<span class="nt">&lt;Directory</span> <span class="err">/usr/share/wordpress/wp-content</span><span class="nt">&gt;</span>
+&lt;/Directory&gt;
+&lt;Directory /usr/share/wordpress/wp-content&gt;
     Options FollowSymLinks
     Order allow,deny
     Allow from all
-<span class="nt">&lt;/Directory&gt;</span>
+&lt;/Directory&gt;
 </code></pre></div>
 
 <p>保存后输入命令来重启 apache2</p>
-<div class="codehilite"><pre><span></span><code>$ sudo a2ensite wordpress
+<div class="highlight"><pre><span></span><code>$ sudo a2ensite wordpress
 $ sudo a2enmod rewrite
 $ sudo service apache2 reload
 </code></pre></div>
 
 <p>再配置数据库相关内容</p>
-<p><div class="codehilite"><pre><span></span><code>$ sudo mysql -u root
+<p><div class="highlight"><pre><span></span><code>$ sudo mysql -u root
 </code></pre></div>
 出现以下信息时</p>
-<div class="codehilite"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+<div class="highlight"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 2
 Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
 Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -1490,7 +1514,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </code></pre></div>
 
 <p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">wordpress</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
     <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
     <span class="o">-&gt;</span> <span class="k">TO</span> <span class="n">wordpress</span><span class="o">@</span><span class="n">localhost</span>
@@ -1499,16 +1523,16 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </code></pre></div>
 
 <p>这里每次执行成功都会得到</p>
-<div class="codehilite"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
 </code></pre></div>
 
 <p>退出</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">quit</span>
 </code></pre></div>
 
 <p>编辑我们的 WordPress 配置 <code>/etc/wordpress/config-localhost.php</code></p>
 <p>写入以下内容，其中 <code>&lt;your-password&gt;</code> 为刚才设定的数据库密码。</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
@@ -1519,7 +1543,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </code></pre></div>
 
 <p>然后输入</p>
-<div class="codehilite"><pre><span></span><code>$ sudo service mysql start
+<div class="highlight"><pre><span></span><code>$ sudo service mysql start
 </code></pre></div>
 
 <p>启动数据库。</p>
@@ -1529,9 +1553,6 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <ul>
 <li><a href="https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098">https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098</a></li>
 </ul>
-                
-                  
-                
                 
               
               
@@ -1548,34 +1569,34 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../" title="讲义" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../" title="讲义" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
                 讲义
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../../Ch03/" title="讲义" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../../Ch03/" title="讲义" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
                 讲义
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
           </a>
         
@@ -1590,17 +1611,19 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
             Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
+        Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+          Material for MkDocs
+        </a>
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
-      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="globe" class="md-footer-social__link fa fa-globe"></a>
+      
+      
+      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="lug.ustc.edu.cn" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm82.29 357.6c-3.9 3.88-7.99 7.95-11.31 11.28-2.99 3-5.1 6.7-6.17 10.71-1.51 5.66-2.73 11.38-4.77 16.87l-17.39 46.85c-13.76 3-28 4.69-42.65 4.69v-27.38c1.69-12.62-7.64-36.26-22.63-51.25-6-6-9.37-14.14-9.37-22.63v-32.01c0-11.64-6.27-22.34-16.46-27.97-14.37-7.95-34.81-19.06-48.81-26.11-11.48-5.78-22.1-13.14-31.65-21.75l-.8-.72a114.792 114.792 0 0 1-18.06-20.74c-9.38-13.77-24.66-36.42-34.59-51.14 20.47-45.5 57.36-82.04 103.2-101.89l24.01 12.01C203.48 89.74 216 82.01 216 70.11v-11.3c7.99-1.29 16.12-2.11 24.39-2.42l28.3 28.3c6.25 6.25 6.25 16.38 0 22.63L264 112l-10.34 10.34c-3.12 3.12-3.12 8.19 0 11.31l4.69 4.69c3.12 3.12 3.12 8.19 0 11.31l-8 8a8.008 8.008 0 0 1-5.66 2.34h-8.99c-2.08 0-4.08.81-5.58 2.27l-9.92 9.65a8.008 8.008 0 0 0-1.58 9.31l15.59 31.19c2.66 5.32-1.21 11.58-7.15 11.58h-5.64c-1.93 0-3.79-.7-5.24-1.96l-9.28-8.06a16.017 16.017 0 0 0-15.55-3.1l-31.17 10.39a11.95 11.95 0 0 0-8.17 11.34c0 4.53 2.56 8.66 6.61 10.69l11.08 5.54c9.41 4.71 19.79 7.16 30.31 7.16s22.59 27.29 32 32h66.75c8.49 0 16.62 3.37 22.63 9.37l13.69 13.69a30.503 30.503 0 0 1 8.93 21.57 46.536 46.536 0 0 1-13.72 32.98zM417 274.25c-5.79-1.45-10.84-5-14.15-9.97l-17.98-26.97a23.97 23.97 0 0 1 0-26.62l19.59-29.38c2.32-3.47 5.5-6.29 9.24-8.15l12.98-6.49C440.2 193.59 448 223.87 448 256c0 8.67-.74 17.16-1.82 25.54L417 274.25z"/></svg>
+      </a>
     
   </div>
 
@@ -1610,26 +1633,18 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
       
     </div>
     
-      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
-        
-        
-          
-          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
-          
-            
-              
-                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
-              
-              
-                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
-              
-            
-          
-          
-        
-      
-      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
       

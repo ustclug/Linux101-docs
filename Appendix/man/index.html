@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Linux 101 课程讲义">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="LUG@USTC">
       
-      
-        <meta name="lang:clipboard.copy" content="复制">
-      
-        <meta name="lang:clipboard.copied" content="已复制">
-      
-        <meta name="lang:search.language" content="ja">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
-      
-        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
-      
-        <meta name="lang:search.result.other" content="# 个符合条件的结果">
-      
-        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
@@ -46,17 +25,14 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c3000690.min.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
-    
     
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="../../css/extra.css">
@@ -64,97 +40,78 @@
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-160637954-1", "auto")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-160637954-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
-    <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    <body dir="">
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#man" tabindex="0" class="md-skip">
-        跳转至
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#man" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://101.ustclug.org/" title="Linux 101" aria-label="Linux 101" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Linux 101
-            </span>
-            <span class="md-header-nav__topic">
-              
-                man 文档的一些示例
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-header-nav__button md-logo" aria-label="Linux 101">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Linux 101
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              man 文档的一些示例
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             键入以开始搜索
           </div>
@@ -164,71 +121,56 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://101.ustclug.org/" title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Linux 101
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     ustclug/Linux101-docs
   </div>
@@ -244,13 +186,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       负一：计划规格
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="负一：计划规格" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         负一：计划规格
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -304,13 +252,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       零：欢迎
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="零：欢迎" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         零：欢迎
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -364,13 +318,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       一：初识 Linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="一：初识 Linux" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         一：初识 Linux
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -424,13 +384,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       二：个性化配置与建站体验
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="二：个性化配置与建站体验" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         二：个性化配置与建站体验
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -472,13 +438,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       三：软件安装与文件操作
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="三：软件安装与文件操作" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         三：软件安装与文件操作
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -520,13 +492,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
       四：进程、前后台、服务与例行性任务
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="四：进程、前后台、服务与例行性任务" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         四：进程、前后台、服务与例行性任务
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -568,13 +546,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       五：用户与用户组、文件权限、文件系统层次结构
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="五：用户与用户组、文件权限、文件系统层次结构" data-md-level="1">
       <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         五：用户与用户组、文件权限、文件系统层次结构
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -616,13 +600,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
     <label class="md-nav__link" for="nav-9">
       六：网络下载工具与 Shell 脚本
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
       <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         六：网络下载工具与 Shell 脚本
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -664,13 +654,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
     <label class="md-nav__link" for="nav-10">
       七：Linux 上的编程
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="七：Linux 上的编程" data-md-level="1">
       <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         七：Linux 上的编程
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -712,13 +708,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
     <label class="md-nav__link" for="nav-11">
       八：Docker
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="八：Docker" data-md-level="1">
       <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         八：Docker
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -760,13 +762,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
     
     <label class="md-nav__link" for="nav-12">
       九：Shell 文字处理工具与正则表达式
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="九：Shell 文字处理工具与正则表达式" data-md-level="1">
       <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         九：Shell 文字处理工具与正则表达式
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -810,13 +818,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13" checked>
     
     <label class="md-nav__link" for="nav-13">
       附录
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="附录" data-md-level="1">
       <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         附录
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -843,13 +857,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         man 文档的一些示例
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
       </label>
     
     <a href="./" title="man 文档的一些示例" class="md-nav__link md-nav__link--active">
@@ -857,13 +874,18 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -893,10 +915,6 @@
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -945,13 +963,18 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      目录
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -982,10 +1005,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -998,7 +1017,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/man.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/man.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
                 
                 
                 <h1 id="man">man 文档的一些示例<a class="headerlink" href="#man" title="Permanent link">&para;</a></h1>
@@ -1007,395 +1031,392 @@
 <p>在查阅资料时，你常常会见到如 <code>chmod(1)</code> 或 <code>mount(8)</code> 这样的表达方式。正如上面所述，数字表示这个条目所属的章节。</p>
 <p>但是为什么要加数字呢？这是因为不同的章节可能有相同的条目，例如 <code>chmod</code> 既是一条命令，又是一个系统调用。当你要查看 <code>chmod</code> 命令的 man 文档时，你会去看 <code>chmod(1)</code>；而当你要查看 <code>chmod</code> 系统调用的 man 文档时，你会去看 <code>chmod(2)</code>。这时候条目后面数字的作用就体现出来了，你可以放心的说 <em>chmod(1) 内部使用了 chmod(2)</em> 这样的话而不必担心造成困惑。</p>
 <h2 id="su">命令行工具：以 <code>su</code> 为例<a class="headerlink" href="#su" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                            <span class="n">User</span> <span class="n">Commands</span>                           <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="err">（第一行的标题是</span> <span class="n">User</span> <span class="n">Commands</span><span class="err">，两边的</span> <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="err">代表这篇文档是关于</span> <span class="ss">`su`</span> <span class="err">的，在文档第一卷。</span>
-<span class="err">第一卷与</span> <span class="n">Shell</span> <span class="err">命令和程序有关。更多信息可以查看</span> <span class="n">man</span> <span class="n">man</span> <span class="err">中</span> <span class="n">DESCRIPTION</span> <span class="err">一节的内容。）</span>
+<div class="highlight"><pre><span></span><code>SU(1)                            User Commands                           SU(1)
+（第一行的标题是 User Commands，两边的 SU(1) 代表这篇文档是关于 `su` 的，在文档第一卷。
+第一卷与 Shell 命令和程序有关。更多信息可以查看 man man 中 DESCRIPTION 一节的内容。）
 
-<span class="n">NAME</span><span class="err">（名字，包含了我们的主角的名字</span> <span class="ss">`su`</span><span class="err">，和它的简要介绍。）</span>
-       <span class="n">su</span> <span class="o">-</span> <span class="n">run</span> <span class="n">a</span> <span class="n">command</span> <span class="k">with</span> <span class="n">substitute</span> <span class="n">user</span> <span class="k">and</span> <span class="k">group</span> <span class="n">ID</span>
+NAME（名字，包含了我们的主角的名字 `su`，和它的简要介绍。）
+       su - run a command with substitute user and group ID
 
-<span class="n">SYNOPSIS</span><span class="err">（概要，包含了命令参数的结构。）</span>
-       <span class="n">su</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="p">[</span><span class="n">user</span> <span class="p">[</span><span class="n">argument</span><span class="p">...]]</span>
-       <span class="err">（可能你会对这样的内容感到迷惑。但在概要中显示的内容格式有一个固定的格式模版。例如，</span>
-       <span class="p">[</span><span class="o">-</span><span class="n">ab</span><span class="p">]</span> <span class="err">代表参数是可选的，而</span> <span class="o">-</span><span class="n">a</span><span class="o">|-</span><span class="n">b</span> <span class="err">代表这两个参数是互斥的。同样可以查看</span> <span class="n">man</span> <span class="n">man</span>
-       <span class="err">的介绍。）</span>
+SYNOPSIS（概要，包含了命令参数的结构。）
+       su [options] [-] [user [argument...]]
+       （可能你会对这样的内容感到迷惑。但在概要中显示的内容格式有一个固定的格式模版。例如，
+       [-ab] 代表参数是可选的，而 -a|-b 代表这两个参数是互斥的。同样可以查看 man man
+       的介绍。）
 
-<span class="n">DESCRIPTION</span><span class="err">（介绍，大致描述了它能够做什么事情）</span>
-       <span class="n">su</span> <span class="n">allows</span> <span class="k">to</span> <span class="n">run</span> <span class="n">commands</span> <span class="k">with</span> <span class="n">a</span> <span class="n">substitute</span> <span class="n">user</span> <span class="k">and</span> <span class="k">group</span> <span class="n">ID</span><span class="p">.</span>
+DESCRIPTION（介绍，大致描述了它能够做什么事情）
+       su allows to run commands with a substitute user and group ID.
 
-       <span class="k">When</span>  <span class="n">called</span>  <span class="n">without</span>  <span class="n">arguments</span><span class="p">,</span> <span class="n">su</span> <span class="n">defaults</span> <span class="k">to</span> <span class="n">running</span> <span class="n">an</span> <span class="n">interactive</span>
-       <span class="n">shell</span> <span class="k">as</span> <span class="n">root</span><span class="p">.</span>
+       When  called  without  arguments, su defaults to running an interactive
+       shell as root.
 
-       <span class="k">For</span> <span class="n">backward</span> <span class="n">compatibility</span><span class="p">,</span> <span class="n">su</span> <span class="n">defaults</span> <span class="k">to</span> <span class="k">not</span> <span class="k">change</span> <span class="n">the</span>  <span class="n">current</span>  <span class="n">di</span><span class="err">‐</span>
-       <span class="n">rectory</span>  <span class="k">and</span> <span class="k">to</span> <span class="n">only</span> <span class="kt">set</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variables</span> <span class="n">HOME</span> <span class="k">and</span> <span class="nf">SHELL</span> <span class="p">(</span><span class="n">plus</span>
-       <span class="n">USER</span> <span class="k">and</span> <span class="n">LOGNAME</span> <span class="k">if</span> <span class="n">the</span> <span class="n">target</span> <span class="n">user</span> <span class="k">is</span> <span class="k">not</span> <span class="n">root</span><span class="p">).</span>  <span class="n">It</span> <span class="k">is</span> <span class="n">recommended</span> <span class="k">to</span>
-       <span class="n">always</span> <span class="k">use</span> <span class="n">the</span> <span class="o">--</span><span class="n">login</span> <span class="k">option</span> <span class="p">(</span><span class="n">instead</span> <span class="n">of</span> <span class="n">its</span> <span class="n">shortcut</span> <span class="o">-</span><span class="p">)</span> <span class="k">to</span> <span class="n">avoid</span> <span class="n">side</span>
-       <span class="n">effects</span> <span class="n">caused</span> <span class="k">by</span> <span class="n">mixing</span> <span class="n">environments</span><span class="p">.</span>
+       For backward compatibility, su defaults to not change the  current  di‐
+       rectory  and to only set the environment variables HOME and SHELL (plus
+       USER and LOGNAME if the target user is not root).  It is recommended to
+       always use the --login option (instead of its shortcut -) to avoid side
+       effects caused by mixing environments.
 
-       <span class="n">This</span> <span class="n">version</span> <span class="n">of</span> <span class="n">su</span> <span class="n">uses</span> <span class="n">PAM</span> <span class="k">for</span>  <span class="n">authentication</span><span class="p">,</span>  <span class="n">account</span>  <span class="k">and</span>  <span class="n">session</span>
-       <span class="n">management</span><span class="p">.</span>   <span class="n">Some</span>  <span class="n">configuration</span> <span class="n">options</span> <span class="n">found</span> <span class="k">in</span> <span class="n">other</span> <span class="n">su</span> <span class="n">implementa</span><span class="err">‐</span>
-       <span class="n">tions</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span> <span class="n">support</span> <span class="k">for</span> <span class="n">a</span> <span class="n">wheel</span> <span class="k">group</span><span class="p">,</span> <span class="n">have</span>  <span class="k">to</span>  <span class="n">be</span>  <span class="n">configured</span>  <span class="n">via</span>
-       <span class="n">PAM</span><span class="p">.</span>
+       This version of su uses PAM for  authentication,  account  and  session
+       management.   Some  configuration options found in other su implementa‐
+       tions, such as support for a wheel group, have  to  be  configured  via
+       PAM.
 
-       <span class="n">su</span>  <span class="k">is</span> <span class="n">mostly</span> <span class="n">designed</span> <span class="k">for</span> <span class="n">unprivileged</span> <span class="n">users</span><span class="p">,</span> <span class="n">the</span> <span class="n">recommended</span> <span class="n">solution</span>
-       <span class="k">for</span> <span class="n">privileged</span> <span class="nf">users</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">scripts</span> <span class="n">executed</span> <span class="k">by</span> <span class="n">root</span><span class="p">)</span> <span class="k">is</span> <span class="k">to</span> <span class="k">use</span> <span class="n">non</span><span class="o">-</span><span class="kt">set</span><span class="o">-</span>
-       <span class="n">user</span><span class="o">-</span><span class="n">ID</span>  <span class="n">command</span>  <span class="nf">runuser</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="n">that</span>  <span class="n">does</span> <span class="k">not</span> <span class="k">require</span> <span class="n">authentication</span> <span class="k">and</span>
-       <span class="n">provide</span> <span class="n">separate</span> <span class="n">PAM</span> <span class="n">configuration</span><span class="p">.</span> <span class="k">If</span> <span class="n">the</span> <span class="n">PAM</span> <span class="n">session</span> <span class="k">is</span> <span class="k">not</span>  <span class="n">required</span>
-       <span class="n">at</span> <span class="k">all</span> <span class="k">then</span> <span class="n">the</span> <span class="n">recommend</span> <span class="n">solution</span> <span class="k">is</span> <span class="k">to</span> <span class="k">use</span> <span class="n">command</span> <span class="nf">setpriv</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span>
-       <span class="err">（看完这段话之后，你可能会感到非常非常迷惑：</span><span class="n">PAM</span> <span class="err">是什么？最后一段到底在说啥？这种感觉是</span>
-       <span class="err">很正常的。从文档的立场来讲，它不得不面面俱到，描述所有可能的情况，而有些情况你根本不会遇</span>
-       <span class="err">到。</span>
-       <span class="err">不过，就算我们忽略一些问题（先不管</span> <span class="n">PAM</span> <span class="err">是啥），我们仍然可以了解到很多信息，比如说：</span>
-       <span class="o">-</span> <span class="err">推荐使用</span> <span class="ss">`su -`</span> <span class="err">而不是</span> <span class="ss">`su`</span><span class="err">，这可以防止（当前用户和切换目标用户不同的）环境混起来</span>
-       <span class="err">带来问题。</span>
-       <span class="o">-</span> <span class="ss">`root`</span> <span class="err">用户更推荐使用</span> <span class="ss">`runuser`</span> <span class="err">代替</span> <span class="ss">`su`</span><span class="err">，因为不需要认证为其他用户，且在</span> <span class="n">PAM</span> 
-       <span class="err">方面更好。）</span>
+       su  is mostly designed for unprivileged users, the recommended solution
+       for privileged users (e.g. scripts executed by root) is to use non-set-
+       user-ID  command  runuser(1)  that  does not require authentication and
+       provide separate PAM configuration. If the PAM session is not  required
+       at all then the recommend solution is to use command setpriv(1).
+       （看完这段话之后，你可能会感到非常非常迷惑：PAM 是什么？最后一段到底在说啥？这种感觉是
+       很正常的。从文档的立场来讲，它不得不面面俱到，描述所有可能的情况，而有些情况你根本不会遇
+       到。
+       不过，就算我们忽略一些问题（先不管 PAM 是啥），我们仍然可以了解到很多信息，比如说：
+       - 推荐使用 `su -` 而不是 `su`，这可以防止（当前用户和切换目标用户不同的）环境混起来
+       带来问题。
+       - `root` 用户更推荐使用 `runuser` 代替 `su`，因为不需要认证为其他用户，且在 PAM 
+       方面更好。）
 
-<span class="n">OPTIONS</span><span class="err">（选项，包含了所有参数的语法和介绍）</span>
-       <span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="o">--</span><span class="n">command</span><span class="o">=</span><span class="n">command</span>
-              <span class="n">Pass</span> <span class="n">command</span> <span class="k">to</span> <span class="n">the</span> <span class="n">shell</span> <span class="k">with</span> <span class="n">the</span> <span class="o">-</span><span class="n">c</span> <span class="k">option</span><span class="p">.</span>
+OPTIONS（选项，包含了所有参数的语法和介绍）
+       -c, --command=command
+              Pass command to the shell with the -c option.
 
-       <span class="o">-</span><span class="n">f</span><span class="p">,</span> <span class="o">--</span><span class="n">fast</span>
-              <span class="n">Pass</span>  <span class="o">-</span><span class="n">f</span> <span class="k">to</span> <span class="n">the</span> <span class="n">shell</span><span class="p">,</span> <span class="n">which</span> <span class="n">may</span> <span class="k">or</span> <span class="n">may</span> <span class="k">not</span> <span class="n">be</span> <span class="n">useful</span><span class="p">,</span> <span class="n">depending</span>
-              <span class="k">on</span> <span class="n">the</span> <span class="n">shell</span><span class="p">.</span>
+       -f, --fast
+              Pass  -f to the shell, which may or may not be useful, depending
+              on the shell.
 
-       <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="o">--</span><span class="k">group</span><span class="o">=</span><span class="k">group</span>
-              <span class="n">Specify</span> <span class="n">the</span> <span class="k">primary</span> <span class="k">group</span><span class="p">.</span>  <span class="n">This</span> <span class="k">option</span> <span class="k">is</span> <span class="n">available</span> <span class="k">to</span> <span class="n">the</span> <span class="n">root</span>
-              <span class="n">user</span> <span class="n">only</span><span class="p">.</span>
+       -g, --group=group
+              Specify the primary group.  This option is available to the root
+              user only.
 
-       <span class="o">-</span><span class="n">G</span><span class="p">,</span> <span class="o">--</span><span class="n">supp</span><span class="o">-</span><span class="k">group</span><span class="o">=</span><span class="k">group</span>
-              <span class="n">Specify</span>  <span class="n">a</span>  <span class="n">supplemental</span> <span class="k">group</span><span class="p">.</span>  <span class="n">This</span> <span class="k">option</span> <span class="k">is</span> <span class="n">available</span> <span class="k">to</span> <span class="n">the</span>
-              <span class="n">root</span> <span class="n">user</span> <span class="n">only</span><span class="p">.</span>  <span class="n">The</span> <span class="n">first</span> <span class="n">specified</span> <span class="n">supplementary</span> <span class="k">group</span> <span class="k">is</span> <span class="n">also</span>
-              <span class="n">used</span> <span class="k">as</span> <span class="n">a</span> <span class="k">primary</span> <span class="k">group</span> <span class="k">if</span> <span class="n">the</span> <span class="k">option</span> <span class="o">--</span><span class="k">group</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">.</span>
+       -G, --supp-group=group
+              Specify  a  supplemental group.  This option is available to the
+              root user only.  The first specified supplementary group is also
+              used as a primary group if the option --group is unspecified.
 
-       <span class="o">-</span><span class="p">,</span> <span class="o">-</span><span class="n">l</span><span class="p">,</span> <span class="o">--</span><span class="n">login</span>
-              <span class="n">Start</span>  <span class="n">the</span> <span class="n">shell</span> <span class="k">as</span> <span class="n">a</span> <span class="n">login</span> <span class="n">shell</span> <span class="k">with</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">similar</span> <span class="k">to</span>
-              <span class="n">a</span> <span class="kt">real</span> <span class="n">login</span><span class="p">:</span>
+       -, -l, --login
+              Start  the shell as a login shell with an environment similar to
+              a real login:
 
-                 <span class="n">o</span>      <span class="n">clears</span> <span class="k">all</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variables</span> <span class="n">except</span>  <span class="n">TERM</span>  <span class="k">and</span>
-                        <span class="n">variables</span> <span class="n">specified</span> <span class="k">by</span> <span class="o">--</span><span class="n">whitelist</span><span class="o">-</span><span class="n">environment</span>
+                 o      clears all the environment variables except  TERM  and
+                        variables specified by --whitelist-environment
 
-                 <span class="n">o</span>      <span class="n">initializes</span>  <span class="n">the</span>  <span class="n">environment</span>  <span class="n">variables</span>  <span class="n">HOME</span><span class="p">,</span> <span class="n">SHELL</span><span class="p">,</span>
-                        <span class="n">USER</span><span class="p">,</span> <span class="n">LOGNAME</span><span class="p">,</span> <span class="k">and</span> <span class="n">PATH</span>
+                 o      initializes  the  environment  variables  HOME, SHELL,
+                        USER, LOGNAME, and PATH
 
-                 <span class="n">o</span>      <span class="n">changes</span> <span class="k">to</span> <span class="n">the</span> <span class="n">target</span> <span class="n">user</span><span class="s1">&#39;s home directory</span>
+                 o      changes to the target user&#39;s home directory
 
-<span class="s1">                 o      sets argv[0] of the shell to &#39;</span><span class="o">-</span><span class="s1">&#39; in order to make  the</span>
-<span class="s1">                        shell a login shell</span>
+                 o      sets argv[0] of the shell to &#39;-&#39; in order to make  the
+                        shell a login shell
 
-<span class="s1">       -m, -p, --preserve-environment</span>
-<span class="s1">              Preserve  the  entire  environment,  i.e.  it does not set HOME,</span>
-<span class="s1">              SHELL, USER nor LOGNAME.  This option is ignored if  the  option</span>
-<span class="s1">              --login is specified.</span>
+       -m, -p, --preserve-environment
+              Preserve  the  entire  environment,  i.e.  it does not set HOME,
+              SHELL, USER nor LOGNAME.  This option is ignored if  the  option
+              --login is specified.
 
-<span class="s1">       -P, --pty</span>
-<span class="s1">              Create pseudo-terminal for the session. The independent terminal</span>
-<span class="s1">              provides better security as user does not  share  terminal  with</span>
-<span class="s1">              the  original session.  This allow to avoid TIOCSTI ioctl termi‐</span>
-<span class="s1">              nal injection and another security attacks against terminal file</span>
-<span class="s1">              descriptors.  The  all session is also possible to move to back‐</span>
-<span class="s1">              ground (e.g. &quot;su --pty - username -c  application  &amp;&quot;).  If  the</span>
-<span class="s1">              pseudo-terminal  is enabled then su command works as a proxy be‐</span>
-<span class="s1">              tween the sessions (copy stdin and stdout).</span>
+       -P, --pty
+              Create pseudo-terminal for the session. The independent terminal
+              provides better security as user does not  share  terminal  with
+              the  original session.  This allow to avoid TIOCSTI ioctl termi‐
+              nal injection and another security attacks against terminal file
+              descriptors.  The  all session is also possible to move to back‐
+              ground (e.g. &quot;su --pty - username -c  application  &amp;&quot;).  If  the
+              pseudo-terminal  is enabled then su command works as a proxy be‐
+              tween the sessions (copy stdin and stdout).
 
-<span class="s1">              This feature is EXPERIMENTAL for now and may be removed  in  the</span>
-<span class="s1">              next releases.</span>
+              This feature is EXPERIMENTAL for now and may be removed  in  the
+              next releases.
 
-<span class="s1">       -s, --shell=shell</span>
-<span class="s1">              Run  the  specified  shell instead of the default.  The shell to</span>
-<span class="s1">              run is selected according to the following rules, in order:</span>
+       -s, --shell=shell
+              Run  the  specified  shell instead of the default.  The shell to
+              run is selected according to the following rules, in order:
 
-<span class="s1">                 o      the shell specified with --shell</span>
+                 o      the shell specified with --shell
 
-<span class="s1">                 o      the shell specified in the environment variable SHELL,</span>
-<span class="s1">                        if the --preserve-environment option is used</span>
+                 o      the shell specified in the environment variable SHELL,
+                        if the --preserve-environment option is used
 
-<span class="s1">                 o      the  shell  listed  in  the passwd entry of the target</span>
-<span class="s1">                        user</span>
+                 o      the  shell  listed  in  the passwd entry of the target
+                        user
 
-<span class="s1">                 o      /bin/sh</span>
+                 o      /bin/sh
 
-<span class="s1">              If the target user has a restricted shell (i.e.  not  listed  in</span>
-<span class="s1">              /etc/shells), the --shell option and the SHELL environment vari‐</span>
-<span class="s1">              ables are ignored unless the calling user is root.</span>
+              If the target user has a restricted shell (i.e.  not  listed  in
+              /etc/shells), the --shell option and the SHELL environment vari‐
+              ables are ignored unless the calling user is root.
 
-<span class="s1">       --session-command=command</span>
-<span class="s1">              Same as -c but do not create a new session.  (Discouraged.)</span>
+       --session-command=command
+              Same as -c but do not create a new session.  (Discouraged.)
 
-<span class="s1">       -w, --whitelist-environment=list</span>
-<span class="s1">              Don&#39;</span><span class="n">t</span> <span class="n">reset</span> <span class="n">environment</span> <span class="n">variables</span> <span class="n">specified</span> <span class="k">in</span>  <span class="n">comma</span>  <span class="n">separated</span>
-              <span class="n">list</span>  <span class="k">when</span>  <span class="n">clears</span> <span class="n">environment</span> <span class="k">for</span> <span class="o">--</span><span class="n">login</span><span class="p">.</span> <span class="n">The</span> <span class="n">whitelist</span> <span class="k">is</span> <span class="n">ig</span><span class="err">‐</span>
-              <span class="n">nored</span> <span class="k">for</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variables</span> <span class="n">HOME</span><span class="p">,</span> <span class="n">SHELL</span><span class="p">,</span> <span class="n">USER</span><span class="p">,</span>  <span class="n">LOGNAME</span><span class="p">,</span>
-              <span class="k">and</span> <span class="n">PATH</span><span class="p">.</span>
+       -w, --whitelist-environment=list
+              Don&#39;t reset environment variables specified in  comma  separated
+              list  when  clears environment for --login. The whitelist is ig‐
+              nored for the environment variables HOME, SHELL, USER,  LOGNAME,
+              and PATH.
 
-       <span class="o">-</span><span class="n">V</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>
-              <span class="n">Display</span> <span class="n">version</span> <span class="n">information</span> <span class="k">and</span> <span class="k">exit</span><span class="p">.</span>
+       -V, --version
+              Display version information and exit.
 
-       <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>
-              <span class="n">Display</span> <span class="n">help</span> <span class="kt">text</span> <span class="k">and</span> <span class="k">exit</span><span class="p">.</span>
-       <span class="err">（这里按照字典序介绍了所有的参数。对于想要详尽了解命令使用的人来说没有什么问题，而对于想</span>
-       <span class="err">要快速找到自己想要的参数的人来说，阅读这样的文档确实会让人一头雾水。</span>
-       <span class="err">你可以按下</span> <span class="o">/</span><span class="err">，然后输入搜索关键词快速搜索，按</span> <span class="n">n</span> <span class="err">查看下一个搜索项，按</span> <span class="n">N</span> <span class="err">查看上一个搜索项。</span>
-       <span class="err">至于专有名词，你可能不得不去了解它们的含义。查看相关的文档，或者在互联网上搜索。）</span> 
+       -h, --help
+              Display help text and exit.
+       （这里按照字典序介绍了所有的参数。对于想要详尽了解命令使用的人来说没有什么问题，而对于想
+       要快速找到自己想要的参数的人来说，阅读这样的文档确实会让人一头雾水。
+       你可以按下 /，然后输入搜索关键词快速搜索，按 n 查看下一个搜索项，按 N 查看上一个搜索项。
+       至于专有名词，你可能不得不去了解它们的含义。查看相关的文档，或者在互联网上搜索。） 
 
-<span class="n">SIGNALS</span><span class="err">（信号，信号的含义详见进程一章）</span>
-       <span class="n">Upon</span>  <span class="n">receiving</span>  <span class="n">either</span>  <span class="n">SIGINT</span><span class="p">,</span>  <span class="n">SIGQUIT</span> <span class="k">or</span> <span class="n">SIGTERM</span><span class="p">,</span> <span class="n">su</span> <span class="n">terminates</span> <span class="n">its</span>
-       <span class="n">child</span> <span class="k">and</span> <span class="n">afterwards</span> <span class="n">terminates</span> <span class="n">itself</span> <span class="k">with</span> <span class="n">the</span> <span class="n">received</span>  <span class="n">signal</span><span class="p">.</span>   <span class="n">The</span>
-       <span class="n">child</span>  <span class="k">is</span>  <span class="k">terminated</span> <span class="k">by</span> <span class="n">SIGTERM</span><span class="p">,</span> <span class="n">after</span> <span class="n">unsuccessful</span> <span class="n">attempt</span> <span class="k">and</span> <span class="mi">2</span> <span class="n">sec</span><span class="err">‐</span>
-       <span class="n">onds</span> <span class="n">of</span> <span class="n">delay</span> <span class="n">the</span> <span class="n">child</span> <span class="k">is</span> <span class="n">killed</span> <span class="k">by</span> <span class="n">SIGKILL</span><span class="p">.</span>
-       <span class="err">（你会注意到，不是所有程序手册都有这一节。不同的程序，文档的结构可能不一样。）</span>
+SIGNALS（信号，信号的含义详见进程一章）
+       Upon  receiving  either  SIGINT,  SIGQUIT or SIGTERM, su terminates its
+       child and afterwards terminates itself with the received  signal.   The
+       child  is  terminated by SIGTERM, after unsuccessful attempt and 2 sec‐
+       onds of delay the child is killed by SIGKILL.
+       （你会注意到，不是所有程序手册都有这一节。不同的程序，文档的结构可能不一样。）
 
-<span class="n">CONFIG</span> <span class="n">FILES</span><span class="err">（配置文件）</span>
-       <span class="n">su</span> <span class="k">reads</span> <span class="n">the</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">su</span> <span class="k">and</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">login</span><span class="p">.</span><span class="n">defs</span>  <span class="n">configuration</span>  <span class="n">files</span><span class="p">.</span>
-       <span class="n">The</span> <span class="n">following</span> <span class="n">configuration</span> <span class="n">items</span> <span class="n">are</span> <span class="n">relevant</span> <span class="k">for</span> <span class="nf">su</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+CONFIG FILES（配置文件）
+       su reads the /etc/default/su and /etc/login.defs  configuration  files.
+       The following configuration items are relevant for su(1):
 
-       <span class="nf">FAIL_DELAY</span> <span class="p">(</span><span class="n">number</span><span class="p">)</span>
-           <span class="n">Delay</span>  <span class="k">in</span>  <span class="n">seconds</span> <span class="k">in</span> <span class="k">case</span> <span class="n">of</span> <span class="n">an</span> <span class="n">authentication</span> <span class="n">failure</span><span class="p">.</span> <span class="n">The</span> <span class="n">number</span>
-           <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">negative</span> <span class="kt">integer</span><span class="p">.</span>
+       FAIL_DELAY (number)
+           Delay  in  seconds in case of an authentication failure. The number
+           must be a non-negative integer.
 
-       <span class="nf">ENV_PATH</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span>
-           <span class="n">Defines</span> <span class="n">the</span> <span class="n">PATH</span> <span class="n">environment</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">user</span><span class="p">.</span>  <span class="n">The</span>  <span class="n">de</span><span class="err">‐</span>
-           <span class="n">fault</span> <span class="n">value</span> <span class="k">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="p">.</span>
+       ENV_PATH (string)
+           Defines the PATH environment variable for a regular user.  The  de‐
+           fault value is /usr/local/bin:/bin:/usr/bin.
 
-       <span class="nf">ENV_ROOTPATH</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span>
-       <span class="nf">ENV_SUPATH</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span>
-           <span class="n">Defines</span>  <span class="n">the</span> <span class="n">PATH</span> <span class="n">environment</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">root</span><span class="p">.</span>  <span class="n">The</span> <span class="k">default</span> <span class="n">value</span>
-           <span class="k">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="p">.</span>
+       ENV_ROOTPATH (string)
+       ENV_SUPATH (string)
+           Defines  the PATH environment variable for root.  The default value
+           is /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin.
 
-       <span class="nf">ALWAYS_SET_PATH</span> <span class="p">(</span><span class="n">boolean</span><span class="p">)</span>
-           <span class="k">If</span> <span class="kt">set</span> <span class="k">to</span> <span class="n">yes</span> <span class="k">and</span> <span class="o">--</span><span class="n">login</span> <span class="k">and</span> <span class="o">--</span><span class="n">preserve</span><span class="o">-</span><span class="n">environment</span> <span class="n">were</span> <span class="k">not</span> <span class="n">spec</span><span class="err">‐</span>
-           <span class="n">ified</span> <span class="n">su</span> <span class="n">initializes</span> <span class="n">PATH</span><span class="p">.</span>
+       ALWAYS_SET_PATH (boolean)
+           If set to yes and --login and --preserve-environment were not spec‐
+           ified su initializes PATH.
 
-       <span class="n">The</span>  <span class="n">environment</span>  <span class="n">variable</span>  <span class="n">PATH</span> <span class="n">may</span> <span class="n">be</span> <span class="n">different</span> <span class="k">on</span> <span class="n">systems</span> <span class="k">where</span> <span class="o">/</span><span class="n">bin</span>
-       <span class="k">and</span> <span class="o">/</span><span class="n">sbin</span> <span class="n">are</span> <span class="n">merged</span> <span class="k">into</span> <span class="o">/</span><span class="n">usr</span><span class="p">.</span>
+       The  environment  variable  PATH may be different on systems where /bin
+       and /sbin are merged into /usr.
 
-<span class="k">EXIT</span> <span class="n">STATUS</span><span class="err">（退出状态）</span>
-       <span class="n">su</span> <span class="n">normally</span> <span class="n">returns</span> <span class="n">the</span> <span class="k">exit</span> <span class="n">status</span> <span class="n">of</span> <span class="n">the</span> <span class="n">command</span> <span class="n">it</span> <span class="n">executed</span><span class="p">.</span>  <span class="k">If</span> <span class="n">the</span>
-       <span class="n">command</span>  <span class="n">was</span>  <span class="n">killed</span>  <span class="k">by</span>  <span class="n">a</span> <span class="n">signal</span><span class="p">,</span> <span class="n">su</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">the</span> <span class="n">signal</span>
-       <span class="n">plus</span> <span class="mi">128</span><span class="p">.</span>
+EXIT STATUS（退出状态）
+       su normally returns the exit status of the command it executed.  If the
+       command  was  killed  by  a signal, su returns the number of the signal
+       plus 128.
 
-       <span class="k">Exit</span> <span class="n">status</span> <span class="n">generated</span> <span class="k">by</span> <span class="n">su</span> <span class="n">itself</span><span class="p">:</span>
+       Exit status generated by su itself:
 
-                 <span class="mi">1</span>      <span class="n">Generic</span> <span class="n">error</span> <span class="k">before</span> <span class="n">executing</span> <span class="n">the</span> <span class="n">requested</span> <span class="n">command</span>
+                 1      Generic error before executing the requested command
 
-                 <span class="mi">126</span>    <span class="n">The</span> <span class="n">requested</span> <span class="n">command</span> <span class="n">could</span> <span class="k">not</span> <span class="n">be</span> <span class="n">executed</span>
+                 126    The requested command could not be executed
 
-                 <span class="mi">127</span>    <span class="n">The</span> <span class="n">requested</span> <span class="n">command</span> <span class="n">was</span> <span class="k">not</span> <span class="n">found</span>
-       <span class="err">（退出状态是什么？还记得你写</span> <span class="n">C</span> <span class="err">程序时在</span> <span class="ss">`main()`</span> <span class="err">里面最后的</span> <span class="ss">`return 0;`</span> <span class="err">吗？</span><span class="mi">0</span> <span class="err">就是</span>
-       <span class="err">你的程序的退出状态。一般来说，</span><span class="mi">0</span> <span class="err">代表程序运行成功，而非</span> <span class="mi">0</span> <span class="err">值代表程序没有完成它预期的功能，</span>
-       <span class="err">或者用户输入了错误的选项。</span>
-       <span class="err">你可以输入</span> <span class="ss">`echo $?`</span> <span class="err">查看上一条命令的退出状态。）</span>
+                 127    The requested command was not found
+       （退出状态是什么？还记得你写 C 程序时在 `main()` 里面最后的 `return 0;` 吗？0 就是
+       你的程序的退出状态。一般来说，0 代表程序运行成功，而非 0 值代表程序没有完成它预期的功能，
+       或者用户输入了错误的选项。
+       你可以输入 `echo $?` 查看上一条命令的退出状态。）
 
-<span class="n">FILES</span><span class="err">（相关文件）</span>
-       <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pam</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">su</span>    <span class="k">default</span> <span class="n">PAM</span> <span class="n">configuration</span> <span class="n">file</span>
-       <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pam</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">su</span><span class="o">-</span><span class="n">l</span>  <span class="n">PAM</span> <span class="n">configuration</span> <span class="n">file</span> <span class="k">if</span> <span class="o">--</span><span class="n">login</span> <span class="k">is</span> <span class="n">specified</span>
-       <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">su</span>  <span class="n">command</span> <span class="k">specific</span> <span class="n">logindef</span> <span class="n">config</span> <span class="n">file</span>
-       <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">login</span><span class="p">.</span><span class="n">defs</span>  <span class="n">global</span> <span class="n">logindef</span> <span class="n">config</span> <span class="n">file</span>
+FILES（相关文件）
+       /etc/pam.d/su    default PAM configuration file
+       /etc/pam.d/su-l  PAM configuration file if --login is specified
+       /etc/default/su  command specific logindef config file
+       /etc/login.defs  global logindef config file
 
-<span class="n">NOTES</span><span class="err">（附录）</span>
-       <span class="k">For</span> <span class="n">security</span> <span class="n">reasons</span> <span class="n">su</span> <span class="n">always</span> <span class="n">logs</span> <span class="n">failed</span> <span class="n">log</span><span class="o">-</span><span class="k">in</span> <span class="n">attempts</span> <span class="k">to</span> <span class="n">the</span>  <span class="n">btmp</span>
-       <span class="n">file</span><span class="p">,</span>  <span class="n">but</span> <span class="n">it</span> <span class="n">does</span> <span class="k">not</span> <span class="k">write</span> <span class="k">to</span> <span class="n">the</span> <span class="n">lastlog</span> <span class="n">file</span> <span class="n">at</span> <span class="k">all</span><span class="p">.</span>  <span class="n">This</span> <span class="n">solution</span>
-       <span class="n">allows</span> <span class="k">to</span> <span class="n">control</span> <span class="n">su</span> <span class="n">behavior</span> <span class="k">by</span> <span class="n">PAM</span> <span class="n">configuration</span><span class="p">.</span>  <span class="k">If</span> <span class="n">you</span> <span class="n">want</span> <span class="k">to</span> <span class="k">use</span>
-       <span class="n">the</span> <span class="n">pam_lastlog</span> <span class="n">module</span> <span class="k">to</span> <span class="n">print</span> <span class="n">warning</span> <span class="n">message</span> <span class="n">about</span> <span class="n">failed</span> <span class="n">log</span><span class="o">-</span><span class="k">in</span> <span class="n">at</span><span class="err">‐</span>
-       <span class="n">tempts</span> <span class="k">then</span> <span class="n">the</span> <span class="n">pam_lastlog</span> <span class="n">has</span> <span class="k">to</span> <span class="n">be</span> <span class="n">configured</span> <span class="k">to</span> <span class="k">update</span> <span class="n">the</span>  <span class="n">lastlog</span>
-       <span class="n">file</span> <span class="k">as</span> <span class="n">well</span><span class="p">.</span> <span class="k">For</span> <span class="n">example</span> <span class="k">by</span><span class="p">:</span>
+NOTES（附录）
+       For security reasons su always logs failed log-in attempts to the  btmp
+       file,  but it does not write to the lastlog file at all.  This solution
+       allows to control su behavior by PAM configuration.  If you want to use
+       the pam_lastlog module to print warning message about failed log-in at‐
+       tempts then the pam_lastlog has to be configured to update the  lastlog
+       file as well. For example by:
 
-              <span class="n">session</span>  <span class="n">required</span>  <span class="n">pam_lastlog</span><span class="p">.</span><span class="n">so</span> <span class="n">nowtmp</span>
+              session  required  pam_lastlog.so nowtmp
 
-<span class="n">SEE</span> <span class="n">ALSO</span><span class="err">（另寻，包含了一些相关的命令。可以用</span> <span class="ss">`man 号码 名称`</span> <span class="err">的格式查看这些命令的文档。）</span>
-       <span class="nf">setpriv</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">login</span><span class="p">.</span><span class="nf">defs</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nf">shells</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nf">pam</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="nf">runuser</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+SEE ALSO（另寻，包含了一些相关的命令。可以用 `man 号码 名称` 的格式查看这些命令的文档。）
+       setpriv(1), login.defs(5), shells(5), pam(8), runuser(8)
 
-<span class="n">HISTORY</span><span class="err">（历史记录）</span>
-       <span class="n">This</span>  <span class="n">su</span>  <span class="n">command</span> <span class="n">was</span> <span class="n">derived</span> <span class="k">from</span> <span class="n">coreutils</span><span class="err">&#39;</span> <span class="n">su</span><span class="p">,</span> <span class="n">which</span> <span class="n">was</span> <span class="n">based</span> <span class="k">on</span> <span class="n">an</span>
-       <span class="n">implementation</span> <span class="k">by</span> <span class="n">David</span> <span class="n">MacKenzie</span><span class="p">.</span> <span class="n">The</span> <span class="n">util</span><span class="o">-</span><span class="n">linux</span> <span class="n">has</span>  <span class="n">been</span>  <span class="n">refactored</span>
-       <span class="k">by</span> <span class="n">Karel</span> <span class="n">Zak</span><span class="p">.</span>
+HISTORY（历史记录）
+       This  su  command was derived from coreutils&#39; su, which was based on an
+       implementation by David MacKenzie. The util-linux has  been  refactored
+       by Karel Zak.
 
-<span class="n">AVAILABILITY</span><span class="err">（「可用性」，即，我可以在哪里获得这个程序？）</span>
-       <span class="n">The</span>  <span class="n">su</span> <span class="n">command</span> <span class="k">is</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">util</span><span class="o">-</span><span class="n">linux</span> <span class="n">package</span> <span class="k">and</span> <span class="k">is</span> <span class="n">available</span> <span class="k">from</span>
-       <span class="n">Linux</span>  <span class="n">Kernel</span>   <span class="n">Archive</span>   <span class="err">⟨</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">kernel</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">util</span><span class="o">-</span>
-       <span class="n">linux</span><span class="o">/</span><span class="err">⟩</span><span class="p">.</span>
+AVAILABILITY（「可用性」，即，我可以在哪里获得这个程序？）
+       The  su command is part of the util-linux package and is available from
+       Linux  Kernel   Archive   ⟨https://www.kernel.org/pub/linux/utils/util-
+       linux/⟩.
 
-<span class="n">util</span><span class="o">-</span><span class="n">linux</span>                         <span class="n">July</span> <span class="mi">2014</span>                             <span class="nf">SU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+util-linux                         July 2014                             SU(1)
 </code></pre></div>
 
 <h2 id="strcmp">程序库函数：以 <code>strcmp()</code> 为例<a class="headerlink" href="#strcmp" title="Permanent link">&para;</a></h2>
 <p>文档第三卷是程序库函数的信息，包括了 C 语言的标准库函数。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                  <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                 <span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>STRCMP(3)                  Linux Programmer&#39;s Manual                 STRCMP(3)
 
-<span class="n">NAME</span>
-       <span class="n">strcmp</span><span class="p">,</span> <span class="n">strncmp</span> <span class="o">-</span> <span class="n">compare</span> <span class="n">two</span> <span class="n">strings</span>
+NAME
+       strcmp, strncmp - compare two strings
 
-<span class="n">SYNOPSIS</span><span class="err">（概要，这里包含了你需要</span> <span class="n">include</span> <span class="err">的头文件，以及相关函数的声明。）</span>
-       <span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+SYNOPSIS（概要，这里包含了你需要 include 的头文件，以及相关函数的声明。）
+       #include &lt;string.h&gt;
 
-       <span class="kt">int</span> <span class="n">strcmp</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s2</span><span class="p">);</span>
+       int strcmp(const char *s1, const char *s2);
 
-       <span class="kt">int</span> <span class="nf">strncmp</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s2</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span>
-       <span class="err">（这里也会有需要的编译和链接参数，当然对</span> <span class="err">`</span><span class="n">strcmp</span><span class="p">()</span><span class="err">`</span> <span class="err">来说是不需要这些的。）</span>
+       int strncmp(const char *s1, const char *s2, size_t n);
+       （这里也会有需要的编译和链接参数，当然对 `strcmp()` 来说是不需要这些的。）
 
-<span class="n">DESCRIPTION</span>
-       <span class="n">The</span>  <span class="n">strcmp</span><span class="p">()</span>  <span class="n">function</span> <span class="n">compares</span> <span class="n">the</span> <span class="n">two</span> <span class="n">strings</span> <span class="n">s1</span> <span class="n">and</span> <span class="n">s2</span><span class="p">.</span>  <span class="n">It</span> <span class="n">returns</span>
-       <span class="n">an</span> <span class="n">integer</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">equal</span> <span class="n">to</span><span class="p">,</span> <span class="n">or</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">zero</span> <span class="k">if</span>  <span class="n">s1</span>  <span class="n">is</span>  <span class="n">found</span><span class="p">,</span>
-       <span class="n">respectively</span><span class="p">,</span> <span class="n">to</span> <span class="n">be</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">to</span> <span class="n">match</span><span class="p">,</span> <span class="n">or</span> <span class="n">be</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">s2</span><span class="p">.</span>
+DESCRIPTION
+       The  strcmp()  function compares the two strings s1 and s2.  It returns
+       an integer less than, equal to, or greater than zero if  s1  is  found,
+       respectively, to be less than, to match, or be greater than s2.
 
-       <span class="n">The</span>  <span class="n">strncmp</span><span class="p">()</span>  <span class="n">function</span>  <span class="n">is</span> <span class="n">similar</span><span class="p">,</span> <span class="n">except</span> <span class="n">it</span> <span class="n">compares</span> <span class="n">only</span> <span class="n">the</span> <span class="n">first</span>
-       <span class="p">(</span><span class="n">at</span> <span class="n">most</span><span class="p">)</span> <span class="n">n</span> <span class="n">bytes</span> <span class="n">of</span> <span class="n">s1</span> <span class="n">and</span> <span class="n">s2</span><span class="p">.</span>
+       The  strncmp()  function  is similar, except it compares only the first
+       (at most) n bytes of s1 and s2.
 
-<span class="n">RETURN</span> <span class="n">VALUE</span><span class="err">（返回值，有些函数会包含返回后参数的情况）</span>
-       <span class="n">The</span> <span class="n">strcmp</span><span class="p">()</span> <span class="n">and</span> <span class="n">strncmp</span><span class="p">()</span> <span class="n">functions</span> <span class="k">return</span> <span class="n">an</span> <span class="n">integer</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">equal</span>
-       <span class="n">to</span><span class="p">,</span> <span class="n">or</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">zero</span> <span class="k">if</span> <span class="n">s1</span> <span class="p">(</span><span class="n">or</span> <span class="n">the</span> <span class="n">first</span> <span class="n">n</span> <span class="n">bytes</span> <span class="n">thereof</span><span class="p">)</span> <span class="n">is</span> <span class="n">found</span><span class="p">,</span>
-       <span class="n">respectively</span><span class="p">,</span> <span class="n">to</span> <span class="n">be</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">to</span> <span class="n">match</span><span class="p">,</span> <span class="n">or</span> <span class="n">be</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">s2</span><span class="p">.</span>
+RETURN VALUE（返回值，有些函数会包含返回后参数的情况）
+       The strcmp() and strncmp() functions return an integer less than, equal
+       to, or greater than zero if s1 (or the first n bytes thereof) is found,
+       respectively, to be less than, to match, or be greater than s2.
 
-<span class="n">ATTRIBUTES</span><span class="err">（属性）</span>
-       <span class="n">For</span> <span class="n">an</span>  <span class="n">explanation</span>  <span class="n">of</span>  <span class="n">the</span>  <span class="n">terms</span>  <span class="n">used</span>  <span class="n">in</span>  <span class="n">this</span>  <span class="n">section</span><span class="p">,</span>  <span class="n">see</span>  <span class="n">at</span><span class="err">‐</span>
-       <span class="n">tributes</span><span class="p">(</span><span class="mi">7</span><span class="p">).</span>
+ATTRIBUTES（属性）
+       For an  explanation  of  the  terms  used  in  this  section,  see  at‐
+       tributes(7).
 
-       <span class="err">┌────────────────────┬───────────────┬─────────┐</span>
-       <span class="err">│</span><span class="n">Interface</span>           <span class="err">│</span> <span class="n">Attribute</span>     <span class="err">│</span> <span class="n">Value</span>   <span class="err">│</span>
-       <span class="err">├────────────────────┼───────────────┼─────────┤</span>
-       <span class="err">│</span><span class="n">strcmp</span><span class="p">(),</span> <span class="n">strncmp</span><span class="p">()</span> <span class="err">│</span> <span class="n">Thread</span> <span class="n">safety</span> <span class="err">│</span> <span class="n">MT</span><span class="o">-</span><span class="n">Safe</span> <span class="err">│</span>
-       <span class="err">└────────────────────┴───────────────┴─────────┘</span>
-       <span class="err">（从</span> <span class="n">man</span> <span class="mi">7</span> <span class="n">attributes</span> <span class="err">中，可以得到此章会使用的专有名词的解释。这里我们可以看到，</span>
-       <span class="err">`</span><span class="n">strcmp</span><span class="p">()</span><span class="err">`</span> <span class="err">系列函数是线程安全的。）</span>
-<span class="n">CONFORMING</span> <span class="n">TO</span><span class="err">（符合的标准，可以看到熟悉的</span> <span class="n">POSIX</span> <span class="err">和</span> <span class="n">C89</span><span class="err">、</span><span class="n">C99</span> <span class="err">标准）</span>
-       <span class="n">POSIX</span><span class="mf">.1</span><span class="o">-</span><span class="mi">2001</span><span class="p">,</span> <span class="n">POSIX</span><span class="mf">.1</span><span class="o">-</span><span class="mi">2008</span><span class="p">,</span> <span class="n">C89</span><span class="p">,</span> <span class="n">C99</span><span class="p">,</span> <span class="n">SVr4</span><span class="p">,</span> <span class="mf">4.3</span><span class="n">BSD</span><span class="p">.</span>
+       ┌────────────────────┬───────────────┬─────────┐
+       │Interface           │ Attribute     │ Value   │
+       ├────────────────────┼───────────────┼─────────┤
+       │strcmp(), strncmp() │ Thread safety │ MT-Safe │
+       └────────────────────┴───────────────┴─────────┘
+       （从 man 7 attributes 中，可以得到此章会使用的专有名词的解释。这里我们可以看到，
+       `strcmp()` 系列函数是线程安全的。）
+CONFORMING TO（符合的标准，可以看到熟悉的 POSIX 和 C89、C99 标准）
+       POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
 
-<span class="n">SEE</span> <span class="n">ALSO</span><span class="err">（另寻，表明这些库函数也和</span> <span class="err">`</span><span class="n">strcmp</span><span class="p">()</span><span class="err">`</span> <span class="err">相关）</span>
-       <span class="n">bcmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>   <span class="n">memcmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>   <span class="n">strcasecmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>   <span class="n">strcoll</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">string</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">strn</span><span class="err">‐</span>
-       <span class="n">casecmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">strverscmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">wcscmp</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">wcsncmp</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+SEE ALSO（另寻，表明这些库函数也和 `strcmp()` 相关）
+       bcmp(3),   memcmp(3),   strcasecmp(3),   strcoll(3),  string(3),  strn‐
+       casecmp(3), strverscmp(3), wcscmp(3), wcsncmp(3)
 
-<span class="n">COLOPHON</span><span class="err">（作者信息、文档来源等信息）</span>
-       <span class="n">This</span> <span class="n">page</span> <span class="n">is</span> <span class="n">part</span> <span class="n">of</span> <span class="n">release</span> <span class="mf">4.16</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Linux</span>  <span class="n">man</span><span class="o">-</span><span class="n">pages</span>  <span class="n">project</span><span class="p">.</span>   <span class="n">A</span>
-       <span class="n">description</span>  <span class="n">of</span>  <span class="n">the</span> <span class="n">project</span><span class="p">,</span> <span class="n">information</span> <span class="n">about</span> <span class="n">reporting</span> <span class="n">bugs</span><span class="p">,</span> <span class="n">and</span> <span class="n">the</span>
-       <span class="n">latest</span>    <span class="n">version</span>    <span class="n">of</span>    <span class="n">this</span>    <span class="n">page</span><span class="p">,</span>    <span class="n">can</span>     <span class="n">be</span>     <span class="n">found</span>     <span class="n">at</span>
-       <span class="nl">https</span><span class="p">:</span><span class="c1">//www.kernel.org/doc/man-pages/.</span>
+COLOPHON（作者信息、文档来源等信息）
+       This page is part of release 4.16 of the Linux  man-pages  project.   A
+       description  of  the project, information about reporting bugs, and the
+       latest    version    of    this    page,    can     be     found     at
+       https://www.kernel.org/doc/man-pages/.
 
-                                  <span class="mi">2015</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span>                         <span class="n">STRCMP</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+                                  2015-08-08                         STRCMP(3)
 </code></pre></div>
 
 <h2 id="kill">系统调用：以 <code>kill()</code> 为例<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h2>
 <p>文档第二卷是关于系统调用的信息。当然，很多系统调用都由 C 运行时库包装了一层，否则用起来很麻烦。一个目前还没有被包装的系统调用的例子是 <code>copy_file_range()</code>，你需要在你的代码里面使用 <code>syscall()</code> 去手动包装它，才能方便地使用。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                    <span class="n">Linux</span> <span class="n">Programmer</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Manual</span>                   <span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>KILL(2)                    Linux Programmer&#39;s Manual                   KILL(2)
 
-<span class="n">NAME</span>
-       <span class="n">kill</span> <span class="o">-</span> <span class="n">send</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">a</span> <span class="n">process</span>
+NAME
+       kill - send signal to a process
 
-<span class="n">SYNOPSIS</span>
-       <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
-       <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+SYNOPSIS
+       #include &lt;sys/types.h&gt;
+       #include &lt;signal.h&gt;
 
-       <span class="kt">int</span> <span class="n">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
+       int kill(pid_t pid, int sig);
 
-   <span class="n">Feature</span> <span class="n">Test</span> <span class="n">Macro</span> <span class="n">Requirements</span> <span class="k">for</span> <span class="nf">glibc</span> <span class="p">(</span><span class="n">see</span> <span class="n">feature_test_macros</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span><span class="o">:</span>
+   Feature Test Macro Requirements for glibc (see feature_test_macros(7)):
 
-       <span class="n">kill</span><span class="p">()</span><span class="o">:</span> <span class="n">_POSIX_C_SOURCE</span>
-       <span class="err">（这里的话，出现了</span> <span class="s">&quot;Macro Requirements&quot;</span><span class="err">，表明</span> <span class="n">kill</span><span class="p">()</span> <span class="err">函数需要在</span> <span class="n">include</span> <span class="err">文件之前</span>
-       <span class="err">作宏定义</span> <span class="n">_POSIX_C_SOURCE</span> <span class="err">来正常使用。当然，很多</span> <span class="n">Macro</span> <span class="err">都是默认包含的，可以在</span> 
-       <span class="n">feature_test_macros</span> <span class="err">文档中的</span> <span class="n">Default</span> <span class="n">definitions</span><span class="p">,</span> <span class="n">implicit</span> <span class="n">definitions</span><span class="p">,</span> 
-       <span class="n">and</span> <span class="n">combining</span> <span class="n">definitions</span> <span class="err">一小节中找到）</span>
+       kill(): _POSIX_C_SOURCE
+       （这里的话，出现了 &quot;Macro Requirements&quot;，表明 kill() 函数需要在 include 文件之前
+       作宏定义 _POSIX_C_SOURCE 来正常使用。当然，很多 Macro 都是默认包含的，可以在 
+       feature_test_macros 文档中的 Default definitions, implicit definitions, 
+       and combining definitions 一小节中找到）
 
-<span class="n">DESCRIPTION</span>
-       <span class="n">The</span>  <span class="n">kill</span><span class="p">()</span>  <span class="n">system</span>  <span class="n">call</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">send</span> <span class="n">any</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">any</span> <span class="n">process</span>
-       <span class="n">group</span> <span class="n">or</span> <span class="n">process</span><span class="p">.</span>
+DESCRIPTION
+       The  kill()  system  call can be used to send any signal to any process
+       group or process.
 
-       <span class="n">If</span> <span class="n">pid</span> <span class="n">is</span> <span class="n">positive</span><span class="p">,</span> <span class="n">then</span> <span class="n">signal</span> <span class="n">sig</span> <span class="n">is</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">the</span> <span class="n">process</span> <span class="n">with</span> <span class="n">the</span>  <span class="n">ID</span>
-       <span class="n">specified</span> <span class="n">by</span> <span class="n">pid</span><span class="p">.</span>
+       If pid is positive, then signal sig is sent to the process with the  ID
+       specified by pid.
 
-       <span class="n">If</span> <span class="n">pid</span> <span class="n">equals</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">sig</span> <span class="n">is</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">every</span> <span class="n">process</span> <span class="n">in</span> <span class="n">the</span> <span class="n">process</span> <span class="n">group</span>
-       <span class="n">of</span> <span class="n">the</span> <span class="n">calling</span> <span class="n">process</span><span class="p">.</span>
+       If pid equals 0, then sig is sent to every process in the process group
+       of the calling process.
 
-       <span class="n">If</span> <span class="n">pid</span> <span class="n">equals</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">sig</span> <span class="n">is</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">every</span> <span class="n">process</span> <span class="k">for</span> <span class="n">which</span> <span class="n">the</span> <span class="n">call</span><span class="err">‐</span>
-       <span class="n">ing</span>  <span class="n">process</span>  <span class="n">has</span>  <span class="n">permission</span>  <span class="n">to</span>  <span class="n">send</span>  <span class="n">signals</span><span class="p">,</span>  <span class="n">except</span> <span class="k">for</span> <span class="n">process</span> <span class="mi">1</span>
-       <span class="p">(</span><span class="n">init</span><span class="p">),</span> <span class="n">but</span> <span class="n">see</span> <span class="n">below</span><span class="p">.</span>
+       If pid equals -1, then sig is sent to every process for which the call‐
+       ing  process  has  permission  to  send  signals,  except for process 1
+       (init), but see below.
 
-       <span class="n">If</span> <span class="n">pid</span> <span class="n">is</span> <span class="n">less</span> <span class="n">than</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">sig</span>  <span class="n">is</span>  <span class="n">sent</span>  <span class="n">to</span>  <span class="n">every</span>  <span class="n">process</span>  <span class="n">in</span>  <span class="n">the</span>
-       <span class="n">process</span> <span class="n">group</span> <span class="n">whose</span> <span class="n">ID</span> <span class="n">is</span> <span class="o">-</span><span class="n">pid</span><span class="p">.</span>
+       If pid is less than -1, then sig  is  sent  to  every  process  in  the
+       process group whose ID is -pid.
 
-       <span class="n">If</span>  <span class="n">sig</span>  <span class="n">is</span>  <span class="mi">0</span><span class="p">,</span>  <span class="n">then</span>  <span class="n">no</span>  <span class="n">signal</span> <span class="n">is</span> <span class="n">sent</span><span class="p">,</span> <span class="n">but</span> <span class="n">existence</span> <span class="n">and</span> <span class="n">permission</span>
-       <span class="n">checks</span> <span class="n">are</span> <span class="n">still</span> <span class="n">performed</span><span class="p">;</span> <span class="n">this</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">existence</span>
-       <span class="n">of</span>  <span class="n">a</span>  <span class="n">process</span>  <span class="n">ID</span>  <span class="n">or</span> <span class="n">process</span> <span class="n">group</span> <span class="n">ID</span> <span class="n">that</span> <span class="n">the</span> <span class="n">caller</span> <span class="n">is</span> <span class="n">permitted</span> <span class="n">to</span>
-       <span class="n">signal</span><span class="p">.</span>
+       If  sig  is  0,  then  no  signal is sent, but existence and permission
+       checks are still performed; this can be used to check for the existence
+       of  a  process  ID  or process group ID that the caller is permitted to
+       signal.
 
-       <span class="n">For</span> <span class="n">a</span> <span class="n">process</span> <span class="n">to</span> <span class="n">have</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">send</span> <span class="n">a</span> <span class="n">signal</span><span class="p">,</span> <span class="n">it</span>  <span class="n">must</span>  <span class="n">either</span>  <span class="n">be</span>
-       <span class="n">privileged</span> <span class="p">(</span><span class="n">under</span> <span class="nl">Linux</span><span class="p">:</span> <span class="n">have</span> <span class="n">the</span> <span class="n">CAP_KILL</span> <span class="n">capability</span> <span class="n">in</span> <span class="n">the</span> <span class="n">user</span> <span class="n">name</span><span class="err">‐</span>
-       <span class="n">space</span> <span class="n">of</span> <span class="n">the</span> <span class="n">target</span> <span class="n">process</span><span class="p">),</span> <span class="n">or</span> <span class="n">the</span> <span class="n">real</span> <span class="n">or</span> <span class="n">effective</span> <span class="n">user</span> <span class="n">ID</span>  <span class="n">of</span>  <span class="n">the</span>
-       <span class="n">sending</span>  <span class="n">process</span> <span class="n">must</span> <span class="n">equal</span> <span class="n">the</span> <span class="n">real</span> <span class="n">or</span> <span class="n">saved</span> <span class="n">set</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">target</span>
-       <span class="n">process</span><span class="p">.</span>  <span class="n">In</span> <span class="n">the</span> <span class="k">case</span> <span class="n">of</span> <span class="n">SIGCONT</span><span class="p">,</span> <span class="n">it</span> <span class="n">suffices</span> <span class="n">when</span> <span class="n">the</span> <span class="n">sending</span> <span class="n">and</span>  <span class="n">re</span><span class="err">‐</span>
-       <span class="n">ceiving</span> <span class="n">processes</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="n">same</span> <span class="n">session</span><span class="p">.</span>  <span class="p">(</span><span class="n">Historically</span><span class="p">,</span> <span class="n">the</span> <span class="n">rules</span>
-       <span class="n">were</span> <span class="n">different</span><span class="p">;</span> <span class="n">see</span> <span class="n">NOTES</span><span class="p">.)</span>
+       For a process to have permission to send a signal, it  must  either  be
+       privileged (under Linux: have the CAP_KILL capability in the user name‐
+       space of the target process), or the real or effective user ID  of  the
+       sending  process must equal the real or saved set-user-ID of the target
+       process.  In the case of SIGCONT, it suffices when the sending and  re‐
+       ceiving processes belong to the same session.  (Historically, the rules
+       were different; see NOTES.)
 
-<span class="n">RETURN</span> <span class="n">VALUE</span>
-       <span class="n">On</span> <span class="n">success</span> <span class="p">(</span><span class="n">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">signal</span> <span class="n">was</span> <span class="n">sent</span><span class="p">),</span> <span class="n">zero</span> <span class="n">is</span> <span class="n">returned</span><span class="p">.</span>  <span class="n">On</span> <span class="n">error</span><span class="p">,</span>
-       <span class="o">-</span><span class="mi">1</span> <span class="n">is</span> <span class="n">returned</span><span class="p">,</span> <span class="n">and</span> <span class="n">errno</span> <span class="n">is</span> <span class="n">set</span> <span class="n">appropriately</span><span class="p">.</span>
-       <span class="err">（一般来说，系统调用出错时，会返回非</span> <span class="mi">0</span> <span class="err">值，且设置全局的</span> <span class="n">errno</span> <span class="err">值。</span>
-       <span class="err">不同的</span> <span class="n">errno</span> <span class="err">值对应了不同的错误，可以查看</span> <span class="n">errno</span> <span class="err">的文档。）</span>
+RETURN VALUE
+       On success (at least one signal was sent), zero is returned.  On error,
+       -1 is returned, and errno is set appropriately.
+       （一般来说，系统调用出错时，会返回非 0 值，且设置全局的 errno 值。
+       不同的 errno 值对应了不同的错误，可以查看 errno 的文档。）
 
-<span class="n">ERRORS</span><span class="err">（错误解释）</span>
-       <span class="n">EINVAL</span> <span class="n">An</span> <span class="n">invalid</span> <span class="n">signal</span> <span class="n">was</span> <span class="n">specified</span><span class="p">.</span>
+ERRORS（错误解释）
+       EINVAL An invalid signal was specified.
 
-       <span class="n">EPERM</span>  <span class="n">The</span>  <span class="n">process</span>  <span class="n">does</span> <span class="n">not</span> <span class="n">have</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">send</span> <span class="n">the</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">any</span>
-              <span class="n">of</span> <span class="n">the</span> <span class="n">target</span> <span class="n">processes</span><span class="p">.</span>
+       EPERM  The  process  does not have permission to send the signal to any
+              of the target processes.
 
-       <span class="n">ESRCH</span>  <span class="n">The</span> <span class="n">process</span> <span class="n">or</span> <span class="n">process</span> <span class="n">group</span> <span class="n">does</span> <span class="n">not</span> <span class="n">exist</span><span class="p">.</span>  <span class="n">Note</span> <span class="n">that</span>  <span class="n">an</span>  <span class="n">ex</span><span class="err">‐</span>
-              <span class="n">isting</span>  <span class="n">process</span> <span class="n">might</span> <span class="n">be</span> <span class="n">a</span> <span class="n">zombie</span><span class="p">,</span> <span class="n">a</span> <span class="n">process</span> <span class="n">that</span> <span class="n">has</span> <span class="n">terminated</span>
-              <span class="n">execution</span><span class="p">,</span> <span class="n">but</span> <span class="n">has</span> <span class="n">not</span> <span class="n">yet</span> <span class="n">been</span> <span class="n">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="n">ed</span> <span class="k">for</span><span class="p">.</span>
-       <span class="err">（这些大写字符串代表了</span> <span class="n">errno</span> <span class="err">中不同的错误值。可以使用</span> <span class="err">`</span><span class="n">perror</span><span class="p">()</span><span class="err">`</span> <span class="err">输出系统的报错信息。）</span>
+       ESRCH  The process or process group does not exist.  Note that  an  ex‐
+              isting  process might be a zombie, a process that has terminated
+              execution, but has not yet been wait(2)ed for.
+       （这些大写字符串代表了 errno 中不同的错误值。可以使用 `perror()` 输出系统的报错信息。）
 
-<span class="n">CONFORMING</span> <span class="n">TO</span><span class="err">（符合的标准，可以看到这里没有</span> <span class="n">C89</span> <span class="err">这类值了，因为</span> <span class="err">`</span><span class="n">kill</span><span class="p">()</span><span class="err">`</span> <span class="err">不是标准</span> <span class="n">C</span> <span class="err">库函数。）</span>
-       <span class="n">POSIX</span><span class="mf">.1</span><span class="o">-</span><span class="mi">2001</span><span class="p">,</span> <span class="n">POSIX</span><span class="mf">.1</span><span class="o">-</span><span class="mi">2008</span><span class="p">,</span> <span class="n">SVr4</span><span class="p">,</span> <span class="mf">4.3</span><span class="n">BSD</span><span class="p">.</span>
+CONFORMING TO（符合的标准，可以看到这里没有 C89 这类值了，因为 `kill()` 不是标准 C 库函数。）
+       POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
 
-<span class="n">NOTES</span>
-       <span class="n">The</span> <span class="n">only</span> <span class="n">signals</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">process</span> <span class="n">ID</span> <span class="mi">1</span><span class="p">,</span>  <span class="n">the</span>  <span class="n">init</span>  <span class="n">process</span><span class="p">,</span>
-       <span class="n">are</span>  <span class="n">those</span>  <span class="k">for</span>  <span class="n">which</span>  <span class="n">init</span>  <span class="n">has</span> <span class="n">explicitly</span> <span class="n">installed</span> <span class="n">signal</span> <span class="n">handlers</span><span class="p">.</span>
-       <span class="n">This</span> <span class="n">is</span> <span class="n">done</span> <span class="n">to</span> <span class="n">assure</span> <span class="n">the</span> <span class="n">system</span> <span class="n">is</span> <span class="n">not</span> <span class="n">brought</span> <span class="n">down</span> <span class="n">accidentally</span><span class="p">.</span>
+NOTES
+       The only signals that can be sent to process ID 1,  the  init  process,
+       are  those  for  which  init  has explicitly installed signal handlers.
+       This is done to assure the system is not brought down accidentally.
 
-       <span class="n">POSIX</span><span class="mf">.1</span> <span class="n">requires</span> <span class="n">that</span> <span class="n">kill</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span> <span class="n">send</span> <span class="n">sig</span> <span class="n">to</span> <span class="n">all</span> <span class="n">processes</span>  <span class="n">that</span>  <span class="n">the</span>
-       <span class="n">calling</span> <span class="n">process</span> <span class="n">may</span> <span class="n">send</span> <span class="n">signals</span> <span class="n">to</span><span class="p">,</span> <span class="n">except</span> <span class="n">possibly</span> <span class="k">for</span> <span class="n">some</span> <span class="n">implemen</span><span class="err">‐</span>
-       <span class="n">tation</span><span class="o">-</span><span class="n">defined</span> <span class="n">system</span> <span class="n">processes</span><span class="p">.</span>  <span class="n">Linux</span> <span class="n">allows</span> <span class="n">a</span> <span class="n">process</span> <span class="n">to</span> <span class="n">signal</span>  <span class="n">it</span><span class="err">‐</span>
-       <span class="n">self</span><span class="p">,</span>  <span class="n">but</span>  <span class="n">on</span>  <span class="n">Linux</span> <span class="n">the</span> <span class="n">call</span> <span class="n">kill</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span> <span class="n">does</span> <span class="n">not</span> <span class="n">signal</span> <span class="n">the</span> <span class="n">calling</span>
-       <span class="n">process</span><span class="p">.</span>
+       POSIX.1 requires that kill(-1,sig) send sig to all processes  that  the
+       calling process may send signals to, except possibly for some implemen‐
+       tation-defined system processes.  Linux allows a process to signal  it‐
+       self,  but  on  Linux the call kill(-1,sig) does not signal the calling
+       process.
 
-       <span class="n">POSIX</span><span class="mf">.1</span> <span class="n">requires</span> <span class="n">that</span> <span class="k">if</span> <span class="n">a</span> <span class="n">process</span> <span class="n">sends</span> <span class="n">a</span> <span class="n">signal</span> <span class="n">to</span>  <span class="n">itself</span><span class="p">,</span>  <span class="n">and</span>  <span class="n">the</span>
-       <span class="n">sending</span>  <span class="kr">thread</span>  <span class="n">does</span>  <span class="n">not</span> <span class="n">have</span> <span class="n">the</span> <span class="n">signal</span> <span class="n">blocked</span><span class="p">,</span> <span class="n">and</span> <span class="n">no</span> <span class="n">other</span> <span class="kr">thread</span>
-       <span class="n">has</span> <span class="n">it</span> <span class="n">unblocked</span> <span class="n">or</span> <span class="n">is</span> <span class="n">waiting</span> <span class="k">for</span> <span class="n">it</span> <span class="n">in</span> <span class="n">sigwait</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">at</span> <span class="n">least</span>  <span class="n">one</span>  <span class="n">un</span><span class="err">‐</span>
-       <span class="n">blocked</span>  <span class="n">signal</span>  <span class="n">must</span>  <span class="n">be</span>  <span class="n">delivered</span>  <span class="n">to</span>  <span class="n">the</span> <span class="n">sending</span> <span class="kr">thread</span> <span class="n">before</span> <span class="n">the</span>
-       <span class="n">kill</span><span class="p">()</span> <span class="n">returns</span><span class="p">.</span>
+       POSIX.1 requires that if a process sends a signal to  itself,  and  the
+       sending  thread  does  not have the signal blocked, and no other thread
+       has it unblocked or is waiting for it in sigwait(3), at least  one  un‐
+       blocked  signal  must  be  delivered  to  the sending thread before the
+       kill() returns.
 
-   <span class="n">Linux</span> <span class="n">notes</span>
-       <span class="n">Across</span> <span class="n">different</span> <span class="n">kernel</span> <span class="n">versions</span><span class="p">,</span> <span class="n">Linux</span> <span class="n">has</span>  <span class="n">enforced</span>  <span class="n">different</span>  <span class="n">rules</span>
-       <span class="k">for</span> <span class="n">the</span> <span class="n">permissions</span> <span class="n">required</span> <span class="k">for</span> <span class="n">an</span> <span class="n">unprivileged</span> <span class="n">process</span> <span class="n">to</span> <span class="n">send</span> <span class="n">a</span> <span class="n">sig</span><span class="err">‐</span>
-       <span class="n">nal</span> <span class="n">to</span> <span class="n">another</span> <span class="n">process</span><span class="p">.</span>  <span class="n">In</span> <span class="n">kernels</span> <span class="mf">1.0</span> <span class="n">to</span> <span class="mf">1.2.2</span><span class="p">,</span>  <span class="n">a</span>  <span class="n">signal</span>  <span class="n">could</span>  <span class="n">be</span>
-       <span class="n">sent</span>  <span class="k">if</span>  <span class="n">the</span> <span class="n">effective</span> <span class="n">user</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sender</span> <span class="n">matched</span> <span class="n">effective</span> <span class="n">user</span> <span class="n">ID</span>
-       <span class="n">of</span> <span class="n">the</span> <span class="n">target</span><span class="p">,</span> <span class="n">or</span> <span class="n">the</span> <span class="n">real</span> <span class="n">user</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sender</span> <span class="n">matched</span> <span class="n">the</span> <span class="n">real</span>  <span class="n">user</span>
-       <span class="n">ID</span>  <span class="n">of</span>  <span class="n">the</span>  <span class="n">target</span><span class="p">.</span>  <span class="n">From</span> <span class="n">kernel</span> <span class="mf">1.2.3</span> <span class="n">until</span> <span class="mf">1.3.77</span><span class="p">,</span> <span class="n">a</span> <span class="n">signal</span> <span class="n">could</span> <span class="n">be</span>
-       <span class="n">sent</span> <span class="k">if</span> <span class="n">the</span> <span class="n">effective</span> <span class="n">user</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sender</span> <span class="n">matched</span> <span class="n">either</span> <span class="n">the</span> <span class="n">real</span>  <span class="n">or</span>
-       <span class="n">effective</span>  <span class="n">user</span>  <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">target</span><span class="p">.</span>  <span class="n">The</span> <span class="n">current</span> <span class="n">rules</span><span class="p">,</span> <span class="n">which</span> <span class="n">conform</span> <span class="n">to</span>
-       <span class="n">POSIX</span><span class="mf">.1</span><span class="p">,</span> <span class="n">were</span> <span class="n">adopted</span> <span class="n">in</span> <span class="n">kernel</span> <span class="mf">1.3.78</span><span class="p">.</span>
-       <span class="err">（很多系统调用都是</span> <span class="n">POSIX</span> <span class="err">标准，但是在</span> <span class="n">Linux</span> <span class="err">上可能会有一些地方不太一样。）</span>
+   Linux notes
+       Across different kernel versions, Linux has  enforced  different  rules
+       for the permissions required for an unprivileged process to send a sig‐
+       nal to another process.  In kernels 1.0 to 1.2.2,  a  signal  could  be
+       sent  if  the effective user ID of the sender matched effective user ID
+       of the target, or the real user ID of the sender matched the real  user
+       ID  of  the  target.  From kernel 1.2.3 until 1.3.77, a signal could be
+       sent if the effective user ID of the sender matched either the real  or
+       effective  user  ID of the target.  The current rules, which conform to
+       POSIX.1, were adopted in kernel 1.3.78.
+       （很多系统调用都是 POSIX 标准，但是在 Linux 上可能会有一些地方不太一样。）
 
-<span class="n">BUGS</span><span class="err">（问题，你需要绕开这些坑）</span>
-       <span class="n">In</span> <span class="mf">2.6</span> <span class="n">kernels</span> <span class="n">up</span> <span class="n">to</span> <span class="n">and</span> <span class="n">including</span> <span class="mf">2.6.7</span><span class="p">,</span> <span class="n">there</span> <span class="n">was</span> <span class="n">a</span>  <span class="n">bug</span>  <span class="n">that</span>  <span class="n">meant</span>
-       <span class="n">that</span>  <span class="n">when</span>  <span class="n">sending</span>  <span class="n">signals</span> <span class="n">to</span> <span class="n">a</span> <span class="n">process</span> <span class="n">group</span><span class="p">,</span> <span class="n">kill</span><span class="p">()</span> <span class="n">failed</span> <span class="n">with</span> <span class="n">the</span>
-       <span class="n">error</span> <span class="n">EPERM</span> <span class="k">if</span> <span class="n">the</span> <span class="n">caller</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">send</span> <span class="n">the</span> <span class="n">signal</span> <span class="n">to</span>
-       <span class="n">any</span>  <span class="p">(</span><span class="n">rather</span>  <span class="n">than</span>  <span class="n">all</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">members</span> <span class="n">of</span> <span class="n">the</span> <span class="n">process</span> <span class="n">group</span><span class="p">.</span>  <span class="n">Notwith</span><span class="err">‐</span>
-       <span class="n">standing</span> <span class="n">this</span> <span class="n">error</span> <span class="k">return</span><span class="p">,</span> <span class="n">the</span> <span class="n">signal</span> <span class="n">was</span> <span class="n">still</span> <span class="n">delivered</span>  <span class="n">to</span>  <span class="n">all</span>  <span class="n">of</span>
-       <span class="n">the</span> <span class="n">processes</span> <span class="k">for</span> <span class="n">which</span> <span class="n">the</span> <span class="n">caller</span> <span class="n">had</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">signal</span><span class="p">.</span>
+BUGS（问题，你需要绕开这些坑）
+       In 2.6 kernels up to and including 2.6.7, there was a  bug  that  meant
+       that  when  sending  signals to a process group, kill() failed with the
+       error EPERM if the caller did not have permission to send the signal to
+       any  (rather  than  all) of the members of the process group.  Notwith‐
+       standing this error return, the signal was still delivered  to  all  of
+       the processes for which the caller had permission to signal.
 
-<span class="n">SEE</span> <span class="n">ALSO</span>
-       <span class="n">kill</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>    <span class="n">_exit</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>    <span class="n">signal</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>   <span class="n">tkill</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>   <span class="n">exit</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>   <span class="n">killpg</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
-       <span class="n">sigqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">capabilities</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">credentials</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">signal</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+SEE ALSO
+       kill(1),    _exit(2),    signal(2),   tkill(2),   exit(3),   killpg(3),
+       sigqueue(3), capabilities(7), credentials(7), signal(7)
 
-<span class="n">COLOPHON</span>
-       <span class="n">This</span> <span class="n">page</span> <span class="n">is</span> <span class="n">part</span> <span class="n">of</span> <span class="n">release</span> <span class="mf">4.16</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Linux</span>  <span class="n">man</span><span class="o">-</span><span class="n">pages</span>  <span class="n">project</span><span class="p">.</span>   <span class="n">A</span>
-       <span class="n">description</span>  <span class="n">of</span>  <span class="n">the</span> <span class="n">project</span><span class="p">,</span> <span class="n">information</span> <span class="n">about</span> <span class="n">reporting</span> <span class="n">bugs</span><span class="p">,</span> <span class="n">and</span> <span class="n">the</span>
-       <span class="n">latest</span>    <span class="n">version</span>    <span class="n">of</span>    <span class="n">this</span>    <span class="n">page</span><span class="p">,</span>    <span class="n">can</span>     <span class="n">be</span>     <span class="n">found</span>     <span class="n">at</span>
-       <span class="nl">https</span><span class="p">:</span><span class="c1">//www.kernel.org/doc/man-pages/.</span>
+COLOPHON
+       This page is part of release 4.16 of the Linux  man-pages  project.   A
+       description  of  the project, information about reporting bugs, and the
+       latest    version    of    this    page,    can     be     found     at
+       https://www.kernel.org/doc/man-pages/.
 
-<span class="n">Linux</span>                             <span class="mi">2017</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">15</span>                           <span class="n">KILL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+Linux                             2017-09-15                           KILL(2)
 </code></pre></div>
-                
-                  
-                
                 
               
               
@@ -1412,34 +1433,34 @@
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../glossary/" title="词汇表" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../glossary/" title="词汇表" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
                 词汇表
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../distribution/" title="其他的 Linux 发行版：技术差异简介" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../distribution/" title="其他的 Linux 发行版：技术差异简介" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
                 其他的 Linux 发行版：技术差异简介
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
           </a>
         
@@ -1454,17 +1475,19 @@
             Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
+        Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+          Material for MkDocs
+        </a>
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
-      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="globe" class="md-footer-social__link fa fa-globe"></a>
+      
+      
+      <a href="https://lug.ustc.edu.cn/" target="_blank" rel="noopener" title="lug.ustc.edu.cn" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm82.29 357.6c-3.9 3.88-7.99 7.95-11.31 11.28-2.99 3-5.1 6.7-6.17 10.71-1.51 5.66-2.73 11.38-4.77 16.87l-17.39 46.85c-13.76 3-28 4.69-42.65 4.69v-27.38c1.69-12.62-7.64-36.26-22.63-51.25-6-6-9.37-14.14-9.37-22.63v-32.01c0-11.64-6.27-22.34-16.46-27.97-14.37-7.95-34.81-19.06-48.81-26.11-11.48-5.78-22.1-13.14-31.65-21.75l-.8-.72a114.792 114.792 0 0 1-18.06-20.74c-9.38-13.77-24.66-36.42-34.59-51.14 20.47-45.5 57.36-82.04 103.2-101.89l24.01 12.01C203.48 89.74 216 82.01 216 70.11v-11.3c7.99-1.29 16.12-2.11 24.39-2.42l28.3 28.3c6.25 6.25 6.25 16.38 0 22.63L264 112l-10.34 10.34c-3.12 3.12-3.12 8.19 0 11.31l4.69 4.69c3.12 3.12 3.12 8.19 0 11.31l-8 8a8.008 8.008 0 0 1-5.66 2.34h-8.99c-2.08 0-4.08.81-5.58 2.27l-9.92 9.65a8.008 8.008 0 0 0-1.58 9.31l15.59 31.19c2.66 5.32-1.21 11.58-7.15 11.58h-5.64c-1.93 0-3.79-.7-5.24-1.96l-9.28-8.06a16.017 16.017 0 0 0-15.55-3.1l-31.17 10.39a11.95 11.95 0 0 0-8.17 11.34c0 4.53 2.56 8.66 6.61 10.69l11.08 5.54c9.41 4.71 19.79 7.16 30.31 7.16s22.59 27.29 32 32h66.75c8.49 0 16.62 3.37 22.63 9.37l13.69 13.69a30.503 30.503 0 0 1 8.93 21.57 46.536 46.536 0 0 1-13.72 32.98zM417 274.25c-5.79-1.45-10.84-5-14.15-9.97l-17.98-26.97a23.97 23.97 0 0 1 0-26.62l19.59-29.38c2.32-3.47 5.5-6.29 9.24-8.15l12.98-6.49C440.2 193.59 448 223.87 448 256c0 8.67-.74 17.16-1.82 25.54L417 274.25z"/></svg>
+      </a>
     
   </div>
 
@@ -1474,26 +1497,18 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
-        
-        
-          
-          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
-          
-            
-              
-                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
-              
-              
-                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
-              
-            
-          
-          
-        
-      
-      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
       
