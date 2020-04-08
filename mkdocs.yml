@@ -12,7 +12,7 @@ theme:
   language: 'zh'
   icon:
     logo: fontawesome/brands/linux
-    repository: octicons/mark-github
+    repo: octicons/mark-github
 
 markdown_extensions:
   - admonition
