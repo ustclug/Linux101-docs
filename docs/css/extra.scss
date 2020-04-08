@@ -46,6 +46,10 @@
 		font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important;
 	}
 
+	kbd {
+		box-shadow: 0 0 0 .05rem var(--md-default-fg-color--lighter), 0 .1rem 0 var(--md-default-fg-color--lighter), inset 0 -0.1rem .2rem var(--md-default-bg-color);
+	}
+
 	.md-typeset__table {
 		display: block;
 		margin-left: auto;
