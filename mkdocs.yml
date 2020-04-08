@@ -24,7 +24,7 @@ markdown_extensions:
 
 extra:
   social:
-    - type: globe
+    - icon: fontawesome/solid/globe-americas
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
