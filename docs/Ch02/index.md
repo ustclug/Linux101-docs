@@ -1,4 +1,4 @@
-# 个性化配置与建站体验
+# 个性化配置与建站体验 {#customization}
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
 
@@ -480,7 +480,7 @@ $ jekyll serve
 
 	如果你见过 Linux 服务器用的发行版，你会发现它们绝大多数都没有默认安装桌面环境，这是什么原因呢？
 
-## 引用来源 {#references}
+## 引用来源 {#references .no-underline}
 
 - [Xfce 文档](https://docs.xfce.org/xfce/start)
 - [Ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)

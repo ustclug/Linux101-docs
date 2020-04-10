@@ -1,18 +1,20 @@
-# 软件安装与文件操作
+# 软件安装与文件操作 {#software-file}
+
+!!! warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 
 !!! abstract "导言"
-    面对一个新的系统，如何将它尽快地投入使用？在这一章节中，你将可以解惑以下的几个问题：
+    面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会得到以下几个问题的答案：
 
     * 如何通过命令行的方式安装需要的软件
     * 创建、移动、删除等对文件与目录的操作
     * 压缩、解压一个压缩文件
     * 面对一个没有使用过的软件，如何能够更快地了解使用方法，上手使用
 
-## 软件安装
+## 软件安装 {#software-installation}
 
-软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法
+软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法：
 
-### 使用应用商店安装
+### 使用应用商店安装 {#use-app-store}
 
 使用应用商店安装比较符合我们在 Google Play 和 App Store 安装应用的习惯，无需用户的干预，只需轻点鼠标即可完成安装。
 
@@ -20,12 +22,12 @@
 
 ![Ubuntu Application Store](images/vscode-ubuntu-application-store.png)
 
-!!! info ""
-    这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等
+!!! info "其它发行版的应用商店"
+    本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。
 
-    在其他的发行版上，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店
+    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。
 
-### 使用 apt、yum、pacman 等软件仓库安装
+### 使用 apt、yum、pacman 等软件仓库安装 {#use-software-repository}
 
 软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供只有下载和安装的可用软件包。[^2]
 
@@ -44,11 +46,11 @@
 
 
 
-#### 搜索
+#### 搜索 {#apt-search}
 
-在安装前，使用 `apt search` 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：`apt search 搜索内容`
+在安装前，使用 `apt search` 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：`apt search 搜索内容`。
 
-下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包
+下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：
 
 ```
 ➜  ~ apt search firefox
@@ -62,7 +64,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 (Ouput Omitted)
 ```
 
-中间两行每个的字段的含义
+中间两行每个的字段的含义：
 
 | 样例中的字段                             | 含义                                  |
 | ---------------------------------------- | ------------------------------------- |
@@ -72,11 +74,11 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 | `amd64`                                  | 软件包的架构；还可能为`i386`、`all`等 |
 | `Safe and easy web browser from Mozilla` | 在软件仓库中对这个软件包的描述        |
 
-#### 安装
+#### 安装 {#installation}
 
-在确定了软件包的包名后，可以通过 `apt install 包名` 进行安装
+在确定了软件包的包名后，可以通过 `apt install 包名` 进行安装。
 
-下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
+下面是 `apt install firefox` 安装火狐浏览器的输出结果示例：
 ```
 ➜  ~ apt install firefox
 Reading package lists... Done
@@ -97,33 +99,33 @@ After this operation, 264 MB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
 
-在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 `Y` 后回车确定进行安装
+在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 `Y` 后回车确定进行安装。
 
 !!! tip "可能会出现的权限问题"
-    在一般情况下，如果直接运行 `apt install` 命令，会输出
+    在一般情况下，如果直接运行 `apt install` 命令，会输出：
     ```
     ➜  ~ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
     E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
     ```
 
-    这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 `sudo`
+    这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 `sudo`。
 
-    即使用 `sudo apt install firefox`
+    即使用 `sudo apt install firefox`。
 
-    在输入之后，终端显示
+    在输入之后，终端显示：
 
     ```
     [sudo] password for ubuntu:
     ```
 
-    这里提示的是需要用户输入密码，以提升权限来执行命令
+    这里提示的是需要用户输入密码，以提升权限来执行命令。
 
     当然，在用户输入密码的过程中，为了安全，终端是不会进行密码的回显的，即终端不会将用户的输入内容打印在屏幕上。
     
     因此当你发现自己输入了很多内容也没有什么反应的时候，不用惊慌，只需要像平常一样输入正确的密码、回车，即可完成密码的正确性的鉴定。
 
-    如果密码输入正确，那么就可以正常地执行命令
+    如果密码输入正确，那么就可以正常地执行命令。
 
     否则，则需要再次尝试
 
@@ -135,26 +137,26 @@ Do you want to continue? [Y/n]
     **具体有关权限的知识点将在第五章展开**
 
 
-### 使用包管理器进行安装
+### 使用包管理器进行安装 {#use-package-manager}
 
 在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 `deb`、`rpm` 等二进制包。
 
 !!! example "Install VSCode from deb file"
     Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
 
-    首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)
+    首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
 
-    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）
+    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）。
 
-### 更新软件列表与更新软件
+### 更新软件列表与更新软件 {#update-and-upgrade}
 
 在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 `apt install` 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 `apt install some-package` 时安装的。
 
-#### apt update
+#### apt update {#apt-update}
 
 为了将这个列表进行更新，就会用到 `apt update` 命令。获取到新的软件版本、软件依赖关系。
 
-在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本
+在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
 
 !!! Example "apt update 输出样例"
     ```
@@ -173,15 +175,15 @@ Do you want to continue? [Y/n]
     158 packages can be upgraded. Run 'apt list --upgradable' to see them.
     ```
 
-    每一行对应获取一个软件源
+    每一行对应获取一个软件源。
 
-    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量
+    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
 
-#### apt upgrade
+#### apt upgrade {#apt-upgrade}
 
-在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 `apt upgrade` 命令
+在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 `apt upgrade` 命令。
 
-`apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级
+`apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
 
 !!! Example "apt upgrade 输出样例"
     ```
@@ -199,9 +201,9 @@ Do you want to continue? [Y/n]
     ```
     在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
 
-#### 软件源
+#### 软件源 {#software-sources}
 
-通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下
+通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? Example "查看本地的软件源列表"
     ```
@@ -224,14 +226,14 @@ Do you want to continue? [Y/n]
     deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
     ```
 
-    每一个条目都遵循如下的格式
+    每一个条目都遵循如下的格式：
 
     ```
     deb http://site.example.com/ubuntu/ distribution component1 component2 component3
     deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
     ```
 
-    分别是 Archive type，Repository URL，Distribution 和 Component
+    分别是 Archive type、Repository URL、Distribution 和 Component。
 
     在 Ubuntu 下，Component 可以为如下几个[^2]：
 
@@ -246,7 +248,7 @@ Do you want to continue? [Y/n]
 
 官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。
 
-镜像缓存了官方源中的软件列表，与官方源基本一致
+镜像缓存了官方源中的软件列表，与官方源基本一致。
 
 !!! Example "修改官方源为镜像，加快更新速度"
     *以修改官方源为 USTC Mirror 为例[^1]*
@@ -254,23 +256,23 @@ Do you want to continue? [Y/n]
     !!! warning "Warn"
         在操作前请做好备份
 
-    一般情况下，`/etc/apt/sources.list` 下的官方源地址为 `http://archive.ubuntu.com/` ，我们只需要将其替换为 `http://mirrors.ustc.edu.cn` 即可
+    一般情况下，`/etc/apt/sources.list` 下的官方源地址为 `http://archive.ubuntu.com/` ，我们只需要将其替换为 `http://mirrors.ustc.edu.cn` 即可。
 
     !!! tip "Tip"
-        如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`
+        如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`。
 
-    可以使用如下命令
+    可以使用如下命令：
 
     `sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`
 
-    当然也可以直接使用 vim、nano 等文本编辑器进行修改
+    当然也可以直接使用 vim、nano 等文本编辑器进行修改。
 
-### 安装预编译可执行文件
+### 安装预编译可执行文件 {#install-precompiled}
 
 对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。
 
 !!! Example "安装预编译的 LLVM"
-    > LLVM 的前端 Clang 在 apt 上有提供，apt install clang 或对应版本的 clang 包名即可
+    > LLVM 的前端 Clang 在 apt 上有提供，apt install clang 或对应版本的 clang 包名即可。
 
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
@@ -284,14 +286,14 @@ Do you want to continue? [Y/n]
     cd clang
     ```
 
-    查看当前的目录下有什么内容
+    查看当前的目录下有什么内容：
 
     ```shell
     ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 ls
     bin  include  lib  libexec  share  
     ```
 
-    一般而言，软件的可执行文件都位于 bin 文件夹下
+    一般而言，软件的可执行文件都位于 bin 文件夹下：
 
     ```shell
     ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 cd bin
@@ -304,11 +306,11 @@ Do you want to continue? [Y/n]
     (Output omitted)
     ```
 
-    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。
 
     当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。
 
-    我们可以这样做
+    我们可以这样做：
 
     ```shell
     # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
@@ -317,7 +319,7 @@ Do you want to continue? [Y/n]
 
     为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 文件夹是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的文件夹下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的文件夹下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
     
-    通过这个命令可以看到当前的 PATH 环境变量有哪些目录
+    通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
     ```shell
     ➜  ~ echo $PATH
@@ -327,11 +329,11 @@ Do you want to continue? [Y/n]
     在上面的复制过程中，源目录和目标目录的两个 `bin` 文件夹会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 文件夹中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
 
 
-## 操作文件与文件夹
+## 操作文件与文件夹 {#operate-files-and-dirs}
 
 在 Linux 在进行操作文件与文件夹是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与文件夹，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
 
-### 拷贝文件、文件夹
+### 拷贝文件、文件夹 {#cp}
 
 ```bash
 # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
@@ -341,7 +343,7 @@ cp [OPTION] SOURCE DEST
 cp [OPTION] SOURCE... DIRECTORY
 ```
 
-常用的选项
+常用的选项:
 
 | 选项                  | 含义                             |
 | --------------------- | -------------------------------- |
@@ -368,23 +370,23 @@ cp [OPTION] SOURCE... DIRECTORY
     ```
 
 !!! tips "硬链接和符号链接"
-    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和符号链接
+    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和符号链接。
 
     简单而言，一个文件的硬链接和符号链接都指向文件自身，但是在底层有不同的行为。
 
     需要先了解一个概念：inode
 
-    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和文件夹。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）
+    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和文件夹。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）。
 
-    > 可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html
+    > 可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html。
 
-    硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个
+    硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
 
     符号链接与源文件的 inode 不同。符号链接保存了源文件的路径，在访问符号链接的时候，访问的路径被替换为源文件的路径，因此访问符号链接也等同于访问源文件。但是如果删除了源文件，符号链接所保存的路径也就无效了，符号链接因此也是无效的。
 
-### 移动文件、文件夹
+### 移动文件、文件夹 {#mv}
 
-`mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切
+`mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
 ```bash
 # 将 SOURCE 文件移动到 DEST 文件
@@ -394,7 +396,7 @@ mv [OPTION] SOURCE DEST
 mv [OPTION] SOURCE... DIRECTORY
 ```
 
-常用的选项
+常用的选项：
 
 | 选项                  | 含义                             |
 | --------------------- | -------------------------------- |
@@ -402,7 +404,7 @@ mv [OPTION] SOURCE... DIRECTORY
 | `-f, --force`         | 覆盖目标地址同名文件             |
 | `-u, --update`        | 仅当源文件比目标文件新才进行移动 |
 
-### 删除文件、文件夹
+### 删除文件、文件夹 {#rm}
 
 ```bash
 # 删除 FILE 文件，FILE 可以为多个文件。
@@ -410,7 +412,7 @@ mv [OPTION] SOURCE... DIRECTORY
 rm [OPTION] FILE...
 ```
 
-常用的选项
+常用的选项：
 
 | 选项                  | 含义                               |
 | --------------------- | ---------------------------------- |
@@ -419,22 +421,22 @@ rm [OPTION] FILE...
 | `-d, --dir`           | 删除空文件夹                       |
 
 ??? example "Delete files"
-    删除 `file1.txt` 文件
+    删除 `file1.txt` 文件：
     ```
     rm file1.txt
     ```
 
-    删除 `test` 文件夹及其下的所有文件
+    删除 `test` 文件夹及其下的所有文件：
     ```
     rm -r test/
     ```
 
-    删除 `test1/`、`test2/`、`file1.txt` 这些文件、文件夹。其中，这些文件或者文件夹可能不存在、写保护或者没有权限读写
+    删除 `test1/`、`test2/`、`file1.txt` 这些文件、文件夹。其中，这些文件或者文件夹可能不存在、写保护或者没有权限读写：
     ```
     rm -rf test1/ test2/ file1.txt
     ```
 
-### 创建目录
+### 创建目录 {#mkdir}
 
 ```bash
 # 创建一个文件夹，名为 DIR_NAME
@@ -442,23 +444,23 @@ mkdir DIR_NAME...
 ```
 
 ??? example "Create directory"
-    创建名为 `test1`、`test2` 的目录
+    创建名为 `test1`、`test2` 的目录：
     ```
     mkdir test1 test2
     ```
 
-## 使用 tar 操作存档、压缩文件
+## 使用 tar 操作存档、压缩文件 {#tar}
 
 经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 `tar` 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。
 
-通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件
+通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
 ```bash
 # 命令格式如下，请参考下面的使用样例了解使用方法
 tar [OPTIONS] [FILE]...
 ```
 
-常用选项
+常用选项：
 
 | 选项                   | 含义                                         |
 | ---------------------- | -------------------------------------------- |
@@ -470,7 +472,7 @@ tar [OPTIONS] [FILE]...
 | `-f, --file=ARCHIVE`   | 使用指定的存档文件                           |
 | `-C, --directory=DIR`  | 指定输出的文件夹                             |
 
-添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件
+添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
 | 选项                             | 含义                        |
 | -------------------------------- | --------------------------- |
@@ -479,34 +481,34 @@ tar [OPTIONS] [FILE]...
 | `-J, --xz`                       | 使用 xz 算法处理存档文件    |
 
 !!! example "Usage of TAR"
-    * 将 `file1`、`file2`、`file3` 打包为 `target.tar`
+    * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
     ```
     tar -c -f target.tar file1 file2 file3
     ```
 
-    * 将 `target.tar` 中的文件提取到 `test` 文件夹中
+    * 将 `target.tar` 中的文件提取到 `test` 文件夹中：
     ```
     tar -x -f target.tar -C test/
     ```
 
-    * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` 
+    * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
     ```
     tar -cz -f target.tar.gz file1 file2 file3
     ```
 
-    * 将压缩文件 `target.tar.gz` 解压到 `test` 文件夹中
+    * 将压缩文件 `target.tar.gz` 解压到 `test` 文件夹中：
     ```
     tar -xz -f target.tar.gz -C test/
     ```
 
     !!! tip 存档文件的后缀名
-        后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法
+        后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
 
         在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
 
         在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。
 
-        同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项
+        同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
     ```
@@ -521,13 +523,13 @@ tar [OPTIONS] [FILE]...
     tar -tv -f target.tar
     ```
 
-## 软件的使用文档
+## 软件的使用文档 {#software-manuals}
 
 面对一个新的软件，比如上面提到的 tar 存档软件，除了使用搜索引擎在互联网上搜索使用方法外，还可以通过软件安装时自带的使用文档来学习。
 
 掌握通过一些手段了解一个新的命令的使用方法的技能在 Linux 学习中是极其重要的，Linux 的命令众多，并不会有很多的命令会有详细的说明。有时候官方文档也没有解释清楚的，可能需要手动试错乃至翻阅源代码了解命令的参数含义。
 
-### man 命令
+### man 命令 {#man}
 
 通过 `man + 命令名` 可以得到大部分安装在 Linux 上的软件的用户手册。
 
@@ -574,23 +576,23 @@ DESCRIPTION
 (Ouput omitted)
 ```
 
-### tldr 软件
+### tldr 软件 {#tldr}
 
 通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 `tldr` 软件。
 
 `tldr` 软件中包含有一个由[社区](https://github.com/tldr-pages/tldr)维护的精简版文档，通过几个简单的例子让用户可以快速地一窥软件的使用方法。
 
-#### 安装
+#### 安装 {#install-tldr}
 
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
 `apt install tldr`
 
-#### 使用
+#### 使用 {#use-tldr}
 
 直接输入 `tldr 命令名` 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。
 
-输入 `tldr ls` 的样例
+输入 `tldr ls` 的样例：
 
 ```
 ➜  ~ tldr tar
@@ -622,17 +624,17 @@ https://www.gnu.org/software/tar
    tar xf {{source.tar}} --wildcards {{"*.html"}}
 ```
 
-可以从输出中快速地了解到
+可以从输出中快速地了解到：
 
-* 创建存档文件
-* 创建压缩的存档文件
-* 解压一个存档文件
-* 解压一个存档文件到指定目录
-* 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件
-* 给出一个存档文件中的文件列表
-* 解压一个存档文件，但是只有特定的文件名的文件才会被解压。在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压
+* 创建存档文件；
+* 创建压缩的存档文件；
+* 解压一个存档文件；
+* 解压一个存档文件到指定目录；
+* 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
+* 给出一个存档文件中的文件列表；
+* 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
 
-## 引用来源
+## 引用来源 {#references .no-underline}
 
 [^1]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)
 
