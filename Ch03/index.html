@@ -1449,12 +1449,12 @@
 <div class="highlight"><pre><span></span><code>$ apt search firefox
 Sorting... Done
 Full Text Search... Done
-<span class="o">(</span>Output omitted<span class="o">)</span>
+(Output omitted)
 
-firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-0ubuntu0.18.04.1 amd64
+firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
   Safe and easy web browser from Mozilla
 
-<span class="o">(</span>Output omitted<span class="o">)</span>
+(Output omitted)
 </code></pre></div>
 
 <p>中间两行每个字段的含义：</p>
@@ -1491,23 +1491,23 @@ firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-
 <h4 id="installation">安装<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
 <p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装。</p>
 <p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># apt install firefox</span>
+<div class="highlight"><pre><span></span><code># apt install firefox
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
 The following additional packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig
-  <span class="o">(</span>Output omitted<span class="o">)</span>
+  (Output omitted)
 Suggested packages:
   fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common
   gvfs liblcms2-utils librsvg2-bin
 The following NEW packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service firefox fontconfig
-  <span class="o">(</span>Output omitted<span class="o">)</span>
-<span class="m">0</span> upgraded, <span class="m">87</span> newly installed, <span class="m">0</span> to remove and <span class="m">1</span> not upgraded.
-Need to get <span class="m">64</span>.5 MB of archives.
-After this operation, <span class="m">264</span> MB of additional disk space will be used.
-Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span class="o">]</span>
+  (Output omitted)
+0 upgraded, 87 newly installed, 0 to remove and 1 not upgraded.
+Need to get 64.5 MB of archives.
+After this operation, 264 MB of additional disk space will be used.
+Do you want to continue? [Y/n]
 </code></pre></div>
 
 <p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 后回车确定进行安装。</p>
@@ -1515,8 +1515,8 @@ Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span
 <p class="admonition-title">可能会出现的权限问题</p>
 <p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
 <div class="highlight"><pre><span></span><code>$ apt install firefox
-E: Could not open lock file /var/lib/dpkg/lock-frontend - open <span class="o">(</span><span class="m">13</span>: Permission denied<span class="o">)</span>
-E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpkg/lock-frontend<span class="o">)</span>, are you root?
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
 </code></pre></div></p>
 <p>这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 <code>sudo</code>。</p>
 <p>即使用 <code>sudo apt install firefox</code>。</p>
@@ -1537,7 +1537,7 @@ E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpk
 </div>
 <h4 id="software-sources">官方软件源镜像<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
 <p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
-<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list <span class="p">|</span> grep -v <span class="s2">&quot;#&quot;</span>
+<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v &quot;#&quot;
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -1695,18 +1695,18 @@ $ sudo add-apt-repository <span class="se">\</span>
 <div class="admonition example">
 <p class="admonition-title">apt update 输出样例</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt update
-<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> elsa:
-Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease <span class="o">[</span><span class="m">88</span>.7 kB<span class="o">]</span>
-Get:2 https://cli-assets.heroku.com/apt ./ InRelease <span class="o">[</span><span class="m">2533</span> B<span class="o">]</span>
-Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease <span class="o">[</span><span class="m">88</span>.7 kB<span class="o">]</span>
-Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease <span class="o">[</span><span class="m">74</span>.6 kB<span class="o">]</span>
-Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages <span class="o">[</span><span class="m">853</span> kB<span class="o">]</span>
-Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en <span class="o">[</span><span class="m">298</span> kB<span class="o">]</span>
-<span class="o">(</span>Output ommitted<span class="o">)</span>
+[sudo] password for elsa:
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
+Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]
+Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]
+Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages [853 kB]
+Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 kB]
+(Output ommitted)
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
-<span class="m">158</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.
+158 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
 </code></pre></div>
 
 <p>每一行对应获取一个软件源。</p>
