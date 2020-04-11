@@ -702,7 +702,7 @@ DESCRIPTION
        default).  Sort entries alphabetically if  none  of  -cftuvSUX
        nor --sort is specified.
 
-(Ouput omitted)
+(Output omitted)
 ```
 
 ### tldr 软件 {#tldr}
