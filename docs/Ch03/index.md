@@ -378,6 +378,12 @@ Do you want to continue? [Y/n]
 
 直接通过 `dpkg` 安装 `deb` 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
 
+可以通过如下的方式调用 `apt` 帮助修复依赖管理：
+
+```shell
+sudo apt -f install
+```
+
 !!! example "用 deb 文件安装 VSCode"
 
     Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
