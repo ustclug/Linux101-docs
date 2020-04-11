@@ -963,7 +963,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildin-command" class="md-nav__link">
+  <a href="#builtin-command" class="md-nav__link">
     内建命令
   </a>
   
@@ -1200,7 +1200,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildin-command" class="md-nav__link">
+  <a href="#builtin-command" class="md-nav__link">
     内建命令
   </a>
   
@@ -1351,7 +1351,7 @@
 <p>如果说进程调度体现了系统进程与资源的管理作用，那么系统调用体现的是系统为进程提供服务的功能。操作系统既然提供了对硬件的抽象，那么必然要让程序去使用这些抽象。于是系统调用可以按照其提供的抽象分为针对进程的，针对文件的，针对内存的，针对用户的调用。除此之外还有网络管理以及调节操作系统自身的调用。我们所熟悉的 read，write 读写文件，更改文件各种权限；进程设置自身的gid，sid；甚至最简单的读取目录都经过系统调用。</p>
 <p>显然这样做的目的之一是便于管理：要想让各个程序和平运行不抢设备的 IO，权力一定要上交到仲裁者手中。如果 A 的 IO 受到 B 的干扰，那么 A 的运行无法得到保证。只有操作系统为它们俩的 IO 排好先后顺序，才能保证它们顺利拿到数据。其次，各种权限信息与进程管理信息的修改显然不可以绕过操作系统。再者，类似于网络的这种相对较强的实时需求，必然需要操作系统的支持，没有哪个用户程序可以单独胜任。所以，系统调用是各用户进程“使用”操作系统的统一接口。</p>
 <h3 id="posix">POSIX 标准<a class="headerlink" href="#posix" title="Permanent link">&para;</a></h3>
-<h3 id="buildin-command">内建命令<a class="headerlink" href="#buildin-command" title="Permanent link">&para;</a></h3>
+<h3 id="builtin-command">内建命令<a class="headerlink" href="#builtin-command" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ whereis ls
 $ whereis <span class="nb">bg</span>
 </code></pre></div>

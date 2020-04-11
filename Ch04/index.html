@@ -653,15 +653,28 @@
         
           <li class="md-nav__item">
   <a href="#kill" class="md-nav__link">
-    干掉进程
+    杀死进程
+  </a>
+  
+    <nav class="md-nav" aria-label="杀死进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kill_1" class="md-nav__link">
+    kill
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#more-kill" class="md-nav__link">
-    一些其他的发送终止信号的方式
+  <a href="#pgreppkillkillall" class="md-nav__link">
+    pgrep/pkill、killall...
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1199,15 +1212,28 @@
         
           <li class="md-nav__item">
   <a href="#kill" class="md-nav__link">
-    干掉进程
+    杀死进程
+  </a>
+  
+    <nav class="md-nav" aria-label="杀死进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kill_1" class="md-nav__link">
+    kill
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#more-kill" class="md-nav__link">
-    一些其他的发送终止信号的方式
+  <a href="#pgreppkillkillall" class="md-nav__link">
+    pgrep/pkill、killall...
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1367,7 +1393,7 @@
 <p>接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。<p class="more">随后观察守护进程，可以看到守护进程的 SID 一般是其本身 PID。</p></p>
 </details>
 <h4 id="session">会话——前台与后台<a class="headerlink" href="#session" title="Permanent link">&para;</a></h4>
-<p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 不一定会结束，有些进程仍然可以驻留系统中，以该 session ID 继续运行。</p>
+<p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。</p>
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
 <h3 id="priority">优先级，NICE 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h3>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。</p>
@@ -1391,7 +1417,7 @@
 <li>时间片使用完或有高优先级的任务就绪时选择切换进程。</li>
 <li>将高优先级任务投入运行，直到程序因时间片用完或其他原因挂起。</li>
 </ul>
-<p>以上内容听来似废话，然而这正是操作系统调度过程的核心所在（单核模型）。</p>
+<p>以上内容听来似废话，然而这正是操作系统单核模式调度过程的核心所在。</p>
 <p>就上面的结论来看，调度算法的行为取决于时间片长度和优先级。它们是如何确定的，是固定的吗？</p>
 <p>别急，我们首先还需要解决一个问题，既然做为调度判据的优先级仅仅是一个值，那么 NICE 值又如何参与其中？其实 NICE 值是对优先级的一种修正。NICE 值的取值范围为 -20 ~ 19，优先级的取值为 0 ~ 99，而 NICE 值对应于优先级的 100 ~ 139。</p>
 <p>理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
@@ -1399,7 +1425,10 @@
 <p>然后我们可以打开htop，好好观察一下了。emmm…… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
 <p>额，其实这里给出的优先级是呈现给程序的，所以显示的数字以优先级100为基数，多正少负。</p>
-<details class="tip"><summary>more</summary><p>如果你真的很较真，按下了<code>shift + k</code>键显示内核线程，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
+<details class="note"><summary>针对实时优先级的标度吐槽</summary><p>其实优先级的数值问题着实混乱：优先级位于 0 ~ 99 之间的进程为实时进程，遵循实时调度（永远优先于普通调度）。在用户进程中实时优先级为 99 相当于内核中优先级为 0，且倒序排列，用户程序通过系统调用设置实时优先级时要被系统换算（99 - prio）。可以肯定的是内核中只有一套优先级标度：0 ~ 139。而在 top/htop中，用户态实时优先级前添加负号后才被显示出来。
+所以如果真的要调节一个实时调度模式的用户程序的优先级的话，注意 0 ~ 99 范围内传入参数的数字越大，内核看来对应优先级数值越小，越优先。</p>
+</details>
+<details class="tip"><summary>一点拓展</summary><p>如果你真的很较真，按下了<code>shift + k</code>键显示内核线程，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
 <img src="images/top8.png" width="75%"></img></p>
 <ul>
 <li>第一个进程为 watchdog，是一个比较有意思的保证系统可用性的程序。<br/>（试试 <code>echo hi &gt; /dev/watchdog</code> 吧→_→)</li>
@@ -1409,11 +1438,15 @@
 </details>
 <p>可是我们也没有看到 NICE 值的差异啊？的确如此，我们可以看到的 NICE 值就是静态的，内核才能看到动态优先级。</p>
 <p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 <code>sudo</code> 加持。
-<div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span>
- <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
-nice <span class="nv">vim</span> <span class="o">==</span> nice -10 <span class="nv">vim</span> <span class="o">==</span> nice -n <span class="m">10</span> vim 
+<div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> 
+ <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
 
-renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
+<span class="c1">#以下命令等效</span>
+nice vim
+nice -10 vim 
+nice -n <span class="m">10</span> vim 
+
+<span class="o">(</span>sudo<span class="o">)</span> renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
 </code></pre></div></p>
 <p>上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：</p>
 <details class="info" open="open"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
@@ -1464,7 +1497,7 @@ renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span
 </table></div></p>
 </details>
 <h2 id="process-control">用戶进程控制<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h2>
-<p>要想控制进程，首先要与进程对话，那么首先便需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
+<p>要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
 <h3 id="signal">信号<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h3>
 <p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的 Linux 命令都叫 <code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
 <p>那到底都有什么信号呢？emmm... <code>man 7 signal</code>？</p>
@@ -1486,8 +1519,51 @@ renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span
 <p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
 <p><img alt="fg_bg" src="images/fg_bg.png" /></p>
 <p>即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。</p>
-<h3 id="kill">干掉进程<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h3>
+<h3 id="kill">杀死进程<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
+<h4 id="kill_1">kill<a class="headerlink" href="#kill_1" title="Permanent link">&para;</a></h4>
+<p>如前所述，Linux 上最常用的发送信号的程序就是 kill。
+    <div class="highlight"><pre><span></span><code><span class="nb">kill</span> -&lt;signal&gt; &lt;pid&gt; -&lt;pgid&gt;
+$ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</span>
+ <span class="m">1</span><span class="o">)</span> SIGHUP       <span class="m">2</span><span class="o">)</span> SIGINT       <span class="m">3</span><span class="o">)</span> SIGQUIT      <span class="m">4</span><span class="o">)</span> SIGILL       <span class="m">5</span><span class="o">)</span> SIGTRAP
+ <span class="m">6</span><span class="o">)</span> SIGABRT      <span class="m">7</span><span class="o">)</span> SIGBUS       <span class="m">8</span><span class="o">)</span> SIGFPE       <span class="m">9</span><span class="o">)</span> SIGKILL     <span class="m">10</span><span class="o">)</span> SIGUSR1
+<span class="m">11</span><span class="o">)</span> SIGSEGV     <span class="m">12</span><span class="o">)</span> SIGUSR2     <span class="m">13</span><span class="o">)</span> SIGPIPE     <span class="m">14</span><span class="o">)</span> SIGALRM     <span class="m">15</span><span class="o">)</span> SIGTERM
+<span class="m">16</span><span class="o">)</span> SIGSTKFLT   <span class="m">17</span><span class="o">)</span> SIGCHLD     <span class="m">18</span><span class="o">)</span> SIGCONT     <span class="m">19</span><span class="o">)</span> SIGSTOP     <span class="m">20</span><span class="o">)</span> SIGTSTP
+<span class="m">21</span><span class="o">)</span> SIGTTIN     <span class="m">22</span><span class="o">)</span> SIGTTOU     <span class="m">23</span><span class="o">)</span> SIGURG      <span class="m">24</span><span class="o">)</span> SIGXCPU     <span class="m">25</span><span class="o">)</span> SIGXFSZ
+<span class="m">26</span><span class="o">)</span> SIGVTALRM   <span class="m">27</span><span class="o">)</span> SIGPROF     <span class="m">28</span><span class="o">)</span> SIGWINCH    <span class="m">29</span><span class="o">)</span> SIGIO       <span class="m">30</span><span class="o">)</span> SIGPWR
+<span class="m">31</span><span class="o">)</span> SIGSYS      <span class="m">34</span><span class="o">)</span> SIGRTMIN    <span class="m">35</span><span class="o">)</span> SIGRTMIN+1  <span class="m">36</span><span class="o">)</span> SIGRTMIN+2  <span class="m">37</span><span class="o">)</span> SIGRTMIN+3
+<span class="m">38</span><span class="o">)</span> SIGRTMIN+4  <span class="m">39</span><span class="o">)</span> SIGRTMIN+5  <span class="m">40</span><span class="o">)</span> SIGRTMIN+6  <span class="m">41</span><span class="o">)</span> SIGRTMIN+7  <span class="m">42</span><span class="o">)</span> SIGRTMIN+8
+<span class="m">43</span><span class="o">)</span> SIGRTMIN+9  <span class="m">44</span><span class="o">)</span> SIGRTMIN+10 <span class="m">45</span><span class="o">)</span> SIGRTMIN+11 <span class="m">46</span><span class="o">)</span> SIGRTMIN+12 <span class="m">47</span><span class="o">)</span> SIGRTMIN+13
+<span class="m">48</span><span class="o">)</span> SIGRTMIN+14 <span class="m">49</span><span class="o">)</span> SIGRTMIN+15 <span class="m">50</span><span class="o">)</span> SIGRTMAX-14 <span class="m">51</span><span class="o">)</span> SIGRTMAX-13 <span class="m">52</span><span class="o">)</span> SIGRTMAX-12
+<span class="m">53</span><span class="o">)</span> SIGRTMAX-11 <span class="m">54</span><span class="o">)</span> SIGRTMAX-10 <span class="m">55</span><span class="o">)</span> SIGRTMAX-9  <span class="m">56</span><span class="o">)</span> SIGRTMAX-8  <span class="m">57</span><span class="o">)</span> SIGRTMAX-7
+<span class="m">58</span><span class="o">)</span> SIGRTMAX-6  <span class="m">59</span><span class="o">)</span> SIGRTMAX-5  <span class="m">60</span><span class="o">)</span> SIGRTMAX-4  <span class="m">61</span><span class="o">)</span> SIGRTMAX-3  <span class="m">62</span><span class="o">)</span> SIGRTMAX-2
+<span class="m">63</span><span class="o">)</span> SIGRTMAX-1  <span class="m">64</span><span class="o">)</span> SIGRTMAX    
+</code></pre></div></p>
+<p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
+<p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
+<details class="tip"><summary>一点细节</summary><p><div style="float: left; width: 60%">
+我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。
+</div>
+<div style="float: right; width: 40%; margin-bottom: 12px">
+<img alt="which_kill" src="images/which_kill.png" />
+</div></p>
+</details>
+<h4 id="pgreppkillkillall">pgrep/pkill、killall...<a class="headerlink" href="#pgreppkillkillall" title="Permanent link">&para;</a></h4>
+<p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
+<ul>
+<li>
+<p>killall</p>
+<p>后面接精确的名称，可以直接用进程名不必纠结如何费力地获取进程号。实际上这个命令名称来自 Unix System V 的系统管理命令，其作用也的确是杀死所有进程。在 Linux 中尚有 <code>killall5</code> 命令来行使该功能。</p>
+</li>
+<li>
+<p>pgrep/pkill</p>
+<p>后面接模糊名称，实际上类似于对名称进行 grep 命令。pgrep 仅列出搜索到的进程名称为的进程号，而 pkill 在搜索到进程后会直接杀死进程。</p>
+</li>
+<li>
+<p>xkill</p>
+<p>xkill 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。</p>
+</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">SIGTERM、SIGKILL</p>
 <p>root from bash：发送 SIGTERM 给 PID 为1234的进程。</p>
@@ -1500,10 +1576,11 @@ renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span
 <p>内核（被调用唤醒）：什么？发送 SIGKILL？有权限吗？哦是 root 啊，那没问题，1234 没有运行的机会了，我会亲自清理重置它的堆栈，删掉进程描述符，顺便告诉它爹这个不幸的消息。</p>
 <p>（SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）</p>
 </div>
-<p>那么问题来了，如何才能创造一个向上面一样流氓的进程呢？</p>
-<details class="example"><summary>小实验</summary><p>打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 <code>signal_handle.c</code>：</p>
+<details class="example"><summary>额外内容</summary><p>那么问题来了，如何才能创造一个向上面一样流氓的进程呢？</p>
+<p>这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 <code>ping</code>，便利用了该机制：如果使用 <code>ctrl + c</code>键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
+<p>打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 <code>signal_handle.c</code>：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;   //定义了变更信号处理函数的方法以及一些信号对应的整数（如 define SIGTERM 15）</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;   //sleep 函数位置</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>  <span class="c1">//设置一个处理信号的函数</span>
@@ -1530,20 +1607,9 @@ renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle</code> 三连，就可以在另一终端打开 htop 查看成果了。</p>
 </details>
 <p>不过···我们的程序去哪了？别急，按 F3 或者 <code>/</code>，都可以实现搜索。（<code>/</code>是许多界面如 vim、man、aptitude 的默认搜索键）</p>
-<h3 id="more-kill">一些其他的发送终止信号的方式<a class="headerlink" href="#more-kill" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>以下命令请勿生产环境中使用。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">sudo kill -9 -1</span>
-</code></pre></div>
-
-
-</div>
-<p>其实 kill 命令在部分发行版上有约定，<s>负数 PID 死全家</s>，但 <code>man kill</code> 只介绍了 <code>-1</code> 参数。（负号还可以理解为参数选项）</p>
-<p>简单介绍一下 kill，在靶机上 root 执行 kill -9 -1</p>
 <div class="admonition question">
 <p class="admonition-title">思考</p>
-<p>如何描述用户按下 Ctrl+C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
+<p>如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
 <p>答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。</p>
 </div>
 <h3 id="background-task">后台任务<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>

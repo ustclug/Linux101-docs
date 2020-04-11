@@ -530,11 +530,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-software-repository" class="md-nav__link">
-    使用软件仓库安装
+  <a href="#use-package-management-system" class="md-nav__link">
+    使用包管系统安装
   </a>
   
-    <nav class="md-nav" aria-label="使用软件仓库安装">
+    <nav class="md-nav" aria-label="使用包管系统安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -598,8 +598,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-package-manager" class="md-nav__link">
-    使用包管理器进行安装
+  <a href="#use-package-manager-manually" class="md-nav__link">
+    使用包管理器手动安装软件包
   </a>
   
 </li>
@@ -708,6 +708,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    思考题
+  </a>
   
 </li>
       
@@ -1185,11 +1192,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-software-repository" class="md-nav__link">
-    使用软件仓库安装
+  <a href="#use-package-management-system" class="md-nav__link">
+    使用包管系统安装
   </a>
   
-    <nav class="md-nav" aria-label="使用软件仓库安装">
+    <nav class="md-nav" aria-label="使用包管系统安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1253,8 +1260,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-package-manager" class="md-nav__link">
-    使用包管理器进行安装
+  <a href="#use-package-manager-manually" class="md-nav__link">
+    使用包管理器手动安装软件包
   </a>
   
 </li>
@@ -1367,6 +1374,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     引用来源
   </a>
@@ -1418,11 +1432,15 @@
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。</p>
 <p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（Snap 商店在国内的访问速度较慢。）</p>
 </div>
-<h3 id="use-software-repository">使用软件仓库安装<a class="headerlink" href="#use-software-repository" title="Permanent link">&para;</a></h3>
-<p>软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p>在 Linux 下，相比起使用应用商店安装软件，软件仓库的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
+<h3 id="use-package-management-system">使用包管系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
+<p>软件包管理器是一系列工具的集合，他自动化地完成软件的安装、更新、配置和移除功能。</p>
+<p>在 Linux 下，相比起使用应用商店安装软件，包管理系统的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
+<p>软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装，通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动化地进行安装。</p>
 <p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
-<p>从软件仓库中获取、安装、管理软件的工具，被称为“软件包管理器”，如 apt、yum、pacman 都是常见的软件包管理器。其中，Xubuntu 内置的软件包管理器是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。<strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
+<p>包管理系统有很多，比如管理 <code>deb</code> 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（使用于 <code>Debian</code> 系的系统）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 <code>Fedora</code>）、前端 <code>yum</code> （用于 RedHat 系）等等。</p>
+<p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
+<p>apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。</p>
 <p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
 <p>此外，由于可以自定义软件源，因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
 <h4 id="apt-search">搜索<a class="headerlink" href="#apt-search" title="Permanent link">&para;</a></h4>
@@ -1587,11 +1605,11 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 </div>
 <h4 id="third-party-software-sources">第三方软件源<a class="headerlink" href="#third-party-software-sources" title="Permanent link">&para;</a></h4>
 <p>有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 <code>apt install package-name</code> 安装我们需要的软件。</p>
-<div class="admonition example">
-<p class="admonition-title">通过添加 Docker 软件源安装 Docker</p>
-<p>Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。</p>
-<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 的官方文档</a>)展开，也可以阅读<a href="../Ch08/">第八章（未完成）</a>获取更多的信息。</p>
-<p>1、安装需要的的软件包</p>
+<details class="example"><summary>通过添加 Docker 软件源安装 Docker</summary><p>Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书<a href="../Ch08/">第八章</a>进行专门的介绍。</p>
+<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 官方文档</a>展开。</p>
+<ol>
+<li>
+<p>安装需要的的软件包</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt-get update
 
 $ sudo apt-get install <span class="se">\</span>
@@ -1602,11 +1620,15 @@ $ sudo apt-get install <span class="se">\</span>
     software-properties-common
 </code></pre></div>
 
-<p>2、添加 Docker 软件源的 GPG Key</p>
+</li>
+<li>
+<p>添加 Docker 软件源的 GPG Key</p>
 <p>这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
 <div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
 </code></pre></div></p>
-<p>3、添加 Docker 软件源到 <code>/etc/apt/sources.list</code> 中</p>
+</li>
+<li>
+<p>添加 Docker 软件源到 <code>/etc/apt/sources.list</code> 中</p>
 <p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。
 <div class="highlight"><pre><span></span><code><span class="c1"># 此为 Ubuntu amd64 的命令</span>
 $ sudo add-apt-repository <span class="se">\</span>
@@ -1617,14 +1639,18 @@ $ sudo add-apt-repository <span class="se">\</span>
 <p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：
 <div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
 </code></pre></div></p>
-<p>4、使用 apt 安装 Docker</p>
+</li>
+<li>
+<p>使用 apt 安装 Docker</p>
 <p>首先需要从第三方源更新软件列表。
 <div class="highlight"><pre><span></span><code>apt update
 </code></pre></div></p>
 <p>之后便是直接安装 docker-ce。
 <div class="highlight"><pre><span></span><code>apt install docker-ce
 </code></pre></div></p>
-<p>5、检查安装情况并确认启动</p>
+</li>
+<li>
+<p>检查安装情况并确认启动</p>
 <p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 <div class="highlight"><pre><span></span><code>systemctl status docker
 </code></pre></div></p>
@@ -1649,8 +1675,10 @@ $ sudo add-apt-repository <span class="se">\</span>
 <p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：
 <div class="highlight"><pre><span></span><code>systemctl start docker
 </code></pre></div></p>
-<p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在<a href="../Ch04/">第四章</a>展开。</p>
-</div>
+<p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书<a href="../Ch04/">第四章</a>展开。</p>
+</li>
+</ol>
+</details>
 <h3 id="update-and-upgrade">更新软件列表与更新软件<a class="headerlink" href="#update-and-upgrade" title="Permanent link">&para;</a></h3>
 <p>在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 <code>apt install</code> 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 <code>apt install some-package</code> 时安装的。</p>
 <h4 id="apt-update">更新软件列表<a class="headerlink" href="#apt-update" title="Permanent link">&para;</a></h4>
@@ -1696,10 +1724,17 @@ Do you want to continue? [Y/n]
 
 <p>在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。</p>
 </div>
-<h3 id="use-package-manager">使用包管理器进行安装<a class="headerlink" href="#use-package-manager" title="Permanent link">&para;</a></h3>
+<h3 id="use-package-manager-manually">使用包管理器手动安装软件包<a class="headerlink" href="#use-package-manager-manually" title="Permanent link">&para;</a></h3>
 <p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
+<div class="admonition tips">
+<p class="admonition-title">什么是软件包</p>
+<p>软件包是将软件安装升级中需要地多个数据文件合并得到的一个单独文件，便于传输和减少存储空间。软件包中包括了所有需要的元数据，如软件的名称、软件的说明、版本号以及要运行这个软件所需要的依赖包等。</p>
+</div>
+<p>安装软件包需要相应的软件包管理器。<code>deb</code> 对应的是 <code>dpkg</code>。</p>
+<p>相对于 <code>apt</code> 而言，<code>dpkg</code> 会更加底层，<code>apt</code> 是一个包管理器的前端，并不直接执行软件包的安装工作，相反的则是交由 <code>dpkg</code> 完成。<code>dpkg</code> 反馈的依赖信息则会告知 <code>apt</code> 还需要安装的其他软件包，并从软件仓库中获取到相应的软件包进行安装，从而完成依赖管理问题。</p>
+<p>直接通过 <code>dpkg</code> 安装 <code>deb</code> 并不会安装需要的依赖，只会报告出相应的依赖缺失了。</p>
 <div class="admonition example">
-<p class="admonition-title">Install VSCode from deb file</p>
+<p class="admonition-title">用 deb 文件安装 VSCode</p>
 <p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
 <p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868">微软提供的 <code>deb</code> 文件</a>。</p>
 <p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）。</p>
@@ -1788,7 +1823,7 @@ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </tr>
 <tr>
 <td><code>-s, --symbolic-link</code></td>
-<td>创建符号链接</td>
+<td>创建软链接</td>
 </tr>
 </tbody>
 </table>
@@ -1813,14 +1848,16 @@ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </ul>
 </div>
 <div class="admonition tips">
-<p class="admonition-title">硬链接和符号链接</p>
-<p>cp 的 <code>-l</code> 和 <code>-s</code> 参数分布为创建硬链接和符号链接。</p>
-<p>简单而言，一个文件的硬链接和符号链接都指向文件自身，但是在底层有不同的行为。</p>
+<p class="admonition-title">硬链接和软链接</p>
+<p>cp 的 <code>-l</code> 和 <code>-s</code> 参数分布为创建硬链接和软链接（又称为“软链接”）。</p>
+<p>简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。</p>
 <p>需要先了解一个概念：inode</p>
-<p>在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和目录。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）。</p>
-<p>可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html。</p>
+<p>在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。</p>
+<p>关于 inode 的进一步讲解可以参考<a href="https://www.ruanyifeng.com/blog/2011/12/inode.html">这篇文章</a>。</p>
+<p><img alt="硬链接与软链接图例" src="images/link.png" /></p>
 <p>硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。</p>
-<p>符号链接与源文件的 inode 不同。符号链接保存了源文件的路径，在访问符号链接的时候，访问的路径被替换为源文件的路径，因此访问符号链接也等同于访问源文件。但是如果删除了源文件，符号链接所保存的路径也就无效了，符号链接因此也是无效的。</p>
+<p>软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。</p>
+<p><code>ln</code> 命令也可以用来创建硬链接和软链接。</p>
 </div>
 <h3 id="mv">移动文件和目录<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
 <p><code>mv</code> 与 <code>cp</code> 的使用方式相似，效果类似于 Windows 下的剪切。</p>
@@ -2020,6 +2057,11 @@ tar -tv -f target.tar
 <p>在第二个例子中，创建得到的文件名为 <code>target.tar.gz</code>。将 <code>tar.gz</code> 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（<code>gz</code>）的存档文件（<code>tar</code>）。可知在提取文件时，需要添加 <code>-z</code> 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。</p>
 <p>同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 <code>xz</code> 算法处理得到的存档文件，其后缀名最好选择 <code>tar.xz</code>，这样可以知道为了提取其中的文件，应该添加 <code>--xz</code> 选项。</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">为什么使用 tar 创建压缩包需要”两次处理“</p>
+<p>tar 名字来源于 <strong>t</strong>ape <strong>ar</strong>chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。<strong>注意，这中间没有压缩的过程。</strong></p>
+<p>为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。</p>
+</div>
 <h2 id="software-manuals">软件的使用文档<a class="headerlink" href="#software-manuals" title="Permanent link">&para;</a></h2>
 <p>面对一个新的软件，比如上面提到的 tar 存档软件，除了使用搜索引擎在互联网上搜索使用方法外，还可以通过软件安装时自带的使用文档来学习。</p>
 <p>掌握通过一些手段了解一个新的命令的使用方法的技能在 Linux 学习中是极其重要的，Linux 的命令众多，并不会有很多的命令会有详细的说明。有时候官方文档也没有解释清楚的，可能需要手动试错乃至翻阅源代码了解命令的参数含义。</p>
@@ -2114,6 +2156,28 @@ https://www.gnu.org/software/tar
 <li>给出一个存档文件中的文件列表；</li>
 <li>解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 <code>*.html</code> ，即只有以 <code>.html</code> 结尾的文件才会被解压）。</li>
 </ul>
+<h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Матрёшка</p>
+<p>在本章<a href="#software-manuals">软件的使用文档</a>一节中，我们介绍了两个十分有用的文档命令：<code>man</code> 和 <code>tldr</code>。这两个工具帮助我们详细或快速了解一个命令的功能和用法。</p>
+<p>那么 <code>man</code> 和 <code>tldr</code> 的用法又要怎么查看呢？</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">查找需要安装的软件包</p>
+<p>有时候，你会发现缺少了一些文件，而这些文件需要安装特定的软件包来补充。搜索资料，尝试说明如何方便地解决这样的问题。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">硬链接与软链接的判断</p>
+<p>搜索资料，尝试说明如何判断一个文件是否有硬链接，或者是否是软链接。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">错误使用 tar 命令导致的文件丢失</p>
+<p>这是一个真实的故事。某同学希望打包一些文件传输给另一位同学，于是他执行了下面这条命令：</p>
+<div class="highlight"><pre><span></span><code>tar -cf * target.tar
+</code></pre></div>
+
+<p>这会导致什么后果？尝试解释原因。（提示：<code>*</code> 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）</p>
+</div>
 <h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
