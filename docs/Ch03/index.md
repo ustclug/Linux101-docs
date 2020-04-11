@@ -26,7 +26,7 @@
 
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。
 
-    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。
+    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（由于 Snap 不允许镜像，国内的访问速度较慢。）
 
 ### 使用软件仓库安装 {#use-software-repository}
 
@@ -36,7 +36,7 @@
 
 但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
 
-软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。**为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
+软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。**为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
 apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。
 
@@ -49,7 +49,7 @@ apt 可以自动下载、配置和安装二进制或者源代码格式的软件�
 下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：
 
 ```shell
-➜  ~ apt search firefox
+$ apt search firefox
 Sorting... Done
 Full Text Search... Done
 (Ouput Omitted)
@@ -76,7 +76,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 
 下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
 ```shell
-➜  ~ apt install firefox
+# apt install firefox
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -100,7 +100,7 @@ Do you want to continue? [Y/n]
 !!! tip "可能会出现的权限问题"
     在一般情况下，如果直接运行 `apt install` 命令，会输出
     ```shell
-    ➜  ~ apt install firefox
+    $ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
     E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
     ```
@@ -138,7 +138,7 @@ Do you want to continue? [Y/n]
 
 ??? example "查看本地的软件源列表"
     ```shell
-    ➜  ~ cat /etc/apt/sources.list | grep -v "#"
+    $ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -314,7 +314,7 @@ Do you want to continue? [Y/n]
 
 !!! example "apt update 输出样例"
     ```shell
-    ➜  ~ sudo apt update
+    $ sudo apt update
     [sudo] password for elsa:
     Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
@@ -388,18 +388,18 @@ Do you want to continue? [Y/n]
     cd clang
     ```
 
-    查看当前的目录下有什么内容：
+    在进入解压得到的目录后，可以查看当前的目录下有什么内容：
 
     ```shell
-    ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 ls
+    $ ls
     bin  include  lib  libexec  share  
     ```
 
     一般而言，软件的可执行文件都位于 bin 目录下：
 
     ```shell
-    ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 cd bin
-    ➜  bin ls
+    $ cd bin
+    $ ls
     (Output omitted)
     clang                     clang-tidy            llvm-cov 
     clang++                   clangd                llvm-cvtres
@@ -424,7 +424,7 @@ Do you want to continue? [Y/n]
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
     ```shell
-    ➜  ~ echo $PATH
+    $ echo $PATH
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
@@ -652,7 +652,7 @@ man ls
 文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 `tldr`。
 
 ```shell
-➜  ~ man tar
+$ man tar
 TAR(1)                      GNU TAR Manual                     TAR(1)
 
 NAME
@@ -667,7 +667,7 @@ SYNOPSIS
 
        tar -c [-f ARCHIVE] [OPTIONS] [FILE...]
 
-➜  ~ man ls
+$ man ls
 LS(1)                       User Commands                       LS(1)
 
 NAME
@@ -705,7 +705,7 @@ apt install tldr
 输入 `tldr tar` 的样例：
 
 ```shell
-➜  ~ tldr tar
+$ tldr tar
 tar
 Archiving utility.
 Often combined with a compression method, such as gzip or bzip.
