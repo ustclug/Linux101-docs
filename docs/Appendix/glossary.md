@@ -66,7 +66,7 @@
 
 ### POSIX 标准 {#posix}
 
-### 内建命令 {#buildin-command}
+### 内建命令 {#builtin-command}
 
 ```bash
 $ whereis ls

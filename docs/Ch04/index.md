@@ -128,7 +128,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 #### 会话——前台与后台 {#session}
 
-而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 不一定会结束，有些进程仍然可以驻留系统中，以该 session ID 继续运行。
+而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。
 
 说到会话，就必然涉及到 Linux 会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。
 
@@ -160,7 +160,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 - 时间片使用完或有高优先级的任务就绪时选择切换进程。
 - 将高优先级任务投入运行，直到程序因时间片用完或其他原因挂起。
 
-以上内容听来似废话，然而这正是操作系统调度过程的核心所在（单核模型）。
+以上内容听来似废话，然而这正是操作系统单核模式调度过程的核心所在。
 
 就上面的结论来看，调度算法的行为取决于时间片长度和优先级。它们是如何确定的，是固定的吗？
 
@@ -175,7 +175,11 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 额，其实这里给出的优先级是呈现给程序的，所以显示的数字以优先级100为基数，多正少负。
 
-??? tip "more"
+??? note "针对实时优先级的标度吐槽"
+    其实优先级的数值问题着实混乱：优先级位于 0 ~ 99 之间的进程为实时进程，遵循实时调度（永远优先于普通调度）。在用户进程中实时优先级为 99 相当于内核中优先级为 0，且倒序排列，用户程序通过系统调用设置实时优先级时要被系统换算（99 - prio）。可以肯定的是内核中只有一套优先级标度：0 ~ 139。而在 top/htop中，用户态实时优先级前添加负号后才被显示出来。
+    所以如果真的要调节一个实时调度模式的用户程序的优先级的话，注意 0 ~ 99 范围内传入参数的数字越大，内核看来对应优先级数值越小，越优先。
+
+??? tip "一点拓展"
     如果你真的很较真，按下了`shift + k`键显示内核线程，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
     <img src="images/top8.png" width="75%"></img>
     
@@ -187,11 +191,15 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
 对于普通用户，有 `nice` 命令可以选择，可以以低优先级开始任务。`renice` 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 `sudo` 加持。
 ```bash
-nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help] [--version]
- [command [arg...]]
-nice vim == nice -10 vim == nice -n 10 vim 
+nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help] 
+ [--version] [command [arg...]]
 
-renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
+#以下命令等效
+nice vim
+nice -10 vim 
+nice -n 10 vim 
+
+(sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 ```
 
 上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：
@@ -248,7 +256,7 @@ renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 
 ## 用戶进程控制 {#process-control}
 
-要想控制进程，首先要与进程对话，那么首先便需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。
+要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。
 
 ### 信号 {#signal}
 
@@ -286,9 +294,58 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。
 
-### 干掉进程 {#kill}
+### 杀死进程 {#kill}
 
 正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。
+
+####kill
+如前所述，Linux 上最常用的发送信号的程序就是 kill。
+    ```bash
+    kill -<signal> <pid> -<pgid>
+    $ kill -l #显示所有信号名称
+     1) SIGHUP	     2) SIGINT	     3) SIGQUIT	     4) SIGILL	     5) SIGTRAP
+     6) SIGABRT	     7) SIGBUS	     8) SIGFPE	     9) SIGKILL 	10) SIGUSR1
+    11) SIGSEGV	    12) SIGUSR2	    13) SIGPIPE	    14) SIGALRM	    15) SIGTERM
+    16) SIGSTKFLT	17) SIGCHLD	    18) SIGCONT	    19) SIGSTOP	    20) SIGTSTP
+    21) SIGTTIN	    22) SIGTTOU	    23) SIGURG	    24) SIGXCPU	    25) SIGXFSZ
+    26) SIGVTALRM	27) SIGPROF	    28) SIGWINCH	29) SIGIO	    30) SIGPWR
+    31) SIGSYS	    34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+    38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+    43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+    48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+    53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+    58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+    63) SIGRTMAX-1	64) SIGRTMAX	
+    ```
+
+如果不加任何参数，只有 pid，`kill` 命令将自动使用 -15（SIGTERM）做为信号参数。
+
+最后一个参数是 `man page` 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。
+
+??? tip "一点细节"
+    <div style="float: left; width: 60%">
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
+    </div>
+    <div style="float: right; width: 40%; margin-bottom: 12px">
+    ![which_kill](images/which_kill.png)
+    </div>
+    
+####pgrep/pkill、killall...
+
+如果我们命令行中输入 `apropos kill`，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：
+
+- killall
+
+    后面接精确的名称，可以直接用进程名不必纠结如何费力地获取进程号。实际上这个命令名称来自 Unix System V 的系统管理命令，其作用也的确是杀死所有进程。在 Linux 中尚有 `killall5` 命令来行使该功能。
+    
+- pgrep/pkill
+    
+    后面接模糊名称，实际上类似于对名称进行 grep 命令。pgrep 仅列出搜索到的进程名称为的进程号，而 pkill 在搜索到进程后会直接杀死进程。
+    
+- xkill
+
+    xkill 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。
+    
 
 !!! info "SIGTERM、SIGKILL"
 
@@ -310,14 +367,17 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
     （SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）
 
-那么问题来了，如何才能创造一个向上面一样流氓的进程呢？
 
-??? example "小实验"
+??? example "额外内容"
+    那么问题来了，如何才能创造一个向上面一样流氓的进程呢？
+    
+    这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 `ping`，便利用了该机制：如果使用 `ctrl + c`键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
+    
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `signal_handle.c`：
 
     ```c
     #include<stdio.h>
-    #include<signal.h>   //定义了变更信号处理函数的方法以及一些信号对应的整数（如 define SIGTERM 15）
+    #include<signal.h>   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）
     #include<unistd.h>   //sleep 函数位置
 
     void sig_handler(int sig);  //设置一个处理信号的函数
@@ -345,21 +405,9 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 不过···我们的程序去哪了？别急，按 F3 或者 `/`，都可以实现搜索。（`/`是许多界面如 vim、man、aptitude 的默认搜索键）
 
-### 一些其他的发送终止信号的方式 {#more-kill}
-
-!!! warning 
-
-    以下命令请勿生产环境中使用。
-
-        sudo kill -9 -1
-
-其实 kill 命令在部分发行版上有约定，<s>负数 PID 死全家</s>，但 `man kill` 只介绍了 `-1` 参数。（负号还可以理解为参数选项）
-
-简单介绍一下 kill，在靶机上 root 执行 kill -9 -1
-
 !!! question "思考"
 
-    如何描述用户按下 Ctrl+C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）
+    如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）
 
     答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。
 
