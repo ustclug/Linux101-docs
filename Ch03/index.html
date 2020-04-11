@@ -1416,7 +1416,7 @@
 <div class="admonition info">
 <p class="admonition-title">其它发行版的应用商店</p>
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。</p>
-<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（由于 Snap 不允许镜像，国内的访问速度较慢。）</p>
+<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（Snap 商店在国内的访问速度较慢。）</p>
 </div>
 <h3 id="use-software-repository">使用软件仓库安装<a class="headerlink" href="#use-software-repository" title="Permanent link">&para;</a></h3>
 <p>软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
@@ -1431,12 +1431,12 @@
 <div class="highlight"><pre><span></span><code>$ apt search firefox
 Sorting... Done
 Full Text Search... Done
-<span class="o">(</span>Ouput Omitted<span class="o">)</span>
+<span class="o">(</span>Output omitted<span class="o">)</span>
 
 firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-0ubuntu0.18.04.1 amd64
   Safe and easy web browser from Mozilla
 
-<span class="o">(</span>Ouput Omitted<span class="o">)</span>
+<span class="o">(</span>Output omitted<span class="o">)</span>
 </code></pre></div>
 
 <p>中间两行每个字段的含义：</p>
@@ -1479,7 +1479,7 @@ Building dependency tree
 Reading state information... Done
 The following additional packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig
-  <span class="o">(</span>Output Omitted<span class="o">)</span>
+  <span class="o">(</span>Output omitted<span class="o">)</span>
 Suggested packages:
   fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common
   gvfs liblcms2-utils librsvg2-bin
@@ -1590,7 +1590,7 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <div class="admonition example">
 <p class="admonition-title">通过添加 Docker 软件源安装 Docker</p>
 <p>Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。</p>
-<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。</p>
+<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 的官方文档</a>)展开，也可以阅读<a href="../Ch08/">第八章（未完成）</a>获取更多的信息。</p>
 <p>1、安装需要的的软件包</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt-get update
 
@@ -1649,17 +1649,7 @@ $ sudo add-apt-repository <span class="se">\</span>
 <p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：
 <div class="highlight"><pre><span></span><code>systemctl start docker
 </code></pre></div></p>
-<p>再次检查 Docker 运行情况，即应该可以得到期望的结果。</p>
-<div class="admonition tips">
-<p class="admonition-title">什么是服务</p>
-<p>服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。</p>
-<p>常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）</p>
-<p>在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 启动、停止、查看一个服务的状态</span>
-systemctl start/stop/status service-name
-</code></pre></div>
-
-</div>
+<p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在<a href="../Ch04/">第四章</a>展开。</p>
 </div>
 <h3 id="update-and-upgrade">更新软件列表与更新软件<a class="headerlink" href="#update-and-upgrade" title="Permanent link">&para;</a></h3>
 <p>在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 <code>apt install</code> 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 <code>apt install some-package</code> 时安装的。</p>
@@ -1718,6 +1708,7 @@ Do you want to continue? [Y/n]
 <p>对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。</p>
 <div class="admonition example">
 <p class="admonition-title">安装预编译的 LLVM</p>
+<p>下面我们以 LLVM 为例作介绍。LLVM 是一个编译器组件工具集，可以帮助开发者开发编译器以及周边工具。</p>
 <p>注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 <code>apt install clang</code> （或对应版本的 clang 包名）命令安装即可。</p>
 <p>在 LLVM 的 <a href="https://releases.llvm.org/download.html">Prebuilt 下载页面</a> 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 下载二进制的压缩文件存档</span>

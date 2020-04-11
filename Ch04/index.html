@@ -1562,6 +1562,17 @@ renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span
 <p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出，该 bash 的后台进程将不会接收到 SIGHUP。</p>
 <div class="admonition info">
 <p class="admonition-title">两次 fork</p>
+<p>……</p>
+</div>
+<div class="admonition tips">
+<p class="admonition-title">什么是服务</p>
+<p>服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。</p>
+<p>常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）</p>
+<p>在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 启动、停止、查看一个服务的状态</span>
+systemctl start/stop/status service-name
+</code></pre></div>
+
 </div>
 <h2 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h2>
 <!--
