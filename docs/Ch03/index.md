@@ -3,12 +3,12 @@
 !!! warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 
 !!! abstract "导言"
-    面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会得到以下几个问题的答案：
+    面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：
 
-    * 如何通过命令行的方式安装需要的软件
+    * 通过命令行的方式安装需要的软件
     * 创建、移动、删除等对文件与目录的操作
     * 压缩、解压一个压缩文件
-    * 面对一个没有使用过的软件，如何能够更快地了解使用方法，上手使用
+    * 面对一个没有使用过的软件，能够更快地了解使用方法
 
 ## 软件安装 {#software-installation}
 
@@ -23,28 +23,24 @@
 ![Ubuntu Application Store](images/vscode-ubuntu-application-store.png)
 
 !!! info "其它发行版的应用商店"
+
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。
 
     在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。
 
-### 使用 apt、yum、pacman 等软件仓库安装 {#use-software-repository}
+### 使用软件仓库安装 {#use-software-repository}
 
-软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供只有下载和安装的可用软件包。[^2]
+软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。[^1]
 
 在 Linux 下，相比起使用应用商店安装软件，软件仓库的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。
 
 但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
 
-!!! abstract "什么是 apt、yum、pacman"
-    *以 Ubuntu 下的 apt 为例展开*
+软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。**为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
-    apt，全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。它可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。
+apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。
 
-    apt 常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。
-
-    由于可以自定义软件源，因此自由地添加第三方源以达到安装官方软件源中没有的软件或者安装特定版本的目的。
-
-
+此外，由于可以自定义软件源，因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。
 
 #### 搜索 {#apt-search}
 
@@ -64,7 +60,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 (Ouput Omitted)
 ```
 
-中间两行每个的字段的含义：
+中间两行每个字段的含义：
 
 | 样例中的字段                             | 含义                                  |
 | ---------------------------------------- | ------------------------------------- |
@@ -102,6 +98,7 @@ Do you want to continue? [Y/n]
 在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 `Y` 后回车确定进行安装。
 
 !!! tip "可能会出现的权限问题"
+
     在一般情况下，如果直接运行 `apt install` 命令，会输出：
     ```
     ➜  ~ apt install firefox
@@ -127,14 +124,14 @@ Do you want to continue? [Y/n]
 
     如果密码输入正确，那么就可以正常地执行命令。
 
-    否则，则需要再次尝试
+    否则，则需要再次尝试：
 
     ```
     Sorry, try again.
     [sudo] password for ubuntu: 
     ```
 
-    **具体有关权限的知识点将在第五章展开**
+    具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
 
 
 ### 使用包管理器进行安装 {#use-package-manager}
@@ -142,6 +139,7 @@ Do you want to continue? [Y/n]
 在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 `deb`、`rpm` 等二进制包。
 
 !!! example "Install VSCode from deb file"
+
     Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
 
     首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
@@ -152,13 +150,14 @@ Do you want to continue? [Y/n]
 
 在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 `apt install` 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 `apt install some-package` 时安装的。
 
-#### apt update {#apt-update}
+#### 更新软件列表 {#apt-update}
 
 为了将这个列表进行更新，就会用到 `apt update` 命令。获取到新的软件版本、软件依赖关系。
 
 在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
 
-!!! Example "apt update 输出样例"
+!!! example "apt update 输出样例"
+
     ```
     ➜  ~ sudo apt update
     [sudo] password for elsa:
@@ -179,13 +178,14 @@ Do you want to continue? [Y/n]
 
     在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
 
-#### apt upgrade {#apt-upgrade}
+#### 更新软件 {#apt-upgrade}
 
 在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 `apt upgrade` 命令。
 
 `apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
 
-!!! Example "apt upgrade 输出样例"
+!!! example "apt upgrade 输出样例"
+
     ```
     Reading package lists... Done
     Building dependency tree
@@ -199,13 +199,14 @@ Do you want to continue? [Y/n]
     After this operation, 236 kB of additional disk space will be used.
     Do you want to continue? [Y/n]
     ```
+	
     在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
 
 #### 软件源 {#software-sources}
 
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
-??? Example "查看本地的软件源列表"
+??? example "查看本地的软件源列表"
     ```
     ➜  ~ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
@@ -235,7 +236,7 @@ Do you want to continue? [Y/n]
 
     分别是 Archive type、Repository URL、Distribution 和 Component。
 
-    在 Ubuntu 下，Component 可以为如下几个[^2]：
+    在 Ubuntu 下，Component 可以为如下几个[^1]：
 
     | 类型       | 含义                                                                                        |
     | ---------- | ------------------------------------------------------------------------------------------- |
@@ -250,16 +251,13 @@ Do you want to continue? [Y/n]
 
 镜像缓存了官方源中的软件列表，与官方源基本一致。
 
-!!! Example "修改官方源为镜像，加快更新速度"
-    *以修改官方源为 USTC Mirror 为例[^1]*
+!!! example "修改官方源为镜像，加快更新速度"
 
-    !!! warning "Warn"
-        在操作前请做好备份
+    本例以修改官方源为 USTC Mirror 为例[^2]。**注意：在操作前请做好备份。**
 
     一般情况下，`/etc/apt/sources.list` 下的官方源地址为 `http://archive.ubuntu.com/` ，我们只需要将其替换为 `http://mirrors.ustc.edu.cn` 即可。
 
-    !!! tip "Tip"
-        如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`。
+    如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`。
 
     可以使用如下命令：
 
@@ -271,16 +269,17 @@ Do you want to continue? [Y/n]
 
 对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。
 
-!!! Example "安装预编译的 LLVM"
-    > LLVM 的前端 Clang 在 apt 上有提供，apt install clang 或对应版本的 clang 包名即可。
+!!! example "安装预编译的 LLVM"
 
-    在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
+    注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 `apt install clang` （或对应版本的 clang 包名）命令安装即可。
+
+    在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
     ```shell
     # 下载二进制的压缩文件存档
     wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
-    # 将下载得到的压缩文件解压到当前文件夹
+    # 将下载得到的压缩文件解压到当前目录
     tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 
     cd clang
@@ -293,7 +292,7 @@ Do you want to continue? [Y/n]
     bin  include  lib  libexec  share  
     ```
 
-    一般而言，软件的可执行文件都位于 bin 文件夹下：
+    一般而言，软件的可执行文件都位于 bin 目录下：
 
     ```shell
     ➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 cd bin
@@ -317,7 +316,7 @@ Do you want to continue? [Y/n]
     sudo cp -R * /usr/local/
     ```
 
-    为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 文件夹是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的文件夹下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的文件夹下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
+    为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
     
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
@@ -326,20 +325,20 @@ Do you want to continue? [Y/n]
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
-    在上面的复制过程中，源目录和目标目录的两个 `bin` 文件夹会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 文件夹中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
+    在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
 
 
-## 操作文件与文件夹 {#operate-files-and-dirs}
+## 操作文件与目录 {#operate-files-and-dirs}
 
-在 Linux 在进行操作文件与文件夹是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与文件夹，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
+在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
 
-### 拷贝文件、文件夹 {#cp}
+### 复制文件和目录 {#cp}
 
 ```bash
-# 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
+# 将 SOURCE 文件目录到 DEST 文件，目录得到的文件即为 DEST
 cp [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
+# 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
 cp [OPTION] SOURCE... DIRECTORY
 ```
 
@@ -347,44 +346,46 @@ cp [OPTION] SOURCE... DIRECTORY
 
 | 选项                  | 含义                             |
 | --------------------- | -------------------------------- |
-| `-r, -R, --recursive` | 递归复制，常用于复制文件夹       |
+| `-r, -R, --recursive` | 递归复制，常用于复制目录         |
 | `-f, --force`         | 覆盖目标地址同名文件             |
 | `-u, --update`        | 仅当源文件比目标文件新才进行复制 |
 | `-l, --link`          | 创建硬链接                       |
 | `-s, --symbolic-link` | 创建符号链接                     |
 
-??? example "Copy files"
+??? example "复制示例"
+
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
     ```Bash
     cp file1.txt file2.txt
     ```
 
-    * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 文件夹中
+    * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
     ```Bash
     cp file1.txt file2.txt ./file/
     ```
 
-    * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
+    * 将 `dir1` 目录及其所有子文件复制到同目录下的 `test` 目录中
     ```Bash
     cp -r dir1 ./test/
     ```
 
 !!! tips "硬链接和符号链接"
+
     cp 的 `-l` 和 `-s` 参数分布为创建硬链接和符号链接。
 
     简单而言，一个文件的硬链接和符号链接都指向文件自身，但是在底层有不同的行为。
 
     需要先了解一个概念：inode
 
-    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和文件夹。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）。
+    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和目录。inode记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）。
 
-    > 可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html。
+    可以参考这篇文章 https://www.ruanyifeng.com/blog/2011/12/inode.html。
 
     硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
 
     符号链接与源文件的 inode 不同。符号链接保存了源文件的路径，在访问符号链接的时候，访问的路径被替换为源文件的路径，因此访问符号链接也等同于访问源文件。但是如果删除了源文件，符号链接所保存的路径也就无效了，符号链接因此也是无效的。
 
-### 移动文件、文件夹 {#mv}
+### 移动文件和目录 {#mv}
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
@@ -392,7 +393,7 @@ cp [OPTION] SOURCE... DIRECTORY
 # 将 SOURCE 文件移动到 DEST 文件
 mv [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件移动到 DIRECTORY 文件夹下，SOURCE 可以为多个文件
+# 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件
 mv [OPTION] SOURCE... DIRECTORY
 ```
 
@@ -400,15 +401,15 @@ mv [OPTION] SOURCE... DIRECTORY
 
 | 选项                  | 含义                             |
 | --------------------- | -------------------------------- |
-| `-r, -R, --recursive` | 递归移动，常用于移动文件夹       |
+| `-r, -R, --recursive` | 递归移动，常用于移动目录         |
 | `-f, --force`         | 覆盖目标地址同名文件             |
 | `-u, --update`        | 仅当源文件比目标文件新才进行移动 |
 
-### 删除文件、文件夹 {#rm}
+### 删除文件和目录 {#rm}
 
 ```bash
 # 删除 FILE 文件，FILE 可以为多个文件。
-# 如果需要删除文件夹，需要通过 -r 选项递归删除文件夹
+# 如果需要删除目录，需要通过 -r 选项递归删除目录
 rm [OPTION] FILE...
 ```
 
@@ -417,21 +418,22 @@ rm [OPTION] FILE...
 | 选项                  | 含义                               |
 | --------------------- | ---------------------------------- |
 | `-f, --force`         | 无视不存在或者没有权限的文件和参数 |
-| `-r, -R, --recursive` | 递归删除文件夹及其子文件           |
-| `-d, --dir`           | 删除空文件夹                       |
+| `-r, -R, --recursive` | 递归删除目录及其子文件             |
+| `-d, --dir`           | 删除空目录                         |
 
-??? example "Delete files"
+??? example "删除示例"
+
     删除 `file1.txt` 文件：
     ```
     rm file1.txt
     ```
 
-    删除 `test` 文件夹及其下的所有文件：
+    删除 `test` 目录及其下的所有文件：
     ```
     rm -r test/
     ```
 
-    删除 `test1/`、`test2/`、`file1.txt` 这些文件、文件夹。其中，这些文件或者文件夹可能不存在、写保护或者没有权限读写：
+    删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
     ```
     rm -rf test1/ test2/ file1.txt
     ```
@@ -439,11 +441,12 @@ rm [OPTION] FILE...
 ### 创建目录 {#mkdir}
 
 ```bash
-# 创建一个文件夹，名为 DIR_NAME
+# 创建一个目录，名为 DIR_NAME
 mkdir DIR_NAME...
 ```
 
-??? example "Create directory"
+??? example "创建目录示例"
+
     创建名为 `test1`、`test2` 的目录：
     ```
     mkdir test1 test2
@@ -470,7 +473,7 @@ tar [OPTIONS] [FILE]...
 | `-t, --list`           | 列出一个存档文件的内容                       |
 | `-x, --extract, --get` | 从存档文件中提取出文件                       |
 | `-f, --file=ARCHIVE`   | 使用指定的存档文件                           |
-| `-C, --directory=DIR`  | 指定输出的文件夹                             |
+| `-C, --directory=DIR`  | 指定输出的目录                             |
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
@@ -480,13 +483,14 @@ tar [OPTIONS] [FILE]...
 | `-j, --bzip2`                    | 使用 bzip2 算法处理存档文件 |
 | `-J, --xz`                       | 使用 xz 算法处理存档文件    |
 
-!!! example "Usage of TAR"
+!!! example "tar 使用实例"
+
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
     ```
     tar -c -f target.tar file1 file2 file3
     ```
 
-    * 将 `target.tar` 中的文件提取到 `test` 文件夹中：
+    * 将 `target.tar` 中的文件提取到 `test` 目录中：
     ```
     tar -x -f target.tar -C test/
     ```
@@ -496,19 +500,10 @@ tar [OPTIONS] [FILE]...
     tar -cz -f target.tar.gz file1 file2 file3
     ```
 
-    * 将压缩文件 `target.tar.gz` 解压到 `test` 文件夹中：
+    * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
     ```
     tar -xz -f target.tar.gz -C test/
     ```
-
-    !!! tip 存档文件的后缀名
-        后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
-
-        在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
-
-        在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。
-
-        同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
     ```
@@ -522,6 +517,16 @@ tar [OPTIONS] [FILE]...
     # 打印出文件的详细信息
     tar -tv -f target.tar
     ```
+	
+!!! tip "存档文件的后缀名"
+
+    后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
+
+    在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
+
+    在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。
+
+    同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
 ## 软件的使用文档 {#software-manuals}
 
@@ -541,7 +546,7 @@ man tar
 man ls
 ```
 
-文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具。
+文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 `tldr`。
 
 ```
 ➜  ~ man tar
@@ -592,7 +597,7 @@ DESCRIPTION
 
 直接输入 `tldr 命令名` 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。
 
-输入 `tldr ls` 的样例：
+输入 `tldr tar` 的样例：
 
 ```
 ➜  ~ tldr tar
@@ -636,6 +641,6 @@ https://www.gnu.org/software/tar
 
 ## 引用来源 {#references .no-underline}
 
-[^1]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+[^1]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
 
-[^2]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
+[^2]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)
