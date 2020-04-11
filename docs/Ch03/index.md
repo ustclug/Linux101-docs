@@ -25,7 +25,7 @@
 
 !!! info "其它发行版的应用商店"
 
-    本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。
+    本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。
 
     在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（Snap 商店在国内的访问速度较慢。）
 
@@ -37,7 +37,7 @@
 
 软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。[^1]
 
-有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装，通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动化地进行安装。
+有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装。通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动地进行安装。
 
 但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
 
@@ -84,6 +84,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 在确定了软件包的包名后，可以通过 `apt install 包名` 进行安装。
 
 下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
+
 ```shell
 # apt install firefox
 Reading package lists... Done
@@ -232,6 +233,7 @@ Do you want to continue? [Y/n]
     2. 添加 Docker 软件源的 GPG Key
 
 		这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+		
 		```shell
 		$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 		```
@@ -239,6 +241,7 @@ Do you want to continue? [Y/n]
     3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
 
 		在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
+		
 		```shell
 		# 此为 Ubuntu amd64 的命令
 		$ sudo add-apt-repository \
@@ -255,6 +258,7 @@ Do you want to continue? [Y/n]
     4. 使用 apt 安装 Docker
 
 		首先需要从第三方源更新软件列表。
+		
 		```shell
 		apt update
 		```
@@ -267,11 +271,13 @@ Do you want to continue? [Y/n]
     5. 检查安装情况并确认启动
 
 		Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
+		
 		```shell
 		systemctl status docker
 		```
 
 		如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
+		
 		```text
 		● docker.service - Docker Application Container Engine
 		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -284,6 +290,7 @@ Do you want to continue? [Y/n]
 		```
 
 		如果没有启动，则会输出类似于这样的结果：
+		
 		```text
 		● docker.service - Docker Application Container Engine
 		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -294,6 +301,7 @@ Do you want to continue? [Y/n]
 		```
 
 		这时候，我们可以通过 `systemctl` 以启动 Docker：
+		
 		```shell
 		systemctl start docker
 		```
@@ -311,6 +319,7 @@ Do you want to continue? [Y/n]
 在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
 
 !!! example "apt update 输出样例"
+
     ```shell
     $ sudo apt update
     [sudo] password for elsa:
@@ -338,6 +347,7 @@ Do you want to continue? [Y/n]
 `apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
 
 !!! example "apt upgrade 输出样例"
+
     ```text
     Reading package lists... Done
     Building dependency tree
@@ -648,7 +658,7 @@ tar [OPTIONS] [FILE]...
 
 !!! tip "为什么使用 tar 创建压缩包需要”两次处理“"
 
-    tar 名字来源于 **t**ape **ar**chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。**注意，这中间没有压缩的过程。**
+    tar 名字来源于英文 **t**ape **ar**chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。**注意，这中间没有压缩的过程。**
 
     为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。
 
@@ -660,7 +670,7 @@ tar [OPTIONS] [FILE]...
 
 ### man 命令 {#man}
 
-通过 `man + 命令名` 可以得到大部分安装在 Linux 上的软件的用户手册。
+通过 `man 命令名` 可以得到大部分安装在 Linux 上的软件的用户手册。
 
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
