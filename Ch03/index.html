@@ -1404,19 +1404,19 @@
 <div class="admonition info">
 <p class="admonition-title">其它发行版的应用商店</p>
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。</p>
-<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。</p>
+<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（由于 Snap 不允许镜像，国内的访问速度较慢。）</p>
 </div>
 <h3 id="use-software-repository">使用软件仓库安装<a class="headerlink" href="#use-software-repository" title="Permanent link">&para;</a></h3>
 <p>软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p>在 Linux 下，相比起使用应用商店安装软件，软件仓库的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
 <p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
-<p>软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者 其他衍生发行版的 Linux 上安装和移除软件的自由软件。<strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
+<p>软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。<strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
 <p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
 <p>此外，由于可以自定义软件源，因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
 <h4 id="apt-search">搜索<a class="headerlink" href="#apt-search" title="Permanent link">&para;</a></h4>
 <p>在安装前，使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code>。</p>
 <p>下面是 <code>apt search firefox</code> 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：</p>
-<div class="highlight"><pre><span></span><code>➜  ~ apt search firefox
+<div class="highlight"><pre><span></span><code>$ apt search firefox
 Sorting... Done
 Full Text Search... Done
 <span class="o">(</span>Ouput Omitted<span class="o">)</span>
@@ -1461,7 +1461,7 @@ firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-
 <h4 id="installation">安装<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
 <p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装。</p>
 <p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
-<div class="highlight"><pre><span></span><code>➜  ~ apt install firefox
+<div class="highlight"><pre><span></span><code><span class="c1"># apt install firefox</span>
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -1483,7 +1483,7 @@ Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span
 <div class="admonition tip">
 <p class="admonition-title">可能会出现的权限问题</p>
 <p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
-<div class="highlight"><pre><span></span><code>➜  ~ apt install firefox
+<div class="highlight"><pre><span></span><code>$ apt install firefox
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open <span class="o">(</span><span class="m">13</span>: Permission denied<span class="o">)</span>
 E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpkg/lock-frontend<span class="o">)</span>, are you root?
 </code></pre></div></p>
@@ -1506,7 +1506,7 @@ E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpk
 </div>
 <h4 id="software-sources">官方软件源镜像<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
 <p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
-<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>➜  ~ cat /etc/apt/sources.list <span class="p">|</span> grep -v <span class="s2">&quot;#&quot;</span>
+<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list <span class="p">|</span> grep -v <span class="s2">&quot;#&quot;</span>
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -1656,7 +1656,7 @@ systemctl start/stop/status service-name
 <p>在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。</p>
 <div class="admonition example">
 <p class="admonition-title">apt update 输出样例</p>
-<div class="highlight"><pre><span></span><code>➜  ~ sudo apt update
+<div class="highlight"><pre><span></span><code>$ sudo apt update
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> elsa:
 Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease <span class="o">[</span><span class="m">88</span>.7 kB<span class="o">]</span>
 Get:2 https://cli-assets.heroku.com/apt ./ InRelease <span class="o">[</span><span class="m">2533</span> B<span class="o">]</span>
@@ -1717,14 +1717,14 @@ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 <span class="nb">cd</span> clang
 </code></pre></div>
 
-<p>查看当前的目录下有什么内容：</p>
-<div class="highlight"><pre><span></span><code>➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 ls
+<p>在进入解压得到的目录后，可以查看当前的目录下有什么内容：</p>
+<div class="highlight"><pre><span></span><code>$ ls
 bin  include  lib  libexec  share  
 </code></pre></div>
 
 <p>一般而言，软件的可执行文件都位于 bin 目录下：</p>
-<div class="highlight"><pre><span></span><code>➜  clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 <span class="nb">cd</span> bin
-➜  bin ls
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> bin
+$ ls
 <span class="o">(</span>Output omitted<span class="o">)</span>
 clang                     clang-tidy            llvm-cov 
 clang++                   clangd                llvm-cvtres
@@ -1742,7 +1742,7 @@ sudo cp -R * /usr/local/
 
 <p>为什么是 <code>/usr/local</code> 呢？因为这个目录下的 <code>bin</code> 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 <code>apt</code> 一样，在任意地方调用我们的程序。</p>
 <p>通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
-<div class="highlight"><pre><span></span><code>➜  ~ <span class="nb">echo</span> <span class="nv">$PATH</span>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$PATH</span>
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 </code></pre></div>
 
@@ -2029,7 +2029,7 @@ man ls
 </code></pre></div>
 
 <p>文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 <code>tldr</code>。</p>
-<div class="highlight"><pre><span></span><code>➜  ~ man tar
+<div class="highlight"><pre><span></span><code>$ man tar
 TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>                      GNU TAR Manual                     TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>
 
 NAME
@@ -2044,7 +2044,7 @@ SYNOPSIS
 
        tar -c <span class="o">[</span>-f ARCHIVE<span class="o">]</span> <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FILE...<span class="o">]</span>
 
-➜  ~ man ls
+$ man ls
 LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>                       User Commands                       LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>
 
 NAME
@@ -2072,7 +2072,7 @@ DESCRIPTION
 <h4 id="use-tldr">使用<a class="headerlink" href="#use-tldr" title="Permanent link">&para;</a></h4>
 <p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
 <p>输入 <code>tldr tar</code> 的样例：</p>
-<div class="highlight"><pre><span></span><code>➜  ~ tldr tar
+<div class="highlight"><pre><span></span><code>$ tldr tar
 tar
 Archiving utility.
 Often combined with a compression method, such as gzip or bzip.
