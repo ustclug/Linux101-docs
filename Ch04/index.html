@@ -17,7 +17,7 @@
         <meta name="author" content="LUG@USTC">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.c3000690.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.07c9fbf5.min.css">
       
       
     
@@ -129,7 +129,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -170,7 +170,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/ustclug/Linux101-docs/" title="前往 Github 仓库" class="md-source">
+<a href="https://github.com/ustclug/Linux101-docs/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -1319,10 +1319,7 @@
 <p>父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生孤儿进程（orphan）和僵尸进程（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况），此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。</p>
 <h4 id="pgroup">进程组<a class="headerlink" href="#pgroup" title="Permanent link">&para;</a></h4>
 <p>进程组大体上是执行同一工作的进程形成的一个团体，通常是由于父进程 fork 出子进程后子进程继承父进程的组 ID 而逐渐形成。设计进程组机制主要是面向协作任务，比如 Firefox 工作是网页浏览，那么其相关的进程一定属于一个进程组。<span class="more">进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个工作整体。</span></p>
-<h4 id="session">会话——前台与后台<a class="headerlink" href="#session" title="Permanent link">&para;</a></h4>
-<p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 不一定会结束，有些进程仍然可以驻留系统中，以该 session ID 继续运行。</p>
-<p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台的相关操作。</p>
-<p><em>按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示 F5 add 添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 列以便观察下面实验结果。</em></p>
+<p><em>按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示 F5 add 添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 列以便观察下面及随后所有实验结果。</em></p>
 <p><img alt="add_column" src="images/add_column.png" /></p>
 <p>（F10 被终端程序占用了怎么办？其实终端上的选项是可以用鼠标点击的，点一下 Done 即可返回。）</p>
 <details class="example"><summary>小实验</summary><p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
@@ -1357,6 +1354,9 @@
 <p>同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。</p>
 <p>接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。<p class="more">随后观察守护进程，可以看到守护进程的 SID 一般是其本身 PID。</p></p>
 </details>
+<h4 id="session">会话——前台与后台<a class="headerlink" href="#session" title="Permanent link">&para;</a></h4>
+<p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 不一定会结束，有些进程仍然可以驻留系统中，以该 session ID 继续运行。</p>
+<p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
 <h3 id="priority">优先级，NICE 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h3>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。</p>
 <p>优先级思想很简单，为任务的重要程度排一个序，任务越紧急，数值越低，越排在前面。而 NICE 值更加直白，数值越大说明程序<s>人品越高尚</s> ——我是说越要懂得谦让。</p>
@@ -1371,7 +1371,7 @@
 <li>要不要进行调度切换进程？ </li>
 <li>该调度谁？</li>
 </ul>
-<p>首先若想进行调度，必有中断参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。<span class="red">此处应有引用</span>那么 Linux 系统如何利用中断进行调度呢？</p>
+<p>首先若想进行调度，必有中断参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有<a href="/Appendix/glossary/#irq">中断↗</a>时进行调度。那么 Linux 系统如何利用中断进行调度呢？</p>
 <p>已知我们一需要轮流调度算法，二需要支持高优先级抢占低优先级与事件驱动。则系统必然需要在周期性的时钟中断到来时，重新执行一遍调度，查看当前进程的时间片是否使用完毕，以及是否有高优先级程序已经准备就绪。而为了达成事件驱动，系统在一些其他中断发生后，也需要进行例行调度检查，如果响应该中断的程序更紧急，应当立即执行。</p>
 <p>如上调度策略一旦确定，则三个问题迎刃而解：</p>
 <ul>
@@ -1379,8 +1379,32 @@
 <li>时间片使用完或有高优先级的任务就绪时选择切换进程。</li>
 <li>将高优先级任务投入运行，直到程序因时间片用完或其他原因挂起。</li>
 </ul>
-<p>以上内容听来似废话，然而这正是操作系统调度的核心（单核模型）。我们刚刚得到结论，调度算法的行为取决于时间片和优先级。它们是如何确定的，是固定的吗？</p>
-<details class="info"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
+<p>以上内容听来似废话，然而这正是操作系统调度过程的核心所在（单核模型）。</p>
+<p>就上面的结论来看，调度算法的行为取决于时间片长度和优先级。它们是如何确定的，是固定的吗？</p>
+<p>别急，我们首先还需要解决一个问题，既然做为调度判据的优先级仅仅是一个值，那么 NICE 值又如何参与其中？其实 NICE 值是对优先级的一种修正。NICE 值的取值范围为 -20 ~ 19，优先级的取值为 0 ~ 99，而 NICE 值对应于优先级的 100 ~ 139。</p>
+<p>理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
+<img src="images/time_slice.png" width="55%"></img></p>
+<p>然后我们可以打开htop，好好观察一下了。emmm…… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？</p>
+<p><img alt="what's up?" src="images/privilege.png" /></p>
+<p>额，其实这里给出的优先级是呈现给程序的，所以显示的数字以优先级100为基数，多正少负。</p>
+<details class="tip"><summary>more</summary><p>如果你真的很较真，按下了<code>shift + k</code>键显示内核线程，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
+<img src="images/top8.png" width="75%"></img></p>
+<ul>
+<li>第一个进程为 watchdog，是一个比较有意思的保证系统可用性的程序。<br/>（试试 <code>echo hi &gt; /dev/watchdog</code> 吧→_→)</li>
+<li>第二到五为负载均衡程序，cpu有几个核就有几个负载均衡。（单核就不用了吧）</li>
+<li>剩下的三个（还有许多没有上榜）便是中断处理程序了。<br/>（在词汇表中中断外链的文章里，当时中断线程化还是一个设想，现在已经实现了。）</li>
+</ul>
+</details>
+<p>可是我们也没有看到 NICE 值的差异啊？的确如此，我们可以看到的 NICE 值就是静态的，内核才能看到动态优先级。</p>
+<p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 <code>sudo</code> 加持。
+<div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span>
+ <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
+nice <span class="nv">vim</span> <span class="o">==</span> nice -10 <span class="nv">vim</span> <span class="o">==</span> nice -n <span class="m">10</span> vim 
+
+renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
+</code></pre></div></p>
+<p>上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：</p>
+<details class="info" open="open"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
 <thead>
 <tr>
 <th>进程属性</th>
@@ -1445,6 +1469,7 @@
 <div class="admonition info">
 <p class="admonition-title">一点细节</p>
 <p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。当然，加号减号都只能出现一次。</p>
+<p>其实我们如果直接输入 <code>%1</code>，一样可以将编号为 1 的进程放入前台。</p>
 </div>
 <p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
 <p><img alt="fg_bg" src="images/fg_bg.png" /></p>
@@ -1541,7 +1566,7 @@ function defer(f) {
   if (window.jQuery) {
     f();
   } else {
-    setTimeout(() => defer(f), 100);
+    setTimeout(() => defer(f), 500);
   }
 }
 defer(function() {
@@ -1635,8 +1660,8 @@ defer(function() {
       
     </div>
     
-      <script src="../assets/javascripts/vendor.f45d2d8d.min.js"></script>
-      <script src="../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
