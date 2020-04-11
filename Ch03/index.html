@@ -1741,6 +1741,10 @@ Do you want to continue? [Y/n]
 <p>安装软件包需要相应的软件包管理器。<code>deb</code> 对应的是 <code>dpkg</code>。</p>
 <p>相对于 <code>apt</code> 而言，<code>dpkg</code> 会更加底层，<code>apt</code> 是一个包管理器的前端，并不直接执行软件包的安装工作，相反的则是交由 <code>dpkg</code> 完成。<code>dpkg</code> 反馈的依赖信息则会告知 <code>apt</code> 还需要安装的其他软件包，并从软件仓库中获取到相应的软件包进行安装，从而完成依赖管理问题。</p>
 <p>直接通过 <code>dpkg</code> 安装 <code>deb</code> 并不会安装需要的依赖，只会报告出相应的依赖缺失了。</p>
+<p>可以通过如下的方式调用 <code>apt</code> 帮助修复依赖管理：</p>
+<div class="highlight"><pre><span></span><code>sudo apt -f install
+</code></pre></div>
+
 <div class="admonition example">
 <p class="admonition-title">用 deb 文件安装 VSCode</p>
 <p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
