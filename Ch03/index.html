@@ -1429,14 +1429,14 @@
 <p><img alt="Ubuntu Application Store" src="images/vscode-ubuntu-application-store.png" /></p>
 <div class="admonition info">
 <p class="admonition-title">其它发行版的应用商店</p>
-<p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。</p>
+<p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。</p>
 <p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（Snap 商店在国内的访问速度较慢。）</p>
 </div>
 <h3 id="use-package-management-system">使用包管系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
 <p>软件包管理器是一系列工具的集合，他自动化地完成软件的安装、更新、配置和移除功能。</p>
 <p>在 Linux 下，相比起使用应用商店安装软件，包管理系统的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
 <p>软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p>有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装，通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动化地进行安装。</p>
+<p>有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装。通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动地进行安装。</p>
 <p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
 <p>包管理系统有很多，比如管理 <code>deb</code> 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（使用于 <code>Debian</code> 系的系统）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 <code>Fedora</code>）、前端 <code>yum</code> （用于 RedHat 系）等等。</p>
 <p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
@@ -1490,7 +1490,7 @@ firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-
 </table>
 <h4 id="installation">安装<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
 <p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装。</p>
-<p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
+<p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># apt install firefox</span>
 Reading package lists... Done
 Building dependency tree
@@ -1508,7 +1508,8 @@ The following NEW packages will be installed:
 Need to get <span class="m">64</span>.5 MB of archives.
 After this operation, <span class="m">264</span> MB of additional disk space will be used.
 Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
+
 <p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 后回车确定进行安装。</p>
 <div class="admonition tip">
 <p class="admonition-title">可能会出现的权限问题</p>
@@ -1623,38 +1624,42 @@ $ sudo apt-get install <span class="se">\</span>
 </li>
 <li>
 <p>添加 Docker 软件源的 GPG Key</p>
-<p>这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+<p>这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。</p>
 <div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
-</code></pre></div></p>
+</code></pre></div>
+
 </li>
 <li>
 <p>添加 Docker 软件源到 <code>/etc/apt/sources.list</code> 中</p>
-<p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。
+<p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 此为 Ubuntu amd64 的命令</span>
 $ sudo add-apt-repository <span class="se">\</span>
     <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
 <span class="s2">    </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \</span>
 <span class="s2">    stable&quot;</span>
-</code></pre></div></p>
+</code></pre></div>
+
 <p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：
 <div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
 </code></pre></div></p>
 </li>
 <li>
 <p>使用 apt 安装 Docker</p>
-<p>首先需要从第三方源更新软件列表。
+<p>首先需要从第三方源更新软件列表。</p>
 <div class="highlight"><pre><span></span><code>apt update
-</code></pre></div></p>
+</code></pre></div>
+
 <p>之后便是直接安装 docker-ce。
 <div class="highlight"><pre><span></span><code>apt install docker-ce
 </code></pre></div></p>
 </li>
 <li>
 <p>检查安装情况并确认启动</p>
-<p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
+<p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：</p>
 <div class="highlight"><pre><span></span><code>systemctl status docker
-</code></pre></div></p>
-<p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
+</code></pre></div>
+
+<p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
    Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
    Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
@@ -1663,18 +1668,21 @@ $ sudo add-apt-repository <span class="se">\</span>
     Tasks: 18
    CGroup: /system.slice/docker.service
            └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-</code></pre></div></p>
-<p>如果没有启动，则会输出类似于这样的结果：
+</code></pre></div>
+
+<p>如果没有启动，则会输出类似于这样的结果：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
    Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
    Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
      Docs: https://docs.docker.com
   Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
  Main PID: 1115 (code=exited, status=0/SUCCESS)
-</code></pre></div></p>
-<p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：
+</code></pre></div>
+
+<p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：</p>
 <div class="highlight"><pre><span></span><code>systemctl start docker
-</code></pre></div></p>
+</code></pre></div>
+
 <p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书<a href="../Ch04/">第四章</a>展开。</p>
 </li>
 </ol>
@@ -2059,14 +2067,14 @@ tar -tv -f target.tar
 </div>
 <div class="admonition tip">
 <p class="admonition-title">为什么使用 tar 创建压缩包需要”两次处理“</p>
-<p>tar 名字来源于 <strong>t</strong>ape <strong>ar</strong>chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。<strong>注意，这中间没有压缩的过程。</strong></p>
+<p>tar 名字来源于英文 <strong>t</strong>ape <strong>ar</strong>chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。<strong>注意，这中间没有压缩的过程。</strong></p>
 <p>为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。</p>
 </div>
 <h2 id="software-manuals">软件的使用文档<a class="headerlink" href="#software-manuals" title="Permanent link">&para;</a></h2>
 <p>面对一个新的软件，比如上面提到的 tar 存档软件，除了使用搜索引擎在互联网上搜索使用方法外，还可以通过软件安装时自带的使用文档来学习。</p>
 <p>掌握通过一些手段了解一个新的命令的使用方法的技能在 Linux 学习中是极其重要的，Linux 的命令众多，并不会有很多的命令会有详细的说明。有时候官方文档也没有解释清楚的，可能需要手动试错乃至翻阅源代码了解命令的参数含义。</p>
 <h3 id="man">man 命令<a class="headerlink" href="#man" title="Permanent link">&para;</a></h3>
-<p>通过 <code>man + 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册。</p>
+<p>通过 <code>man 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册。</p>
 <p>大部分软件在安装时会将它的软件手册安装在系统的特定目录， <code>man</code> 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 调出 tar 命令和 ls 命令的文档</span>
 man tar
