@@ -48,7 +48,7 @@ apt 可以自动下载、配置和安装二进制或者源代码格式的软件�
 
 下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：
 
-```
+```shell
 ➜  ~ apt search firefox
 Sorting... Done
 Full Text Search... Done
@@ -74,8 +74,8 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 
 在确定了软件包的包名后，可以通过 `apt install 包名` 进行安装。
 
-下面是 `apt install firefox` 安装火狐浏览器的输出结果示例：
-```
+下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
+```shell
 ➜  ~ apt install firefox
 Reading package lists... Done
 Building dependency tree
@@ -98,9 +98,8 @@ Do you want to continue? [Y/n]
 在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 `Y` 后回车确定进行安装。
 
 !!! tip "可能会出现的权限问题"
-
-    在一般情况下，如果直接运行 `apt install` 命令，会输出：
-    ```
+    在一般情况下，如果直接运行 `apt install` 命令，会输出
+    ```shell
     ➜  ~ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
     E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
@@ -112,7 +111,7 @@ Do you want to continue? [Y/n]
 
     在输入之后，终端显示：
 
-    ```
+    ```text
     [sudo] password for ubuntu:
     ```
 
@@ -126,7 +125,7 @@ Do you want to continue? [Y/n]
 
     否则，则需要再次尝试：
 
-    ```
+    ```text
     Sorry, try again.
     [sudo] password for ubuntu: 
     ```
@@ -157,8 +156,7 @@ Do you want to continue? [Y/n]
 在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
 
 !!! example "apt update 输出样例"
-
-    ```
+    ```shell
     ➜  ~ sudo apt update
     [sudo] password for elsa:
     Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
@@ -185,8 +183,7 @@ Do you want to continue? [Y/n]
 `apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
 
 !!! example "apt upgrade 输出样例"
-
-    ```
+    ```text
     Reading package lists... Done
     Building dependency tree
     Reading state information... Done
@@ -202,12 +199,12 @@ Do you want to continue? [Y/n]
 	
     在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
 
-#### 软件源 {#software-sources}
+#### 官方软件源镜像 {#software-sources}
 
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? example "查看本地的软件源列表"
-    ```
+    ```shell
     ➜  ~ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
@@ -229,7 +226,7 @@ Do you want to continue? [Y/n]
 
     每一个条目都遵循如下的格式：
 
-    ```
+    ```text
     deb http://site.example.com/ubuntu/ distribution component1 component2 component3
     deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
     ```
@@ -261,9 +258,116 @@ Do you want to continue? [Y/n]
 
     可以使用如下命令：
 
-    `sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`
+    ```shell
+    sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+    ```
 
     当然也可以直接使用 vim、nano 等文本编辑器进行修改。
+
+#### 第三方软件源 {#third-party-software-sources}
+
+有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 `/etc/apt/sources.list` 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 `apt install package-name` 安装我们需要的软件。
+
+!!! Example "通过添加 Docker 软件源安装 Docker"
+    Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。
+
+    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。
+
+    1. 安装所需的软件包
+    
+    ```shell
+    $ sudo apt-get update
+
+    $ sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
+    ```
+
+    2. 添加 Docker 软件源的 GPG Key
+
+    这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+    ```shell
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    ```
+
+    3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
+
+    在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
+    ```shell
+    # 此为 Ubuntu amd64 的命令
+    $ sudo add-apt-repository \
+        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) \
+        stable"
+    ```
+
+    当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
+    ```text
+    deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    ```
+
+    4. 使用 apt 安装 Docker
+
+    首先需要从第三方源更新软件列表。
+    ```shell
+    apt update
+    ```
+
+    之后便是直接安装 docker-ce。
+    ```shell
+    apt install docker-ce
+    ```
+
+    5. 检查安装情况并确认启动
+
+    Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
+    ```shell
+    systemctl status docker
+    ```
+
+    如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
+    ```text
+    ● docker.service - Docker Application Container Engine
+       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+       Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
+         Docs: https://docs.docker.com
+     Main PID: 1115 (dockerd)
+        Tasks: 18
+       CGroup: /system.slice/docker.service
+               └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+    ```
+
+    如果没有启动，则会输出类似于这样的结果：
+    ```text
+    ● docker.service - Docker Application Container Engine
+       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+       Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
+         Docs: https://docs.docker.com
+      Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
+     Main PID: 1115 (code=exited, status=0/SUCCESS)
+    ```
+
+    这时候，我们可以通过 `systemctl` 以启动 Docker：
+    ```shell
+    systemctl start docker
+    ```
+
+    再次检查 Docker 运行情况，即应该可以得到期望的结果。
+
+    !!! tips "什么是服务"
+        服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。
+
+        常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）
+
+        在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。
+
+        ```shell
+        # 启动、停止、查看一个服务的状态
+        systemctl start/stop/status service-name
+        ```
 
 ### 安装预编译可执行文件 {#install-precompiled}
 
@@ -334,8 +438,8 @@ Do you want to continue? [Y/n]
 
 ### 复制文件和目录 {#cp}
 
-```bash
-# 将 SOURCE 文件目录到 DEST 文件，目录得到的文件即为 DEST
+```shell
+# 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
 cp [OPTION] SOURCE DEST
 
 # 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
@@ -355,17 +459,17 @@ cp [OPTION] SOURCE... DIRECTORY
 ??? example "复制示例"
 
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
-    ```Bash
+    ```shell
     cp file1.txt file2.txt
     ```
 
     * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
-    ```Bash
+    ```shell
     cp file1.txt file2.txt ./file/
     ```
 
-    * 将 `dir1` 目录及其所有子文件复制到同目录下的 `test` 目录中
-    ```Bash
+    * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
+    ```shell
     cp -r dir1 ./test/
     ```
 
@@ -389,7 +493,7 @@ cp [OPTION] SOURCE... DIRECTORY
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
-```bash
+```shell
 # 将 SOURCE 文件移动到 DEST 文件
 mv [OPTION] SOURCE DEST
 
@@ -407,7 +511,7 @@ mv [OPTION] SOURCE... DIRECTORY
 
 ### 删除文件和目录 {#rm}
 
-```bash
+```shell
 # 删除 FILE 文件，FILE 可以为多个文件。
 # 如果需要删除目录，需要通过 -r 选项递归删除目录
 rm [OPTION] FILE...
@@ -440,7 +544,7 @@ rm [OPTION] FILE...
 
 ### 创建目录 {#mkdir}
 
-```bash
+```shell
 # 创建一个目录，名为 DIR_NAME
 mkdir DIR_NAME...
 ```
@@ -458,7 +562,7 @@ mkdir DIR_NAME...
 
 通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
-```bash
+```shell
 # 命令格式如下，请参考下面的使用样例了解使用方法
 tar [OPTIONS] [FILE]...
 ```
@@ -486,32 +590,32 @@ tar [OPTIONS] [FILE]...
 !!! example "tar 使用实例"
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
-    ```
+    ```shell
     tar -c -f target.tar file1 file2 file3
     ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
-    ```
+    ```shell
     tar -x -f target.tar -C test/
     ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
-    ```
+    ```shell
     tar -cz -f target.tar.gz file1 file2 file3
     ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
-    ```
+    ```shell
     tar -xz -f target.tar.gz -C test/
     ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
-    ```
+    ```shell
     tar -Af archive.tar archive1.tar archive2.tar archive3.tar
     ```
 
     * 列出 `target.tar` 存档文件中的内容
-    ```Bash
+    ```shell
     tar -t -f target.tar
 
     # 打印出文件的详细信息
@@ -540,7 +644,7 @@ tar [OPTIONS] [FILE]...
 
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
-```bash
+```shell
 # 调出 tar 命令和 ls 命令的文档
 man tar
 man ls
@@ -548,7 +652,7 @@ man ls
 
 文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 `tldr`。
 
-```
+```shell
 ➜  ~ man tar
 TAR(1)                      GNU TAR Manual                     TAR(1)
 
@@ -591,7 +695,9 @@ DESCRIPTION
 
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
-`apt install tldr`
+```shell
+apt install tldr
+```
 
 #### 使用 {#use-tldr}
 
@@ -599,7 +705,7 @@ DESCRIPTION
 
 输入 `tldr tar` 的样例：
 
-```
+```shell
 ➜  ~ tldr tar
 tar
 Archiving utility.
