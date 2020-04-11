@@ -685,6 +685,12 @@ DESCRIPTION
 (Ouput omitted)
 ```
 
+当然，~~可以套个娃，~~查看 `man` 的使用说明：
+
+```shell
+man man
+```
+
 ### tldr 软件 {#tldr}
 
 通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 `tldr` 软件。
