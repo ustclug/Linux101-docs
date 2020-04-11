@@ -42,7 +42,7 @@
 
 有壳（shell）必有核（kernel），只有这里的核才是操作系统本体，真正负责调度程序，管理硬件的部分。而 Linux 发行版本身则是一个套装，意味着一个核用不同的软件包装出来，其中体现着发行版之间不同的理念。
 
-### 中断（IRQ: Interrupt Request） {#irq}
+### 中断（IRQ: Interrupt Request）[外链指南↗](https://www.ibm.com/developerworks/cn/linux/l-cn-linuxkernelint/index.html) {#irq}
 
 你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。
 
