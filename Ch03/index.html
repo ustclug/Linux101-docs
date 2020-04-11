@@ -539,15 +539,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#software-sources" class="md-nav__link">
+    官方软件源镜像
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-package-manager" class="md-nav__link">
-    使用包管理器进行安装
+  <a href="#third-party-software-sources" class="md-nav__link">
+    第三方软件源
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -573,15 +580,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#software-sources" class="md-nav__link">
-    软件源
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#use-package-manager" class="md-nav__link">
+    使用包管理器进行安装
+  </a>
   
 </li>
         
@@ -1187,15 +1194,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#software-sources" class="md-nav__link">
+    官方软件源镜像
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-package-manager" class="md-nav__link">
-    使用包管理器进行安装
+  <a href="#third-party-software-sources" class="md-nav__link">
+    第三方软件源
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1221,15 +1235,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#software-sources" class="md-nav__link">
-    软件源
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#use-package-manager" class="md-nav__link">
+    使用包管理器进行安装
+  </a>
   
 </li>
         
@@ -1405,12 +1419,12 @@
 <div class="highlight"><pre><span></span><code>➜  ~ apt search firefox
 Sorting... Done
 Full Text Search... Done
-(Ouput Omitted)
+<span class="o">(</span>Ouput Omitted<span class="o">)</span>
 
-firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
+firefox/bionic-updates,bionic-security,now <span class="m">72</span>.0.2+build1-0ubuntu0.18.04.1 amd64
   Safe and easy web browser from Mozilla
 
-(Ouput Omitted)
+<span class="o">(</span>Ouput Omitted<span class="o">)</span>
 </code></pre></div>
 
 <p>中间两行每个字段的含义：</p>
@@ -1446,32 +1460,32 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 </table>
 <h4 id="installation">安装<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
 <p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装。</p>
-<p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例：
+<p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。
 <div class="highlight"><pre><span></span><code>➜  ~ apt install firefox
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
 The following additional packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig
-  (Output Omitted)
+  <span class="o">(</span>Output Omitted<span class="o">)</span>
 Suggested packages:
   fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common
   gvfs liblcms2-utils librsvg2-bin
 The following NEW packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service firefox fontconfig
-  (Output omitted)
-0 upgraded, 87 newly installed, 0 to remove and 1 not upgraded.
-Need to get 64.5 MB of archives.
-After this operation, 264 MB of additional disk space will be used.
-Do you want to continue? [Y/n]
+  <span class="o">(</span>Output omitted<span class="o">)</span>
+<span class="m">0</span> upgraded, <span class="m">87</span> newly installed, <span class="m">0</span> to remove and <span class="m">1</span> not upgraded.
+Need to get <span class="m">64</span>.5 MB of archives.
+After this operation, <span class="m">264</span> MB of additional disk space will be used.
+Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span class="o">]</span>
 </code></pre></div></p>
 <p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 后回车确定进行安装。</p>
 <div class="admonition tip">
 <p class="admonition-title">可能会出现的权限问题</p>
-<p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出：
+<p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
 <div class="highlight"><pre><span></span><code>➜  ~ apt install firefox
-E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
-E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open <span class="o">(</span><span class="m">13</span>: Permission denied<span class="o">)</span>
+E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpkg/lock-frontend<span class="o">)</span>, are you root?
 </code></pre></div></p>
 <p>这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 <code>sudo</code>。</p>
 <p>即使用 <code>sudo apt install firefox</code>。</p>
@@ -1490,62 +1504,9 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 
 <p>具体有关权限的知识点将在<a href="../Ch05/">第五章</a>展开。</p>
 </div>
-<h3 id="use-package-manager">使用包管理器进行安装<a class="headerlink" href="#use-package-manager" title="Permanent link">&para;</a></h3>
-<p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
-<div class="admonition example">
-<p class="admonition-title">Install VSCode from deb file</p>
-<p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
-<p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868">微软提供的 <code>deb</code> 文件</a>。</p>
-<p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）。</p>
-</div>
-<h3 id="update-and-upgrade">更新软件列表与更新软件<a class="headerlink" href="#update-and-upgrade" title="Permanent link">&para;</a></h3>
-<p>在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 <code>apt install</code> 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 <code>apt install some-package</code> 时安装的。</p>
-<h4 id="apt-update">更新软件列表<a class="headerlink" href="#apt-update" title="Permanent link">&para;</a></h4>
-<p>为了将这个列表进行更新，就会用到 <code>apt update</code> 命令。获取到新的软件版本、软件依赖关系。</p>
-<p>在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。</p>
-<div class="admonition example">
-<p class="admonition-title">apt update 输出样例</p>
-<div class="highlight"><pre><span></span><code>➜  ~ sudo apt update
-[sudo] password for elsa:
-Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
-Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]
-Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]
-Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages [853 kB]
-Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 kB]
-(Output ommitted)
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-158 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
-</code></pre></div>
-
-<p>每一行对应获取一个软件源。</p>
-<p>在最后，<code>158 packages can be upgraded</code> 表示了可以被更新的软件包的数量。</p>
-</div>
-<h4 id="apt-upgrade">更新软件<a class="headerlink" href="#apt-upgrade" title="Permanent link">&para;</a></h4>
-<p>在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 <code>apt upgrade</code> 命令。</p>
-<p><code>apt upgrade</code> 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。</p>
-<div class="admonition example">
-<p class="admonition-title">apt upgrade 输出样例</p>
-<div class="highlight"><pre><span></span><code>Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-Calculating upgrade... Done
-The following packages will be upgraded:
-  apport dmidecode landscape-common libnss-systemd libpam-systemd libsystemd0 libudev1
-  python3-apport python3-problem-report sosreport systemd systemd-sysv udev unattended-upgrades
-14 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Need to get 5062 kB of archives.
-After this operation, 236 kB of additional disk space will be used.
-Do you want to continue? [Y/n]
-</code></pre></div>
-
-<p>在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。</p>
-</div>
-<h4 id="software-sources">软件源<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
+<h4 id="software-sources">官方软件源镜像<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
 <p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
-<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>➜  ~ cat /etc/apt/sources.list | grep -v &quot;#&quot;
+<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>➜  ~ cat /etc/apt/sources.list <span class="p">|</span> grep -v <span class="s2">&quot;#&quot;</span>
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -1607,8 +1568,139 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <p>一般情况下，<code>/etc/apt/sources.list</code> 下的官方源地址为 <code>http://archive.ubuntu.com/</code> ，我们只需要将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可。</p>
 <p>如果你在安装时选择的语言不是英语，默认的源地址通常不是 <code>http://archive.ubuntu.com/</code> ， 而是 <code>http://&lt;country-code&gt;.archive.ubuntu.com/ubuntu/</code> ，如 <code>http://cn.archive.ubuntu.com/ubuntu/</code> ， 此时只需将上面的命令进行相应的替换即可，即 <code>sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list</code>。</p>
 <p>可以使用如下命令：</p>
-<p><code>sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list</code></p>
+<div class="highlight"><pre><span></span><code>sudo sed -i <span class="s1">&#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+</code></pre></div>
+
 <p>当然也可以直接使用 vim、nano 等文本编辑器进行修改。</p>
+</div>
+<h4 id="third-party-software-sources">第三方软件源<a class="headerlink" href="#third-party-software-sources" title="Permanent link">&para;</a></h4>
+<p>有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 <code>apt install package-name</code> 安装我们需要的软件。</p>
+<div class="admonition example">
+<p class="admonition-title">通过添加 Docker 软件源安装 Docker</p>
+<p>Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。</p>
+<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。</p>
+<p>1、安装需要的的软件包</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt-get update
+
+$ sudo apt-get install <span class="se">\</span>
+    apt-transport-https <span class="se">\</span>
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    gnupg-agent <span class="se">\</span>
+    software-properties-common
+</code></pre></div>
+
+<p>2、添加 Docker 软件源的 GPG Key</p>
+<p>这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+<div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+</code></pre></div></p>
+<p>3、添加 Docker 软件源到 <code>/etc/apt/sources.list</code> 中</p>
+<p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。
+<div class="highlight"><pre><span></span><code><span class="c1"># 此为 Ubuntu amd64 的命令</span>
+$ sudo add-apt-repository <span class="se">\</span>
+    <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">    </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \</span>
+<span class="s2">    stable&quot;</span>
+</code></pre></div></p>
+<p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：
+<div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+</code></pre></div></p>
+<p>4、使用 apt 安装 Docker</p>
+<p>首先需要从第三方源更新软件列表。
+<div class="highlight"><pre><span></span><code>apt update
+</code></pre></div></p>
+<p>之后便是直接安装 docker-ce。
+<div class="highlight"><pre><span></span><code>apt install docker-ce
+</code></pre></div></p>
+<p>5、检查安装情况并确认启动</p>
+<p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
+<div class="highlight"><pre><span></span><code>systemctl status docker
+</code></pre></div></p>
+<p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
+<div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
+     Docs: https://docs.docker.com
+ Main PID: 1115 (dockerd)
+    Tasks: 18
+   CGroup: /system.slice/docker.service
+           └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+</code></pre></div></p>
+<p>如果没有启动，则会输出类似于这样的结果：
+<div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
+     Docs: https://docs.docker.com
+  Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
+ Main PID: 1115 (code=exited, status=0/SUCCESS)
+</code></pre></div></p>
+<p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：
+<div class="highlight"><pre><span></span><code>systemctl start docker
+</code></pre></div></p>
+<p>再次检查 Docker 运行情况，即应该可以得到期望的结果。</p>
+<div class="admonition tips">
+<p class="admonition-title">什么是服务</p>
+<p>服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。</p>
+<p>常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）</p>
+<p>在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 启动、停止、查看一个服务的状态</span>
+systemctl start/stop/status service-name
+</code></pre></div>
+
+</div>
+</div>
+<h3 id="update-and-upgrade">更新软件列表与更新软件<a class="headerlink" href="#update-and-upgrade" title="Permanent link">&para;</a></h3>
+<p>在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 <code>apt install</code> 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 <code>apt install some-package</code> 时安装的。</p>
+<h4 id="apt-update">更新软件列表<a class="headerlink" href="#apt-update" title="Permanent link">&para;</a></h4>
+<p>为了将这个列表进行更新，就会用到 <code>apt update</code> 命令。获取到新的软件版本、软件依赖关系。</p>
+<p>在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。</p>
+<div class="admonition example">
+<p class="admonition-title">apt update 输出样例</p>
+<div class="highlight"><pre><span></span><code>➜  ~ sudo apt update
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> elsa:
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease <span class="o">[</span><span class="m">88</span>.7 kB<span class="o">]</span>
+Get:2 https://cli-assets.heroku.com/apt ./ InRelease <span class="o">[</span><span class="m">2533</span> B<span class="o">]</span>
+Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease <span class="o">[</span><span class="m">88</span>.7 kB<span class="o">]</span>
+Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease <span class="o">[</span><span class="m">74</span>.6 kB<span class="o">]</span>
+Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages <span class="o">[</span><span class="m">853</span> kB<span class="o">]</span>
+Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en <span class="o">[</span><span class="m">298</span> kB<span class="o">]</span>
+<span class="o">(</span>Output ommitted<span class="o">)</span>
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+<span class="m">158</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.
+</code></pre></div>
+
+<p>每一行对应获取一个软件源。</p>
+<p>在最后，<code>158 packages can be upgraded</code> 表示了可以被更新的软件包的数量。</p>
+</div>
+<h4 id="apt-upgrade">更新软件<a class="headerlink" href="#apt-upgrade" title="Permanent link">&para;</a></h4>
+<p>在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 <code>apt upgrade</code> 命令。</p>
+<p><code>apt upgrade</code> 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。</p>
+<div class="admonition example">
+<p class="admonition-title">apt upgrade 输出样例</p>
+<div class="highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  apport dmidecode landscape-common libnss-systemd libpam-systemd libsystemd0 libudev1
+  python3-apport python3-problem-report sosreport systemd systemd-sysv udev unattended-upgrades
+14 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 5062 kB of archives.
+After this operation, 236 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+</code></pre></div>
+
+<p>在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。</p>
+</div>
+<h3 id="use-package-manager">使用包管理器进行安装<a class="headerlink" href="#use-package-manager" title="Permanent link">&para;</a></h3>
+<p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
+<div class="admonition example">
+<p class="admonition-title">Install VSCode from deb file</p>
+<p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
+<p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868">微软提供的 <code>deb</code> 文件</a>。</p>
+<p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）。</p>
 </div>
 <h3 id="install-precompiled">安装预编译可执行文件<a class="headerlink" href="#install-precompiled" title="Permanent link">&para;</a></h3>
 <p>对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。</p>
@@ -1659,7 +1751,7 @@ sudo cp -R * /usr/local/
 <h2 id="operate-files-and-dirs">操作文件与目录<a class="headerlink" href="#operate-files-and-dirs" title="Permanent link">&para;</a></h2>
 <p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
 <h3 id="cp">复制文件和目录<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 将 SOURCE 文件目录到 DEST 文件，目录得到的文件即为 DEST</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST</span>
 cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
 
 <span class="c1"># 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件</span>
@@ -1697,7 +1789,9 @@ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>复制示例</summary><ul>
+<div class="admonition example">
+<p class="admonition-title">复制示例</p>
+<ul>
 <li>
 <p>将 <code>file1.txt</code> 复制一份到同目录，命名为 <code>file2.txt</code>
 <div class="highlight"><pre><span></span><code>cp file1.txt file2.txt
@@ -1709,12 +1803,12 @@ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </code></pre></div></p>
 </li>
 <li>
-<p>将 <code>dir1</code> 目录及其所有子文件复制到同目录下的 <code>test</code> 目录中
+<p>将 <code>dir1</code> 文件夹及其所有子文件复制到同目录下的 <code>test</code> 文件夹中
 <div class="highlight"><pre><span></span><code>cp -r dir1 ./test/
 </code></pre></div></p>
 </li>
 </ul>
-</details>
+</div>
 <div class="admonition tips">
 <p class="admonition-title">硬链接和符号链接</p>
 <p>cp 的 <code>-l</code> 和 <code>-s</code> 参数分布为创建硬链接和符号链接。</p>
@@ -1786,7 +1880,9 @@ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>删除示例</summary><p>删除 <code>file1.txt</code> 文件：
+<div class="admonition example">
+<p class="admonition-title">删除示例</p>
+<p>删除 <code>file1.txt</code> 文件：
 <div class="highlight"><pre><span></span><code>rm file1.txt
 </code></pre></div></p>
 <p>删除 <code>test</code> 目录及其下的所有文件：
@@ -1795,16 +1891,18 @@ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 <p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 <div class="highlight"><pre><span></span><code>rm -rf test1/ test2/ file1.txt
 </code></pre></div></p>
-</details>
+</div>
 <h3 id="mkdir">创建目录<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 创建一个目录，名为 DIR_NAME</span>
 mkdir DIR_NAME...
 </code></pre></div>
 
-<details class="example"><summary>创建目录示例</summary><p>创建名为 <code>test1</code>、<code>test2</code> 的目录：
+<div class="admonition example">
+<p class="admonition-title">创建目录示例</p>
+<p>创建名为 <code>test1</code>、<code>test2</code> 的目录：
 <div class="highlight"><pre><span></span><code>mkdir test1 test2
 </code></pre></div></p>
-</details>
+</div>
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
@@ -1932,35 +2030,35 @@ man ls
 
 <p>文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 <code>tldr</code>。</p>
 <div class="highlight"><pre><span></span><code>➜  ~ man tar
-TAR(1)                      GNU TAR Manual                     TAR(1)
+TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>                      GNU TAR Manual                     TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>
 
 NAME
        tar - an archiving utility
 
 SYNOPSIS
    Traditional usage
-       tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]
+       tar <span class="o">{</span>A<span class="p">|</span>c<span class="p">|</span>d<span class="p">|</span>r<span class="p">|</span>t<span class="p">|</span>u<span class="p">|</span>x<span class="o">}[</span>GnSkUWOmpsMBiajJzZhPlRvwo<span class="o">]</span> <span class="o">[</span>ARG...<span class="o">]</span>
 
    UNIX-style usage
-       tar -A [OPTIONS] ARCHIVE ARCHIVE
+       tar -A <span class="o">[</span>OPTIONS<span class="o">]</span> ARCHIVE ARCHIVE
 
-       tar -c [-f ARCHIVE] [OPTIONS] [FILE...]
+       tar -c <span class="o">[</span>-f ARCHIVE<span class="o">]</span> <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FILE...<span class="o">]</span>
 
 ➜  ~ man ls
-LS(1)                       User Commands                       LS(1)
+LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>                       User Commands                       LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>
 
 NAME
        ls - list directory contents
 
 SYNOPSIS
-       ls [OPTION]... [FILE]...
+       ls <span class="o">[</span>OPTION<span class="o">]</span>... <span class="o">[</span>FILE<span class="o">]</span>...
 
 DESCRIPTION
-       List  information  about  the  FILEs (the current directory by
-       default).  Sort entries alphabetically if  none  of  -cftuvSUX
+       List  information  about  the  FILEs <span class="o">(</span>the current directory by
+       default<span class="o">)</span>.  Sort entries alphabetically <span class="k">if</span>  none  of  -cftuvSUX
        nor --sort is specified.
 
-(Ouput omitted)
+<span class="o">(</span>Ouput omitted<span class="o">)</span>
 </code></pre></div>
 
 <h3 id="tldr">tldr 软件<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h3>
@@ -1968,7 +2066,9 @@ DESCRIPTION
 <p><code>tldr</code> 软件中包含有一个由<a href="https://github.com/tldr-pages/tldr">社区</a>维护的精简版文档，通过几个简单的例子让用户可以快速地一窥软件的使用方法。</p>
 <h4 id="install-tldr">安装<a class="headerlink" href="#install-tldr" title="Permanent link">&para;</a></h4>
 <p>在 Debian 系下，可以直接通过 <code>apt</code> 进行安装：</p>
-<p><code>apt install tldr</code></p>
+<div class="highlight"><pre><span></span><code>apt install tldr
+</code></pre></div>
+
 <h4 id="use-tldr">使用<a class="headerlink" href="#use-tldr" title="Permanent link">&para;</a></h4>
 <p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
 <p>输入 <code>tldr tar</code> 的样例：</p>
@@ -1980,25 +2080,25 @@ More information:
 https://www.gnu.org/software/tar
 
  - Create an archive from files:
-   tar cf {{target.tar}} {{file1}} {{file2}} {{file3}}
+   tar cf <span class="o">{{</span>target.tar<span class="o">}}</span> <span class="o">{{</span>file1<span class="o">}}</span> <span class="o">{{</span>file2<span class="o">}}</span> <span class="o">{{</span>file3<span class="o">}}</span>
 
  - Create a gzipped archive:
-   tar czf {{target.tar.gz}} {{file1}} {{file2}} {{file3}}
+   tar czf <span class="o">{{</span>target.tar.gz<span class="o">}}</span> <span class="o">{{</span>file1<span class="o">}}</span> <span class="o">{{</span>file2<span class="o">}}</span> <span class="o">{{</span>file3<span class="o">}}</span>
 
- - Extract a (compressed) archive into the current directory:
-   tar xf {{source.tar[.gz|.bz2|.xz]}}
+ - Extract a <span class="o">(</span>compressed<span class="o">)</span> archive into the current directory:
+   tar xf <span class="o">{{</span>source.tar<span class="o">[</span>.gz<span class="p">|</span>.bz2<span class="p">|</span>.xz<span class="o">]}}</span>
 
  - Extract an archive into a target directory:
-   tar xf {{source.tar}} -C {{directory}}
+   tar xf <span class="o">{{</span>source.tar<span class="o">}}</span> -C <span class="o">{{</span>directory<span class="o">}}</span>
 
  - Create a compressed archive, using archive suffix to determine the compression program:
-   tar caf {{target.tar.xz}} {{file1}} {{file2}} {{file3}}
+   tar caf <span class="o">{{</span>target.tar.xz<span class="o">}}</span> <span class="o">{{</span>file1<span class="o">}}</span> <span class="o">{{</span>file2<span class="o">}}</span> <span class="o">{{</span>file3<span class="o">}}</span>
 
  - List the contents of a tar file:
-   tar tvf {{source.tar}}
+   tar tvf <span class="o">{{</span>source.tar<span class="o">}}</span>
 
  - Extract files matching a pattern:
-   tar xf {{source.tar}} --wildcards {{&quot;*.html&quot;}}
+   tar xf <span class="o">{{</span>source.tar<span class="o">}}</span> --wildcards <span class="o">{{</span><span class="s2">&quot;*.html&quot;</span><span class="o">}}</span>
 </code></pre></div>
 
 <p>可以从输出中快速地了解到：</p>
