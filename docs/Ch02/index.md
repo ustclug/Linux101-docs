@@ -470,7 +470,7 @@ $ jekyll serve
 
 ![](images/jekyll-installation.png)
 
-## 思考题
+## 思考题 {#questions}
 
 !!! question "桌面环境的选择"
 
