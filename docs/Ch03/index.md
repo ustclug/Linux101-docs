@@ -570,7 +570,7 @@ tar [OPTIONS] [FILE]...
 | `-t, --list`           | 列出一个存档文件的内容                       |
 | `-x, --extract, --get` | 从存档文件中提取出文件                       |
 | `-f, --file=ARCHIVE`   | 使用指定的存档文件                           |
-| `-C, --directory=DIR`  | 指定输出的目录                             |
+| `-C, --directory=DIR`  | 指定输出的目录                               |
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
