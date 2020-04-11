@@ -26,7 +26,7 @@
 
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu，Manjaro 等。
 
-    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（由于 Snap 不允许镜像，国内的访问速度较慢。）
+    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（Snap 商店在国内的访问速度较慢。）
 
 ### 使用软件仓库安装 {#use-software-repository}
 
@@ -36,7 +36,7 @@
 
 但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
 
-软件仓库有很多，如 apt、yum、pacman 都是常见的软件仓库。其中，Xubuntu 内置的软件仓库是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。**为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
+从软件仓库中获取、安装、管理软件的工具，被称为“软件包管理器”，如 apt、yum、pacman 都是常见的软件包管理器。其中，Xubuntu 内置的软件包管理器是 apt，其全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。**为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
 apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。
 
@@ -52,12 +52,12 @@ apt 可以自动下载、配置和安装二进制或者源代码格式的软件�
 $ apt search firefox
 Sorting... Done
 Full Text Search... Done
-(Ouput Omitted)
+(Output omitted)
 
 firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
   Safe and easy web browser from Mozilla
 
-(Ouput Omitted)
+(Output omitted)
 ```
 
 中间两行每个字段的含义：
@@ -82,7 +82,7 @@ Building dependency tree
 Reading state information... Done
 The following additional packages will be installed:
   adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig
-  (Output Omitted)
+  (Output omitted)
 Suggested packages:
   fonts-lyx libasound2-plugins alsa-utils libcanberra-gtk0 libcanberra-pulse colord cups-common
   gvfs liblcms2-utils librsvg2-bin
@@ -204,7 +204,7 @@ Do you want to continue? [Y/n]
 !!! Example "通过添加 Docker 软件源安装 Docker"
     Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。
 
-    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。
+    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 的官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/))展开，也可以阅读[第八章（未完成）](../Ch08/index.md)获取更多的信息。
 
     1、安装需要的的软件包
     
@@ -288,19 +288,7 @@ Do you want to continue? [Y/n]
     systemctl start docker
     ```
 
-    再次检查 Docker 运行情况，即应该可以得到期望的结果。
-
-    !!! tips "什么是服务"
-        服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。
-
-        常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）
-
-        在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。
-
-        ```shell
-        # 启动、停止、查看一个服务的状态
-        systemctl start/stop/status service-name
-        ```
+    再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在[第四章](../Ch04/index.md)展开。
 
 ### 更新软件列表与更新软件 {#update-and-upgrade}
 
@@ -373,6 +361,8 @@ Do you want to continue? [Y/n]
 对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。
 
 !!! example "安装预编译的 LLVM"
+
+    下面我们以 LLVM 为例作介绍。LLVM 是一个编译器组件工具集，可以帮助开发者开发编译器以及周边工具。
 
     注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 `apt install clang` （或对应版本的 clang 包名）命令安装即可。
 
