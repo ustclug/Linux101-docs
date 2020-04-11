@@ -132,73 +132,6 @@ Do you want to continue? [Y/n]
 
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
 
-
-### 使用包管理器进行安装 {#use-package-manager}
-
-在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 `deb`、`rpm` 等二进制包。
-
-!!! example "Install VSCode from deb file"
-
-    Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
-
-    首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
-
-    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）。
-
-### 更新软件列表与更新软件 {#update-and-upgrade}
-
-在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 `apt install` 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 `apt install some-package` 时安装的。
-
-#### 更新软件列表 {#apt-update}
-
-为了将这个列表进行更新，就会用到 `apt update` 命令。获取到新的软件版本、软件依赖关系。
-
-在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
-
-!!! example "apt update 输出样例"
-    ```shell
-    ➜  ~ sudo apt update
-    [sudo] password for elsa:
-    Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-    Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
-    Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]
-    Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]
-    Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages [853 kB]
-    Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 kB]
-    (Output ommitted)
-    Reading package lists... Done
-    Building dependency tree       
-    Reading state information... Done
-    158 packages can be upgraded. Run 'apt list --upgradable' to see them.
-    ```
-
-    每一行对应获取一个软件源。
-
-    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
-
-#### 更新软件 {#apt-upgrade}
-
-在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 `apt upgrade` 命令。
-
-`apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
-
-!!! example "apt upgrade 输出样例"
-    ```text
-    Reading package lists... Done
-    Building dependency tree
-    Reading state information... Done
-    Calculating upgrade... Done
-    The following packages will be upgraded:
-      apport dmidecode landscape-common libnss-systemd libpam-systemd libsystemd0 libudev1
-      python3-apport python3-problem-report sosreport systemd systemd-sysv udev unattended-upgrades
-    14 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-    Need to get 5062 kB of archives.
-    After this operation, 236 kB of additional disk space will be used.
-    Do you want to continue? [Y/n]
-    ```
-	
-    在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
-
 #### 官方软件源镜像 {#software-sources}
 
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
@@ -273,7 +206,7 @@ Do you want to continue? [Y/n]
 
     Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。
 
-    1. 安装所需的软件包
+    1、安装需要的的软件包
     
     ```shell
     $ sudo apt-get update
@@ -286,14 +219,14 @@ Do you want to continue? [Y/n]
         software-properties-common
     ```
 
-    2. 添加 Docker 软件源的 GPG Key
+    2、添加 Docker 软件源的 GPG Key
 
     这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
     ```shell
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
 
-    3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
+    3、添加 Docker 软件源到 `/etc/apt/sources.list` 中
 
     在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
     ```shell
@@ -309,7 +242,7 @@ Do you want to continue? [Y/n]
     deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
     ```
 
-    4. 使用 apt 安装 Docker
+    4、使用 apt 安装 Docker
 
     首先需要从第三方源更新软件列表。
     ```shell
@@ -321,7 +254,7 @@ Do you want to continue? [Y/n]
     apt install docker-ce
     ```
 
-    5. 检查安装情况并确认启动
+    5、检查安装情况并确认启动
 
     Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
     ```shell
@@ -368,6 +301,72 @@ Do you want to continue? [Y/n]
         # 启动、停止、查看一个服务的状态
         systemctl start/stop/status service-name
         ```
+
+### 更新软件列表与更新软件 {#update-and-upgrade}
+
+在计算机本地，系统会维护一个包列表，在这个列表里面，包含了软件信息以及软件包的依赖关系，在执行 `apt install` 命令时，会从这个列表中读取出想要安装的软件信息，包括下载地址、软件版本、依赖的包，同时 apt 会对依赖的包递归执行如上操作，直到不再有新的依赖包。如上得到的所有包，将会是在 `apt install some-package` 时安装的。
+
+#### 更新软件列表 {#apt-update}
+
+为了将这个列表进行更新，就会用到 `apt update` 命令。获取到新的软件版本、软件依赖关系。
+
+在 apt 的配置中，有许多的软件源，每一个软件源都会提供一定数量的包列表。通过增添软件源，即可实现通过 apt 安装官方源中并不提供的软件或版本。
+
+!!! example "apt update 输出样例"
+    ```shell
+    ➜  ~ sudo apt update
+    [sudo] password for elsa:
+    Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+    Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
+    Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]
+    Get:6 http://mirrors.ustc.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]
+    Get:7 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main amd64 Packages [853 kB]
+    Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 kB]
+    (Output ommitted)
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    158 packages can be upgraded. Run 'apt list --upgradable' to see them.
+    ```
+
+    每一行对应获取一个软件源。
+
+    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
+
+#### 更新软件 {#apt-upgrade}
+
+在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 `apt upgrade` 命令。
+
+`apt upgrade` 会根据软件列表中的版本信息与当前安装的版本进行对比，解决新的依赖关系，完成升级。
+
+!!! example "apt upgrade 输出样例"
+    ```text
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    Calculating upgrade... Done
+    The following packages will be upgraded:
+      apport dmidecode landscape-common libnss-systemd libpam-systemd libsystemd0 libudev1
+      python3-apport python3-problem-report sosreport systemd systemd-sysv udev unattended-upgrades
+    14 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 5062 kB of archives.
+    After this operation, 236 kB of additional disk space will be used.
+    Do you want to continue? [Y/n]
+    ```
+	
+    在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
+
+### 使用包管理器进行安装 {#use-package-manager}
+
+在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 `deb`、`rpm` 等二进制包。
+
+!!! example "Install VSCode from deb file"
+
+    Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
+
+    首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
+
+    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）。
 
 ### 安装预编译可执行文件 {#install-precompiled}
 
@@ -456,7 +455,7 @@ cp [OPTION] SOURCE... DIRECTORY
 | `-l, --link`          | 创建硬链接                       |
 | `-s, --symbolic-link` | 创建符号链接                     |
 
-??? example "复制示例"
+!!! example "复制示例"
 
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
     ```shell
@@ -525,7 +524,7 @@ rm [OPTION] FILE...
 | `-r, -R, --recursive` | 递归删除目录及其子文件             |
 | `-d, --dir`           | 删除空目录                         |
 
-??? example "删除示例"
+!!! example "删除示例"
 
     删除 `file1.txt` 文件：
     ```
@@ -549,7 +548,7 @@ rm [OPTION] FILE...
 mkdir DIR_NAME...
 ```
 
-??? example "创建目录示例"
+!!! example "创建目录示例"
 
     创建名为 `test1`、`test2` 的目录：
     ```
