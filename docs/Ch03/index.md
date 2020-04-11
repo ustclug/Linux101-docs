@@ -3,6 +3,7 @@
 !!! warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 
 !!! abstract "导言"
+
     面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：
 
     * 通过命令行的方式安装需要的软件
@@ -209,94 +210,95 @@ Do you want to continue? [Y/n]
 
 有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 `/etc/apt/sources.list` 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 `apt install package-name` 安装我们需要的软件。
 
-!!! Example "通过添加 Docker 软件源安装 Docker"
-    Docker 是一个十分流行的容器实现，常见于开发应用、交付应用、运行应用，极大地简化了部署应用的流程。
+??? example "通过添加 Docker 软件源安装 Docker"
 
-    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 的官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)展开，也可以阅读[第八章（未完成）](../Ch08/index.md)获取更多的信息。
+    Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书[第八章](../Ch08/index.md)进行专门的介绍。
 
-    1、安装需要的的软件包
-    
-    ```shell
-    $ sudo apt-get update
+    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)展开。
 
-    $ sudo apt-get install \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg-agent \
-        software-properties-common
-    ```
+    1. 安装需要的的软件包
 
-    2、添加 Docker 软件源的 GPG Key
+		```shell
+		$ sudo apt-get update
 
-    这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
-    ```shell
-    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    ```
+		$ sudo apt-get install \
+			apt-transport-https \
+			ca-certificates \
+			curl \
+			gnupg-agent \
+			software-properties-common
+		```
 
-    3、添加 Docker 软件源到 `/etc/apt/sources.list` 中
+    2. 添加 Docker 软件源的 GPG Key
 
-    在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
-    ```shell
-    # 此为 Ubuntu amd64 的命令
-    $ sudo add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
-    ```
+		这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+		```shell
+		$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+		```
 
-    当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
-    ```text
-    deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-    ```
+    3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
 
-    4、使用 apt 安装 Docker
+		在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
+		```shell
+		# 此为 Ubuntu amd64 的命令
+		$ sudo add-apt-repository \
+			"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+			$(lsb_release -cs) \
+			stable"
+		```
 
-    首先需要从第三方源更新软件列表。
-    ```shell
-    apt update
-    ```
+		当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
+		```text
+		deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+		```
 
-    之后便是直接安装 docker-ce。
-    ```shell
-    apt install docker-ce
-    ```
+    4. 使用 apt 安装 Docker
 
-    5、检查安装情况并确认启动
+		首先需要从第三方源更新软件列表。
+		```shell
+		apt update
+		```
 
-    Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
-    ```shell
-    systemctl status docker
-    ```
+		之后便是直接安装 docker-ce。
+		```shell
+		apt install docker-ce
+		```
 
-    如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
-    ```text
-    ● docker.service - Docker Application Container Engine
-       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-       Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
-         Docs: https://docs.docker.com
-     Main PID: 1115 (dockerd)
-        Tasks: 18
-       CGroup: /system.slice/docker.service
-               └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-    ```
+    5. 检查安装情况并确认启动
 
-    如果没有启动，则会输出类似于这样的结果：
-    ```text
-    ● docker.service - Docker Application Container Engine
-       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-       Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
-         Docs: https://docs.docker.com
-      Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
-     Main PID: 1115 (code=exited, status=0/SUCCESS)
-    ```
+		Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
+		```shell
+		systemctl status docker
+		```
 
-    这时候，我们可以通过 `systemctl` 以启动 Docker：
-    ```shell
-    systemctl start docker
-    ```
+		如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
+		```text
+		● docker.service - Docker Application Container Engine
+		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+		   Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
+			 Docs: https://docs.docker.com
+		 Main PID: 1115 (dockerd)
+			Tasks: 18
+		   CGroup: /system.slice/docker.service
+				   └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+		```
 
-    再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在[第四章](../Ch04/index.md)展开。
+		如果没有启动，则会输出类似于这样的结果：
+		```text
+		● docker.service - Docker Application Container Engine
+		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+		   Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
+			 Docs: https://docs.docker.com
+		  Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
+		 Main PID: 1115 (code=exited, status=0/SUCCESS)
+		```
+
+		这时候，我们可以通过 `systemctl` 以启动 Docker：
+		```shell
+		systemctl start docker
+		```
+
+		再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
 
 ### 更新软件列表与更新软件 {#update-and-upgrade}
 
@@ -461,7 +463,7 @@ cp [OPTION] SOURCE... DIRECTORY
 | `-f, --force`         | 覆盖目标地址同名文件             |
 | `-u, --update`        | 仅当源文件比目标文件新才进行复制 |
 | `-l, --link`          | 创建硬链接                       |
-| `-s, --symbolic-link` | 创建符号链接                     |
+| `-s, --symbolic-link` | 创建软链接                     |
 
 !!! example "复制示例"
 
@@ -480,25 +482,25 @@ cp [OPTION] SOURCE... DIRECTORY
     cp -r dir1 ./test/
     ```
 
-!!! tips "硬链接和符号链接"
+!!! tips "硬链接和软链接"
 
-    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和符号链接。
+    cp 的 `-l` 和 `-s` 参数分布为创建硬链接和软链接（又称为“软链接”）。
 
-    简单而言，一个文件的硬链接和符号链接都指向文件自身，但是在底层有不同的行为。
+    简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。
 
     需要先了解一个概念：inode
 
-    在许多“类 Unix 文件系统中”，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（index node）。
+    在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。
 
-    可以参考这篇文章: <https://www.ruanyifeng.com/blog/2011/12/inode.html>。
+    关于 inode 的进一步讲解可以参考[这篇文章](https://www.ruanyifeng.com/blog/2011/12/inode.html)。
 
     ![硬链接与软链接图例](images/link.png)
 
     硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
 
-    符号链接与源文件的 inode 不同。符号链接保存了源文件的路径，在访问符号链接的时候，访问的路径被替换为源文件的路径，因此访问符号链接也等同于访问源文件。但是如果删除了源文件，符号链接所保存的路径也就无效了，符号链接因此也是无效的。
+    软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。
 
-    `ln` 命令也可以用来创建硬链接和符号链接。
+    `ln` 命令也可以用来创建硬链接和软链接。
 
 ### 移动文件和目录 {#mv}
 
@@ -775,9 +777,9 @@ https://www.gnu.org/software/tar
 
 	有时候，你会发现缺少了一些文件，而这些文件需要安装特定的软件包来补充。搜索资料，尝试说明如何方便地解决这样的问题。
 
-!!! question "硬链接与符号链接的判断"
+!!! question "硬链接与软链接的判断"
 
-	搜索资料，尝试说明如何判断一个文件是否有硬链接，或者是否是符号链接。
+	搜索资料，尝试说明如何判断一个文件是否有硬链接，或者是否是软链接。
 
 !!! question "错误使用 tar 命令导致的文件丢失"
 
