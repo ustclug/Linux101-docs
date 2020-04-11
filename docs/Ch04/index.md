@@ -387,6 +387,20 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 !!! info "两次 fork"
 
+    ……
+
+!!! tips "什么是服务"
+    服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。
+
+    常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）
+
+    在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。
+
+    ```shell
+    # 启动、停止、查看一个服务的状态
+    systemctl start/stop/status service-name
+    ```
+
 
 ## 例行性任务 {#cron}
 
