@@ -57,7 +57,7 @@ apt 可以自动下载、配置和安装二进制或者源代码格式的软件�
 
 下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：
 
-```shell
+```text
 $ apt search firefox
 Sorting... Done
 Full Text Search... Done
@@ -85,7 +85,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 
 下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
 
-```shell
+```text
 # apt install firefox
 Reading package lists... Done
 Building dependency tree
@@ -109,7 +109,7 @@ Do you want to continue? [Y/n]
 
 !!! tip "可能会出现的权限问题"
     在一般情况下，如果直接运行 `apt install` 命令，会输出
-    ```shell
+    ```text
     $ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
     E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
@@ -147,7 +147,7 @@ Do you want to continue? [Y/n]
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? example "查看本地的软件源列表"
-    ```shell
+    ```text
     $ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
@@ -320,7 +320,7 @@ Do you want to continue? [Y/n]
 
 !!! example "apt update 输出样例"
 
-    ```shell
+    ```text
     $ sudo apt update
     [sudo] password for elsa:
     Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
