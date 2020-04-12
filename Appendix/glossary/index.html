@@ -915,6 +915,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#terminal" class="md-nav__link">
+    Terminal / Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#shell" class="md-nav__link">
     Shell
   </a>
@@ -1152,6 +1159,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#terminal" class="md-nav__link">
+    Terminal / Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#shell" class="md-nav__link">
     Shell
   </a>
@@ -1333,6 +1347,12 @@
 <p>正如标题所见，GNU 的全称使用了一种递归，表达了与 Unix 这种对“自由”的限制决裂的态度。（虽然我一直在疑惑开头的 G 从哪来）</p>
 <p>而进入 Linux 世界，便意味着将一直与 GNU 软件打交道。先看看一堆字母 g 开头的：gcc-C 编译器，gdb-程序调试器，gzip-压缩，gnome-桌面环境，gimp-图像编辑（对标 Photoshop），首字母 g 都是 gnu 的缩写；（当然 grep-查找，grab-启动引导程序不属此类。）我们 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件，默默地为 Linux 奉献着；还有<a href="https://www.gnu.org/software/">更多性能优异的软件 ↗</a>，被自由软件爱好者维护、分享······加入 Linux，便是认同了这种极客精神与开源文化。</p>
 <p>这里有一份<a href="https://www.redhat.com/en/command-line-heroes">Redhat 公司制作的录音节目 command-line-heroes ↗</a>，纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。</p>
+<h3 id="terminal">Terminal / Console<a class="headerlink" href="#terminal" title="Permanent link">&para;</a></h3>
+<p>还记得在 Unix 诞生之前由通用电器公司主持的 Multix 计划吗？对了，就是可以让用户把一套键盘显示器往墙上一插，直接连接到远端主机的计划。当时键盘和显示器连为一体，称为终端（terminal）。而主机自带的一套键盘与屏幕只能给系统管理员使用，称为控制台（<abbr title="con- 表强调，-sol 整体，词源同 solid —— 即构成一个整体，整体控制的工具。">console</abbr>），用来输出启动 debug 信息（现在的 Linux 系统如果因故障而不得不<abbr title="telinit 1">进入单用户修复模式</abbr>，则只有一个终端 <code>/dev/console</code> 开启）。</p>
+<p>然而随着时代的发展，这种模式逐渐被家庭电脑的分布式主机取代，我们不需要，也没有多套终端了，只有显示器、键盘、鼠标。但是为了向前兼容性，我们需要假装这是一个（甚至多个）终端，所以一般发行版 <code>/dev</code> 目录下有 7 个终端 <code>tty1 ~ tty7</code>，通过 <code>ctrl + alt + F1 ~ F7</code> 切换键盘与显示器与哪个终端相对应。</p>
+<p>再后来，随着时代发展，终端需要出现在图形界面上了，然而承载图形界面的也是终端，所以终端里的终端就需要终端模拟器来实现了。由此，出现在图形界面上的终端才叫终端模拟器。</p>
+<p><a href="https://www.linuxdashen.com/%E4%BD%A0%E7%9C%9F%E7%9A%84%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%88%E7%AB%AF%E5%90%97%EF%BC%9F">更多对于终端的理解↗</a></p>
+<p>这里的终端与下面的 shell 经常被弄混，这里便澄清一下两者关系。</p>
 <h3 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h3>
 <p>但凡使用 Linux，必然要与之交互。广义上讲，能与用户交互的程序都符合 shell 的定义（比如图形界面可以识别鼠标位置信息，点击操作和键盘快捷键）。然而 Linux 本身以命令行工具为主，而 shell 狭义上就是命令行解释工具，即允许用户在一定程度上 “说人话” 来调用程序。</p>
 <p>如果发行版中根本没有 shell，计算机没有办法理解从键盘控制器发来的字符说的都是啥，系统也就不能为我所用了。所以，用好 shell，才能真正用懂 Linux。</p>

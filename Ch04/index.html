@@ -680,10 +680,10 @@
         
           <li class="md-nav__item">
   <a href="#background-task" class="md-nav__link">
-    后台任务
+    脱离终端
   </a>
   
-    <nav class="md-nav" aria-label="后台任务">
+    <nav class="md-nav" aria-label="脱离终端">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -695,6 +695,13 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmux" class="md-nav__link">
+    命令行多终端方案 —— tmux
+  </a>
   
 </li>
         
@@ -1239,10 +1246,10 @@
         
           <li class="md-nav__item">
   <a href="#background-task" class="md-nav__link">
-    后台任务
+    脱离终端
   </a>
   
-    <nav class="md-nav" aria-label="后台任务">
+    <nav class="md-nav" aria-label="脱离终端">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1254,6 +1261,13 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmux" class="md-nav__link">
+    命令行多终端方案 —— tmux
+  </a>
   
 </li>
         
@@ -1392,6 +1406,10 @@
 <p>同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。</p>
 <p>接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。<p class="more">随后观察守护进程，可以看到守护进程的 SID 一般是其本身 PID。</p></p>
 </details>
+<div class="admonition question">
+<p class="admonition-title">问题</p>
+<p>上述实验中，输入 <code>./forking</code> 后一共产生了多少个进程呢，可以不看 htop 就推算出来吗？</p>
+</div>
 <h4 id="session">会话——前台与后台<a class="headerlink" href="#session" title="Permanent link">&para;</a></h4>
 <p>而会话（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。</p>
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。前台（foreground）与后台（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
@@ -1519,6 +1537,10 @@ nice -n <span class="m">10</span> vim
 <p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
 <p><img alt="fg_bg" src="images/fg_bg.png" /></p>
 <p>即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。</p>
+<div class="admonition question">
+<p class="admonition-title">问题</p>
+<p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（本篇即有相关答案）</p>
+</div>
 <h3 id="kill">杀死进程<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
 <h4 id="kill_1">kill<a class="headerlink" href="#kill_1" title="Permanent link">&para;</a></h4>
@@ -1564,6 +1586,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>xkill 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。</p>
 </li>
 </ul>
+<p>实际上，kill 命令更详尽的 feature 在 <code>man 2 signal</code> 上。毕竟，kill 程序是对 <code>kill()</code> 系统调用的包装。</p>
 <div class="admonition info">
 <p class="admonition-title">SIGTERM、SIGKILL</p>
 <p>root from bash：发送 SIGTERM 给 PID 为1234的进程。</p>
@@ -1612,14 +1635,30 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
 <p>答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。</p>
 </div>
-<h3 id="background-task">后台任务<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>
-<h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
-<p>如果 tty/pty 被关闭，则前后台进程一起收到 SIGHUP，如果 shell 被 kill -9 （SIGTERM 无效），则后台进程保留被接管。注意，shell可以主动退出，这样后台进程不收 SIGHUP。但同时注意，ssh 的初始shell不适用于此情形，如果该 shell 主动退出，不会保留后台进程。</p>
-<p>除 nohup 外，bash 及其他的 shell 还可以有内建命令完成脱离</p>
-<div class="admonition question">
-<p class="admonition-title">问题</p>
-<p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（详见流的重定向）</p>
+<h3 id="background-task">脱离终端<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>
+<p>许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会被发送 SIGHUP（即 signal hangup），该信号会被广播到 session 下每一个进程，默认动作即退出运行。</p>
+<div class="admonition info">
+<p class="admonition-title">细节</p>
+<p>如果 tty/pty 被关闭，则整个 session 内的进程一起结束；如果 shell 被 kill -9 （SIGTERM 无效），则后台进程保留被接管。注意，shell可以主动退出，这样后台进程不收 SIGHUP。但同时注意，ssh 的初始shell不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
+<p>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。</p>
 </div>
+<h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
+<p>nohup，字面含义，就是“不要被 SIGHUP 影响”的意思。</p>
+<div class="codehilite"><pre><span></span><code><span class="n">nohup</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">[</span><span class="n">Arg</span><span class="o">]</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">FILE</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示，输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。</p>
+<p>除 nohup 外，bash 及其他的 shell 还可以有内建命令完成脱离，如 trap。</p>
+<h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
+<p><img src="images/tmux.png" width="80%"/></p>
+<div class="admonition info">
+<p class="admonition-title">问题产生了！</p>
+<p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设...</p>
+</div>
+<p>好说，一个 ssh 不行两个，两个 ssh 不行三个，<del>子子孙孙无穷尽也</del>。但是如果程序需要交互，就是 nohup 也救不了。</p>
+<p>怎么办呢？我们知道这其中最关键的矛盾在于，只要 pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。所以应该在 ssh 断开时保证 pty 的存在。</p>
+<p>tmux 做了什么呢？它接管了开在 tmux 中的</p>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
 <h3 id="_2">什么是服务？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <details class="example"><summary>首先，n 个实验</summary><p>1.按 <code>ctrl + shift + T</code>，新建一个页面。输入 <code>sleep xxx</code> 或者 <code>ping xxx</code>（尽量使命令得以区分），随后
