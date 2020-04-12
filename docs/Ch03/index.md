@@ -215,7 +215,9 @@ Do you want to continue? [Y/n]
 
     Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书[第八章](../Ch08/index.md)进行专门的介绍。
 
-    Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)展开。
+    在各大软件源中已经提供了 Docker，在 Ubuntu/Debian 下的包名为 `docker.io`。
+
+    Docker 官方也提供了自己的软件源，包名为 `docker-ce`，它的版本会稍微更新一些。我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)展开。
 
     1. 安装需要的的软件包
 
