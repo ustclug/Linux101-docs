@@ -1607,7 +1607,8 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <h4 id="third-party-software-sources">第三方软件源<a class="headerlink" href="#third-party-software-sources" title="Permanent link">&para;</a></h4>
 <p>有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 <code>apt install package-name</code> 安装我们需要的软件。</p>
 <details class="example"><summary>通过添加 Docker 软件源安装 Docker</summary><p>Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书<a href="../Ch08/">第八章</a>进行专门的介绍。</p>
-<p>Docker 并没有在 Ubuntu 的官方软件仓库中提供，但是 Docker 官方提供了自己的软件源，我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 官方文档</a>展开。</p>
+<p>在各大软件源中已经提供了 Docker，在 Ubuntu/Debian 下的包名为 <code>docker.io</code>。</p>
+<p>Docker 官方也提供了自己的软件源，包名为 <code>docker-ce</code>，它的版本会稍微更新一些。我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 官方文档</a>展开。</p>
 <ol>
 <li>
 <p>安装需要的的软件包</p>
