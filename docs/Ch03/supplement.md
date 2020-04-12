@@ -21,7 +21,7 @@
 
 * PCRE - 用于支持正则表达式
 
-```
+```shell
 $ wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
 $ tar -zxf pcre-8.43.tar.gz
 $ cd pcre-8.43
@@ -32,7 +32,7 @@ $ sudo make install
 
 * zlib - 用于支持 HTTP 头部压缩
 
-```
+```shell
 $ wget https://zlib.net/zlib-1.2.11.tar.gz
 $ tar -zxf zlib-1.2.11.tar.gz
 $ cd zlib-1.2.11
@@ -43,7 +43,7 @@ $ sudo make install
 
 * OpenSSL - 用于支持 HTTPS 协议
 
-```
+```shell
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
@@ -55,7 +55,8 @@ $ sudo make install
 > 在文档中第 4 步使用的是 `./Configure darwin64-x86_64-cc --prefix=/usr`，这个是在 macOS 下进行配置时使用的参数，对于在 Ubuntu 64bit 下，需要修改为 `linux-x86_64`
 
 ### 下载 Nginx 源代码
-```
+
+```shell
 $ wget https://nginx.org/download/nginx-1.17.6.tar.gz
 $ tar zxf nginx-1.17.6.tar.gz
 $ cd nginx-1.17.6
@@ -65,7 +66,7 @@ $ cd nginx-1.17.6
 
 #### 配置编译选项
 
-```
+```shell
 $ ./configure \
 --sbin-path=/usr/local/nginx/nginx \
 --conf-path=/usr/local/nginx/nginx.conf \
@@ -82,7 +83,8 @@ $ ./configure \
     使用 `\` 符号将一行长命令分解为多行书写，便于阅读
 
 #### 编译并安装
-```
+
+```shell
 $ make
 $ sudo make install
 ```
@@ -92,32 +94,34 @@ $ sudo make install
 从 Nginx 的从源码编译安装可以看出，无论是它的依赖还是主程序，主要过程均为如下几个
 
 ### 下载源码，并解压（wget、tar）
-   > wget 将会在第五章进行详细阐述
 
-### 运行 `./configure`
+!!! note "wget 将会在第五章进行详细阐述"
 
-`configure` 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 `make` 编译源代码之前，`configure` 会根据自己所依赖的库而在目标机器上进行匹配。`configure` 文件一般为可执行文件（与权限位有关的将在第五章讲述）。
+### 运行 configure 脚本
 
-`configure` 脚本可以根据所在的系统环境生成相对应的 `Makefile` 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错
+configure 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 make 编译源代码之前，configure 会根据自己所依赖的库而在目标机器上进行匹配。configure 文件一般为可执行文件（与权限位有关的将在第五章讲述）。
 
-在执行 `configure` 脚本时，可以传递相对应的参数达到生成不同的 `Makefile` 文件的目的。
+configure 脚本可以根据所在的系统环境生成相对应的 Makefile 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错
 
-!!! Example ""
+在执行 configure 脚本时，可以传递相对应的参数达到生成不同的 Makefile 文件的目的。
+
+!!! example "configure 脚本的参数"
+
     在上面的对 Nginx 源代码进行 `./configure` 时，传入了一些参数，实现了：
 
     * 指定了一部分配置文件的位置（`sbin-path`、`conf-path`、`pid-path`）
     * 说明了需要添加或删除的模块（`http_ssl_module`、`steam`、`pcre`、`zlib`、`http_empty_gif_module`）
     * 指定了依赖库的位置（`../pcre-8.43` 与 `../zlib-1.2.11`）
 
-### 执行 `make`
+### 执行 make
 
-`make` 程序会根据 `configure` 生成的 `Makefile` 文件，执行一系列的命令，调用 `gcc`、`cc` 等程序，将源代码编译为二进制文件。
+make 程序会根据 configure 生成的 Makefile 文件，执行一系列的命令，调用 gcc、cc 等程序，将源代码编译为二进制文件。
 
-### 执行 `sudo make install`
+### 执行 sudo make install
 
-在这个过程中，`make` 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等
+在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等
 
-## 引用来源
+## 引用来源 {#references .no-underline }
 
 [^1]: https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source
 
