@@ -324,7 +324,7 @@ Do you want to continue? [Y/n]
 
     ```text
     $ sudo apt update
-    [sudo] password for elsa:
+    [sudo] password for ubuntu:
     Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:2 https://cli-assets.heroku.com/apt ./ InRelease [2533 B]
     Get:5 http://mirrors.ustc.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]
