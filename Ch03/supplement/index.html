@@ -597,7 +597,7 @@
         
           <li class="md-nav__item">
   <a href="#configure" class="md-nav__link">
-    运行 ./configure
+    运行 configure 脚本
   </a>
   
 </li>
@@ -622,7 +622,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     引用来源
   </a>
   
@@ -1138,7 +1138,7 @@
         
           <li class="md-nav__item">
   <a href="#configure" class="md-nav__link">
-    运行 ./configure
+    运行 configure 脚本
   </a>
   
 </li>
@@ -1163,7 +1163,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     引用来源
   </a>
   
@@ -1207,7 +1207,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code>$ wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
 $ tar -zxf pcre-8.43.tar.gz
-$ cd pcre-8.43
+$ <span class="nb">cd</span> pcre-8.43
 $ ./configure
 $ make
 $ sudo make install
@@ -1218,7 +1218,7 @@ $ sudo make install
 </ul>
 <div class="highlight"><pre><span></span><code>$ wget https://zlib.net/zlib-1.2.11.tar.gz
 $ tar -zxf zlib-1.2.11.tar.gz
-$ cd zlib-1.2.11
+$ <span class="nb">cd</span> zlib-1.2.11
 $ ./configure
 $ make
 $ sudo make install
@@ -1229,8 +1229,8 @@ $ sudo make install
 </ul>
 <div class="highlight"><pre><span></span><code>$ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
-$ cd openssl-1.1.1c
-$ ./Configure linux-x86_64 --prefix=/usr
+$ <span class="nb">cd</span> openssl-1.1.1c
+$ ./Configure linux-x86_64 --prefix<span class="o">=</span>/usr
 $ make
 $ sudo make install
 </code></pre></div>
@@ -1241,19 +1241,19 @@ $ sudo make install
 <h3 id="nginx">下载 Nginx 源代码<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ wget https://nginx.org/download/nginx-1.17.6.tar.gz
 $ tar zxf nginx-1.17.6.tar.gz
-$ cd nginx-1.17.6
+$ <span class="nb">cd</span> nginx-1.17.6
 </code></pre></div>
 
 <h3 id="_4">从源码进行安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <h4 id="_5">配置编译选项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$ ./configure \
---sbin-path=/usr/local/nginx/nginx \
---conf-path=/usr/local/nginx/nginx.conf \
---pid-path=/usr/local/nginx/nginx.pid \
---with-http_ssl_module \
---with-stream \
---with-pcre=../pcre-8.43 \
---with-zlib=../zlib-1.2.11 \
+<div class="highlight"><pre><span></span><code>$ ./configure <span class="se">\</span>
+--sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\</span>
+--conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\</span>
+--pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid <span class="se">\</span>
+--with-http_ssl_module <span class="se">\</span>
+--with-stream <span class="se">\</span>
+--with-pcre<span class="o">=</span>../pcre-8.43 <span class="se">\</span>
+--with-zlib<span class="o">=</span>../zlib-1.2.11 <span class="se">\</span>
 --without-http_empty_gif_module
 </code></pre></div>
 
@@ -1269,14 +1269,15 @@ $ sudo make install
 <h2 id="_7">总结<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>从 Nginx 的从源码编译安装可以看出，无论是它的依赖还是主程序，主要过程均为如下几个</p>
 <h3 id="wgettar">下载源码，并解压（wget、tar）<a class="headerlink" href="#wgettar" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>wget 将会在第五章进行详细阐述</p>
-</blockquote>
-<h3 id="configure">运行 <code>./configure</code><a class="headerlink" href="#configure" title="Permanent link">&para;</a></h3>
-<p><code>configure</code> 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 <code>make</code> 编译源代码之前，<code>configure</code> 会根据自己所依赖的库而在目标机器上进行匹配。<code>configure</code> 文件一般为可执行文件（与权限位有关的将在第五章讲述）。</p>
-<p><code>configure</code> 脚本可以根据所在的系统环境生成相对应的 <code>Makefile</code> 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错</p>
-<p>在执行 <code>configure</code> 脚本时，可以传递相对应的参数达到生成不同的 <code>Makefile</code> 文件的目的。</p>
+<div class="admonition note">
+<p class="admonition-title">wget 将会在第五章进行详细阐述</p>
+</div>
+<h3 id="configure">运行 configure 脚本<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h3>
+<p>configure 脚本为了让一个程序能够在各种不同类型的机器上运行而设计的。在使用 make 编译源代码之前，configure 会根据自己所依赖的库而在目标机器上进行匹配。configure 文件一般为可执行文件（与权限位有关的将在第五章讲述）。</p>
+<p>configure 脚本可以根据所在的系统环境生成相对应的 Makefile 文件，例如自动处理 GCC 版本、判断特定的函数是否在当前系统上可用、确定相应依赖头文件的位置、并对缺少的依赖库进行报错</p>
+<p>在执行 configure 脚本时，可以传递相对应的参数达到生成不同的 Makefile 文件的目的。</p>
 <div class="admonition example">
+<p class="admonition-title">configure 脚本的参数</p>
 <p>在上面的对 Nginx 源代码进行 <code>./configure</code> 时，传入了一些参数，实现了：</p>
 <ul>
 <li>指定了一部分配置文件的位置（<code>sbin-path</code>、<code>conf-path</code>、<code>pid-path</code>）</li>
@@ -1284,11 +1285,11 @@ $ sudo make install
 <li>指定了依赖库的位置（<code>../pcre-8.43</code> 与 <code>../zlib-1.2.11</code>）</li>
 </ul>
 </div>
-<h3 id="make">执行 <code>make</code><a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
-<p><code>make</code> 程序会根据 <code>configure</code> 生成的 <code>Makefile</code> 文件，执行一系列的命令，调用 <code>gcc</code>、<code>cc</code> 等程序，将源代码编译为二进制文件。</p>
-<h3 id="sudo-make-install">执行 <code>sudo make install</code><a class="headerlink" href="#sudo-make-install" title="Permanent link">&para;</a></h3>
-<p>在这个过程中，<code>make</code> 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等</p>
-<h2 id="_8">引用来源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="make">执行 make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
+<p>make 程序会根据 configure 生成的 Makefile 文件，执行一系列的命令，调用 gcc、cc 等程序，将源代码编译为二进制文件。</p>
+<h3 id="sudo-make-install">执行 sudo make install<a class="headerlink" href="#sudo-make-install" title="Permanent link">&para;</a></h3>
+<p>在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等</p>
+<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>
