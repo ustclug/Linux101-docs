@@ -1648,8 +1648,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 </code></pre></div>
 
 
-<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示，输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。</p>
-<p>除 nohup 外，bash 及其他的 shell 还可以有内建命令完成脱离，如 trap。</p>
+<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示：输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。</p>
 <h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
 <p><img src="images/tmux.png" width="80%"/></p>
 <div class="admonition info">
