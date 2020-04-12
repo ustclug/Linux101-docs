@@ -6,14 +6,14 @@
 
 *以下在 Ubuntu 18.04 下操作*
 
-除了在正文中提到的几种常见的安装方法外，还有从源码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，既可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。
+除了在正文中提到的几种常见的安装方法外，还有从源码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，既可以通过编译，快速地将许多常用的软件（如 x86\_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。
 
 以 Nginx 软件为例
 
 !!! Tip "Nginx 软件简介[^2]"
     Nginx 是一个异步框架的网页服务器，也可以用作反向代理、负载平衡器和 HTTP 缓存。
 
-    Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx，通常作为负载均衡器。
+    Nginx 是免费的开源软件，根据类 BSD 许可证的条款发布。大量 Web 服务器使用 Nginx，通常作为负载均衡器。
 
 ### 安装依赖
 
@@ -31,7 +31,7 @@ $ sudo make install
 ```
 
 * zlib - 用于支持 HTTP 头部压缩
-  
+
 ```
 $ wget https://zlib.net/zlib-1.2.11.tar.gz
 $ tar -zxf zlib-1.2.11.tar.gz
@@ -56,7 +56,7 @@ $ sudo make install
 
 ### 下载 Nginx 源代码
 ```
-$ wget https://nginx.org/download/nginx-1.16.1.tar.gz
+$ wget https://nginx.org/download/nginx-1.17.6.tar.gz
 $ tar zxf nginx-1.17.6.tar.gz
 $ cd nginx-1.17.6
 ```
@@ -78,6 +78,7 @@ $ ./configure \
 ```
 
 !!! Tip "Tip"
+
     使用 `\` 符号将一行长命令分解为多行书写，便于阅读
 
 #### 编译并安装
@@ -103,7 +104,7 @@ $ sudo make install
 
 !!! Example ""
     在上面的对 Nginx 源代码进行 `./configure` 时，传入了一些参数，实现了：
-    
+
     * 指定了一部分配置文件的位置（`sbin-path`、`conf-path`、`pid-path`）
     * 说明了需要添加或删除的模块（`http_ssl_module`、`steam`、`pcre`、`zlib`、`http_empty_gif_module`）
     * 指定了依赖库的位置（`../pcre-8.43` 与 `../zlib-1.2.11`）
