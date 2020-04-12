@@ -435,9 +435,9 @@ nohup，字面含义，就是“不要被 SIGHUP 影响”的意思。
 
     nohup command [Arg] ... > FILE
     
-很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示，输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。
+很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示：输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。
 
-除 nohup 外，bash 及其他的 shell 还可以有内建命令完成脱离，如 trap。
+
 
 ###命令行多终端方案 —— tmux
 
