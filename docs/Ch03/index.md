@@ -333,7 +333,7 @@ Do you want to continue? [Y/n]
     Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 kB]
     (Output ommitted)
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     158 packages can be upgraded. Run 'apt list --upgradable' to see them.
     ```
@@ -481,7 +481,7 @@ cp [OPTION] SOURCE... DIRECTORY
 | `-f, --force`         | 覆盖目标地址同名文件             |
 | `-u, --update`        | 仅当源文件比目标文件新才进行复制 |
 | `-l, --link`          | 创建硬链接                       |
-| `-s, --symbolic-link` | 创建软链接                     |
+| `-s, --symbolic-link` | 创建软链接                       |
 
 !!! example "复制示例"
 
