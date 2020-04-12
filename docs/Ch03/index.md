@@ -460,7 +460,7 @@ sudo apt -f install
 
 
 ### 从源码编译安装
-    此部分内容请见[拓展内容](./supplement.md)部分
+此部分内容请见[拓展内容](./supplement.md)部分
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
