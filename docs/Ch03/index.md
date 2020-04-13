@@ -462,7 +462,8 @@ sudo apt -f install
 
 关于软件包管理器的更多用法可查看 [Pacman/Rosetta](https://wiki.archlinux.org/index.php/Pacman/Rosetta) 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。
 
-### 从源码编译安装
+### 使用源代码编译安装 {#compiling-installation}
+
 此部分内容请见拓展阅读：[编译安装](./supplement.md)。
 
 ## 操作文件与目录 {#operate-files-and-dirs}
