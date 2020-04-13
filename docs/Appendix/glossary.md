@@ -80,7 +80,7 @@
 
 ### 内建命令 {#builtin-command}
 
-```bash
+```shell
 $ whereis ls
 $ whereis bg
 ```
