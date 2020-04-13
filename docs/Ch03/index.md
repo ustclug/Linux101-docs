@@ -459,10 +459,11 @@ sudo apt -f install
     在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
 
 ### 更多用法 {#more-usage}
+
 关于软件包管理器的更多用法可查看 [Pacman/Rosetta](https://wiki.archlinux.org/index.php/Pacman/Rosetta) 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。
 
 ### 从源码编译安装
-此部分内容请见拓展内容：[编译安装](./supplement.md)。
+此部分内容请见拓展阅读：[编译安装](./supplement.md)。
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
