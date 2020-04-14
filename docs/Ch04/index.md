@@ -457,17 +457,20 @@ $ sudo apt install tmux
 $ tmux
 ```
 
-随后我们便打开了第一个 tmux 窗口：
+我们便打开了第一个 tmux 窗口：
 
-首先，`ctrl + b` 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。然后嘛··· 既然啥也不知道，按下 `ctrl + b` 就是一个问号：
+首先，`ctrl + b` 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。：
 
-    下面是几个常用的功能，均以 ctrl + b 为修饰：
+    下面是几个最常用的功能，均以 ctrl + b 为修饰：
     
-    ↑ ↓ ← → 上、下、左、右侧 pane
-    a —— attach
-    d —— detach
+    % 左右分屏
+    " 上下分屏
+    ↑ ↓ ← → 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。
+    d —— detach  #从
     
+![test](images/test.gif)
     
+_在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。_
     
 更多功能，可以到这张 [cheatsheet↗](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询
 
@@ -477,7 +480,26 @@ $ tmux
 
 ## 服务 {#service}
 
-###什么是服务？
+在日常生活中，我们做为信息的接收者，享受着各种网络资源随时随地唾手可得的便利。然而必然有计算机做为内容的提供者因此而全天待命，它们便是服务器，上面运行着各式各样的**服务**。
+
+Linux 用作服务器，自然有其得天独厚的优势，有时是完善的服务器生态，有时是高度的可定制化，抑或是低廉的成本（但维护成本也许并不低廉）······ 
+
+!!! question "思考题"
+    到底是什么让 Linux 系统为大型企业服务器所偏爱？ 而其他如 Windows server 为什么不会被挤出市场？
+    
+当然，服务并不仅仅是对外提供的，系统的正常运行也需要关键服务的支撑，在 Windows 的任务管理器中也可一窥一二。
+
+本节着重讨论的，是服务程序的进程特征。
+
+###守护进程 {#daemon}
+
+方才说到，服务有全天候响应请求的特征，这就意味着该进程必须独立于用户的登陆，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离 session 才能避免因为 tty 的关闭而消失。而这类一直默默工作于后台的进程被称为**守护进程**（daemon）。
+
+####守护进程的产生
+
+由于直接从终端读取
+
+由于其英文名称 daemon，许多守护进程的命名以 d 结尾。
 
 ??? example "首先，n 个实验"
     1.按 `ctrl + shift + T`，新建一个页面。输入 `sleep xxx` 或者 `ping xxx`（尽量使命令得以区分），随后
@@ -508,15 +530,19 @@ tmux 做了什么呢？它把上面运行的所有 shell 托管在一个单独�
 
 ## 例行性任务 {#cron}
 
-<!--
-## 下载链接(已失效)
+##其他资料
+
+[解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半截内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
+
+
+
 <div class="more">
 
 ```shell
 git clone https://github.com/torvalds/Linux  #Linux 内核源码
 ```
 </div>
--->
+
 
 <script type="text/javascript">
 function defer(f) {
