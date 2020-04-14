@@ -719,9 +719,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    什么是服务？
+  <a href="#daemon" class="md-nav__link">
+    守护进程
   </a>
+  
+    <nav class="md-nav" aria-label="守护进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    守护进程的产生
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -733,6 +746,13 @@
         <li class="md-nav__item">
   <a href="#cron" class="md-nav__link">
     例行性任务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    其他资料
   </a>
   
 </li>
@@ -1285,9 +1305,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    什么是服务？
+  <a href="#daemon" class="md-nav__link">
+    守护进程
   </a>
+  
+    <nav class="md-nav" aria-label="守护进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    守护进程的产生
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1299,6 +1332,13 @@
         <li class="md-nav__item">
   <a href="#cron" class="md-nav__link">
     例行性任务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    其他资料
   </a>
   
 </li>
@@ -1663,21 +1703,36 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 $ tmux
 </code></pre></div>
 
-<p>随后我们便打开了第一个 tmux 窗口：</p>
-<p>首先，<code>ctrl + b</code> 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。然后嘛··· 既然啥也不知道，按下 <code>ctrl + b</code> 就是一个问号：</p>
-<div class="codehilite"><pre><span></span><code><span class="err">下面是几个常用的功能，均以</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> <span class="err">为修饰：</span>
+<p>我们便打开了第一个 tmux 窗口：</p>
+<p>首先，<code>ctrl + b</code> 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。：</p>
+<div class="codehilite"><pre><span></span><code>下面是几个最常用的功能，均以 <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> 为修饰：
 
-<span class="err">↑</span> <span class="err">↓</span> <span class="err">←</span> <span class="err">→</span> <span class="err">上、下、左、右侧</span> <span class="n">pane</span>
-<span class="n">a</span> <span class="err">——</span> <span class="n">attach</span>
-<span class="n">d</span> <span class="err">——</span> <span class="n">detach</span>
+<span class="c">% 左右分屏</span>
+&quot; 上下分屏
+↑ ↓ ← → 焦点切换为上、下、左、右侧 <span class="n">pane</span>，正在交互的 <span class="n">pane</span> 被绿色框选中。
+<span class="n">d</span> <span class="s">——</span> <span class="s">detach</span>  <span class="s">#从</span>
 </code></pre></div>
 
 
+<p><img alt="test" src="images/test.gif" /></p>
+<p><em>在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。</em></p>
 <p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet↗</a> 中查询</p>
 <p>关于 tmux 的更多介绍，参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客↗</a></p>
 <p>至于 tmux 的原理，与下面<strong>服务</strong>一节有着相当大的联系，故位于下一节末尾进行讲解。</p>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
-<h3 id="_2">什么是服务？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>在日常生活中，我们做为信息的接收者，享受着各种网络资源随时随地唾手可得的便利。然而必然有计算机做为内容的提供者因此而全天待命，它们便是服务器，上面运行着各式各样的<strong>服务</strong>。</p>
+<p>Linux 用作服务器，自然有其得天独厚的优势，有时是完善的服务器生态，有时是高度的可定制化，抑或是低廉的成本（但维护成本也许并不低廉）······ </p>
+<div class="admonition question">
+<p class="admonition-title">思考题</p>
+<p>到底是什么让 Linux 系统为大型企业服务器所偏爱？ 而其他如 Windows server 为什么不会被挤出市场？</p>
+</div>
+<p>当然，服务并不仅仅是对外提供的，系统的正常运行也需要关键服务的支撑，在 Windows 的任务管理器中也可一窥一二。</p>
+<p>本节着重讨论的，是服务程序的进程特征。</p>
+<h3 id="daemon">守护进程<a class="headerlink" href="#daemon" title="Permanent link">&para;</a></h3>
+<p>方才说到，服务有全天候响应请求的特征，这就意味着该进程必须独立于用户的登陆，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离 session 才能避免因为 tty 的关闭而消失。而这类一直默默工作于后台的进程被称为<strong>守护进程</strong>（daemon）。</p>
+<h4 id="_2">守护进程的产生<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>由于直接从终端读取</p>
+<p>由于其英文名称 daemon，许多守护进程的命名以 d 结尾。</p>
 <details class="example"><summary>首先，n 个实验</summary><p>1.按 <code>ctrl + shift + T</code>，新建一个页面。输入 <code>sleep xxx</code> 或者 <code>ping xxx</code>（尽量使命令得以区分），随后
     - 使用</p>
 </details>
@@ -1700,14 +1755,13 @@ systemctl start/stop/status service-name
 <p>tmux 做了什么呢？它把上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty（按常理来说一定如此）。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 window，就使用 attach 命令。客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的特定 pty 中，从而完成对各个 pane 的交互。</p>
 <p>"<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，断线重连呗。</em>"</p>
 <h2 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h2>
-<!--
-## 下载链接(已失效)
+<h2 id="_3">其他资料<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a>     本文从 tty 设备说起，顺带涵盖了本章上半截内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
 <div class="more">
 
 <div class="highlight"><pre><span></span><code>git clone https://github.com/torvalds/Linux  <span class="c1">#Linux 内核源码</span>
 </code></pre></div>
 </div>
--->
 
 <script type="text/javascript">
 function defer(f) {
