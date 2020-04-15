@@ -410,6 +410,9 @@ sudo apt -f install
     # 下载二进制的压缩文件存档
     wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
+    # 创建 clang 目录
+    mkdir clang
+
     # 将下载得到的压缩文件解压到当前目录
     tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 
