@@ -1810,16 +1810,12 @@ The full script path should be omitted <span class="o">(</span>/etc/init.d/ is a
 </code></pre></div></p>
 </details>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
-<div class="admonition tips">
-<p class="admonition-title">什么是服务</p>
-<p>服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。</p>
-<p>常见的服务有：Nginx（需要一直在后台提供 Web、代理服务）、MySQL（需要等待客户端的连接，以与数据库进行交互）</p>
-<p>在带有 systemd 的系统上，可以使用 systemctl 来进行服务的管理。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 启动、停止、查看一个服务的状态</span>
-systemctl start/stop/status service-name
-</code></pre></div>
-
+<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-unit</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
+<div class="admonition info">
+<p class="admonition-title">服务列表示例</p>
+<p><img alt="services" src="images/services.png" /></p>
 </div>
+<p>至于服务的启动，终止，重载配置等命令已经由 tldr 介绍完毕，没有强调的必要了。</p>
 <h3 id="tmux_1">tmux 服务分析（接续）<a class="headerlink" href="#tmux_1" title="Permanent link">&para;</a></h3>
 <p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。</p>
