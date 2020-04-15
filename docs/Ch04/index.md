@@ -59,7 +59,7 @@ _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺�
 
 **那么，PID 又是如何产生的呢？**
 
-很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。
+很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS↗](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)）
 
 ??? tip "Linux 进程启动顺序"
 
@@ -448,7 +448,7 @@ nohup，字面含义，就是“不要被 SIGHUP 影响”的意思。
 
 这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登陆时可以立即还原。
 
-tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中不同的页，以显示屏为单位；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。
+tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。
 
 下面先行讲解这一工具的用法：
 
@@ -459,7 +459,7 @@ $ tmux
 
 我们便打开了第一个 tmux 窗口：
 
-首先，`ctrl + b` 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。：
+首先，`ctrl + b` 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。
 
     下面是几个最常用的功能，均以 ctrl + b 为修饰：
     
@@ -495,21 +495,66 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 
 方才说到，服务有全天候响应请求的特征，这就意味着该进程必须独立于用户的登陆，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离 session 才能避免因为 tty 的关闭而消失。而这类一直默默工作于后台的进程被称为**守护进程**（daemon）。
 
-####守护进程的产生
+#### 守护进程的产生
 
-由于直接从终端读取
+许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
 
-由于其英文名称 daemon，许多守护进程的命名以 d 结尾。
-
-??? example "首先，n 个实验"
-    1.按 `ctrl + shift + T`，新建一个页面。输入 `sleep xxx` 或者 `ping xxx`（尽量使命令得以区分），随后
-        - 使用
-
-实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出，该 bash 的后台进程将不会接收到 SIGHUP。
+实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该 tty 输出，可见退出 session 的意义在于放弃该 tty。
 
 !!! info "两次 fork"
 
-    ……
+    然而许多信息来源表明，上面 shell 所创建的进程应该再经历一次 fork，理由则是杜绝最后成为组长的进程获得自己的终端。但是这一描述貌似越来越偏离实际。
+    
+打开 htop，按 pid 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登陆而启动。显然，守护进程的 sid 与 自身 pid 相同。
+
+### 服务管理
+
+在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。
+
+??? info "查看两个命令的 tldr 文档"
+    <del>tldr 总是如此言简意赅。</del>
+    ```shell
+    $ tldr systemctl
+    systemctl
+    Control the systemd system and service manager.
+    
+     - List failed units:
+       systemctl --failed
+    
+     - Start/Stop/Restart/Reload a service:
+       systemctl start/stop/restart/reload {{unit}}
+    
+     - Show the status of a unit:
+       systemctl status {{unit}}
+    
+     - Enable/Disable a unit to be started on bootup:
+       systemctl enable/disable {{unit}}
+    
+     - Mask/Unmask a unit, prevent it to be started on bootup:
+       systemctl mask/unmask {{unit}}
+    
+     - Reload systemd, scanning for new or changed units:
+       systemctl daemon-reload
+    
+    $ tldr service
+    service
+    Manage services by running init scripts.
+    The full script path should be omitted (/etc/init.d/ is assumed).
+    
+     - Start/Stop/Restart/Reload service (start/stop should always be available):
+       service {{init_script}} {{start|stop|restart|reload}}
+    
+     - Do a full restart (runs script twice with start and stop):
+       service {{init_script}} --full-restart
+    
+     - Show the current status of a service:
+       service {{init_script}} status
+    
+     - List the status of all services:
+       service --status-all
+    ```
+    
+要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status all` 查看目录 `/etc/init.d` 下的服务。
 
 !!! tips "什么是服务"
     服务常常是一些一直在后台运行，等待被使用或是仔细一些关键任务的进程。与 Windows 下的服务十分相似。
@@ -522,18 +567,18 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
     # 启动、停止、查看一个服务的状态
     systemctl start/stop/status service-name
     ```
-怎么办呢？我们知道这其中最关键的矛盾在于，只要 pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。所以应该在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。
+### tmux 服务分析（接续）
+在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。
 
-tmux 做了什么呢？它把上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty（按常理来说一定如此）。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 window，就使用 attach 命令。客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的特定 pty 中，从而完成对各个 pane 的交互。
+tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。
 
-"_什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，断线重连呗。_"
+"_什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。_"
 
-## 例行性任务 {#cron}
+### 例行性任务 {#cron}
 
-##其他资料
+## 其他资料
 
 [解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半截内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
-
 
 
 <div class="more">
