@@ -46,7 +46,7 @@
 
 （注：以下内容建议使用 `sudo apt install htop` 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）
 
-![htop-sample](images/htop_sample.png)
+![htop-sample](images/htop.gif)
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage➚](https://hisham.hm/htop/)</abbr></p>
 
 ### Process ID {#pid}
@@ -467,10 +467,44 @@ $ tmux
     " 上下分屏
     ↑ ↓ ← → 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。
     d —— detach  #从
+    z (zoom) 将 pane 暂时全屏，再按一次恢复原状
+    c 创建新窗口
+    , 为窗口命名
+    s 列出所有 session
+    ···
     
+                                                    
 ![test](images/test.gif)
     
 _在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。_
+
+###定制 tmux
+
+说实在的，tmux 默认的快捷键的确有些苦手，比如 `ctrl + B` 这一对手相当不友好的长距快捷键就应当改进。还有横竖分屏居然需要 % 和 "，为什么不使用更为值观的 - 和 | 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 `.tmux.conf` 达到所需目的。
+
+!!! info "简易的自定义脚本"
+    使用你最喜欢的编辑器，gedit、vim、emacs 都可以，命令行打开一个也许不存在（会自动创建）的文件，填入以下内容：
+    
+        set -g prefix C-a                                 # 设置前缀按键 ctrl + a
+        unbind C-b                                        # 取消 ctrl + b 快捷键
+        bind C-a send-prefix                              # 第二次按下 ctrl + a 为向 shell 发送 ctrl + a （光标移动到最前端）
+        
+        set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
+        unbind -n MouseDrag1Pane
+        unbind -Tcopy-mode MouseDrag1Pane
+          
+        unbind '"'                                        # 使用 - 代表横向分割
+        bind - splitw -v -c '#{pane_current_path}'
+        
+        unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 shift）
+        bind \ splitw -h -c '#{pane_current_path}'
+        
+        setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
+    
+    保存后，使用 `tmux source ~/.tmux.conf` 重新载入配置（或者强行 `tmux kill-server` 后重启 tmux）。
+    
+可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。
+    
     
 更多功能，可以到这张 [cheatsheet↗](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询
 
@@ -510,6 +544,17 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 ### 服务管理
 
 在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。
+
+
+    
+要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status all` 查看目录 `/etc/init.d` 下的服务。
+
+上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-unit` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
+
+!!! info "服务列表示例"
+    ![services](images/services.png)
+
+至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：
 
 ??? info "查看两个命令的 tldr 文档"
     <del>tldr 总是如此言简意赅。</del>
@@ -553,17 +598,11 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
      - List the status of all services:
        service --status-all
     ```
-    
-要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status all` 查看目录 `/etc/init.d` 下的服务。
-
-上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-unit` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
-
-!!! info "服务列表示例"
-    ![services](images/services.png)
-
-至于服务的启动，终止，重载配置等命令已经由 tldr 介绍完毕，没有强调的必要了。
 
 ### tmux 服务分析（接续）
+
+有了对服务的基本了解，我们再来看看上文的 tmux 的工作原理：
+
 在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。
 
 tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。
@@ -571,6 +610,49 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 "_什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。_"
 
 ### 例行性任务 {#cron}
+
+所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 cron，它们无一例外都做为系统服务存在。
+
+#### at 命令
+
+at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 `sudo apt install at` 进行安装。
+
+随后使用 tldr 查看该命令使用方法：
+
+??? info "tldr at"
+    ```bash
+    $ tldr at
+    at
+    Execute commands once at a later time.
+    Service atd (or atrun) should be running for the actual executions.
+    
+     - Execute commands from standard input in 5 minutes (press 
+       Ctrl + D
+     when done):
+       at now + 5 minutes
+    
+     - Execute a command from standard input at 10:00 AM today:
+       echo "{{./make_db_backup.sh}}" | at 1000
+    
+     - Execute commands from a given file next Tuesday:
+       at -f {{path/to/file}} 9:30 PM Tue
+    ```      
+所以该命令的基本用法示例如下：
+
+    ```bash
+    $ at now + 1min
+    > echo "hello"
+    > <EOT> （ctrl-D)
+    job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
+    ```
+
+等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USERNAME` 就可以看到输出了。
+
+设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r + 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
+
+#### cron 命令
+
+cron 命令负责周期性的任务设置，
 
 ## 其他资料
 
