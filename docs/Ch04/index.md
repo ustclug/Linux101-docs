@@ -47,7 +47,8 @@
 
 （注：以下内容建议使用 `sudo apt install htop` 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）
 
-![htop-sample](images/htop.gif)
+<img src="images/htop.gif" width="80%"/>
+
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage➚](https://hisham.hm/htop/)</abbr></p>
 
 ### Process ID {#pid}
@@ -262,11 +263,11 @@ nice -n 10 vim
 
 前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为 stopped，命令为 `ping localhost`。
 
-<div id="part"><img id="bg" src="images/bg.png"/></div>
+<img id="bg" src="images/bg.gif" width="80%"/>
 
-emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用`jobs`命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
+emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们使用`jobs`命令 ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
-任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加`%`，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用`bg %2`</a>，效果如图所示。
+任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加`%`，如将2号进程放入后台，则使用`bg %2`，效果如图所示。
 
 !!! info "一点细节"
     然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 `bg`。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 `%+`（或 `%%`）、`%-` 指代。当然，加号减号都只能出现一次。
@@ -447,18 +448,19 @@ $ tmux
 我们便打开了第一个 tmux 窗口：
 
 首先，`ctrl + b` 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。
+```text
+下面是几个最常用的功能，均以 ctrl + b 为修饰：
 
-    下面是几个最常用的功能，均以 ctrl + b 为修饰：
-    
-    % 左右分屏
-    " 上下分屏
-    ↑ ↓ ← → 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。
-    d —— detach  #从
-    z (zoom) 将 pane 暂时全屏，再按一次恢复原状
-    c 创建新窗口
-    , 为窗口命名
-    s 列出所有 session
-    ···
+% 左右分屏
+" 上下分屏
+↑ ↓ ← → 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。
+d —— detach  #从
+z (zoom) 将 pane 暂时全屏，再按一次恢复原状
+c 创建新窗口
+, 为窗口命名
+s 列出所有 session
+···
+```
     
                                                     
 ![test](images/test.gif)
@@ -688,12 +690,7 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
  
  ![crontab](images/crontab.gif)   
 
-## 其他资料
 
-[解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 ## 其他资料 {#extra-resources}
 
 [解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)
@@ -701,45 +698,6 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 :   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
 
 
-<div class="more">
-```shell
-git clone https://github.com/torvalds/Linux  #Linux 内核源码
-```
-</div>
-=======
 许多功能`git clone https://github.com/torvalds/Linux`
 
->>>>>>> Stashed changes
-=======
-许多功能`git clone https://github.com/torvalds/Linux`
 
->>>>>>> Stashed changes
-
-
-<script type="text/javascript">
-function defer(f) {
-  if (window.jQuery) {
-    f();
-  } else {
-    setTimeout(() => defer(f), 500);
-  }
-}
-defer(function() {
-  $("#part").css("height", $("#bg").width() * 181 / 618 + "px");
-});
-</script>
-
-<style>
-#part{
-  height: 0;
-  overflow: hidden;
-}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-</style>
-=======
-</style>
->>>>>>> Stashed changes
-=======
-</style>
->>>>>>> Stashed changes
