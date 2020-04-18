@@ -1655,7 +1655,7 @@ nice -n <span class="m">10</span> vim
 <div id="part"><img id="bg" src="images/bg.png"/></div>
 
 <p>emmm... 为什么不是 [1] 呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用<code>jobs</code>命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。</p>
-<p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加<code>%</code>，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用<code>bg %2</code></a>，效果如图所示。</p>
+<p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加<code>%</code>，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用 <code>bg %2</code></a>，效果如图所示。</p>
 <div class="admonition info">
 <p class="admonition-title">一点细节</p>
 <p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。当然，加号减号都只能出现一次。</p>
@@ -1790,7 +1790,7 @@ $ tmux
 
 <p>我们便打开了第一个 tmux 窗口：</p>
 <p>首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
-<div class="codehilite"><pre><span></span><code>下面是几个最常用的功能，均以 <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> 为修饰：
+<div class="codehilite"><pre><span></span><code>下面是几个最常用的功能，均以 <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">b</span> 为修饰：
 
 <span class="c">% 左右分屏</span>
 &quot; 上下分屏
@@ -1921,8 +1921,7 @@ Execute commands once at a later time.
 Service atd <span class="o">(</span>or atrun<span class="o">)</span> should be running <span class="k">for</span> the actual executions.
 
  - Execute commands from standard input in <span class="m">5</span> minutes <span class="o">(</span>press 
-   Ctrl + D
- when <span class="k">done</span><span class="o">)</span>:
+   Ctrl + D when <span class="k">done</span><span class="o">)</span>:
    at now + <span class="m">5</span> minutes
 
  - Execute a <span class="nb">command</span> from standard input at <span class="m">10</span>:00 AM today:
@@ -1936,11 +1935,11 @@ Service atd <span class="o">(</span>or atrun<span class="o">)</span> should be r
 <p>所以该命令的基本用法示例如下：</p>
 <div class="highlight"><pre><span></span><code>$ at now + 1min
 &gt; <span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span>
-&gt; &lt;EOT&gt; （ctrl-D<span class="o">)</span>
+&gt; &lt;EOT&gt; <span class="o">(</span>Ctrl-D<span class="o">)</span>
 job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m">16</span>:16:00 <span class="m">2020</span>   <span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
 
-<p>等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USERNAME</code> 就可以看到输出了。</p>
+<p>等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。</p>
 <p>但这里很有可能发送不到</p>
 <p>设置完任务之后，我们需要管理任务，极为自然的想法是用 <code>at -l</code> 列出任务，<code>at -r 编号</code> 删除任务，不过它们分别是 atq 和 atrm 命令的别名。</p>
 <h4 id="crontab">crontab 命令<a class="headerlink" href="#crontab" title="Permanent link">&para;</a></h4>
@@ -1960,15 +1959,15 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file
 
 <p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
 <p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
-<div class="highlight"><pre><span></span><code>分   时   日   月   星期  | 命令
-# 下面是几个示例
-*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count
-# 每分钟输出 hello 到家目录下 count 文件 
-0,15,30,45 0-6 * JAN SUN  command
-# 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么
-# 反映了 crontab 中大部分语法。   
-5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com  
-# 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
+<div class="highlight"><pre><span></span><code><span class="na">分   时   日   月   星期  | 命令</span>
+<span class="c1"># 下面是几个示例</span>
+<span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span>
+<span class="c1"># 每分钟输出 hello 到家目录下 count 文件 </span>
+<span class="na">0,15,30,45 0-6 * JAN SUN  command</span>
+<span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span>
+<span class="c1"># 反映了 crontab 中大部分语法。   </span>
+<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com  </span>
+<span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）</span>
 </code></pre></div>
 
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
