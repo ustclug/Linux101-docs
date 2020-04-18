@@ -290,7 +290,7 @@ nice -n 10 vim
 
 emmm... 为什么不是 \[1\] 呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用`jobs`命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
-任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加`%`，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用`bg %2`</a>，效果如图所示。
+任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加`%`，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用 `bg %2`</a>，效果如图所示。
 
 !!! info "一点细节"
 
@@ -300,7 +300,7 @@ emmm... 为什么不是 \[1\] 呢？看来应该是这个 shell 前面已经挂�
 
 在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：
 
-![fg_bg](images/fg_bg.png)
+![fg\_bg](images/fg_bg.png)
 
 即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。
 
@@ -468,7 +468,7 @@ $ tmux
 
 首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。
 
-    下面是几个最常用的功能，均以 ctrl + b 为修饰：
+    下面是几个最常用的功能，均以 Ctrl + b 为修饰：
 
     % 左右分屏
     " 上下分屏
@@ -635,8 +635,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
     Service atd (or atrun) should be running for the actual executions.
 
      - Execute commands from standard input in 5 minutes (press 
-       Ctrl + D
-     when done):
+       Ctrl + D when done):
        at now + 5 minutes
 
      - Execute a command from standard input at 10:00 AM today:
@@ -651,11 +650,11 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 ```shell
 $ at now + 1min
 > echo "hello"
-> <EOT> （ctrl-D)
+> <EOT> (Ctrl-D)
 job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 ```
 
-等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USERNAME` 就可以看到输出了。
+等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。
 
 但这里很有可能发送不到
 
@@ -667,7 +666,7 @@ cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的
 
 大多数系统应该已经预装了 crontab，首先查看 crontab 的用法：
 
-```bash 
+```shell
 $ crontab --help
 crontab: invalid option -- '-'
 crontab: usage error: unrecognized option
@@ -684,7 +683,7 @@ usage:  crontab [-u user] file
 
 crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
 
-```conf
+```ini
 分   时   日   月   星期  | 命令
 # 下面是几个示例
 *  *  *  *  *  echo "hello" >> ~/count
