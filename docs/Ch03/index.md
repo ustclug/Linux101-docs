@@ -185,7 +185,7 @@ Do you want to continue? [Y/n]
     | Universe   | 包含了数千个不由 Canonical 官方支持的软件包。授权于各种自由软件许可协议，来自各种公共来源。 |
     | Multiverse | 包含非自由软件的软件包                                                                      |
 
-    具体的含义见 [Source List](https://wiki.debian.org/SourcesList)
+    具体的含义见 [Source List](https://wiki.debian.org/SourcesList#sources.list_format)
 
 官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。
 
