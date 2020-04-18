@@ -2,9 +2,10 @@
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-本讲义前后文之间有交叉（前文可能出现后面的内容），对于初次接触相关概念的同学，为避免混乱，可以<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>将这些内容隐藏</a>。第二次回顾时通过<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a>，建立上下文更深层的连系。
+<div style="display: none"> 本讲义前后文之间有交叉（前文可能出现后面的内容），对于初次接触相关概念的同学，为避免混乱，可以<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>将这些内容隐藏</a>。第二次回顾时通过<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a>，建立上下文更深层的连系。
 
 当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
+</div>
 
 本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···建议阅读 intro 文档后浏览本章内容。
 
@@ -59,7 +60,7 @@ _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺�
 
 **那么，PID 又是如何产生的呢？**
 
-很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS↗](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)）
+很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS↗](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)—— systemd官方消息，直接解释了 pid 的范围）
 
 ??? tip "Linux 进程启动顺序"
 
@@ -77,7 +78,7 @@ _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺�
 
 #### 进程组 {#pgroup}
 
-**进程组**大体上是执行同一工作的进程形成的一个团体，通常是由于父进程 fork 出子进程后子进程继承父进程的组 ID 而逐渐形成。设计进程组机制主要是为了面向协作任务，比如 Firefox 工作是网页浏览，那么其相关的进程一定属于一个进程组。<span class="more">进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个任务整体。</span>
+**进程组**大体上是执行同一工作的进程形成的一个团体，通常是由于父进程 fork 出子进程后子进程继承父进程的组 ID 而逐渐形成。设计进程组机制主要是为了面向协作任务，比如 Firefox 工作是网页浏览，那么其相关的进程一定属于一个进程组。进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个任务整体。
 
 _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY\_NR，TPGID，SESSION 列以便观察下面及随后所有实验结果。_
 
@@ -124,14 +125,14 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 
     同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。
 
-    接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。<p class="more">随后观察守护进程，可以看到守护进程的 SID 一般是其本身 PID。</p>
+    接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
     
 !!! question "问题"
     上述实验中，输入 `./forking` 后一共产生了多少个进程呢，可以不看 htop 就推算出来吗？
 
 #### 会话——前台与后台 {#session}
 
-而**会话**（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。<span class="more">（所以守护进程一经创建会脱离当前会话，以自己 PID 为 session ID。）</span>session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。
+而**会话**（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户的登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。
 
 说到会话，就必然涉及到 Linux 会话中的前后台管理机制。**前台**（foreground）与**后台**（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。
 
@@ -172,7 +173,7 @@ _按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PI
 理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
 <img src="images/time_slice.png" width="55%"></img>
 
-然后我们可以打开 htop，好好观察一下了。emmm…… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？
+随后我们可以打开 htop，好好观察一下了。emmm…… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？
     
 ![what's up?](images/privilege.png)
 
@@ -487,8 +488,8 @@ _在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。_
     
         set -g prefix C-a                                 # 设置前缀按键 ctrl + a
         unbind C-b                                        # 取消 ctrl + b 快捷键
-        bind C-a send-prefix                              # 第二次按下 ctrl + a 为向 shell 发送 ctrl + a （光标移动到最前端）
-        
+        bind C-a send-prefix                              # 第二次按下 ctrl + a 为向 shell 发送 ctrl + a 
+                                                           （shell 中 ctrl + a 表示光标移动到最前端）
         set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
         unbind -n MouseDrag1Pane
         unbind -Tcopy-mode MouseDrag1Pane
@@ -551,7 +552,7 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 
 上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-unit` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
 
-!!! info "服务列表示例"
+!!! example "服务列表示例"
     ![services](images/services.png)
 
 至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：
@@ -611,7 +612,7 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
 ### 例行性任务 {#cron}
 
-所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 cron，它们无一例外都做为系统服务存在。
+所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。
 
 #### at 命令
 
@@ -639,24 +640,59 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
     ```      
 所以该命令的基本用法示例如下：
 
-    ```bash
-    $ at now + 1min
-    > echo "hello"
-    > <EOT> （ctrl-D)
-    job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
-    ```
+```bash
+$ at now + 1min
+> echo "hello"
+> <EOT> （ctrl-D)
+job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
+```
 
 等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USERNAME` 就可以看到输出了。
 
+但这里很有可能发送不到
+
 设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r + 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
 
-#### cron 命令
+#### crontab 命令
 
-cron 命令负责周期性的任务设置，
+cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的配置大多通过配置文件实现。
+
+大多数系统应该已经预装了 crontab，首先查看 crontab 的用法：
+
+```bash 
+$ crontab --help
+crontab: invalid option -- '-'
+crontab: usage error: unrecognized option
+usage:  crontab [-u user] file
+        crontab [ -u user ] [ -i ] { -e | -l | -r }
+                (default operation is replace, per 1003.2)
+        -e      (edit user's crontab)
+        -l      (list user's crontab)
+        -r      (delete user's crontab)
+        -i      (prompt before deleting user's crontab)
+```    
+
+可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 crontab -e 来对本用户任务进行编辑。
+
+crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
+```text
+分   时   日   月   星期  | 命令
+# 下面是几个示例
+*  *  *  *  *  echo "hello" >> ~/count
+# 每分钟输出 hello 到家目录下 count 文件 
+0,15,30,45 0-6 * JAN SUN  command
+# 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么
+# 反映了 crontab 中大部分语法。   
+5  3  *  *  * curl 'http://ip.42.pl/raw' | mail -s "ip today" xxx@xxx.com  
+# 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
+```
+ 如果这里解释得尚不清楚，可以访问[https://crontab.guru↗](https://crontab.guru/)，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  
+ 
+ ![crontab](images/crontab.gif)   
 
 ## 其他资料
 
-[解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半截内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
+[解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
 
 
 <div class="more">
@@ -686,3 +722,4 @@ defer(function() {
   overflow: hidden;
 }
 </style>
+"
