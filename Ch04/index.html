@@ -17,7 +17,7 @@
         <meta name="author" content="LUG@USTC">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.1">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.89dc9fe3.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a676eddb.min.css">
       
       
     
@@ -705,6 +705,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tmux_1" class="md-nav__link">
+    定制 tmux
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -746,7 +753,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_1" class="md-nav__link">
+  <a href="#tmux_2" class="md-nav__link">
     tmux 服务分析（接续）
   </a>
   
@@ -756,6 +763,26 @@
   <a href="#cron" class="md-nav__link">
     例行性任务
   </a>
+  
+    <nav class="md-nav" aria-label="例行性任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#at" class="md-nav__link">
+    at 命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron_1" class="md-nav__link">
+    cron 命令
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1305,6 +1332,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tmux_1" class="md-nav__link">
+    定制 tmux
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1346,7 +1380,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_1" class="md-nav__link">
+  <a href="#tmux_2" class="md-nav__link">
     tmux 服务分析（接续）
   </a>
   
@@ -1356,6 +1390,26 @@
   <a href="#cron" class="md-nav__link">
     例行性任务
   </a>
+  
+    <nav class="md-nav" aria-label="例行性任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#at" class="md-nav__link">
+    at 命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron_1" class="md-nav__link">
+    cron 命令
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1422,7 +1476,7 @@
 </details>
 <p><strong>有了进程的抽象后，操作系统又将如何以进程为单位，协调并保证工作的顺利进行呢？</strong></p>
 <p>（注：以下内容建议使用 <code>sudo apt install htop</code> 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）</p>
-<p><img alt="htop-sample" src="images/htop_sample.png" />
+<p><img alt="htop-sample" src="images/htop.gif" />
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页"><a href="https://hisham.hm/htop/">htop HomePage➚</a></abbr></p></p>
 <h3 id="pid">Process ID<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
 <p>首先，有区分才有管理。<strong>进程号</strong>（PID）作为进程的唯一标识，便是身份证号一般的存在。在htop中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
@@ -1739,11 +1793,42 @@ $ tmux
 &quot; 上下分屏
 ↑ ↓ ← → 焦点切换为上、下、左、右侧 <span class="n">pane</span>，正在交互的 <span class="n">pane</span> 被绿色框选中。
 <span class="n">d</span> <span class="s">——</span> <span class="s">detach</span>  <span class="s">#从</span>
+<span class="n">z</span> <span class="p">(</span><span class="n">zoom</span><span class="p">)</span> 将 <span class="n">pane</span> 暂时全屏，再按一次恢复原状
+<span class="n">c</span> <span class="s">创建新窗口</span>
+<span class="p">,</span> 为窗口命名
+<span class="n">s</span> <span class="s">列出所有</span> <span class="s">session</span>
+···
 </code></pre></div>
 
 
 <p><img alt="test" src="images/test.gif" /></p>
 <p><em>在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。</em></p>
+<h3 id="tmux_1">定制 tmux<a class="headerlink" href="#tmux_1" title="Permanent link">&para;</a></h3>
+<p>说实在的，tmux 默认的快捷键的确有些苦手，比如 <code>ctrl + B</code> 这一对手相当不友好的长距快捷键就应当改进。还有横竖分屏居然需要 % 和 "，为什么不使用更为值观的 - 和 | 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
+<div class="admonition info">
+<p class="admonition-title">简易的自定义脚本</p>
+<p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，命令行打开一个也许不存在（会自动创建）的文件，填入以下内容：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">set</span> <span class="o">-</span><span class="k">g</span> <span class="k">prefix</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span>                                 <span class="o">#</span> <span class="err">设置前缀按键</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">unbind</span> <span class="k">C</span><span class="o">-</span><span class="n">b</span>                                        <span class="o">#</span> <span class="err">取消</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> <span class="err">快捷键</span>
+<span class="n">bind</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span> <span class="n">send</span><span class="o">-</span><span class="k">prefix</span>                              <span class="o">#</span> <span class="err">第二次按下</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">为向</span> <span class="n">shell</span> <span class="err">发送</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">（光标移动到最前端）</span>
+
+<span class="k">set</span> <span class="o">-</span><span class="k">g</span> <span class="n">mouse</span> <span class="k">on</span>                                   <span class="o">#</span> <span class="err">启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
+<span class="n">unbind</span> <span class="o">-</span><span class="n">n</span> <span class="n">MouseDrag1Pane</span>
+<span class="n">unbind</span> <span class="o">-</span><span class="n">Tcopy</span><span class="o">-</span><span class="k">mode</span> <span class="n">MouseDrag1Pane</span>
+
+<span class="n">unbind</span> <span class="s1">&#39;&quot;&#39;</span>                                        <span class="o">#</span> <span class="err">使用</span> <span class="o">-</span> <span class="err">代表横向分割</span>
+<span class="n">bind</span> <span class="o">-</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">c</span> <span class="s1">&#39;#{pane_current_path}&#39;</span>
+
+<span class="n">unbind</span> <span class="o">%</span>                                          <span class="o">#</span> <span class="err">使用</span> <span class="err">\</span> <span class="err">代表纵向分割（因为我不想按</span> <span class="n">shift</span><span class="err">）</span>
+<span class="n">bind</span> <span class="err">\</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="k">c</span> <span class="s1">&#39;#{pane_current_path}&#39;</span>
+
+<span class="n">setw</span> <span class="o">-</span><span class="k">g</span> <span class="k">mode</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>                              <span class="o">#</span> <span class="err">设置</span> <span class="k">copy</span><span class="o">-</span><span class="k">mode</span> <span class="err">快捷键模式为</span> <span class="n">vi</span><span class="err">。</span>
+</code></pre></div>
+
+
+<p>保存后，使用 <code>tmux source ~/.tmux.conf</code> 重新载入配置（或者强行 <code>tmux kill-server</code> 后重启 tmux）。</p>
+</div>
+<p>可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。</p>
 <p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet↗</a> 中查询</p>
 <p>关于 tmux 的更多介绍，参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客↗</a></p>
 <p>至于 tmux 的原理，与下面<strong>服务</strong>一节有着相当大的联系，故位于下一节末尾进行讲解。</p>
@@ -1768,6 +1853,13 @@ $ tmux
 <p>打开 htop，按 pid 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登陆而启动。显然，守护进程的 sid 与 自身 pid 相同。</p>
 <h3 id="_3">服务管理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。</p>
+<p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
+<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-unit</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
+<div class="admonition info">
+<p class="admonition-title">服务列表示例</p>
+<p><img alt="services" src="images/services.png" /></p>
+</div>
+<p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：</p>
 <details class="info"><summary>查看两个命令的 tldr 文档</summary><p><del>tldr 总是如此言简意赅。</del>
 <div class="highlight"><pre><span></span><code>$ tldr systemctl
 systemctl
@@ -1809,18 +1901,48 @@ The full script path should be omitted <span class="o">(</span>/etc/init.d/ is a
    service --status-all
 </code></pre></div></p>
 </details>
-<p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
-<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-unit</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
-<div class="admonition info">
-<p class="admonition-title">服务列表示例</p>
-<p><img alt="services" src="images/services.png" /></p>
-</div>
-<p>至于服务的启动，终止，重载配置等命令已经由 tldr 介绍完毕，没有强调的必要了。</p>
-<h3 id="tmux_1">tmux 服务分析（接续）<a class="headerlink" href="#tmux_1" title="Permanent link">&para;</a></h3>
+<h3 id="tmux_2">tmux 服务分析（接续）<a class="headerlink" href="#tmux_2" title="Permanent link">&para;</a></h3>
+<p>有了对服务的基本了解，我们再来看看上文的 tmux 的工作原理：</p>
 <p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。</p>
 <p>"<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>"</p>
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
+<p>所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 cron，它们无一例外都做为系统服务存在。</p>
+<h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
+<p>at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 <code>sudo apt install at</code> 进行安装。</p>
+<p>随后使用 tldr 查看该命令使用方法：</p>
+<details class="info"><summary>tldr at</summary><div class="highlight"><pre><span></span><code>$ tldr at
+at
+Execute commands once at a later time.
+Service atd <span class="o">(</span>or atrun<span class="o">)</span> should be running <span class="k">for</span> the actual executions.
+
+ - Execute commands from standard input in <span class="m">5</span> minutes <span class="o">(</span>press 
+   Ctrl + D
+ when <span class="k">done</span><span class="o">)</span>:
+   at now + <span class="m">5</span> minutes
+
+ - Execute a <span class="nb">command</span> from standard input at <span class="m">10</span>:00 AM today:
+   <span class="nb">echo</span> <span class="s2">&quot;{{./make_db_backup.sh}}&quot;</span> <span class="p">|</span> at <span class="m">1000</span>
+
+ - Execute commands from a given file next Tuesday:
+   at -f <span class="o">{{</span>path/to/file<span class="o">}}</span> <span class="m">9</span>:30 PM Tue
+</code></pre></div>
+
+</details>
+<p>所以该命令的基本用法示例如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="err">```bash</span>
+<span class="err">$ at now + 1min</span>
+<span class="err">&gt; echo &quot;hello&quot;</span>
+<span class="err">&gt; &lt;EOT&gt; （ctrl-D)</span>
+<span class="err">job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间</span>
+<span class="err">```</span>
+</code></pre></div>
+
+
+<p>等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USERNAME</code> 就可以看到输出了。</p>
+<p>设置完任务之后，我们需要管理任务，极为自然的想法是用 <code>at -l</code> 列出任务，<code>at -r + 编号</code> 删除任务，不过它们分别是 atq 和 atrm 命令的别名。</p>
+<h4 id="cron_1">cron 命令<a class="headerlink" href="#cron_1" title="Permanent link">&para;</a></h4>
+<p>cron 命令负责周期性的任务设置，</p>
 <h2 id="_4">其他资料<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a>     本文从 tty 设备说起，顺带涵盖了本章上半截内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
 <div class="more">
@@ -1928,15 +2050,15 @@ defer(function() {
       
     </div>
     
-      <script src="../assets/javascripts/vendor.36cbf620.min.js"></script>
-      <script src="../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../assets/javascripts/vendor.c51dfa35.min.js"></script>
+      <script src="../assets/javascripts/bundle.eaaa3931.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.7f7c8775.min.js"
+            worker: "../assets/javascripts/worker/search.58d22e8e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
