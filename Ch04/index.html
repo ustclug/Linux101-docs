@@ -1468,25 +1468,7 @@
 当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
 </div>
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···在阅读本章前，可以在附录的 glossary 页面中，浏览相关词的通俗解释（持续修缮中）。
-=======
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表</a>后浏览本章内容。</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>cb2332dc7a5554c7917e8cfe51198d624bf46154</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表</a>后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
 <p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
@@ -1726,34 +1708,9 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
 <p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
-<div class="admonition tip">
-<p class="admonition-title">一点细节</p>
-<p><div style="float: left; width: 60%">
-我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。
-</div>
-<div style="float: right; width: 40%; margin-bottom: 12px"></p>
-</div>
-<details class="tip"><summary>一点细节</summary></details>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>cb2332dc7a5554c7917e8cfe51198d624bf46154
-    <img alt="which_kill" src="images/which_kill.png" /></p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="err">我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。</span>
-</code></pre></div>
-
-
+<details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/which_kill.png" /></p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。</p>
+</details>
 <h4 id="pgreppkill-killall">pgrep/pkill 与 killall 等<a class="headerlink" href="#pgreppkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
 <ul>
@@ -2032,9 +1989,6 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file    
 
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
 <p><img alt="crontab" src="images/crontab.gif" />   </p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-许多功能<code>git clone https://github.com/torvalds/Linux</code></p>
-<p>=======</p>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a></dt>
@@ -2047,21 +2001,6 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file    
 </code></pre></div>
 </div>
 
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>cb2332dc7a5554c7917e8cfe51198d624bf46154</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <script type="text/javascript">
 function defer(f) {
   if (window.jQuery) {
@@ -2080,26 +2019,7 @@ defer(function() {
   height: 0;
   overflow: hidden;
 }
-<<<<<<< HEAD
 </style>
-
-<p>=======
-</style></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>cb2332dc7a5554c7917e8cfe51198d624bf46154</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
                 
               
               
