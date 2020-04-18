@@ -7,7 +7,7 @@
 当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
 </div>
 
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···建议阅读 intro 文档后浏览本章内容。
+本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···在阅读本章前，可以在附录的 glossary 页面中，浏览相关词的通俗解释（持续修缮中）。
 
 !!! abstract "摘要" 
     进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。
@@ -206,6 +206,12 @@ nice -n 10 vim
 (sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 ```
 
+### 进程状态
+
+介绍完上面的 Linux 进程调度，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于运行态（running），一类是可以运行但正在排队等待的程序，即处于就绪态（ready）调度时轮流选择可以运行的程序运行，为就绪态与运行态循环。加入事件这一因素后，出现阻塞态（waiting/blocked）与前两种状态构成循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。考虑三态循环后，又将进入循环之前的状态称为创建态（start），退出循环状态称为终止态（terminated）。
+
+当然，如果再考虑到存在由于内存不够用而位于交换分区的进程，它们
+
 上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：
 
 ???+ info "属性列表总结"
@@ -330,7 +336,7 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 最后一个参数是 `man page` 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。
 
-??? tip "一点细节"
+!!! tip "一点细节"
     <div style="float: left; width: 60%">
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
     </div>
@@ -649,7 +655,7 @@ job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 
 等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USERNAME` 就可以看到输出了。
 
-但这里很有可能发送不到
+（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务）
 
 设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r + 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
 
@@ -661,9 +667,9 @@ cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的
 
 ```bash 
 $ crontab --help
-crontab: invalid option -- '-'
-crontab: usage error: unrecognized option
-usage:  crontab [-u user] file
+crontab: invalid option -- '-'  # 出现这两行字很正常，许多命令（如ssh）没有专用的 help
+crontab: usage error: unrecognized option  # 选项 ，这里只是寻求简要帮助的一种尝试
+usage:  crontab [-u user] file                   # manpage “应用相关”信息密度是真的低
         crontab [ -u user ] [ -i ] { -e | -l | -r }
                 (default operation is replace, per 1003.2)
         -e      (edit user's crontab)
@@ -694,13 +700,8 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 [解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)     本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
 
+许多功能`git clone https://github.com/torvalds/Linux`
 
-<div class="more">
-
-```shell
-git clone https://github.com/torvalds/Linux  #Linux 内核源码
-```
-</div>
 
 
 <script type="text/javascript">
@@ -722,4 +723,3 @@ defer(function() {
   overflow: hidden;
 }
 </style>
-"
