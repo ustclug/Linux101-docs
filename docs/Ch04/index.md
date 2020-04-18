@@ -7,11 +7,7 @@
 当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
 </div>
 
-<<<<<<< HEAD
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···在阅读本章前，可以在附录的 glossary 页面中，浏览相关词的通俗解释（持续修缮中）。
-=======
 本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读[词汇表](../Appendix/glossary.md)后浏览本章内容。
->>>>>>> cb2332dc7a5554c7917e8cfe51198d624bf46154
 
 !!! abstract "摘要"
 
@@ -348,16 +344,8 @@ $ kill -l #显示所有信号名称
 
 最后一个参数是 `man page` 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。
 
-<<<<<<< HEAD
-!!! tip "一点细节"
-    <div style="float: left; width: 60%">
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
-    </div>
-    <div style="float: right; width: 40%; margin-bottom: 12px">
-=======
 ??? tip "一点细节"
 
->>>>>>> cb2332dc7a5554c7917e8cfe51198d624bf46154
     ![which_kill](images/which_kill.png)
 
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
@@ -717,10 +705,6 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 ![crontab](images/crontab.gif)   
 
-<<<<<<< HEAD
-许多功能`git clone https://github.com/torvalds/Linux`
-
-=======
 ## 其他资料 {#extra-resources}
 
 [解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)
@@ -733,7 +717,6 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 git clone https://github.com/torvalds/Linux  #Linux 内核源码
 ```
 </div>
->>>>>>> cb2332dc7a5554c7917e8cfe51198d624bf46154
 
 
 <script type="text/javascript">
@@ -754,8 +737,4 @@ defer(function() {
   height: 0;
   overflow: hidden;
 }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> cb2332dc7a5554c7917e8cfe51198d624bf46154
