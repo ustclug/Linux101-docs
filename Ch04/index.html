@@ -652,7 +652,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kill" class="md-nav__link">
+  <a href="#kill-processes" class="md-nav__link">
     杀死进程
   </a>
   
@@ -660,15 +660,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kill_1" class="md-nav__link">
+  <a href="#kill" class="md-nav__link">
     kill
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pgreppkillkillall" class="md-nav__link">
-    pgrep/pkill、killall···
+  <a href="#pgreppkill-killall" class="md-nav__link">
+    pgrep/pkill 与 killall 等
   </a>
   
 </li>
@@ -706,7 +706,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_1" class="md-nav__link">
+  <a href="#customizing-tmux" class="md-nav__link">
     定制 tmux
   </a>
   
@@ -734,7 +734,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#daemon-creation" class="md-nav__link">
     守护进程的产生
   </a>
   
@@ -746,14 +746,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#services" class="md-nav__link">
     服务管理
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_2" class="md-nav__link">
+  <a href="#tmux-continued" class="md-nav__link">
     tmux 服务分析（接续）
   </a>
   
@@ -792,7 +792,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#extra-resources" class="md-nav__link">
     其他资料
   </a>
   
@@ -1279,7 +1279,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kill" class="md-nav__link">
+  <a href="#kill-processes" class="md-nav__link">
     杀死进程
   </a>
   
@@ -1287,15 +1287,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kill_1" class="md-nav__link">
+  <a href="#kill" class="md-nav__link">
     kill
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pgreppkillkillall" class="md-nav__link">
-    pgrep/pkill、killall···
+  <a href="#pgreppkill-killall" class="md-nav__link">
+    pgrep/pkill 与 killall 等
   </a>
   
 </li>
@@ -1333,7 +1333,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_1" class="md-nav__link">
+  <a href="#customizing-tmux" class="md-nav__link">
     定制 tmux
   </a>
   
@@ -1361,7 +1361,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#daemon-creation" class="md-nav__link">
     守护进程的产生
   </a>
   
@@ -1373,14 +1373,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#services" class="md-nav__link">
     服务管理
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmux_2" class="md-nav__link">
+  <a href="#tmux-continued" class="md-nav__link">
     tmux 服务分析（接续）
   </a>
   
@@ -1419,7 +1419,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#extra-resources" class="md-nav__link">
     其他资料
   </a>
   
@@ -1454,12 +1454,12 @@
 当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
 </div>
 
-<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用···建议阅读 intro 文档后浏览本章内容。</p>
+<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表</a>后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
-<p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
-<p>其实应当坦言，对于许多仅仅是想应用Linux的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个Linux操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解Linux的机制时，“为什么”将自有答案。</p>
-<p>Linux的特性，还需从操作系统管理进程的功能说起······</p>
+<p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
+<p>其实应当坦言，对于许多仅仅是想应用 Linux 的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个 Linux 操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解 Linux 的机制时，“为什么”将自有答案。</p>
+<p>Linux 的特性，还需从操作系统管理进程的功能说起……</p>
 </div>
 <h2 id="process">进程<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
 <p><strong>现在设想你有一堆任务在一周之内完成，应该如何下手呢？</strong></p>
@@ -1467,7 +1467,7 @@
 <p><strong>那么在计算机中，操作系统又是如何实现各项工作的安排呢？</strong></p>
 <div class="admonition tip">
 <p class="admonition-title">管理工作需求的产生</p>
-<p>在最早期的晶体管计算机时代<ref>，没有操作系统，由操作员负责输入输出，意味着处理单元的时间在等待 IO 的过程中浪费。可见，只有让任务之间衔接得足够快，才能更好地利用处理器性能。当时采用批处理策略集中任务，并由一个处理程序负责加载程序，录入数据，输出结果。这种按录入顺序装载程序并负责 IO 的处理工作的程序便成为操作系统的雏形。</p>
+<p>在最早期的晶体管计算机时代，没有操作系统，由操作员负责输入输出，意味着处理单元的时间在等待 IO 的过程中浪费。可见，只有让任务之间衔接得足够快，才能更好地利用处理器性能。当时采用批处理策略集中任务，并由一个处理程序负责加载程序，录入数据，输出结果。这种按录入顺序装载程序并负责 IO 的处理工作的程序便成为操作系统的雏形。</p>
 </div>
 <p>在以上过程中，操作系统直接面临的就是一个个等待运行的任务，随后演变为<strong>进程</strong>。</p>
 <details class="info"><summary>任务（task）与进程（process）</summary><p>事实上，任务只是那么一段需要运行的代码（重点强调完成一件事），而进程是一个任务管理意义上的实体，不仅包括代码，还有自己的状态信息（下面介绍）。</p>
@@ -1475,20 +1475,20 @@
 <p><strong>进程</strong>是计算机系统三大抽象之一，操作系统秉承“为进程服务”的理念而设计。</p>
 <p><img alt="abstract" src="images/abstract.png" /></p>
 <p>程序由数据结构和算法构成，程序需要存储资源安身，需要计算资源运行。而一个程序占有资源并运行便成为了进程。程序希望有 CPU 运行它，希望它需要的数据唾手可得，希望输出的数据可以被正确及时地送达。早期的系统不需要操心进程运行的顺序。然而随着人们对计算机需求越来越高，操作系统除了为进程提供基础服务之外，更需要管理好进程所竞争的资源，甚至要为实时交互提供方案。</p>
-<details class="tip"><summary>需求推动操作系统的发展（一点题外话）</summary><p>早期采用单道批处理策略的计算机如果有程序等待 IO，处理器只能傻等。为了更高效地利用处理器，出现 <strong>多道程序设计</strong>方案，允许充分利用程序 IO 的时间；为了响应实时性要求，出现了<strong>中断</strong>(interrupt)概念<ref>，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时策略一致······正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
+<details class="tip"><summary>需求推动操作系统的发展（一点题外话）</summary><p>早期采用单道批处理策略的计算机如果有程序等待 IO，处理器只能傻等。为了更高效地利用处理器，出现 <strong>多道程序设计</strong>方案，允许充分利用程序 IO 的时间；为了响应实时性要求，出现了<strong>中断</strong>（interrupt）概念，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时策略一致……正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
 </details>
 <p><strong>有了进程的抽象后，操作系统又将如何以进程为单位，协调并保证工作的顺利进行呢？</strong></p>
 <p>（注：以下内容建议使用 <code>sudo apt install htop</code> 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）</p>
 <p><img alt="htop-sample" src="images/htop.gif" />
 <p class="caption">htop 示例 | <abbr title="链接到 htop 主页"><a href="https://hisham.hm/htop/">htop HomePage➚</a></abbr></p></p>
 <h3 id="pid">Process ID<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
-<p>首先，有区分才有管理。<strong>进程号</strong>（PID）作为进程的唯一标识，便是身份证号一般的存在。在htop中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
-<p><em>在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</em></p>
+<p>首先，有区分才有管理。<strong>进程号</strong>（PID）作为进程的唯一标识，便是身份证号一般的存在。在 htop 中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
+<p>在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</p>
 <p><img alt="PID" src="images/PID.png" /></p>
 <p><strong>那么，PID 又是如何产生的呢？</strong></p>
-<p>很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 pid 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（<a href="https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31">systemd NEWS↗</a>—— systemd官方消息，直接解释了 pid 的范围）</p>
-<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为<strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
-<p><em>由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。</em></p>
+<p>很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（<a href="https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31">systemd NEWS↗</a>—— systemd官方消息，直接解释了 PID 的范围）</p>
+<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
+<p>由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。</p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
 <h4 id="parent-child">进程父子关系<a class="headerlink" href="#parent-child" title="Permanent link">&para;</a></h4>
@@ -1496,7 +1496,7 @@
 <p>父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生<strong>孤儿进程</strong>（orphan）和<strong>僵尸进程</strong>（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况），此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。</p>
 <h4 id="pgroup">进程组<a class="headerlink" href="#pgroup" title="Permanent link">&para;</a></h4>
 <p><strong>进程组</strong>大体上是执行同一工作的进程形成的一个团体，通常是由于父进程 fork 出子进程后子进程继承父进程的组 ID 而逐渐形成。设计进程组机制主要是为了面向协作任务，比如 Firefox 工作是网页浏览，那么其相关的进程一定属于一个进程组。进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个任务整体。</p>
-<p><em>按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 列以便观察下面及随后所有实验结果。</em></p>
+<p>按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例（PPID），点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 列以便观察下面及随后所有实验结果。</p>
 <p><img alt="add_column" src="images/add_column.png" /></p>
 <p>（F10 被终端程序占用了怎么办？其实终端上的选项是可以用鼠标点击的，点一下 Done 即可返回。）</p>
 <details class="example"><summary>小实验</summary><p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
@@ -1552,7 +1552,7 @@
 <li>要不要进行调度切换进程？ </li>
 <li>该调度谁？</li>
 </ul>
-<p>首先若想进行调度，必有<a href="/Appendix/glossary/#irq">中断↗</a>参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。那么 Linux 系统如何利用中断进行调度呢？</p>
+<p>首先若想进行调度，必有<a href="../Appendix/glossary/#irq">中断</a>参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。那么 Linux 系统如何利用中断进行调度呢？</p>
 <p>已知我们一需要轮流调度算法，二需要支持高优先级抢占低优先级与事件驱动。则系统必然需要在周期性的时钟中断到来时，重新执行一遍调度，查看当前进程的时间片是否使用完毕，以及是否有高优先级程序已经准备就绪。而为了达成事件驱动，系统在一些其他中断发生后，也需要进行例行调度检查，如果响应该中断的程序更紧急，应当立即执行。</p>
 <p>如上调度策略一旦确定，则三个问题迎刃而解：</p>
 <ul>
@@ -1563,34 +1563,37 @@
 <p>以上内容听来似废话，然而这正是操作系统单核模式调度过程的核心所在。</p>
 <p>就上面的结论来看，调度算法的行为取决于时间片长度和优先级。它们是如何确定的，是固定的吗？</p>
 <p>别急，我们首先还需要解决一个问题，既然做为调度判据的优先级仅仅是一个值，那么 NICE 值又如何参与其中？其实 NICE 值是对优先级的一种修正。NICE 值的取值范围为 -20 ~ 19，优先级的取值为 0 ~ 99，而 NICE 值对应于优先级的 100 ~ 139。</p>
-<p>理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
-<img src="images/time_slice.png" width="55%"></img></p>
-<p>随后我们可以打开 htop，好好观察一下了。emmm…… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？</p>
+<p>理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：</p>
+<p><img src="images/time_slice.png" width="55%"></img></p>
+<p>随后我们可以打开 htop，好好观察一下了。emmm… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
 <p>额，其实这里给出的优先级是呈现给程序的，所以显示的数字以优先级100为基数，多正少负。</p>
 <details class="note"><summary>针对实时优先级的标度吐槽</summary><p>其实优先级的数值问题着实混乱：优先级位于 0 ~ 99 之间的进程为<strong>实时进程</strong>，遵循实时调度策略（永远优先于普通进程）。在用户进程中设置实时优先级为 99 相当于设置内核中优先级为 0，即对应倒序排列，用户程序通过系统调用设置实时优先级时要被系统换算（99 - prio）。可以肯定的是内核中只有一套优先级标度：0 ~ 139。在 top/htop 中，用户态实时优先级前添加负号后才被显示出来。
 所以如果真的要调节一个实时调度模式的用户程序的优先级的话，注意 0 ~ 99 范围内传入参数的数字越大，内核看来对应优先级数值越小，越优先。</p>
 </details>
-<details class="tip"><summary>一点拓展</summary><p>如果你真的很较真，按下了<code>shift + k</code>键显示<strong>内核线程</strong>，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
+<details class="tip"><summary>一点拓展</summary><p>如果你真的很较真，按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
 <img src="images/top8.png" width="75%"></img></p>
 <ul>
-<li>第一个进程为 watchdog，是一个比较有意思的保证系统可用性的程序。<br/>（试试 <code>echo hi &gt; /dev/watchdog</code> 吧→_→)</li>
+<li>第一个进程为 watchdog，是一个比较有意思的保证系统可用性的程序。<br />
+  （试试 <code>echo hi &gt; /dev/watchdog</code> 吧→_→)</li>
 <li>第二到五为负载均衡程序，cpu有几个核就有几个负载均衡。（单核就不用了）</li>
-<li>剩下的三个（还有许多没有上榜）便是中断处理程序了。<br/>（在词汇表中中断外链的文章里，当时中断线程化还是一个设想，现在已经实现了。）</li>
+<li>剩下的三个（还有许多没有上榜）便是中断处理程序了。<br />
+  （在词汇表中中断外链的文章里，当时中断线程化还是一个设想，现在已经实现了。）</li>
 </ul>
 </details>
 <p>可是我们也没有看到 NICE 值的差异啊？的确如此，我们可以看到的 NICE 值就是静态的，内核才能看到动态优先级。</p>
-<p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 <code>sudo</code> 加持。
+<p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 <code>sudo</code> 加持。</p>
 <div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> 
  <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
 
-<span class="c1">#以下命令等效</span>
+<span class="c1"># 以下命令等效</span>
 nice vim
 nice -10 vim 
 nice -n <span class="m">10</span> vim 
 
 <span class="o">(</span>sudo<span class="o">)</span> renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
-</code></pre></div></p>
+</code></pre></div>
+
 <p>上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：</p>
 <details class="info" open="open"><summary>属性列表总结</summary><p><div class="md-typeset__table"><table>
 <thead>
@@ -1622,7 +1625,6 @@ nice -n <span class="m">10</span> vim
 </tr>
 <tr>
 <td class="red" colspan="2">以上除 PID 的其他属性，ID 值实际为父进程，组长进程，会话首进程的 PID。以上概念囊括范围递增。</td>
-<td></td>
 </tr>
 <tr>
 <td>USER / UID</td>
@@ -1643,16 +1645,16 @@ nice -n <span class="m">10</span> vim
 <p>要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。</p>
 <h3 id="signal">信号<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h3>
 <p>“没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的 Linux 命令都叫 <code>kill</code>，可见进程凶多吉少（大多数信号默认操作都是各种退出）。</p>
-<p>那到底都有什么信号呢？emmm··· <code>man 7 signal</code>？</p>
+<p>那到底都有什么信号呢？emmm.. <code>man 7 signal</code>？</p>
 <p>可这实在是太长了，还是来一个简明实用的吧。那么，</p>
 <p><img alt="signal_slide" src="images/signal_slide.png" /></p>
 <p class="caption">（来自上一次 Linux101——进程、服务、任务的 slide 截图）</p>
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
-<p>前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
+<p>前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
 <div id="part"><img id="bg" src="images/bg.png"/></div>
 
-<p>emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用<code>jobs</code>命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。</p>
+<p>emmm... 为什么不是 [1] 呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*236/618 + 'px')">使用<code>jobs</code>命令（click）</a> ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加<code>%</code>，如将2号进程放入后台，则<a href="javascript:void(0)" onclick="$('#part').css('height', $('#bg').width()*290/618 + 'px')">使用<code>bg %2</code></a>，效果如图所示。</p>
 <div class="admonition info">
 <p class="admonition-title">一点细节</p>
@@ -1666,11 +1668,11 @@ nice -n <span class="m">10</span> vim
 <p class="admonition-title">问题</p>
 <p>上面的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？（本篇即有相关答案）</p>
 </div>
-<h3 id="kill">杀死进程<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h3>
+<h3 id="kill-processes">杀死进程<a class="headerlink" href="#kill-processes" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
-<h4 id="kill_1">kill<a class="headerlink" href="#kill_1" title="Permanent link">&para;</a></h4>
-<p>如前所述，Linux 上最常用的发送信号的程序就是 kill。
-    <div class="highlight"><pre><span></span><code><span class="nb">kill</span> -&lt;signal&gt; &lt;pid&gt; -&lt;pgid&gt;
+<h4 id="kill">kill<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h4>
+<p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">kill</span> -&lt;signal&gt; &lt;pid&gt; -&lt;pgid&gt;
 $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</span>
  <span class="m">1</span><span class="o">)</span> SIGHUP       <span class="m">2</span><span class="o">)</span> SIGINT       <span class="m">3</span><span class="o">)</span> SIGQUIT      <span class="m">4</span><span class="o">)</span> SIGILL       <span class="m">5</span><span class="o">)</span> SIGTRAP
  <span class="m">6</span><span class="o">)</span> SIGABRT      <span class="m">7</span><span class="o">)</span> SIGBUS       <span class="m">8</span><span class="o">)</span> SIGFPE       <span class="m">9</span><span class="o">)</span> SIGKILL     <span class="m">10</span><span class="o">)</span> SIGUSR1
@@ -1685,17 +1687,14 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <span class="m">53</span><span class="o">)</span> SIGRTMAX-11 <span class="m">54</span><span class="o">)</span> SIGRTMAX-10 <span class="m">55</span><span class="o">)</span> SIGRTMAX-9  <span class="m">56</span><span class="o">)</span> SIGRTMAX-8  <span class="m">57</span><span class="o">)</span> SIGRTMAX-7
 <span class="m">58</span><span class="o">)</span> SIGRTMAX-6  <span class="m">59</span><span class="o">)</span> SIGRTMAX-5  <span class="m">60</span><span class="o">)</span> SIGRTMAX-4  <span class="m">61</span><span class="o">)</span> SIGRTMAX-3  <span class="m">62</span><span class="o">)</span> SIGRTMAX-2
 <span class="m">63</span><span class="o">)</span> SIGRTMAX-1  <span class="m">64</span><span class="o">)</span> SIGRTMAX    
-</code></pre></div></p>
+</code></pre></div>
+
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
 <p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
-<details class="tip"><summary>一点细节</summary><p><div style="float: left; width: 60%">
-我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。
-</div>
-<div style="float: right; width: 40%; margin-bottom: 12px">
-<img alt="which_kill" src="images/which_kill.png" />
-</div></p>
+<details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/which_kill.png" /></p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。</p>
 </details>
-<h4 id="pgreppkillkillall">pgrep/pkill、killall···<a class="headerlink" href="#pgreppkillkillall" title="Permanent link">&para;</a></h4>
+<h4 id="pgreppkill-killall">pgrep/pkill 与 killall 等<a class="headerlink" href="#pgreppkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
 <ul>
 <li>
@@ -1714,9 +1713,10 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>实际上，kill 命令更详尽的 feature 在 <code>man 2 signal</code> 上。毕竟，kill 程序是对 <code>kill()</code> 系统调用的包装。</p>
 <div class="admonition info">
 <p class="admonition-title">SIGTERM、SIGKILL</p>
-<p>root from bash：发送 SIGTERM 给 PID 为1234的进程。</p>
-<p>kill：发送系统调用告诉内核，把 SIGTERM 传给1234进程。</p>
-<p>内核（被调用唤醒）：发送 SIGTERM？有权限吗？哦是 root 啊，那没问题。</br>（把 1234 进程的信号标志位设为 15，留言：“上面下来通知，你可以滚蛋了，别忘了把自己堆栈收拾立正再走。”）</p>
+<p>root from bash：发送 SIGTERM 给 PID 为 1234 的进程。</p>
+<p>kill：发送系统调用告诉内核，把 SIGTERM 传给 1234 进程。</p>
+<p>内核（被调用唤醒）：发送 SIGTERM？有权限吗？哦是 root 啊，那没问题。<br />
+（把 1234 进程的信号标志位设为 15，留言：“上面下来通知，你可以滚蛋了，别忘了把自己堆栈收拾立正再走。”）</p>
 <p>（调度器轮到 1234 号进程）1234：呦，有信号来了，哦，是 SIGTERM 啊，但很遗憾，这个信号在我这里是忽略的。</p>
 <p>&lt;-- 一会后 --&gt;</p>
 <p>root：进程怎么还没结束？那只好 SIGKILL 了。</p>
@@ -1725,7 +1725,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>（SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）</p>
 </div>
 <details class="example"><summary>额外内容</summary><p>那么问题来了，如何才能创造一个向上面一样流氓的进程呢？</p>
-<p>这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 <code>ping</code>，便利用了该机制：如果使用 <code>ctrl + c</code>键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
+<p>这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 <code>ping</code>，便利用了该机制：如果使用 Ctrl + C 键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
 <p>打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 <code>signal_handle.c</code>：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）</span><span class="cp"></span>
@@ -1754,7 +1754,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle</code> 三连，就可以在另一终端打开 htop 查看成果了。</p>
 </details>
-<p>不过···我们的程序去哪了？别急，按 F3 或者 <code>/</code>，都可以实现搜索。（<code>/</code>是许多界面如 vim、man、aptitude 的默认搜索键）</p>
+<p>不过…我们的程序去哪了？别急，按 F3 或者 <code>/</code>，都可以实现搜索。（<code>/</code> 是许多界面如 vim、man、aptitude 的默认搜索键）</p>
 <div class="admonition question">
 <p class="admonition-title">思考</p>
 <p>如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）</p>
@@ -1764,11 +1764,11 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会发送 SIGHUP（即 signal hangup），该信号会被广播到 session 下每一个进程，默认动作即退出运行。</p>
 <div class="admonition info">
 <p class="admonition-title">细节</p>
-<p>如果 tty/pty 被关闭，则整个 session 内的进程一起结束；如果 shell 被 kill -9 （SIGTERM 无效），则后台进程保留被接管。注意，shell可以主动退出，这样后台进程不收 SIGHUP。但同时注意，ssh 的初始shell不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
+<p>如果 tty/pty 被关闭，则整个 session 内的进程一起结束；如果 shell 被 <code>kill -9</code>（SIGTERM 无效），则后台进程保留被接管。注意，shell 可以主动退出，这样后台进程不收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
 <p>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。</p>
 </div>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
-<p>nohup，字面含义，就是“不要被 SIGHUP 影响”的意思。</p>
+<p>nohup，字面含义，就是「不要被 SIGHUP 影响」的意思。</p>
 <div class="codehilite"><pre><span></span><code><span class="n">nohup</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">[</span><span class="n">Arg</span><span class="o">]</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">FILE</span><span class="w"></span>
 </code></pre></div>
 
@@ -1789,7 +1789,7 @@ $ tmux
 </code></pre></div>
 
 <p>我们便打开了第一个 tmux 窗口：</p>
-<p>首先，<code>ctrl + b</code> 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
+<p>首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
 <div class="codehilite"><pre><span></span><code>下面是几个最常用的功能，均以 <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> 为修饰：
 
 <span class="c">% 左右分屏</span>
@@ -1806,15 +1806,15 @@ $ tmux
 
 <p><img alt="test" src="images/test.gif" /></p>
 <p><em>在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。</em></p>
-<h3 id="tmux_1">定制 tmux<a class="headerlink" href="#tmux_1" title="Permanent link">&para;</a></h3>
-<p>说实在的，tmux 默认的快捷键的确有些苦手，比如 <code>ctrl + B</code> 这一对手相当不友好的长距快捷键就应当改进。还有横竖分屏居然需要 % 和 "，为什么不使用更为值观的 - 和 | 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
+<h3 id="customizing-tmux">定制 tmux<a class="headerlink" href="#customizing-tmux" title="Permanent link">&para;</a></h3>
+<p>说实在的，tmux 默认的快捷键的确有些苦手，比如 Ctrl + b 这一对手相当不友好的长距快捷键就应当改进。还有横竖分屏居然需要 <code>%</code> 和 <code>"</code>，为什么不使用更为值观的 <code>-</code> 和 <code>|</code> 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
 <div class="admonition info">
 <p class="admonition-title">简易的自定义脚本</p>
-<p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，命令行打开一个也许不存在（会自动创建）的文件，填入以下内容：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">set</span> <span class="o">-</span><span class="k">g</span> <span class="k">prefix</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span>                                 <span class="o">#</span> <span class="err">设置前缀按键</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span>
-<span class="n">unbind</span> <span class="k">C</span><span class="o">-</span><span class="n">b</span>                                        <span class="o">#</span> <span class="err">取消</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">b</span> <span class="err">快捷键</span>
-<span class="n">bind</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span> <span class="n">send</span><span class="o">-</span><span class="k">prefix</span>                              <span class="o">#</span> <span class="err">第二次按下</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">为向</span> <span class="n">shell</span> <span class="err">发送</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span> 
-                                                   <span class="err">（</span><span class="n">shell</span> <span class="err">中</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">表示光标移动到最前端）</span>
+<p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，打开一个也许不存在（会自动创建）的文件，填入以下内容：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">set</span> <span class="o">-</span><span class="k">g</span> <span class="k">prefix</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span>                                 <span class="o">#</span> <span class="err">设置前缀按键</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">unbind</span> <span class="k">C</span><span class="o">-</span><span class="n">b</span>                                        <span class="o">#</span> <span class="err">取消</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">b</span> <span class="err">快捷键</span>
+<span class="n">bind</span> <span class="k">C</span><span class="o">-</span><span class="n">a</span> <span class="n">send</span><span class="o">-</span><span class="k">prefix</span>                              <span class="o">#</span> <span class="err">第二次按下</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">为向</span> <span class="n">shell</span> <span class="err">发送</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">a</span> 
+                                                   <span class="err">（</span><span class="n">shell</span> <span class="err">中</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">a</span> <span class="err">表示光标移动到最前端）</span>
 <span class="k">set</span> <span class="o">-</span><span class="k">g</span> <span class="n">mouse</span> <span class="k">on</span>                                   <span class="o">#</span> <span class="err">启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
 <span class="n">unbind</span> <span class="o">-</span><span class="n">n</span> <span class="n">MouseDrag1Pane</span>
 <span class="n">unbind</span> <span class="o">-</span><span class="n">Tcopy</span><span class="o">-</span><span class="k">mode</span> <span class="n">MouseDrag1Pane</span>
@@ -1822,7 +1822,7 @@ $ tmux
 <span class="n">unbind</span> <span class="s1">&#39;&quot;&#39;</span>                                        <span class="o">#</span> <span class="err">使用</span> <span class="o">-</span> <span class="err">代表横向分割</span>
 <span class="n">bind</span> <span class="o">-</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">c</span> <span class="s1">&#39;#{pane_current_path}&#39;</span>
 
-<span class="n">unbind</span> <span class="o">%</span>                                          <span class="o">#</span> <span class="err">使用</span> <span class="err">\</span> <span class="err">代表纵向分割（因为我不想按</span> <span class="n">shift</span><span class="err">）</span>
+<span class="n">unbind</span> <span class="o">%</span>                                          <span class="o">#</span> <span class="err">使用</span> <span class="err">\</span> <span class="err">代表纵向分割（因为我不想按</span> <span class="n">Shift</span><span class="err">）</span>
 <span class="n">bind</span> <span class="err">\</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="k">c</span> <span class="s1">&#39;#{pane_current_path}&#39;</span>
 
 <span class="n">setw</span> <span class="o">-</span><span class="k">g</span> <span class="k">mode</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>                              <span class="o">#</span> <span class="err">设置</span> <span class="k">copy</span><span class="o">-</span><span class="k">mode</span> <span class="err">快捷键模式为</span> <span class="n">vi</span><span class="err">。</span>
@@ -1833,20 +1833,20 @@ $ tmux
 </div>
 <p>可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。</p>
 <p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet↗</a> 中查询</p>
-<p>关于 tmux 的更多介绍，参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客↗</a></p>
+<p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客↗</a></p>
 <p>至于 tmux 的原理，与下面<strong>服务</strong>一节有着相当大的联系，故位于下一节末尾进行讲解。</p>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
 <p>在日常生活中，我们做为信息的接收者，享受着各种网络资源随时随地唾手可得的便利。然而必然有计算机做为内容的提供者因此而全天待命，它们便是服务器，上面运行着各式各样的<strong>服务</strong>。</p>
 <p>Linux 用作服务器，自然有其得天独厚的优势，有时是完善的服务器生态，有时是高度的可定制化，抑或是低廉的成本（但维护成本也许并不低廉）······ </p>
 <div class="admonition question">
 <p class="admonition-title">思考题</p>
-<p>到底是什么让 Linux 系统为大型企业服务器所偏爱？ 而其他如 Windows server 为什么不会被挤出市场？</p>
+<p>到底是什么让 Linux 系统为大型企业服务器所偏爱？ 而其他如 Windows Server 为什么不会被挤出市场？</p>
 </div>
 <p>当然，服务并不仅仅是对外提供的，系统的正常运行也需要关键服务的支撑，在 Windows 的任务管理器中也可一窥一二。</p>
 <p>本节着重讨论的，是服务程序的进程特征。</p>
 <h3 id="daemon">守护进程<a class="headerlink" href="#daemon" title="Permanent link">&para;</a></h3>
 <p>方才说到，服务有全天候响应请求的特征，这就意味着该进程必须独立于用户的登陆，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离 session 才能避免因为 tty 的关闭而消失。而这类一直默默工作于后台的进程被称为<strong>守护进程</strong>（daemon）。</p>
-<h4 id="_2">守护进程的产生<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="daemon-creation">守护进程的产生<a class="headerlink" href="#daemon-creation" title="Permanent link">&para;</a></h4>
 <p>许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。</p>
 <p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该 tty 输出，可见退出 session 的意义在于放弃该 tty。</p>
 <div class="admonition info">
@@ -1854,16 +1854,16 @@ $ tmux
 <p>然而许多信息来源表明，上面 shell 所创建的进程应该再经历一次 fork，理由则是杜绝最后成为组长的进程获得自己的终端。但是这一描述貌似越来越偏离实际。</p>
 </div>
 <p>打开 htop，按 pid 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登陆而启动。显然，守护进程的 sid 与 自身 pid 相同。</p>
-<h3 id="_3">服务管理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。</p>
+<h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p>在 init 进程为 systemd 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。</p>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
-<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-unit</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
+<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看，该命令将显示所有 systemd 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <kbd>J</kbd> 和 <kbd>K</kbd> 进行上下翻页）</p>
 <div class="admonition example">
 <p class="admonition-title">服务列表示例</p>
 <p><img alt="services" src="images/services.png" /></p>
 </div>
 <p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：</p>
-<details class="info"><summary>查看两个命令的 tldr 文档</summary><p><del>tldr 总是如此言简意赅。</del>
+<details class="info"><summary>查看两个命令的 tldr 文档</summary><p><del>tldr 总是如此言简意赅。</del></p>
 <div class="highlight"><pre><span></span><code>$ tldr systemctl
 systemctl
 Control the systemd system and service manager.
@@ -1902,13 +1902,14 @@ The full script path should be omitted <span class="o">(</span>/etc/init.d/ is a
 
  - List the status of all services:
    service --status-all
-</code></pre></div></p>
+</code></pre></div>
+
 </details>
-<h3 id="tmux_2">tmux 服务分析（接续）<a class="headerlink" href="#tmux_2" title="Permanent link">&para;</a></h3>
+<h3 id="tmux-continued">tmux 服务分析（接续）<a class="headerlink" href="#tmux-continued" title="Permanent link">&para;</a></h3>
 <p>有了对服务的基本了解，我们再来看看上文的 tmux 的工作原理：</p>
-<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 ssh 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
+<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登陆。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。</p>
-<p>"<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>"</p>
+<p>「<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>」</p>
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
 <p>所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。</p>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
@@ -1941,7 +1942,7 @@ job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m
 
 <p>等了一分钟后···为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USERNAME</code> 就可以看到输出了。</p>
 <p>但这里很有可能发送不到</p>
-<p>设置完任务之后，我们需要管理任务，极为自然的想法是用 <code>at -l</code> 列出任务，<code>at -r + 编号</code> 删除任务，不过它们分别是 atq 和 atrm 命令的别名。</p>
+<p>设置完任务之后，我们需要管理任务，极为自然的想法是用 <code>at -l</code> 列出任务，<code>at -r 编号</code> 删除任务，不过它们分别是 atq 和 atrm 命令的别名。</p>
 <h4 id="crontab">crontab 命令<a class="headerlink" href="#crontab" title="Permanent link">&para;</a></h4>
 <p>cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的配置大多通过配置文件实现。</p>
 <p>大多数系统应该已经预装了 crontab，首先查看 crontab 的用法：</p>
@@ -1957,8 +1958,8 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file
 <span class="s1">        -i      (prompt before deleting user&#39;</span>s crontab<span class="o">)</span>
 </code></pre></div>
 
-<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 crontab -e 来对本用户任务进行编辑。</p>
-<p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
+<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
+<p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
 <div class="highlight"><pre><span></span><code>分   时   日   月   星期  | 命令
 # 下面是几个示例
 *  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count
@@ -1969,12 +1970,17 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file
 5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com  
 # 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
 </code></pre></div>
- 如果这里解释得尚不清楚，可以访问<a href="https://crontab.guru/">https://crontab.guru↗</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
-<p><img alt="crontab" src="images/crontab.gif" />   </p>
-<h2 id="_4">其他资料<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a>     本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
-<div class="more">
 
+<p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
+<p><img alt="crontab" src="images/crontab.gif" />   </p>
+<h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
+<dl>
+<dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a></dt>
+<dd>
+<p>本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
+</dd>
+</dl>
+<div class="more">
 <div class="highlight"><pre><span></span><code>git clone https://github.com/torvalds/Linux  <span class="c1">#Linux 内核源码</span>
 </code></pre></div>
 </div>
@@ -1993,13 +1999,11 @@ defer(function() {
 </script>
 
 <style>
-#part{
+#part {
   height: 0;
   overflow: hidden;
 }
 </style>
-
-<p>"</p>
                 
               
               
