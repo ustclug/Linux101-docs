@@ -74,7 +74,7 @@ _在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺�
 
 除了最开始的0号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为**父进程**，被产生的是**子进程**。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。
 
-父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生**孤儿进程**（orphan）和**僵尸进程**（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程来自于退出状态名称（对应子进程结束而父进程未查看情况），此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。
+父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生**孤儿进程**（orphan）和**僵尸进程**（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程对应子进程结束而父进程未查看情况，此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。
 
 #### 进程组 {#pgroup}
 
@@ -213,62 +213,35 @@ nice -n 10 vim
 
 当然，如果再考虑到存在由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起态，需要内存页交换才能投入运行，最终加起来便有七个状态。
 
+![state](images/state.png)
+
+在 htop 中，按下 h 到帮助页，可以看到对进程状态的如下描述：
+    
+    Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
+
+其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思可以被唤醒的那种；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被唤醒，一般由于阻塞在 IO 操作上。zombie 对应终止态，没错，上文的僵尸进程有提到过，该状态下进程已经结束，只是仍然占用一个 pid，保存一个返回值。而 traced/stopped 状态正是下文使用 ctrl + z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。
+
 
 上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：
 
-???+ info "属性列表总结"
-
-    <div class="md-typeset__table"><table>
-    <thead>
-    <tr>
-    <th>进程属性</th>
-    <th>意义/目的</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>PID</td>
-    <td>标识进程的唯一性</td>
-    </tr>
-    <tr>
-    <td>PPID</td>
-    <td>标识进程父子关系</td>
-    </tr>
-    <tr>
-    <td>PGID</td>
-    <td>标识共同完成一个任务的整体。如果子进程完成的任务与父进程迥异，应当重设其 PGID</td>
-    </tr>
-    <tr>
-    <td>TPGID</td>
-    <td>标识一组会话中与用户交流的进程（组）</td>
-    </tr>
-    <tr>
-    <td>SID</td>
-    <td>标识一组会话，传统意义上标识一次登陆所做的任务的集合，如果是与具体登陆无关的进程，其 SID 被重置</td>
-    </tr>
-    <tr>
-    <td class="red" colspan="2">以上除 PID 的其他属性，ID 值实际为父进程，组长进程，会话首进程的 PID。以上概念囊括范围递增。</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>USER / UID</td>
-    <td>标识进程的权限</td>
-    </tr>
-    <tr>
-    <td>Priority</td>
-    <td>标识进程的重要性，值越小越得到优先处理</td>
-    </tr>
-    <tr>
-    <td>NICE</td>
-    <td>标识进程的好坏程度（×），值越大进程越具有谦让精神（√）</td>
-    </tr>
-    </tbody>
-    </table></div>
+|进程属性|意义/目的|
+|-------|---------|
+|PID|标识进程的唯一性|
+|PPID|标识进程父子关系|
+|PGID|标识共同完成一个任务的整体。如果子进程完成的任务与父进程迥异，应当重设其 PGID|
+|TPGID|标识一组会话中与用户交流的进程（组）|
+|SID|标识一组会话，传统意义上标识一次登陆所做的任务的集合，如果是与具体登陆无关的进程，其 SID 被重置|
+|USER / UID|标识进程的权限|
+|Priority|标识进程的重要性，值越小越得到优先处理|
+|NICE|标识进程的好坏程度（×），值越大进程越具有谦让精神（√）|
+|State|标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），人还在不在（zombie or not）。|
 
 
 ## 用戶进程控制 {#process-control}
 
-要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是信号机制就产生了。
+要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是**信号**机制就产生了。
+
+如果说中断保证 CPU 可以从正常的控制流中脱出，转而执行中断处理代码，那么信号便可以保证进程可以从正常的控制流中脱出，执行信号处理例程。
 
 ### 信号 {#signal}
 
@@ -338,22 +311,11 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 
 最后一个参数是 `man page` 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-??? tip "一点细节"
-
-=======
-=======
->>>>>>> Stashed changes
 !!! tip "一点细节"
     <div style="float: left; width: 60%">
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
     </div>
     <div style="float: right; width: 40%; margin-bottom: 12px">
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     ![which_kill](images/which_kill.png)
     </div>
     
@@ -455,12 +417,12 @@ nohup，字面含义，就是“不要被 SIGHUP 影响”的意思。
 ```bash
 usage: nohup command [Arg] ... > FILE
 
-nohup ping 101.ustclug.org &
+$ nohup ping 101.ustclug.org &
 [1] 19258
 nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 ```
     
-很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后会有提示：输出被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，同样可以通过重定向手段自定义存放输出的文件。
+很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
 
 ###命令行多终端方案 —— tmux
 
