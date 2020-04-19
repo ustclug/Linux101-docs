@@ -2,19 +2,14 @@
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-<div style="display: none"> 本讲义前后文之间有交叉（前文可能出现后面的内容），对于初次接触相关概念的同学，为避免混乱，可以<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>将这些内容隐藏</a>。第二次回顾时通过<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a>，建立上下文更深层的连系。
-
-当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
-</div>
-
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读[词汇表](../Appendix/glossary.md)后浏览本章内容。
+本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读[词汇表↗](../Appendix/glossary.md)后浏览本章内容。
 
 !!! abstract "摘要"
 
     进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。
-
+    
     其实应当坦言，对于许多仅仅是想应用 Linux 的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个 Linux 操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解 Linux 的机制时，“为什么”将自有答案。
-
+    
     Linux 的特性，还需从操作系统管理进程的功能说起……
 
 ## 进程 {#process}
@@ -68,7 +63,7 @@
 ??? tip "Linux 进程启动顺序"
 
     按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 **init\_task**，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。
-
+    
     由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。
 
 ### 进程组织结构 {#process-struct}
@@ -92,13 +87,13 @@
 ??? example "小实验"
 
     通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。
-
+    
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `forking.c`：
-
+    
     ```c
     #include<stdio.h>
     #include<unistd.h>  //unix standard header，提供 POSIX 标准 api
-
+    
     int main(){
         for (int i = 0; i < 3; i++)
         {
@@ -119,15 +114,15 @@
         return 0;
     }
     ```
-
+    
     随后，在文件所在目录下打开 shell，运行 `gcc forking.c -o forking && chmod +x forking && ./forking` 三连，就可以在另一终端打开 htop 查看成果了。
-
+    
     ![forking](images/forking.png)
-
+    
     按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
-
+    
     同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。
-
+    
     接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
 
 !!! question "问题"
@@ -142,7 +137,7 @@
 
 ### 优先级，NICE 值 {#priority}
 
-有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。
+有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么**优先级**与 **NICE 值**则反映操作系统调度进程的核心手段。
 
 优先级思想很简单，为任务的重要程度排一个序，任务越紧急，数值越低，越排在前面。而 NICE 值更加直白，数值越大说明程序<s>人品越高尚</s> ——我是说越要懂得谦让。
 
@@ -278,7 +273,7 @@ emmm···为什么不是[1]呢？看来应该是这个 shell 前面已经挂起
 !!! info "一点细节"
 
     然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 `bg`。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 `%+`（或 `%%`）、`%-` 指代。当然，加号减号都只能出现一次。
-
+    
     其实我们如果直接输入 `%1`，一样可以将编号为 1 的进程放入前台。
 
 在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：
@@ -324,7 +319,7 @@ $ kill -l #显示所有信号名称
 ??? tip "一点细节"
 
     ![which_kill](images/which_kill.png)
-
+    
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
 
 #### pgrep/pkill 与 killall 等
@@ -348,22 +343,22 @@ $ kill -l #显示所有信号名称
 !!! info "SIGTERM、SIGKILL"
 
     root from bash：发送 SIGTERM 给 PID 为 1234 的进程。
-
+    
     kill：发送系统调用告诉内核，把 SIGTERM 传给 1234 进程。
-
+    
     内核（被调用唤醒）：发送 SIGTERM？有权限吗？哦是 root 啊，那没问题。  
     （把 1234 进程的信号标志位设为 15，留言：“上面下来通知，你可以滚蛋了，别忘了把自己堆栈收拾立正再走。”）
-
+    
     （调度器轮到 1234 号进程）1234：呦，有信号来了，哦，是 SIGTERM 啊，但很遗憾，这个信号在我这里是忽略的。
-
+    
     <-- 一会后 -->
-
+    
     root：进程怎么还没结束？那只好 SIGKILL 了。
-
+    
     kill：发送系统调用告诉内核，把 SIGKILL 传给 1234 进程。
-
+    
     内核（被调用唤醒）：什么？发送 SIGKILL？有权限吗？哦是 root 啊，那没问题，1234 没有运行的机会了，我会亲自清理重置它的堆栈，删掉进程描述符，顺便告诉它爹这个不幸的消息。
-
+    
     （SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）
 
 
@@ -371,22 +366,22 @@ $ kill -l #显示所有信号名称
     那么问题来了，如何才能创造一个向上面一样流氓的进程呢？
 
     这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 `ping`，便利用了该机制：如果使用 Ctrl + C 键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
-
+    
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `signal_handle.c`：
-
+    
     ```c
     #include<stdio.h>
     #include<signal.h>   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）
     #include<unistd.h>   //sleep 函数位置
-
+    
     void sig_handler(int sig);  //设置一个处理信号的函数
-
+    
     int main(){
         signal(SIGTERM, sig_handler);   //替换默认终止信号处理例程
         //signal(SIGINT, sig_handler);  //以下内容可随意尝试：//替换键盘中断（keyboard interrupt）处理例程
         //signal(SIGHUP, sig_handler);                      //替换控制进程挂起信号处理例程
         //signal(SIGKILL, sig_handler);                     //替换···不存在的！
-
+    
         while (1)
         {
             sleep(10);  // do something
@@ -399,7 +394,7 @@ $ kill -l #显示所有信号名称
         //fflush(stdout);   //如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。
     }
     ```
-
+    
     随后，在文件所在目录下打开 shell，运行 `gcc signal_handle.c -o signal_handle && chmod +x signal_handle && ./signal_handle` 三连，就可以在另一终端打开 htop 查看成果了。
 
 不过…我们的程序去哪了？别急，按 F3 或者 `/`，都可以实现搜索。（`/` 是许多界面如 vim、man、aptitude 的默认搜索键）
@@ -407,7 +402,7 @@ $ kill -l #显示所有信号名称
 !!! question "思考"
 
     如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）
-
+    
     答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。
 
 ### 脱离终端 {#background-task}
@@ -445,7 +440,7 @@ tmux 由会话（session），窗口（window），面板（pane）组织起每�
 
 下面先行讲解这一工具的用法：
 
-```shell
+​```shell
 $ sudo apt install tmux
 $ tmux
 ```
@@ -466,8 +461,8 @@ c 创建新窗口
 s 列出所有 session
 ···
 ```
-    
-                                                    
+
+
 ![test](images/test.gif)
 
 *在现场，我们将展示 tmux 的一种别样“玩法”，敬请期待。*
@@ -479,7 +474,7 @@ s 列出所有 session
 !!! info "简易的自定义脚本"
 
     使用你最喜欢的编辑器，gedit、vim、emacs 都可以，打开一个也许不存在（会自动创建）的文件，填入以下内容：
-
+    
         set -g prefix C-a                                 # 设置前缀按键 Ctrl + a
         unbind C-b                                        # 取消 Ctrl + b 快捷键
         bind C-a send-prefix                              # 第二次按下 Ctrl + a 为向 shell 发送 Ctrl + a 
@@ -487,15 +482,15 @@ s 列出所有 session
         set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
         unbind -n MouseDrag1Pane
         unbind -Tcopy-mode MouseDrag1Pane
-
+    
         unbind '"'                                        # 使用 - 代表横向分割
         bind - splitw -v -c '#{pane_current_path}'
-
+    
         unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）
         bind \ splitw -h -c '#{pane_current_path}'
-
+    
         setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
-
+    
     保存后，使用 `tmux source ~/.tmux.conf` 重新载入配置（或者强行 `tmux kill-server` 后重启 tmux）。
 
 可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。
@@ -538,7 +533,7 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 ### 服务管理 {#services}
 
 在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。
-   
+
 要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
 ```shell 
@@ -555,7 +550,7 @@ $ service --status-all
  ···
 ```
 
-上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-unit` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
+上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
 
 !!! example "服务列表示例"
 
@@ -566,30 +561,30 @@ $ service --status-all
 ??? info "查看两个命令的 tldr 文档"
 
     <del>tldr 总是如此言简意赅。</del>
-
+    
     ```shell
     $ tldr systemctl
     systemctl
     Control the systemd system and service manager.
-
+    
      - List failed units:
        systemctl --failed
-
+    
      - Start/Stop/Restart/Reload a service:
        systemctl start/stop/restart/reload {{unit}}
-
+    
      - Show the status of a unit:
        systemctl status {{unit}}
-
+    
      - Enable/Disable a unit to be started on bootup:
        systemctl enable/disable {{unit}}
-
+    
      - Mask/Unmask a unit, prevent it to be started on bootup:
        systemctl mask/unmask {{unit}}
-
+    
      - Reload systemd, scanning for new or changed units:
        systemctl daemon-reload
-
+    
     $ tldr service
     service
     Manage services by running init scripts.
@@ -635,14 +630,14 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
     at
     Execute commands once at a later time.
     Service atd (or atrun) should be running for the actual executions.
-
+    
      - Execute commands from standard input in 5 minutes (press 
        Ctrl + D when done):
        at now + 5 minutes
-
+    
      - Execute a command from standard input at 10:00 AM today:
        echo "{{./make_db_backup.sh}}" | at 1000
-
+    
      - Execute commands from a given file next Tuesday:
        at -f {{path/to/file}} 9:30 PM Tue
     ```
@@ -679,7 +674,7 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
         -l      (list user's crontab)
         -r      (delete user's crontab)
         -i      (prompt before deleting user's crontab)
-```    
+```
 
 可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 `crontab -e` 来对本用户任务进行编辑。
 
