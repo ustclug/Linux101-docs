@@ -25,11 +25,6 @@
 
 在以上过程中，操作系统直接面临的就是一个个等待运行的任务，随后演变为**进程**。
 
-
-??? info "任务（task）与进程（process）"
-    事实上，任务只是那么一段需要运行的代码（重点强调完成一件事），而进程是一个任务管理意义上的实体，不仅包括代码，还有自己的状态信息（下面介绍）。
-
-
 **进程**是计算机系统三大抽象之一，操作系统秉承“为进程服务”的理念而设计。
 
 ![abstract](images/abstract.png)
@@ -239,7 +234,7 @@ nice -n 10 vim
 |State|标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），人还在不在（zombie or not）。|
 
 
-## 用戶进程控制 {#process-control}
+## 用户进程控制 {#process-control}
 
 要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是**信号**机制就产生了。
 
@@ -318,9 +313,9 @@ $ kill -l #显示所有信号名称
 
 ??? tip "一点细节"
 
-    ![which_kill](images/type_kill.png)
+    ![type_kill](images/type_kill.png)
     
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
 
 #### pgrep/pkill 与 killall 等
 
