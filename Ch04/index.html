@@ -638,10 +638,10 @@
       
         <li class="md-nav__item">
   <a href="#process-control" class="md-nav__link">
-    用戶进程控制
+    用户进程控制
   </a>
   
-    <nav class="md-nav" aria-label="用戶进程控制">
+    <nav class="md-nav" aria-label="用户进程控制">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1272,10 +1272,10 @@
       
         <li class="md-nav__item">
   <a href="#process-control" class="md-nav__link">
-    用戶进程控制
+    用户进程控制
   </a>
   
-    <nav class="md-nav" aria-label="用戶进程控制">
+    <nav class="md-nav" aria-label="用户进程控制">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1463,7 +1463,7 @@
 <div class="admonition failure">
 <p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
 </div>
-<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表↗</a>后浏览本章内容。</p>
+<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表</a>后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
 <p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
@@ -1489,20 +1489,20 @@
 <p><strong>有了进程的抽象后，操作系统又将如何以进程为单位，协调并保证工作的顺利进行呢？</strong></p>
 <p>（注：以下内容建议使用 <code>sudo apt install htop</code> 安装并运行 htop，即时查看进程的各个属性。同时伴随 htop 的应用讲解）</p>
 <p><img src="images/htop.gif" width="80%"/></p>
-<p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage➚](https://hisham.hm/htop/)</abbr></p>
+<p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage](https://hisham.hm/htop/)</abbr></p>
 
 <h3 id="pid">Process ID<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
 <p>首先，有区分才有管理。<strong>进程号</strong>（PID）作为进程的唯一标识，便是身份证号一般的存在。在 htop 中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
 <p>在图形界面上，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</p>
 <p><img alt="PID" src="images/PID.png" /></p>
 <p><strong>那么，PID 又是如何产生的呢？</strong></p>
-<p>很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（<a href="https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31">systemd NEWS↗</a>—— systemd官方消息，直接解释了 PID 的范围）</p>
+<p>很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（<a href="https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31">systemd NEWS</a>—— systemd官方消息，直接解释了 PID 的范围）</p>
 <details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p>由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。</p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
 <h4 id="parent-child">进程父子关系<a class="headerlink" href="#parent-child" title="Permanent link">&para;</a></h4>
-<p>除了最开始的0号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为<strong>父进程</strong>，被产生的是<strong>子进程</strong>。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
+<p>除了最开始的 0 号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为<strong>父进程</strong>，被产生的是<strong>子进程</strong>。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
 <p>父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生<strong>孤儿进程</strong>（orphan）和<strong>僵尸进程</strong>（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程对应子进程结束而父进程未查看情况，此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。</p>
 <h4 id="pgroup">进程组<a class="headerlink" href="#pgroup" title="Permanent link">&para;</a></h4>
 <p><strong>进程组</strong>大体上是执行同一工作的进程形成的一个团体，通常是由于父进程 fork 出子进程后子进程继承父进程的组 ID 而逐渐形成。设计进程组机制主要是为了面向协作任务，比如 Firefox 工作是网页浏览，那么其相关的进程一定属于一个进程组。进程组的出现方便了系统信号管理，后面可以看到，发给一个进程组的信号将被所有属于该组的进程接收，意义就是停止整个任务整体。</p>
@@ -1511,10 +1511,10 @@
 <p>（F10 被终端程序占用了怎么办？其实终端上的选项是可以用鼠标点击的，点一下 Done 即可返回。）</p>
 <details class="example"><summary>小实验</summary><p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 <code>forking.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;  //unix standard header，提供 POSIX 标准 api</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;  //unix standard header，提供 POSIX 标准 api</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kt">int</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>   <span class="c1">//fork 系统调用，全面复制父进程所有信息。</span>
@@ -1661,7 +1661,7 @@ nice -n <span class="m">10</span> vim
 </tr>
 </tbody>
 </table>
-<h2 id="process-control">用戶进程控制<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h2>
+<h2 id="process-control">用户进程控制<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h2>
 <p>要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是<strong>信号</strong>机制就产生了。</p>
 <p>如果说中断保证 CPU 可以从正常的控制流中脱出，转而执行中断处理代码，那么信号便可以保证进程可以从正常的控制流中脱出，执行信号处理例程。</p>
 <h3 id="signal">信号<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h3>
@@ -1712,7 +1712,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
 <p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
 <details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/type_kill.png" /></p>
-<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错）。需要小心此类命令的行为。</p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="/Appendix/glossary/#builtin-command">内建命令</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错）。需要小心此类命令的行为。</p>
 </details>
 <h4 id="pgreppkill-killall">pgrep/pkill 与 killall 等<a class="headerlink" href="#pgreppkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
@@ -1794,7 +1794,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERNAME/nohup.out&#39;</span>
 </code></pre></div>
 
-<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。</p>
+<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。</p>
 <h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
 <p><img src="images/tmux.png" width="80%"/></p>
 <div class="admonition info">
@@ -1852,8 +1852,8 @@ s 列出所有 session
 <p>保存后，使用 <code>tmux source ~/.tmux.conf</code> 重新载入配置（或者强行 <code>tmux kill-server</code> 后重启 tmux）。</p>
 </div>
 <p>可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。</p>
-<p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet↗</a> 中查询</p>
-<p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客↗</a></p>
+<p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet</a> 中查询</p>
+<p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客</a></p>
 <p>至于 tmux 的原理，与下面<strong>服务</strong>一节有着相当大的联系，故位于下一节末尾进行讲解。</p>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
 <p>在日常生活中，我们做为信息的接收者，享受着各种网络资源随时随地唾手可得的便利。然而必然有计算机做为内容的提供者因此而全天待命，它们便是服务器，上面运行着各式各样的<strong>服务</strong>。</p>
@@ -2007,11 +2007,11 @@ usage:  crontab <span class="o">[</span>-u user<span class="o">]</span> file    
 <p><img alt="crontab" src="images/crontab.gif" />   </p>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>
-<dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客↗</a></dt>
+<dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密TTY —— 李秋豪的博客</a></dt>
 <dd>
 <p>本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
 </dd>
-<dt><a href="https://github.com/torvalds/Linux">Linux 内核的 GitHub 源码仓库↗</a></dt>
+<dt><a href="https://github.com/torvalds/Linux">Linux 内核的 GitHub 源码仓库</a></dt>
 <dd>
 <p>操作系统的许多特性不是由讲解人或者教科书决定的，如果内心中对操作系统的某些细节有难解的疑惑，不妨从源码中分析得到答案：
 <div class="highlight"><pre><span></span><code>git clone https://github.com/torvalds/Linux   <span class="c1"># 下载源代码到本地</span>
