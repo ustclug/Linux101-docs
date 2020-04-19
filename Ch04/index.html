@@ -1449,12 +1449,7 @@
 <div class="admonition failure">
 <p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
 </div>
-<div style="display: none"> 本讲义前后文之间有交叉（前文可能出现后面的内容），对于初次接触相关概念的同学，为避免混乱，可以<a href="javascript:void(0)" onclick='$(".more").hide(); $("details[open] summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").hide()'>将这些内容隐藏</a>。第二次回顾时通过<a href="javascript:void(0)" onclick='$(".more").show(); $("details:not([open]) summary").click(); $("//a[href=\\.\\.\\/1-supplement\\/]").show()'>显示细节</a>，建立上下文更深层的连系。
-
-当然如果你已经对这些概念比较熟悉，欢迎直接浏览完整版。
-</div>
-
-<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表</a>后浏览本章内容。</p>
+<p>本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读<a href="../Appendix/glossary/">词汇表↗</a>后浏览本章内容。</p>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
 <p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
@@ -1540,7 +1535,7 @@
 <p>而<strong>会话</strong>（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户的登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。</p>
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。<strong>前台</strong>（foreground）与<strong>后台</strong>（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
 <h3 id="priority">优先级，NICE 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h3>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么优先级与 NICE 值则反映操作系统调度进程的核心手段。</p>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>与 <strong>NICE 值</strong>则反映操作系统调度进程的核心手段。</p>
 <p>优先级思想很简单，为任务的重要程度排一个序，任务越紧急，数值越低，越排在前面。而 NICE 值更加直白，数值越大说明程序<s>人品越高尚</s> ——我是说越要懂得谦让。</p>
 <p>而调度这个词，指的正是我们一开始所提及的，安排各进程运行顺序及时长的过程。（严格定义：调度是分配工作（进程）所需资源的方法。）</p>
 <div class="admonition info">
@@ -1800,7 +1795,7 @@ tmux 由会话（session），窗口（window），面板（pane）组织起每�
 
 下面先行讲解这一工具的用法：
 
-```shell
+​```shell
 $ sudo apt install tmux
 $ tmux
 </code></pre></div></p>
@@ -1884,7 +1879,7 @@ s 列出所有 session
  ···
 </code></pre></div>
 
-<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-unit</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
+<p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
 <div class="admonition example">
 <p class="admonition-title">服务列表示例</p>
 <p><img alt="services" src="images/services.png" /></p>
