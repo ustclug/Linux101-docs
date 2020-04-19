@@ -706,6 +706,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tmux" class="md-nav__link">
+    命令行多终端方案 —— tmux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#customizing-tmux" class="md-nav__link">
     定制 tmux
   </a>
@@ -1333,6 +1340,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tmux" class="md-nav__link">
+    命令行多终端方案 —— tmux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#customizing-tmux" class="md-nav__link">
     定制 tmux
   </a>
@@ -1697,8 +1711,8 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
 <p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
-<details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/which_kill.png" /></p>
-<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 <code>/bin/kill</code> 大体一致，目前唯一的区别是 <code>kill -l</code> 时显示格式不一样。但总之遇到这种情况时要小心。</p>
+<details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/type_kill.png" /></p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错）。需要小心此类命令的行为。</p>
 </details>
 <h4 id="pgreppkill-killall">pgrep/pkill 与 killall 等<a class="headerlink" href="#pgreppkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
@@ -1775,33 +1789,30 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 </div>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」的意思。</p>
-<p>$ nohup ping 101.ustclug.org &amp;
-[1] 19258
-nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
-<div class="highlight"><pre><span></span><code>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被&lt;a href=&quot;/Ch09/#redirect&quot;&gt;重定向↗&lt;/a&gt;到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
+<div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">19258</span>
+nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERNAME/nohup.out&#39;</span>
+</code></pre></div>
 
-### 命令行多终端方案 —— tmux
-
-&lt;img src=&quot;images/tmux.png&quot; width=&quot;80%&quot;/&gt;
-
-!!! info &quot;问题产生了！&quot;
-    一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设···
-
-好说，一个 ssh 不行两个，两个 ssh 不行三个，&lt;del&gt;子子孙孙无穷尽也&lt;/del&gt;。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。
-
-这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登陆时可以立即还原。
-
-tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。
-
-下面先行讲解这一工具的用法：
-
-​```shell
+<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。</p>
+<h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
+<p><img src="images/tmux.png" width="80%"/></p>
+<div class="admonition info">
+<p class="admonition-title">问题产生了！</p>
+<p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设···</p>
+</div>
+<p>好说，一个 ssh 不行两个，两个 ssh 不行三个，<del>子子孙孙无穷尽也</del>。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。</p>
+<p>这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登陆时可以立即还原。</p>
+<p>tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
+<p>下面先行讲解这一工具的用法：</p>
+<p>​```shell
 $ sudo apt install tmux
 $ tmux
-</code></pre></div></p>
-<p>我们便打开了第一个 tmux 窗口：</p>
-<p>首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。
-<div class="highlight"><pre><span></span><code>下面是几个最常用的功能，均以 Ctrl + b 为修饰：
+<div class="highlight"><pre><span></span><code>我们便打开了第一个 tmux 窗口：
+
+首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。
+```text
+下面是几个最常用的功能，均以 Ctrl + b 为修饰：
 
 % 左右分屏
 &quot; 上下分屏
