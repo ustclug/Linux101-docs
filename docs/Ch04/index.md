@@ -318,9 +318,9 @@ $ kill -l #显示所有信号名称
 
 ??? tip "一点细节"
 
-    ![which_kill](images/which_kill.png)
+    ![which_kill](images/type_kill.png)
     
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 的 kill 是 shell 的[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 `/bin/kill` 大体一致，目前唯一的区别是 `kill -l` 时显示格式不一样。但总之遇到这种情况时要小心。
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
 
 #### pgrep/pkill 与 killall 等
 
@@ -418,6 +418,7 @@ $ kill -l #显示所有信号名称
 
 nohup，字面含义，就是「不要被 SIGHUP 影响」的意思。
 
+```shell
 $ nohup ping 101.ustclug.org &
 [1] 19258
 nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
