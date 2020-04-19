@@ -2,7 +2,7 @@
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读[词汇表↗](../Appendix/glossary.md)后浏览本章内容。
+本节内容将不可避免遇到以下名词：操作系统，内核（kernel），shell，中断，系统调用等，建议阅读[词汇表](../Appendix/glossary.md)后浏览本章内容。
 
 !!! abstract "摘要"
 
@@ -46,7 +46,7 @@
 
 <img src="images/htop.gif" width="80%"/>
 
-<p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage➚](https://hisham.hm/htop/)</abbr></p>
+<p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage](https://hisham.hm/htop/)</abbr></p>
 
 ### Process ID {#pid}
 
@@ -58,7 +58,7 @@
 
 **那么，PID 又是如何产生的呢？**
 
-很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS↗](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)—— systemd官方消息，直接解释了 PID 的范围）
+很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)—— systemd官方消息，直接解释了 PID 的范围）
 
 ??? tip "Linux 进程启动顺序"
 
@@ -70,7 +70,7 @@
 
 #### 进程父子关系 {#parent-child}
 
-除了最开始的0号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为**父进程**，被产生的是**子进程**。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。
+除了最开始的 0 号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为**父进程**，被产生的是**子进程**。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。
 
 父子关系引出了两种运行情况——父进程先去世和子进程先去世，产生**孤儿进程**（orphan）和**僵尸进程**（zombie）现象。孤儿进程（即留下的子进程）由操作系统回收，交给 init 领养（图形界面时有点不同）；而僵尸进程对应子进程结束而父进程未查看情况，此时进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。
 
@@ -91,10 +91,10 @@
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `forking.c`：
     
     ```c
-    #include<stdio.h>
-    #include<unistd.h>  //unix standard header，提供 POSIX 标准 api
+    #include <stdio.h>
+    #include <unistd.h>  //unix standard header，提供 POSIX 标准 api
     
-    int main(){
+    int main() {
         for (int i = 0; i < 3; i++)
         {
             int pid = fork();   //fork 系统调用，全面复制父进程所有信息。
@@ -239,7 +239,7 @@ nice -n 10 vim
 |State|标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），人还在不在（zombie or not）。|
 
 
-## 用戶进程控制 {#process-control}
+## 用户进程控制 {#process-control}
 
 要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是**信号**机制就产生了。
 
@@ -320,7 +320,7 @@ $ kill -l #显示所有信号名称
 
     ![which_kill](images/type_kill.png)
     
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
 
 #### pgrep/pkill 与 killall 等
 
@@ -424,7 +424,7 @@ $ nohup ping 101.ustclug.org &
 nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 ```
 
-很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向↗</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
+很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
 
 ### 命令行多终端方案 —— tmux
 
@@ -496,9 +496,9 @@ s 列出所有 session
 
 可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。
 
-更多功能，可以到这张 [cheatsheet↗](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询
+更多功能，可以到这张 [cheatsheet](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询
 
-关于 tmux 的更多介绍，可以参见[这篇博客↗](http://louiszhai.github.io/2017/09/30/tmux/)
+关于 tmux 的更多介绍，可以参见[这篇博客](http://louiszhai.github.io/2017/09/30/tmux/)
 
 至于 tmux 的原理，与下面**服务**一节有着相当大的联系，故位于下一节末尾进行讲解。
 
@@ -699,11 +699,11 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 ## 其他资料 {#extra-resources}
 
-[解密TTY —— 李秋豪的博客↗](https://www.cnblogs.com/liqiuhao/p/9031803.html)
+[解密TTY —— 李秋豪的博客](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
 :   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
 
-[Linux 内核的 GitHub 源码仓库↗](https://github.com/torvalds/Linux)
+[Linux 内核的 GitHub 源码仓库](https://github.com/torvalds/Linux)
 
 :   操作系统的许多特性不是由讲解人或者教科书决定的，如果内心中对操作系统的某些细节有难解的疑惑，不妨从源码中分析得到答案：
     ```shell
