@@ -7,9 +7,9 @@
 !!! abstract "摘要"
 
     进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。
-    
+
     其实应当坦言，对于许多仅仅是想应用 Linux 的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个 Linux 操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解 Linux 的机制时，“为什么”将自有答案。
-    
+
     Linux 的特性，还需从操作系统管理进程的功能说起……
 
 ## 进程 {#process}
@@ -41,7 +41,7 @@
 
 <img src="images/htop.gif" width="80%"/>
 
-<p class="caption">htop 示例 | <abbr title="链接到 htop 主页">[htop HomePage](https://hisham.hm/htop/)</abbr></p>
+<p class="caption">htop 示例 | <a href="https://hisham.hm/htop/">htop 主页</a></p>
 
 ### Process ID {#pid}
 
@@ -53,12 +53,12 @@
 
 **那么，PID 又是如何产生的呢？**
 
-很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)—— systemd官方消息，直接解释了 PID 的范围）
+很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程号，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程号有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围）
 
 ??? tip "Linux 进程启动顺序"
 
-    按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 **init\_task**，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建2号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。
-    
+    按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 **init\_task**，初始化自己的 PID 为 0。随后创建出 1 号进程（init / systemd）衍生出用户空间的所有进程，创建 2 号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。
+
     由于 ktheadd 运行于内核空间，故需按大写 K（Shift + k）显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是0。
 
 ### 进程组织结构 {#process-struct}
@@ -82,13 +82,13 @@
 ??? example "小实验"
 
     通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。
-    
+
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `forking.c`：
-    
+
     ```c
     #include <stdio.h>
     #include <unistd.h>  //unix standard header，提供 POSIX 标准 api
-    
+
     int main() {
         for (int i = 0; i < 3; i++)
         {
@@ -109,15 +109,15 @@
         return 0;
     }
     ```
-    
+
     随后，在文件所在目录下打开 shell，运行 `gcc forking.c -o forking && chmod +x forking && ./forking` 三连，就可以在另一终端打开 htop 查看成果了。
-    
+
     ![forking](images/forking.png)
-    
+
     按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
-    
+
     同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。
-    
+
     接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
 
 !!! question "问题"
@@ -125,7 +125,7 @@
 
 #### 会话——前台与后台 {#session}
 
-而**会话**（<abbr title="来自拉丁语 sedere，坐，坐下，词源同 sit。用坐下——起身来指代一场，一节，一个阶段。这里就是登陆到退出。">session</abbr>）可以说是面向用户的登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。
+而**会话**（session）可以说是面向用户的登陆出现的概念。当用户从终端登陆进入 shell，以该 shell 为会话首进程展开本次会话。session 中包含着 n 个进程组，分别完成不同的工作。用户退出时，session 会结束，但有些进程仍然以该 session ID 驻留系统中继续运行。
 
 说到会话，就必然涉及到 Linux 会话中的前后台管理机制。**前台**（foreground）与**后台**（background），本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中 n 个进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。
 
@@ -175,7 +175,7 @@
 
 ??? note "针对实时优先级的标度吐槽"
     其实优先级的数值问题着实混乱：优先级位于 0 ~ 99 之间的进程为**实时进程**，遵循实时调度策略（永远优先于普通进程）。在用户进程中设置实时优先级为 99 相当于设置内核中优先级为 0，即对应倒序排列，用户程序通过系统调用设置实时优先级时要被系统换算（99 - prio）。更糟的是，在 top/htop 中，用户态实时优先级前添加负号后才被显示出来，加剧了优先级标度的混乱。唯一可以肯定的一点是内核中只有一套优先级标度：0 ~ 139。
-    
+
     所以如果真的要调节一个实时调度模式的用户程序的优先级的话，注意 0 ~ 99 范围内传入参数的数字越大，内核看来对应优先级数值越小，越优先。
 
 ??? tip "一点拓展"
@@ -204,7 +204,7 @@ nice -n 10 vim
 (sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 ```
 
-### 进程状态
+### 进程状态 {#process-state}
 
 介绍完上面的 Linux 进程调度，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于运行态（running），一类是可以运行但正在排队等待的程序，即处于就绪态（ready）调度时轮流选择可以运行的程序运行，为就绪态与运行态循环。加入事件这一因素后，出现阻塞态（waiting/blocked）与前两种状态构成循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。考虑三态循环后，又将进入循环之前的状态称为创建态（start），退出循环状态称为终止态（terminated）。
 
@@ -213,16 +213,16 @@ nice -n 10 vim
 ![state](images/state.png)
 
 在 htop 中，按下 h 到帮助页，可以看到对进程状态的如下描述：
-    
+
     Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
 
-其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思可以被唤醒的那种；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被唤醒，一般由于阻塞在 IO 操作上。zombie 对应终止态，没错，上文的僵尸进程有提到过，该状态下进程已经结束，只是仍然占用一个 pid，保存一个返回值。而 traced/stopped 状态正是下文使用 ctrl + z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。
+其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思可以被唤醒的那种；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被唤醒，一般由于阻塞在 IO 操作上。zombie 对应终止态，没错，上文的僵尸进程有提到过，该状态下进程已经结束，只是仍然占用一个 pid，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。
 
 
 上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：
 
 |进程属性|意义/目的|
-|-------|---------|
+|:-----:|---------|
 |PID|标识进程的唯一性|
 |PPID|标识进程父子关系|
 |PGID|标识共同完成一个任务的整体。如果子进程完成的任务与父进程迥异，应当重设其 PGID|
@@ -244,13 +244,13 @@ nice -n 10 vim
 
 “没有消息就是最好的消息”，如果进程突然接到信号，多半是废了。连我们发送信号的 Linux 命令都叫 `kill`，可见进程凶多吉少（大多数信号默认操作都是各种退出）。
 
-那到底都有什么信号呢？emmm.. `man 7 signal`？
+那到底都有什么信号呢？emmm… `man 7 signal`？
 
 可这实在是太长了，还是来一个简明实用的吧。那么，
 
 ![signal\_slide](images/signal_slide.png)
 
-（来自上一次 Linux101——进程、服务、任务的 slide 截图）
+（来自上一次 Linux 101——进程、服务、任务的 slide 截图）
 {: .caption }
 
 ### 前后台切换 {#bg-fg}
@@ -261,14 +261,14 @@ nice -n 10 vim
 
 <img id="bg" src="images/bg.gif" width="80%"/>
 
-emmm……为什么不是[1]呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们使用`jobs`命令 ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
+emmm……为什么不是 `[1]` 呢？看来应该是这个 shell 前面已经挂起了一个进程。那么我们使 `jobs` 命令 ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
 任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加`%`，如将2号进程放入后台，则使用`bg %2`，效果如图所示。
 
 !!! info "一点细节"
 
     然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 `bg`。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 `%+`（或 `%%`）、`%-` 指代。当然，加号减号都只能出现一次。
-    
+
     其实我们如果直接输入 `%1`，一样可以将编号为 1 的进程放入前台。
 
 在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：
@@ -313,47 +313,53 @@ $ kill -l #显示所有信号名称
 
 ??? tip "一点细节"
 
+<<<<<<< HEAD
     ![type_kill](images/type_kill.png)
     
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
+=======
+    ![which\_kill](images/type_kill.png)
+
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](../Appendix/glossary.md#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
+>>>>>>> 044c5a04f0c9e53b12e91a0a6766e2a60d8714cc
 
 #### pgrep/pkill 与 killall 等
 
 如果我们命令行中输入 `apropos kill`，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：
 
-- killall
+killall
 
-    后面接精确的名称，可以直接用进程名不必纠结如何费力地获取进程号。实际上这个命令名称来自 Unix System V 的系统管理命令，其作用也的确是杀死所有进程。在 Linux 中尚有 `killall5` 命令来行使该功能。
+:   后面接精确的名称，可以直接用进程名不必纠结如何费力地获取进程号。实际上这个命令名称来自 Unix System V 的系统管理命令，其作用也的确是杀死所有进程。在 Linux 中尚有 `killall5` 命令来行使该功能。
 
-- pgrep/pkill
+pgrep/pkill
 
-    后面接模糊名称，实际上类似于对名称进行 grep 命令。pgrep 仅列出搜索到的进程名称为的进程号，而 pkill 在搜索到进程后会直接杀死进程。
+:   后面接模糊名称，实际上类似于对名称进行 grep 命令。pgrep 仅列出搜索到的进程名称为的进程号，而 pkill 在搜索到进程后会直接杀死进程。
 
-- xkill
+xkill
 
-    xkill 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。
+:   xkill 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。
 
 实际上，kill 命令更详尽的 feature 在 `man 2 signal` 上。毕竟，kill 程序是对 `kill()` 系统调用的包装。
 
 !!! info "SIGTERM、SIGKILL"
 
     root from bash：发送 SIGTERM 给 PID 为 1234 的进程。
-    
+
     kill：发送系统调用告诉内核，把 SIGTERM 传给 1234 进程。
-    
+
     内核（被调用唤醒）：发送 SIGTERM？有权限吗？哦是 root 啊，那没问题。  
     （把 1234 进程的信号标志位设为 15，留言：“上面下来通知，你可以滚蛋了，别忘了把自己堆栈收拾立正再走。”）
-    
+
     （调度器轮到 1234 号进程）1234：呦，有信号来了，哦，是 SIGTERM 啊，但很遗憾，这个信号在我这里是忽略的。
-    
+
     <-- 一会后 -->
-    
+
     root：进程怎么还没结束？那只好 SIGKILL 了。
-    
+
     kill：发送系统调用告诉内核，把 SIGKILL 传给 1234 进程。
-    
+
     内核（被调用唤醒）：什么？发送 SIGKILL？有权限吗？哦是 root 啊，那没问题，1234 没有运行的机会了，我会亲自清理重置它的堆栈，删掉进程描述符，顺便告诉它爹这个不幸的消息。
-    
+
     （SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）
 
 
@@ -361,22 +367,22 @@ $ kill -l #显示所有信号名称
     那么问题来了，如何才能创造一个向上面一样流氓的进程呢？
 
     这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 `ping`，便利用了该机制：如果使用 Ctrl + C 键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
-    
+
     打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `signal_handle.c`：
-    
+
     ```c
     #include<stdio.h>
     #include<signal.h>   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）
     #include<unistd.h>   //sleep 函数位置
-    
+
     void sig_handler(int sig);  //设置一个处理信号的函数
-    
+
     int main(){
         signal(SIGTERM, sig_handler);   //替换默认终止信号处理例程
         //signal(SIGINT, sig_handler);  //以下内容可随意尝试：//替换键盘中断（keyboard interrupt）处理例程
         //signal(SIGHUP, sig_handler);                      //替换控制进程挂起信号处理例程
         //signal(SIGKILL, sig_handler);                     //替换……不存在的！
-    
+
         while (1)
         {
             sleep(10);  // do something
@@ -389,7 +395,7 @@ $ kill -l #显示所有信号名称
         //fflush(stdout);   //如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。
     }
     ```
-    
+
     随后，在文件所在目录下打开 shell，运行 `gcc signal_handle.c -o signal_handle && chmod +x signal_handle && ./signal_handle` 三连，就可以在另一终端打开 htop 查看成果了。
 
 不过…我们的程序去哪了？别急，按 F3 或者 `/`，都可以实现搜索。（`/` 是许多界面如 vim、man、aptitude 的默认搜索键）
@@ -397,7 +403,7 @@ $ kill -l #显示所有信号名称
 !!! question "思考"
 
     如何描述用户按下 Ctrl + C 后系统与进程响应全过程？（提示：需使用中断，键盘缓冲，系统调用，信号机制，信号处理等关键词描述）
-    
+
     答：键盘按下 Ctrl，CPU 将接到键盘中断，将键盘扫描码（代表按键）码放入键盘缓冲，随后 C 键扫描码，断码（代表抬起），以及 Ctrl 断码依次放入缓冲区。
 
 ### 脱离终端 {#background-task}
@@ -475,7 +481,7 @@ $ tmux
 !!! info "简易的自定义脚本"
 
     使用你最喜欢的编辑器，gedit、vim、emacs 都可以，打开一个也许不存在（会自动创建）的文件，填入以下内容：
-    
+
         set -g prefix C-a                                 # 设置前缀按键 Ctrl + a
         unbind C-b                                        # 取消 Ctrl + b 快捷键
         bind C-a send-prefix                              # 第二次按下 Ctrl + a 为向 shell 发送 Ctrl + a 
@@ -483,15 +489,15 @@ $ tmux
         set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
         unbind -n MouseDrag1Pane
         unbind -Tcopy-mode MouseDrag1Pane
-    
+
         unbind '"'                                        # 使用 - 代表横向分割
         bind - splitw -v -c '#{pane_current_path}'
-    
+
         unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）
         bind \ splitw -h -c '#{pane_current_path}'
-    
+
         setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
-    
+
     保存后，使用 `tmux source ~/.tmux.conf` 重新载入配置（或者强行 `tmux kill-server` 后重启 tmux）。
 
 可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。
@@ -562,44 +568,44 @@ $ service --status-all
 ??? info "查看两个命令的 tldr 文档"
 
     <del>tldr 总是如此言简意赅。</del>
-    
+
     ```shell
     $ tldr systemctl
     systemctl
     Control the systemd system and service manager.
-    
+
      - List failed units:
        systemctl --failed
-    
+
      - Start/Stop/Restart/Reload a service:
        systemctl start/stop/restart/reload {{unit}}
-    
+
      - Show the status of a unit:
        systemctl status {{unit}}
-    
+
      - Enable/Disable a unit to be started on bootup:
        systemctl enable/disable {{unit}}
-    
+
      - Mask/Unmask a unit, prevent it to be started on bootup:
        systemctl mask/unmask {{unit}}
-    
+
      - Reload systemd, scanning for new or changed units:
        systemctl daemon-reload
-    
+
     $ tldr service
     service
     Manage services by running init scripts.
     The full script path should be omitted (/etc/init.d/ is assumed).
-    
+
      - Start/Stop/Restart/Reload service (start/stop should always be available):
        service {{init_script}} {{start|stop|restart|reload}}
-    
+
      - Do a full restart (runs script twice with start and stop):
        service {{init_script}} --full-restart
-    
+
      - Show the current status of a service:
        service {{init_script}} status
-    
+
      - List the status of all services:
        service --status-all
     ```
@@ -631,14 +637,14 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
     at
     Execute commands once at a later time.
     Service atd (or atrun) should be running for the actual executions.
-    
+
      - Execute commands from standard input in 5 minutes (press 
        Ctrl + D when done):
        at now + 5 minutes
-    
+
      - Execute a command from standard input at 10:00 AM today:
        echo "{{./make_db_backup.sh}}" | at 1000
-    
+
      - Execute commands from a given file next Tuesday:
        at -f {{path/to/file}} 9:30 PM Tue
     ```
@@ -693,23 +699,23 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 # 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
 ```
 
- 如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  
+如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  
 
 ![crontab](images/crontab.gif)   
 
 ## 其他资料 {#extra-resources}
 
-[解密TTY —— 李秋豪的博客](https://www.cnblogs.com/liqiuhao/p/9031803.html)
+[解密 TTY —— 李秋豪的博客](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
 :   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
 
 [Linux 内核的 GitHub 源码仓库](https://github.com/torvalds/Linux)
 
 :   操作系统的许多特性不是由讲解人或者教科书决定的，如果内心中对操作系统的某些细节有难解的疑惑，不妨从源码中分析得到答案：
+
     ```shell
     git clone https://github.com/torvalds/Linux   # 下载源代码到本地
     ```
+
     <del>其实直接线上访问就可以，并不是一定要克隆一份呢</del>
-
-
 

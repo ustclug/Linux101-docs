@@ -2,10 +2,10 @@
 //
 // scss extra.scss > extra.css
 
-.red {
+.red, .red-important {
 	color: red !important;
 }
-.darkred {
+.darkred, .darkred-important {
 	color: darkred !important;
 }
 
@@ -42,6 +42,10 @@
 		}
 	}
 
+	.img-border {
+		border: 1px solid black;
+	}
+
 	code, kbd, pre {
 		font-family: Roboto Mono,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important;
 	}
@@ -71,11 +75,5 @@
 
 	.footnote hr {
 		margin-top: 0.2em;
-	}
-}
-
-@media only screen and (min-width: 76.25em) {
-	.md-tabs ~ .md-main .md-nav--primary > .md-nav__list > .md-nav__item--nested {
-		display: none;
 	}
 }
