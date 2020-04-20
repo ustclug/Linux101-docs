@@ -1709,8 +1709,8 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
 <p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
-<details class="tip"><summary>一点细节</summary><p><img alt="which_kill" src="images/type_kill.png" /></p>
-<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="../Appendix/glossary/#builtin-command">内建命令</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错）。需要小心此类命令的行为。</p>
+<details class="tip"><summary>一点细节</summary><p><img alt="type_kill" src="images/type_kill.png" /></p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
 </details>
 <h4 id="pgreppkill-killall">pgrep/pkill 与 killall 等<a class="headerlink" href="#pgreppkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，并且有一句解释跟随其后。这里列举几个：</p>
