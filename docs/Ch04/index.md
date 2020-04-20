@@ -233,9 +233,9 @@ nice -n 10 vim
 |TPGID|标识一组会话中与用户交流的进程（组）|
 |SID|标识一组会话，传统意义上标识一次登陆所做的任务的集合，如果是与具体登陆无关的进程，其 SID 被重置|
 |USER / UID|标识进程的权限|
-|Priority|标识进程的重要性，值越小越得到优先处理|
-|NICE|标识进程的好坏程度（×），值越大进程越具有谦让精神（√）|
-|State|标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），人还在不在（zombie or not）。|
+|Priority|标识进程的重要性，值越小越得到优先处理（一般用于描述实时进程）|
+|NICE|普通进程的优先级标度 —— 标识进程的好坏程度（×），值越大进程越具有谦让精神（√）|
+|State|标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），程序还在不在（zombie or not）。|
 
 
 ## 用户进程控制 {#process-control}
