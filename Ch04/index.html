@@ -1572,7 +1572,7 @@
 <p>就上面的结论来看，调度算法的行为取决于时间片长度和优先级。它们是如何确定的，是固定的吗？</p>
 <p>别急，我们首先还需要解决一个问题，既然做为调度判据的优先级仅仅是一个值，那么 NICE 值又如何参与其中？其实 NICE 值是对优先级的一种修正。NICE 值的取值范围为 -20 ~ 19，优先级的取值为 0 ~ 99，而 NICE 值对应于优先级的 100 ~ 139。</p>
 <p>理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 IO 进程上，说明进程正在与用户（或磁盘等 IO 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 IO 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：</p>
-<p><img src="images/time_slice.png" width="55%"></img></p>
+<p><img src="images/time_slice.png" width="45%"></img></p>
 <p>随后我们可以打开 htop，好好观察一下了。emmm… 为什么我所看到的大部分用户程序，优先级都是 20 呢？不是说好了 NICE 值为 0 的进程优先级要 120 吗？</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
 <p>额，其实这里给出的优先级是呈现给程序的，所以显示的数字以优先级100为基数，多正少负。</p>
@@ -1603,9 +1603,11 @@ nice -n <span class="m">10</span> vim
 </code></pre></div>
 
 <h3 id="process-state">进程状态<a class="headerlink" href="#process-state" title="Permanent link">&para;</a></h3>
-<p>介绍完上面的 Linux 进程调度，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于运行态（running），一类是可以运行但正在排队等待的程序，即处于就绪态（ready）调度时轮流选择可以运行的程序运行，为就绪态与运行态循环。加入事件这一因素后，出现阻塞态（waiting/blocked）与前两种状态构成循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。考虑三态循环后，又将进入循环之前的状态称为创建态（start），退出循环状态称为终止态（terminated）。</p>
-<p>当然，如果再考虑到存在由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起态，需要内存页交换才能投入运行，最终加起来便有七个状态。</p>
-<p><img alt="state" src="images/state.png" /></p>
+<p>介绍完上面的 Linux 进程调度，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于<strong>运行态</strong>（running），一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong>（ready）。调度时轮流选择可以运行的程序运行，构成就绪态与运行态循环。</p>
+<p>加入事件这一因素后，出现<strong>阻塞态</strong>（waiting/blocked）与前两种状态构成三循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。</p>
+<p>考虑三态循环后，又将进入循环之前的状态称为<strong>创建态</strong>（start），退出循环状态称为<strong>终止态</strong>（terminated）。</p>
+<p>当然，如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行，最终加起来便有七个状态。</p>
+<p><img src="images/state.png" width="80%"></p>
 <p>在 htop 中，按下 h 到帮助页，可以看到对进程状态的如下描述：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span> <span class="n">R</span><span class="o">:</span> <span class="n">running</span><span class="o">;</span> <span class="n">S</span><span class="o">:</span> <span class="n">sleeping</span><span class="o">;</span> <span class="n">T</span><span class="o">:</span> <span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span> <span class="n">Z</span><span class="o">:</span> <span class="n">zombie</span><span class="o">;</span> <span class="n">D</span><span class="o">:</span> <span class="n">disk</span> <span class="n">sleep</span>
 </code></pre></div>
@@ -1647,15 +1649,15 @@ nice -n <span class="m">10</span> vim
 </tr>
 <tr>
 <td align="center">Priority</td>
-<td>标识进程的重要性，值越小越得到优先处理</td>
+<td>标识进程的重要性，值越小越得到优先处理（一般用于描述实时进程）</td>
 </tr>
 <tr>
 <td align="center">NICE</td>
-<td>标识进程的好坏程度（×），值越大进程越具有谦让精神（√）</td>
+<td>普通进程的优先级标度 —— 标识进程的好坏程度（×），值越大进程越具有谦让精神（√）</td>
 </tr>
 <tr>
 <td align="center">State</td>
-<td>标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），人还在不在（zombie or not）。</td>
+<td>标识进程的状态：能不能运行（running or sleep)，能不能投入运行（interruptible or uninterruptible），让不让运行（stop/trace），程序还在不在（zombie or not）。</td>
 </tr>
 </tbody>
 </table>
