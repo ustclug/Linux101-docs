@@ -313,15 +313,9 @@ $ kill -l #显示所有信号名称
 
 ??? tip "一点细节"
 
-<<<<<<< HEAD
     ![type_kill](images/type_kill.png)
     
     我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
-=======
-    ![which\_kill](images/type_kill.png)
-
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](../Appendix/glossary.md#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错）。需要小心此类命令的行为。
->>>>>>> 044c5a04f0c9e53b12e91a0a6766e2a60d8714cc
 
 #### pgrep/pkill 与 killall 等
 
