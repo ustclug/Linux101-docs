@@ -122,6 +122,31 @@ $ sudo make install
 
 	在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等。
 
+## tar 的替代
+
+在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件
+
+### unar
+
+```shell
+apt install unar
+```
+
+安装之后会得到两个命令：`unar` 和 `lsar`，分别用来解压存档文件以及浏览存档文件内容
+
+```shell
+# 将存档文件提取到 output 文件夹中
+unar archive.zip -o output
+
+# 浏览存档文件内容
+lsar archive.zip
+# 查看详细信息
+lsar -l archive.zip
+# 查看特别详细的信息
+lsar -L archive.zip 
+```
+
+
 ## 引用来源 {#references .no-underline }
 
 [^1]: 本节使用的示例参考自 Nginx 官方说明 [Compiling and Installing from Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)。

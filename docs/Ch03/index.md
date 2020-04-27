@@ -753,7 +753,7 @@ apt install tldr
 
 输入 `tldr tar` 的样例：
 
-```shell
+```text
 $ tldr tar
 tar
 Archiving utility.
