@@ -128,9 +128,15 @@ $ sudo make install
 
 ### unar
 
+unar 是 macOS 上的软件 [The Unarchiver](https://theunarchiver.com/) 的命令行工具，能够同样用于 Windows 和 Linux，软件介绍：[Command line tools](https://theunarchiver.com/command-line)
+
+Ubuntu 上的安装方式
+
 ```shell
 apt install unar
 ```
+
+> 对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装
 
 安装之后会得到两个命令：`unar` 和 `lsar`，分别用来解压存档文件以及浏览存档文件内容
 
