@@ -122,11 +122,11 @@ $ sudo make install
 
 	在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等。
 
-## tar 的替代
+## tar 的替代 {#tar-alternative}
 
 在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件
 
-### unar
+### unar {#unar}
 
 unar 是 macOS 上的软件 [The Unarchiver](https://theunarchiver.com/) 的命令行工具，能够同样用于 Windows 和 Linux，软件介绍：[Command line tools](https://theunarchiver.com/command-line)
 
