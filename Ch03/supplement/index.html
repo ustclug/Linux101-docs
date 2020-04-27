@@ -588,7 +588,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tar" class="md-nav__link">
+  <a href="#tar-alternative" class="md-nav__link">
     tar 的替代
   </a>
   
@@ -1115,7 +1115,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tar" class="md-nav__link">
+  <a href="#tar-alternative" class="md-nav__link">
     tar 的替代
   </a>
   
@@ -1271,12 +1271,17 @@ $ sudo make install
 <p>在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等。</p>
 </li>
 </ol>
-<h2 id="tar">tar 的替代<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
+<h2 id="tar-alternative">tar 的替代<a class="headerlink" href="#tar-alternative" title="Permanent link">&para;</a></h2>
 <p>在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件</p>
 <h3 id="unar">unar<a class="headerlink" href="#unar" title="Permanent link">&para;</a></h3>
+<p>unar 是 macOS 上的软件 <a href="https://theunarchiver.com/">The Unarchiver</a> 的命令行工具，能够同样用于 Windows 和 Linux，软件介绍：<a href="https://theunarchiver.com/command-line">Command line tools</a></p>
+<p>Ubuntu 上的安装方式</p>
 <div class="highlight"><pre><span></span><code>apt install unar
 </code></pre></div>
 
+<blockquote>
+<p>对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装</p>
+</blockquote>
 <p>安装之后会得到两个命令：<code>unar</code> 和 <code>lsar</code>，分别用来解压存档文件以及浏览存档文件内容</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 将存档文件提取到 output 文件夹中</span>
 unar archive.zip -o output
