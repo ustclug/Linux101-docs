@@ -680,6 +680,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    在 htop 中发送信号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#kill" class="md-nav__link">
     kill
   </a>
@@ -1327,6 +1334,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    在 htop 中发送信号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#kill" class="md-nav__link">
     kill
   </a>
@@ -1720,6 +1734,9 @@ nice -n <span class="m">10</span> vim
 </div>
 <h3 id="kill-processes">终止进程<a class="headerlink" href="#kill-processes" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
+<h4 id="htop">在 htop 中发送信号<a class="headerlink" href="#htop" title="Permanent link">&para;</a></h4>
+<p>htop 中自带向进程发送信号的功能。按下 k 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
+<p>htop 之外，还有一些传统的发送信号的方式。</p>
 <h4 id="kill">kill<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h4>
 <p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">kill</span> -&lt;signal&gt; &lt;pid&gt; -&lt;pgid&gt;
