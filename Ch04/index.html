@@ -1859,15 +1859,48 @@ $ tmux
 <p>首先，Ctrl + b 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
 <div class="admonition info">
 <p class="admonition-title">一些 tmux 中的常见功能</p>
-<p>下面是几个最常用的功能，均以 Ctrl + b 为修饰：</p>
-<p>% 左右分屏</p>
-<p>" 上下分屏</p>
-<p>↑ ↓ ← → 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。</p>
-<p>d —— detach  #从</p>
-<p>z (zoom) 将 pane 暂时全屏，再按一次恢复原状</p>
-<p>c 创建新窗口</p>
-<p>, 为窗口命名</p>
-<p>s 列出所有 session</p>
+<table>
+<thead>
+<tr>
+<th>快捷键（需先按下 Ctrl + b）</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>左右分屏</td>
+</tr>
+<tr>
+<td>"</td>
+<td>上下分屏</td>
+</tr>
+<tr>
+<td>↑ ↓ ← →</td>
+<td>焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。</td>
+</tr>
+<tr>
+<td>d (detach)</td>
+<td>从 tmux 中脱离，回到命令行界面</td>
+</tr>
+<tr>
+<td>z (zoom)</td>
+<td>将 pane 暂时全屏，再按一次恢复原状</td>
+</tr>
+<tr>
+<td>c</td>
+<td>建新窗口</td>
+</tr>
+<tr>
+<td>,</td>
+<td>为窗口命名</td>
+</tr>
+<tr>
+<td>s</td>
+<td>列出所有 session</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p><img alt="test" src="images/test.gif" /></p>
 <p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 <code>tmux attach + 窗口名称</code> 重新连接窗口，不加参数将默认连接最后一次打开的窗口。</p>
