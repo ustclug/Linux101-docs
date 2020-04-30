@@ -40,9 +40,10 @@
 
 本节以下内容使用软件 htop 来讲解，建议在进一步阅读前使用 `sudo apt install htop` 安装并运行 htop，即时查看进程的各个属性。
 
-<img src="images/htop.gif" width="80%"/>
+![htop 示例](images/htop.gif)
 
-<p class="caption">htop 示例 | <a href="https://hisham.hm/htop/">htop 主页</a></p>
+htop 示例 | [htop 主页](https://hisham.hm/htop/)
+{: .caption }
 
 ### 进程标识符 {#pid}
 
@@ -167,7 +168,7 @@
 
 理清优先级后，我们就可以关注时间片与优先级的调整。每个用户进程的起始 NICE 值为 0，即优先级为 120，对应时间片 100 ms。但同时 Linux 对两个值有着人性化的调整：即如果进程将大部分时间消耗在 I/O 进程上，说明进程正在与用户（或磁盘等 I/O 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 I/O 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
 
-<img src="images/time_slice.png" width="45%"></img>
+![进程时间片的计算](images/time_slice.png){: width=45% }
 
 随后我们可以打开 htop，好好观察一下了。
 
@@ -184,7 +185,7 @@
 
 ??? tip "一点拓展"
     如果你真的很较真，按下了 Shift + K 键显示**内核线程**，那么你将见到许多比用户进程优先级高得多的存在。而且具有最高优先级（即优先级值为 0 或 1）的进程优先级用 RT 表示。据 htop 作者说这是 htop 前身 top 的锅，作者完全照搬了 top 的特性。
-    <img src="images/top8.png" width="75%"></img>
+    ![htop 的内核线程优先级](images/top8.png){: width=75% }
 
     - 第一个进程为 watchdog，是一个比较有意思的保证系统可用性的程序。  
       （试试 `echo hi > /dev/watchdog` 吧。)
@@ -196,7 +197,7 @@
 
 对于普通用户，有 `nice` 命令可以选择，可以以低优先级开始任务。`renice` 命令则可以重新指定优先级。当然，这两个命令若想设定 NICE 值为负数，还需 `sudo` 加持。
 
-```shell
+```text
 nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help] 
  [--version] [command [arg...]]
 
@@ -218,7 +219,7 @@ nice -n 10 vim
 
 当然，如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行，最终加起来便有七个状态。
 
-<img src="images/state.png" width="80%">
+![](images/state.png){:width=80%}
 
 在 htop 中，按下 h 键到帮助页，可以看到对进程状态的如下描述：
 
@@ -267,7 +268,7 @@ nice -n 10 vim
 
 前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 `ping localhost`。
 
-<img id="bg" src="images/bg.gif" width="80%"/>
+![](images/bg.gif){: id=bg width=80% }
 
 等等，为什么不是 `[1]` 呢？这跟我们的直觉有所区别，因为一般计数都是从 0 或者 1 开始的。那么这样看来，应该是这个 shell 前面已经挂起了其它进程。因此我们使 `jobs` 命令 ，就可以看到当前 shell 上所有前台的、后台的、运行的、挂起的进程了。
 
@@ -431,11 +432,11 @@ $ nohup ping 101.ustclug.org &
 nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 ```
 
-很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
+很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被[重定向](/Ch09/#redirect)到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。
 
 ### 命令行多终端方案 —— tmux {#tmux}
 
-<img src="images/tmux.gif" width="80%"/>
+![](images/tmux.gif){: width=80% }
 
 !!! info "问题产生了！"
     一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设。
@@ -571,7 +572,7 @@ $ service --status-all
 
     <del>tldr 总是如此言简意赅。</del>
 
-    ```shell
+    ```text
     $ tldr systemctl
     systemctl
     Control the systemd system and service manager.
@@ -620,7 +621,8 @@ $ service --status-all
 
 tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。
 
-「<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>」
+
+「*什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。*」
 
 ### 例行性任务 {#cron}
 
@@ -634,7 +636,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 
 ??? info "tldr at"
 
-    ```shell
+    ```text
     $ tldr at
     at
     Execute commands once at a later time.
@@ -653,7 +655,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 
 所以该命令的基本用法示例如下：
 
-```shell
+```text
 $ at now + 1min
 > echo "hello"
 > <EOT> （按下 Ctrl-D)
@@ -670,7 +672,7 @@ cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的
 
 大多数系统应该已经预装了 crontab，首先查看 crontab 的用法：
 
-```shell
+```text
 $ crontab --help
 crontab: invalid option -- '-'  # 出现这两行字很正常，许多命令（如ssh）没有专用的 help
 crontab: usage error: unrecognized option  # 选项 ，这里只是寻求简要帮助的一种尝试
@@ -688,7 +690,7 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
 crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
 
 ```ini
-分   时   日   月   星期  | 命令
+# 分   时   日   月   星期  | 命令
 # 下面是几个示例
 *  *  *  *  *  echo "hello" >> ~/count
 # 每分钟输出 hello 到家目录下 count 文件 
