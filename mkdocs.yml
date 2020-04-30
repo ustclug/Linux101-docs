@@ -21,6 +21,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - markdown.extensions.def_list
+  - attr_list
   - toc:
       permalink: true
 
