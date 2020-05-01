@@ -53,9 +53,9 @@ htop 示例 | [htop 主页](https://hisham.hm/htop/)
 
 ![PID](images/PID.png)
 
-**那么，PID 又是如何产生的呢？**
+??? tip "PID 是如何产生的"
 
-很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程标识符，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程标识符有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围）
+    很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 65535，即 PID 变量为 C 语言 short 类型。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程标识符，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程标识符有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围）
 
 ??? tip "Linux 进程启动顺序"
 
