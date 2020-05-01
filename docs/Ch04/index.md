@@ -640,7 +640,6 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
     [Service]
     PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
     ExecStart=/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项
-    config=/root/.jupyter/jupyter_notebook_config.py    # 应用对应的配置文件
     WorkingDirectory=/root
     Restart=always                  # 重启模式，这里是无论因何退出都重启
     RestartSec=10                   # 退出后多少秒重启
