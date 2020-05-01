@@ -2,7 +2,7 @@
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-## Linux 下进程查看原理
+## Linux 下进程查看原理 {#proc}
 
 正文提到，htop 命令的前身是 ps 命令。ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控，但是它至少足够基础，可以供 strace 命令分析。
 
@@ -57,22 +57,6 @@ NSpgid:	1
 
 也许第一个文件不是那么好看，但第二个文件就很直白了。至此可以得出结论，根目录下 `/proc` 文件夹储存进程信息，而 htop 等命令通过对该文件夹下的文件进行自动读取来监视进程。实际上，`/proc` 是一个虚拟的文件系统，存在于内存中，反映着系统的运行状态。
 
-## systemd service 文件结构
-
-## systemd VS init
-
-## 常见服务一览 （先列举再排序）
-
-### 系统服务
-
-### 对外服务
-
-### mail server
-
-### DNS server
-
-### proxy server
-
 
 <!-- - 内核文件为什么以 **vmlinuz-版本号** 命名？
     
@@ -82,7 +66,7 @@ NSpgid:	1
     
     <p style="font-size: smaller">许多情况下，不接触命令所对应的全称是无法记住命令的，然而从英文解释中我们可以自然地知道命令采用哪几个字母作为缩写，从而由名称得知命令用法。欲知详情，请看 [The Ultimate A To Z List of Linux Commands | Linux Command Line Reference](https://fossbytes.com/a-z-list-linux-command-line-reference/)</p> -->
 
-## SysRq: 进行紧急的系统维护操作
+## SysRq: 进行紧急的系统维护操作 {#sysrq}
 
 你可能会注意到，你的键盘上好像有一个从未使用过的键：SysRq。其实它在 Linux 上可以对内核进行一些操作，尤其是在紧急的情况下（例如，界面卡死），可以用来关闭进程、干净地（在不损坏文件系统的情况下）重启系统等操作。
 
@@ -96,3 +80,62 @@ NSpgid:	1
 - S: 从内存同步文件修改到文件系统。
 - U: 重新挂载所有的文件系统为只读状态。
 - B: 立刻重启系统。
+
+## 编程处理信号 {#signal-programming}
+
+你可能会注意到，有些程序对你按下 Ctrl + C 的操作会有一些独特的响应，例如 `ping`，如果使用 Ctrl + C 键盘中断 (SIGINT)，在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
+
+这个实验中，我们使用系统调用 `signal()` 来重新设置进程对信号的响应函数。
+
+程序文件 `signal_handle.c`：
+
+```c
+#include <stdio.h>
+#include <signal.h>   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）
+#include <unistd.h>   // sleep 函数
+
+void sig_handler(int sig);  // 设置一个处理信号的函数
+
+int main(){
+    signal(SIGTERM, sig_handler);    // 替换默认终止信号处理例程
+    // signal(SIGINT, sig_handler);  // 替换键盘中断（keyboard interrupt）处理例程
+    // signal(SIGHUP, sig_handler);  // 替换控制进程挂起信号处理例程
+    // signal(SIGKILL, sig_handler); // 替换……不存在的！
+
+    while (1)
+    {
+        sleep(10);  // do something
+    }   
+}
+
+
+void sig_handler(int sig){
+    printf("hi!\n");     // 在收到信号时输出
+    // fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。
+}
+```
+
+随后，在文件所在目录下打开 shell，运行 `gcc signal_handle.c -o signal_handle && ./signal_handle`，就可以在另一终端打开 htop 来试验了。
+
+!!! warning "可重入性"
+    事实上，这个程序存在一个隐含的问题：如果在运行 `sig_handler()` 的时候，又有信号输入，会发生什么呢？
+
+    这就牵扯到「可重入性」(reentrant) 这个概念了。如果某程序可以在任意时刻被中断，并且这个程序在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 `man signal-safety`，可以查看到一份可重入库函数的列表。
+
+    当然很遗憾，`printf()` 不是可重入的。
+
+## Systemd service 的文件结构
+
+## `init` 的历史
+
+## 常见服务一览
+
+### 系统服务
+
+### 对外服务
+
+### mail server
+
+### DNS server
+
+### proxy server

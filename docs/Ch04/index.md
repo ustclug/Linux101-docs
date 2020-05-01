@@ -371,42 +371,6 @@ xkill
 
     （SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）
 
-
-??? example "额外内容"
-    那么问题来了，如何才能创造一个向上面一样流氓的进程呢？
-
-    这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 `ping`，便利用了该机制：如果使用 Ctrl + C 键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
-
-    打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `signal_handle.c`：
-
-    ```c
-    #include<stdio.h>
-    #include<signal.h>   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）
-    #include<unistd.h>   //sleep 函数位置
-
-    void sig_handler(int sig);  //设置一个处理信号的函数
-
-    int main(){
-        signal(SIGTERM, sig_handler);   //替换默认终止信号处理例程
-        //signal(SIGINT, sig_handler);  //以下内容可随意尝试：//替换键盘中断（keyboard interrupt）处理例程
-        //signal(SIGHUP, sig_handler);                      //替换控制进程挂起信号处理例程
-        //signal(SIGKILL, sig_handler);                     //替换……不存在的！
-
-        while (1)
-        {
-            sleep(10);  // do something
-        }   
-    }
-
-
-    void sig_handler(int sig){
-        printf("hi!\n");  // 皮一下
-        //fflush(stdout);   //如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。
-    }
-    ```
-
-    随后，在文件所在目录下打开 shell，运行 `gcc signal_handle.c -o signal_handle && chmod +x signal_handle && ./signal_handle` 三连，就可以在另一终端打开 htop 查看成果了。
-
 不过，我们的程序去哪了？别急，按 F3 或者 `/`，都可以实现搜索。（`/` 是许多界面如 vim、man、aptitude 的默认搜索键）
 
 !!! question "思考"
@@ -661,7 +625,7 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
 ### 例行性任务 {#cron}
 
-所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。
+所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都作为系统服务存在。
 
 #### at 命令 {#at}
 
@@ -697,7 +661,7 @@ $ at now + 1min
 job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 ```
 
-等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）
+等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）
 
 设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
 
@@ -709,9 +673,9 @@ cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的
 
 ```text
 $ crontab --help
-crontab: invalid option -- '-'  # 出现这两行字很正常，许多命令（如ssh）没有专用的 help
-crontab: usage error: unrecognized option  # 选项 ，这里只是寻求简要帮助的一种尝试
-usage:  crontab [-u user] file                   # manpage “应用相关”信息密度是真的低
+crontab: invalid option -- '-'  # 出现这两行字很正常，许多命令（如 ssh）没有专用的 help
+crontab: usage error: unrecognized option  # 输入「错误」的选项时，便会出现简单的使用说明。
+usage:  crontab [-u user] file
         crontab [ -u user ] [ -i ] { -e | -l | -r }
                 (default operation is replace, per 1003.2)
         -e      (edit user's crontab)
@@ -720,7 +684,7 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
         -i      (prompt before deleting user's crontab)
 ```
 
-可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 `crontab -e` 来对本用户任务进行编辑。
+可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 `crontab -e` 来对本用户任务进行编辑。
 
 crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
 
@@ -740,21 +704,11 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 ![crontab](images/crontab.gif)
 
-另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考[Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4)进行配置。
+另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考 [Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4)进行配置。
 
 ## 其他资料 {#extra-resources}
 
-[解密 TTY —— 李秋豪的博客](https://www.cnblogs.com/liqiuhao/p/9031803.html)
+*The TTY demystified*: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
 :   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
-
-[Linux 内核的 GitHub 源码仓库](https://github.com/torvalds/Linux)
-
-:   操作系统的许多特性不是由讲解人或者教科书决定的，如果内心中对操作系统的某些细节有难解的疑惑，不妨从源码中分析得到答案：
-
-    ```shell
-    git clone https://github.com/torvalds/Linux   # 下载源代码到本地
-    ```
-
-    <del>其实直接线上访问就可以，并不是一定要克隆一份呢</del>
 
