@@ -2039,7 +2039,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <p>如果我想将一个基于 web 的应用（如基于 web 的 python 交互应用）做为局域网内 web 服务，以便于在 iPad 上访问。那么如何将其注册为 systemd 服务呢？</p>
 <p>其实只需要编写一个简单的 .service 文件即可。</p>
 <div class="admonition example">
-<p class="admonition-title">.service 文件示例（以 jupyter 为例）</p>
+<p class="admonition-title">编写 .service 文件并运行（以 jupyter 为例）</p>
 <p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并做如下编辑。</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span>
@@ -2055,7 +2055,6 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务</span>
 </code></pre></div>
 
-</div>
 <p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
 <div class="highlight"><pre><span></span><code>$ systemctl start jupyter
 $ systemctl stop jupyter
@@ -2063,6 +2062,7 @@ $ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable �
 $ systemctl disable jupyter <span class="c1"># 这个自然是取消自启了</span>
 </code></pre></div>
 
+</div>
 <p>在<a href="https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html">浅析 Linux 初始化 init 系统，第 3 部分</a>这篇文章中有更详细的配置文件介绍。</p>
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
 <p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。</p>
