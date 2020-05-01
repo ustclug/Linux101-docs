@@ -630,7 +630,9 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
 其实只需要编写一个简单的 .service 文件即可。
 
-!!! example ".service 文件示例"
+!!! example ".service 文件示例（以 jupyter 为例）"
+
+    首先使用文本编辑器在 `/usr/lib/systemd/system` 文件夹下创建 jupyter.service 文件。并做如下编辑。
 
     ```text
     [Unit]
@@ -651,6 +653,8 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
     [Install]
     WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
     ```
+
+    保存后，运行 systemctl start jupyter.service，服务正式启动。
 
 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。
 
