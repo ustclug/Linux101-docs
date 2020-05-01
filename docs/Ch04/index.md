@@ -621,7 +621,6 @@ $ service --status-all
 
 tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。
 
-
 「*什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。*」
 
 ### 自定义服务 {#customizing-service}
@@ -634,27 +633,32 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
     首先使用文本编辑器在 `/usr/lib/systemd/system` 文件夹下创建 jupyter.service 文件。并做如下编辑。
 
-    ```text
+    ```ini
     [Unit]
     Description=Jupyter Notebook    # 该服务简要描述
 
-
     [Service]
     PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
-    ExecStart=/usr/local/bin/jupyter-notebook --allow-root  #使用绝对路径标明的命令及选项
+    ExecStart=/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项
     config=/root/.jupyter/jupyter_notebook_config.py    # 应用对应的配置文件
-    User=root   
-    Group=root  
-    WorkingDirectory=/root  
+    User=root  
+    Group=root 
+    WorkingDirectory=/root
     Restart=always                  # 重启模式，这里是无论因何退出都重启
     RestartSec=10                   # 退出后多少秒重启
-
 
     [Install]
     WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
     ```
 
-    保存后，运行 systemctl start jupyter.service，服务正式启动。
+将写好的配置文件保存到 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
+
+```shell
+$ systemctl start jupyter
+$ systemctl stop jupyter
+$ systemctl enable jupyter  # enable 表示标记服务的自动启动
+$ systemctl disable jupyter # 这个自然是取消自启了
+```
 
 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。
 
@@ -689,7 +693,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 
 所以该命令的基本用法示例如下：
 
-```text
+```shell
 $ at now + 1min
 > echo "hello"
 > <EOT> （按下 Ctrl-D)
