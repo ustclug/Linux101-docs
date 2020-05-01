@@ -1855,7 +1855,7 @@ nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERN
 
 <p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义存放输出的文件。</p>
 <h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="images/tmux.gif" width="80%" /></p>
+<p><img alt="" src="images/tmux.gif" width="70%" /></p>
 <div class="admonition info">
 <p class="admonition-title">问题产生了！</p>
 <p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设。</p>
