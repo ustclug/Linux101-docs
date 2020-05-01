@@ -629,7 +629,7 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
 其实只需要编写一个简单的 .service 文件即可。
 
-!!! example ".service 文件示例（以 jupyter 为例）"
+!!! example "编写 .service 文件并运行（以 jupyter 为例）"
 
     首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并做如下编辑。
 
@@ -648,14 +648,14 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
     WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
     ```
 
-将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
+    将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
 
-```shell
-$ systemctl start jupyter
-$ systemctl stop jupyter
-$ systemctl enable jupyter  # enable 表示标记服务的自动启动
-$ systemctl disable jupyter # 这个自然是取消自启了
-```
+    ```shell
+    $ systemctl start jupyter
+    $ systemctl stop jupyter
+    $ systemctl enable jupyter  # enable 表示标记服务的自动启动
+    $ systemctl disable jupyter # 这个自然是取消自启了
+    ```
 
 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。
 
