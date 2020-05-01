@@ -1,6 +1,6 @@
 # 拓展阅读 {#supplement}
 
-!!! warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
+!!! success "本文已完稿并通过审阅，是正式版本。"
 
 ## 编译安装 [^1] {#compiling-installation}
 
