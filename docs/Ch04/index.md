@@ -704,11 +704,10 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 ![crontab](images/crontab.gif)
 
-另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考 [Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4)进行配置。
+**另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考 [Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4)进行配置。**
 
 ## 其他资料 {#extra-resources}
 
 *The TTY demystified*: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
 :   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
-
