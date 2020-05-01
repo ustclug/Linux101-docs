@@ -2125,20 +2125,12 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
 
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
-<p>另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考<a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4">Systemd 定时器教程</a>进行配置。</p>
+<p><strong>另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考</strong><a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4">Systemd 定时器教程</a><strong>进行配置</strong>。</p>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密 TTY —— 李秋豪的博客</a></dt>
 <dd>
 <p>本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
-</dd>
-<dt><a href="https://github.com/torvalds/Linux">Linux 内核的 GitHub 源码仓库</a></dt>
-<dd>
-<p>操作系统的许多特性不是由讲解人或者教科书决定的，如果内心中对操作系统的某些细节有难解的疑惑，不妨从源码中分析得到答案：</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/torvalds/Linux   <span class="c1"># 下载源代码到本地</span>
-</code></pre></div>
-
-<p><del>其实直接线上访问就可以，并不是一定要克隆一份呢</del></p>
 </dd>
 </dl>
                 
