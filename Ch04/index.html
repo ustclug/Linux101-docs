@@ -1591,7 +1591,7 @@
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc forking.c -o forking &amp;&amp; chmod +x forking &amp;&amp; ./forking</code> 三连，就可以在另一终端打开 htop 查看成果了。</p>
 <p><img alt="forking" src="images/forking.png" /></p>
 <p>按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。</p>
-<p>同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，当然 PGRP 可以通过系统调用修改为自己，从原进程组中独立出去另起门户。</p>
+<p>同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程， PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。</p>
 <p>接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。</p>
 </div>
 <div class="admonition question">
@@ -1663,7 +1663,7 @@ nice -n 10 vim
 <p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于<strong>运行态</strong>（running），一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong>（ready）。调度时轮流选择可以运行的程序运行，构成就绪态与运行态循环。</p>
 <p>加入事件这一因素后，出现<strong>阻塞态</strong>（waiting / blocked）与前两种状态构成三循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。</p>
 <p>考虑三态循环后，又将进入循环之前的状态称为<strong>创建态</strong>（start），退出循环状态称为<strong>终止态</strong>（terminated）。</p>
-<p>当然，如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行，最终加起来便有七个状态。</p>
+<p>如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行，最终加起来便有七个状态。</p>
 <p><img alt="" src="images/state.png" width="80%" /></p>
 <p>在 htop 中，按下 h 键到帮助页，可以看到对进程状态的如下描述：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span> <span class="n">R</span><span class="o">:</span> <span class="n">running</span><span class="o">;</span> <span class="n">S</span><span class="o">:</span> <span class="n">sleeping</span><span class="o">;</span> <span class="n">T</span><span class="o">:</span> <span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span> <span class="n">Z</span><span class="o">:</span> <span class="n">zombie</span><span class="o">;</span> <span class="n">D</span><span class="o">:</span> <span class="n">disk</span> <span class="n">sleep</span>
@@ -1735,7 +1735,7 @@ nice -n 10 vim
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加<code>%</code>，如将 2 号进程放入后台，则使用<code>bg %2</code>，效果如图所示。</p>
 <div class="admonition info">
 <p class="admonition-title">一点细节</p>
-<p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。当然，加号减号都只能出现一次。</p>
+<p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。</p>
 <p>其实我们如果直接输入 <code>%1</code>，一样可以将编号为 1 的进程放入前台。</p>
 </div>
 <p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
@@ -1770,7 +1770,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 </code></pre></div>
 
 <p>如果不加任何参数，只有 pid，<code>kill</code> 命令将自动使用 -15（SIGTERM）做为信号参数。</p>
-<p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当然，manpage 中介绍的 -1 参数可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
+<p>最后一个参数是 <code>man page</code> 中没有提及的：如果数字作为参数，信号将发给该进程组。当参数为 -1 时可以杀死除 init 和自身外所有进程（root 用户），对于非 root 用户而言会杀死所有自己有 kill 权限的进程。</p>
 <details class="tip"><summary>一点细节</summary><p><img alt="type_kill" src="images/type_kill.png" /></p>
 <p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="/Appendix/glossary/#builtin-command">内建命令↗</a>。行为与 man 命令的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
 </details>
@@ -1853,7 +1853,7 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERNAME/nohup.out&#39;</span>
 </code></pre></div>
 
-<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，当然也可以通过重定向手段自定义存放输出的文件。</p>
+<p>很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被<a href="/Ch09/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义存放输出的文件。</p>
 <h3 id="tmux">命令行多终端方案 —— tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="images/tmux.gif" width="80%" /></p>
 <div class="admonition info">
@@ -2032,7 +2032,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 </details>
 <h3 id="tmux-continued">tmux 服务分析（接续）<a class="headerlink" href="#tmux-continued" title="Permanent link">&para;</a></h3>
 <p>有了对服务的基本了解，我们再来看看上文的 tmux 的工作原理：</p>
-<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然可以向上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
+<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要 tty/pty 关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证 pty 的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。</p>
 <p>「<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>」</p>
 <h3 id="customizing-service">自定义服务<a class="headerlink" href="#customizing-service" title="Permanent link">&para;</a></h3>
@@ -2065,7 +2065,7 @@ $ systemctl disable jupyter <span class="c1"># 这个自然是取消自启了</s
 
 <p>在<a href="https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html">浅析 Linux 初始化 init 系统，第 3 部分</a>这篇文章中有更详细的配置文件介绍。</p>
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
-<p>所谓例行性任务，当然是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。</p>
+<p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。</p>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
 <p>at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 <code>sudo apt install at</code> 进行安装。</p>
 <p>随后使用 tldr 查看该命令使用方法：</p>
