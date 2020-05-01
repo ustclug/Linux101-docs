@@ -330,7 +330,7 @@ $ kill -l #显示所有信号名称
 
     ![type_kill](images/type_kill.png)
 
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令↗](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
 
 #### pgrep / pkill、 killall 等
 
@@ -720,7 +720,7 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
         -i      (prompt before deleting user's crontab)
 ```
 
-可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。（所以如果想以后添加配置应当在家目录中创建专用文件存储）建议使用 `crontab -e` 来对本用户任务进行编辑。
+可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 `crontab -e` 来对本用户任务进行编辑。
 
 crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
 
@@ -738,7 +738,9 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  
 
-![crontab](images/crontab.gif)   
+![crontab](images/crontab.gif)
+
+另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考[Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4)进行配置。
 
 ## 其他资料 {#extra-resources}
 
