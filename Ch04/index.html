@@ -1804,36 +1804,6 @@ $ <span class="nb">kill</span> -l <span class="c1">#显示所有信号名称</sp
 <p>内核（被调用唤醒）：什么？发送 SIGKILL？有权限吗？哦是 root 啊，那没问题，1234 没有运行的机会了，我会亲自清理重置它的堆栈，删掉进程描述符，顺便告诉它爹这个不幸的消息。</p>
 <p>（SIGTSTP、SIGSTOP 也是一样的道理，前者可以由用户按 Ctrl+Z 产生，程序可以见到，后者程序由操作系统强制挂起，无法被程序抗拒。）</p>
 </div>
-<details class="example"><summary>额外内容</summary><p>那么问题来了，如何才能创造一个向上面一样流氓的进程呢？</p>
-<p>这个实验中，我们使用系统调用 signal 来重新设置该进程对信号的响应函数。一些程序如 <code>ping</code>，便利用了该机制：如果使用 Ctrl + C 键盘中断（SIGINT），在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
-<p>打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 <code>signal_handle.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;   //定义了变更信号处理函数的方法以及一些信号对应的常量（如 define SIGTERM 15）</span><span class="cp"></span>
-<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;   //sleep 函数位置</span><span class="cp"></span>
-
-<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>  <span class="c1">//设置一个处理信号的函数</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-    <span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">sig_handler</span><span class="p">);</span>   <span class="c1">//替换默认终止信号处理例程</span>
-    <span class="c1">//signal(SIGINT, sig_handler);  //以下内容可随意尝试：//替换键盘中断（keyboard interrupt）处理例程</span>
-    <span class="c1">//signal(SIGHUP, sig_handler);                      //替换控制进程挂起信号处理例程</span>
-    <span class="c1">//signal(SIGKILL, sig_handler);                     //替换……不存在的！</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// do something</span>
-    <span class="p">}</span>   
-<span class="p">}</span>
-
-
-<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">){</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>  <span class="c1">// 皮一下</span>
-    <span class="c1">//fflush(stdout);   //如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; chmod +x signal_handle &amp;&amp; ./signal_handle</code> 三连，就可以在另一终端打开 htop 查看成果了。</p>
-</details>
 <p>不过，我们的程序去哪了？别急，按 F3 或者 <code>/</code>，都可以实现搜索。（<code>/</code> 是许多界面如 vim、man、aptitude 的默认搜索键）</p>
 <div class="admonition question">
 <p class="admonition-title">思考</p>
@@ -2065,7 +2035,7 @@ $ systemctl disable jupyter <span class="c1"># 这个自然是取消自启了</s
 </div>
 <p>在<a href="https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html">浅析 Linux 初始化 init 系统，第 3 部分</a>这篇文章中有更详细的配置文件介绍。</p>
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
-<p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都做为系统服务存在。</p>
+<p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都作为系统服务存在。</p>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
 <p>at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 <code>sudo apt install at</code> 进行安装。</p>
 <p>随后使用 tldr 查看该命令使用方法：</p>
@@ -2093,15 +2063,15 @@ Service atd (or atrun) should be running for the actual executions.
 job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m">16</span>:16:00 <span class="m">2020</span>   <span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
 
-<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将 stdout 和 stderr 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）</p>
+<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）</p>
 <p>设置完任务之后，我们需要管理任务，极为自然的想法是用 <code>at -l</code> 列出任务，<code>at -r 编号</code> 删除任务，不过它们分别是 atq 和 atrm 命令的别名。</p>
 <h4 id="crontab">crontab 命令<a class="headerlink" href="#crontab" title="Permanent link">&para;</a></h4>
 <p>cron 命令负责周期性的任务设置，与 at 略有不同的是，cron 的配置大多通过配置文件实现。</p>
 <p>大多数系统应该已经预装了 crontab，首先查看 crontab 的用法：</p>
 <div class="highlight"><pre><span></span><code>$ crontab --help
-crontab: invalid option -- &#39;-&#39;  # 出现这两行字很正常，许多命令（如ssh）没有专用的 help
-crontab: usage error: unrecognized option  # 选项 ，这里只是寻求简要帮助的一种尝试
-usage:  crontab [-u user] file                   # manpage “应用相关”信息密度是真的低
+crontab: invalid option -- &#39;-&#39;  # 出现这两行字很正常，许多命令（如 ssh）没有专用的 help
+crontab: usage error: unrecognized option  # 输入「错误」的选项时，便会出现简单的使用说明。
+usage:  crontab [-u user] file
         crontab [ -u user ] [ -i ] { -e | -l | -r }
                 (default operation is replace, per 1003.2)
         -e      (edit user&#39;s crontab)
@@ -2110,7 +2080,7 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
         -i      (prompt before deleting user&#39;s crontab)
 </code></pre></div>
 
-<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从 stdin 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
+<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
 <p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span>
 <span class="c1"># 下面是几个示例</span>
@@ -2125,10 +2095,10 @@ usage:  crontab [-u user] file                   # manpage “应用相关”信
 
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
-<p><strong>另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考</strong><a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4">Systemd 定时器教程</a><strong>进行配置</strong>。</p>
+<p><strong>另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考 <a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4">Systemd 定时器教程</a>进行配置。</strong></p>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>
-<dt><a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">解密 TTY —— 李秋豪的博客</a></dt>
+<dt><em>The TTY demystified</em>: <a href="http://www.linusakesson.net/programming/tty/">原文</a> <a href="https://www.cnblogs.com/liqiuhao/p/9031803.html">中文翻译</a></dt>
 <dd>
 <p>本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）</p>
 </dd>
