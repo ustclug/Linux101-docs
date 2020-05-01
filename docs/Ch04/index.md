@@ -81,50 +81,6 @@ htop 示例 | [htop 主页](https://hisham.hm/htop/)
 
 （F10 被终端程序占用了怎么办？其实 htop 中的选项是可以用鼠标点击的，点一下 Done 即可返回。）
 
-!!! example "小实验"
-
-    通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。
-
-    打开任何一个文本编辑器（或者之前安装的 VSCode），将以下内容复制粘贴进去，命名文件为 `forking.c`：
-
-    ```c
-    #include <stdio.h>
-    #include <unistd.h>  //unix standard header，提供 POSIX 标准 api
-
-    int main() {
-        for (int i = 0; i < 3; i++)
-        {
-            int pid = fork();   //fork 系统调用，全面复制父进程所有信息。
-            if (pid == 0)   //子进程返回 pid=0。
-            {
-                printf("I'm child, forked in %d turn\n", i);
-            } else if (pid < 0) //fork 失败，pid 为负值。
-            {
-                printf("%d turn error\n", i);
-            } else  //父进程返回子进程 pid。
-            {
-                printf("I'm father of %d turn, child PID = %d\n", i, pid);
-            }
-            sleep(3);
-        }
-        sleep(1000);
-        return 0;
-    }
-    ```
-
-    随后，在文件所在目录下打开 shell，运行 `gcc forking.c -o forking && chmod +x forking && ./forking` 三连，就可以在另一终端打开 htop 查看成果了。
-
-    ![forking](images/forking.png)
-
-    按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
-
-    同时由 shell 进程创立的 forking 进程的进程组号（PGRP）为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程， PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。
-
-    接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
-
-!!! question "问题"
-    上述实验中，输入 `./forking` 后一共产生了多少个进程呢，可以不看 htop 就推算出来吗？
-
 #### 会话——前台与后台 {#session}
 
 而**会话**（session）可以说是面向用户的登录出现的概念。当用户从终端登录进入 shell，以该 shell 为会话首进程展开本次会话。一个会话中通常包含着多个进程组，分别完成不同的工作。用户退出时，这个会话会结束，但有些进程仍然以该会话标识符（session ID）驻留系统中继续运行。
@@ -662,6 +618,12 @@ job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 ```
 
 等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）
+
+!!! tip "标准输入，标准输出和标准错误"
+
+    如果你还没有学习「计算机程序设计」课程，或者已经忘光了程序设计课的内容，你可能会对这三个词感到迷惑。对于命令行程序来说，它可以从标准输入 (stdin) 获得用户输入的信息，向标准输出 (stdout) 输出文本，向标准错误 (stderr) 输出日志和错误信息。
+
+    这个概念并非 Linux 所独有的。Windows 的命令行程序同样有这三类输入输出。它们是「标准流」(Standard streams)。
 
 设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
 

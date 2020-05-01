@@ -81,6 +81,50 @@ NSpgid:	1
 - U: 重新挂载所有的文件系统为只读状态。
 - B: 立刻重启系统。
 
+## 关于 `fork()` {#fork}
+
+通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。
+
+程序文件 `forking.c`：
+
+```c
+#include <stdio.h>
+#include <unistd.h>  // Unix standard header，提供 POSIX 标准 API
+
+int main() {
+    for (int i = 0; i < 3; i++)
+    {
+        int pid = fork();   // fork 系统调用，全面复制父进程所有信息。
+        if (pid == 0)       // 子进程返回 pid=0。
+        {
+            printf("I'm child, forked in %d turn\n", i);
+        } else if (pid < 0) // fork 失败，pid 为负值。
+        {
+            printf("%d turn error\n", i);
+        } else  // 父进程返回子进程 pid。
+        {
+            printf("I'm father of %d turn, child PID = %d\n", i, pid);
+        }
+        sleep(3);
+    }
+    sleep(1000);
+    return 0;
+}
+```
+
+随后，在文件所在目录下打开 shell，运行 `gcc forking.c -o forking && ./forking`，就可以在另一终端打开 htop 查看成果了。
+
+![forking](images/forking.png)
+
+按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
+
+同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程， PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。
+
+接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
+
+!!! question "问题"
+    上述实验中，输入 `./forking` 后一共产生了多少个进程呢，可以不看 htop 就推算出来吗？
+
 ## 编程处理信号 {#signal-programming}
 
 你可能会注意到，有些程序对你按下 Ctrl + C 的操作会有一些独特的响应，例如 `ping`，如果使用 Ctrl + C 键盘中断 (SIGINT)，在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。
