@@ -631,7 +631,7 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
 
 !!! example ".service 文件示例（以 jupyter 为例）"
 
-    首先使用文本编辑器在 `/usr/lib/systemd/system` 文件夹下创建 jupyter.service 文件。并做如下编辑。
+    首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并做如下编辑。
 
     ```ini
     [Unit]
@@ -641,8 +641,6 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
     PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
     ExecStart=/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项
     config=/root/.jupyter/jupyter_notebook_config.py    # 应用对应的配置文件
-    User=root  
-    Group=root 
     WorkingDirectory=/root
     Restart=always                  # 重启模式，这里是无论因何退出都重启
     RestartSec=10                   # 退出后多少秒重启
@@ -651,7 +649,7 @@ tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单�
     WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
     ```
 
-将写好的配置文件保存到 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
+将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
 
 ```shell
 $ systemctl start jupyter
