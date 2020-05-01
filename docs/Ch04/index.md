@@ -436,7 +436,7 @@ nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 
 ### 命令行多终端方案 —— tmux {#tmux}
 
-![](images/tmux.gif){: width=80% }
+![](images/tmux.gif){: width=70% }
 
 !!! info "问题产生了！"
     一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session 啊，那我在 ssh 的时候只有一个前台进程不是很不方便（同时有几个程序需要交互）。而且上面说过如果 ssh 网络断开，视为 pty 终端被关闭，也就意味着前后台一起收到 SIGHUP 一起去世，好不容易设置好的临时变量什么的还得重设。
