@@ -2040,7 +2040,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <p>其实只需要编写一个简单的 .service 文件即可。</p>
 <div class="admonition example">
 <p class="admonition-title">.service 文件示例（以 jupyter 为例）</p>
-<p>首先使用文本编辑器在 <code>/usr/lib/systemd/system</code> 文件夹下创建 jupyter.service 文件。并做如下编辑。</p>
+<p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并做如下编辑。</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span>
 
@@ -2048,8 +2048,6 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span>
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项</span>
 <span class="na">config</span><span class="o">=</span><span class="s">/root/.jupyter/jupyter_notebook_config.py    # 应用对应的配置文件</span>
-<span class="na">User</span><span class="o">=</span><span class="s">root  </span>
-<span class="na">Group</span><span class="o">=</span><span class="s">root </span>
 <span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root</span>
 <span class="na">Restart</span><span class="o">=</span><span class="s">always                  # 重启模式，这里是无论因何退出都重启</span>
 <span class="na">RestartSec</span><span class="o">=</span><span class="s">10                   # 退出后多少秒重启</span>
@@ -2059,7 +2057,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 </code></pre></div>
 
 </div>
-<p>将写好的配置文件保存到 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
+<p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
 <div class="highlight"><pre><span></span><code>$ systemctl start jupyter
 $ systemctl stop jupyter
 $ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable 表示标记服务的自动启动</span>
