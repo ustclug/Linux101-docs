@@ -466,7 +466,7 @@ $ tmux
     |↑ ↓ ← →|焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。|
     |d (detach)|从 tmux 中脱离，回到命令行界面|
     |z (zoom)|将 pane 暂时全屏，再按一次恢复原状|
-    |c|建新窗口|
+    |c|新建窗口|
     |,|为窗口命名|
     |s|列出所有 session|
 
@@ -621,6 +621,36 @@ $ service --status-all
 tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在 pty 的输入定向到由服务端掌控的被绿框框选的特定 pty 中，从而完成对各个 pane 的交互。
 
 「<em>什么？客户端掉线了？客户端 pty 没了？没关系，眼前这几个 pty 我服务端看着呢，运行在它们上的程序又没有失去终端，不会有事的，顶多断线重连呗。</em>」
+
+### 自定义服务 {#customizing-service}
+
+如果我想将一个基于 web 的应用（如基于 web 的 python 交互应用）做为局域网内 web 服务，以便于在 iPad 上访问。那么如何将其注册为 systemd 服务呢？
+
+其实只需要编写一个简单的 .service 文件即可。
+
+!!! example ".service 文件示例"
+
+    ```text
+    [Unit]
+    Description=Jupyter Notebook    # 该服务简要描述
+
+
+    [Service]
+    PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
+    ExecStart=/usr/local/bin/jupyter-notebook --allow-root  #使用绝对路径标明的命令及选项
+    config=/root/.jupyter/jupyter_notebook_config.py    # 应用对应的配置文件
+    User=root   
+    Group=root  
+    WorkingDirectory=/root  
+    Restart=always                  # 重启模式，这里是无论因何退出都重启
+    RestartSec=10                   # 退出后多少秒重启
+
+
+    [Install]
+    WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
+    ```
+
+在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。
 
 ### 例行性任务 {#cron}
 
