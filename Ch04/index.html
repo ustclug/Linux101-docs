@@ -1868,13 +1868,9 @@ $ tmux
 <h4 id="daemon-creation">守护进程的产生<a class="headerlink" href="#daemon-creation" title="Permanent link">&para;</a></h4>
 <p>许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。</p>
 <p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该 tty 输出，可见退出 session 的意义在于放弃该 tty。</p>
-<div class="admonition info">
-<p class="admonition-title">两次 fork</p>
-<p>然而许多信息来源表明，上面 shell 所创建的进程应该再经历一次 fork，理由则是杜绝最后成为组长的进程获得自己的终端。但是这一描述貌似越来越偏离实际。</p>
-</div>
-<p>打开 htop，按 pid 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 sid 与 自身 pid 相同。</p>
+<p>打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。</p>
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
-<p>在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。</p>
+<p>在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。service 命令主要是为了跨 <code>init</code> 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。</p>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status-all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
 <div class="highlight"><pre><span></span><code>$ service --status-all
  <span class="o">[</span> - <span class="o">]</span>  atftpd
@@ -1889,14 +1885,15 @@ $ tmux
  ……
 </code></pre></div>
 
+<details class="note"><summary>/etc/init.d 目录与 systemd</summary><p>/etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 支持从此目录中加载服务。</p>
+</details>
 <p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
 <div class="admonition example">
 <p class="admonition-title">服务列表示例</p>
 <p><img alt="services" src="images/services.png" /></p>
 </div>
 <p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：</p>
-<details class="info"><summary>查看两个命令的 tldr 文档</summary><p><del>tldr 总是如此言简意赅。</del></p>
-<div class="highlight"><pre><span></span><code>$ tldr systemctl
+<details class="info"><summary>查看两个命令的 tldr 文档</summary><div class="highlight"><pre><span></span><code>$ tldr systemctl
 systemctl
 Control the systemd system and service manager.
 
@@ -1938,10 +1935,10 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 
 </details>
 <h3 id="customizing-service">自定义服务<a class="headerlink" href="#customizing-service" title="Permanent link">&para;</a></h3>
-<p>如果我想将一个基于 web 的应用（如基于 web 的 python 交互应用）做为局域网内 web 服务，以便于在 iPad 上访问。那么如何将其注册为 systemd 服务呢？</p>
+<p>如果我想将一个基于 Web 的应用（如基于 Web 的 Python 交互应用）做为局域网内 Web 服务，以便于在其他设备上访问。那么如何将其注册为 systemd 服务呢？</p>
 <p>其实只需要编写一个简单的 .service 文件即可。</p>
 <div class="admonition example">
-<p class="admonition-title">编写 .service 文件并运行（以 jupyter 为例）</p>
+<p class="admonition-title">编写 .service 文件并运行（以 Jupyter Notebook 为例）</p>
 <p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并做如下编辑。</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span>
@@ -1961,7 +1958,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <div class="highlight"><pre><span></span><code>$ systemctl start jupyter
 $ systemctl stop jupyter
 $ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable 表示标记服务的自动启动</span>
-$ systemctl disable jupyter <span class="c1"># 这个自然是取消自启了</span>
+$ systemctl disable jupyter <span class="c1"># 取消自启</span>
 </code></pre></div>
 
 </div>
@@ -1995,7 +1992,7 @@ Service atd (or atrun) should be running for the actual executions.
 job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m">16</span>:16:00 <span class="m">2020</span>   <span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
 
-<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）</p>
+<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（需要本地安装 mail 相关的服务。）</p>
 <div class="admonition tip">
 <p class="admonition-title">标准输入，标准输出和标准错误</p>
 <p>如果你还没有学习「计算机程序设计」课程，或者已经忘光了程序设计课的内容，你可能会对这三个词感到迷惑。对于命令行程序来说，它可以从标准输入 (stdin) 获得用户输入的信息，向标准输出 (stdout) 输出文本，向标准错误 (stderr) 输出日志和错误信息。</p>
@@ -2018,6 +2015,10 @@ usage:  crontab [-u user] file
 </code></pre></div>
 
 <p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
+<div class="admonition note">
+<p class="admonition-title"><code>crontab -e</code> 与 <code>crontab -r</code></p>
+<p>E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。</p>
+</div>
 <p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span>
 <span class="c1"># 下面是几个示例</span>
