@@ -420,15 +420,11 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 
 实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该 tty 输出，可见退出 session 的意义在于放弃该 tty。
 
-!!! info "两次 fork"
-
-    然而许多信息来源表明，上面 shell 所创建的进程应该再经历一次 fork，理由则是杜绝最后成为组长的进程获得自己的终端。但是这一描述貌似越来越偏离实际。
-
-打开 htop，按 pid 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 sid 与 自身 pid 相同。
+打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。
 
 ### 服务管理 {#services}
 
-在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。
+在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。service 命令主要是为了跨 `init` 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。
 
 要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
@@ -446,6 +442,10 @@ $ service --status-all
  ……
 ```
 
+??? note "/etc/init.d 目录与 systemd"
+
+    /etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 支持从此目录中加载服务。
+
 上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
 
 !!! example "服务列表示例"
@@ -455,8 +455,6 @@ $ service --status-all
 至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：
 
 ??? info "查看两个命令的 tldr 文档"
-
-    <del>tldr 总是如此言简意赅。</del>
 
     ```text
     $ tldr systemctl
@@ -501,11 +499,11 @@ $ service --status-all
 
 ### 自定义服务 {#customizing-service}
 
-如果我想将一个基于 web 的应用（如基于 web 的 python 交互应用）做为局域网内 web 服务，以便于在 iPad 上访问。那么如何将其注册为 systemd 服务呢？
+如果我想将一个基于 Web 的应用（如基于 Web 的 Python 交互应用）做为局域网内 Web 服务，以便于在其他设备上访问。那么如何将其注册为 systemd 服务呢？
 
 其实只需要编写一个简单的 .service 文件即可。
 
-!!! example "编写 .service 文件并运行（以 jupyter 为例）"
+!!! example "编写 .service 文件并运行（以 Jupyter Notebook 为例）"
 
     首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并做如下编辑。
 
@@ -530,7 +528,7 @@ $ service --status-all
     $ systemctl start jupyter
     $ systemctl stop jupyter
     $ systemctl enable jupyter  # enable 表示标记服务的自动启动
-    $ systemctl disable jupyter # 这个自然是取消自启了
+    $ systemctl disable jupyter # 取消自启
     ```
 
 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。
@@ -573,7 +571,7 @@ $ at now + 1min
 job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 ```
 
-等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。（但这里很有可能发送不到，因为需要本地安装 mail 相关的服务。）
+等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 `/var/mail/$USER` 就可以看到输出了。（需要本地安装 mail 相关的服务。）
 
 !!! tip "标准输入，标准输出和标准错误"
 
@@ -603,6 +601,10 @@ usage:  crontab [-u user] file
 ```
 
 可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 `crontab -e` 来对本用户任务进行编辑。
+
+!!! note "`crontab -e` 与 `crontab -r`"
+
+    E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。
 
 crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：
 
