@@ -286,7 +286,7 @@ $ kill -l #显示所有信号名称
 
     ![type_kill](images/type_kill.png)
 
-    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](/Appendix/glossary/#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
+    我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为[内建命令](../Appendix/glossary.md#builtin-command)。行为与 man 命令的文档不一定相同（比如 `/bin/kill %1` 会报错，而 kill 内建命令不会），需要小心此类命令的行为。
 
 #### pgrep / pkill、 killall 等
 
@@ -352,7 +352,7 @@ $ nohup ping 101.ustclug.org &
 nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 ```
 
-很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被[重定向](/Ch09/#redirect)到 nohup.out，也可以通过重定向手段自定义存放输出的文件。
+很简单的，在需要屏蔽 SIGHUP 的程序前添加 nohup，运行后提示：输出将被[重定向](../Ch09/index.md#redirect)到 nohup.out，也可以通过重定向手段自定义存放输出的文件。
 
 ### 命令行多终端方案 —— tmux {#tmux}
 
