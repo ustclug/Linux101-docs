@@ -61,6 +61,7 @@ nav:
     - 三：软件安装与文件操作:
         - 讲义: Ch03/index.md
         - 拓展阅读: Ch03/supplement.md
+        - 思考题解答: Ch03/solution.md
     - 四：进程、前后台、服务与例行性任务:
         - 讲义: Ch04/index.md
         - 拓展阅读: Ch04/supplement.md
