@@ -1,6 +1,6 @@
-# 进程、前后台、服务与例行性任务
+# 进程、前后台、服务与例行性任务 {#process-background-service-crontab}
 
-!!! warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
+!!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "摘要"
 
