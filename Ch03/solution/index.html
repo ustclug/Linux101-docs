@@ -11,7 +11,7 @@
         <meta name="description" content="Linux 101 课程讲义">
       
       
-        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Appendix/glossary/">
+        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Ch03/solution/">
       
       
         <meta name="author" content="LUG@USTC">
@@ -21,7 +21,7 @@
     
     
       
-        <title>词汇表 - Linux 101</title>
+        <title>思考题解答 - Linux 101</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#solution" class="md-skip">
           跳转至
         </a>
       
@@ -89,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              词汇表
+              思考题解答
             
           </span>
         </div>
@@ -451,10 +451,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       三：软件安装与文件操作
@@ -478,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Ch03/" title="讲义" class="md-nav__link">
+    <a href="../" title="讲义" class="md-nav__link">
       讲义
     </a>
   </li>
@@ -490,7 +492,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Ch03/supplement/" title="拓展阅读" class="md-nav__link">
+    <a href="../supplement/" title="拓展阅读" class="md-nav__link">
       拓展阅读
     </a>
   </li>
@@ -500,11 +502,74 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../Ch03/solution/" title="思考题解答" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        思考题解答
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="思考题解答" class="md-nav__link md-nav__link--active">
       思考题解答
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#meta" class="md-nav__link">
+    Матрёшка
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-package-you-need" class="md-nav__link">
+    查找需要安装的软件包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hard-and-soft-links" class="md-nav__link">
+    硬链接与软链接的判断
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-loss-by-tar" class="md-nav__link">
+    错误使用 tar 命令导致的文件丢失
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -841,12 +906,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
     <label class="md-nav__link" for="nav-13">
       附录
@@ -868,129 +931,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        词汇表
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="词汇表" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Appendix/glossary/" title="词汇表" class="md-nav__link">
       词汇表
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#operating-system" class="md-nav__link">
-    操作系统
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gnu" class="md-nav__link">
-    GNU：GNU is Not UNIX!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#terminal" class="md-nav__link">
-    终端 (Terminal) 与控制台 (Console)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    壳层 (Shell)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kernel" class="md-nav__link">
-    内核 (Kernel)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#irq" class="md-nav__link">
-    中断 (IRQ, Interrupt Request)
-  </a>
-  
-    <nav class="md-nav" aria-label="中断 (IRQ, Interrupt Request)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#clock-irq" class="md-nav__link">
-    时钟中断
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-call" class="md-nav__link">
-    系统调用 (System Call)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#posix" class="md-nav__link">
-    POSIX 标准
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#builtin-command" class="md-nav__link">
-    内建命令
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#file-descriptor" class="md-nav__link">
-    文件描述符
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1000,7 +945,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../man/" title="man 文档的一些示例" class="md-nav__link">
+    <a href="../../Appendix/man/" title="man 文档的一些示例" class="md-nav__link">
       man 文档的一些示例
     </a>
   </li>
@@ -1012,7 +957,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../distribution/" title="其他的 Linux 发行版：技术差异简介" class="md-nav__link">
+    <a href="../../Appendix/distribution/" title="其他的 Linux 发行版：技术差异简介" class="md-nav__link">
       其他的 Linux 发行版：技术差异简介
     </a>
   </li>
@@ -1061,84 +1006,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operating-system" class="md-nav__link">
-    操作系统
+  <a href="#meta" class="md-nav__link">
+    Матрёшка
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#gnu" class="md-nav__link">
-    GNU：GNU is Not UNIX!
+  <a href="#finding-package-you-need" class="md-nav__link">
+    查找需要安装的软件包
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#terminal" class="md-nav__link">
-    终端 (Terminal) 与控制台 (Console)
+  <a href="#hard-and-soft-links" class="md-nav__link">
+    硬链接与软链接的判断
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    壳层 (Shell)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kernel" class="md-nav__link">
-    内核 (Kernel)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#irq" class="md-nav__link">
-    中断 (IRQ, Interrupt Request)
-  </a>
-  
-    <nav class="md-nav" aria-label="中断 (IRQ, Interrupt Request)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#clock-irq" class="md-nav__link">
-    时钟中断
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-call" class="md-nav__link">
-    系统调用 (System Call)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#posix" class="md-nav__link">
-    POSIX 标准
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#builtin-command" class="md-nav__link">
-    内建命令
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#file-descriptor" class="md-nav__link">
-    文件描述符
+  <a href="#data-loss-by-tar" class="md-nav__link">
+    错误使用 tar 命令导致的文件丢失
   </a>
   
 </li>
@@ -1155,7 +1045,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/glossary.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch03/solution.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1163,61 +1053,83 @@
                   
                 
                 
-                <h1 id="_1">词汇表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<div class="admonition failure">
-<p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
+                <h1 id="solution">思考题解答<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
+<h2 id="meta">Матрёшка<a class="headerlink" href="#meta" title="Permanent link">&para;</a></h2>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p><code>man</code> 和 <code>tldr</code> 的用途是？</p>
 </div>
-<p><strong>在本次 Linux 101 介绍活动中，你可能会遇到许多新名词。为了便于大致理解概念与作为讲义辅助查阅，我们将本讲义涉及到的基本概念编写于此，正文可在适当位置加以引用。</strong></p>
-<p><em>部分词条并非使用专业而严格的方式解释，仅为快速理解而编写，更加严格的定义可参阅各大百科。</em></p>
-<h2 id="operating-system">操作系统<a class="headerlink" href="#operating-system" title="Permanent link">&para;</a></h2>
-<p>操作系统是管理计算机的软硬件资源，为上层应用程序提供服务的系统程序。当然现在，「操作系统」一词在不同的场合指向的东西是不同的：有时候，「操作系统」指代操作系统内核；有时候，「操作系统」指代从内核到用户界面与（预装的）应用的一个整体；而有的时候，「操作系统」指代内核与「偏向底层」的程序（例如 C 运行时库）的整体。</p>
-<p>关于操作系统的更详细的综述，可以查看<a href="../../Ch01/">第一章</a>。<a href="../../Ch04/">第四章</a>中关于进程等的部分，也与操作系统概念联系紧密。</p>
-<h2 id="gnu">GNU：GNU is Not UNIX!<a class="headerlink" href="#gnu" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>时间回到上世纪 70-80 年代，一代操作系统巨星 UNIX 在 AT&amp;T 的商业化策略下选择了闭源的策略，不再提供源代码给使用者。这不仅意味着金钱上的制约，更是一种对修改研究软件权力的制约。想想看，如果想对一个文本编辑器添加一个小功能，却由于版权原因被逼写一份自己的编辑器，可以说相当令人绝望。于是，Richard Stallman 带着他的 GNU Emacs 站了出来，号召 hacker 们搭建起自由的软件平台——GNU。</p>
+<details class="info"><summary>解答</summary><p>答案非常简单：<code>man man</code> / <code>man tldr</code>, 和 <code>tldr man</code> / <code>tldr tldr</code> 即可。</p>
+</details>
+<h2 id="finding-package-you-need">查找需要安装的软件包<a class="headerlink" href="#finding-package-you-need" title="Permanent link">&para;</a></h2>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p><code>apt</code> 有一些相关的小工具，可能可以帮到你。</p>
 </div>
-<p>正如标题所见，GNU 的全称使用了一种递归，表达了与 Unix 这种对“自由”的限制决裂的态度。</p>
-<p>而进入 GNU/Linux 世界，便意味着将一直与 GNU 软件打交道。先看看一堆字母 g 开头的应用程序：</p>
-<ul>
-<li>gcc: GNU 的 C 和 C++ 编译器</li>
-<li>gdb: GNU 程序调试器</li>
-<li>gzip: gz 格式压缩与解压缩工具</li>
-<li>GNOME: 隶属于 GNU 项目的桌面环境</li>
-<li>gimp: GNU 图像编辑工具</li>
-</ul>
-<p>它们的首字母 g 都是 GNU 的缩写（当然有一些例外，例如 grep，一个字符串模式匹配工具）。许多 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件；还有<a href="https://www.gnu.org/software/">更多优秀的软件</a>，被自由软件爱好者维护、分享……选择 Linux，很大程度上是一种对极客精神与开源文化的认同。</p>
-<p>这里有一份<a href="https://www.redhat.com/en/command-line-heroes">Redhat 公司制作的录音节目 Command Line Heroes</a>，纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。</p>
-<h2 id="terminal">终端 (Terminal) 与控制台 (Console)<a class="headerlink" href="#terminal" title="Permanent link">&para;</a></h2>
-<p>还记得在 Unix 诞生之前由通用电器公司主持的 Multics 计划吗？对了，就是可以让用户把一套键盘显示器往墙上一插，直接连接到远端主机的计划。当时键盘和显示器连为一体，称为终端（terminal）。而主机自带的一套键盘与屏幕只能给系统管理员使用，称为控制台 (<abbr title="con- 表强调，-sol 整体，词源同 solid —— 即构成一个整体，整体控制的工具。">console</abbr>)，用来输出启动 debug 信息（现在的 Linux 系统如果因故障而不得不<abbr title="telinit 1">进入单用户修复模式</abbr>，则只有一个终端 <code>/dev/console</code> 开启）。</p>
-<p>然而随着时代的发展，这种模式逐渐被家庭电脑的分布式主机取代，我们不需要，也没有多套终端了，只有显示器、键盘、鼠标。但是为了向前兼容性，我们需要假装这是一个（甚至多个）终端，所以一般发行版 <code>/dev</code> 目录下有 7 个终端 <code>tty1 ~ tty7</code>，通过 <code>ctrl + alt + F1 ~ F7</code> 切换键盘与显示器与哪个终端相对应。</p>
-<p>再后来，随着时代发展，终端需要出现在图形界面上了，然而承载图形界面的也是终端，所以终端里的终端就需要终端模拟器来实现了。由此，出现在图形界面上的终端才叫终端模拟器。</p>
-<p><strong>注意：终端不是 Shell，尽管它们经常被弄混淆。</strong></p>
-<p>参考阅读: <a href="https://www.linuxdashen.com/%E4%BD%A0%E7%9C%9F%E7%9A%84%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%88%E7%AB%AF%E5%90%97%EF%BC%9F">你真的知道什么是终端吗？</a></p>
-<h2 id="shell">壳层 (Shell)<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
-<p>但凡使用 Linux，必然要与之交互。广义上讲，能与用户交互的程序都符合 shell 的定义（比如图形界面可以识别鼠标位置信息，点击操作和键盘快捷键）。然而 Linux 本身以命令行工具为主，而 shell 狭义上就是命令行解释工具，即允许用户在一定程度上「说人话」来调用程序。</p>
-<p>Shell 是非常重要的程序。如果发行版中根本没有 shell，用户便无法控制计算机了。</p>
-<p>没有图形界面时，shell 一般为控制台 (tty) 的子进程，在图形界面上 shell 建立在虚拟终端 (pty, pseudo tty) 之上。顺带一提，<code>ssh</code> 的父进程也是一个 pty。</p>
-<h2 id="kernel">内核 (Kernel)<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
-<p>有壳 (shell) 必有核 (kernel)，只有这里的核才是操作系统本体，真正负责调度程序，管理硬件的部分。而 Linux 发行版本身则是一个套装，意味着一个核用不同的软件包装出来，其中体现着发行版之间不同的理念。</p>
-<h2 id="irq">中断 (IRQ, Interrupt Request)<a class="headerlink" href="#irq" title="Permanent link">&para;</a></h2>
-<p>你正在看书，被电话铃声打断，接完电话，继续读书。这里就很好地阐释了中断的基本原理：电话铃是中断的核心，电话号决定了是谁打来的，你要使用什么语言回应。</p>
-<p>从程序的角度来看，中断对应着程序正常执行逻辑被打断，跳转到特定的中断处理程序。上面的电话铃代表是哪个硬件上产生的中断信号，告诉 CPU 应当如何处理。处理完之后自然回到正在运行的程序中（或者如果电话中老妈让你把饭热上，便对应 CPU 进行调度切换更高「优先级」任务的过程）。</p>
-<p>在中断机制中，中断号与其处理程序的映射尤为重要，这些映射储存在中断向量表中。</p>
-<p>没有中断，计算机仍将停留在批处理年代的早期，只能管理 IO，无法进行调度。</p>
-<p>参考阅读：<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-linuxkernelint/index.html">Linux 内核中断内幕</a></p>
-<h3 id="clock-irq">时钟中断<a class="headerlink" href="#clock-irq" title="Permanent link">&para;</a></h3>
-<p>操作系统之所以可以单核多任务（并发），很大程度上是由于时钟中断的存在。时钟电路每隔一段时间会发送时钟中断，在收到这个中断之后，CPU 就会保存当前执行的程序的状态，然后执行操作系统的调度程序，调度程序会（根据调度算法）选择下一个执行的程序。</p>
-<h2 id="system-call">系统调用 (System Call)<a class="headerlink" href="#system-call" title="Permanent link">&para;</a></h2>
-<p>如果说进程调度体现了系统进程与资源的管理作用，那么系统调用体现的是系统为进程提供服务的功能。操作系统既然提供了对硬件的抽象，那么必然要让程序去使用这些抽象。于是系统调用可以按照其提供的抽象分为针对进程的，针对文件的，针对内存的，针对用户的调用。除此之外还有网络管理以及调节操作系统自身的调用。我们所熟悉的各种操作：例如读写磁盘文件、程序分配堆内存（例如 <code>malloc()</code>）、在终端上输入输出等，都需要经过系统调用。</p>
-<p>系统调用运行在操作系统核心，为内核与用户层提供了一种通信的方式，是各用户进程「使用」操作系统的统一接口。如果没有系统调用，用户程序就需要直接操作内核来进行需要的操作，而这对于现代操作系统来说显然是无法接受的。</p>
-<h2 id="posix">POSIX 标准<a class="headerlink" href="#posix" title="Permanent link">&para;</a></h2>
-<h2 id="builtin-command">内建命令<a class="headerlink" href="#builtin-command" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$ whereis ls
-$ whereis <span class="nb">bg</span>
+<details class="info"><summary>解答</summary><p>我们可以使用 <code>apt-file</code>（需要手动安装）来查找包含某个特定文件的软件包。在运行 <code>sudo apt-file update</code> 建立索引之后，可以用 <code>apt-file search 文件名</code> 来进行搜索。</p>
+<p>一个例子：</p>
+<div class="highlight"><pre><span></span><code>$ apt-file search libc++.so
+libc++-7-dev: /usr/lib/llvm-7/lib/libc++.so
+libc++-7-dev: /usr/lib/x86_64-linux-gnu/libc++.so
+libc++-8-dev: /usr/lib/llvm-8/lib/libc++.so
+libc++-8-dev: /usr/lib/x86_64-linux-gnu/libc++.so
+libc++1-7: /usr/lib/llvm-7/lib/libc++.so.1
+libc++1-7: /usr/lib/llvm-7/lib/libc++.so.1.0
+libc++1-7: /usr/lib/x86_64-linux-gnu/libc++.so.1
+libc++1-7: /usr/lib/x86_64-linux-gnu/libc++.so.1.0
+libc++1-8: /usr/lib/llvm-8/lib/libc++.so.1
+libc++1-8: /usr/lib/llvm-8/lib/libc++.so.1.0
+libc++1-8: /usr/lib/x86_64-linux-gnu/libc++.so.1
+libc++1-8: /usr/lib/x86_64-linux-gnu/libc++.so.1.0
 </code></pre></div>
 
-<h2 id="file-descriptor">文件描述符<a class="headerlink" href="#file-descriptor" title="Permanent link">&para;</a></h2>
+</details>
+<h2 id="hard-and-soft-links">硬链接与软链接的判断<a class="headerlink" href="#hard-and-soft-links" title="Permanent link">&para;</a></h2>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p>你可能需要理解 <code>ls -l</code> 输出的含义。</p>
+</div>
+<details class="info"><summary>解答</summary><p>软链接的判断非常简单。如果是软链接的话，<code>ls -l</code> 对应的文件会明确写出其指向的文件。</p>
+<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/vim
+lrwxrwxrwx 1 root root 21 Jul 21  2019 /usr/bin/vim -&gt; /etc/alternatives/vim
+</code></pre></div>
+
+<p>那么如何判断硬链接呢？我们可以试一下。</p>
+<div class="highlight"><pre><span></span><code>$ touch file
+$ ln file hardfile
+$ touch other  # 无硬链接的文件
+$ ls -l
+total 0
+-rw-r--r-- 2 user user 0 May  3 13:07 file
+-rw-r--r-- 2 user user 0 May  3 13:07 hardfile
+-rw-r--r-- 1 user user 0 May  3 13:07 others
+</code></pre></div>
+
+<p>可以注意到，<code>ls -l</code> 输出的第二列中，互为硬链接的 <code>file</code> 和 <code>hardfile</code> 的值为 2。这个值便是对应的文件拥有的硬链接个数。</p>
+<p>也可以使用 <code>stat</code> 来查看。</p>
+<div class="highlight"><pre><span></span><code>$ stat hardfile
+File: hardfile
+Size: 0             Blocks: 0          IO Block: 4096   regular empty file
+Device: fe01h/65025d    Inode: 531077      Links: 2
+Access: (0644/-rw-r--r--)  Uid: ( 1000/   taoky)   Gid: ( 1000/   taoky)
+Access: 2020-05-03 13:07:06.420556709 +0800
+Modify: 2020-05-03 13:07:06.420556709 +0800
+Change: 2020-05-03 13:07:15.500656671 +0800
+Birth: -
+</code></pre></div>
+
+</details>
+<h2 id="data-loss-by-tar">错误使用 tar 命令导致的文件丢失<a class="headerlink" href="#data-loss-by-tar" title="Permanent link">&para;</a></h2>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p><code>tar</code> 的 <code>-f</code> 的意义是什么？</p>
+</div>
+<details class="info"><summary>解答</summary><p><code>*</code> 被 shell 展开，导致命令变成了这样：</p>
+<div class="highlight"><pre><span></span><code>tar -cf file1 file2 ... target.tar
+</code></pre></div>
+
+<p>此时，<code>tar</code> 会把 <code>file2</code> 一直到 <code>target.tar</code> 打包的结果放在 <code>file1</code> 文件中，于是 <code>file1</code> 的内容就被覆盖了。</p>
+</details>
                 
               
               
@@ -1236,7 +1148,7 @@ $ whereis <span class="nb">bg</span>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../../Ch09/supplement/" title="拓展阅读" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../supplement/" title="拓展阅读" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1251,13 +1163,13 @@ $ whereis <span class="nb">bg</span>
           </a>
         
         
-          <a href="../man/" title="man 文档的一些示例" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Ch04/" title="讲义" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                man 文档的一些示例
+                讲义
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
