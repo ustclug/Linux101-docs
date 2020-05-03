@@ -1634,8 +1634,8 @@ nice -n 10 vim
 <p>加入事件这一因素后，出现<strong>阻塞态</strong> (waiting / blocked) 与前两种状态构成三循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。</p>
 <p>考虑三态循环后，又将进入循环之前的状态称为<strong>创建态</strong> (start)，退出循环状态称为<strong>终止态</strong> (terminated)。</p>
 <p>如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行。</p>
-<!-- ![](images/state.png){:width=80%} 需要引用来源 -->
-
+<p><img alt="" src="images/state.png" width="80%" />
+<p class="caption">进程状态转换图</p></p>
 <p>在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span> <span class="n">R</span><span class="o">:</span> <span class="n">running</span><span class="o">;</span> <span class="n">S</span><span class="o">:</span> <span class="n">sleeping</span><span class="o">;</span> <span class="n">T</span><span class="o">:</span> <span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span> <span class="n">Z</span><span class="o">:</span> <span class="n">zombie</span><span class="o">;</span> <span class="n">D</span><span class="o">:</span> <span class="n">disk</span> <span class="n">sleep</span>
 </code></pre></div>
