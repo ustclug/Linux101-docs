@@ -319,7 +319,7 @@ nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 
 在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被[重定向](../Ch09/index.md#redirect)到 nohup.out，也可以通过重定向手段自定义输出的文件。
 
-### 命令行多终端方案 —— tmux {#tmux}
+### 命令行多终端方案——tmux {#tmux}
 
 ![](images/tmux.gif){: width=70% }
 
