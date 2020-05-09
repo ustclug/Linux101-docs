@@ -1,6 +1,6 @@
-# 用户与用户组、文件权限、文件系统层次结构（补充材料）
+# 拓展阅读 {#supplement}
 
-## 文件系统的特殊权限位
+## 文件系统的特殊权限位 {#special-permission-bit}
 
 有一个有趣的问题：众所周知（只要你看过了本章的主要内容），存储密码的 `/etc/shadow` 只有 `root` 用户可以查看和修改。但是，我作为一个普通用户，可以使用 `passwd` 修改自己的密码。而要修改密码，就必须修改 `/etc/shadow`，而我执行的 `passwd` 程序（应该）只拥有我的权限（否则用户权限就没有任何意义了）。难道 `passwd` 有什么魔法可以去动 `/etc/shadow` 吗？
 
@@ -34,7 +34,7 @@ $ ls -l /usr/bin/sudo
 
 当然，Linux 在发展中也在尽可能减少 `setuid` 程序的使用。例如 `ping` 程序因为需要创建只能由 `root` 用户创建的原始 (raw) 的网络套接字 (socket)，在以往也是一个 `setuid` 程序。但是随着 "Capabilities" 的概念引入 Linux 内核，`ping` 不再需要 `setuid`，只需要为它设置创建原始网络套接字的 capability 即可，提高了系统的安全性。
 
-## 实际用户与有效用户
+## 实际用户与有效用户 {#uid-and-euid}
 
 于是，我们就有了另一个问题：如果 `passwd` 在执行的时候的权限是 `root` 的话，那它是怎么知道是我（而不是 `root`）执行它的呢？
 
@@ -42,7 +42,7 @@ $ ls -l /usr/bin/sudo
 
 对用户组来说，也有实际用户组 (GID) 和有效用户组 (EGID) 的区别。
 
-## 「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)
+## 「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell) {#login-and-non-login-shell}
 
 在前文中我们提到，`su` 和 `su -` 是有区别的。你也可能在学习 Linux 的时候会好奇：为什么我按下 Ctrl + Alt + F\[1-7\] 的时候出现的 TTY 会问我要用户名和密码，但是在桌面环境中点「终端」，不需要再输入用户名和密码，就可以操作。
 
