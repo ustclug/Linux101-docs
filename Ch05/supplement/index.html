@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#supplement" class="md-skip">
           跳转至
         </a>
       
@@ -647,21 +647,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#special-permission-bit" class="md-nav__link">
     文件系统的特殊权限位
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#uid-and-euid" class="md-nav__link">
     实际用户与有效用户
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shelllogin-shell-shellnon-login-shell" class="md-nav__link">
+  <a href="#login-and-non-login-shell" class="md-nav__link">
     「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)
   </a>
   
@@ -999,21 +999,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#special-permission-bit" class="md-nav__link">
     文件系统的特殊权限位
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#uid-and-euid" class="md-nav__link">
     实际用户与有效用户
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shelllogin-shell-shellnon-login-shell" class="md-nav__link">
+  <a href="#login-and-non-login-shell" class="md-nav__link">
     「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)
   </a>
   
@@ -1039,8 +1039,8 @@
                   
                 
                 
-                <h1 id="_1">用户与用户组、文件权限、文件系统层次结构（补充材料）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">文件系统的特殊权限位<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+                <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
+<h2 id="special-permission-bit">文件系统的特殊权限位<a class="headerlink" href="#special-permission-bit" title="Permanent link">&para;</a></h2>
 <p>有一个有趣的问题：众所周知（只要你看过了本章的主要内容），存储密码的 <code>/etc/shadow</code> 只有 <code>root</code> 用户可以查看和修改。但是，我作为一个普通用户，可以使用 <code>passwd</code> 修改自己的密码。而要修改密码，就必须修改 <code>/etc/shadow</code>，而我执行的 <code>passwd</code> 程序（应该）只拥有我的权限（否则用户权限就没有任何意义了）。难道 <code>passwd</code> 有什么魔法可以去动 <code>/etc/shadow</code> 吗？</p>
 <p>是的。这样的「魔法」，是由文件系统特殊权限位 <code>setuid</code> 赋予的。有三个特殊权限位：setuid, setgid 和 sticky。</p>
 <ul>
@@ -1064,11 +1064,11 @@ $ ls -l /usr/bin/sudo
 <p>所以它们可以帮你切换用户、提升权限。</p>
 <p>拥有 <code>setuid</code> 位、所有者为 <code>root</code> 的程序是非常危险的，因为稍不谨慎，它们的漏洞就会直接让普通的无权限用户获得 <code>root</code> 权限的大门，这在服务器上是及其致命的。近期，<code>sudo</code> 就爆出一个安全漏洞 (CVE-2019-18634)，对于 1.8.31 之前的版本，<code>sudo</code> 在开启了 <code>pwfeedback</code> 选项（将输入的密码显示为 * 号，而非不显示）之后，有一个缓冲区溢出漏洞可以被利用来以 <code>root</code> 的身份执行任意命令。</p>
 <p>当然，Linux 在发展中也在尽可能减少 <code>setuid</code> 程序的使用。例如 <code>ping</code> 程序因为需要创建只能由 <code>root</code> 用户创建的原始 (raw) 的网络套接字 (socket)，在以往也是一个 <code>setuid</code> 程序。但是随着 "Capabilities" 的概念引入 Linux 内核，<code>ping</code> 不再需要 <code>setuid</code>，只需要为它设置创建原始网络套接字的 capability 即可，提高了系统的安全性。</p>
-<h2 id="_3">实际用户与有效用户<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="uid-and-euid">实际用户与有效用户<a class="headerlink" href="#uid-and-euid" title="Permanent link">&para;</a></h2>
 <p>于是，我们就有了另一个问题：如果 <code>passwd</code> 在执行的时候的权限是 <code>root</code> 的话，那它是怎么知道是我（而不是 <code>root</code>）执行它的呢？</p>
 <p>在 Linux 中，有两个系统调用可以获取当前进程归属的 UID：<code>getuid()</code> 和 <code>geteuid()</code>。前者对应的是「实际用户」(Real user)，是实际运行（拥有）这个进程的用户，后者对应的是「有效用户」(Effective user)，对应拥有的权限。在运行 <code>passwd</code> 的时候，有效用户是 <code>root</code>，所以可以修改 <code>/etc/shadow</code>；而实际用户是你，所以它不会让你修改别人的密码。</p>
 <p>对用户组来说，也有实际用户组 (GID) 和有效用户组 (EGID) 的区别。</p>
-<h2 id="shelllogin-shell-shellnon-login-shell">「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)<a class="headerlink" href="#shelllogin-shell-shellnon-login-shell" title="Permanent link">&para;</a></h2>
+<h2 id="login-and-non-login-shell">「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)<a class="headerlink" href="#login-and-non-login-shell" title="Permanent link">&para;</a></h2>
 <p>在前文中我们提到，<code>su</code> 和 <code>su -</code> 是有区别的。你也可能在学习 Linux 的时候会好奇：为什么我按下 Ctrl + Alt + F[1-7] 的时候出现的 TTY 会问我要用户名和密码，但是在桌面环境中点「终端」，不需要再输入用户名和密码，就可以操作。</p>
 <p>这就在于「登录 Shell」和「非登录 Shell」的差别了。「登录 Shell」是属于你的当前会话操作中的第一个进程，一般是在你输入用户名和密码之后打开的 Shell。常见的场景有：</p>
 <ul>
