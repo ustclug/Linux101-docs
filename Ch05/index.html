@@ -764,14 +764,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#questions" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#reference" class="md-nav__link">
     引用来源
   </a>
   
@@ -1250,14 +1250,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#questions" class="md-nav__link">
     思考题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#reference" class="md-nav__link">
     引用来源
   </a>
   
@@ -1321,10 +1321,8 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 <p>在此文件中，每一行都是一个用户，每行中用户信息由冒号 <code>:</code> 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 <code>man 5 passwd</code> 查阅。</p>
 </div>
 <p>可以关注到，除了你自己以外，还有一些特殊的用户：<code>root</code>，和一大堆你素未相识的名字。下面将会进行介绍。</p>
-<div class="admonition tip">
-<p class="admonition-title">小知识：<code>/etc/passwd</code> 作用的变化</p>
-<p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
-</div>
+<details class="tip"><summary>小知识：<code>/etc/passwd</code> 作用的变化</summary><p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
+</details>
 <h4 id="root-user">根用户<a class="headerlink" href="#root-user" title="Permanent link">&para;</a></h4>
 <p>在前文中我们知道，在使用 <code>apt</code> 安装软件时，我们需要在前面加上 <code>sudo</code>。这可以使我们以根用户 (<code>root</code>) 的身份安装软件。</p>
 <p>根用户 / <code>root</code> 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类<strong>极端危险的操作</strong>）。<code>root</code> 用户的用户数据存储在 <code>/root</code> 下。</p>
@@ -1342,20 +1340,16 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 </div>
 <h4 id="system-user">系统用户<a class="headerlink" href="#system-user" title="Permanent link">&para;</a></h4>
 <p>除了你、<code>root</code> 和其他在用你的电脑/服务器的人（如果有）以外，剩下还有很多用户，如 <code>nobody</code>, <code>www-data</code> 等。它们由系统或相关程序创建，用于执行服务等系统任务。<strong>不要随意删除这些用户</strong>，以免系统运行出现问题。</p>
-<div class="admonition tip">
-<p class="admonition-title">技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</p>
-<p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
+<details class="tip"><summary>技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</summary><p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
 <p>此外，由于系统用户的特殊性，它们一般默认禁止登录。</p>
-</div>
+</details>
 <h4 id="normal-user">普通用户<a class="headerlink" href="#normal-user" title="Permanent link">&para;</a></h4>
 <p>普通用户可以登录系统，并对自己的家目录下的文件进行操作。所有普通用户的家目录都在 <code>/home/</code> 下，位于 <code>/home/username/</code> 的位置，其中 <code>username</code> 是用户名。</p>
 <p>普通用户无法直接进行修改系统配置，安装或卸载软件等操作。</p>
 <h3 id="using-su-and-sudo">切换用户：使用 <code>su</code> 和 <code>sudo</code><a class="headerlink" href="#using-su-and-sudo" title="Permanent link">&para;</a></h3>
 <h4 id="sudo"><code>sudo</code><a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h4>
 <p><code>sudo</code> 命令可以让你以另一个用户的身份执行指定的命令。当然，它最常见的用途，就是能让普通用户以 <code>root</code> 的身份执行命令：不加入其他参数，<code>sudo</code> 后面直接加命令，我们在前面的课程中也见到很多次了。</p>
-<div class="admonition tip">
-<p class="admonition-title">以 <code>root</code> 用户执行上一条命令</p>
-<p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
+<details class="tip"><summary>以 <code>root</code> 用户执行上一条命令</summary><p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
 <div class="highlight"><pre><span></span><code>$ apt update
 Reading package lists... Done
 E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
@@ -1370,16 +1364,14 @@ Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
 </code></pre></div>
 
 <p>其实，在 Shell 中，<code>!!</code> 即代表上一条命令，也可以和其他的命令结合使用。</p>
-</div>
+</details>
 <p>那么，如何以 <code>root</code> 之外的用户的身份执行命令呢？加上 <code>-u 用户名</code> 的参数即可。</p>
 <div class="highlight"><pre><span></span><code>$ sudo -u nobody id
 uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 </code></pre></div>
 
 <p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
-<div class="admonition example">
-<p class="admonition-title">修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</p>
-<p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
+<details class="example"><summary>修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</summary><p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
 <p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
 <div class="highlight"><pre><span></span><code># Allow members of group sudo to execute any command
 %sudo   ALL=(ALL:ALL) ALL
@@ -1390,7 +1382,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 </code></pre></div>
 
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
-</div>
+</details>
 <h4 id="su"><code>su</code><a class="headerlink" href="#su" title="Permanent link">&para;</a></h4>
 <p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
 <p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
@@ -1452,10 +1444,8 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 <p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
 <p>第三、四列为文件所属用户和用户组。</p>
 <p>对于每个权限，第一位 <code>r</code> 代表读取 (<strong>R</strong>ead)，第二位 <code>w</code> 代表写入 (<strong>W</strong>rite)，第三位 <code>x</code> 代表执行 (E<strong>x</strong>ecute)，<code>-</code> 代表没有对应的权限。</p>
-<div class="admonition tip">
-<p class="admonition-title">执行权限意味着什么？</p>
-<p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
-<p>而对于文件夹来说，拥有执行权限，你就可以遍历这个文件夹下的内容。以下是一个例子：</p>
+<details class="tip"><summary>执行权限意味着什么？</summary><p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
+<p>而对于文件夹来说，拥有执行权限，你就可以访问这个文件夹下的内容。以下是一个例子：</p>
 <div class="highlight"><pre><span></span><code>$ ls -l
 total 8
 -rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
@@ -1481,7 +1471,8 @@ rm: cannot remove &#39;a_folder/test&#39;: Permission denied
 $ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
 </code></pre></div>
 
-</div>
+<p>而拥有读取权限，对应的是可以列出文件夹下面存在的文件。</p>
+</details>
 <p>可以使用 <code>chmod</code> (<strong>ch</strong>ange file <strong>mod</strong>e bits) 修改权限，<code>chown</code> (<strong>ch</strong>ange file <strong>own</strong>er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。</p>
 <div class="admonition example">
 <p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
@@ -1578,19 +1569,28 @@ $ ./program
 <dt><code>/var</code></dt>
 <dd>存储会发生变化的程序相关文件。</dd>
 </dl>
-<h2 id="_2">思考题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ol>
-<li>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</li>
-<li>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</li>
-<li>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</li>
-<li>如果向一个 MP3 音频文件添加「可执行」(<code>x</code>) 属性，那么这个文件就可以被执行吗？为什么？</li>
-<li>(*) 当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</li>
-</ol>
-<!-- ## 课后阅读
-
-- -->
-
-<h2 id="_3">引用来源<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">nobody 用户</p>
+<p>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">系统用户的默认 Shell</p>
+<p>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">启用 root 用户</p>
+<p>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">文件的可执行权限</p>
+<p>如果向一个 MP3 音频文件添加「可执行」(<code>x</code>) 属性，那么这个文件就可以被执行吗？为什么？</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title"><code>sudo cd</code>?</p>
+<p>当需要浏览仅 <code>root</code> 用户可查看的文件夹时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</p>
+</div>
+<h2 id="reference">引用来源<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Passwd">维基百科上的 Passwd 词条（英语）</a></li>
 <li><a href="https://askubuntu.com/questions/118204/5958455">Simple explanation of <code>sudoers</code> file</a> - Ask Ubuntu</li>
