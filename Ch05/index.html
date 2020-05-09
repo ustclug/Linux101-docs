@@ -1433,6 +1433,24 @@ me adm cdrom sudo dip plugdev lxd
 <div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 组名
 </code></pre></div>
 
+<div class="admonition example">
+<p class="admonition-title">添加用户至 sudo 用户组</p>
+<p>在通过 <code>adduser</code> 创建了新的用户后，直接使用 <code>sudo</code> 以 <code>root</code> 身份运行程序可能会得到：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt update
+[sudo] password for me:
+me is not in the sudoers file.  This incident will be reported.
+</code></pre></div>
+
+<p>除了可以通过 <code>visudo</code> 命令编辑 <code>sudoers</code> 文件外，可以直接通过将新的用户加入到 <code>sudo</code> 用户组，以能够使用 <code>sudo</code> 命令。</p>
+<div class="highlight"><pre><span></span><code>$ sudo adduser me sudo
+</code></pre></div>
+
+<p>再此切换到新的用户即可看到使用 sudo 的提示：</p>
+<div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
+See &quot;man sudo_root&quot; for details.
+</code></pre></div>
+
+</div>
 <h2 id="file-permission">文件权限<a class="headerlink" href="#file-permission" title="Permanent link">&para;</a></h2>
 <p>在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
 <div class="highlight"><pre><span></span><code>$ ls -l
