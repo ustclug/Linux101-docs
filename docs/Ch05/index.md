@@ -212,6 +212,28 @@ $ sudo adduser --group 组名
 $ sudo adduser 用户名 组名
 ```
 
+!!! example "添加用户至 sudo 用户组"
+    在通过 `adduser` 创建了新的用户后，直接使用 `sudo` 以 `root` 身份运行程序可能会得到：
+
+    ```text
+    $ sudo apt update
+    [sudo] password for me:
+    me is not in the sudoers file.  This incident will be reported.
+    ```
+
+    除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
+
+    ```shell
+    $ sudo adduser me sudo
+    ```
+
+    再此切换到新的用户即可看到使用 sudo 的提示：
+
+    ```text
+    To run a command as administrator (user "root"), use "sudo <command>".
+    See "man sudo_root" for details.
+    ```
+
 ## 文件权限 {#file-permission}
 
 在 Linux 中，每个文件和文件夹都有自己的权限。可以使用 `ls -l` 查看当前目录中文件的详细信息。
