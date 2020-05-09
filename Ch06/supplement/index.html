@@ -60,6 +60,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#supplement" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -666,10 +671,79 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        拓展阅读
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
     
     <a href="./" title="拓展阅读" class="md-nav__link md-nav__link--active">
       拓展阅读
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#c-for" class="md-nav__link">
+    类 C 语言的 for 循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fork" class="md-nav__link">
+    Fork 炸弹
+  </a>
+  
+    <nav class="md-nav" aria-label="Fork 炸弹">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    防范方法1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    引用来源
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -926,6 +1000,72 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#c-for" class="md-nav__link">
+    类 C 语言的 for 循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fork" class="md-nav__link">
+    Fork 炸弹
+  </a>
+  
+    <nav class="md-nav" aria-label="Fork 炸弹">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    防范方法1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    引用来源
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -939,10 +1079,9 @@
                   
                 
                 
-                  <h1>拓展阅读</h1>
-                
-                <p><strong><em>以下内容为编者认为有参考价值应当提及的内容。为了不破坏章节主旨的连续性与阅读体验连续性，特置于此。</em></strong></p>
-<p>类 C 语言的 for 循环：</p>
+                <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
+<p><strong><em>以下内容为编者认为有参考价值应当提及的内容。为了不破坏章节主旨的连续性与阅读体验连续性，特置于此。</em></strong></p>
+<h2 c-style-for="c-style-for" id="c-for">类 C 语言的 for 循环<a class="headerlink" href="#c-for" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="o">((</span>assignment<span class="p">;</span>condition<span class="p">;</span>next<span class="o">))</span><span class="p">;</span><span class="k">do</span>
     command_1<span class="p">;</span>
     command_2<span class="p">;</span>
@@ -969,6 +1108,51 @@
 
 </div>
 <p>与 C 中相似，赋值和下一步执行可以放到代码之前循环语句之中执行，这里要注意一点：如果要在循环体中进行 for 中的 next 操作，记得变量要加 $，不然程序会变成死循环。</p>
+<h2 fork-bomb="fork-bomb" id="fork">Fork 炸弹<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">命令含有危险性</p>
+<p>以下的命令均包含一定的危险性，请在任何情况下都不要执行，除非你清楚你在做什么。</p>
+</div>
+<p>Fork 炸弹通过创建大量进程，以此消耗大量的系统资源，从而拖慢系统与正常进程的运行速度，增大相应的响应时间，使得操作系统的正常运作受到较大影响。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<h3 fork-bomb-theory="fork-bomb-theory" id="_1">原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>Fork 炸弹有如下的这种形式：</p>
+<div class="highlight"><pre><span></span><code>:<span class="o">(){</span> :<span class="p">|</span>: <span class="p">&amp;</span> <span class="o">}</span><span class="p">;</span>:
+</code></pre></div>
+
+<p>这是一个函数定义以及对其的调用语句，可以格式化为：</p>
+<div class="highlight"><pre><span></span><code>:<span class="o">()</span>
+<span class="o">{</span>
+    :<span class="p">|</span>: <span class="p">&amp;</span>
+<span class="o">}</span><span class="p">;</span>
+:
+</code></pre></div>
+
+<p>在 Bash 中，<code>:</code>、<code>.</code>、<code>/</code> 等一些字符也能够被用于函数命名，因此，上面的代码等价于：</p>
+<div class="highlight"><pre><span></span><code>func<span class="o">()</span>
+<span class="o">{</span>
+    func <span class="p">|</span> func <span class="p">&amp;</span>
+<span class="o">}</span><span class="p">;</span>
+func
+</code></pre></div>
+
+<p>fork 炸弹的核心是函数内容：<code>func | func &amp;</code></p>
+<ul>
+<li>第一个 func 代表递归执行这个函数。</li>
+<li>| 代表要将第一个函数的数据结果通过管道传输给后一个函数。</li>
+<li>&amp; 代表要在后台执行这一条命令，如果其中一个函数被操作系统回收，其调用产生的子函数并不会被回收。</li>
+</ul>
+<p>通过这个方式，在运行一次这个函数，会创建两个 func 函数的实例，并不断地反复调用。实例的数量会指数爆炸式地增长，最终耗尽系统的资源。</p>
+<h3 fork-bomb-prevention="fork-bomb-prevention" id="1">防范方法<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>一个有效的方式是通过修改系统配置，限制一个用户能够拥有的进程数量多少。<code>ulimit -u 30</code> 可以限制当前用户能够拥有的进程数量为 30。</p>
+<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Fork_bomb">Fork Bomb</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
