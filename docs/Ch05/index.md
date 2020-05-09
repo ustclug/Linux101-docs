@@ -393,7 +393,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
     当需要浏览仅 `root` 用户可查看的文件夹时，很多人的第一反应是 `sudo cd xxx`，但最终失败了。尝试解释这样做不可行的原因。
 
-## 引用来源 {#reference}
+## 引用来源 {#references .no-underline}
 
 * [维基百科上的 Passwd 词条（英语）](https://en.wikipedia.org/wiki/Passwd)
 * [Simple explanation of `sudoers` file](https://askubuntu.com/questions/118204/5958455) - Ask Ubuntu
