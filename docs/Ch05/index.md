@@ -283,7 +283,9 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     $ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
     ```
 
-    而拥有读取权限，对应的是可以列出文件夹下面存在的文件。
+    而拥有读取权限，对应的是可以列出文件夹下面存在的文件。可以把文件夹视为一个「文件」来看待，这个文件包含了文件夹中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 `cd` 切换当前目录到此文件夹的权限。
+
+    有关文件与文件夹权限的完整表格，可以查看 Arch Wiki 的 [File permissions and attributes](https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions) 一页。
 
 可以使用 `chmod` (**ch**ange file **mod**e bits) 修改权限，`chown` (**ch**ange file **own**er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。
 
