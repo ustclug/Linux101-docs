@@ -65,6 +65,7 @@ nav:
     - 四：进程、前后台、服务与例行性任务:
         - 讲义: Ch04/index.md
         - 拓展阅读: Ch04/supplement.md
+        - 思考题解答: Ch04/solution.md
     - 五：用户与用户组、文件权限、文件系统层次结构:
         - 讲义: Ch05/index.md
         - 拓展阅读: Ch05/supplement.md
