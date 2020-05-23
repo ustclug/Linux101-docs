@@ -69,6 +69,7 @@ nav:
     - 五：用户与用户组、文件权限、文件系统层次结构:
         - 讲义: Ch05/index.md
         - 拓展阅读: Ch05/supplement.md
+        - 思考题解答: Ch05/solution.md
     - 六：网络下载工具与 Shell 脚本:
         - 讲义: Ch06/index.md
         - 拓展阅读: Ch06/supplement.md
