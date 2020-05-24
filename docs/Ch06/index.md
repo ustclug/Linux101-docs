@@ -8,7 +8,7 @@
 
     - 在命令行黑乎乎的窗口，我要怎么下载文件？
 
-    - 如果我在命令行下结束了下载任务，会不会像一些浏览器一样使已下载部分全部白费？
+    - 在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？
 
     - Bash 语法和 C 语言类似吗？和 Powershell 类似吗？
 
@@ -156,11 +156,11 @@ Bash 也支持在同一个行中安排多个命令：
 ??? example "组命令示例"
 
     ```shell
-    ➜  ~ tree tmp 
+    ➜  ~ tree tmp
     tmp
     └── temp
     #------
-    ➜  ~ (cd tmp; ls;)            
+    ➜  ~ (cd tmp; ls;)
     temp
     ➜  ~
     #------
@@ -241,9 +241,9 @@ Bash 也支持在同一个行中安排多个命令：
 
     ```shell
     $ set one two three
-    $ echo $1 $2 $3    
+    $ echo $1 $2 $3
     one two three
-    $ shift 2          
+    $ shift 2
     $ echo $1 $2 $3
     three
     ```
@@ -293,7 +293,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
     $ echo $a
     1
     $ ((a+=1))
-    $ echo $a 
+    $ echo $a
     2
     $ echo $((a+=a/a))
     3
@@ -309,7 +309,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 | --------------------------------- | ------------------------------------------ |
 | `string1 = string2`               | 如果两个串相等，则结果为真 (true: 0)       |
 | `string1 != string2`              | 如果两个串不相等，则结果为真               |
-| `string` 或  -n string`           | 如果字符串 string 长度不为 0，则结果为真   |
+| `string` 或 `-n string`           | 如果字符串 string 长度不为 0，则结果为真   |
 | `-z string`                       | 如果字符串 string 长度为 0，则结果为真     |
 
 - 数值比较
@@ -357,7 +357,7 @@ then
 elif condition2
 then
   command2
-else 
+else
   command3
 fi
 ```
@@ -421,7 +421,7 @@ done
       done
       for (( j=1; j<=i;  j++ ))
       do
-        echo -n " ." 
+        echo -n " ."
       done
       echo ""
     done
@@ -463,7 +463,7 @@ done
            . . .
             . .
              .
-    ```    
+    ```
 
 除此之外，用于流程控制的还有 `until`（处理与 `while` 恰恰相反）、在 C 语言中同样常见的 `break n` 和 `continute n`（参数 `n` 均表示跳过 n 层循环）。
 
