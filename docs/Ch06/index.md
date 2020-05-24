@@ -571,8 +571,6 @@ Bash shell 本身提供了调试方法：
 
     尝试编写一个 shell 脚本，下载某个网页上所有的 PDF 文件（例如 [2019年春季全校《电磁学》小论文竞赛获奖名单](http://staff.ustc.edu.cn/~bjye/em/student/2019S/2019S.htm) 这个网页）。已知所有的文件都以小写的 `.pdf` 结尾，并且都在 `a` 标签的 `href` 属性中。
 
-## 课后阅读 {#extra-reading}
-
 ## 引用来源 {#references .no-underline}
 
 - [catonmat](https://catonmat.net/cookbooks)
