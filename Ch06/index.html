@@ -1495,7 +1495,7 @@
 <p>在命令行黑乎乎的窗口，我要怎么下载文件？</p>
 </li>
 <li>
-<p>如果我在命令行下结束了下载任务，会不会像一些浏览器一样使已下载部分全部白费？</p>
+<p>在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？</p>
 </li>
 <li>
 <p>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</p>
@@ -1678,11 +1678,11 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 <p>使用 <code>(命令1; 命令2; …)</code>，组命令会建立独立的 shell 子进程来执行组命令，这里的圆括号周围并不需要空格。</p>
 </li>
 </ul>
-<details class="example"><summary>组命令示例</summary><div class="highlight"><pre><span></span><code>➜  ~ tree tmp 
+<details class="example"><summary>组命令示例</summary><div class="highlight"><pre><span></span><code>➜  ~ tree tmp
 tmp
 └── temp
 <span class="c1">#------</span>
-➜  ~ <span class="o">(</span><span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span><span class="o">)</span>            
+➜  ~ <span class="o">(</span><span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span><span class="o">)</span>
 temp
 ➜  ~
 <span class="c1">#------</span>
@@ -1755,9 +1755,9 @@ I am good at JavaScript
 </li>
 </ul>
 <details class="example"><summary>范例</summary><div class="highlight"><pre><span></span><code>$ <span class="nb">set</span> one two three
-$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>    
+$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
 one two three
-$ <span class="nb">shift</span> <span class="m">2</span>          
+$ <span class="nb">shift</span> <span class="m">2</span>
 $ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
 three
 </code></pre></div>
@@ -1830,7 +1830,7 @@ $ <span class="nb">let</span> a++
 $ <span class="nb">echo</span> <span class="nv">$a</span>
 <span class="m">1</span>
 $ <span class="o">((</span><span class="nv">a</span><span class="o">+=</span><span class="m">1</span><span class="o">))</span>
-$ <span class="nb">echo</span> <span class="nv">$a</span> 
+$ <span class="nb">echo</span> <span class="nv">$a</span>
 <span class="m">2</span>
 $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</span><span class="o">+=</span>a/a<span class="k">))</span>
 <span class="m">3</span>
@@ -1859,7 +1859,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <td>如果两个串不相等，则结果为真</td>
 </tr>
 <tr>
-<td><code>string</code> 或  -n string`</td>
+<td><code>string</code> 或 <code>-n string</code></td>
 <td>如果字符串 string 长度不为 0，则结果为真</td>
 </tr>
 <tr>
@@ -1979,7 +1979,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <span class="k">elif</span> condition2
 <span class="k">then</span>
   command2
-<span class="k">else</span> 
+<span class="k">else</span>
   command3
 <span class="k">fi</span>
 </code></pre></div>
@@ -2038,7 +2038,7 @@ clear
   <span class="k">done</span>
   <span class="k">for</span> <span class="o">((</span> <span class="nv">j</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> j&lt;<span class="o">=</span>i<span class="p">;</span>  j++ <span class="o">))</span>
   <span class="k">do</span>
-    <span class="nb">echo</span> -n <span class="s2">&quot; .&quot;</span> 
+    <span class="nb">echo</span> -n <span class="s2">&quot; .&quot;</span>
   <span class="k">done</span>
   <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
 <span class="k">done</span>
