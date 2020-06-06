@@ -1,6 +1,6 @@
 # 七：Linux 上的编程
 
-!!! failure "本文主体内容已完成，但尚有几个补充小知识未完成，整体上应不影响阅读。"
+!!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "导言"
 
@@ -78,6 +78,8 @@ Hello World!
 
     ```c
     // main.c
+    #include "print.h"
+
     int main() {
       print();
       return 0;
@@ -86,6 +88,8 @@ Hello World!
 
     ```c
     // print.c
+    #include "print.h"
+
     #include <stdio.h>
 
     void print() {
@@ -149,7 +153,7 @@ void print();
 ```console
 $ gcc main.c -c  # 生成 main.o
 $ gcc print.c -c  # 生成 print.o
-$ ld main.o print.o -o main
+$ gcc main.o print.o -o main
 $ ./main
 Hello World!
 ```
@@ -160,10 +164,11 @@ Hello World!
 
 注意到我们没有添加 `-o` 选项，因为 `-c` 存在时 gcc 总会生成相同文件名（这里特指 basename，main.c 中的 main 部分）的 .o 对象文件。
 
-生成了对象文件后，我们用 `ld` 来进行链接，在相应函数调用的位置填上函数真正的地址，从而生成二进制可执行文件。
+生成了对象文件后，我们来进行链接，在相应函数调用的位置填上函数真正的地址，从而生成二进制可执行文件。
+`gcc` 这一指令会根据输入文件的类型调用相应的程序完成整个编译流程。
+在这里，虽然同样是 gcc 指令，但是由于输入的为 .o 文件，gcc 将调用链接器进行链接，从而生成最终的可执行文件。
 
-在这里，你可以把 `ld` 替换为 `gcc`，`gcc` 这一指令会根据输入文件的类型调用相应的程序完成整个编译流程，
-即 `gcc main.o print.o -o main` 也是可行的，甚至 `gcc main.c print.c -o main` 也是可行的。
+同样是这个原因，实际上使用 `gcc main.c print.c -o main` 是可以一步到位，但在接下来的内容里，你会看到另一个方案。
 
 !!! tips "gcc 的四个部分，编译的过程"
     gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
@@ -431,7 +436,7 @@ $ python3 -m venv venv
 
 正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
-实际上还在使用中的 Python，主要在 2.17、3.5——3.8 这个区间内。
+实际上还在使用中的 Python，主要在 2.7、3.5——3.8 这个区间内。
 
 Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
 在从 2 到 3 的升级中，一方面众多底层语法都发生了改变，使得迁移异常麻烦。
