@@ -1364,8 +1364,8 @@
                 
                 
                 <h1 id="linux">七：Linux 上的编程<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
-<div class="admonition failure">
-<p class="admonition-title">本文主体内容已完成，但尚有几个补充小知识未完成，整体上应不影响阅读。</p>
+<div class="admonition success">
+<p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
@@ -1425,6 +1425,8 @@
 <p>如果你不会，别急，这里将做一个简单的介绍：</p>
 <p>假设你拥有一下两个文件：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
+<span class="cp">#include</span> <span class="cpf">&quot;print.h&quot;</span><span class="cp"></span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">print</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1432,6 +1434,8 @@
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1">// print.c</span>
+<span class="cp">#include</span> <span class="cpf">&quot;print.h&quot;</span><span class="cp"></span>
+
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
@@ -1488,7 +1492,7 @@
 <p>我们将依次编译链接，生成目标的二进制可执行程序。让我们看一下命令：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$</span> gcc main.c -c  <span class="c1"># 生成 main.o</span>
 <span class="gp">$</span> gcc print.c -c  <span class="c1"># 生成 print.o</span>
-<span class="gp">$</span> ld main.o print.o -o main
+<span class="gp">$</span> gcc main.o print.o -o main
 <span class="gp">$</span> ./main
 <span class="go">Hello World!</span>
 </code></pre></div>
@@ -1497,9 +1501,10 @@
 <code>-c</code> 会将源文件编译为对象文件（Object file，.o 这一后缀就源自单词 object 的首字母）。
 对象文件是二进制文件，不过它不可执行，因为其中需要引用外部代码的地方，是用占位数替代的，无法真正调用函数。</p>
 <p>注意到我们没有添加 <code>-o</code> 选项，因为 <code>-c</code> 存在时 gcc 总会生成相同文件名（这里特指 basename，main.c 中的 main 部分）的 .o 对象文件。</p>
-<p>生成了对象文件后，我们用 <code>ld</code> 来进行链接，在相应函数调用的位置填上函数真正的地址，从而生成二进制可执行文件。</p>
-<p>在这里，你可以把 <code>ld</code> 替换为 <code>gcc</code>，<code>gcc</code> 这一指令会根据输入文件的类型调用相应的程序完成整个编译流程，
-即 <code>gcc main.o print.o -o main</code> 也是可行的，甚至 <code>gcc main.c print.c -o main</code> 也是可行的。</p>
+<p>生成了对象文件后，我们来进行链接，在相应函数调用的位置填上函数真正的地址，从而生成二进制可执行文件。
+<code>gcc</code> 这一指令会根据输入文件的类型调用相应的程序完成整个编译流程。
+在这里，虽然同样是 gcc 指令，但是由于输入的为 .o 文件，gcc 将调用链接器进行链接，从而生成最终的可执行文件。</p>
+<p>同样是这个原因，实际上使用 <code>gcc main.c print.c -o main</code> 是可以一步到位，但在接下来的内容里，你会看到另一个方案。</p>
 <div class="admonition tips">
 <p class="admonition-title">gcc 的四个部分，编译的过程</p>
 <p>gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
@@ -1691,7 +1696,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 <h3 id="py-virsion">Python 的版本<a class="headerlink" href="#py-virsion" title="Permanent link">&para;</a></h3>
 <p>正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
-实际上还在使用中的 Python，主要在 2.17、3.5——3.8 这个区间内。</p>
+实际上还在使用中的 Python，主要在 2.7、3.5——3.8 这个区间内。</p>
 <p>Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
 在从 2 到 3 的升级中，一方面众多底层语法都发生了改变，使得迁移异常麻烦。
 另一方面，由于 Python 2 的盛行，程序 <code>python</code> 普遍指向 <code>python2</code>。
