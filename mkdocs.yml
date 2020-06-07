@@ -73,6 +73,7 @@ nav:
     - 六：网络下载工具与 Shell 脚本:
         - 讲义: Ch06/index.md
         - 拓展阅读: Ch06/supplement.md
+        - 思考题解答: Ch06/solution.md
     - 七：Linux 上的编程:
         - 讲义: Ch07/index.md
         - 拓展阅读: Ch07/supplement.md
