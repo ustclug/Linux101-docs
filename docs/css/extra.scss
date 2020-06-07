@@ -10,26 +10,20 @@
 }
 
 .md-typeset {
+	#references, .no-underline {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		border: none;
+	}
+
 	h2 {
 		padding-bottom: 0.2em;
 		border-bottom: 1px solid #d3d3d3;
-
-		&.no-underline {
-			margin-bottom: 0;
-			padding-bottom: 0;
-			border: none;
-		}
 	}
 
 	h3 {
 		padding-bottom: 0.2em;
 		border-bottom: 1px dashed #d3d3d3;
-
-		&.no-underline {
-			margin-bottom: 0;
-			padding-bottom: 0;
-			border: none;
-		}
 	}
 
 	img {

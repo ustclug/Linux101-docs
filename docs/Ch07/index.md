@@ -17,7 +17,7 @@ C 语言是大学编程语言教学中几乎必定讲解的一门编程语言。
 考虑到 Linux 内核即是用 C 语言编写的，在 Linux 上 C 语言拥有近乎系统级的支持。
 在 Linux 上开发 C 语言（以及 C++）是一件非常轻松、方便的事。
 
-### 从单文件开始 {#c-single-f}
+### 从单文件开始 {#c-single-file}
 
 现在假设我们有一份源码文件 main.c，内容如下：
 
@@ -61,7 +61,7 @@ Hello World!
 这是因为整个编译过程是成功的，gcc 没有需要报告的内容，因此保持沉默。
 这是 Unix 哲学的一部分：*Rule of Silence: When a program has nothing surprising to say, it should say nothing.*[^1]
 
-### 多文件的状况 {#c-multi-f}
+### 多文件的状况 {#c-multi-file}
 
 只在一个文件中编写代码，对于稍微大的开发都是不够的：
 对于个人维护的小项目尚可，但当你面临的是一个多人开发、模块复杂、功能繁多的大项目时（无论是在公司工程还是在实验室科研中，这都是普遍的情况），
@@ -179,7 +179,7 @@ Hello World!
 
     在这一过程中，文件经历了如下变化：`main.c` 到 `main.i` 到 `main.s` 到 `main.o` 到 `main`。
 
-### 使用构建工具（Build tool） {#c-build-tool}
+### 使用构建工具（Build tools） {#c-build-tools}
 
 上述方法在源文件较少时是比较方便的，但当我们面对的是数以千计万计的源文件（同样的，在工作或科研中这也是常见状况），我们将面临以下困难：
 
@@ -226,7 +226,7 @@ main.o: main.c print.h
 
 ```make
 main.o: main.c print.h
-    gcc main.c -c  # 一定要用 Tab 缩进而不是 4 个 / 2 个空格——这是历史遗留问题。
+	gcc main.c -c  # 一定要用 Tab 缩进而不是 4 个 / 2 个空格——这是历史遗留问题。
 ```
 
 以上内容表示如果要获得 `main.o` 这个目标，则会执行 `gcc main.c -c` 这个指令。
@@ -242,13 +242,13 @@ Makefile 的亮点在于引入了文件间的依赖关系。
 在项目较大时这能明显节省构建所需的时间，同时也能解决一些由于编译链接顺序造成的问题。
 相较与输入一大串指令，单个的 `make [target]` 甚至是仅仅 `make`，也更加优雅和方便。
 
-#### 其他的构建工具：CMake，ninja…… {#c-build-tool-other}
+#### 其他的构建工具：CMake，ninja…… {#c-build-tools-other}
 
 一个更大的工程可能有上万、上十万份源文件，如果一一写进 Makefile，那依然会异常痛苦，且几乎不可能维护。
 
 为了更好的构建程序，大家想出了“套娃”的办法：用一个程序来生成构建所需的配置，CMake 则在这一想法下诞生。
 
-CMake 在默认情况下，可以通过 `cmake` 指令生成 Makefile，再进一步进行 `make`。
+CMake 在默认情况下，可以通过 `cmake` 命令生成 Makefile，再进一步进行 `make`。
 
 对于 CMake 的讲解已经超出了本课程的讲解范围。
 CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留问题，也有新时代下的新思路。
@@ -432,7 +432,7 @@ $ python3 -m venv venv
 实际上，由于 Python 是借助一些环境变量来完成包搜索的步骤的，`source venv/bin/activate`
 其实是配置了一些环境变量，从而达到目的。这样，就实现了程序间依赖的隔离。
 
-### Python 的版本 {#py-virsion}
+### Python 的版本 {#py-versions}
 
 正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
@@ -446,20 +446,21 @@ Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本�
 但考虑到 Ubuntu、CentOS、Debian 等发行版上 `python` 仍指向 `python2`，
 显式地指定一个版本是更明智的选择。
 
-实际上，Python 2 已在 2020 年初正式宣告停止维护。
+实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。
 
-而在 3 版本中，3.5 亦将在今年年底 EOL（end of life），因此实际上选用 Python 3.6 及以上者更稳妥。
+而在 Python 3.x 版本中，3.5 亦将在今年年底 EOL（end of life），
+因此实际上选用 Python 3.6 及以上者更稳妥。
 
-### Python 的其他实现 {#py-impl}
+### Python 的其他实现 {#py-implementations}
 
 Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
 CPython 中的 C 是指此解释器是用 C 实现。
 
 相应的，Python 还有其他的一些实现：
 
-- JPython：将 Python 编译到 JVM 字节码，由 JVM 来运行；
-- pypy：相较于 CPython，实现了 JIT（just in time），性能有极大地提升；
+- JPython：将 Python 编译到 Java 字节码，由 JVM 来运行；
+- PyPy：相较于 CPython，实现了 JIT（just in time）编译器，性能有极大地提升；
 - Cython：引入了额外的语法和严密的类型系统，性能也有很大提升；
 - Numba：将 Python 编译到机器码，从而直接运行，性能也不错。
 
@@ -480,6 +481,6 @@ CPython 中的 C 是指此解释器是用 C 实现。
     尝试查询 Rust 的文档，指出 Rust 的编译器、依赖管理程序，
     介绍一下如何将 Rust 源码变为可执行程序，如何在 Rust 中引用外部包。
 
-## 引用来源 {#ref .no-underline}
+## 引用来源 {#references .no-underline}
 
 [^1]: [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html)
