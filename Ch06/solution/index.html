@@ -1153,7 +1153,7 @@
 <span class="k">done</span>
 </code></pre></div>
 
-<p>这里 <code>"${i/mp4/mp3}"</code> 实现的是将文件名（包含扩展名）中的 <code>.mp4</code> 替换为 <code>.mp3</code>.</p>
+<p>这里 <code>"${i/.mp4/.mp3}"</code> 实现的是将文件名（包含扩展名）中的 <code>.mp4</code> 替换为 <code>.mp3</code>.</p>
 <p>当然，这个脚本并不完美，表现在，如果有视频文件名为 <code>xxx.mp4.xxx.mp4</code> 的话，非扩展名部分的 <code>mp4</code> 也会变为 <code>mp3</code>。</p>
 </details>
 <h2 id="shell-2">Shell 脚本编写练习 #2<a class="headerlink" href="#shell-2" title="Permanent link">&para;</a></h2>
