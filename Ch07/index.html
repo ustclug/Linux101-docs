@@ -787,25 +787,25 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#c-single-f" class="md-nav__link">
+  <a href="#c-single-file" class="md-nav__link">
     从单文件开始
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-multi-f" class="md-nav__link">
+  <a href="#c-multi-file" class="md-nav__link">
     多文件的状况
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-build-tool" class="md-nav__link">
-    使用构建工具（Build tool）
+  <a href="#c-build-tools" class="md-nav__link">
+    使用构建工具（Build tools）
   </a>
   
-    <nav class="md-nav" aria-label="使用构建工具（Build tool）">
+    <nav class="md-nav" aria-label="使用构建工具（Build tools）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -816,7 +816,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-build-tool-other" class="md-nav__link">
+  <a href="#c-build-tools-other" class="md-nav__link">
     其他的构建工具：CMake，ninja……
   </a>
   
@@ -910,14 +910,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#py-virsion" class="md-nav__link">
+  <a href="#py-versions" class="md-nav__link">
     Python 的版本
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#py-impl" class="md-nav__link">
+  <a href="#py-implementations" class="md-nav__link">
     Python 的其他实现
   </a>
   
@@ -943,7 +943,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ref" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     引用来源
   </a>
   
@@ -1193,25 +1193,25 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#c-single-f" class="md-nav__link">
+  <a href="#c-single-file" class="md-nav__link">
     从单文件开始
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-multi-f" class="md-nav__link">
+  <a href="#c-multi-file" class="md-nav__link">
     多文件的状况
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-build-tool" class="md-nav__link">
-    使用构建工具（Build tool）
+  <a href="#c-build-tools" class="md-nav__link">
+    使用构建工具（Build tools）
   </a>
   
-    <nav class="md-nav" aria-label="使用构建工具（Build tool）">
+    <nav class="md-nav" aria-label="使用构建工具（Build tools）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1222,7 +1222,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#c-build-tool-other" class="md-nav__link">
+  <a href="#c-build-tools-other" class="md-nav__link">
     其他的构建工具：CMake，ninja……
   </a>
   
@@ -1316,14 +1316,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#py-virsion" class="md-nav__link">
+  <a href="#py-versions" class="md-nav__link">
     Python 的版本
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#py-impl" class="md-nav__link">
+  <a href="#py-implementations" class="md-nav__link">
     Python 的其他实现
   </a>
   
@@ -1349,7 +1349,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ref" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     引用来源
   </a>
   
@@ -1393,7 +1393,7 @@
 <p>C 语言是大学编程语言教学中几乎必定讲解的一门编程语言。
 考虑到 Linux 内核即是用 C 语言编写的，在 Linux 上 C 语言拥有近乎系统级的支持。
 在 Linux 上开发 C 语言（以及 C++）是一件非常轻松、方便的事。</p>
-<h3 id="c-single-f">从单文件开始<a class="headerlink" href="#c-single-f" title="Permanent link">&para;</a></h3>
+<h3 id="c-single-file">从单文件开始<a class="headerlink" href="#c-single-file" title="Permanent link">&para;</a></h3>
 <p>现在假设我们有一份源码文件 main.c，内容如下：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -1426,7 +1426,7 @@
 <p>应当注意到 <code>gcc main.c -o main</code> 这条指令没有打印出任何内容。
 这是因为整个编译过程是成功的，gcc 没有需要报告的内容，因此保持沉默。
 这是 Unix 哲学的一部分：<em>Rule of Silence: When a program has nothing surprising to say, it should say nothing.</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<h3 id="c-multi-f">多文件的状况<a class="headerlink" href="#c-multi-f" title="Permanent link">&para;</a></h3>
+<h3 id="c-multi-file">多文件的状况<a class="headerlink" href="#c-multi-file" title="Permanent link">&para;</a></h3>
 <p>只在一个文件中编写代码，对于稍微大的开发都是不够的：
 对于个人维护的小项目尚可，但当你面临的是一个多人开发、模块复杂、功能繁多的大项目时（无论是在公司工程还是在实验室科研中，这都是普遍的情况），
 拆分代码到多个文件才是一个明智（或者说可行）的做法。</p>
@@ -1525,7 +1525,7 @@
 也可分别调用 <code>gcc -E</code>、<code>gcc -S</code>、<code>gcc -c</code>、<code>gcc</code> 来完成。</p>
 <p>在这一过程中，文件经历了如下变化：<code>main.c</code> 到 <code>main.i</code> 到 <code>main.s</code> 到 <code>main.o</code> 到 <code>main</code>。</p>
 </div>
-<h3 id="c-build-tool">使用构建工具（Build tool）<a class="headerlink" href="#c-build-tool" title="Permanent link">&para;</a></h3>
+<h3 id="c-build-tools">使用构建工具（Build tools）<a class="headerlink" href="#c-build-tools" title="Permanent link">&para;</a></h3>
 <p>上述方法在源文件较少时是比较方便的，但当我们面对的是数以千计万计的源文件（同样的，在工作或科研中这也是常见状况），我们将面临以下困难：</p>
 <ul>
 <li>手动地一一编译实在太麻烦，太浪费精力；</li>
@@ -1572,10 +1572,10 @@
 在使用它进行构建时，Makefile 可以根据文件间的依赖关系和文件更新时间，找出需要重新编译的文件。
 在项目较大时这能明显节省构建所需的时间，同时也能解决一些由于编译链接顺序造成的问题。
 相较与输入一大串指令，单个的 <code>make [target]</code> 甚至是仅仅 <code>make</code>，也更加优雅和方便。</p>
-<h4 id="c-build-tool-other">其他的构建工具：CMake，ninja……<a class="headerlink" href="#c-build-tool-other" title="Permanent link">&para;</a></h4>
+<h4 id="c-build-tools-other">其他的构建工具：CMake，ninja……<a class="headerlink" href="#c-build-tools-other" title="Permanent link">&para;</a></h4>
 <p>一个更大的工程可能有上万、上十万份源文件，如果一一写进 Makefile，那依然会异常痛苦，且几乎不可能维护。</p>
 <p>为了更好的构建程序，大家想出了“套娃”的办法：用一个程序来生成构建所需的配置，CMake 则在这一想法下诞生。</p>
-<p>CMake 在默认情况下，可以通过 <code>cmake</code> 指令生成 Makefile，再进一步进行 <code>make</code>。</p>
+<p>CMake 在默认情况下，可以通过 <code>cmake</code> 命令生成 Makefile，再进一步进行 <code>make</code>。</p>
 <p>对于 CMake 的讲解已经超出了本课程的讲解范围。
 CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留问题，也有新时代下的新思路。
 正如 C++ 和 Mordern C++，CMake 也有 Mordern CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
@@ -1705,7 +1705,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 通过 <code>deactivate</code> 可以退出 Virtualenv，回到之前的环境中。</p>
 <p>实际上，由于 Python 是借助一些环境变量来完成包搜索的步骤的，<code>source venv/bin/activate</code>
 其实是配置了一些环境变量，从而达到目的。这样，就实现了程序间依赖的隔离。</p>
-<h3 id="py-virsion">Python 的版本<a class="headerlink" href="#py-virsion" title="Permanent link">&para;</a></h3>
+<h3 id="py-versions">Python 的版本<a class="headerlink" href="#py-versions" title="Permanent link">&para;</a></h3>
 <p>正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
 实际上还在使用中的 Python，主要在 2.7、3.5——3.8 这个区间内。</p>
@@ -1716,16 +1716,17 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 尽管在某些平台（例如 Arch 系 Linux）上，<code>python</code> 己经变为指向 <code>python3</code>，
 但考虑到 Ubuntu、CentOS、Debian 等发行版上 <code>python</code> 仍指向 <code>python2</code>，
 显式地指定一个版本是更明智的选择。</p>
-<p>实际上，Python 2 已在 2020 年初正式宣告停止维护。
+<p>实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。</p>
-<p>而在 3 版本中，3.5 亦将在今年年底 EOL（end of life），因此实际上选用 Python 3.6 及以上者更稳妥。</p>
-<h3 id="py-impl">Python 的其他实现<a class="headerlink" href="#py-impl" title="Permanent link">&para;</a></h3>
+<p>而在 Python 3.x 版本中，3.5 亦将在今年年底 EOL（end of life），
+因此实际上选用 Python 3.6 及以上者更稳妥。</p>
+<h3 id="py-implementations">Python 的其他实现<a class="headerlink" href="#py-implementations" title="Permanent link">&para;</a></h3>
 <p>Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
 CPython 中的 C 是指此解释器是用 C 实现。</p>
 <p>相应的，Python 还有其他的一些实现：</p>
 <ul>
-<li>JPython：将 Python 编译到 JVM 字节码，由 JVM 来运行；</li>
-<li>pypy：相较于 CPython，实现了 JIT（just in time），性能有极大地提升；</li>
+<li>JPython：将 Python 编译到 Java 字节码，由 JVM 来运行；</li>
+<li>PyPy：相较于 CPython，实现了 JIT（just in time）编译器，性能有极大地提升；</li>
 <li>Cython：引入了额外的语法和严密的类型系统，性能也有很大提升；</li>
 <li>Numba：将 Python 编译到机器码，从而直接运行，性能也不错。</li>
 </ul>
@@ -1742,7 +1743,7 @@ CPython 中的 C 是指此解释器是用 C 实现。</p>
 尝试查询 Rust 的文档，指出 Rust 的编译器、依赖管理程序，
 介绍一下如何将 Rust 源码变为可执行程序，如何在 Rust 中引用外部包。</p>
 </div>
-<h2 class="no-underline" id="ref">引用来源<a class="headerlink" href="#ref" title="Permanent link">&para;</a></h2>
+<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>

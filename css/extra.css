@@ -2,10 +2,9 @@
 
 .darkred, .darkred-important { color: darkred !important; }
 
+.md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
-.md-typeset h2.no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h3 { padding-bottom: 0.2em; border-bottom: 1px dashed #d3d3d3; }
-.md-typeset h3.no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset img.inline { display: inline-block; }
 .md-typeset .img-border { border: 1px solid black; }
