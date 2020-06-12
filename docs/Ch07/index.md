@@ -376,13 +376,16 @@ $ pip3 install .
 
 这种方案特点是使用广泛，易于对接，能提供的信息和配置较全，但配置起来也较复杂。
 
-#### 其他的：pip-tools、pipenv…… {#py-dep-other}
+#### 其他的：pip-tools、pipenv、conda…… {#py-dep-other}
 
 pip-tools 可以看作对 requirements.txt 的增强。
 它额外提供了 `requirements.dev` 文件，从而完成了对于依赖进行版本锁定的支持。
 
 pipenv 则是一个更加全面的解决方案，它提供了类似于 npm 的配置文件和 lock 文件，对于依赖有非常强的管理功能。
 但其完成度和工业中的稳定性尚有待证明。
+
+conda 也是一个更加全面的解决方案，可以看作是 pip 的超集。提供多 Python 版本以及同一版本下多种环境的支持，不同环境的包相互独立，不会造成冲突。
+相比于 pip 使用 requirements.txt 安装依赖， conda 使用 yml 格式指定项目使用的包的依赖。conda 所有的包均从 anaconda cloud 平台上下载，与 pip 的源不一样。conda 主要在科学计算领域用于管理包。其缺点是下载和安装包的速度比较慢，比较笨重，配置依赖相对复杂等。
 
 Python 有非常多的依赖管理方案，某种意义上讲是自带的 pip 管理功能不足所造成的。
 一般而言，只需熟悉常用的 requirements.txt 和 setuptools 方案即可。
