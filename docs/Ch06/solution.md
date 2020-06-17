@@ -49,13 +49,13 @@
 
     for i in *.mp4
     do
-      ffmpeg -i "$i" "${i/.mp4/.mp3}"
+      ffmpeg -i "$i" "${i%.mp4}.mp3"
     done
     ```
 
-    这里 `"${i/.mp4/.mp3}"` 实现的是将文件名（包含扩展名）中的 `.mp4` 替换为 `.mp3`.
+    这里 `"${i%.mp4}.mp3"` 实现的是将文件扩展名中的 `.mp4`（即最后被匹配到的 `.mp4`）抹去，并在之后的文件名后面加上 `.mp3`。这个特性被称为[参数操作](http://mywiki.wooledge.org/BashSheet#Parameter_Operations)。
 
-    当然，这个脚本并不完美，表现在，如果有视频文件名为 `xxx.mp4.xxx.mp4` 的话，非扩展名部分的 `mp4` 也会变为 `mp3`。
+    `"${i/.mp4/.mp3}"` 的效果是类似的，但是直接将 `.mp4` 替换为 `.mp3` 的问题是，如果有视频文件名为 `xxx.mp4.xxx.mp4` 的话，非扩展名部分的 `mp4` 也会变为 `mp3`。
 
 ## Shell 脚本编写练习 #2
 
