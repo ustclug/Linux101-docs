@@ -11,7 +11,7 @@ theme:
   language: 'zh'
   icon:
     logo: fontawesome/brands/linux
-    repo: octicons/mark-github
+    repo: octicons/mark-github-16
 
 markdown_extensions:
   - admonition
@@ -27,7 +27,7 @@ markdown_extensions:
 
 extra:
   social:
-    - icon: octicons/globe
+    - icon: octicons/globe-16
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
