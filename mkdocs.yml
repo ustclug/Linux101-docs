@@ -1,7 +1,7 @@
 site_name: Linux 101
 site_description: Linux 101 课程讲义
 site_author: LUG@USTC
-site_url: https://101.lug.ustc.edu.cn/
+#site_url: https://101.lug.ustc.edu.cn/
 repo_name: ustclug/Linux101-docs
 repo_url: https://github.com/ustclug/Linux101-docs
 copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
