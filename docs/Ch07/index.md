@@ -42,10 +42,10 @@ int main() {
     Linux 上常用的编译器是 gcc 和 clang。
     其中 gcc 是由 GNU 组织维护的，而 clang 是由 LLVM 组织维护的。
 
-    Windows 上常见的编译器则是 msvc，由微软维护。著名的 Visual C++ 即使用了 msvc。
+    Windows 上常见的编译器则是 cl.exe，由微软维护。著名的 Visual C++(MSVC) 即使用了 cl.exe。
 
     Mac OS X 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
-    值得一提的是，Mac OS X 上自带的 gcc 其实是 clang，在 Terminal 输入 `gcc -v` 即可发现。
+    值得一提的是，Mac OS X 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 `gcc -v` 即可发现。
 
 这里我们使用 gcc 对这个文件进行编译，生成二进制文件：
 
