@@ -1596,8 +1596,8 @@
 
     很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 32767。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程标识符，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程标识符有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围） -->
 
-<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 ktheadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
-<p>由于 ktheadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
+<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
+<p>由于 kthreadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
 <h4 id="parent-child">进程父子关系<a class="headerlink" href="#parent-child" title="Permanent link">&para;</a></h4>
@@ -1616,9 +1616,11 @@
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。<strong>前台</strong> (foreground) 与<strong>后台</strong> (background)，本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中若干进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
 <h3 id="schedule">进程调度<a class="headerlink" href="#schedule" title="Permanent link">&para;</a></h3>
 <h4 id="priority">优先级与 nice 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h4>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong> (priority, PRI) 与 <strong>nice 值</strong> (NI) 则反映操作系统调度进程的手段。</p>
-<p>优先级思想很简单，为任务的重要程度排一个序。而 nice 值更加直白，数值越大，则说明这个程序越 "nice"——对其他的需要使用资源的程序友好。</p>
-<p>内核以优先级为实际的指标来调度进程，而用户程序的优先级会根据它的 nice 值来计算。默认的 nice 值为 0。</p>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。内核中针对进程有实时 (realtime) 和非实时调度方法，它们别使用了 <strong>realtime priority (PRI)</strong> 和 <strong>nice (NI)</strong> 来表示优先级。
+nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友好），对应的优先级也就更低。
+通常，我们运行的程序会以非实时的方式调度，nice 值为 0。
+而 PRI 的大小对应着任务的重要程度，PRI 越大则优先级越大（deadline scheduling 始终拥有最大优先级）</p>
+<p>优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 <code>sched(7)</code> 的 Scheduling policies 小节。</p>
 <details class="info"><summary>协作与抢占</summary><p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为<strong>协作式</strong> (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配<strong>时间片</strong> (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为<strong>抢占式</strong> (preemptive) 操作系统。</p>
 </details>
 <details class="info"><summary>中断与进程调度</summary><p>系统进行调度，主要面临这样几个问题：</p>
@@ -1715,7 +1717,7 @@ nice -n 10 vim
 </tr>
 <tr>
 <td align="center">Priority</td>
-<td>标识进程的重要性，值越小越得到优先处理（一般用于描述实时进程）。</td>
+<td>标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。</td>
 </tr>
 <tr>
 <td align="center">Nice</td>
