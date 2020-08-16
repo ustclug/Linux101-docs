@@ -15,7 +15,7 @@
         <meta name="author" content="LUG@USTC">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.6">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.63b94e9e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.b8ac9624.min.css">
       
       
     
@@ -1410,9 +1410,9 @@
 <p class="admonition-title">各平台常见编译器</p>
 <p>Linux 上常用的编译器是 gcc 和 clang。
 其中 gcc 是由 GNU 组织维护的，而 clang 是由 LLVM 组织维护的。</p>
-<p>Windows 上常见的编译器则是 msvc，由微软维护。著名的 Visual C++ 即使用了 msvc。</p>
+<p>Windows 上常见的编译器则是 cl.exe，由微软维护。著名的 Visual C++ (MSVC) 即使用了 cl.exe。</p>
 <p>Mac OS X 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
-值得一提的是，Mac OS X 上自带的 gcc 其实是 clang，在 Terminal 输入 <code>gcc -v</code> 即可发现。</p>
+值得一提的是，Mac OS X 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 <code>gcc -v</code> 即可发现。</p>
 </div>
 <p>这里我们使用 gcc 对这个文件进行编译，生成二进制文件：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$</span> gcc main.c -o main
