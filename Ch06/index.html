@@ -1652,6 +1652,8 @@
 $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
 </code></pre></div>
 
+<p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang （也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
+<p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
 <thead>
