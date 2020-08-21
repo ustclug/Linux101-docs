@@ -138,6 +138,10 @@ Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 
   $ ./show.sh [option];
   ```
 
+许多 Bash 脚本会在文件首行加上 `#!/bin/bash` 。这里 `#!` 符号的名称是 shebang （也叫 sha-bang，即 sharp `#` 与 bang `!`）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。
+
+例如，某个 `foo.sh` 首行为 `#!/bin/bash`，则执行 `./foo.sh` 就等于执行 `/bin/bash ./foo.sh`。
+
 Bash 也支持在同一个行中安排多个命令：
 
 | **分隔符** | **说明**                                                        |
