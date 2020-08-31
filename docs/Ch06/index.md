@@ -55,7 +55,7 @@
 
 	`$ wget -i filelist.txt` 批量下载 filelist.txt 中给出的链接
 
-	`$ wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh` 将下载的文件输出至 `install.sh`（宝塔示例）
+	`$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"` 安装 oh-my-zsh
 
 ### cURL {#curl}
 
