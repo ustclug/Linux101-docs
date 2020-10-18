@@ -5,6 +5,9 @@
 .md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
 .md-typeset h3 { padding-bottom: 0.2em; border-bottom: 1px dashed #d3d3d3; }
+.md-typeset h4 { font-size: 1.17em; }
+.md-typeset h5 { font-size: 1.08em; }
+.md-typeset h6 { font-size: 1em; }
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset img.inline { display: inline-block; }
 .md-typeset .img-border { border: 1px solid black; }
