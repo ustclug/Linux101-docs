@@ -29,7 +29,7 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 !!! info "Docker Desktop on Windows 的环境要求"
 
-    Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。目前在 Hyper-V 开启的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
+    Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。如果使用 Windows 20H1 之前的版本且开启 Hyper-V 的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用；在 20H1 之后，虚拟机软件也需要升级到对应的版本才能与 Hyper-V 协同工作。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
 
 !!! note "Windows 容器"
 
@@ -50,6 +50,8 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 !!! warning "不要在 WSL1 上安装 Docker"
 
     WSL1 在 Windows 上提供了方便的 Linux 环境。但很遗憾，Docker 的核心服务无法在 WSL1 上运行，直接安装是无法使用的。虽然可以把 WSL 中的 Docker 的命令行工具连接到 Docker for Windows 的核心服务上，但是比较麻烦，这里不推荐这样做。
+
+    如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 [Using Docker in WSL 2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)。
 
 ### 配置 Registry Mirror（可选，推荐） {#setup-registry-mirror}
 
@@ -118,16 +120,30 @@ For more examples and ideas, visit:
 
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
-- `docker run ubuntu` blah blah
+- `docker run -it --rm ubuntu`
+
+这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除。如果没有这个参数，在容器停止之后还可以再次启动。可以使用 `docker ps -a` 查看系统中所有的容器。
+
+`-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
+
+在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。
 
 ### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
 
-- `docker run python` blah blah
+- `docker run -it --rm python` blah blah
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
-- 从 GitHub 上获取本书源码
-- `docker run -v aaa:bbb -p 8000:8000 squidfunk/mkdocs-material server` blah blah
+- 从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
+- `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
+
+在执行完成之后，可以使用浏览器访问本地的 8000 端口，以查看构建结果。
+
+这里多出了两个参数：
+
+- `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
+- `-p`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则外部访问不了 8000 端口。
+- 另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
 
 ## 构建自己的 Docker 镜像 {#build-docker-image}
 
@@ -136,6 +152,26 @@ For more examples and ideas, visit:
 - docker exec 进去把东西准备好，然后 `docker commit`
 
 ### 使用 Dockerfile 自动化构建 {#build-with-dockerfile}
+
+Dockerfile 是构建 Docker 镜像的标准格式，一个简单的（虚构的）例子如下：
+
+```Dockerfile
+FROM debian:sid-20201117
+
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+    apt update && apt install -y gcc-10-riscv64-linux-gnu g++-10-riscv64-linux-gnu libc6-dev-riscv64-cross \
+                                 binutils-riscv64-linux-gnu libstdc++-10-dev-riscv64-cross \
+                                 qemu-system-misc qemu-user-static qemu-user binfmt-support \
+                                 fish vim --no-install-recommends
+RUN mkdir /workspace/
+
+WORKDIR /workspace/
+ENV QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/
+
+CMD ["fish"]
+```
+
+这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链构建一个简单的用于交叉编译的环境。
 
 !!! tip "尽量减少 Docker 镜像的层数"
 
