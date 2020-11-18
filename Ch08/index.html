@@ -888,6 +888,26 @@
     使用 Dockerfile 自动化构建
   </a>
   
+    <nav class="md-nav" aria-label="使用 Dockerfile 自动化构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-compile-example" class="md-nav__link">
+    构建简单的交叉编译1环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flask-production-example" class="md-nav__link">
+    在生产环境中运行使用 Flask 编写的简单网站
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1186,6 +1206,26 @@
     使用 Dockerfile 自动化构建
   </a>
   
+    <nav class="md-nav" aria-label="使用 Dockerfile 自动化构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-compile-example" class="md-nav__link">
+    构建简单的交叉编译1环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flask-production-example" class="md-nav__link">
+    在生产环境中运行使用 Flask 编写的简单网站
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1327,13 +1367,39 @@ For more examples and ideas, visit:
 <ul>
 <li><code>docker run -it --rm ubuntu</code></li>
 </ul>
-<p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除。如果没有这个参数，在容器停止之后还可以再次启动。可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
+<p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除。</p>
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
 <p>在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。</p>
+<p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker ps -a
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
+39d8ef1d4acf        ubuntu                <span class="s2">&quot;/bin/bash&quot;</span>              <span class="m">6</span> seconds ago       Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">3</span> seconds ago                           gracious_brahmagupta
+</code></pre></div>
+<p>之后使用 <code>docker start</code> 启动容器。</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker start -ai 39d
+root@39d8ef1d4acf:/#
+</code></pre></div>
+<p><code>-a</code> 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。</p>
+<p>如果忘记加上了参数直接启动，也可以使用 <code>docker attach</code> 将容器的主进程的输入输出接上。</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker attach 39d
+root@39d8ef1d4acf:/#
+</code></pre></div>
+<p><code>docker exec</code> 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker <span class="nb">exec</span> -it 39d bash
+root@39d8ef1d4acf:/#
+</code></pre></div>
+<p>由于 <code>docker exec</code> 创建的进程不是主进程，退出后容器也不会退出，适合需要调试容器的场合。</p>
+<p>与 <code>docker start</code> 相对应，<code>docker stop</code> 可以关闭一个容器，<code>docker rm</code> 可以删除一个容器。</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker stop 39d
+39d
+$ sudo docker rm 39d
+39d
+</code></pre></div>
 <h3 id="use-python-repl">在 Python 容器中使用 Python 命令行<a class="headerlink" href="#use-python-repl" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>docker run -it --rm python</code> blah blah</li>
+<li><code>docker run -it --name python3 python</code></li>
 </ul>
+<p>与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 <code>--name</code> 将创建的容器命名为 <code>python3</code>。之后的容器操作中我们就不需要查询容器 ID，直接使用 <code>python3</code> 代表这个容器即可。</p>
 <h3 id="use-mkdocs-material-build">在 MkDocs 容器中构建本书<a class="headerlink" href="#use-mkdocs-material-build" title="Permanent link">&para;</a></h3>
 <ul>
 <li>从 GitHub 上获取本书源码：<code>git clone https://github.com/ustclug/Linux101-docs.git</code></li>
@@ -1343,7 +1409,7 @@ For more examples and ideas, visit:
 <p>这里多出了两个参数：</p>
 <ul>
 <li><code>-v</code>: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 <code>/docs</code>）。注意这个参数只接受绝对路径，所以这里读取了 <code>PWD</code> 这个变量，通过拼接的方式拼出绝对路径。</li>
-<li><code>-p</code>: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则外部访问不了 8000 端口。</li>
+<li><code>-p 8000:8000</code>: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。</li>
 <li>另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 <code>-it</code> 参数。</li>
 </ul>
 <h2 id="build-docker-image">构建自己的 Docker 镜像<a class="headerlink" href="#build-docker-image" title="Permanent link">&para;</a></h2>
@@ -1352,7 +1418,9 @@ For more examples and ideas, visit:
 <li>docker exec 进去把东西准备好，然后 <code>docker commit</code></li>
 </ul>
 <h3 id="build-with-dockerfile">使用 Dockerfile 自动化构建<a class="headerlink" href="#build-with-dockerfile" title="Permanent link">&para;</a></h3>
-<p>Dockerfile 是构建 Docker 镜像的标准格式，一个简单的（虚构的）例子如下：</p>
+<p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。在举完例子之后，我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
+<h4 id="cross-compile-example">构建简单的交叉编译<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
+<p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">debian:sid-20201117</span>
 
 <span class="k">RUN</span> sed -i <span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
@@ -1367,13 +1435,41 @@ For more examples and ideas, visit:
 
 <span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;fish&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链构建一个简单的用于交叉编译的环境。</p>
+<p>通过使用 <code>docker build</code>，我们可以构建出镜像。</p>
+<div class="highlight"><pre><span></span><code>sudo docker build -t riscv-cross:example .
+</code></pre></div>
+<p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签。构建完成后，使用 <code>docker run</code> 执行即可：</p>
+<div class="highlight"><pre><span></span><code>$ sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
+Welcome to fish, the friendly interactive shell
+Type <span class="sb">`</span><span class="nb">help</span><span class="sb">`</span> <span class="k">for</span> instructions on how to use fish
+root@dec3d33003ee /workspace# vim helloworld.c
+root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc-10 helloworld.c
+root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
+Hello, world!
+</code></pre></div>
+<h4 id="flask-production-example">在生产环境中运行使用 Flask 编写的简单网站<a class="headerlink" href="#flask-production-example" title="Permanent link">&para;</a></h4>
+<p>Flask 是一个知名的 Python web 框架。</p>
+<div class="highlight"><pre><span></span><code>FROM tiangolo/uwsgi-nginx-flask:python3.8
+
+RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+RUN pip3 install pyopenssl
+
+COPY ./app /app
+</code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">尽量减少 Docker 镜像的层数</p>
 <p>TBA</p>
 </div>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
 <h3 id="_1">子项目？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
