@@ -122,15 +122,59 @@ For more examples and ideas, visit:
 
 - `docker run -it --rm ubuntu`
 
-这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除。如果没有这个参数，在容器停止之后还可以再次启动。可以使用 `docker ps -a` 查看系统中所有的容器。
+这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除。
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
 在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。
 
+如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
+
+```shell
+$ sudo docker ps -a
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
+39d8ef1d4acf        ubuntu                "/bin/bash"              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta
+```
+
+之后使用 `docker start` 启动容器。
+
+```shell
+$ sudo docker start -ai 39d
+root@39d8ef1d4acf:/#
+```
+
+`-a` 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。
+
+如果忘记加上了参数直接启动，也可以使用 `docker attach` 将容器的主进程的输入输出接上。
+
+```shell
+$ sudo docker attach 39d
+root@39d8ef1d4acf:/#
+```
+
+`docker exec` 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。
+
+```shell
+$ sudo docker exec -it 39d bash
+root@39d8ef1d4acf:/#
+```
+
+由于 `docker exec` 创建的进程不是主进程，退出后容器也不会退出，适合需要调试容器的场合。
+
+与 `docker start` 相对应，`docker stop` 可以关闭一个容器，`docker rm` 可以删除一个容器。
+
+```shell
+$ sudo docker stop 39d
+39d
+$ sudo docker rm 39d
+39d
+```
+
 ### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
 
-- `docker run -it --rm python` blah blah
+- `docker run -it --name python3 python`
+
+与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。之后的容器操作中我们就不需要查询容器 ID，直接使用 `python3` 代表这个容器即可。
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
@@ -142,7 +186,7 @@ For more examples and ideas, visit:
 这里多出了两个参数：
 
 - `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
-- `-p`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则外部访问不了 8000 端口。
+- `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
 - 另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
 
 ## 构建自己的 Docker 镜像 {#build-docker-image}
@@ -153,7 +197,11 @@ For more examples and ideas, visit:
 
 ### 使用 Dockerfile 自动化构建 {#build-with-dockerfile}
 
-Dockerfile 是构建 Docker 镜像的标准格式，一个简单的（虚构的）例子如下：
+Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。在举完例子之后，我们会基于这些例子简单介绍 Dockerfile 的语法。
+
+#### 构建简单的交叉编译[^1]环境 {#cross-compile-example}
+
+这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
 FROM debian:sid-20201117
@@ -171,7 +219,36 @@ ENV QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/
 CMD ["fish"]
 ```
 
-这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链构建一个简单的用于交叉编译的环境。
+通过使用 `docker build`，我们可以构建出镜像。
+
+```shell
+sudo docker build -t riscv-cross:example .
+```
+
+`-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签。构建完成后，使用 `docker run` 执行即可：
+
+```shell
+$ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
+Welcome to fish, the friendly interactive shell
+Type `help` for instructions on how to use fish
+root@dec3d33003ee /workspace# vim helloworld.c
+root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc-10 helloworld.c
+root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
+Hello, world!
+```
+
+#### 在生产环境中运行使用 Flask 编写的简单网站 {#flask-production-example}
+
+Flask 是一个知名的 Python web 框架。
+
+```
+FROM tiangolo/uwsgi-nginx-flask:python3.8
+
+RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+RUN pip3 install pyopenssl
+
+COPY ./app /app
+```
 
 !!! tip "尽量减少 Docker 镜像的层数"
 
@@ -180,3 +257,6 @@ CMD ["fish"]
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
 
 ### 子项目？
+
+
+[^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。
