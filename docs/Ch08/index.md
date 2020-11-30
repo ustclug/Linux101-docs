@@ -231,7 +231,7 @@ sudo docker build -t riscv-cross:example .
 $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
 root@dec3d33003ee /workspace# vim helloworld.c
-root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc-10 helloworld.c
+root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc helloworld.c
 root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
 Hello, world!
 ```
