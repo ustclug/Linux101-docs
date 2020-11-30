@@ -204,11 +204,11 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
-FROM debian:sid-20201117
+FROM debian:buster-slim
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    apt update && apt install -y gcc-10-riscv64-linux-gnu g++-10-riscv64-linux-gnu libc6-dev-riscv64-cross \
-                                 binutils-riscv64-linux-gnu libstdc++-10-dev-riscv64-cross \
+    apt update && apt install -y gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
+                                 binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
                                  qemu-system-misc qemu-user-static qemu-user binfmt-support \
                                  fish vim --no-install-recommends
 RUN mkdir /workspace/
@@ -230,7 +230,6 @@ sudo docker build -t riscv-cross:example .
 ```shell
 $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
-Type `help` for instructions on how to use fish
 root@dec3d33003ee /workspace# vim helloworld.c
 root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc-10 helloworld.c
 root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
