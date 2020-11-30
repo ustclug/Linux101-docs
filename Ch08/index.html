@@ -14,7 +14,7 @@
         <meta name="author" content="LUG@USTC">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.5">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.21aed14c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6910b76c.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
@@ -1421,11 +1421,11 @@ $ sudo docker rm 39d
 <p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。在举完例子之后，我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
 <h4 id="cross-compile-example">构建简单的交叉编译<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
 <p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">debian:sid-20201117</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">debian:buster-slim</span>
 
 <span class="k">RUN</span> sed -i <span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
-    apt update <span class="o">&amp;&amp;</span> apt install -y gcc-10-riscv64-linux-gnu g++-10-riscv64-linux-gnu libc6-dev-riscv64-cross <span class="se">\</span>
-                                 binutils-riscv64-linux-gnu libstdc++-10-dev-riscv64-cross <span class="se">\</span>
+    apt update <span class="o">&amp;&amp;</span> apt install -y gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross <span class="se">\</span>
+                                 binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross <span class="se">\</span>
                                  qemu-system-misc qemu-user-static qemu-user binfmt-support <span class="se">\</span>
                                  fish vim --no-install-recommends
 <span class="k">RUN</span> mkdir /workspace/
@@ -1441,7 +1441,6 @@ $ sudo docker rm 39d
 <p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签。构建完成后，使用 <code>docker run</code> 执行即可：</p>
 <div class="highlight"><pre><span></span><code>$ sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
-Type <span class="sb">`</span><span class="nb">help</span><span class="sb">`</span> <span class="k">for</span> instructions on how to use fish
 root@dec3d33003ee /workspace# vim helloworld.c
 root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc-10 helloworld.c
 root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
@@ -1553,8 +1552,8 @@ COPY ./app /app
       
     </div>
     
-      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
