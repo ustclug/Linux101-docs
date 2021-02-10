@@ -55,17 +55,19 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 ### 配置 Registry Mirror（可选，推荐） {#setup-registry-mirror}
 
-!!! failure "此段落需要编辑，添加可用的 Registry Mirror。"
+!!! warning "本节内容可能随时过时"
 
-Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。幸运的是，一些服务在中国提供了 Docker Hub 的镜像，<s>微软 Azure 和</s>网易云就是其中两个。
+    维护公共使用的 Docker Hub pull-through cache (registry mirror) 需要**非常高的运维成本**，因而有很多服务在之前可以使用，但是之后被迫关闭或转为非公开。你可以参考 <https://yeasy.gitbook.io/docker_practice/install/mirror#bu-zai-ti-gong-fu-wu-de-jing-xiang> 获取目前可能可以使用的 registry mirror（镜像加速器）。
 
-为了使用<s>微软 Azure 和</s>网易云的 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 `/etc/docker/daemon.json` 文件（如果文件不存在，请新建一个），写入以下内容。
+Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。一些服务在中国提供了 Docker Hub 的镜像（反代缓存）。以下内容以网易云与百度云为例。
+
+为了使用这些 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 `/etc/docker/daemon.json` 文件（如果文件不存在，请新建一个），写入以下内容。
 
 ```json
 {
   "registry-mirrors": [
-    "https://reg-mirror.qiniu.com",
-    "https://hub-mirror.c.163.com"
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
   ]
 }
 
@@ -75,11 +77,17 @@ Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因�
 
 ```text
  Registry Mirrors:
-  https://reg-mirror.qiniu.com/
   https://hub-mirror.c.163.com/
+  https://mirror.baidubce.com/
 ```
 
 如果你看到了上面的输出，说明你的 Docker Registry Mirror 已经配置好了。
+
+!!! info "如果你是科大校园网用户"
+
+    科大镜像站的 Docker Hub registry mirror 目前仅对校园网开放，地址为 `https://docker.mirrors.ustc.edu.cn/`。如果在使用以上获取的 registry mirror 时遇到问题，可以切换。需要注意由于 2020 年 11 月之后 Docker Hub 的访问速率限制，使用时可能会出现间歇性的问题。
+
+    详细信息见科大镜像站 [Docker Hub 源使用帮助](https://mirrors.ustc.edu.cn/help/dockerhub.html)。
 
 ### 使用 Hello World 测试 Docker 安装 {#verify-docker-setup}
 
