@@ -138,7 +138,7 @@ For more examples and ideas, visit:
 
 如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
-```shell
+```console
 $ sudo docker ps -a
 CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
 39d8ef1d4acf        ubuntu                "/bin/bash"              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta
@@ -146,7 +146,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 
 之后使用 `docker start` 启动容器。
 
-```shell
+```console
 $ sudo docker start -ai 39d
 root@39d8ef1d4acf:/#
 ```
@@ -155,14 +155,14 @@ root@39d8ef1d4acf:/#
 
 如果忘记加上了参数直接启动，也可以使用 `docker attach` 将容器的主进程的输入输出接上。
 
-```shell
+```console
 $ sudo docker attach 39d
 root@39d8ef1d4acf:/#
 ```
 
 `docker exec` 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。
 
-```shell
+```console
 $ sudo docker exec -it 39d bash
 root@39d8ef1d4acf:/#
 ```
@@ -171,7 +171,7 @@ root@39d8ef1d4acf:/#
 
 与 `docker start` 相对应，`docker stop` 可以关闭一个容器，`docker rm` 可以删除一个容器。
 
-```shell
+```console
 $ sudo docker stop 39d
 39d
 $ sudo docker rm 39d
@@ -256,7 +256,7 @@ sudo docker build -t riscv-cross:example .
 
 `-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签。构建完成后，使用 `docker run` 执行即可：
 
-```shell
+```console
 $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
 root@dec3d33003ee /workspace# vim helloworld.c
@@ -283,7 +283,7 @@ Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每�
 
 Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：
 
-```
+```dockerfile
 FROM tiangolo/uwsgi-nginx-flask:python3.8
 
 RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
