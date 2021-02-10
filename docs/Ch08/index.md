@@ -136,7 +136,7 @@ For more examples and ideas, visit:
 
 在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。
 
-如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
+如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 或者 `docker container ls` 查看系统中所有的容器。
 
 ```console
 $ sudo docker ps -a
