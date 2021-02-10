@@ -53,6 +53,8 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
     如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 [Using Docker in WSL 2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)。
 
+在安装完成后，可以将需要使用 Docker 的用户加入 `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
+
 ### 配置 Registry Mirror（可选，推荐） {#setup-registry-mirror}
 
 !!! warning "本节内容可能随时过时"
@@ -201,7 +203,28 @@ $ sudo docker rm 39d
 
 ### 手工构建镜像 {#build-manually}
 
-- docker exec 进去把东西准备好，然后 `docker commit`
+`docker commit` 命令可以从当前运行的容器新建镜像。以下是一个简单的例子：
+
+```shell
+$ sudo docker run -it ubuntu
+root@82d245a5a4a1:/# apt update && apt install curl
+（输出省略）
+root@82d245a5a4a1:/# exit
+exit
+$ sudo docker ps -a
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                      PORTS               NAMES
+82d245a5a4a1        ubuntu               "/bin/bash"              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal
+$ sudo docker commit 82d245a5a4a1
+sha256:fe0a84d81b867949b27bacec4794303852b05ae76df14818bae85751b14f6e20
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              fe0a84d81b86        54 seconds ago      116MB
+$ sudo docker save fe0a84d81b86 > example.tar
+$ ls -lh example.tar 
+-rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar
+```
+
+得到的 example.tar 即为我们的 Docker 镜像。可以使用 `docker load < example.tar` 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。
 
 ### 使用 Dockerfile 自动化构建 {#build-with-dockerfile}
 
