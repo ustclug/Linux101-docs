@@ -126,8 +126,6 @@ For more examples and ideas, visit:
 
 接下来我们来尝试几个例子，体验 Docker 环境的独立性与易用性。
 
-!!! failure "以下内容均为草稿，亟待扩充，不是正式内容"
-
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
 - `docker run -it --rm ubuntu`
@@ -228,7 +226,7 @@ $ ls -lh example.tar
 
 ### 使用 Dockerfile 自动化构建 {#build-with-dockerfile}
 
-Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。在举完例子之后，我们会基于这些例子简单介绍 Dockerfile 的语法。
+Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。我们会基于这些例子简单介绍 Dockerfile 的语法。
 
 #### 构建简单的交叉编译[^1]环境 {#cross-compile-example}
 
@@ -267,9 +265,23 @@ root@dec3d33003ee /workspace# qemu-riscv64 ./a.out
 Hello, world!
 ```
 
+从这个例子中，我们可以看到 Dockerfile 的一些指令：
+
+1. `FROM` 定义了基础镜像，之后执行的命令都是在基础镜像之上进行操作。如果希望基础镜像为空，可以使用 `FROM scratch`。
+2. `RUN` 指定了在镜像中执行的命令。可以注意到，我们将多个命令合并在了一起执行，这有助于减小镜像的冗余大小。
+3. `WORKDIR` 可以切换当前的所在的工作目录。
+4. `ENV` 指定了当前的环境变量。
+5. `CMD` 指定了容器启动时执行的命令。
+
+Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每条指令对应镜像的一层。Docker 容器镜像的独特之处就在于它的分层设计：在构建镜像时每层的更改会叠加在上一层上；如果某一层已经存在，Docker 会直接使用这一层，节约构建的时间和占用的空间。
+
+??? tips "镜像分层是如何实现的？"
+
+    Docker 默认使用 OverlayFS 存储镜像。Overlay 文件系统允许用户将一个目录挂在另一个只读的目录上，所有修改都记录在可写的上层上。这种特性在 Linux LiveCD 中非常有用：可以将只读的 LiveCD 和硬盘上的目录使用 Overlay 文件系统挂载在一起，然后所有的修改都可以存储在硬盘上。
+
 #### 在生产环境中运行使用 Flask 编写的简单网站 {#flask-production-example}
 
-Flask 是一个知名的 Python web 框架。
+Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：
 
 ```
 FROM tiangolo/uwsgi-nginx-flask:python3.8
@@ -279,6 +291,8 @@ RUN pip3 install pyopenssl
 
 COPY ./app /app
 ```
+
+这里使用了 `COPY` 指令，将本地的 `app` 目录复制进容器镜像的 `/app` 中。
 
 !!! tip "尽量减少 Docker 镜像的层数"
 
