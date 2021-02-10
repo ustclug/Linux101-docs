@@ -1463,29 +1463,29 @@ For more examples and ideas, visit:
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
 <p>在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。</p>
 <p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker ps -a
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
-39d8ef1d4acf        ubuntu                <span class="s2">&quot;/bin/bash&quot;</span>              <span class="m">6</span> seconds ago       Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">3</span> seconds ago                           gracious_brahmagupta
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker ps -a
+<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES</span>
+<span class="go">39d8ef1d4acf        ubuntu                &quot;/bin/bash&quot;              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta</span>
 </code></pre></div>
 <p>之后使用 <code>docker start</code> 启动容器。</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker start -ai 39d
-root@39d8ef1d4acf:/#
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker start -ai 39d
+<span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p><code>-a</code> 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。</p>
 <p>如果忘记加上了参数直接启动，也可以使用 <code>docker attach</code> 将容器的主进程的输入输出接上。</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker attach 39d
-root@39d8ef1d4acf:/#
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker attach 39d
+<span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p><code>docker exec</code> 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker <span class="nb">exec</span> -it 39d bash
-root@39d8ef1d4acf:/#
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker <span class="nb">exec</span> -it 39d bash
+<span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p>由于 <code>docker exec</code> 创建的进程不是主进程，退出后容器也不会退出，适合需要调试容器的场合。</p>
 <p>与 <code>docker start</code> 相对应，<code>docker stop</code> 可以关闭一个容器，<code>docker rm</code> 可以删除一个容器。</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker stop 39d
-39d
-$ sudo docker rm 39d
-39d
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker stop 39d
+<span class="go">39d</span>
+<span class="gp">$ </span>sudo docker rm 39d
+<span class="go">39d</span>
 </code></pre></div>
 <h3 id="use-python-repl">在 Python 容器中使用 Python 命令行<a class="headerlink" href="#use-python-repl" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1531,21 +1531,21 @@ $ sudo docker rm 39d
 <div class="highlight"><pre><span></span><code>sudo docker build -t riscv-cross:example .
 </code></pre></div>
 <p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签。构建完成后，使用 <code>docker run</code> 执行即可：</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
-Welcome to fish, the friendly interactive shell
-root@dec3d33003ee /workspace# vim helloworld.c
-root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc helloworld.c
-root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
-Hello, world!
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
+<span class="go">Welcome to fish, the friendly interactive shell</span>
+<span class="gp">root@dec3d33003ee /workspace# </span>vim helloworld.c
+<span class="gp">root@dec3d33003ee /workspace# </span>riscv64-linux-gnu-gcc helloworld.c
+<span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64 ./a.out 
+<span class="go">Hello, world!</span>
 </code></pre></div>
 <h4 id="flask-production-example">在生产环境中运行使用 Flask 编写的简单网站<a class="headerlink" href="#flask-production-example" title="Permanent link">&para;</a></h4>
 <p>Flask 是一个知名的 Python web 框架。</p>
-<div class="highlight"><pre><span></span><code>FROM tiangolo/uwsgi-nginx-flask:python3.8
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">tiangolo/uwsgi-nginx-flask:python3.8</span>
 
-RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
-RUN pip3 install pyopenssl
+<span class="k">RUN</span> pip3 config <span class="nb">set</span> global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+<span class="k">RUN</span> pip3 install pyopenssl
 
-COPY ./app /app
+<span class="k">COPY</span> ./app /app
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">尽量减少 Docker 镜像的层数</p>
