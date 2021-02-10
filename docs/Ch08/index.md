@@ -203,7 +203,7 @@ $ sudo docker rm 39d
 
 `docker commit` 命令可以从当前运行的容器新建镜像。以下是一个简单的例子：
 
-```shell
+```console
 $ sudo docker run -it ubuntu
 root@82d245a5a4a1:/# apt update && apt install curl
 （输出省略）
@@ -228,9 +228,9 @@ $ ls -lh example.tar
 
 Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。我们会基于这些例子简单介绍 Dockerfile 的语法。
 
-#### 构建简单的交叉编译[^1]环境 {#cross-compile-example}
+#### 构建简单的交叉编译环境 {#cross-compile-example}
 
-这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
+这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译[^1]工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
 FROM debian:buster-slim
@@ -250,7 +250,7 @@ CMD ["fish"]
 
 通过使用 `docker build`，我们可以构建出镜像。
 
-```shell
+```console
 sudo docker build -t riscv-cross:example .
 ```
 
@@ -273,11 +273,45 @@ Hello, world!
 4. `ENV` 指定了当前的环境变量。
 5. `CMD` 指定了容器启动时执行的命令。
 
-Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每条指令对应镜像的一层。Docker 容器镜像的独特之处就在于它的分层设计：在构建镜像时每层的更改会叠加在上一层上；如果某一层已经存在，Docker 会直接使用这一层，节约构建的时间和占用的空间。
+Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每条指令对应镜像的一层。Docker 容器镜像的独特之处就在于它的分层设计：在构建镜像时每层的更改会叠加在上一层上（这意味着，上一层的所有数据仍然会保留，即使在新的一层删除了）；如果某一层已经存在，Docker 会直接使用这一层，节约构建的时间和占用的空间。
 
 ??? tips "镜像分层是如何实现的？"
 
     Docker 默认使用 OverlayFS 存储镜像。Overlay 文件系统允许用户将一个目录挂在另一个只读的目录上，所有修改都记录在可写的上层上。这种特性在 Linux LiveCD 中非常有用：可以将只读的 LiveCD 和硬盘上的目录使用 Overlay 文件系统挂载在一起，然后所有的修改都可以存储在硬盘上。
+
+!!! tip "尽量减少 Docker 镜像的层数"
+
+    因为 Docker 容器镜像的分层设计，上面提到，`RUN` 中将多个命令通过 `&&` 的方式合并在了一起执行，有助于减小镜像的冗余大小。Dockerfile 不是 Shell 脚本，请避免每条命令都使用单独的 `RUN` 来执行的写法，以下是一个生产环境的错误例子节选（删除了某些部分以方便展示），**无论如何，请不要这么写 Dockerfile**：
+
+    ```Dockerfile
+    FROM centos:7
+
+    RUN yum -y install wget make yum-utils
+
+    RUN yum-builddep python -y
+
+    RUN yum -y install gcc
+    RUN yum -y install vim
+    RUN yum -y install mariadb-devel
+
+    RUN wget -O /tmp/Python-3.7.3.tgz https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+    RUN tar -zxvf /tmp/Python-3.7.3.tgz -C /tmp/
+    RUN /tmp/Python-3.7.3/configure
+    RUN make && make install
+
+    RUN rm -f /usr/bin/python
+    RUN ln -s /usr/local/bin/python3 /usr/bin/python
+    RUN ln -s /usr/local/bin/pip3 /usr/bin/pip
+
+    RUN pip install --upgrade pip
+
+    RUN sed -i 's/python/python2/' /usr/bin/yum
+
+    RUN rm -rf /tmp/Python-3.7.3*
+    RUN yum clean all
+    ```
+
+    当然，这不等于说必须要把所有命令都写在一条 `RUN` 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 `RUN` 运行，因为 Docker 在构建镜像时，可以重复使用之前构建好的层。这么做可以节约构建与调试 Dockerfile 的时间。
 
 #### 在生产环境中运行使用 Flask 编写的简单网站 {#flask-production-example}
 
@@ -294,11 +328,9 @@ COPY ./app /app
 
 这里使用了 `COPY` 指令，将本地的 `app` 目录复制进容器镜像的 `/app` 中。
 
-!!! tip "尽量减少 Docker 镜像的层数"
-
-    TBA
-
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
+
+Docker Compose 是一个方便的小型容器编排工具。
 
 ### 子项目？
 
