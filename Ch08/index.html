@@ -961,7 +961,7 @@
         
           <li class="md-nav__item">
   <a href="#cross-compile-example" class="md-nav__link">
-    构建简单的交叉编译1环境
+    构建简单的交叉编译环境
   </a>
   
 </li>
@@ -1297,7 +1297,7 @@
         
           <li class="md-nav__item">
   <a href="#cross-compile-example" class="md-nav__link">
-    构建简单的交叉编译1环境
+    构建简单的交叉编译环境
   </a>
   
 </li>
@@ -1399,6 +1399,7 @@
 <p>WSL1 在 Windows 上提供了方便的 Linux 环境。但很遗憾，Docker 的核心服务无法在 WSL1 上运行，直接安装是无法使用的。虽然可以把 WSL 中的 Docker 的命令行工具连接到 Docker for Windows 的核心服务上，但是比较麻烦，这里不推荐这样做。</p>
 <p>如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 <a href="https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2">Using Docker in WSL 2</a>。</p>
 </div>
+<p>在安装完成后，可以将需要使用 Docker 的用户加入 <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
 <h3 id="setup-registry-mirror">配置 Registry Mirror（可选，推荐）<a class="headerlink" href="#setup-registry-mirror" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">本节内容可能随时过时</p>
@@ -1452,9 +1453,6 @@ For more examples and ideas, visit:
 <p>如果你看到了像上面这样的输出，说明你安装的 Docker 已经一切准备就绪，可以使用了。</p>
 <h2 id="use-docker">使用 Docker 容器<a class="headerlink" href="#use-docker" title="Permanent link">&para;</a></h2>
 <p>接下来我们来尝试几个例子，体验 Docker 环境的独立性与易用性。</p>
-<div class="admonition failure">
-<p class="admonition-title">以下内容均为草稿，亟待扩充，不是正式内容</p>
-</div>
 <h3 id="use-ubuntu-bash">在 Ubuntu 容器中使用 shell<a class="headerlink" href="#use-ubuntu-bash" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>docker run -it --rm ubuntu</code></li>
@@ -1506,13 +1504,29 @@ For more examples and ideas, visit:
 </ul>
 <h2 id="build-docker-image">构建自己的 Docker 镜像<a class="headerlink" href="#build-docker-image" title="Permanent link">&para;</a></h2>
 <h3 id="build-manually">手工构建镜像<a class="headerlink" href="#build-manually" title="Permanent link">&para;</a></h3>
-<ul>
-<li>docker exec 进去把东西准备好，然后 <code>docker commit</code></li>
-</ul>
+<p><code>docker commit</code> 命令可以从当前运行的容器新建镜像。以下是一个简单的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker run -it ubuntu
+<span class="gp">root@82d245a5a4a1:/# </span>apt update <span class="o">&amp;&amp;</span> apt install curl
+<span class="go">（输出省略）</span>
+<span class="gp">root@82d245a5a4a1:/# </span><span class="nb">exit</span>
+<span class="go">exit</span>
+<span class="gp">$ </span>sudo docker ps -a
+<span class="go">CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                      PORTS               NAMES</span>
+<span class="go">82d245a5a4a1        ubuntu               &quot;/bin/bash&quot;              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal</span>
+<span class="gp">$ </span>sudo docker commit 82d245a5a4a1
+<span class="go">sha256:fe0a84d81b867949b27bacec4794303852b05ae76df14818bae85751b14f6e20</span>
+<span class="gp">$ </span>sudo docker images
+<span class="go">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">&lt;none&gt;              &lt;none&gt;              fe0a84d81b86        54 seconds ago      116MB</span>
+<span class="gp">$ </span>sudo docker save fe0a84d81b86 &gt; example.tar
+<span class="gp">$ </span>ls -lh example.tar 
+<span class="go">-rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar</span>
+</code></pre></div>
+<p>得到的 example.tar 即为我们的 Docker 镜像。可以使用 <code>docker load &lt; example.tar</code> 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。</p>
 <h3 id="build-with-dockerfile">使用 Dockerfile 自动化构建<a class="headerlink" href="#build-with-dockerfile" title="Permanent link">&para;</a></h3>
-<p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。在举完例子之后，我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
-<h4 id="cross-compile-example">构建简单的交叉编译<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
-<p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
+<p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
+<h4 id="cross-compile-example">构建简单的交叉编译环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
+<p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">debian:buster-slim</span>
 
 <span class="k">RUN</span> sed -i <span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
@@ -1528,7 +1542,7 @@ For more examples and ideas, visit:
 <span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;fish&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>通过使用 <code>docker build</code>，我们可以构建出镜像。</p>
-<div class="highlight"><pre><span></span><code>sudo docker build -t riscv-cross:example .
+<div class="highlight"><pre><span></span><code><span class="go">sudo docker build -t riscv-cross:example .</span>
 </code></pre></div>
 <p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签。构建完成后，使用 <code>docker run</code> 执行即可：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
@@ -1538,8 +1552,50 @@ For more examples and ideas, visit:
 <span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64 ./a.out 
 <span class="go">Hello, world!</span>
 </code></pre></div>
+<p>从这个例子中，我们可以看到 Dockerfile 的一些指令：</p>
+<ol>
+<li><code>FROM</code> 定义了基础镜像，之后执行的命令都是在基础镜像之上进行操作。如果希望基础镜像为空，可以使用 <code>FROM scratch</code>。</li>
+<li><code>RUN</code> 指定了在镜像中执行的命令。可以注意到，我们将多个命令合并在了一起执行，这有助于减小镜像的冗余大小。</li>
+<li><code>WORKDIR</code> 可以切换当前的所在的工作目录。</li>
+<li><code>ENV</code> 指定了当前的环境变量。</li>
+<li><code>CMD</code> 指定了容器启动时执行的命令。</li>
+</ol>
+<p>Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每条指令对应镜像的一层。Docker 容器镜像的独特之处就在于它的分层设计：在构建镜像时每层的更改会叠加在上一层上（这意味着，上一层的所有数据仍然会保留，即使在新的一层删除了）；如果某一层已经存在，Docker 会直接使用这一层，节约构建的时间和占用的空间。</p>
+<details class="tips"><summary>镜像分层是如何实现的？</summary><p>Docker 默认使用 OverlayFS 存储镜像。Overlay 文件系统允许用户将一个目录挂在另一个只读的目录上，所有修改都记录在可写的上层上。这种特性在 Linux LiveCD 中非常有用：可以将只读的 LiveCD 和硬盘上的目录使用 Overlay 文件系统挂载在一起，然后所有的修改都可以存储在硬盘上。</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">尽量减少 Docker 镜像的层数</p>
+<p>因为 Docker 容器镜像的分层设计，上面提到，<code>RUN</code> 中将多个命令通过 <code>&amp;&amp;</code> 的方式合并在了一起执行，有助于减小镜像的冗余大小。Dockerfile 不是 Shell 脚本，请避免每条命令都使用单独的 <code>RUN</code> 来执行的写法，以下是一个生产环境的错误例子节选（删除了某些部分以方便展示），<strong>无论如何，请不要这么写 Dockerfile</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">centos:7</span>
+
+<span class="k">RUN</span> yum -y install wget make yum-utils
+
+<span class="k">RUN</span> yum-builddep python -y
+
+<span class="k">RUN</span> yum -y install gcc
+<span class="k">RUN</span> yum -y install vim
+<span class="k">RUN</span> yum -y install mariadb-devel
+
+<span class="k">RUN</span> wget -O /tmp/Python-3.7.3.tgz https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+<span class="k">RUN</span> tar -zxvf /tmp/Python-3.7.3.tgz -C /tmp/
+<span class="k">RUN</span> /tmp/Python-3.7.3/configure
+<span class="k">RUN</span> make <span class="o">&amp;&amp;</span> make install
+
+<span class="k">RUN</span> rm -f /usr/bin/python
+<span class="k">RUN</span> ln -s /usr/local/bin/python3 /usr/bin/python
+<span class="k">RUN</span> ln -s /usr/local/bin/pip3 /usr/bin/pip
+
+<span class="k">RUN</span> pip install --upgrade pip
+
+<span class="k">RUN</span> sed -i <span class="s1">&#39;s/python/python2/&#39;</span> /usr/bin/yum
+
+<span class="k">RUN</span> rm -rf /tmp/Python-3.7.3*
+<span class="k">RUN</span> yum clean all
+</code></pre></div>
+<p>当然，这不等于说必须要把所有命令都写在一条 <code>RUN</code> 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 <code>RUN</code> 运行，因为 Docker 在构建镜像时，可以重复使用之前构建好的层。这么做可以节约构建与调试 Dockerfile 的时间。</p>
+</div>
 <h4 id="flask-production-example">在生产环境中运行使用 Flask 编写的简单网站<a class="headerlink" href="#flask-production-example" title="Permanent link">&para;</a></h4>
-<p>Flask 是一个知名的 Python web 框架。</p>
+<p>Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">tiangolo/uwsgi-nginx-flask:python3.8</span>
 
 <span class="k">RUN</span> pip3 config <span class="nb">set</span> global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
@@ -1547,11 +1603,9 @@ For more examples and ideas, visit:
 
 <span class="k">COPY</span> ./app /app
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">尽量减少 Docker 镜像的层数</p>
-<p>TBA</p>
-</div>
+<p>这里使用了 <code>COPY</code> 指令，将本地的 <code>app</code> 目录复制进容器镜像的 <code>/app</code> 中。</p>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
+<p>Docker Compose 是一个方便的小型容器编排工具。</p>
 <h3 id="_1">子项目？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="footnote">
 <hr />
