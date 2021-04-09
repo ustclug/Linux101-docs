@@ -60,4 +60,4 @@
 
 本书的成长离不开大家的帮助。本书的源代码存放在 [GitHub Linux101-docs 仓库](https://github.com/ustclug/Linux101-docs) 中，所有内容以 CC BY-SA 4.0 协议开放。
 
-若您对本书有任何意见或建议，也欢迎致信 ![](https://lug.ustc.edu.cn/wiki/_media/lug/image.png){: .inline }，我们重视您的想法。
+若您对本书有任何意见或建议，也欢迎致信 ![](https://lug.ustc.edu.cn/static/email.png){: .inline }，我们重视您的想法。
