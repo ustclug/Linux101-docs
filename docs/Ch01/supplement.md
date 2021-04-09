@@ -4,11 +4,15 @@
 
 ## Android/Linux {#android-linux}
 
+Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的一系列工具和库。Android 还大幅度修改了 Linux 内核以精简运行时开销、适应移动手机。
+
+[AOSP (Android Open Source Project)](https://source.android.com/)只使用了 GPL 许可证的 Linux Kernel，而在 Kernel 之上的 Dalvik 虚拟机、Bionic Libc 库、驱动透明化的 HAL 则作为用户态存在，避免 Android 系统框架、Google 移动应用服务框架（GMS）和各厂商的驱动程序被 GPL 污染而开源。
+
 ## 关闭 SELinux {#close-seLinux}
 
 读者在使用 Fedora、CentOS、Scientific Linux、RHEL 等系统时，可能会遇到这样的错误：
 
-* SELinux is preventing XXXX from read access on the file YYYY.
+- SELinux is preventing XXXX from read access on the file YYYY.
 
 这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。
 
