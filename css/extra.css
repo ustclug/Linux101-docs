@@ -9,9 +9,9 @@
 .md-typeset h5 { font-size: 1.08em; }
 .md-typeset h6 { font-size: 1em; }
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
-.md-typeset img.inline { display: inline-block; }
+.md-typeset .img-inline { display: inline-block; }
 .md-typeset .img-border { border: 1px solid black; }
-.md-typeset code, .md-typeset kbd, .md-typeset pre { font-family: Roboto Mono,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important; }
+.md-typeset code, .md-typeset kbd, .md-typeset pre { font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
 .md-typeset kbd { box-shadow: 0 0 0 0.05rem var(--md-default-fg-color--lighter), 0 0.1rem 0 var(--md-default-fg-color--lighter), inset 0 -0.1rem 0.2rem var(--md-default-bg-color); }
 .md-typeset .admonition, .md-typeset details { font-size: 0.9em; }
 .md-typeset .md-typeset__table { display: block; margin-left: auto; margin-right: auto; }

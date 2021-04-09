@@ -2,88 +2,94 @@
 //
 // scss extra.scss > extra.css
 
-.red, .red-important {
-	color: red !important;
+.red,
+.red-important {
+  color: red !important;
 }
-.darkred, .darkred-important {
-	color: darkred !important;
+.darkred,
+.darkred-important {
+  color: darkred !important;
 }
 
 .md-typeset {
-	#references, .no-underline {
-		margin-bottom: 0;
-		padding-bottom: 0;
-		border: none;
-	}
+  #references,
+  .no-underline {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: none;
+  }
 
-	h2 {
-		padding-bottom: 0.2em;
-		border-bottom: 1px solid #d3d3d3;
-	}
+  h2 {
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid #d3d3d3;
+  }
 
-	h3 {
-		padding-bottom: 0.2em;
-		border-bottom: 1px dashed #d3d3d3;
-	}
+  h3 {
+    padding-bottom: 0.2em;
+    border-bottom: 1px dashed #d3d3d3;
+  }
 
-	h4 {
-		font-size: 1.17em;
-	}
+  h4 {
+    font-size: 1.17em;
+  }
 
-	h5 {
-		font-size: 1.08em;
-	}
+  h5 {
+    font-size: 1.08em;
+  }
 
-	h6 {
-		font-size: 1em;
-	}
+  h6 {
+    font-size: 1em;
+  }
 
-	img {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-		&.inline {
-			display: inline-block;
-		}
-	}
+  .img-inline {
+    display: inline-block;
+  }
+  .img-border {
+    border: 1px solid black;
+  }
 
-	.img-border {
-		border: 1px solid black;
-	}
+  code,
+  kbd,
+  pre {
+    font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  }
 
-	code, kbd, pre {
-		font-family: Roboto Mono,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important;
-	}
+  kbd {
+    box-shadow: 0 0 0 0.05rem var(--md-default-fg-color--lighter), 0 0.1rem 0 var(--md-default-fg-color--lighter),
+      inset 0 -0.1rem 0.2rem var(--md-default-bg-color);
+  }
 
-	kbd {
-		box-shadow: 0 0 0 .05rem var(--md-default-fg-color--lighter), 0 .1rem 0 var(--md-default-fg-color--lighter), inset 0 -0.1rem .2rem var(--md-default-bg-color);
-	}
+  .admonition,
+  details {
+    font-size: 0.9em;
+  }
 
-  .admonition, details {
-		font-size: 0.9em;
-	}
+  .md-typeset__table {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
-	.md-typeset__table {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
+    > table {
+      display: table;
+      width: auto;
+      margin: 0 auto;
+    }
+  }
 
-		> table {
-			display: table;
-			width: auto;
-			margin: 0 auto;
-		}
-	}
+  p.caption {
+    text-align: center;
+    font-size: 0.94em;
+    color: grey;
+    margin: -0.7em 0 0;
+  }
 
-	p.caption {
-		text-align: center;
-		font-size: 0.94em;
-		color: grey;
-		margin: -0.7em 0 0;
-	}
-
-	.footnote hr {
-		margin-top: 0.2em;
-	}
+  .footnote hr {
+    margin-top: 0.2em;
+  }
 }
