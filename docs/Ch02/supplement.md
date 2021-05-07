@@ -1,4 +1,4 @@
-# 	个性化配置与建站体验
+# 个性化配置与建站体验
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
@@ -16,11 +16,11 @@
 $ sudo apt install ubuntu-gnome-desktop
 ```
 
-接下来的提示中按输入Y回车即安装
+接下来的提示中按输入 Y 回车即安装
 
 !!! tip "注意"
 
-	若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](http://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+    若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 
 安装完成后输入
 
@@ -36,13 +36,15 @@ $ sudo reboot
 
 ??? example "安装 Plasma 桌面"
 
-	同理，如果你喜欢 KDE plasma 桌面，只需要执行
+    同理，如果你喜欢 KDE plasma 桌面，只需要执行
 
-	```shell
-	$ sudo apt install kde-plasma-desktop
-	$ sudo reboot
-	```
+    ```shell
+    $ sudo apt install kde-plasma-desktop
+    $ sudo reboot
+    ```
+
 ## GNOME 相关
+
 ### Gnome 桌面环境的个性化
 
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
@@ -50,15 +52,15 @@ $ sudo reboot
 在 GNOME 桌面下用户可以轻松更换主题。
 首先安装 gnome-tweak-tool 软件
 
-```
-sudo apt install gnome-tweak-tool
+```shell
+$ sudo apt install gnome-tweak-tool
 ```
 
 在 [GNOME Look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
 
 !!! info "注意"
 
-	不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。
+    不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。
 
 点击 Download 下载一个压缩包
 
@@ -82,7 +84,7 @@ $ gnome-tweak-tool
 
 !!! tip "提示"
 
-	你也可以使用 ocs-url 软件，在网页中直接安装主题，参考本章附录
+    你也可以使用 ocs-url 软件，在网页中直接安装主题，参考本章附录
 
 如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。
 
@@ -90,7 +92,7 @@ $ gnome-tweak-tool
 
 GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
 
-要使用Gnome拓展程序我们要先安装 gnome-shell-extensions
+要使用 Gnome 拓展程序我们要先安装 gnome-shell-extensions
 
 ```shell
 $ sudo apt install gnome-shell-extensions
@@ -112,9 +114,9 @@ $ gnome-shell --version
 
 在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。
 
-这时我们打开文件夹里的`metadata.json`文件。
+这时我们打开文件夹里的 `metadata.json` 文件。
 
-将文件夹的名字改为`metadata.json`中的uuid
+将文件夹的名字改为 `metadata.json` 中的 UUID
 
 ![](images/metadata.png)
 
@@ -130,28 +132,29 @@ uuid 为 "caffeine@patapon.info"
 $ gnome-tweaks
 ```
 
-在拓展一栏即可启用我们刚刚装的caffeine
+在拓展一栏即可启用我们刚刚装的 caffeine
 
 ![](images/gnome-extensions.png)
 
 !!! tip "提示"
 
-	手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。
+    手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。
 
-	首先安装浏览器插件：
+    首先安装浏览器插件：
 
-	对于 Google Chrome、Chromium 和 Vivaldi： [Chrome Web 商店](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep)
+    对于 Google Chrome、Chromium 和 Vivaldi：[Chrome Web 商店](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep)
 
-	对于 Firefox： [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/)
+    对于 Firefox： [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/)
 
-	再安装本地连接器
-	```shell
-	$ sudo apt install chrome-gnome-shell
-	```
+    再安装本地连接器
 
-	即可在 https://extensions.gnome.org/ 网页中管理、安装插件。
+    ```shell
+    $ sudo apt install chrome-gnome-shell
+    ```
 
-	![](images/extensions-management.png)
+    即可在 https://extensions.gnome.org/ 网页中管理、安装插件。
+
+    ![](images/extensions-management.png)
 
 ## Xfce 联网下载安装更多主题
 
@@ -173,32 +176,32 @@ $ gnome-tweaks
 
 !!! tip "提示"
 
-	有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现
+    有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现
 
-	![](images/Xfce-WM-style-installation.png)
+    ![](images/Xfce-WM-style-installation.png)
 
-	选中后，窗口样式就变了。
+    选中后，窗口样式就变了。
 
 更换主题包后，是不是整个系统变得高大上了起来？
 
 !!! tip "提示"
 
-	我们可以安装插件在网页上直接安装主题。
+    我们可以安装插件在网页上直接安装主题。
 
-	在 <https://www.pling.com/p/1136805/> 中，下载ocs-url，下载时选择deb后缀的安装包。
+    在 <https://www.pling.com/p/1136805/> 中，下载 ocs-url，下载时选择 deb 后缀的安装包。
 
-	![](images/ocs-url-download.png)
+    ![](images/ocs-url-download.png)
 
-	命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
+    命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
 
-	```shell
-	sudo dpkg -i 下载的包.deb
-	sudo apt-get install --fix-broken
-	```
+    ```shell
+    sudo dpkg -i 下载的包.deb
+    sudo apt-get install --fix-broken
+    ```
 
-	即可完成安装。
+    即可完成安装。
 
-	接下来在 <https://www.xfce-look.org/> 中所有的主题只需要点击 Install 即可自动安装	到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
+    接下来在 <https://www.xfce-look.org/> 中所有的主题只需要点击 Install 即可自动安装到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
 
 ## 终端的个性化
 
@@ -246,21 +249,21 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 !!! info "如果无法下载安装脚本"
 
-	如果遇到了网络连通性问题，命令可以替换为：
+    如果遇到了网络连通性问题，可以使用以下替换命令：
 
-	```shell
-	sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
-	```
+    ```shell
+    sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
+    ```
 
 安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。
 
-我们可以修改 `~/.zshrc`里的一行
+我们可以修改 `~/.zshrc` 里的一行
 
     ZSH_THEME="robbyrussell"
 
 中引号部分切换主题，如果只想试用某个主题，可以使用
 
-	omz theme use robbyrussell
+    omz theme use robbyrussell
 
 来临时试用某主题。
 具体主题可以在 [oh-my-zsh 的项目 Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 中找到。
@@ -268,15 +271,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ## 其它的个性化
 
-上面内容都是外观上的个性化，更多地，Linux系统的可客制化还体现在一些配置文件上。
+上面内容都是外观上的个性化，更多地，Linux 系统的可客制化还体现在一些配置文件上。
 
-### etc目录
+### etc 目录
 
 `/etc` 目录是包含几乎所有 Linux 系统配置的一个文件夹。
 
 !!! info "tips"
 
-	etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 `etc` 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 `/etc` 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。
+    etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 `etc` 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 `/etc` 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。
 
 下面介绍几个常用的配置文件
 
@@ -287,56 +290,56 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ??? example "示例"
 
-	当我们登录用户成功时
+    当我们登录用户成功时
 
-	```shell
-	$ sudo login
-	```
+    ```shell
+    $ sudo login
+    ```
 
-	会提示以下信息
+    会提示以下信息
 
-	```text
-	Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
-	 * Documentation:  https://help.ubuntu.com
-	 * Management:     https://landscape.canonical.com
-	 * Support:        https://ubuntu.com/advantage
-	 * Canonical Livepatch is available for installation.
-	   - Reduce system reboots and improve kernel security. Activate at:
-	     https://ubuntu.com/livepatch
-	125 个可升级软件包。
-	0 个安全更新。
-	Your Hardware Enablement Stack (HWE) is supported until April 2023.
-	*** 需要重启系统 ***
-	The programs included with the Ubuntu system are free software;
-	the exact distribution terms for each program are described in the
-	individual files in /usr/share/doc/*/copyright.
+    ```text
+    Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+     * Documentation:  https://help.ubuntu.com
+     * Management:     https://landscape.canonical.com
+     * Support:        https://ubuntu.com/advantage
+     * Canonical Livepatch is available for installation.
+       - Reduce system reboots and improve kernel security. Activate at:
+         https://ubuntu.com/livepatch
+    125 个可升级软件包。
+    0 个安全更新。
+    Your Hardware Enablement Stack (HWE) is supported until April 2023.
+    *** 需要重启系统 ***
+    The programs included with the Ubuntu system are free software;
+    the exact distribution terms for each program are described in the
+    individual files in /usr/share/doc/*/copyright.
 
-	Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-	applicable law.
-	```
+    Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+    applicable law.
+    ```
 
-	Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
+    Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
 
-	!!! info "提示"
+    !!! info "提示"
 
-		有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
+    	有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
 
-	我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容
+    我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容
 
-	```shell
-	#!/bin/sh
-	echo helloworld
-	```
+    ```shell
+    #!/bin/sh
+    echo helloworld
+    ```
 
-	然后
+    然后
 
-	```shell
-	$ sudo chmod +x /etc/update-motd.d/99-test
-	```
+    ```shell
+    $ sudo chmod +x /etc/update-motd.d/99-test
+    ```
 
-	设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
+    设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
 
-	当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
+    当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
 ## 搭建简易的网站
 
@@ -345,6 +348,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```shell
 $ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 ```
+
 这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。
 
 创建一个 `/etc/apache2/sites-available/wordpress.conf` 文件，把下面内容填入
@@ -378,6 +382,7 @@ $ sudo service apache2 reload
 ```shell
 $ sudo mysql -u root
 ```
+
 出现以下信息时
 
 ```text
@@ -440,4 +445,5 @@ $ sudo service mysql start
 来完成最后的配置。
 
 ## 参考资料
-- <https://askubuntu.com/questions/101651/how-to-install-themes-with-gnome-tweak-tool/1128098#1128098>
+
+- [How to install themes with GNOME tweak tool? - Ask Ubuntu](https://askubuntu.com/a/1128098/612877)

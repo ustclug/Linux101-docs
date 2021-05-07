@@ -6,7 +6,7 @@ man 文档非常详细。当然，详细的后果，就是我们在阅读的时�
 
 在查阅资料时，你常常会见到如 `chmod(1)` 或 `mount(8)` 这样的表达方式。正如上面所述，数字表示这个条目所属的章节。
 
-但是为什么要加数字呢？这是因为不同的章节可能有相同的条目，例如 `chmod` 既是一条命令，又是一个系统调用。当你要查看 `chmod` 命令的 man 文档时，你会去看 `chmod(1)`；而当你要查看 `chmod` 系统调用的 man 文档时，你会去看 `chmod(2)`。这时候条目后面数字的作用就体现出来了，你可以放心的说 *chmod(1) 内部使用了 chmod(2)* 这样的话而不必担心造成困惑。
+但是为什么要加数字呢？这是因为不同的章节可能有相同的条目，例如 `chmod` 既是一条命令，又是一个系统调用。当你要查看 `chmod` 命令的 man 文档时，你会去看 `chmod(1)`；而当你要查看 `chmod` 系统调用的 man 文档时，你会去看 `chmod(2)`。这时候条目后面数字的作用就体现出来了，你可以放心的说 _chmod(1) 内部使用了 chmod(2)_ 这样的话而不必担心造成困惑。
 
 ## 命令行工具：以 `su` 为例
 
@@ -52,7 +52,7 @@ DESCRIPTION（介绍，大致描述了它能够做什么事情）
        不过，就算我们忽略一些问题（先不管 PAM 是啥），我们仍然可以了解到很多信息，比如说：
        - 推荐使用 `su -` 而不是 `su`，这可以防止（当前用户和切换目标用户不同的）环境混起来
        带来问题。
-       - `root` 用户更推荐使用 `runuser` 代替 `su`，因为不需要认证为其他用户，且在 PAM 
+       - `root` 用户更推荐使用 `runuser` 代替 `su`，因为不需要认证为其他用户，且在 PAM
        方面更好。）
 
 OPTIONS（选项，包含了所有参数的语法和介绍）
@@ -140,7 +140,7 @@ OPTIONS（选项，包含了所有参数的语法和介绍）
        （这里按照字典序介绍了所有的参数。对于想要详尽了解命令使用的人来说没有什么问题，而对于想
        要快速找到自己想要的参数的人来说，阅读这样的文档确实会让人一头雾水。
        你可以按下 /，然后输入搜索关键词快速搜索，按 n 查看下一个搜索项，按 N 查看上一个搜索项。
-       至于专有名词，你可能不得不去了解它们的含义。查看相关的文档，或者在互联网上搜索。） 
+       至于专有名词，你可能不得不去了解它们的含义。查看相关的文档，或者在互联网上搜索。）
 
 SIGNALS（信号，信号的含义详见进程一章）
        Upon  receiving  either  SIGINT,  SIGQUIT or SIGTERM, su terminates its
@@ -300,8 +300,8 @@ SYNOPSIS
 
        kill(): _POSIX_C_SOURCE
        （这里的话，出现了 "Macro Requirements"，表明 kill() 函数需要在 include 文件之前
-       作宏定义 _POSIX_C_SOURCE 来正常使用。当然，很多 Macro 都是默认包含的，可以在 
-       feature_test_macros 文档中的 Default definitions, implicit definitions, 
+       作宏定义 _POSIX_C_SOURCE 来正常使用。当然，很多 Macro 都是默认包含的，可以在
+       feature_test_macros 文档中的 Default definitions, implicit definitions,
        and combining definitions 一小节中找到）
 
 DESCRIPTION

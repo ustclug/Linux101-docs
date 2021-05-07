@@ -12,7 +12,7 @@
 
 !!! info "本章阅读须知"
 
-	本节内容将不可避免遇到以下名词：操作系统，内核 (kernel)，shell，中断，系统调用等等。建议先阅读本书[词汇表](../Appendix/glossary.md)，并在浏览本章内容时随时参考。
+    本节内容将不可避免遇到以下名词：操作系统，内核 (kernel)，shell，中断，系统调用等等。建议先阅读本书[词汇表](../Appendix/glossary.md)，并在浏览本章内容时随时参考。
 
 ## 进程 {#process}
 
@@ -70,14 +70,14 @@ htop 示例 | [htop 主页](https://hisham.hm/htop/)
 ??? tip "孤儿进程 (orphan) 和僵尸进程 (zombie)"
 
     父子关系引出了两种特殊的运行情况——父进程先退出，它的子进程成为**孤儿进程** (orphan)；子进程先退出，而父进程未作出回应 (wait)，子进程则变为**僵尸进程** (zombie)。
-    
+
     孤儿进程（即留下的子进程）由操作系统回收，交给 init「领养」。
-    
+
     僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。<!-- 同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。-->
 
-我们可以使用 htop 查看进程的父进程等信息。按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例 (PPID)，点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY\_NR，TPGID，SESSION 等列以便观察下面的实验结果。
+我们可以使用 htop 查看进程的父进程等信息。按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例 (PPID)，点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 等列以便观察下面的实验结果。
 
-![add\_column](images/add_column.png)
+![add_column](images/add_column.png)
 
 如果 F10 被终端程序占用了，可以尝试用鼠标点击选项，或者修改终端程序的设置。例如，Xfce 默认的终端程序可以在 设置 => 高级 中取消对 F10 的占用。
 
@@ -103,14 +103,14 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 `sched(7)` 的 Scheduling policies 小节。
 
 ??? info "协作与抢占"
-    实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为**协作式** (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配**时间片** (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为**抢占式** (preemptive) 操作系统。
+实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为**协作式** (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配**时间片** (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为**抢占式** (preemptive) 操作系统。
 
 ??? info "中断与进程调度"
 
     系统进行调度，主要面临这样几个问题：
 
     - 何时（什么契机）可以进行调度？
-    - 要不要进行调度切换进程？ 
+    - 要不要进行调度切换进程？
     - 该调度谁？
 
     首先若想进行调度，必有[中断](../Appendix/glossary.md#irq)参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。那么现代操作系统如何利用中断进行调度呢？
@@ -134,10 +134,10 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 ![what's up?](images/privilege.png)
 
 ??? tip "关于内核线程的优先级"
-    如果你按下了 Shift + K 键显示**内核线程**，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
-    ![htop 的内核线程优先级](images/top8.png){: width=75% }
+如果你按下了 Shift + K 键显示**内核线程**，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
+![htop 的内核线程优先级](images/top8.png){: width=75% }
 
-    - 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。  
+    - 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
       （试试 `echo hi > /dev/watchdog` 吧。)
     - 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
     - 图中以 `irq` 开头的便是中断处理程序了。
@@ -145,13 +145,13 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 对于普通用户，有 `nice` 命令可以选择，可以以低优先级开始任务。`renice` 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 `sudo`（毕竟不能随便就把自己的优先级设置得更高）。
 
 ```text
-nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help] 
+nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help]
  [--version] [command [arg...]]
 
 # 以下命令等效
 nice vim
-nice -10 vim 
-nice -n 10 vim 
+nice -10 vim
+nice -n 10 vim
 
 (sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 ```
@@ -181,21 +181,19 @@ nice -n 10 vim
 
 Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。
 
-
 **上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：**
 
-| 进程属性 | 意义/目的 |
-|:-----:|---------|
-| PID | Process ID，标识进程的唯一性。 |
-| PPID | Parent PID，标识进程父子关系。 |
-| PGID | Process Group ID，标识共同完成一个任务的整体。 |
-| TPGID | 标识一组会话中处于前台（与用户交流）的进程（组）。 |
-| SID | Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。 |
-| USER / UID | 标识进程的权限。 |
-| Priority | 标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。 |
-| Nice | 普通进程的优先级标度，越 "nice" 优先级越低。 |
-| State | 标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。 |
-
+|  进程属性  | 意义/目的                                                                                                                                          |
+| :--------: | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+|    PID     | Process ID，标识进程的唯一性。                                                                                                                     |
+|    PPID    | Parent PID，标识进程父子关系。                                                                                                                     |
+|    PGID    | Process Group ID，标识共同完成一个任务的整体。                                                                                                     |
+|   TPGID    | 标识一组会话中处于前台（与用户交流）的进程（组）。                                                                                                 |
+|    SID     | Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。                                      |
+| USER / UID | 标识进程的权限。                                                                                                                                   |
+|  Priority  | 标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。                                                                                       |
+|    Nice    | 普通进程的优先级标度，越 "nice" 优先级越低。                                                                                                       |
+|   State    | 标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。 |
 
 ## 用户进程控制 {#process-control}
 
@@ -209,7 +207,7 @@ Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只�
 
 信号列表可以使用 `man 7 signal` 查看。
 
-![signal\_slide](images/signal_slide.png)
+![signal_slide](images/signal_slide.png)
 
 （来自前年 Linux 101 ——进程、服务、任务的演示文稿截图）
 {: .caption }
@@ -234,7 +232,7 @@ Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只�
 
 在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：
 
-![fg\_bg](images/fg_bg.png)
+![fg_bg](images/fg_bg.png)
 
 即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。
 
@@ -266,7 +264,7 @@ $ kill -l # 显示所有信号名称
 48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
 53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
 58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
-63) SIGRTMAX-1	64) SIGRTMAX	
+63) SIGRTMAX-1	64) SIGRTMAX
 ```
 
 如果不加任何参数，只有 PID，`kill` 命令将自动使用 15 (SIGTERM) 做为信号参数。
@@ -291,23 +289,22 @@ $ kill -l # 显示所有信号名称
 
 `killall5`
 
-:   向所有进程发送信号。实际上这个命令名称来自 Unix System V 的系统管理命令（V 是罗马数字的 5）。
+: 向所有进程发送信号。实际上这个命令名称来自 Unix System V 的系统管理命令（V 是罗马数字的 5）。
 
 `pgrep` / `pkill`
 
-:   后面接模糊名称，实际上类似于对名称进行 `grep` 命令。`pgrep` 仅列出搜索到的进程名称为的进程标识符，而 `pkill` 会根据用户的输入向进程发送信号。
+: 后面接模糊名称，实际上类似于对名称进行 `grep` 命令。`pgrep` 仅列出搜索到的进程名称为的进程标识符，而 `pkill` 会根据用户的输入向进程发送信号。
 
 `xkill`
 
-:   `xkill` 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。
-
+: `xkill` 是针对窗口的 kill，运行该命令后，鼠标点击程序对应的窗口，就可以杀死该程序。
 
 ### 脱离终端 {#background-task}
 
 许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会发送 SIGHUP (Signal hangup)，该信号会被广播到会话下每一个进程，默认动作即退出程序运行。
 
 !!! info "关于 SIGHUP 的细节"
-    如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 `kill -9` (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。
+如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 `kill -9` (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。
 
     利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。
 
@@ -328,7 +325,7 @@ nohup: ignoring input and appending output to '/home/$USERNAME/nohup.out'
 ![](images/tmux.gif){: width=70% }
 
 !!! info "问题产生了！"
-    一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。
+一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。
 
 开启多个 SSH 连接似乎可以解决这个问题。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。
 
@@ -430,7 +427,7 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 
 要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
-```shell 
+```shell
 $ service --status-all
  [ - ]  atftpd
  [ - ]  avahi-daemon
@@ -553,7 +550,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
     Execute commands once at a later time.
     Service atd (or atrun) should be running for the actual executions.
 
-     - Execute commands from standard input in 5 minutes (press 
+     - Execute commands from standard input in 5 minutes (press
        Ctrl + D when done):
        at now + 5 minutes
 
@@ -614,15 +611,15 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 # 分   时   日   月   星期  | 命令
 # 下面是几个示例
 *  *  *  *  *  echo "hello" >> ~/count
-# 每分钟输出 hello 到家目录下 count 文件 
+# 每分钟输出 hello 到家目录下 count 文件
 0,15,30,45 0-6 * JAN SUN  command
 # 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么
-# 反映了 crontab 中大部分语法。   
-5  3  *  *  * curl 'http://ip.42.pl/raw' | mail -s "ip today" xxx@xxx.com  
+# 反映了 crontab 中大部分语法。
+5  3  *  *  * curl 'http://ip.42.pl/raw' | mail -s "ip today" xxx@xxx.com
 # 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
 ```
 
-如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  
+如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。
 
 ![crontab](images/crontab.gif)
 
@@ -640,6 +637,6 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 ## 其他资料 {#extra-resources}
 
-*The TTY demystified*: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
+_The TTY demystified_: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
-:   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
+: 本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）

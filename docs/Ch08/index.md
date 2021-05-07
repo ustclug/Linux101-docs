@@ -218,7 +218,7 @@ $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 <none>              <none>              fe0a84d81b86        54 seconds ago      116MB
 $ sudo docker save fe0a84d81b86 > example.tar
-$ ls -lh example.tar 
+$ ls -lh example.tar
 -rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar
 ```
 
@@ -261,7 +261,7 @@ $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
 root@dec3d33003ee /workspace# vim helloworld.c
 root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc helloworld.c
-root@dec3d33003ee /workspace# qemu-riscv64 ./a.out 
+root@dec3d33003ee /workspace# qemu-riscv64 ./a.out
 Hello, world!
 ```
 
@@ -333,6 +333,5 @@ COPY ./app /app
 Docker Compose 是一个方便的小型容器编排工具。
 
 ### 子项目？
-
 
 [^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。

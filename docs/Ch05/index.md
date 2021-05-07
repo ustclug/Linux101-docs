@@ -59,6 +59,7 @@
 在我们使用 `sudo` 的时候，输入自己的密码后，在验证正确之后，`sudo` 就会以 `root` 用户的身份，执行后面我们希望执行的命令。而使用 `apt` 安装的软件存储在了系统的目录下，所以必须要以 `root` 用户的身份安装。这就是我们平时需要 `sudo` 来安装软件的原因。
 
 !!! danger "谨慎使用 `root` 用户权限执行命令！"
+
     我们知道，`root` 用户可以对系统做及其危险的操作。当使用 `root` 权限执行命令时（如使用 `sudo`），一定要**小心、谨慎，理解命令的含义之后再按下回车**。**请不要复制网络上所谓的「Linux 优化命令」等**，以 `root` 权限执行，否则**可能会带来灾难性的后果**。
 
     以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 **<span class=red>再重复一遍，不要执行下面的命令！</span>**
@@ -119,7 +120,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 
 这里，我们就用 `nobody` 这个用户的身份，执行了 `id`，得到了 `nobody` 的 UID 等信息。
 
-??? example "修改 `sudo` 配置的例子：无密码执行 `sudo` (*)"
+??? example "修改 `sudo` 配置的例子：无密码执行 `sudo` (\*)"
 
     `sudo` 的配置存储在 `/etc/sudoers` 文件中，仅 `root` 用户有权查看和修改。**不要直接修改此文件。**对这个文件的任何修改，都应该使用 `visudo` 这个命令去做。
 
@@ -149,7 +150,7 @@ $ su
 Password:
 （密码？什么密码？输我自己的密码试试？）
 su: Authentication failure
-$ 
+$
 ```
 
 这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 `root` 用户的密码登录，只允许通过 `sudo` 提高权限。但是，我们可以用 `sudo` 运行 `su`，来得到一个为 `root` 用户权限的 shell。
@@ -161,7 +162,7 @@ Password:
 # id
 uid=0(root) gid=0(root) groups=0(root)
 # exit
-$ 
+$
 ```
 
 `sudo su`, `sudo su -` 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 `sudo -i`（与 `sudo su -` 等价），获得一个 `root` 权限 shell。
@@ -181,14 +182,13 @@ me adm cdrom sudo dip plugdev lxd
 
 同样，用户组和用户一样，也有编号：GID (Group ID)。
 
-
 ### 命令行的用户配置操作 {#user-configuration-command-line}
 
 #### 修改密码：`passwd` {#passwd}
 
 可以使用此命令修改用户密码，格式为 `passwd 用户名`。如果没有输入用户名，则修改自己的密码。
 
-#### (*) 简单的用户配置：`adduser` {#adduser}
+#### (\*) 简单的用户配置：`adduser` {#adduser}
 
 !!! warning "`adduser` 是 Debian 及其衍生发行版的专属命令"
 
@@ -213,6 +213,7 @@ $ sudo adduser 用户名 组名
 ```
 
 !!! example "添加用户至 sudo 用户组"
+
     在通过 `adduser` 创建了新的用户后，直接使用 `sudo` 以 `root` 身份运行程序可能会得到：
 
     ```text
@@ -320,15 +321,14 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 当然，实际情况不一定会和以下介绍的内容完全一致。可以使用 `man hier` 和 `man file-hierarchy` 查看你的系统中关于文件系统层次结构的文档。
 
-
 `/bin`
-:   存储必须的程序文件，对所有用户都可用。
+: 存储必须的程序文件，对所有用户都可用。
 
 `/boot`
-:   存储在启动系统时需要的文件。
+: 存储在启动系统时需要的文件。
 
 `/dev`
-:   存储设备文件。
+: 存储设备文件。
 
     !!! tip "什么是设备文件？"
 
@@ -336,7 +336,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 `/etc`
 
-:   存储系统和程序的配置文件。
+: 存储系统和程序的配置文件。
 
     !!! tip "注册表与配置文件"
 
@@ -346,41 +346,41 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 `/home`
 
-:   用户的家目录。存储用户自己的信息。
+: 用户的家目录。存储用户自己的信息。
 
 `/lib`
 
-:   存放系统运行必须的程序库文件。
+: 存放系统运行必须的程序库文件。
 
 `/media` 和 `/mnt`
 
-:   这两个目录都用于挂载其他的文件系统。`/media` 用于可移除的文件系统（如光盘），而 `/mnt` 用于临时使用。
+: 这两个目录都用于挂载其他的文件系统。`/media` 用于可移除的文件系统（如光盘），而 `/mnt` 用于临时使用。
 
 `/opt`
 
-:   存放额外的程序包。一般将一些大型的、商业的应用程序放置在这个目录。
+: 存放额外的程序包。一般将一些大型的、商业的应用程序放置在这个目录。
 
 `/root`
 
-:   `root` 用户的家目录。
+: `root` 用户的家目录。
 
 `/run`
 
-:   系统运行时的数据。在每次启动时，里面的数据都会被删除。
+: 系统运行时的数据。在每次启动时，里面的数据都会被删除。
 
 `/sbin`
 
-:   存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）等。
+: 存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）等。
 
 `/srv`
 
-:   存储网络服务的数据。
+: 存储网络服务的数据。
 
 `/tmp`
-:   临时目录，所有用户都可使用。
+: 临时目录，所有用户都可使用。
 
 `/usr`
-:   大多数软件都会安装在此处。其下有一些目录与 `/` 下的结构相似，如：
+: 大多数软件都会安装在此处。其下有一些目录与 `/` 下的结构相似，如：
 
     - `/usr/bin`
     - `/usr/lib`
@@ -393,7 +393,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）
 
 `/var`
-:   存储会发生变化的程序相关文件。
+: 存储会发生变化的程序相关文件。
 
 ## 思考题 {#questions}
 
@@ -402,7 +402,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     关于 `nobody` 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。
 
 !!! question "系统用户的默认 Shell"
-   
+
     在 `/etc/passwd` 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 `/bin/bash`）。为什么会有很多用户的默认 Shell 是 `/usr/sbin/nologin` 或者 `/bin/false`？这样做有什么意义？
 
 !!! question "启用 root 用户"
@@ -410,7 +410,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     在 Ubuntu 等 Linux 发行版中，`root` 用户是默认禁用（无法直接登录）的。如何启用此用户？
 
 !!! question "文件的可执行权限"
-   
+
     如果向一个 MP3 音频文件添加「可执行」(`x`) 属性，那么这个文件就可以被执行吗？为什么？
 
 !!! question "`sudo cd`?"
@@ -419,10 +419,9 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 ## 引用来源 {#references .no-underline}
 
-* [维基百科上的 Passwd 词条（英语）](https://en.wikipedia.org/wiki/Passwd)
-* [Simple explanation of `sudoers` file](https://askubuntu.com/questions/118204/5958455) - Ask Ubuntu
-* [Sudoers - Community Help Wiki](https://help.ubuntu.com/community/Sudoers) - Ubuntu Documentation
-
+- [维基百科上的 Passwd 词条（英语）](https://en.wikipedia.org/wiki/Passwd)
+- [Simple explanation of `sudoers` file](https://askubuntu.com/questions/118204/5958455) - Ask Ubuntu
+- [Sudoers - Community Help Wiki](https://help.ubuntu.com/community/Sudoers) - Ubuntu Documentation
 
 [^1]: 这里的哈希，指经过了[密码哈希函数](https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8) ([Cryptographic hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function)) 的处理。密码哈希函数是一种特殊的单向函数，将任意大小的数据映射到一串长度固定的字符串，并且拥有一些优良的性质（如难以找到两个不同的数据，使得映射后的字符串相同），使其破解难度加大。
 [^3]: <https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes>

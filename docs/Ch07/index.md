@@ -59,7 +59,7 @@ Hello World!
 
 应当注意到 `gcc main.c -o main` 这条指令没有打印出任何内容。
 这是因为整个编译过程是成功的，gcc 没有需要报告的内容，因此保持沉默。
-这是 Unix 哲学的一部分：*Rule of Silence: When a program has nothing surprising to say, it should say nothing.*[^1]
+这是 Unix 哲学的一部分：_Rule of Silence: When a program has nothing surprising to say, it should say nothing._[^1]
 
 ### 多文件的状况 {#c-multi-file}
 
@@ -171,6 +171,7 @@ Hello World!
 同样是这个原因，实际上使用 `gcc main.c print.c -o main` 是可以一步到位，但在接下来的内容里，你会看到另一个方案。
 
 !!! tips "gcc 的四个部分，编译的过程"
+
     gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
     分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。
 

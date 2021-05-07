@@ -108,7 +108,9 @@ Do you want to continue? [Y/n]
 在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 `Y` 后回车确定进行安装。
 
 !!! tip "可能会出现的权限问题"
+
     在一般情况下，如果直接运行 `apt install` 命令，会输出
+
     ```text
     $ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
@@ -128,7 +130,7 @@ Do you want to continue? [Y/n]
     这里提示的是需要用户输入密码，以提升权限来执行命令。
 
     当然，在用户输入密码的过程中，为了安全，终端是不会进行密码的回显的，即终端不会将用户的输入内容打印在屏幕上。
-    
+
     因此当你发现自己输入了很多内容也没有什么反应的时候，不用惊慌，只需要像平常一样输入正确的密码、回车，即可完成密码的正确性的鉴定。
 
     如果密码输入正确，那么就可以正常地执行命令。
@@ -137,7 +139,7 @@ Do you want to continue? [Y/n]
 
     ```text
     Sorry, try again.
-    [sudo] password for ubuntu: 
+    [sudo] password for ubuntu:
     ```
 
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
@@ -147,6 +149,7 @@ Do you want to continue? [Y/n]
 通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? example "查看本地的软件源列表"
+
     ```text
     $ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
@@ -160,7 +163,6 @@ Do you want to continue? [Y/n]
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates multiverse
 
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-
 
     deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted
     deb http://security.ubuntu.com/ubuntu/ bionic-security universe
@@ -176,7 +178,7 @@ Do you want to continue? [Y/n]
 
     分别是 Archive type、Repository URL、Distribution 和 Component。
 
-    在 Ubuntu 下，Component 可以为如下几个[^1]：
+    在 Ubuntu 下，Component 可以为如下几个之一[^1]：
 
     | 类型       | 含义                                                                                        |
     | ---------- | ------------------------------------------------------------------------------------------- |
@@ -187,7 +189,7 @@ Do you want to continue? [Y/n]
 
     具体的含义见 [Source List](https://wiki.debian.org/SourcesList#sources.list_format)
 
-官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。
+Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以通过修改官方源为其镜像实现更快的下载速度。
 
 镜像缓存了官方源中的软件列表，与官方源基本一致。
 
@@ -221,94 +223,95 @@ Do you want to continue? [Y/n]
 
     1. 安装需要的的软件包
 
-		```shell
-		$ sudo apt-get update
+        ```shell
+        $ sudo apt-get update
 
-		$ sudo apt-get install \
-			apt-transport-https \
-			ca-certificates \
-			curl \
-			gnupg-agent \
-			software-properties-common
-		```
+        $ sudo apt-get install \
+          apt-transport-https \
+          ca-certificates \
+          curl \
+          gnupg-agent \
+          software-properties-common
+        ```
 
     2. 添加 Docker 软件源的 GPG Key
 
-		这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
-		
-		```shell
-		$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-		```
+        这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+
+        ```shell
+        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        ```
 
     3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
 
-		在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
-		
-		```shell
-		# 此为 Ubuntu amd64 的命令
-		$ sudo add-apt-repository \
-			"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-			$(lsb_release -cs) \
-			stable"
-		```
+        在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
 
-		当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
-		```text
-		deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-		```
+        ```shell
+        # 此为 Ubuntu amd64 的命令
+        $ sudo add-apt-repository \
+          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+          $(lsb_release -cs) \
+          stable"
+        ```
+
+        当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
+        
+        ```text
+        deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+        ```
 
     4. 使用 apt 安装 Docker
 
-		首先需要从第三方源更新软件列表。
-		
-		```shell
-		apt update
-		```
+        首先需要从第三方源更新软件列表。
 
-		之后便是直接安装 docker-ce。
-		```shell
-		apt install docker-ce
-		```
+        ```shell
+        apt update
+        ```
+
+        之后便是直接安装 docker-ce。
+        ```shell
+        apt install docker-ce
+        ```
 
     5. 检查安装情况并确认启动
 
-		Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
-		
-		```shell
-		systemctl status docker
-		```
+        Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 
-		如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
-		
-		```text
-		● docker.service - Docker Application Container Engine
-		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-		   Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
-			 Docs: https://docs.docker.com
-		 Main PID: 1115 (dockerd)
-			Tasks: 18
-		   CGroup: /system.slice/docker.service
-				   └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-		```
+        ```shell
+        systemctl status docker
+        ```
 
-		如果没有启动，则会输出类似于这样的结果：
-		
-		```text
-		● docker.service - Docker Application Container Engine
-		   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-		   Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
-			 Docs: https://docs.docker.com
-		  Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
-		 Main PID: 1115 (code=exited, status=0/SUCCESS)
-		```
+        如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
 
-		这时候，我们可以通过 `systemctl` 以启动 Docker：
-		
-		```shell
-		systemctl start docker
-		```
+        ```text
+        ● docker.service - Docker Application Container Engine
+          Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+          Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
+          Docs: https://docs.docker.com
+        Main PID: 1115 (dockerd)
+          Tasks: 18
+          CGroup: /system.slice/docker.service
+              └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+        ```
 
-		再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
+        如果没有启动，则会输出类似于这样的结果：
+
+        ```text
+        ● docker.service - Docker Application Container Engine
+          Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+          Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
+          Docs: https://docs.docker.com
+          Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
+        Main PID: 1115 (code=exited, status=0/SUCCESS)
+        ```
+
+        这时候，我们可以通过 `systemctl` 以启动 Docker：
+
+        ```shell
+        systemctl start docker
+        ```
+
+        再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
 
 ### 更新软件列表与更新软件 {#update-and-upgrade}
 
@@ -363,7 +366,7 @@ Do you want to continue? [Y/n]
     After this operation, 236 kB of additional disk space will be used.
     Do you want to continue? [Y/n]
     ```
-	
+
     在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
 
 ### 使用包管理器手动安装软件包 {#use-package-manager-manually}
@@ -423,7 +426,7 @@ sudo apt -f install
 
     ```shell
     $ ls
-    bin  include  lib  libexec  share  
+    bin  include  lib  libexec  share
     ```
 
     一般而言，软件的可执行文件都位于 bin 目录下：
@@ -432,7 +435,7 @@ sudo apt -f install
     $ cd bin
     $ ls
     (Output omitted)
-    clang                     clang-tidy            llvm-cov 
+    clang                     clang-tidy            llvm-cov
     clang++                   clangd                llvm-cvtres
     clang-10                  diagtool              llvm-cxxdump
     clang-apply-replacements  dsymutil              llvm-cxxfilt
@@ -451,7 +454,7 @@ sudo apt -f install
     ```
 
     为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
-    
+
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
     ```shell
@@ -467,7 +470,7 @@ sudo apt -f install
 
 ### 使用源代码编译安装 {#compiling-installation}
 
-此部分内容请见拓展阅读：[编译安装](./supplement.md)。
+此部分内容请见拓展阅读：[编译安装](supplement.md)。
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
@@ -569,16 +572,19 @@ rm [OPTION] FILE...
 !!! example "删除示例"
 
     删除 `file1.txt` 文件：
+
     ```
     rm file1.txt
     ```
 
     删除 `test` 目录及其下的所有文件：
+
     ```
     rm -r test/
     ```
 
     删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
+
     ```
     rm -rf test1/ test2/ file1.txt
     ```
@@ -593,6 +599,7 @@ mkdir DIR_NAME...
 !!! example "创建目录示例"
 
     创建名为 `test1`、`test2` 的目录：
+
     ```
     mkdir test1 test2
     ```
@@ -631,50 +638,55 @@ tar [OPTIONS] [FILE]...
 !!! example "tar 使用实例"
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
-    ```shell
-    tar -c -f target.tar file1 file2 file3
-    ```
+
+        ```shell
+        tar -c -f target.tar file1 file2 file3
+        ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
-    ```shell
-    tar -x -f target.tar -C test/
-    ```
+  
+        ```shell
+        tar -x -f target.tar -C test/
+        ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
-    ```shell
-    tar -cz -f target.tar.gz file1 file2 file3
-    ```
+
+        ```shell
+        tar -cz -f target.tar.gz file1 file2 file3
+        ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
-    ```shell
-    tar -xz -f target.tar.gz -C test/
-    ```
+
+        ```shell
+        tar -xz -f target.tar.gz -C test/
+        ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
-    ```shell
-    tar -Af archive.tar archive1.tar archive2.tar archive3.tar
-    ```
+
+        ```shell
+        tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+        ```
 
     * 列出 `target.tar` 存档文件中的内容
-    ```shell
-    tar -t -f target.tar
 
-    # 打印出文件的详细信息
-    tar -tv -f target.tar
-    ```
-	
+        ```shell
+        tar -t -f target.tar
+
+        # 打印出文件的详细信息
+        tar -tv -f target.tar
+        ```
+
 !!! tip "存档文件的后缀名"
 
     后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
 
     在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
 
-    在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。
+    在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
 
     同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
-
-!!! tip "为什么使用 tar 创建压缩包需要”两次处理“"
+!!! tip "为什么使用 tar 创建压缩包需要“两次处理”"
 
     tar 名字来源于英文 **t**ape **ar**chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。**注意，这中间没有压缩的过程。**
 
@@ -785,34 +797,34 @@ https://www.gnu.org/software/tar
 
 可以从输出中快速地了解到：
 
-* 创建存档文件；
-* 创建压缩的存档文件；
-* 解压一个存档文件；
-* 解压一个存档文件到指定目录；
-* 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
-* 给出一个存档文件中的文件列表；
-* 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
+- 创建存档文件；
+- 创建压缩的存档文件；
+- 解压一个存档文件；
+- 解压一个存档文件到指定目录；
+- 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
+- 给出一个存档文件中的文件列表；
+- 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
 
 ## 思考题 {#questions}
 
 !!! question "Матрёшка"
 
-	在本章[软件的使用文档](#software-manuals)一节中，我们介绍了两个十分有用的文档命令：`man` 和 `tldr`。这两个工具帮助我们详细或快速了解一个命令的功能和用法。
-	
-	那么 `man` 和 `tldr` 的用法又要怎么查看呢？
+    在本章[软件的使用文档](#software-manuals)一节中，我们介绍了两个十分有用的文档命令：`man` 和 `tldr`。这两个工具帮助我们详细或快速了解一个命令的功能和用法。
+
+    那么 `man` 和 `tldr` 的用法又要怎么查看呢？
 
 !!! question "查找需要安装的软件包"
 
-	有时候，你会发现缺少了一些文件，而这些文件需要安装特定的软件包来补充。搜索资料，尝试说明如何方便地解决这样的问题。
+    有时候，你会发现缺少了一些文件，而这些文件需要安装特定的软件包来补充。搜索资料，尝试说明如何方便地解决这样的问题。
 
 !!! question "硬链接与软链接的判断"
 
-	搜索资料，尝试说明如何判断一个文件是否有硬链接，或者是否是软链接。
+    搜索资料，尝试说明如何判断一个文件是否有硬链接，或者是否是软链接。
 
 !!! question "错误使用 tar 命令导致的文件丢失"
 
     这是一个真实的故事。某同学希望打包一些文件传输给另一位同学，于是他执行了下面这条命令：
-    
+
     ```
     tar -cf * target.tar
     ```
@@ -822,5 +834,4 @@ https://www.gnu.org/software/tar
 ## 引用来源 {#references .no-underline}
 
 [^1]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
-
 [^2]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)

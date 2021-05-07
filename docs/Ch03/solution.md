@@ -4,12 +4,11 @@
 
 !!! tips "提示"
 
-	`man` 和 `tldr` 的用途是？
+    `man` 和 `tldr` 的用途是？
 
 ??? info "解答"
 
-	答案非常简单：`man man` / `man tldr`, 和 `tldr man` / `tldr tldr` 即可。
-	
+    答案非常简单：`man man` / `man tldr`, 和 `tldr man` / `tldr tldr` 即可。
 
 ## 查找需要安装的软件包 {#finding-package-you-need}
 
@@ -19,7 +18,7 @@
 
 ??? info "解答"
 
-	我们可以使用 `apt-file`（需要手动安装）来查找包含某个特定文件的软件包。在运行 `sudo apt-file update` 建立索引之后，可以用 `apt-file search 文件名` 来进行搜索。
+    我们可以使用 `apt-file`（需要手动安装）来查找包含某个特定文件的软件包。在运行 `sudo apt-file update` 建立索引之后，可以用 `apt-file search 文件名` 来进行搜索。
 
     一个例子：
 
@@ -47,7 +46,7 @@
 
 ??? info "解答"
 
-	软链接的判断非常简单。如果是软链接的话，`ls -l` 对应的文件会明确写出其指向的文件。
+    软链接的判断非常简单。如果是软链接的话，`ls -l` 对应的文件会明确写出其指向的文件。
 
     ```
     $ ls -l /usr/bin/vim
@@ -91,7 +90,7 @@
 
 ??? info "解答"
 
-	`*` 被 shell 展开，导致命令变成了这样：
+    `*` 被 shell 展开，导致命令变成了这样：
 
     ```
     tar -cf file1 file2 ... target.tar

@@ -26,7 +26,7 @@
 
 例如 `\b(\w+)\b\s+\1\b` 可以用来匹配用空白字符分割的两个重复的单词，`\1` 是对组号为 1 的组 `(\w+)` 的引用。
 
-例如 `\b(?'Word'\w+)\b\s+\k'Word'\b` 也可以起到同样的效果，其中 `?'Word'` 用于命名组，`\k'Word'` 用于引用组。                   
+例如 `\b(?'Word'\w+)\b\s+\k'Word'\b` 也可以起到同样的效果，其中 `?'Word'` 用于命名组，`\k'Word'` 用于引用组。
 
 ### 零宽断言
 
@@ -40,4 +40,4 @@
 
 ## shell 文字处理工具
 
-[awk指南](https://awk.readthedocs.io/en/latest/chapter-one.html)
+[awk 指南](https://awk.readthedocs.io/en/latest/chapter-one.html)
