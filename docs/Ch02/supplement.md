@@ -258,7 +258,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
     ZSH_THEME="robbyrussell"
 
-中引号部分切换主题，具体主题可以在 [oh-my-zsh 官网](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)中找到。
+中引号部分切换主题，如果只想试用某个主题，可以使用
+
+	omz theme use robbyrussell
+
+来临时试用某主题。
+具体主题可以在 [oh-my-zsh 官网](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)中找到。
 当然你也可以自己尝试自己做一个主题。
 
 ## 其它的个性化
