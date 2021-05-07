@@ -54,7 +54,7 @@ $ sudo reboot
 sudo apt install gnome-tweak-tool
 ```
 
-在 [ubuntu-look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
+在 [GNOME Look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
 
 !!! info "注意"
 
