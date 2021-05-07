@@ -20,9 +20,9 @@
 
 ### 在本地随时预览当前主题下的格式 {#local-preview}
 
-目前当前的主题已经确定为 Material，可以使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 127.0.0.1:8000 来实时预览，这对讲义的编写十分有帮助。
+目前当前的主题已经确定为 Material，可以使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 <http://127.0.0.1:8000> 来实时预览，这对讲义的编写十分有帮助。
 
-更全面的安装流程请参考 [MkDocs 官网](https://www.mkdocs.org) 和 [Material for MkDocs 官网](https://squidfunk.github.io/mkdocs-material/)。
+更全面的安装和配置信息请参考 [MkDocs 官网](https://www.mkdocs.org) 和 [Material for MkDocs 官网](https://squidfunk.github.io/mkdocs-material/)。
 
 ### 善用提示框让正文主次分明 {#use-admonitions}
 
@@ -47,6 +47,25 @@
     建议用这种提示框来在保留正文连贯性的同时添加细枝末节的知识。
 
     使用形如 `!!! tip "小知识"` 的方式添加一个小知识框。
+
+!!! warning "请在提示框的标题行后面留一个空行"
+
+    由于 [Prettier](https://prettier.io) 的解析方式问题，请在所有提示框的起始行后面添加一个空行，**不要像 Material 主题官网那样没有空行直接开始提示框内容**。
+
+    **错误**格式：
+
+    ```markdown
+    !!! note
+        提示框内容
+    ```
+
+    **正确**格式：
+
+    ```markdown
+    !!! note
+
+        提示框内容
+    ```
 
 更多种类的提示框请参考 [提示框一览](https://squidfunk.github.io/mkdocs-material/extensions/admonition/)。
 
