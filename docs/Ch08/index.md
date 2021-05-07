@@ -47,13 +47,24 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
     而 `docker-ce` 是由 Docker 官方维护的。它依赖的程序库都被打包在了这个包中。本章中，可以安装这两个版本中的任意一个。
 
+    Docker 官方提供了安装 Docker 社区版本的简易安装脚本：
+
+    ```console
+    $ curl -fsSL https://get.docker.com -o get-docker.sh
+    $ sudo sh get-docker.sh
+    ```
+
 !!! warning "不要在 WSL1 上安装 Docker"
 
     WSL1 在 Windows 上提供了方便的 Linux 环境。但很遗憾，Docker 的核心服务无法在 WSL1 上运行，直接安装是无法使用的。虽然可以把 WSL 中的 Docker 的命令行工具连接到 Docker for Windows 的核心服务上，但是比较麻烦，这里不推荐这样做。
 
     如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 [Using Docker in WSL 2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)。
 
-在安装完成后，可以将需要使用 Docker 的用户加入 `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
+在安装完成后，可以使用
+
+    adduser 用户名 docker
+
+将需要使用 Docker 的用户[加入](../Ch05/index.md#adduser) `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
 
 ### 配置 Registry Mirror（可选，推荐） {#setup-registry-mirror}
 
