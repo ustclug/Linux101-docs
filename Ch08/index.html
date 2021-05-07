@@ -1383,13 +1383,21 @@
 <p>首先，在 Debian/Ubuntu 上，<strong>不要运行 <code>sudo apt install docker</code></strong>。现在，这里安装的 <code>docker</code> 是一个系统托盘程序，和本章的 Docker <strong>没有任何关系</strong>。</p>
 <p><code>docker.io</code> 是由 Debian/Ubuntu 维护的 Docker 版本，和软件源里的其他程序一样，它比官方的最新版本要稍微老一些。它所依赖的程序库由 Debian/Ubuntu 软件源中的其他软件包提供。</p>
 <p>而 <code>docker-ce</code> 是由 Docker 官方维护的。它依赖的程序库都被打包在了这个包中。本章中，可以安装这两个版本中的任意一个。</p>
+<p>Docker 官方提供了安装 Docker 社区版本的简易安装脚本：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl -fsSL https://get.docker.com -o get-docker.sh
+<span class="gp">$ </span>sudo sh get-docker.sh
+</code></pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">不要在 WSL1 上安装 Docker</p>
 <p>WSL1 在 Windows 上提供了方便的 Linux 环境。但很遗憾，Docker 的核心服务无法在 WSL1 上运行，直接安装是无法使用的。虽然可以把 WSL 中的 Docker 的命令行工具连接到 Docker for Windows 的核心服务上，但是比较麻烦，这里不推荐这样做。</p>
 <p>如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 <a href="https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2">Using Docker in WSL 2</a>。</p>
 </div>
-<p>在安装完成后，可以将需要使用 Docker 的用户加入 <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
+<p>在安装完成后，可以使用</p>
+<div class="codehilite"><pre><span></span><code>adduser 用户名 docker
+</code></pre></div>
+
+<p>将需要使用 Docker 的用户<a href="../Ch05/#adduser">加入</a> <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
 <h3 id="setup-registry-mirror">配置 Registry Mirror（可选，推荐）<a class="headerlink" href="#setup-registry-mirror" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">本节内容可能随时过时</p>
