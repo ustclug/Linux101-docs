@@ -37,7 +37,7 @@ $ sudo reboot
 ??? example "安装 Plasma 桌面"
 
 	同理，如果你喜欢 KDE plasma 桌面，只需要执行
-	
+
 	```shell
 	$ sudo apt install kde-plasma-desktop
 	$ sudo reboot
@@ -135,22 +135,22 @@ $ gnome-tweaks
 ![](images/gnome-extensions.png)
 
 !!! tip "提示"
-	
+
 	手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。
-	
+
 	首先安装浏览器插件：
-	
+
 	对于 Google Chrome、Chromium 和 Vivaldi： [Chrome Web 商店](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep)
-	
+
 	对于 Firefox： [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/)
-	
+
 	再安装本地连接器
 	```shell
 	$ sudo apt install chrome-gnome-shell
 	```
-	
+
 	即可在 https://extensions.gnome.org/ 网页中管理、安装插件。
-	
+
 	![](images/extensions-management.png)
 
 ## Xfce 联网下载安装更多主题
@@ -174,9 +174,9 @@ $ gnome-tweaks
 !!! tip "提示"
 
 	有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现
-	
+
 	![](images/Xfce-WM-style-installation.png)
-	
+
 	选中后，窗口样式就变了。
 
 更换主题包后，是不是整个系统变得高大上了起来？
@@ -184,20 +184,20 @@ $ gnome-tweaks
 !!! tip "提示"
 
 	我们可以安装插件在网页上直接安装主题。
-	
+
 	在 <https://www.pling.com/p/1136805/> 中，下载ocs-url，下载时选择deb后缀的安装包。
-	
+
 	![](images/ocs-url-download.png)
-	
+
 	命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
-	
+
 	```shell
 	sudo dpkg -i 下载的包.deb
 	sudo apt-get install --fix-broken
 	```
-	
+
 	即可完成安装。
-	
+
 	接下来在 <https://www.xfce-look.org/> 中所有的主题只需要点击 Install 即可自动安装	到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
 
 ## 终端的个性化
@@ -247,7 +247,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 !!! info "如果无法下载安装脚本"
 
 	如果遇到了网络连通性问题，命令可以替换为：
-	
+
 	```shell
 	sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
 	```
@@ -258,7 +258,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
     ZSH_THEME="robbyrussell"
 
-中引号部分切换主题，具体主题可以在 [oh-my-zsh 官网](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)中找到。
+中引号部分切换主题，如果只想试用某个主题，可以使用
+
+	omz theme use robbyrussell
+
+来临时试用某主题。
+具体主题可以在 [oh-my-zsh 的项目 Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 中找到。
 当然你也可以自己尝试自己做一个主题。
 
 ## 其它的个性化
@@ -283,13 +288,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ??? example "示例"
 
 	当我们登录用户成功时
-	
+
 	```shell
 	$ sudo login
 	```
-	
+
 	会提示以下信息
-	
+
 	```text
 	Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
 	 * Documentation:  https://help.ubuntu.com
@@ -305,32 +310,32 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 	The programs included with the Ubuntu system are free software;
 	the exact distribution terms for each program are described in the
 	individual files in /usr/share/doc/*/copyright.
-	
+
 	Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 	applicable law.
 	```
-	
+
 	Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
-	
+
 	!!! info "提示"
-	
+
 		有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
-	
+
 	我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容
-	
+
 	```shell
 	#!/bin/sh
 	echo helloworld
 	```
-	
+
 	然后
-	
+
 	```shell
 	$ sudo chmod +x /etc/update-motd.d/99-test
 	```
-	
+
 	设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
-	
+
 	当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
 ## 搭建简易的网站
