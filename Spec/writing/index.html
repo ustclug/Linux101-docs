@@ -1201,8 +1201,8 @@
 <p>主体里应当包括与该章节主题相关的详细内容，具体内容依赖于课纲。建议每个 h2 等级的标题都包含一个完整的子模块，不同的 h2 子模块的内容尽可能没有强烈的依赖。这个标准同样适用于 h3 及以下的子段落。</p>
 <p>每一段主体应当有完整的内容、正确的逻辑和通顺的文字。请尽力避免诸如知识点依赖链缺失、逻辑错误和文笔零碎等影响读者阅读体验的问题。建议每次写完以后通过想象自己正是读者进行阅读的方式来查漏补缺，也可以通过同行交叉审阅的方式获取宝贵的建议。</p>
 <h3 id="local-preview">在本地随时预览当前主题下的格式<a class="headerlink" href="#local-preview" title="Permanent link">&para;</a></h3>
-<p>目前当前的主题已经确定为 Material，可以使用诸如 <code>pip install mkdocs-material</code> 等命令完成主题的安装，并在工作根目录下使用 <code>mkdocs serve</code> 命令并访问 127.0.0.1:8000 来实时预览，这对讲义的编写十分有帮助。</p>
-<p>更全面的安装流程请参考 <a href="https://www.mkdocs.org">MkDocs 官网</a> 和 <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs 官网</a>。</p>
+<p>目前当前的主题已经确定为 Material，可以使用诸如 <code>pip install mkdocs-material</code> 等命令完成主题的安装，并在工作根目录下使用 <code>mkdocs serve</code> 命令并访问 <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> 来实时预览，这对讲义的编写十分有帮助。</p>
+<p>更全面的安装和配置信息请参考 <a href="https://www.mkdocs.org">MkDocs 官网</a> 和 <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs 官网</a>。</p>
 <h3 id="use-admonitions">善用提示框让正文主次分明<a class="headerlink" href="#use-admonitions" title="Permanent link">&para;</a></h3>
 <p>通常来说，主体要包含的内容如果需要写得很详尽，不免会带来主次不分的问题。因为很多知识点的结构很接近有向无环图，而文字毕竟都是线性的。非要说使用拓扑排序虽然可以保证不会出现知识点依赖编写颠倒的问题，但也难以让读者快速分析出主干和枝节。</p>
 <p>请善用提示框，让读者对内容的主次、成分一目了然，也能让你的作品层次更加丰富。</p>
@@ -1220,6 +1220,19 @@
 <p class="admonition-title">小知识</p>
 <p>建议用这种提示框来在保留正文连贯性的同时添加细枝末节的知识。</p>
 <p>使用形如 <code>!!! tip "小知识"</code> 的方式添加一个小知识框。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">请在提示框的标题行后面留一个空行</p>
+<p>由于 <a href="https://prettier.io">Prettier</a> 的解析方式问题，请在所有提示框的起始行后面添加一个空行，<strong>不要像 Material 主题官网那样没有空行直接开始提示框内容</strong>。</p>
+<p><strong>错误</strong>格式：</p>
+<div class="highlight"><pre><span></span><code>!!! note
+    提示框内容
+</code></pre></div>
+<p><strong>正确</strong>格式：</p>
+<div class="highlight"><pre><span></span><code>!!! note
+
+    提示框内容
+</code></pre></div>
 </div>
 <p>更多种类的提示框请参考 <a href="https://squidfunk.github.io/mkdocs-material/extensions/admonition/">提示框一览</a>。</p>
 <h3 id="heading-ids">为标题和小标题添加 ID<a class="headerlink" href="#heading-ids" title="Permanent link">&para;</a></h3>
