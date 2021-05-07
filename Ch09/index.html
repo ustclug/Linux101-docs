@@ -1519,7 +1519,7 @@ $ sort -n numbers
 <h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
 <p>通常会和 sort 一起使用：</p>
-<div class="highlight"><pre><span></span><code>sort animals <span class="p">|</span> uniq 
+<div class="highlight"><pre><span></span><code>sort animals <span class="p">|</span> uniq
 </code></pre></div>
 <p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途。</p>
 <p><code>uniq -d</code> 可以用于仅输出重复行：</p>
@@ -1542,7 +1542,7 @@ $ sort -n numbers
 <tbody>
 <tr>
 <td>[]</td>
-<td>方括号表达式，表示匹配的字符集合，例如[0-9],[abcde]</td>
+<td>方括号表达式，表示匹配的字符集合，例如 [0-9],[abcde]</td>
 </tr>
 <tr>
 <td>()</td>
@@ -1570,7 +1570,7 @@ $ sort -n numbers
 </tr>
 <tr>
 <td>{}</td>
-<td>标记限定符表达式的起止。例如{n}表示匹配前一子表达式n次；{n,}匹配至少n次；{n,m}匹配n至m次</td>
+<td>标记限定符表达式的起止。例如 {n} 表示匹配前一子表达式 n 次；{n,} 匹配至少 n 次；{n,m} 匹配 n 至 m 次</td>
 </tr>
 <tr>
 <td>|</td>
@@ -1597,9 +1597,9 @@ $ sort -n numbers
 <p>匹配 Chapter 1-99 或 Section 1-99</p>
 <div class="highlight"><pre><span></span><code>^(Chapter|Section) [1-9][0-9]{0,1}$
 </code></pre></div>
-<p>匹配“ter”结尾的单词：
+<p>匹配“ter”结尾的单词：</p>
 <div class="highlight"><pre><span></span><code>ter\b
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="bre-ere">基本/扩展正则表达式<a class="headerlink" href="#bre-ere" title="Permanent link">&para;</a></h3>
 <p>基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。</p>
 <p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如 <code>+</code>, <code>?</code>, <code>|</code>, <code>{</code>）需要加上转义符 <code>\</code> 才能表达其特殊含义。</p>

@@ -1509,7 +1509,7 @@ For more examples and ideas, visit:
 <span class="go">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span>
 <span class="go">&lt;none&gt;              &lt;none&gt;              fe0a84d81b86        54 seconds ago      116MB</span>
 <span class="gp">$ </span>sudo docker save fe0a84d81b86 &gt; example.tar
-<span class="gp">$ </span>ls -lh example.tar 
+<span class="gp">$ </span>ls -lh example.tar
 <span class="go">-rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar</span>
 </code></pre></div>
 <p>得到的 example.tar 即为我们的 Docker 镜像。可以使用 <code>docker load &lt; example.tar</code> 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。</p>
@@ -1539,7 +1539,7 @@ For more examples and ideas, visit:
 <span class="go">Welcome to fish, the friendly interactive shell</span>
 <span class="gp">root@dec3d33003ee /workspace# </span>vim helloworld.c
 <span class="gp">root@dec3d33003ee /workspace# </span>riscv64-linux-gnu-gcc helloworld.c
-<span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64 ./a.out 
+<span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64 ./a.out
 <span class="go">Hello, world!</span>
 </code></pre></div>
 <p>从这个例子中，我们可以看到 Dockerfile 的一些指令：</p>

@@ -1638,12 +1638,12 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 通常，我们运行的程序会以非实时的方式调度，nice 值为 0。
 而 PRI 的大小对应着任务的重要程度，PRI 越大则优先级越大（deadline scheduling 始终拥有最大优先级）</p>
 <p>优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 <code>sched(7)</code> 的 Scheduling policies 小节。</p>
-<details class="info"><summary>协作与抢占</summary><p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为<strong>协作式</strong> (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配<strong>时间片</strong> (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为<strong>抢占式</strong> (preemptive) 操作系统。</p>
-</details>
+<details class="info"><summary>协作与抢占</summary></details>
+<p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为<strong>协作式</strong> (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配<strong>时间片</strong> (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为<strong>抢占式</strong> (preemptive) 操作系统。</p>
 <details class="info"><summary>中断与进程调度</summary><p>系统进行调度，主要面临这样几个问题：</p>
 <ul>
 <li>何时（什么契机）可以进行调度？</li>
-<li>要不要进行调度切换进程？ </li>
+<li>要不要进行调度切换进程？</li>
 <li>该调度谁？</li>
 </ul>
 <p>首先若想进行调度，必有<a href="../Appendix/glossary/#irq">中断</a>参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。那么现代操作系统如何利用中断进行调度呢？</p>
@@ -1663,23 +1663,23 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 
 <p>我们可以打开 htop 观察每个进程的优先级和 nice 值。</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
-<details class="tip"><summary>关于内核线程的优先级</summary><p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
+<details class="tip"><summary>关于内核线程的优先级</summary></details>
+<p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
 <img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
-<ul>
-<li>第一个进程为 <code>watchdogd</code>，是一个定时监测以保证系统可用性的程序。<br />
-  （试试 <code>echo hi &gt; /dev/watchdog</code> 吧。)</li>
-<li>第二到五 (<code>migration</code>) 为负载均衡程序，CPU 有几个核就有几个负载均衡。</li>
-<li>图中以 <code>irq</code> 开头的便是中断处理程序了。</li>
-</ul>
-</details>
+<div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">第一个进程为</span> <span class="n n-Quoted">`watchdogd`</span><span class="n">，是一个定时监测以保证系统可用性的程序。</span>
+  <span class="n">（试试</span> <span class="n n-Quoted">`echo hi &gt; /dev/watchdog`</span> <span class="n">吧。</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">第二到五</span> <span class="p">(</span><span class="n n-Quoted">`migration`</span><span class="p">)</span> <span class="n">为负载均衡程序，CPU</span> <span class="n">有几个核就有几个负载均衡。</span>
+<span class="o">-</span> <span class="n">图中以</span> <span class="n n-Quoted">`irq`</span> <span class="n">开头的便是中断处理程序了。</span>
+</code></pre></div>
+
 <p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
-<div class="highlight"><pre><span></span><code>nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help] 
+<div class="highlight"><pre><span></span><code>nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help]
  [--version] [command [arg...]]
 
 # 以下命令等效
 nice vim
-nice -10 vim 
-nice -n 10 vim 
+nice -10 vim
+nice -n 10 vim
 
 (sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
 </code></pre></div>
@@ -1784,7 +1784,7 @@ nice -n 10 vim
 <span class="m">48</span><span class="o">)</span> SIGRTMIN+14 <span class="m">49</span><span class="o">)</span> SIGRTMIN+15 <span class="m">50</span><span class="o">)</span> SIGRTMAX-14 <span class="m">51</span><span class="o">)</span> SIGRTMAX-13 <span class="m">52</span><span class="o">)</span> SIGRTMAX-12
 <span class="m">53</span><span class="o">)</span> SIGRTMAX-11 <span class="m">54</span><span class="o">)</span> SIGRTMAX-10 <span class="m">55</span><span class="o">)</span> SIGRTMAX-9  <span class="m">56</span><span class="o">)</span> SIGRTMAX-8  <span class="m">57</span><span class="o">)</span> SIGRTMAX-7
 <span class="m">58</span><span class="o">)</span> SIGRTMAX-6  <span class="m">59</span><span class="o">)</span> SIGRTMAX-5  <span class="m">60</span><span class="o">)</span> SIGRTMAX-4  <span class="m">61</span><span class="o">)</span> SIGRTMAX-3  <span class="m">62</span><span class="o">)</span> SIGRTMAX-2
-<span class="m">63</span><span class="o">)</span> SIGRTMAX-1  <span class="m">64</span><span class="o">)</span> SIGRTMAX    
+<span class="m">63</span><span class="o">)</span> SIGRTMAX-1  <span class="m">64</span><span class="o">)</span> SIGRTMAX
 </code></pre></div>
 <p>如果不加任何参数，只有 PID，<code>kill</code> 命令将自动使用 15 (SIGTERM) 做为信号参数。</p>
 <div class="admonition tip">
@@ -1816,9 +1816,11 @@ nice -n 10 vim
 <p>许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会发送 SIGHUP (Signal hangup)，该信号会被广播到会话下每一个进程，默认动作即退出程序运行。</p>
 <div class="admonition info">
 <p class="admonition-title">关于 SIGHUP 的细节</p>
-<p>如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 <code>kill -9</code> (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
-<p>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。</p>
 </div>
+<p>如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 <code>kill -9</code> (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
+<div class="codehilite"><pre><span></span><code>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。
+</code></pre></div>
+
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
 <div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
@@ -1830,8 +1832,8 @@ nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERN
 <p><img alt="" src="images/tmux.gif" width="70%" /></p>
 <div class="admonition info">
 <p class="admonition-title">问题产生了！</p>
-<p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。</p>
 </div>
+<p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。</p>
 <p>开启多个 SSH 连接似乎可以解决这个问题。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。</p>
 <p>这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登录时可以立即还原。</p>
 <p>tmux 由会话 (session)，窗口 (window)，面板 (pane) 组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
@@ -2029,7 +2031,7 @@ at
 Execute commands once at a later time.
 Service atd (or atrun) should be running for the actual executions.
 
- - Execute commands from standard input in 5 minutes (press 
+ - Execute commands from standard input in 5 minutes (press
    Ctrl + D when done):
    at now + 5 minutes
 
@@ -2076,14 +2078,14 @@ usage:  crontab [-u user] file
 <div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span>
 <span class="c1"># 下面是几个示例</span>
 <span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span>
-<span class="c1"># 每分钟输出 hello 到家目录下 count 文件 </span>
+<span class="c1"># 每分钟输出 hello 到家目录下 count 文件</span>
 <span class="na">0,15,30,45 0-6 * JAN SUN  command</span>
 <span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span>
-<span class="c1"># 反映了 crontab 中大部分语法。   </span>
-<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com  </span>
+<span class="c1"># 反映了 crontab 中大部分语法。</span>
+<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span>
 <span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）</span>
 </code></pre></div>
-<p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。  </p>
+<p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。</p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
 <p><strong>另外，systemd 的 .timer 单元也可以实现定时任务，配置文件的格式与上面的 .service 文件一致，具体可以参考 <a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html#N101C4">Systemd 定时器教程</a>进行配置。</strong></p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>

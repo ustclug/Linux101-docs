@@ -1266,7 +1266,7 @@ close<span class="o">(</span><span class="m">6</span><span class="o">)</span>
 ...
 </code></pre></div>
 <p><code>strace</code> 会输出很多内容，上面是其中的典型案例。</p>
-<p>可以大致猜测，ps 通过打开 <code>/proc/1</code> 文件夹下的 <code>stat</code> 和 <code>status</code> 文件，获得1号进程的信息。我们也可以试着打开它：</p>
+<p>可以大致猜测，ps 通过打开 <code>/proc/1</code> 文件夹下的 <code>stat</code> 和 <code>status</code> 文件，获得 1 号进程的信息。我们也可以试着打开它：</p>
 <div class="highlight"><pre><span></span><code>$ cat /proc/1/stat                  <span class="c1"># 是否添加 sudo 会导致读取出不同内容</span>
 <span class="m">1</span> <span class="o">(</span>systemd<span class="o">)</span> S <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> -1 <span class="m">4194560</span> <span class="m">113722</span> <span class="m">4652720</span> <span class="m">87</span> <span class="m">2258</span> <span class="m">79</span> <span class="m">670</span> <span class="m">19018</span> <span class="m">28647</span> <span class="se">\</span>
 <span class="m">20</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">4</span> <span class="m">231030784</span> <span class="m">2252</span> <span class="m">18446744073709551615</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">671173123</span> <span class="m">4096</span> <span class="m">1260</span> <span class="se">\</span>
@@ -1284,7 +1284,7 @@ TracerPid:  <span class="m">0</span>
 Uid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>
 Gid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>
 FDSize: <span class="m">256</span>
-Groups:  
+Groups:
 NStgid: <span class="m">1</span>
 NSpid:  <span class="m">1</span>
 NSpgid: <span class="m">1</span>
@@ -1322,14 +1322,14 @@ NSpgid: <span class="m">1</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kt">int</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>   <span class="c1">// fork 系统调用，全面复制父进程所有信息。</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>       <span class="c1">// 子进程返回 pid=0。</span>
-        <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 子进程返回 pid=0。</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// fork 失败，pid 为负值。</span>
-        <span class="p">{</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+            <span class="c1">// fork 失败，pid 为负值。</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span>  <span class="c1">// 父进程返回子进程 pid。</span>
-        <span class="p">{</span>
+        <span class="p">}</span> <span class="k">else</span>  <span class="p">{</span>
+            <span class="c1">// 父进程返回子进程 pid。</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
@@ -1357,20 +1357,19 @@ NSpgid: <span class="m">1</span>
 
 <span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>  <span class="c1">// 设置一个处理信号的函数</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">sig_handler</span><span class="p">);</span>    <span class="c1">// 替换默认终止信号处理例程</span>
     <span class="c1">// signal(SIGINT, sig_handler);  // 替换键盘中断（keyboard interrupt）处理例程</span>
     <span class="c1">// signal(SIGHUP, sig_handler);  // 替换控制进程挂起信号处理例程</span>
     <span class="c1">// signal(SIGKILL, sig_handler); // 替换……不存在的！</span>
 
-    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// do something</span>
-    <span class="p">}</span>   
+    <span class="p">}</span>
 <span class="p">}</span>
 
 
-<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">){</span>
+<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>     <span class="c1">// 在收到信号时输出</span>
     <span class="c1">// fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。</span>
 <span class="p">}</span>

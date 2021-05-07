@@ -1436,7 +1436,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 Password:
 （密码？什么密码？输我自己的密码试试？）
 su: Authentication failure
-$ 
+$
 </code></pre></div>
 <p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
 <div class="highlight"><pre><span></span><code>$ sudo su
@@ -1445,7 +1445,7 @@ Password:
 # id
 uid=0(root) gid=0(root) groups=0(root)
 # exit
-$ 
+$
 </code></pre></div>
 <p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
 <h3 id="intro-user-group">用户组简介<a class="headerlink" href="#intro-user-group" title="Permanent link">&para;</a></h3>

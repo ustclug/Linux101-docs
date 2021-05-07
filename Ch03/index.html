@@ -1602,11 +1602,11 @@ Do you want to continue? [Y/n]
 <p>在运行结果中，会给出将会安装的软件包、下载大小以及安装后占用的大小。输入 <code>Y</code> 后回车确定进行安装。</p>
 <div class="admonition tip">
 <p class="admonition-title">可能会出现的权限问题</p>
-<p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出
+<p>在一般情况下，如果直接运行 <code>apt install</code> 命令，会输出</p>
 <div class="highlight"><pre><span></span><code>$ apt install firefox
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
-</code></pre></div></p>
+</code></pre></div>
 <p>这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 <code>sudo</code>。</p>
 <p>即使用 <code>sudo apt install firefox</code>。</p>
 <p>在输入之后，终端显示：</p>
@@ -1618,7 +1618,7 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 <p>如果密码输入正确，那么就可以正常地执行命令。</p>
 <p>否则，则需要再次尝试：</p>
 <div class="highlight"><pre><span></span><code>Sorry, try again.
-[sudo] password for ubuntu: 
+[sudo] password for ubuntu:
 </code></pre></div>
 <p>具体有关权限的知识点将在<a href="../Ch05/">第五章</a>展开。</p>
 </div>
@@ -1637,7 +1637,6 @@ deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates multiverse
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
 
-
 deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted
 deb http://security.ubuntu.com/ubuntu/ bionic-security universe
 deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
@@ -1647,7 +1646,7 @@ deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
 deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
 </code></pre></div>
 <p>分别是 Archive type、Repository URL、Distribution 和 Component。</p>
-<p>在 Ubuntu 下，Component 可以为如下几个<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>：</p>
+<p>在 Ubuntu 下，Component 可以为如下几个之一<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>：</p>
 <table>
 <thead>
 <tr>
@@ -1676,7 +1675,7 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 </table>
 <p>具体的含义见 <a href="https://wiki.debian.org/SourcesList#sources.list_format">Source List</a></p>
 </details>
-<p>官方源由于在国外，往往会有速度与延迟上的限制，通常可以通过修改官方源为其镜像实现更快的下载速度。</p>
+<p>Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以通过修改官方源为其镜像实现更快的下载速度。</p>
 <p>镜像缓存了官方源中的软件列表，与官方源基本一致。</p>
 <div class="admonition example">
 <p class="admonition-title">修改官方源为镜像，加快更新速度</p>
@@ -1699,11 +1698,11 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <div class="highlight"><pre><span></span><code>$ sudo apt-get update
 
 $ sudo apt-get install <span class="se">\</span>
-    apt-transport-https <span class="se">\</span>
-    ca-certificates <span class="se">\</span>
-    curl <span class="se">\</span>
-    gnupg-agent <span class="se">\</span>
-    software-properties-common
+  apt-transport-https <span class="se">\</span>
+  ca-certificates <span class="se">\</span>
+  curl <span class="se">\</span>
+  gnupg-agent <span class="se">\</span>
+  software-properties-common
 </code></pre></div>
 </li>
 <li>
@@ -1717,13 +1716,13 @@ $ sudo apt-get install <span class="se">\</span>
 <p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 此为 Ubuntu amd64 的命令</span>
 $ sudo add-apt-repository <span class="se">\</span>
-    <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
-<span class="s2">    </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \</span>
-<span class="s2">    stable&quot;</span>
+  <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \</span>
+<span class="s2">  stable&quot;</span>
 </code></pre></div>
-<p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：
-    <div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-</code></pre></div></p>
+<p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：</p>
+<div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+</code></pre></div>
 </li>
 <li>
 <p>使用 apt 安装 Docker</p>
@@ -1741,21 +1740,21 @@ $ sudo add-apt-repository <span class="se">\</span>
 </code></pre></div>
 <p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
-   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-   Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
-     Docs: https://docs.docker.com
- Main PID: 1115 (dockerd)
-    Tasks: 18
-   CGroup: /system.slice/docker.service
-           └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+  Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+  Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
+  Docs: https://docs.docker.com
+Main PID: 1115 (dockerd)
+  Tasks: 18
+  CGroup: /system.slice/docker.service
+      └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 </code></pre></div>
 <p>如果没有启动，则会输出类似于这样的结果：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
-   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-   Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
-     Docs: https://docs.docker.com
+  Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+  Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
+  Docs: https://docs.docker.com
   Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
- Main PID: 1115 (code=exited, status=0/SUCCESS)
+Main PID: 1115 (code=exited, status=0/SUCCESS)
 </code></pre></div>
 <p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：</p>
 <div class="highlight"><pre><span></span><code>systemctl start docker
@@ -1845,13 +1844,13 @@ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 </code></pre></div>
 <p>在进入解压得到的目录后，可以查看当前的目录下有什么内容：</p>
 <div class="highlight"><pre><span></span><code>$ ls
-bin  include  lib  libexec  share  
+bin  include  lib  libexec  share
 </code></pre></div>
 <p>一般而言，软件的可执行文件都位于 bin 目录下：</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> bin
 $ ls
 <span class="o">(</span>Output omitted<span class="o">)</span>
-clang                     clang-tidy            llvm-cov 
+clang                     clang-tidy            llvm-cov
 clang++                   clangd                llvm-cvtres
 clang-10                  diagtool              llvm-cxxdump
 clang-apply-replacements  dsymutil              llvm-cxxfilt
@@ -2007,15 +2006,15 @@ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 </table>
 <div class="admonition example">
 <p class="admonition-title">删除示例</p>
-<p>删除 <code>file1.txt</code> 文件：
+<p>删除 <code>file1.txt</code> 文件：</p>
 <div class="highlight"><pre><span></span><code>rm file1.txt
-</code></pre></div></p>
-<p>删除 <code>test</code> 目录及其下的所有文件：
+</code></pre></div>
+<p>删除 <code>test</code> 目录及其下的所有文件：</p>
 <div class="highlight"><pre><span></span><code>rm -r test/
-</code></pre></div></p>
-<p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
+</code></pre></div>
+<p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：</p>
 <div class="highlight"><pre><span></span><code>rm -rf test1/ test2/ file1.txt
-</code></pre></div></p>
+</code></pre></div>
 </div>
 <h3 id="mkdir">创建目录<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 创建一个目录，名为 DIR_NAME</span>
@@ -2023,9 +2022,9 @@ mkdir DIR_NAME...
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">创建目录示例</p>
-<p>创建名为 <code>test1</code>、<code>test2</code> 的目录：
+<p>创建名为 <code>test1</code>、<code>test2</code> 的目录：</p>
 <div class="highlight"><pre><span></span><code>mkdir test1 test2
-</code></pre></div></p>
+</code></pre></div>
 </div>
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
@@ -2099,37 +2098,37 @@ tar <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</s
 <p class="admonition-title">tar 使用实例</p>
 <ul>
 <li>
-<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>：
+<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>：</p>
 <div class="highlight"><pre><span></span><code>tar -c -f target.tar file1 file2 file3
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 目录中：
+<p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 目录中：</p>
 <div class="highlight"><pre><span></span><code>tar -x -f target.tar -C test/
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> ：
+<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> ：</p>
 <div class="highlight"><pre><span></span><code>tar -cz -f target.tar.gz file1 file2 file3
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 目录中：
+<p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 目录中：</p>
 <div class="highlight"><pre><span></span><code>tar -xz -f target.tar.gz -C test/
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>将 <code>archive1.tar</code>、<code>archive2.tar</code>、<code>archive3.tar</code> 三个存档文件中的文件追加到 <code>archive.tar</code> 中
+<p>将 <code>archive1.tar</code>、<code>archive2.tar</code>、<code>archive3.tar</code> 三个存档文件中的文件追加到 <code>archive.tar</code> 中</p>
 <div class="highlight"><pre><span></span><code>tar -Af archive.tar archive1.tar archive2.tar archive3.tar
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>列出 <code>target.tar</code> 存档文件中的内容
+<p>列出 <code>target.tar</code> 存档文件中的内容</p>
 <div class="highlight"><pre><span></span><code>tar -t -f target.tar
 
 <span class="c1"># 打印出文件的详细信息</span>
 tar -tv -f target.tar
-</code></pre></div></p>
+</code></pre></div>
 </li>
 </ul>
 </div>
@@ -2137,11 +2136,11 @@ tar -tv -f target.tar
 <p class="admonition-title">存档文件的后缀名</p>
 <p>后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。</p>
 <p>在第一个例子中，创建得到的文件名为 <code>target.tar</code>，后缀名为 <code>tar</code>，表示这是一个没有进行压缩的存档文件。</p>
-<p>在第二个例子中，创建得到的文件名为 <code>target.tar.gz</code>。将 <code>tar.gz</code> 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（<code>gz</code>）的存档文件（<code>tar</code>）。可知在提取文件时，需要添加 <code>-z</code> 选项使其经过 gzip 算法处理后再进行正常 TAR 文件的提取。</p>
+<p>在第二个例子中，创建得到的文件名为 <code>target.tar.gz</code>。将 <code>tar.gz</code> 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（<code>gz</code>）的存档文件（<code>tar</code>）。可知在提取文件时，需要添加 <code>-z</code> 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。</p>
 <p>同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 <code>xz</code> 算法处理得到的存档文件，其后缀名最好选择 <code>tar.xz</code>，这样可以知道为了提取其中的文件，应该添加 <code>--xz</code> 选项。</p>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">为什么使用 tar 创建压缩包需要”两次处理“</p>
+<p class="admonition-title">为什么使用 tar 创建压缩包需要“两次处理”</p>
 <p>tar 名字来源于英文 <strong>t</strong>ape <strong>ar</strong>chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。<strong>注意，这中间没有压缩的过程。</strong></p>
 <p>为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。</p>
 </div>

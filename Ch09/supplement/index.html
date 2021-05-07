@@ -1161,14 +1161,14 @@
 <li>扫描两遍，第一次只分配未命名的组，第二次只分配命名的组。即任意命名组的组号都大于未命名的组号</li>
 </ul>
 <p>例如 <code>\b(\w+)\b\s+\1\b</code> 可以用来匹配用空白字符分割的两个重复的单词，<code>\1</code> 是对组号为 1 的组 <code>(\w+)</code> 的引用。</p>
-<p>例如 <code>\b(?'Word'\w+)\b\s+\k'Word'\b</code> 也可以起到同样的效果，其中 <code>?'Word'</code> 用于命名组，<code>\k'Word'</code> 用于引用组。                   </p>
+<p>例如 <code>\b(?'Word'\w+)\b\s+\k'Word'\b</code> 也可以起到同样的效果，其中 <code>?'Word'</code> 用于命名组，<code>\k'Word'</code> 用于引用组。</p>
 <h3 id="_5">零宽断言<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>零宽断言用于查找某些内容进行定位，但内容并不放入匹配结果，就像 <code>\b</code> <code>^</code> <code>$</code> 的定位一样。<code>(?=exp)</code> 用于匹配表达式 <code>exp</code> 前面的位置，<code>(?&lt;=exp)</code> 用于匹配后面的位置。</p>
 <p>例如，<code>\b\w+(?=ing\b)</code> 可以匹配 <code>ing</code> 结尾的单词前面的部分，<code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开开头的单词的后面一部分。</p>
 <h3 id="_6">扩展阅读<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/46294360">乱用正则引发的惨案</a></p>
 <h2 id="shell">shell 文字处理工具<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
-<p><a href="https://awk.readthedocs.io/en/latest/chapter-one.html">awk指南</a></p>
+<p><a href="https://awk.readthedocs.io/en/latest/chapter-one.html">awk 指南</a></p>
                 
               
               
