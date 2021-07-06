@@ -18,7 +18,7 @@
     
     
       
-        <title>讲义 - Linux 101</title>
+        <title>拓展阅读 - Linux 101</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#supplement" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              讲义
+              拓展阅读
             
           </span>
         </div>
@@ -634,6 +634,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        讲义
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -646,12 +658,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          讲义
+          拓展阅读
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="index.html" class="md-nav__link md-nav__link--active">
-        讲义
+      <a href="supplement.html" class="md-nav__link md-nav__link--active">
+        拓展阅读
       </a>
       
         
@@ -669,144 +681,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#users-and-groups" class="md-nav__link">
-    用户与用户组
-  </a>
-  
-    <nav class="md-nav" aria-label="用户与用户组">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-user" class="md-nav__link">
-    为何需要「用户」
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intro-user-under-linux" class="md-nav__link">
-    Linux 下的用户简介
-  </a>
-  
-    <nav class="md-nav" aria-label="Linux 下的用户简介">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#root-user" class="md-nav__link">
-    根用户
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-user" class="md-nav__link">
-    系统用户
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#normal-user" class="md-nav__link">
-    普通用户
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-su-and-sudo" class="md-nav__link">
-    切换用户：使用 su 和 sudo
-  </a>
-  
-    <nav class="md-nav" aria-label="切换用户：使用 su 和 sudo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sudo" class="md-nav__link">
-    sudo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#su" class="md-nav__link">
-    su
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intro-user-group" class="md-nav__link">
-    用户组简介
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-configuration-command-line" class="md-nav__link">
-    命令行的用户配置操作
-  </a>
-  
-    <nav class="md-nav" aria-label="命令行的用户配置操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#passwd" class="md-nav__link">
-    修改密码：passwd
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adduser" class="md-nav__link">
-    (*) 简单的用户配置：adduser
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#file-permission" class="md-nav__link">
-    文件权限
+  <a href="#special-permission-bit" class="md-nav__link">
+    文件系统的特殊权限位
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fhs" class="md-nav__link">
-    文件系统层次结构
+  <a href="#uid-and-euid" class="md-nav__link">
+    实际用户与有效用户
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    引用来源
+  <a href="#login-and-non-login-shell" class="md-nav__link">
+    「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)
   </a>
   
 </li>
@@ -815,18 +705,6 @@
   
 </nav>
       
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="supplement.html" class="md-nav__link">
-        拓展阅读
-      </a>
     </li>
   
 
@@ -1184,144 +1062,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#users-and-groups" class="md-nav__link">
-    用户与用户组
-  </a>
-  
-    <nav class="md-nav" aria-label="用户与用户组">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-user" class="md-nav__link">
-    为何需要「用户」
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intro-user-under-linux" class="md-nav__link">
-    Linux 下的用户简介
-  </a>
-  
-    <nav class="md-nav" aria-label="Linux 下的用户简介">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#root-user" class="md-nav__link">
-    根用户
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-user" class="md-nav__link">
-    系统用户
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#normal-user" class="md-nav__link">
-    普通用户
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-su-and-sudo" class="md-nav__link">
-    切换用户：使用 su 和 sudo
-  </a>
-  
-    <nav class="md-nav" aria-label="切换用户：使用 su 和 sudo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sudo" class="md-nav__link">
-    sudo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#su" class="md-nav__link">
-    su
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intro-user-group" class="md-nav__link">
-    用户组简介
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-configuration-command-line" class="md-nav__link">
-    命令行的用户配置操作
-  </a>
-  
-    <nav class="md-nav" aria-label="命令行的用户配置操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#passwd" class="md-nav__link">
-    修改密码：passwd
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adduser" class="md-nav__link">
-    (*) 简单的用户配置：adduser
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#file-permission" class="md-nav__link">
-    文件权限
+  <a href="#special-permission-bit" class="md-nav__link">
+    文件系统的特殊权限位
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fhs" class="md-nav__link">
-    文件系统层次结构
+  <a href="#uid-and-euid" class="md-nav__link">
+    实际用户与有效用户
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    引用来源
+  <a href="#login-and-non-login-shell" class="md-nav__link">
+    「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)
   </a>
   
 </li>
@@ -1338,339 +1094,60 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch05/index.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch05/supplement.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="_1">用户与用户组、文件权限、文件系统层次结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<div class="admonition success">
-<p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
-</div>
-<div class="admonition abstract">
-<p class="admonition-title">导言</p>
-<p>很多 Linux 的初学者都会对以下这些问题感到迷惑：</p>
+                <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
+<h2 id="special-permission-bit">文件系统的特殊权限位<a class="headerlink" href="#special-permission-bit" title="Permanent link">&para;</a></h2>
+<p>有一个有趣的问题：众所周知（只要你看过了本章的主要内容），存储密码的 <code>/etc/shadow</code> 只有 <code>root</code> 用户可以查看和修改。但是，我作为一个普通用户，可以使用 <code>passwd</code> 修改自己的密码。而要修改密码，就必须修改 <code>/etc/shadow</code>，而我执行的 <code>passwd</code> 程序（应该）只拥有我的权限（否则用户权限就没有任何意义了）。难道 <code>passwd</code> 有什么魔法可以去动 <code>/etc/shadow</code> 吗？</p>
+<p>是的。这样的「魔法」，是由文件系统特殊权限位 <code>setuid</code> 赋予的。有三个特殊权限位：setuid, setgid 和 sticky。</p>
 <ul>
-<li>为什么我动不动改个设置，装个软件就要输密码？</li>
-<li>为什么有些命令要 <code>sudo</code>，有些不要？</li>
-<li>为什么我运行不了网上下载的程序？为什么系统里面有些目录我看不了？</li>
-<li>我的 C 盘、D 盘跑哪里去了？根目录 (<code>/</code>) 里面一堆 <code>etc</code>, <code>usr</code> 是什么玩意啊？</li>
+<li><code>setuid</code>: 以文件所属的用户的身份 (UID) 执行此程序。</li>
+<li><code>setgid</code>: 对文件来说，以文件所属的用户组的身份 (GID) 执行此程序；对目录来说，在这个目录下创建的文件的用户组都与此目录本身的用户组一致，而不是创建者的用户组。</li>
+<li><code>sticky</code> (restricted deletion flag): 目录中的所有文件只能由文件所有者（除 <code>root</code> 以外）删除或者移动。一个典型的例子是临时文件夹 <code>/tmp</code>，在此文件夹中你可以创建、修改、重命名、移动、删除自己的文件，但是动不了别人的文件。</li>
 </ul>
-<p>以下内容将会解答你的疑问。</p>
-</div>
-<h2 id="users-and-groups">用户与用户组<a class="headerlink" href="#users-and-groups" title="Permanent link">&para;</a></h2>
-<h3 id="why-user">为何需要「用户」<a class="headerlink" href="#why-user" title="Permanent link">&para;</a></h3>
-<p>早期的操作系统没有用户的概念（如 MS-DOS），或者有「用户」的概念，但是几乎不区分用户的权限（如 Windows 9x）。而现在，这不管对于服务器，还是个人用户来说，都是无法接受的。</p>
-<p>在服务器环境中，「用户」的概念是明确的：服务器的管理员可以为不同的使用者创建用户，分配不同的权限，保障系统的正常运行。也可以为网络服务创建用户（此时，用户就不再是一个有血有肉的人），通过权限限制，以减小服务被攻击时对系统安全的破坏。</p>
-<p>而对于个人用户来说，他们的设备不会有第二个人在使用。此时，现代操作系统一般区分使用者的用户与「系统用户」，并且划分权限，以尽可能保证系统的完整性不会因为用户的误操作，或恶意程序破坏。</p>
-<h3 id="intro-user-under-linux">Linux 下的用户简介<a class="headerlink" href="#intro-user-under-linux" title="Permanent link">&para;</a></h3>
-<p>你可以查看 <code>/etc/passwd</code> 文件，来得到系统中用户的配置信息。<strong>下文的内容，在没有特殊说明的情况下，都假设你的用户名是 <code>me</code></strong>。</p>
-<div class="admonition example">
-<p class="admonition-title"><code>/etc/passwd</code> 示例</p>
-<p>以下是一个例子：</p>
-<div class="highlight"><pre><span></span><code>root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-bin:x:2:2:bin:/bin:/usr/sbin/nologin
-（中间内容省略）
-sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
-me:x:1000:1000:me:/home/me:/bin/bash
-lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
-mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
+<p>我们可以看一下，<code>/usr/bin/passwd</code> 的文件权限设置：</p>
+<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/passwd
+-rwsr-xr-x <span class="m">1</span> root root <span class="m">67992</span> Aug <span class="m">29</span>  <span class="m">2019</span> /usr/bin/passwd
 </code></pre></div>
-<p>在此文件中，每一行都是一个用户，每行中用户信息由冒号 <code>:</code> 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 <code>man 5 passwd</code> 查阅。</p>
-</div>
-<p>可以关注到，除了你自己以外，还有一些特殊的用户：<code>root</code>，和一大堆你素未相识的名字。下面将会进行介绍。</p>
-<details class="tip"><summary>小知识：<code>/etc/passwd</code> 作用的变化</summary><p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
-</details>
-<h4 id="root-user">根用户<a class="headerlink" href="#root-user" title="Permanent link">&para;</a></h4>
-<p>在前文中我们知道，在使用 <code>apt</code> 安装软件时，我们需要在前面加上 <code>sudo</code>。这可以使我们以根用户 (<code>root</code>) 的身份安装软件。</p>
-<p>根用户 / <code>root</code> 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类<strong>极端危险的操作</strong>）。<code>root</code> 用户的用户数据存储在 <code>/root</code> 下。</p>
-<p>在我们使用 <code>sudo</code> 的时候，输入自己的密码后，在验证正确之后，<code>sudo</code> 就会以 <code>root</code> 用户的身份，执行后面我们希望执行的命令。而使用 <code>apt</code> 安装的软件存储在了系统的目录下，所以必须要以 <code>root</code> 用户的身份安装。这就是我们平时需要 <code>sudo</code> 来安装软件的原因。</p>
-<div class="admonition danger">
-<p class="admonition-title">谨慎使用 <code>root</code> 用户权限执行命令！</p>
-<p>我们知道，<code>root</code> 用户可以对系统做及其危险的操作。当使用 <code>root</code> 权限执行命令时（如使用 <code>sudo</code>），一定要<strong>小心、谨慎，理解命令的含义之后再按下回车</strong>。<strong>请不要复制网络上所谓的「Linux 优化命令」等</strong>，以 <code>root</code> 权限执行，否则<strong>可能会带来灾难性的后果</strong>。</p>
-<p>以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 <strong><span class=red>再重复一遍，不要执行下面的命令！</span></strong></p>
+<p>可以看到，本来是执行权限位的地方变成了 <code>s</code>。这代表此文件有 <code>setuid</code> 特殊权限位。在你执行 <code>passwd</code> 的时候，它的实际权限和 <code>root</code> 一样，只是它知道，执行它的人是你（而非 <code>root</code>），所以只提供修改你自己的密码的功能。</p>
+<p>同样，<code>su</code> 和 <code>sudo</code> 也有 <code>setuid</code> 权限位：</p>
+<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/su
+-rwsr-xr-x 1 root root 67816 Jan  9 02:59 /usr/bin/su
+$ ls -l /usr/bin/sudo
+-rwsr-xr-x 1 root root 161448 Feb  1 01:07 /usr/bin/sudo
+</code></pre></div>
+<p>所以它们可以帮你切换用户、提升权限。</p>
+<p>拥有 <code>setuid</code> 位、所有者为 <code>root</code> 的程序是非常危险的，因为稍不谨慎，它们的漏洞就会直接让普通的无权限用户获得 <code>root</code> 权限的大门，这在服务器上是及其致命的。近期，<code>sudo</code> 就爆出一个安全漏洞 (CVE-2019-18634)，对于 1.8.31 之前的版本，<code>sudo</code> 在开启了 <code>pwfeedback</code> 选项（将输入的密码显示为 * 号，而非不显示）之后，有一个缓冲区溢出漏洞可以被利用来以 <code>root</code> 的身份执行任意命令。</p>
+<p>当然，Linux 在发展中也在尽可能减少 <code>setuid</code> 程序的使用。例如 <code>ping</code> 程序因为需要创建只能由 <code>root</code> 用户创建的原始 (raw) 的网络套接字 (socket)，在以往也是一个 <code>setuid</code> 程序。但是随着 "Capabilities" 的概念引入 Linux 内核，<code>ping</code> 不再需要 <code>setuid</code>，只需要为它设置创建原始网络套接字的 capability 即可，提高了系统的安全性。</p>
+<h2 id="uid-and-euid">实际用户与有效用户<a class="headerlink" href="#uid-and-euid" title="Permanent link">&para;</a></h2>
+<p>于是，我们就有了另一个问题：如果 <code>passwd</code> 在执行的时候的权限是 <code>root</code> 的话，那它是怎么知道是我（而不是 <code>root</code>）执行它的呢？</p>
+<p>在 Linux 中，有两个系统调用可以获取当前进程归属的 UID：<code>getuid()</code> 和 <code>geteuid()</code>。前者对应的是「实际用户」(Real user)，是实际运行（拥有）这个进程的用户，后者对应的是「有效用户」(Effective user)，对应拥有的权限。在运行 <code>passwd</code> 的时候，有效用户是 <code>root</code>，所以可以修改 <code>/etc/shadow</code>；而实际用户是你，所以它不会让你修改别人的密码。</p>
+<p>对用户组来说，也有实际用户组 (GID) 和有效用户组 (EGID) 的区别。</p>
+<h2 id="login-and-non-login-shell">「登录 Shell」(Login shell) 与「非登录 Shell」(Non-login shell)<a class="headerlink" href="#login-and-non-login-shell" title="Permanent link">&para;</a></h2>
+<p>在前文中我们提到，<code>su</code> 和 <code>su -</code> 是有区别的。你也可能在学习 Linux 的时候会好奇：为什么我按下 Ctrl + Alt + F[1-7] 的时候出现的 TTY 会问我要用户名和密码，但是在桌面环境中点「终端」，不需要再输入用户名和密码，就可以操作。</p>
+<p>这就在于「登录 Shell」和「非登录 Shell」的差别了。「登录 Shell」是属于你的当前会话操作中的第一个进程，一般是在你输入用户名和密码之后打开的 Shell。常见的场景有：</p>
 <ul>
-<li><code>rm -rf /</code>（删除系统中的所有可以删除的文件，<strong>包括被挂载的其他分区</strong>。<strong>即使不以 <code>root</code> 权限执行，也可以删掉自己的所有文件。</strong>）</li>
-<li><code>mkfs.ext4 /dev/sda</code>（将系统的第一块硬盘直接格式化为 ext4 文件系统。这会破坏其上所有的文件。）</li>
-<li><code>dd if=/dev/urandom of=/dev/sda</code>（对系统的第一块硬盘直接写入伪随机数。这会破坏其上所有的文件，并且找回文件的可能性降低。）</li>
-<li><code>:(){ :|: &amp; };:</code>（被称为「Fork 炸弹」，会消耗系统所有的资源。在未对进程资源作限制的情况下，只能通过重启系统解决，所有未保存的数据会丢失。）</li>
+<li><code>su -</code> 之后的 Shell。</li>
+<li>SSH 登录机器后的 Shell</li>
+<li>Ctrl + Alt + F[1-7] 之后 TTY 中的 Shell</li>
 </ul>
-</div>
-<h4 id="system-user">系统用户<a class="headerlink" href="#system-user" title="Permanent link">&para;</a></h4>
-<p>除了你、<code>root</code> 和其他在用你的电脑/服务器的人（如果有）以外，剩下还有很多用户，如 <code>nobody</code>, <code>www-data</code> 等。它们由系统或相关程序创建，用于执行服务等系统任务。<strong>不要随意删除这些用户</strong>，以免系统运行出现问题。</p>
-<details class="tip"><summary>技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</summary><p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
-<p>此外，由于系统用户的特殊性，它们一般默认禁止登录。</p>
-</details>
-<h4 id="normal-user">普通用户<a class="headerlink" href="#normal-user" title="Permanent link">&para;</a></h4>
-<p>普通用户可以登录系统，并对自己的家目录下的文件进行操作。所有普通用户的家目录都在 <code>/home/</code> 下，位于 <code>/home/username/</code> 的位置，其中 <code>username</code> 是用户名。</p>
-<p>普通用户无法直接进行修改系统配置，安装或卸载软件等操作。</p>
-<h3 id="using-su-and-sudo">切换用户：使用 <code>su</code> 和 <code>sudo</code><a class="headerlink" href="#using-su-and-sudo" title="Permanent link">&para;</a></h3>
-<h4 id="sudo"><code>sudo</code><a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h4>
-<p><code>sudo</code> 命令可以让你以另一个用户的身份执行指定的命令。当然，它最常见的用途，就是能让普通用户以 <code>root</code> 的身份执行命令：不加入其他参数，<code>sudo</code> 后面直接加命令，我们在前面的课程中也见到很多次了。</p>
-<details class="tip"><summary>以 <code>root</code> 用户执行上一条命令</summary><p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
-<div class="highlight"><pre><span></span><code>$ apt update
-Reading package lists... Done
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
-E: Unable to lock directory /var/lib/apt/lists/
-W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
-W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
-$ sudo !!
-sudo apt update
-[sudo] password for me:
-Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
-（以下内容省略）
-</code></pre></div>
-<p>其实，在 Shell 中，<code>!!</code> 即代表上一条命令，也可以和其他的命令结合使用。</p>
-</details>
-<p>那么，如何以 <code>root</code> 之外的用户的身份执行命令呢？加上 <code>-u 用户名</code> 的参数即可。</p>
-<div class="highlight"><pre><span></span><code>$ sudo -u nobody id
-uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
-</code></pre></div>
-<p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
-<details class="example"><summary>修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</summary><p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
-<p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
-<div class="highlight"><pre><span></span><code># Allow members of group sudo to execute any command
-%sudo   ALL=(ALL:ALL) ALL
-</code></pre></div>
-<p>将配置行修改成以下即可。</p>
-<div class="highlight"><pre><span></span><code>%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
-</code></pre></div>
-<p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
-</details>
-<h4 id="su"><code>su</code><a class="headerlink" href="#su" title="Permanent link">&para;</a></h4>
-<p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
-<p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
-<div class="highlight"><pre><span></span><code>$ su
-Password:
-（密码？什么密码？输我自己的密码试试？）
-su: Authentication failure
-$
-</code></pre></div>
-<p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
-<div class="highlight"><pre><span></span><code>$ sudo su
-Password:
-（没错，是我自己的密码）
-# id
-uid=0(root) gid=0(root) groups=0(root)
-# exit
-$
-</code></pre></div>
-<p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
-<h3 id="intro-user-group">用户组简介<a class="headerlink" href="#intro-user-group" title="Permanent link">&para;</a></h3>
-<p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
-<div class="highlight"><pre><span></span><code>$ groups
-me adm cdrom sudo dip plugdev lxd
-</code></pre></div>
-<p>可以看到，用户 <code>me</code> 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。</p>
-<p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
-<p>同样，用户组和用户一样，也有编号：GID (Group ID)。</p>
-<h3 id="user-configuration-command-line">命令行的用户配置操作<a class="headerlink" href="#user-configuration-command-line" title="Permanent link">&para;</a></h3>
-<h4 id="passwd">修改密码：<code>passwd</code><a class="headerlink" href="#passwd" title="Permanent link">&para;</a></h4>
-<p>可以使用此命令修改用户密码，格式为 <code>passwd 用户名</code>。如果没有输入用户名，则修改自己的密码。</p>
-<h4 id="adduser">(*) 简单的用户配置：<code>adduser</code><a class="headerlink" href="#adduser" title="Permanent link">&para;</a></h4>
-<div class="admonition warning">
-<p class="admonition-title"><code>adduser</code> 是 Debian 及其衍生发行版的专属命令</p>
-<p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
-</div>
-<p><code>adduser</code> 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名
-</code></pre></div>
-<p>即可添加此用户。而输入</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser --group 组名
-</code></pre></div>
-<p>即可添加此用户组。将用户加入指定用户组也非常简单：</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 组名
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">添加用户至 sudo 用户组</p>
-<p>在通过 <code>adduser</code> 创建了新的用户后，直接使用 <code>sudo</code> 以 <code>root</code> 身份运行程序可能会得到：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt update
-[sudo] password for me:
-me is not in the sudoers file.  This incident will be reported.
-</code></pre></div>
-<p>除了可以通过 <code>visudo</code> 命令编辑 <code>sudoers</code> 文件外，可以直接通过将新的用户加入到 <code>sudo</code> 用户组，以能够使用 <code>sudo</code> 命令。</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser me sudo
-</code></pre></div>
-<p>再此切换到新的用户即可看到使用 sudo 的提示：</p>
-<div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
-See &quot;man sudo_root&quot; for details.
-</code></pre></div>
-</div>
-<h2 id="file-permission">文件权限<a class="headerlink" href="#file-permission" title="Permanent link">&para;</a></h2>
-<p>在 Linux 中，每个文件和目录都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
-<div class="highlight"><pre><span></span><code>$ ls -l
-total 8
--rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
-</code></pre></div>
-<p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
-<p>第三、四列为文件所属用户和用户组。</p>
-<p>对于每个权限，第一位 <code>r</code> 代表读取 (<strong>R</strong>ead)，第二位 <code>w</code> 代表写入 (<strong>W</strong>rite)，第三位 <code>x</code> 代表执行 (E<strong>x</strong>ecute)，<code>-</code> 代表没有对应的权限。</p>
-<details class="tip"><summary>执行权限意味着什么？</summary><p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
-<p>而对于目录来说，拥有执行权限，你就可以访问这个目录下的文件的内容。以下是一个例子：</p>
-<div class="highlight"><pre><span></span><code>$ ls -l
-total 8
--rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-drw-rw-r-- 2 me me 4096 Feb  3 22:38 a_folder
-$ （与上面不同，我们去掉了 a_folder 的执行权限）
-$ cd a_folder
--bash: cd: a_folder/: Permission denied
-$ （失败了，这说明，如果没有执行权限，我们无法进入这个目录）
-$ ls a_folder
-ls: cannot access &#39;a_folder/test&#39;: Permission denied
-test
-$ （列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件 test）
-$ cat a_folder/test
-cat: a_folder/test: Permission denied
-$ cp a_folder/test test
-cp: cannot stat &#39;a_folder/test&#39;: Permission denied
-$ mv a_folder/test a_folder/test2
-mv: failed to access &#39;a_folder/test2&#39;: Permission denied
-$ touch a_folder/test2
-touch: cannot touch &#39;a_folder/test2&#39;: Permission denied
-$ rm a_folder/test
-rm: cannot remove &#39;a_folder/test&#39;: Permission denied
-$ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
-</code></pre></div>
-<p>而拥有读取权限，对应的是可以列出目录下面存在的文件。可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 <code>cd</code> 切换当前目录到此目录的权限。</p>
-<p>有关文件与目录权限的完整表格，可以查看 Arch Wiki 的 <a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions">File permissions and attributes</a> 一页。</p>
-</details>
-<p>可以使用 <code>chmod</code> (<strong>ch</strong>ange file <strong>mod</strong>e bits) 修改权限，<code>chown</code> (<strong>ch</strong>ange file <strong>own</strong>er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。</p>
-<div class="admonition example">
-<p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
-<p>有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：</p>
-<div class="highlight"><pre><span></span><code>$ ./program
--bash: ./program: Permission denied
-</code></pre></div>
-<p>大多数情况下，这说明这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
-<div class="highlight"><pre><span></span><code>$ chmod +x program
-$ ./program
-（可以执行了）
-</code></pre></div>
-</div>
-<h2 id="fhs">文件系统层次结构<a class="headerlink" href="#fhs" title="Permanent link">&para;</a></h2>
-<p>相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，以盘符的形式（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (<code>Program Files</code>)，系统运行需要的文件 (<code>Windows</code>)，用户文件 (<code>Users</code>) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。</p>
-<p>而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 <code>/</code>（根目录）开始，像一棵树一样，类似于下图。</p>
-<p><img alt="Unix 下的文件系统结构简图" src="assets/unix_filesystem.png" /></p>
-<p>其他的分区等以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 <code>/mnt/windows_disk/</code>。</p>
-<p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在<a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html">官网</a>查看标准的具体内容。</p>
-<p>当然，实际情况不一定会和以下介绍的内容完全一致。可以使用 <code>man hier</code> 和 <code>man file-hierarchy</code> 查看你的系统中关于文件系统层次结构的文档。</p>
-<dl>
-<dt><code>/bin</code></dt>
-<dd>存储必须的程序文件，对所有用户都可用。</dd>
-<dt><code>/boot</code></dt>
-<dd>存储在启动系统时需要的文件。</dd>
-<dt><code>/dev</code></dt>
-<dd>
-<p>存储设备文件。</p>
-<div class="admonition tip">
-<p class="admonition-title">什么是设备文件？</p>
-<p>设备文件是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。</p>
-</div>
-</dd>
-<dt><code>/etc</code></dt>
-<dd>
-<p>存储系统和程序的配置文件。</p>
-<div class="admonition tip">
-<p class="admonition-title">注册表与配置文件</p>
-<p>Windows 系统与其上很多程序都使用注册表，而非文件的形式存储配置信息。注册表是一个数据库，拥有数据库的优点（如原子性），集中地管理配置项。而 Linux 下的程序更喜欢将配置以文件的形式存储，保持配置简单，便于用户编辑与备份。</p>
-<p>当然，这不是绝对的。现在 Windows 下的 .NET 程序更偏向于将配置存储在 XML 文件中，而 Linux 下的 GNOME 桌面环境也采取了类似于注册表的形式: <code>GConf</code>，存储自己的配置信息。</p>
-</div>
-</dd>
-<dt><code>/home</code></dt>
-<dd>
-<p>用户的家目录。存储用户自己的信息。</p>
-</dd>
-<dt><code>/lib</code></dt>
-<dd>
-<p>存放系统运行必须的程序库文件。</p>
-</dd>
-<dt><code>/media</code> 和 <code>/mnt</code></dt>
-<dd>
-<p>这两个目录都用于挂载其他的文件系统。<code>/media</code> 用于可移除的文件系统（如光盘），而 <code>/mnt</code> 用于临时使用。</p>
-</dd>
-<dt><code>/opt</code></dt>
-<dd>
-<p>存放额外的程序包。一般将一些大型的、商业的应用程序放置在这个目录。</p>
-</dd>
-<dt><code>/root</code></dt>
-<dd>
-<p><code>root</code> 用户的家目录。</p>
-</dd>
-<dt><code>/run</code></dt>
-<dd>
-<p>系统运行时的数据。在每次启动时，里面的数据都会被删除。</p>
-</dd>
-<dt><code>/sbin</code></dt>
-<dd>
-<p>存储用于系统管理，以及仅允许 <code>root</code> 用户使用的程序。如 <code>fsck</code>（文件系统修复程序）、<code>reboot</code>（重启系统）等。</p>
-</dd>
-<dt><code>/srv</code></dt>
-<dd>
-<p>存储网络服务的数据。</p>
-</dd>
-<dt><code>/tmp</code></dt>
-<dd>临时目录，所有用户都可使用。</dd>
-<dt><code>/usr</code></dt>
-<dd>
-<p>大多数软件都会安装在此处。其下有一些目录与 <code>/</code> 下的结构相似，如：</p>
+<p>而「非登录 Shell」的常见场景：</p>
 <ul>
-<li><code>/usr/bin</code></li>
-<li><code>/usr/lib</code></li>
-<li><code>/usr/sbin</code></li>
+<li><code>su</code> 打开的是「非登录 Shell」</li>
+<li>在桌面环境中打开的终端（模拟器），启动的也是「非登录 Shell」</li>
 </ul>
-<p>此外，还有一些目录：</p>
-<ul>
-<li><code>/usr/include</code>: 存储系统通用的 C 头文件。当然，里面会有你非常熟悉的头文件，如 <code>stdio.h</code>。</li>
-<li><code>/usr/local</code>: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 <code>apt</code>）控制。<code>/usr/local</code> 里面的层次结构和 <code>/usr</code> 相似。</li>
-<li><code>/usr/share</code>: 存储程序的数据文件（如 <code>man</code> 文档、GUI 程序使用的图片等）</li>
-</ul>
-</dd>
-<dt><code>/var</code></dt>
-<dd>存储会发生变化的程序相关文件。</dd>
-</dl>
-<h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">nobody 用户</p>
-<p>关于 <code>nobody</code> 用户，网络上有一种说法称，所有网络服务（如 Web 服务器）都应该以此用户身份运行。从安全性的角度反驳此观点。</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">系统用户的默认 Shell</p>
-<p>在 <code>/etc/passwd</code> 中最后一列是用户的默认 Shell（如果你没有修改过的话，那么一般是 <code>/bin/bash</code>）。为什么会有很多用户的默认 Shell 是 <code>/usr/sbin/nologin</code> 或者 <code>/bin/false</code>？这样做有什么意义？</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">启用 root 用户</p>
-<p>在 Ubuntu 等 Linux 发行版中，<code>root</code> 用户是默认禁用（无法直接登录）的。如何启用此用户？</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">文件的可执行权限</p>
-<p>如果向一个 MP3 音频文件添加「可执行」(<code>x</code>) 属性，那么这个文件就可以被执行吗？为什么？</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title"><code>sudo cd</code>?</p>
-<p>当需要浏览仅 <code>root</code> 用户可查看的目录时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</p>
-</div>
-<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Passwd">维基百科上的 Passwd 词条（英语）</a></li>
-<li><a href="https://askubuntu.com/questions/118204/5958455">Simple explanation of <code>sudoers</code> file</a> - Ask Ubuntu</li>
-<li><a href="https://help.ubuntu.com/community/Sudoers">Sudoers - Community Help Wiki</a> - Ubuntu Documentation</li>
-</ul>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>这里的哈希，指经过了<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8">密码哈希函数</a> (<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">Cryptographic hash function</a>) 的处理。密码哈希函数是一种特殊的单向函数，将任意大小的数据映射到一串长度固定的字符串，并且拥有一些优良的性质（如难以找到两个不同的数据，使得映射后的字符串相同），使其破解难度加大。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p><a href="https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes">https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>然而，对于 Linux 内核来说，系统用户和真实的用户其实没有区别，除了 UID = 0 的用户 (root) 以外。「系统用户」是一个约定俗成而产生的概念。&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>一般地，「登录 Shell」会额外加载 <code>profile</code> 文件（文件名根据你使用的 Shell 的不同而有区别），且它的 <code>argv[0][0] == '-'</code>（相信你已经学过 C 语言了）。可以用以下方法验证：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$0</span>  <span class="c1"># 查看当前 Shell 的 argv[0] 的值</span>
+-bash
+$ <span class="c1"># 是 Login shell</span>
+$ sudo su <span class="c1"># 进入 root</span>
+<span class="c1"># echo $0</span>
+bash
+<span class="c1"># # 是 Non-login shell</span>
+</code></pre></div>
                 
               
               
@@ -1690,7 +1167,7 @@ $ ./program
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Ch04/solution.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 思考题解答" rel="prev">
+        <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 讲义" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1699,20 +1176,20 @@ $ ./program
               <span class="md-footer__direction">
                 上一页
               </span>
-              思考题解答
+              讲义
             </div>
           </div>
         </a>
       
       
         
-        <a href="supplement.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
+        <a href="solution.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 思考题解答" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              拓展阅读
+              思考题解答
             </div>
           </div>
           <div class="md-footer__button md-icon">
