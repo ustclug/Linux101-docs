@@ -215,7 +215,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
-- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibugone.com/p/15-cn)（另有[英文版](https://ibugone.com/p/15)）
+- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
 - [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
 对于日常惯用 Windows 10 用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
