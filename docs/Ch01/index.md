@@ -215,7 +215,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
-- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibugone.com/p/15-cn)（另有[英文版](https://ibugone.com/p/15)）
+- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
 - [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
 ??? tip "Windows 下使用 VirtualBox"
