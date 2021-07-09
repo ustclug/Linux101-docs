@@ -220,7 +220,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 ??? tip "Windows 下使用 VirtualBox"
 
-    安装过程基本与 MacOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware ，两者大致相当
+    安装过程基本与 macOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware ，两者大致相当
 
     ![](images/VirtualBox-Create-VM.jpg)
     <p class="caption">VirtualBox 新建界面</p>
