@@ -75,7 +75,7 @@ Mode from config file:          permissive  # <- 或 disabled
 - MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
 - Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
 
-当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2019 上运行 ELF 格式的 Linux 程序（Windows的官方[安装指南](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10#step-6---install-your-linux-distribution-of-choice)）。
+当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2019 上运行 ELF 格式的 Linux 程序（安装方法详见 WSL 的官方[安装指南](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10）。
 
 ??? tip "不要将 WSL 与 Windows Services for UNIX (SFU) 混淆"
 
