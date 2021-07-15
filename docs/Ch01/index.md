@@ -196,12 +196,6 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
-??? tip "ova 镜像在 VirtualBox 中使用"
-
-    ova 镜像（虚拟硬盘格式）为如下提供的 Xubuntu 镜像，但使用过程跟下面两篇供参考的博客稍有不同。
-    > 博客中都使用的 iso 镜像文件，需要创建出一种虚拟硬盘格式来使用。所以下载如下镜像的话，可以直接导入。
-    ![](images/VirtualBox-import.jpg)
-    <p class="caption">VirtualBox 导入设置</p>
 
 [VMware Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova)
 
@@ -227,18 +221,21 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 ??? tip "Windows 下使用 VirtualBox"
 
-    安装过程基本与 macOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware ，两者大致相当
+    安装过程基本与 macOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware ，两者大致相当；共享文件夹等功能参考 [macOS 下 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB-1)
 
     ![](images/VirtualBox-Create-VM.jpg)
     <p class="caption">VirtualBox 新建界面</p>
 
-    不过需要注意的是，全屏使用需要下载 VirtualBox 增强工具。可见[博客](https://blog.csdn.net/binbinxyz/article/details/42785849)
 
 对于日常惯用 Windows 10 用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 
 ### 启动虚拟机 {#start-vm}
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
+
+![](images/VirtualBox-import.jpg)
+
+<p class="caption">VirtualBox 导入设置（需要手动选择镜像）</p>
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 
