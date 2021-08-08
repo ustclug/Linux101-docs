@@ -16,14 +16,14 @@ theme:
       accent: indigo
       toggle:
         icon: material/weather-night
-        name: Switch to dark mode
+        name: 切换至深色模式
     - scheme: slate
       media: "(prefers-color-scheme: dark)"
       primary: blue
       accent: blue
       toggle:
         icon: material/weather-sunny
-        name: Switch to light mode
+        name: 切换至浅色模式
   icon:
     logo: fontawesome/brands/linux
     repo: octicons/mark-github-16
