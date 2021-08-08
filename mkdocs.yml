@@ -9,9 +9,26 @@ copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Av
 theme:
   name: 'material'
   language: 'zh'
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   icon:
     logo: fontawesome/brands/linux
     repo: octicons/mark-github-16
+  features:
+    - navigation.top
 
 markdown_extensions:
   - admonition
@@ -31,8 +48,7 @@ extra:
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
-  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
-  # 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/js/all.min.js'
+  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'h
 
 extra_css:
   - 'css/extra.css'
