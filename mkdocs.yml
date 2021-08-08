@@ -48,7 +48,7 @@ extra:
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
-  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'h
+  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
 
 extra_css:
   - 'css/extra.css'
