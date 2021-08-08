@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -64,13 +64,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -115,6 +119,28 @@
       </div>
     </div>
     
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
     
     
       <label class="md-header__button md-icon" for="__search">
@@ -125,14 +151,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -235,7 +265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Spec/writing.html" class="md-nav__link">
+      <a href="../Spec/writing/" class="md-nav__link">
         章节编写指导
       </a>
     </li>
@@ -247,7 +277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Spec/slide.html" class="md-nav__link">
+      <a href="../Spec/slide/" class="md-nav__link">
         演示文稿规格
       </a>
     </li>
@@ -268,7 +298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../preface.html" class="md-nav__link">
+      <a href="../preface/" class="md-nav__link">
         序
       </a>
     </li>
@@ -304,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         欢迎
       </a>
     </li>
@@ -316,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../notations.html" class="md-nav__link">
+      <a href="../notations/" class="md-nav__link">
         记号约定
       </a>
     </li>
@@ -328,7 +358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../credits.html" class="md-nav__link">
+      <a href="../credits/" class="md-nav__link">
         功劳簿
       </a>
     </li>
@@ -370,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch01/index.html" class="md-nav__link">
+      <a href="../Ch01/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -382,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch01/supplement.html" class="md-nav__link">
+      <a href="../Ch01/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -394,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch01/solution.html" class="md-nav__link">
+      <a href="../Ch01/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -436,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch02/index.html" class="md-nav__link">
+      <a href="../Ch02/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -448,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch02/supplement.html" class="md-nav__link">
+      <a href="../Ch02/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -460,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch02/solution.html" class="md-nav__link">
+      <a href="../Ch02/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -502,7 +532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch03/index.html" class="md-nav__link">
+      <a href="../Ch03/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -514,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch03/supplement.html" class="md-nav__link">
+      <a href="../Ch03/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -526,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch03/solution.html" class="md-nav__link">
+      <a href="../Ch03/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -568,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch04/index.html" class="md-nav__link">
+      <a href="../Ch04/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -580,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch04/supplement.html" class="md-nav__link">
+      <a href="../Ch04/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -592,7 +622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch04/solution.html" class="md-nav__link">
+      <a href="../Ch04/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -634,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch05/index.html" class="md-nav__link">
+      <a href="../Ch05/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -646,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch05/supplement.html" class="md-nav__link">
+      <a href="../Ch05/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -658,7 +688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch05/solution.html" class="md-nav__link">
+      <a href="../Ch05/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -700,7 +730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch06/index.html" class="md-nav__link">
+      <a href="../Ch06/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -712,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch06/supplement.html" class="md-nav__link">
+      <a href="../Ch06/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -724,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch06/solution.html" class="md-nav__link">
+      <a href="../Ch06/solution/" class="md-nav__link">
         思考题解答
       </a>
     </li>
@@ -766,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch07/index.html" class="md-nav__link">
+      <a href="../Ch07/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -778,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch07/supplement.html" class="md-nav__link">
+      <a href="../Ch07/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -820,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch08/index.html" class="md-nav__link">
+      <a href="../Ch08/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -832,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch08/supplement.html" class="md-nav__link">
+      <a href="../Ch08/supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -890,7 +920,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         讲义
       </a>
       
@@ -1077,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="supplement.html" class="md-nav__link">
+      <a href="supplement/" class="md-nav__link">
         拓展阅读
       </a>
     </li>
@@ -1119,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/glossary.html" class="md-nav__link">
+      <a href="../Appendix/glossary/" class="md-nav__link">
         词汇表
       </a>
     </li>
@@ -1131,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/man.html" class="md-nav__link">
+      <a href="../Appendix/man/" class="md-nav__link">
         man 文档的一些示例
       </a>
     </li>
@@ -1143,7 +1173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/distribution.html" class="md-nav__link">
+      <a href="../Appendix/distribution/" class="md-nav__link">
         其他的 Linux 发行版：技术差异简介
       </a>
     </li>
@@ -1164,7 +1194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../postface.html" class="md-nav__link">
+      <a href="../postface/" class="md-nav__link">
         跋
       </a>
     </li>
@@ -1380,7 +1410,7 @@
 </div>
 <h2 id="prerequisite">一些铺垫<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
 <h3 id="redirect-and-pipe">I/O 重定向和管道<a class="headerlink" href="#redirect-and-pipe" title="Permanent link">&para;</a></h3>
-<p>在 <a href="../Ch06/index.html">六：网络下载工具与 Shell 脚本</a> 中提到过：</p>
+<p>在 <a href="../Ch06/">六：网络下载工具与 Shell 脚本</a> 中提到过：</p>
 <blockquote>
 <p>Bash 支持 I/O 重定向（&gt;, &gt;&gt;, &lt;）和管道（|）等</p>
 </blockquote>
@@ -1690,6 +1720,11 @@ Susie <span class="m">76</span>.5
           </div>
         </div>
         
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
       </main>
       
         
@@ -1698,7 +1733,7 @@ Susie <span class="m">76</span>.5
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Ch08/supplement.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 拓展阅读" rel="prev">
+        <a href="../Ch08/supplement/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 拓展阅读" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1714,7 +1749,7 @@ Susie <span class="m">76</span>.5
       
       
         
-        <a href="supplement.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
+        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1766,10 +1801,10 @@ Susie <span class="m">76</span>.5
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
       
