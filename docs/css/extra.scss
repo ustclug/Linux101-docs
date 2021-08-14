@@ -2,13 +2,11 @@
 //
 // scss extra.scss > extra.css
 
-.red,
-.red-important {
-  color: red !important;
-}
-.darkred,
-.darkred-important {
-  color: darkred !important;
+$color-codes: red, darkred, orangered, green, limegreen;
+@each $color in $color-codes {
+  .#{"" + $color}, .#{"" + $color}-important {
+    color: #{$color} !important;
+  }
 }
 
 .md-typeset {

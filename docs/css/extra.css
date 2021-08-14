@@ -2,6 +2,12 @@
 
 .darkred, .darkred-important { color: darkred !important; }
 
+.orangered, .orangered-important { color: orangered !important; }
+
+.green, .green-important { color: green !important; }
+
+.limegreen, .limegreen-important { color: limegreen !important; }
+
 .md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
 .md-typeset h3 { padding-bottom: 0.2em; border-bottom: 1px dashed #d3d3d3; }
