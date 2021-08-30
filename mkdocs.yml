@@ -29,6 +29,7 @@ theme:
     repo: octicons/mark-github-16
   features:
     - navigation.top
+  custom_dir: 'overrides/'
 
 markdown_extensions:
   - admonition
@@ -104,3 +105,12 @@ nav:
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
     - 跋: postface.md
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - git-authors:
+      show_contribution: true
+      show_line_count: true
+      fallback_to_empty: true

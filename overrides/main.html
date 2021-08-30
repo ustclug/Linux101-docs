@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block disqus %}
+  {% if git_page_authors is defined %}
+    <div class="md-source-date">
+      <small>
+        作者: {{ git_page_authors }}
+      </small>
+    </div>
+  {% else %}
+    {% include "partials/integrations/disqus.html" %}
+  {% endif %}
+{% endblock %}
