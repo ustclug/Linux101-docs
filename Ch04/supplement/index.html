@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.5">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.be71726b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1354,28 +1354,28 @@ NSpgid: <span class="m">1</span>
 <h2 id="fork">关于 <code>fork()</code><a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
 <p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>程序文件 <code>forking.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Unix standard header，提供 POSIX 标准 API</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Unix standard header，提供 POSIX 标准 API</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>   <span class="c1">// fork 系统调用，全面复制父进程所有信息。</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 子进程返回 pid=0。</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
-            <span class="c1">// fork 失败，pid 为负值。</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span>  <span class="p">{</span>
-            <span class="c1">// 父进程返回子进程 pid。</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span><span class="w">   </span><span class="c1">// fork 系统调用，全面复制父进程所有信息。</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 子进程返回 pid=0。</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// fork 失败，pid 为负值。</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 父进程返回子进程 pid。</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc forking.c -o forking &amp;&amp; ./forking</code>，就可以在另一终端打开 htop 查看成果了。</p>
 <p><img alt="forking" src="../images/forking.png" /></p>
@@ -1390,28 +1390,28 @@ NSpgid: <span class="m">1</span>
 <p>你可能会注意到，有些程序对你按下 Ctrl + C 的操作会有一些独特的响应，例如 <code>ping</code>，如果使用 Ctrl + C 键盘中断 (SIGINT)，在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
 <p>这个实验中，我们使用系统调用 <code>signal()</code> 来重新设置进程对信号的响应函数。</p>
 <p>程序文件 <code>signal_handle.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="c1">   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // sleep 函数</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span><span class="c1">   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // sleep 函数</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>  <span class="c1">// 设置一个处理信号的函数</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">);</span><span class="w">  </span><span class="c1">// 设置一个处理信号的函数</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">sig_handler</span><span class="p">);</span>    <span class="c1">// 替换默认终止信号处理例程</span>
-    <span class="c1">// signal(SIGINT, sig_handler);  // 替换键盘中断（keyboard interrupt）处理例程</span>
-    <span class="c1">// signal(SIGHUP, sig_handler);  // 替换控制进程挂起信号处理例程</span>
-    <span class="c1">// signal(SIGKILL, sig_handler); // 替换……不存在的！</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">sig_handler</span><span class="p">);</span><span class="w">    </span><span class="c1">// 替换默认终止信号处理例程</span>
+<span class="w">    </span><span class="c1">// signal(SIGINT, sig_handler);  // 替换键盘中断（keyboard interrupt）处理例程</span>
+<span class="w">    </span><span class="c1">// signal(SIGHUP, sig_handler);  // 替换控制进程挂起信号处理例程</span>
+<span class="w">    </span><span class="c1">// signal(SIGKILL, sig_handler); // 替换……不存在的！</span>
 
-    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// do something</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// do something</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 
-<span class="kt">void</span> <span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>     <span class="c1">// 在收到信号时输出</span>
-    <span class="c1">// fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w">     </span><span class="c1">// 在收到信号时输出</span>
+<span class="w">    </span><span class="c1">// fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; ./signal_handle</code>，就可以在另一终端打开 htop 来试验了。</p>
 <div class="admonition warning">
@@ -1429,12 +1429,30 @@ NSpgid: <span class="m">1</span>
 <h3 id="dns-server">DNS server<a class="headerlink" href="#dns-server" title="Permanent link">&para;</a></h3>
 <h3 id="proxy-server">proxy server<a class="headerlink" href="#proxy-server" title="Permanent link">&para;</a></h3>
                 
-              
-              
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 30, 2021</span>
+      
+    
+  </small>
+</div>
+                  
                 
-
-
               
+              
+  
+    <div class="md-source-date">
+      <small>
+        作者: <span class='git-page-authors git-authors'><a href='mailto:taoky1999@gmail.com'>taoky</a></span>
+      </small>
+    </div>
+  
+
             </article>
           </div>
         </div>
@@ -1520,10 +1538,10 @@ NSpgid: <span class="m">1</span>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56a63758.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
       
