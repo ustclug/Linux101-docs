@@ -8,6 +8,8 @@
 
 .limegreen, .limegreen-important { color: limegreen !important; }
 
+:root { --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
+
 .md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
 .md-typeset h3 { padding-bottom: 0.2em; border-bottom: 1px dashed #d3d3d3; }
@@ -17,7 +19,6 @@
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset .img-inline { display: inline-block; vertical-align: text-bottom; }
 .md-typeset .img-border { border: 1px solid black; }
-.md-typeset code, .md-typeset kbd, .md-typeset pre { font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
 .md-typeset kbd { box-shadow: 0 0 0 0.05rem var(--md-default-fg-color--lighter), 0 0.1rem 0 var(--md-default-fg-color--lighter), inset 0 -0.1rem 0.2rem var(--md-default-bg-color); }
 .md-typeset .admonition, .md-typeset details { font-size: 0.9em; }
 .md-typeset .md-typeset__table { display: block; margin-left: auto; margin-right: auto; }

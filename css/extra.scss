@@ -9,6 +9,10 @@ $color-codes: red, darkred, orangered, green, limegreen;
   }
 }
 
+:root {
+  --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+}
+
 .md-typeset {
   #references,
   .no-underline {
@@ -51,12 +55,6 @@ $color-codes: red, darkred, orangered, green, limegreen;
   }
   .img-border {
     border: 1px solid black;
-  }
-
-  code,
-  kbd,
-  pre {
-    font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
   }
 
   kbd {
