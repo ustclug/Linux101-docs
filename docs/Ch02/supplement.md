@@ -50,10 +50,10 @@ $ sudo reboot
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
 
 在 GNOME 桌面下用户可以轻松更换主题。
-首先安装 gnome-tweak-tool 软件
+首先安装 gnome-tweaks 软件
 
 ```shell
-$ sudo apt install gnome-tweak-tool
+$ sudo apt install gnome-tweaks
 ```
 
 在 [GNOME Look](https://www.gnome-look.org/) 中找到自己喜欢的主题。
@@ -75,10 +75,10 @@ $ mkdir ~/.themes
 输入
 
 ```shell
-$ gnome-tweak-tool
+$ gnome-tweaks
 ```
 
-打开 gnome-tweak-tool，在外观选项中选中想要的主题。
+打开 gnome-tweaks，在外观选项中选中想要的主题。
 
 重启 GNOME 即可完成主题更换。
 
