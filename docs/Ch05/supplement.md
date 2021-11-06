@@ -10,6 +10,12 @@
 - `setgid`: 对文件来说，以文件所属的用户组的身份 (GID) 执行此程序；对目录来说，在这个目录下创建的文件的用户组都与此目录本身的用户组一致，而不是创建者的用户组。
 - `sticky` (restricted deletion flag): 目录中的所有文件只能由文件所有者（除 `root` 以外）删除或者移动。一个典型的例子是临时文件夹 `/tmp`，在此文件夹中你可以创建、修改、重命名、移动、删除自己的文件，但是动不了别人的文件。
 
+!!! tip "setuid 和 sticky 位的历史"
+
+    聪明的你可能已经注意到了：setuid 和 setgid 对可执行程序具有相同的语义，但 setuid 对目录没有作用。事实上大部分的 UNIX 系统和所有的 Linux 都从未对“设有 setuid 的目录”赋予过任何特别含义，但仍然有少部分系统可以配置为对目录中的 setuid 位采取和 setgid 位类似的语义，即此目录中新建的文件所有者与此目录的所有者一致，而不是为文件的创建者所有。这“少部分系统”中的一个例子是 FreeBSD，但仅当文件系统在挂载时配置了 `suiddir` 参数（[FreeBSD](https://www.freebsd.org/cgi/man.cgi?query=mount&sektion=8&apropos=0&manpath=FreeBSD+6.1-RELEASE)）。
+
+    在很早的时候（1974 年 Unix 第五版），sticky bit 是为可执行文件设计的，它告诉操作系统在程序运行结束后将程序的代码段（text 段）保留在内存或交换区中，以便下一次更快地启动这个程序，因此这个位被称作 sticky（粘滞位）。由于现代计算机存储容量的增加和操作系统缓存功能的完善，已经没有系统再将 sticky bit 解释为这个最初的含义了。在 Linux 系统中，文件上的 sticky bit 从未有过任何功能，仅有目录的 sticky bit 功能如上所述。
+
 我们可以看一下，`/usr/bin/passwd` 的文件权限设置：
 
 ```shell
