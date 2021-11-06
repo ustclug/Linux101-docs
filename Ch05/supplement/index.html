@@ -1259,11 +1259,9 @@
 <li><code>setgid</code>: 对文件来说，以文件所属的用户组的身份 (GID) 执行此程序；对目录来说，在这个目录下创建的文件的用户组都与此目录本身的用户组一致，而不是创建者的用户组。</li>
 <li><code>sticky</code> (restricted deletion flag): 目录中的所有文件只能由文件所有者（除 <code>root</code> 以外）删除或者移动。一个典型的例子是临时文件夹 <code>/tmp</code>，在此文件夹中你可以创建、修改、重命名、移动、删除自己的文件，但是动不了别人的文件。</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">setuid 和 sticky 位的历史</p>
-<p>聪明的你可能已经注意到了：setuid 和 setgid 对可执行程序具有相同的语义，但 setuid 对目录没有作用。事实上大部分的 UNIX 系统和所有的 Linux 都从未对“设有 setuid 的目录”赋予过任何特别含义，但仍然有少部分系统可以配置为对目录中的 setuid 位采取和 setgid 位类似的语义，即此目录中新建的文件所有者与此目录的所有者一致，而不是为文件的创建者所有。这“少部分系统”中的一个例子是 FreeBSD，但仅当文件系统在挂载时配置了 <code>suiddir</code> 参数（<a href="https://www.freebsd.org/cgi/man.cgi?query=mount&amp;sektion=8&amp;apropos=0&amp;manpath=FreeBSD+6.1-RELEASE">FreeBSD</a>）。</p>
+<details class="tip"><summary>setuid 和 sticky 位的历史</summary><p>聪明的你可能已经注意到了：setuid 和 setgid 对可执行程序具有相同的语义，但 setuid 对目录没有作用。事实上大部分的 UNIX 系统和所有的 Linux 都从未对“设有 setuid 的目录”赋予过任何特别含义，但仍然有少部分系统可以配置为对目录中的 setuid 位采取和 setgid 位类似的语义，即此目录中新建的文件所有者与此目录的所有者一致，而不是为文件的创建者所有。这“少部分系统”中的一个例子是 FreeBSD，但仅当文件系统在挂载时配置了 <code>suiddir</code> 参数（<a href="https://www.freebsd.org/cgi/man.cgi?query=mount&amp;sektion=8&amp;apropos=0&amp;manpath=FreeBSD+6.1-RELEASE">FreeBSD</a>）。</p>
 <p>在很早的时候（1974 年 Unix 第五版），sticky bit 是为可执行文件设计的，它告诉操作系统在程序运行结束后将程序的代码段（text 段）保留在内存或交换区中，以便下一次更快地启动这个程序，因此这个位被称作 sticky（粘滞位）。由于现代计算机存储容量的增加和操作系统缓存功能的完善，已经没有系统再将 sticky bit 解释为这个最初的含义了。在 Linux 系统中，文件上的 sticky bit 从未有过任何功能，仅有目录的 sticky bit 功能如上所述。</p>
-</div>
+</details>
 <p>我们可以看一下，<code>/usr/bin/passwd</code> 的文件权限设置：</p>
 <div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/passwd
 -rwsr-xr-x <span class="m">1</span> root root <span class="m">67992</span> Aug <span class="m">29</span>  <span class="m">2019</span> /usr/bin/passwd
