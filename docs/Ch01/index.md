@@ -187,7 +187,6 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 现在在 Windows / macOS 上主流的虚拟机管理软件有：
 
 - [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上专业的虚拟机管理软件。
-
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
 
 以上两款软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
@@ -196,13 +195,12 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
-[VMware Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova)
-
-[VMware Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-64bit.ova)
-
-[VirtualBox Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-32bit.ova)
-
-[VirtualBox Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-64bit.ova)
+- [VMware Xubuntu 20.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)
+- [VMware Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova)
+- [VMware Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-64bit.ova)
+<!-- - [VirtualBox Xubuntu 20.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova) -->
+- [VirtualBox Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-32bit.ova)
+- [VirtualBox Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-64bit.ova)
 
 推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
 
@@ -226,13 +224,13 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 
-<p class="caption">VMware Workstation 成功启动 Xubuntu 32 位虚拟机</p>
+<p class="caption">VMware Workstation 启动 Xubuntu 18.04 虚拟机</p>
 
 如果读者采用了上面列出的虚拟机之一，其默认登录密码为 `ustc`，输入密码即可登录虚拟机系统桌面。
 
 ![](images/VWP-Xubuntu-32bit-Desktop.png)
 
-<p class="caption">Xubuntu 32 位虚拟机桌面</p>
+<p class="caption">Xubuntu 18.04 虚拟机桌面</p>
 
 ## 中科大开源社群：LUG@USTC {#lug-ustc}
 
