@@ -1719,7 +1719,9 @@ For more examples and ideas, visit:
 <li><code>CMD</code> 指定了容器启动时执行的命令。</li>
 </ol>
 <p>Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每条指令对应镜像的一层。Docker 容器镜像的独特之处就在于它的分层设计：在构建镜像时每层的更改会叠加在上一层上（这意味着，上一层的所有数据仍然会保留，即使在新的一层删除了）；如果某一层已经存在，Docker 会直接使用这一层，节约构建的时间和占用的空间。</p>
-<details class="tips"><summary>镜像分层是如何实现的？</summary><p>Docker 默认使用 OverlayFS 存储镜像。Overlay 文件系统允许用户将一个目录挂在另一个只读的目录上，所有修改都记录在可写的上层上。这种特性在 Linux LiveCD 中非常有用：可以将只读的 LiveCD 和硬盘上的目录使用 Overlay 文件系统挂载在一起，然后所有的修改都可以存储在硬盘上。</p>
+<details class="tips">
+<summary>镜像分层是如何实现的？</summary>
+<p>Docker 默认使用 OverlayFS 存储镜像。Overlay 文件系统允许用户将一个目录挂在另一个只读的目录上，所有修改都记录在可写的上层上。这种特性在 Linux LiveCD 中非常有用：可以将只读的 LiveCD 和硬盘上的目录使用 Overlay 文件系统挂载在一起，然后所有的修改都可以存储在硬盘上。</p>
 </details>
 <div class="admonition tip">
 <p class="admonition-title">尽量减少 Docker 镜像的层数</p>

@@ -1531,7 +1531,9 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 <p>在此文件中，每一行都是一个用户，每行中用户信息由冒号 <code>:</code> 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 <code>man 5 passwd</code> 查阅。</p>
 </div>
 <p>可以关注到，除了你自己以外，还有一些特殊的用户：<code>root</code>，和一大堆你素未相识的名字。下面将会进行介绍。</p>
-<details class="tip"><summary>小知识：<code>/etc/passwd</code> 作用的变化</summary><p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
+<details class="tip">
+<summary>小知识：<code>/etc/passwd</code> 作用的变化</summary>
+<p>在 Unix 最初的时候，<code>passwd</code> 文件存储了用户密码的哈希<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 <code>/etc/shadow</code> 里面，只有下文提到的根用户可以访问与修改。</p>
 </details>
 <h4 id="root-user">根用户<a class="headerlink" href="#root-user" title="Permanent link">&para;</a></h4>
 <p>在前文中我们知道，在使用 <code>apt</code> 安装软件时，我们需要在前面加上 <code>sudo</code>。这可以使我们以根用户 (<code>root</code>) 的身份安装软件。</p>
@@ -1550,7 +1552,9 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 </div>
 <h4 id="system-user">系统用户<a class="headerlink" href="#system-user" title="Permanent link">&para;</a></h4>
 <p>除了你、<code>root</code> 和其他在用你的电脑/服务器的人（如果有）以外，剩下还有很多用户，如 <code>nobody</code>, <code>www-data</code> 等。它们由系统或相关程序创建，用于执行服务等系统任务。<strong>不要随意删除这些用户</strong>，以免系统运行出现问题。</p>
-<details class="tip"><summary>技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</summary><p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
+<details class="tip">
+<summary>技术层面上<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>，系统用户和普通用户的区别</summary>
+<p>一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>。</p>
 <p>此外，由于系统用户的特殊性，它们一般默认禁止登录。</p>
 </details>
 <h4 id="normal-user">普通用户<a class="headerlink" href="#normal-user" title="Permanent link">&para;</a></h4>
@@ -1559,7 +1563,9 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 <h3 id="using-su-and-sudo">切换用户：使用 <code>su</code> 和 <code>sudo</code><a class="headerlink" href="#using-su-and-sudo" title="Permanent link">&para;</a></h3>
 <h4 id="sudo"><code>sudo</code><a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h4>
 <p><code>sudo</code> 命令可以让你以另一个用户的身份执行指定的命令。当然，它最常见的用途，就是能让普通用户以 <code>root</code> 的身份执行命令：不加入其他参数，<code>sudo</code> 后面直接加命令，我们在前面的课程中也见到很多次了。</p>
-<details class="tip"><summary>以 <code>root</code> 用户执行上一条命令</summary><p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
+<details class="tip">
+<summary>以 <code>root</code> 用户执行上一条命令</summary>
+<p>是否常常很多次忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
 <div class="highlight"><pre><span></span><code>$ apt update
 Reading package lists... Done
 E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
@@ -1579,7 +1585,9 @@ Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
 uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 </code></pre></div>
 <p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
-<details class="example"><summary>修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</summary><p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
+<details class="example">
+<summary>修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</summary>
+<p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
 <p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
 <div class="highlight"><pre><span></span><code># Allow members of group sudo to execute any command
 %sudo   ALL=(ALL:ALL) ALL
@@ -1658,7 +1666,9 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 <p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 <code>a_file</code> 为普通文件 (<code>-</code>)，所属用户权限为 <code>rwx</code>，所属用户组权限为 <code>rw-</code>，其他人的权限为 <code>r--</code>。</p>
 <p>第三、四列为文件所属用户和用户组。</p>
 <p>对于每个权限，第一位 <code>r</code> 代表读取 (<strong>R</strong>ead)，第二位 <code>w</code> 代表写入 (<strong>W</strong>rite)，第三位 <code>x</code> 代表执行 (E<strong>x</strong>ecute)，<code>-</code> 代表没有对应的权限。</p>
-<details class="tip"><summary>执行权限意味着什么？</summary><p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
+<details class="tip">
+<summary>执行权限意味着什么？</summary>
+<p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
 <p>而对于目录来说，拥有执行权限，你就可以访问这个目录下的文件的内容。以下是一个例子：</p>
 <div class="highlight"><pre><span></span><code>$ ls -l
 total 8

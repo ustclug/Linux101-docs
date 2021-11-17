@@ -1270,14 +1270,18 @@
 <p class="admonition-title">提示</p>
 <p><code>man</code> 和 <code>tldr</code> 的用途是？</p>
 </div>
-<details class="info"><summary>解答</summary><p>答案非常简单：<code>man man</code> / <code>man tldr</code>, 和 <code>tldr man</code> / <code>tldr tldr</code> 即可。</p>
+<details class="info">
+<summary>解答</summary>
+<p>答案非常简单：<code>man man</code> / <code>man tldr</code>, 和 <code>tldr man</code> / <code>tldr tldr</code> 即可。</p>
 </details>
 <h2 id="finding-package-you-need">查找需要安装的软件包<a class="headerlink" href="#finding-package-you-need" title="Permanent link">&para;</a></h2>
 <div class="admonition tips">
 <p class="admonition-title">提示</p>
 <p><code>apt</code> 有一些相关的小工具，可能可以帮到你。</p>
 </div>
-<details class="info"><summary>解答</summary><p>我们可以使用 <code>apt-file</code>（需要手动安装）来查找包含某个特定文件的软件包。在运行 <code>sudo apt-file update</code> 建立索引之后，可以用 <code>apt-file search 文件名</code> 来进行搜索。</p>
+<details class="info">
+<summary>解答</summary>
+<p>我们可以使用 <code>apt-file</code>（需要手动安装）来查找包含某个特定文件的软件包。在运行 <code>sudo apt-file update</code> 建立索引之后，可以用 <code>apt-file search 文件名</code> 来进行搜索。</p>
 <p>一个例子：</p>
 <div class="highlight"><pre><span></span><code>$ apt-file search libc++.so
 libc++-7-dev: /usr/lib/llvm-7/lib/libc++.so
@@ -1299,7 +1303,9 @@ libc++1-8: /usr/lib/x86_64-linux-gnu/libc++.so.1.0
 <p class="admonition-title">提示</p>
 <p>你可能需要理解 <code>ls -l</code> 输出的含义。</p>
 </div>
-<details class="info"><summary>解答</summary><p>软链接的判断非常简单。如果是软链接的话，<code>ls -l</code> 对应的文件会明确写出其指向的文件。</p>
+<details class="info">
+<summary>解答</summary>
+<p>软链接的判断非常简单。如果是软链接的话，<code>ls -l</code> 对应的文件会明确写出其指向的文件。</p>
 <div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/vim
 lrwxrwxrwx 1 root root 21 Jul 21  2019 /usr/bin/vim -&gt; /etc/alternatives/vim
 </code></pre></div>
@@ -1331,7 +1337,9 @@ Birth: -
 <p class="admonition-title">提示</p>
 <p><code>tar</code> 的 <code>-f</code> 的意义是什么？</p>
 </div>
-<details class="info"><summary>解答</summary><p><code>*</code> 被 shell 展开，导致命令变成了这样：</p>
+<details class="info">
+<summary>解答</summary>
+<p><code>*</code> 被 shell 展开，导致命令变成了这样：</p>
 <div class="highlight"><pre><span></span><code>tar -cf file1 file2 ... target.tar
 </code></pre></div>
 <p>此时，<code>tar</code> 会把 <code>file2</code> 一直到 <code>target.tar</code> 打包的结果放在 <code>file1</code> 文件中，于是 <code>file1</code> 的内容就被覆盖了。</p>

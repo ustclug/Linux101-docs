@@ -1745,7 +1745,9 @@
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>范例</summary><p><code>$ wget -i filelist.txt</code> 批量下载 filelist.txt 中给出的链接</p>
+<details class="example">
+<summary>范例</summary>
+<p><code>$ wget -i filelist.txt</code> 批量下载 filelist.txt 中给出的链接</p>
 <p><code>$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"</code> 安装 oh-my-zsh</p>
 </details>
 <h3 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h3>
@@ -1775,7 +1777,9 @@
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>范例</summary><p><code>$ curl "http://cn.bing.com"</code> 会看到必应页面代码输出</p>
+<details class="example">
+<summary>范例</summary>
+<p><code>$ curl "http://cn.bing.com"</code> 会看到必应页面代码输出</p>
 <p><code>$ curl "http://cn.bing.com" &gt; bing.html</code> 把必应页面保存至 <code>bing.html</code> 本地，源码就被重定向到工作目录</p>
 <p><code>$ curl -o bing.html "http://cn.bing.com"</code> 同时也可以使用 <code>-o</code> 选项指定输出文件</p>
 <p><code>$ curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"</code> 下载 LUG 的 logo</p>
@@ -1864,7 +1868,9 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 <p>使用 <code>(命令1; 命令2; …)</code>，组命令会建立独立的 shell 子进程来执行组命令，这里的圆括号周围并不需要空格。</p>
 </li>
 </ul>
-<details class="example"><summary>组命令示例</summary><div class="highlight"><pre><span></span><code>➜  ~ tree tmp
+<details class="example">
+<summary>组命令示例</summary>
+<div class="highlight"><pre><span></span><code>➜  ~ tree tmp
 tmp
 └── temp
 <span class="c1">#------</span>
@@ -1883,7 +1889,9 @@ temp
 <h5 id="_2">用户自定义变量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
-<details class="example"><summary>变量使用示例</summary><p>变量定义：</p>
+<details class="example">
+<summary>变量使用示例</summary>
+<p>变量定义：</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> skill <span class="k">in</span> Ada Coffee Action Java<span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
 <span class="k">done</span>
@@ -1936,7 +1944,9 @@ I am good at JavaScript
 <p>可用 <code>set</code> 命令，直接给 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 等赋值。</p>
 </li>
 </ul>
-<details class="example"><summary>范例</summary><div class="highlight"><pre><span></span><code>$ <span class="nb">set</span> one two three
+<details class="example">
+<summary>范例</summary>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">set</span> one two three
 $ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
 one two three
 $ <span class="nb">shift</span> <span class="m">2</span>
@@ -2002,7 +2012,9 @@ three
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是 <code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
 <p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以复制。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 <code>(())</code> 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好想法（回想一下，C 语言中 <code>return 0</code> 表示<strong>正常</strong>退出）。</p>
 <p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分。</p>
-<details class="example"><summary><code>expr</code> 和 <code>let</code> 使用示例</summary><div class="highlight"><pre><span></span><code>$ expr length <span class="s2">&quot;ustclug&quot;</span>
+<details class="example">
+<summary><code>expr</code> 和 <code>let</code> 使用示例</summary>
+<div class="highlight"><pre><span></span><code>$ expr length <span class="s2">&quot;ustclug&quot;</span>
 <span class="m">7</span>
 $ <span class="nb">let</span> <span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 $ <span class="nb">echo</span> <span class="nv">$a</span>
@@ -2197,7 +2209,9 @@ value3<span class="o">)</span>
   commands
 <span class="k">done</span>
 </code></pre></div>
-<details class="example"><summary>流程控制样例脚本</summary><div class="highlight"><pre><span></span><code><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
+<details class="example">
+<summary>流程控制样例脚本</summary>
+<div class="highlight"><pre><span></span><code><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
 <span class="nb">read</span> -p <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span> MAX_NO
 <span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
   <span class="nb">echo</span> <span class="s2">&quot;I ask to enter number between 5 and 9, Okay&quot;</span>
@@ -2272,7 +2286,9 @@ funcion name <span class="o">{</span>
 </code></pre></div>
 <p>其中 function 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
 <p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
-<details class="example"><summary>范例</summary><p>某带函数的某脚本程序内容如下：</p>
+<details class="example">
+<summary>范例</summary>
+<p>某带函数的某脚本程序内容如下：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 hello<span class="o">()</span> <span class="o">{</span>
   <span class="nb">echo</span> <span class="s2">&quot;hello, today&#39;s date is `date`&quot;</span>

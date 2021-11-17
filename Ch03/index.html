@@ -1784,7 +1784,9 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 </div>
 <h4 id="software-sources">官方软件源镜像<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
 <p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
-<details class="example"><summary>查看本地的软件源列表</summary><div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v &quot;#&quot;
+<details class="example">
+<summary>查看本地的软件源列表</summary>
+<div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v &quot;#&quot;
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -1849,7 +1851,9 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 </div>
 <h4 id="third-party-software-sources">第三方软件源<a class="headerlink" href="#third-party-software-sources" title="Permanent link">&para;</a></h4>
 <p>有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 <code>apt install package-name</code> 安装我们需要的软件。</p>
-<details class="example"><summary>通过添加 Docker 软件源安装 Docker</summary><p>Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书<a href="../Ch08/">第八章</a>进行专门的介绍。</p>
+<details class="example">
+<summary>通过添加 Docker 软件源安装 Docker</summary>
+<p>Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书<a href="../Ch08/">第八章</a>进行专门的介绍。</p>
 <p>在各大软件源中已经提供了 Docker，在 Ubuntu/Debian 下的包名为 <code>docker.io</code>。</p>
 <p>Docker 官方也提供了自己的软件源，包名为 <code>docker-ce</code>，它的版本会稍微更新一些。我们可以通过添加 Docker 的软件源到 <code>/etc/apt/sources.list</code> 中来进行安装。以下安装流程按照 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker 官方文档</a>展开。</p>
 <ol>

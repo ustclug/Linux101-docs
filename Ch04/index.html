@@ -1757,7 +1757,9 @@
 <p>在最早期的晶体管计算机时代，没有操作系统，由操作员负责输入输出 (I/O)，意味着处理单元的时间在等待 I/O 的过程中浪费。可见，只有让任务之间衔接得足够快，才能更好地利用处理器性能。当时采用批处理策略集中任务，并由一个处理程序负责加载程序，录入数据，输出结果。这种按录入顺序装载程序并负责 I/O 的处理工作的程序便成为操作系统的雏形。</p>
 <p>在以上过程中，操作系统直接面临的就是一个个等待运行的任务，随后演变为<strong>进程</strong>。</p>
 <p>程序需要存储资源安身，需要计算资源运行。而一个程序占有资源并运行便成为了进程。程序希望有 CPU 运行它，希望它需要的数据唾手可得，希望输出的数据可以被正确及时地送达。早期的系统不需要操心进程运行的顺序。然而随着人们对计算机需求越来越高，操作系统除了为进程提供基础服务之外，更需要管理好进程所竞争的资源，甚至要为实时交互提供方案。</p>
-<details class="tip"><summary>需求推动操作系统的发展</summary><p>早期采用单道批处理策略的计算机如果有程序等待 I/O，处理器只能傻等。为了更高效地利用处理器，出现<strong>多道程序设计</strong>方案，允许充分利用程序 I/O 的时间；为了响应实时性要求，出现了<strong>中断</strong> (interrupt) 概念，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时策略一致，正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
+<details class="tip">
+<summary>需求推动操作系统的发展</summary>
+<p>早期采用单道批处理策略的计算机如果有程序等待 I/O，处理器只能傻等。为了更高效地利用处理器，出现<strong>多道程序设计</strong>方案，允许充分利用程序 I/O 的时间；为了响应实时性要求，出现了<strong>中断</strong> (interrupt) 概念，响应硬件软件中断执行任务的请求；为了实现多人共用，出现了<strong>分时系统</strong>概念，虽然最初是对用户的分时，但与现在对进程的分时策略一致，正是这些逐渐增长的需求确定了现代操作系统需要解决的问题。</p>
 </details>
 <p><strong>有了进程的抽象后，操作系统又将如何以进程为单位，协调并保证工作的顺利进行呢？</strong></p>
 <p>本节以下内容使用软件 htop 来讲解，建议在进一步阅读前使用 <code>sudo apt install htop</code> 安装并运行 htop，即时查看进程的各个属性。</p>
@@ -1773,13 +1775,17 @@
 
     很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 32767。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程标识符，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程标识符有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围） -->
 
-<details class="tip"><summary>Linux 进程启动顺序</summary><p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
+<details class="tip">
+<summary>Linux 进程启动顺序</summary>
+<p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p>由于 kthreadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
 <h4 id="parent-child">进程父子关系<a class="headerlink" href="#parent-child" title="Permanent link">&para;</a></h4>
 <p>除了最开始的 0 号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为<strong>父进程</strong>，被产生的是<strong>子进程</strong>。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
-<details class="tip"><summary>孤儿进程 (orphan) 和僵尸进程 (zombie)</summary><p>父子关系引出了两种特殊的运行情况——父进程先退出，它的子进程成为<strong>孤儿进程</strong> (orphan)；子进程先退出，而父进程未作出回应 (wait)，子进程则变为<strong>僵尸进程</strong> (zombie)。</p>
+<details class="tip">
+<summary>孤儿进程 (orphan) 和僵尸进程 (zombie)</summary>
+<p>父子关系引出了两种特殊的运行情况——父进程先退出，它的子进程成为<strong>孤儿进程</strong> (orphan)；子进程先退出，而父进程未作出回应 (wait)，子进程则变为<strong>僵尸进程</strong> (zombie)。</p>
 <p>孤儿进程（即留下的子进程）由操作系统回收，交给 init「领养」。</p>
 <p>僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。<!-- 同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。--></p>
 </details>
@@ -1798,9 +1804,13 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 通常，我们运行的程序会以非实时的方式调度，nice 值为 0。
 而 PRI 的大小对应着任务的重要程度，PRI 越大则优先级越大（deadline scheduling 始终拥有最大优先级）</p>
 <p>优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 <code>sched(7)</code> 的 Scheduling policies 小节。</p>
-<details class="info"><summary>协作与抢占</summary></details>
+<details class="info">
+<summary>协作与抢占</summary>
+</details>
 <p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为<strong>协作式</strong> (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配<strong>时间片</strong> (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为<strong>抢占式</strong> (preemptive) 操作系统。</p>
-<details class="info"><summary>中断与进程调度</summary><p>系统进行调度，主要面临这样几个问题：</p>
+<details class="info">
+<summary>中断与进程调度</summary>
+<p>系统进行调度，主要面临这样几个问题：</p>
 <ul>
 <li>何时（什么契机）可以进行调度？</li>
 <li>要不要进行调度切换进程？</li>
@@ -1823,7 +1833,9 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 
 <p>我们可以打开 htop 观察每个进程的优先级和 nice 值。</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
-<details class="tip"><summary>关于内核线程的优先级</summary></details>
+<details class="tip">
+<summary>关于内核线程的优先级</summary>
+</details>
 <p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
 <img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
 <div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">第一个进程为</span> <span class="n n-Quoted">`watchdogd`</span><span class="n">，是一个定时监测以保证系统可用性的程序。</span>
@@ -1918,7 +1930,9 @@ nice -n 10 vim
 <p><img alt="" id="bg" src="images/bg.gif" width="80%" /></p>
 <p>我们可以使用 <code>jobs</code> 命令，看到当前 shell 上所有相关的进程了。这里，后台已经有一个进程在运行，所以 <code>ping localhost</code> 得到的代号是 2。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加 <code>%</code>，如将 2 号进程放入后台，则使用 <code>bg %2</code>，效果如图所示。</p>
-<details class="info"><summary>一点细节</summary><p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。</p>
+<details class="info">
+<summary>一点细节</summary>
+<p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。</p>
 <p>其实我们如果直接输入 <code>%1</code>，一样可以将编号为 1 的进程放入前台。</p>
 </details>
 <p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
@@ -1952,7 +1966,9 @@ nice -n 10 vim
 <p>在信号中，9 代表 SIGKILL，收到这个信号之后，程序会立刻退出。</p>
 <p>在使用时，直接 <code>kill -9 PID</code> 即可。一个简单的记忆方法是：9 是最大的个位数。</p>
 </div>
-<details class="tip"><summary>一点细节</summary><p><img alt="type_kill" src="images/type_kill.png" /></p>
+<details class="tip">
+<summary>一点细节</summary>
+<p><img alt="type_kill" src="images/type_kill.png" /></p>
 <p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="../Appendix/glossary/#builtin-command">内建命令</a>。行为与直接运行 man 命令得到的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
 <p><code>man builtins</code> 可以查看 bash 中的内建命令文档。</p>
 </details>
@@ -2078,7 +2094,9 @@ $ tmux
 <p>可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。</p>
 <p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet</a> 中查询</p>
 <p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客</a></p>
-<details class="note"><summary>Tmux 的工作原理</summary><p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
+<details class="note">
+<summary>Tmux 的工作原理</summary>
+<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
 </details>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
@@ -2106,7 +2124,9 @@ $ tmux
  <span class="o">[</span> + <span class="o">]</span>  dbus
  ……
 </code></pre></div>
-<details class="note"><summary>/etc/init.d 目录与 systemd</summary><p>/etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 支持从此目录中加载服务。</p>
+<details class="note">
+<summary>/etc/init.d 目录与 systemd</summary>
+<p>/etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 支持从此目录中加载服务。</p>
 </details>
 <p>上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看，该命令将显示所有 <code>systemd</code> 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 <code>j</code> 和 <code>k</code> 进行上下翻页）</p>
 <div class="admonition example">
@@ -2114,7 +2134,9 @@ $ tmux
 <p><img alt="services" src="images/services.png" /></p>
 </div>
 <p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：</p>
-<details class="info"><summary>查看两个命令的 tldr 文档</summary><div class="highlight"><pre><span></span><code>$ tldr systemctl
+<details class="info">
+<summary>查看两个命令的 tldr 文档</summary>
+<div class="highlight"><pre><span></span><code>$ tldr systemctl
 systemctl
 Control the systemd system and service manager.
 
@@ -2186,7 +2208,9 @@ $ systemctl disable jupyter <span class="c1"># 取消自启</span>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
 <p>at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 <code>sudo apt install at</code> 进行安装。</p>
 <p>随后使用 tldr 查看该命令使用方法：</p>
-<details class="info"><summary>tldr at</summary><div class="highlight"><pre><span></span><code>$ tldr at
+<details class="info">
+<summary>tldr at</summary>
+<div class="highlight"><pre><span></span><code>$ tldr at
 at
 Execute commands once at a later time.
 Service atd (or atrun) should be running for the actual executions.

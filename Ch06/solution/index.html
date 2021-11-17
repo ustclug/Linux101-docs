@@ -1294,7 +1294,9 @@
                 
                 <h1 id="solution">思考题解答<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
 <h2 id="http">设定 HTTP 请求头<a class="headerlink" href="#http" title="Permanent link">&para;</a></h2>
-<details class="info"><summary>解答</summary><p><code>curl</code> 的 <code>-H</code> 参数可以设定 HTTP 的请求头，如 <code>curl -v -H 'User-Agent: Test' http://www.baidu.com</code>.</p>
+<details class="info">
+<summary>解答</summary>
+<p><code>curl</code> 的 <code>-H</code> 参数可以设定 HTTP 的请求头，如 <code>curl -v -H 'User-Agent: Test' http://www.baidu.com</code>.</p>
 <p>而对于 <code>wget</code>，对应的参数则是 <code>--header</code>.</p>
 </details>
 <h2 id="_1">关于断点续传<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1302,7 +1304,9 @@
 <p class="admonition-title">提示</p>
 <p>可能需要简单学习 HTTP 协议的大体特性。另外，如果你想要实现这样一个特性，你会希望服务器支持什么功能呢？</p>
 </div>
-<details class="info"><summary>解答</summary><p>关键词是：Range 和 Content-Range.</p>
+<details class="info">
+<summary>解答</summary>
+<p>关键词是：Range 和 Content-Range.</p>
 <p>客户端如果需要从断开的地方重新开始，那么它需要向服务器指定需要下载的文件的范围，这个工作由 HTTP 请求头 <code>Range</code> 完成。而服务器在响应这样的请求时，响应头就包含 <code>Content-Range</code>，标志实际包含的文件内容的范围。</p>
 <p>当然，不是所有服务器都支持这个特性，所以有的时候你可能会发现，「断点续传」会失败。</p>
 </details>
@@ -1311,7 +1315,9 @@
 <p class="admonition-title">提示</p>
 <p>一个常见的例子是，<code>#!/usr/bin/env python3</code>.</p>
 </div>
-<details class="info"><summary>解答</summary><p><code>#!</code> (Shebang) 指定了脚本文件由哪一个程序去解释，但是可以发现，这个程序必须是绝对路径。这导致了在跨平台的时候，这样的脚本容易出现问题：比如说可能在不同的环境中，Python 3 可能在 <code>/usr/bin/python3</code>, 可能在 <code>/usr/local/bin/python3</code>，甚至可能在其他的地方（比如说，如果你安装了 pyenv，那么就在 <code>~/.pyenv/shims/python3</code>）。</p>
+<details class="info">
+<summary>解答</summary>
+<p><code>#!</code> (Shebang) 指定了脚本文件由哪一个程序去解释，但是可以发现，这个程序必须是绝对路径。这导致了在跨平台的时候，这样的脚本容易出现问题：比如说可能在不同的环境中，Python 3 可能在 <code>/usr/bin/python3</code>, 可能在 <code>/usr/local/bin/python3</code>，甚至可能在其他的地方（比如说，如果你安装了 pyenv，那么就在 <code>~/.pyenv/shims/python3</code>）。</p>
 <p><code>/usr/bin/env</code> 的功能是，在指定的环境变量中执行命令，它的参数可以不是程序的绝对路径。这个特性就让它变成了 Shebang 的常客：只要 <code>env</code> 在 <code>/usr/bin</code> 下面（一般都是这样子的），并且后面的命令可以执行，那么就没有问题了。</p>
 </details>
 <h2 id="shell-1">Shell 脚本编写练习 #1<a class="headerlink" href="#shell-1" title="Permanent link">&para;</a></h2>
@@ -1319,7 +1325,9 @@
 <p class="admonition-title">提示</p>
 <p>可以使用循环和通配符来完成。另外也需要简单掌握 ffmpeg 的使用（不需要对编码参数等有所了解）。</p>
 </div>
-<details class="info"><summary>解答</summary><p>参考脚本：</p>
+<details class="info">
+<summary>解答</summary>
+<p>参考脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="k">for</span> i <span class="k">in</span> *.mp4
@@ -1335,7 +1343,9 @@
 <p class="admonition-title">提示</p>
 <p>简单的数学计算，分支指令，与 <code>&amp;&amp;</code>。</p>
 </div>
-<details class="info"><summary>解答</summary><p>参考脚本：</p>
+<details class="info">
+<summary>解答</summary>
+<p>参考脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">]</span>
@@ -1353,7 +1363,9 @@
 <p class="admonition-title">提示</p>
 <p>这里，需要解析 HTML 中所有的（<code>a</code> 标签的）<code>href</code> 属性，挑选出所有后缀为 <code>.pdf</code> 的文件，并调用 <code>wget</code> 下载。</p>
 </div>
-<details class="info"><summary>解答</summary><p>参考脚本：</p>
+<details class="info">
+<summary>解答</summary>
+<p>参考脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="nv">url</span><span class="o">=</span><span class="s2">&quot;http://staff.ustc.edu.cn/~bjye/em/student/2019S/2019S.htm&quot;</span>

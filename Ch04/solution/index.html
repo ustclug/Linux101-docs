@@ -1242,14 +1242,18 @@
 <p class="admonition-title">提示</p>
 <p>nohup 命令是如何操作的？</p>
 </div>
-<details class="info"><summary>解答</summary><p>当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 <code>/dev/null</code>（会在第五章介绍）以舍弃输出。</p>
+<details class="info">
+<summary>解答</summary>
+<p>当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 <code>/dev/null</code>（会在第五章介绍）以舍弃输出。</p>
 </details>
 <h2 after-hitting-ctrl-c="after-hitting-ctrl-c" id="">按下 Ctrl + C 后发生了什么<a class="headerlink" href="#" title="Permanent link">&para;</a></h2>
 <div class="admonition tips">
 <p class="admonition-title">提示</p>
 <p>这个问题涉及了键盘按键的处理与信号机制。（答案仅供参考）</p>
 </div>
-<details class="info"><summary>解答</summary><p>当我们在某个终端按下键盘上的 <code>Ctrl + C</code>，键盘发生按下 Ctrl——按下字母 C——字母 C 按键抬起——Ctrl 键抬起四个过程，将四个过程对应的扫描码送到键盘控制器。</p>
+<details class="info">
+<summary>解答</summary>
+<p>当我们在某个终端按下键盘上的 <code>Ctrl + C</code>，键盘发生按下 Ctrl——按下字母 C——字母 C 按键抬起——Ctrl 键抬起四个过程，将四个过程对应的扫描码送到键盘控制器。</p>
 <p>键盘控制器向 CPU 发出中断表示键盘有输入需要处理，CPU 调用对应的处理程序（一般是终端驱动）将扫描码翻译为键盘码，对应的字符如果允许，会回显到标准输出（显示器）。</p>
 <p>如果是普通字符，则字符存放到对应终端的缓冲区等待读取。</p>
 <p>如果像 <code>Ctrl + C</code> 这种特殊字符被检测到，则该处理程序向该终端上的 shell 进程发送 SIGINT，shell 再向其前台进程转发 SIGINT，进程接到该信号，执行对应的信号处理例程。一般情况下，程序将正常退出。</p>

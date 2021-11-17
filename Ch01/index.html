@@ -1600,14 +1600,18 @@
 <h2 id="computer-and-os">计算机与操作系统<a class="headerlink" href="#computer-and-os" title="Permanent link">&para;</a></h2>
 <h3 id="computer-generations">计算机的更新换代<a class="headerlink" href="#computer-generations" title="Permanent link">&para;</a></h3>
 <p>自 1946 年第一台通用计算机埃尼阿克（全称“电子数值积分计算机”，英文简称 ENIAC）问世以来，人类文明就朝向信息化大步迈进。在接下来的几十年，计算机经历了真空管时代（第一代，ENIAC 就是真空管计算机）、晶体管时代（第二代，如贝尔实验室的世界上第一台全晶体管计算机 TRADIC）、集成电路时代（第三代，如 IBM System / 360 系列）和如今的大规模集成电路时代（第四代，如世界上第一款微处理器 Intel 4004）。在更新换代中，计算机的性能和集成度都有着飞跃般的提升，在过去几十年的表现呈指数级增长，因而就有了计算机行业内耳熟能详的“摩尔定律”，即<strong>集成电路上可容纳的晶体管数目每两年就会翻一倍</strong>，这条定律描述了近几十年来计算机性能爆发增长的现象。</p>
-<details class="tip"><summary>摩尔定律</summary><p>对于摩尔定或许你会更熟悉这种说法：<strong>计算机的性能每 18 个月提高一倍</strong>，但事实上这句话来自英特尔首席执行官大卫·豪斯而不是摩尔。不过有一点可以肯定的是，这两句话都预测计算机的性能将随着时间产生指数爆炸级别的增长，而这在过去几十年间确实实现了。</p>
+<details class="tip">
+<summary>摩尔定律</summary>
+<p>对于摩尔定或许你会更熟悉这种说法：<strong>计算机的性能每 18 个月提高一倍</strong>，但事实上这句话来自英特尔首席执行官大卫·豪斯而不是摩尔。不过有一点可以肯定的是，这两句话都预测计算机的性能将随着时间产生指数爆炸级别的增长，而这在过去几十年间确实实现了。</p>
 <p>不过，由于晶体管的密度会受到量子物理理论上的限制，以及 CPU 会受到功耗和散热的限制，事实上这个定律已经开始失效了，计算机性能的提升开始放缓。为了不受制于这些限制，人们从最初追求单个 CPU 性能的提升逐渐转向了多个 CPU 之间的联合协作，因而基于多核的开发成为了未来计算机领域开发人员的一个不可绕过的话题。</p>
 </details>
 <h3 id="computer-os">计算机操作系统<a class="headerlink" href="#computer-os" title="Permanent link">&para;</a></h3>
 <p>如果现在提起计算机操作系统，可能多数人的第一反应就是大名鼎鼎的 Windows，此外有些人可能也接触过 macOS 或者 Linux 的各类发行版（如：Ubuntu, Manjaro, CentOS 等），它们都是计算机操作系统。然而计算机最初并没有操作系统。在当时，许多计算机不是通用计算机，它们造出来就是为了某个特定目的而服务的，因此其架构只需要为这个目的而设计即可，无需包括完整的操作系统。另外一个原因是在晶体管时代之前，计算机体积庞大，而性能又十分有限，因此也没有能力承载通用的操作系统。随着计算机性能的提升，人们更加依赖计算机的能力，对计算机的功能要求也日渐复杂。为了能尽可能利用计算机的自动化这一特性，一些操作系统开始成型。在成型的初期，计算机操作系统的目的是为了帮助用户进行批处理操作，不过之后它们也慢慢有了新的功能：进程管理、任务调度、控制输入输出设备等。这样的操作系统逐渐形成了庞大的体系，成为了联络一般用户和计算机底层设备的中介，让用户无需关心绝大多数的底层设备，大大降低了用户的使用学习成本。</p>
 <h3 id="modern-os-functions">现代操作系统的功能 *<a class="headerlink" href="#modern-os-functions" title="Permanent link">&para;</a></h3>
 <p>现代的计算机操作系统的功能已经十分复杂，远非当初所能比，且不同的操作系统可能在各方面都有着差异。但总体来说，其一直是用户与底层硬件交流的桥梁。用户可以通过操作系统的用户界面向计算机发出命令，操作系统则对输入的命令进行解释并驱动相关的设备来实现用户的要求。</p>
-<details class="note"><summary>现代个人计算机操作系统典型功能</summary><p>通常来说，一个现代个人计算机操作系统会包含以下的功能<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>：</p>
+<details class="note">
+<summary>现代个人计算机操作系统典型功能</summary>
+<p>通常来说，一个现代个人计算机操作系统会包含以下的功能<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>：</p>
 <ul>
 <li>
 <p>进程管理：操作系统之上运行的各类程序都以进程的形式存在（有关进程的内容将在本书<a href="../Ch04/">第四章</a>中展开），而通常计算机的中央处理器只有几个。为了能让许多进程并发执行，需要操作系统进行调度。</p>
@@ -1639,7 +1643,9 @@
 <p>1983 年 9 月 27 日，理查德·斯托曼在麻省理工学院发起了 GNU 计划，它的目标是创建一套类似 UNIX 但完全自由的操作系统，因此这套系统不会包括任何 UNIX 的代码。在这个计划中诞生了之后十分有名的“GNU 通用公共许可证”（英文简称 GPL），这份许可证把使用该许可的软件的所有权利授予任何使用它的人。这种授权方式与通常的版权授权方式相左，它十分慷概地让出了几乎所有权利，让基于它的软件成为了自由且开源的软件，因此这种权利又被称为著作传（相对于通常的“著作权”）。</p>
 <p>1991 年，正在大学内进修的林纳斯·托瓦兹对他使用的一个类 UNIX 操作系统 MINIX 十分不满，因为当时 MINIX 仅可用于教育但不允许任何商业用途。于是他在他的大学时期编写并发布了自己的操作系统，也就是后来所谓的 “Linux 内核”，成为了如今各类 Linux 发行版的基础。</p>
 <p>Linux 内核并不是一个完整的操作系统，因为它过于精简，单单从它的功能上来说就已经不符合通常的现代的操作系统的定义了。为了能让这个内核拥有更多功能、完善的用户界面和更佳的使用体验，许多自由软件社区的开发人员和一些计算机商业公司便开始把各种组件添加到这个内核之上，这才构建成了一个完整的 Linux 操作系统。因为 Linux 内核是一个开源软件，所以通过这种方式组合出来的 Linux 操作系统会有许许多多的形式，不像 Windows 或者 macOS 这种受到公司统一规定的商业操作系统。正是因为开源社区的诸多成员以及许多商业公司的去中心化的贡献，让 Linux 充满了多样性。因为这种独特的属性，或许我们可以说 Linux 操作系统从来都不是指哪一种操作系统。取而代之地，为了指代某一个基于 Linux 内核构造出来的操作系统，我们通常都将其称之为“Linux 发行版”。</p>
-<details class="tip"><summary>GNU/Linux</summary><p>GNU 计划最初是为了对抗 UNIX 而建立的，这可以从 GNU 的全称 “GNU's Not UNIX”（GNU 不是 UNIX）中十分直观地看出来。GNU 计划的创始人理查德·斯托曼希望通过这个计划开发一个自由的操作系统 GNU，他将 GNU 操作系统视作“达成社会目的的技术方法”。</p>
+<details class="tip">
+<summary>GNU/Linux</summary>
+<p>GNU 计划最初是为了对抗 UNIX 而建立的，这可以从 GNU 的全称 “GNU's Not UNIX”（GNU 不是 UNIX）中十分直观地看出来。GNU 计划的创始人理查德·斯托曼希望通过这个计划开发一个自由的操作系统 GNU，他将 GNU 操作系统视作“达成社会目的的技术方法”。</p>
 <p>虽然 GNU 计划产生出了许多自由开源的组件和软件，但其核心的 GNU 操作系统却至今没有开发完成。在实际操作中，GNU 计划的组件通常都会依赖 Linux 内核作为系统核心来承载它们，它们在一起合称 GNU/Linux。在这里，Linux 内核是功能核心，而 GNU 组件则是这块核心的外设，也是用户操作和使用 Linux 内核的工具。众多当今通用计算机和服务器上主流的 Linux 发行版都属于 GNU/Linux。</p>
 <p>如今智能手机上一个常见的系统是谷歌公司开发的 Android，它其实也是一个基于 Linux 内核开发的操作系统。不过它没有采用 GNU 组件作为工具，而是谷歌自行研发的另一套体系。基于这套体系构成的组合则被称为 Android/Linux，它和我们接下来讨论的 GNU/Linux 大相径庭，感兴趣的读者可以参考本章的拓展阅读：<a href="supplement/#android-linux">Android/Linux</a>。</p>
 </details>
@@ -1678,7 +1684,9 @@
 <p class="caption">Manjaro 图标</p>
 
 <p>以上是若干个常见的 Linux 发行版系列，由上文可见，Linux 的发行版非常丰富，不同的发行版有其各自的特性，因而可以面向不同的用户满足独特的需求。对于新手来说，一个拥有丰富的图形界面的发行版更加适合初步探索和后续使用。<strong>本书推荐初次接触 Linux 的读者优先采用 Ubuntu 发行版或者它的子发行版（Lubuntu, Xubuntu 等）</strong> 作为自己接触和探索 Linux 的平台，在以后可以自行上手其它发行版。</p>
-<details class="note"><summary>Linux 总结</summary><p>这一章或许对于一些读者来说不太容易一次读懂，因为不同于 Windows 或者 macOS 这种受到一家商业公司完全控制和规划的系统那样有着比较单一和线性的发展轨迹，Linux 其独特的自由、开源的特性注定了它的发展进程必定是一个去中心化的、非线性的形式。因此，Linux 的历史虽然只有短短三十年，却充满着复杂的脉络和丰富的细节。但是正是因为 Linux 在如此繁茂的分枝之上结出诸多硕果，我们才能从某种角度感受到开源社区文化的强大活力，反过来也正是这种活力才能让 Linux 有着与其它闭源商业操作系统不一样的叙事。</p>
+<details class="note">
+<summary>Linux 总结</summary>
+<p>这一章或许对于一些读者来说不太容易一次读懂，因为不同于 Windows 或者 macOS 这种受到一家商业公司完全控制和规划的系统那样有着比较单一和线性的发展轨迹，Linux 其独特的自由、开源的特性注定了它的发展进程必定是一个去中心化的、非线性的形式。因此，Linux 的历史虽然只有短短三十年，却充满着复杂的脉络和丰富的细节。但是正是因为 Linux 在如此繁茂的分枝之上结出诸多硕果，我们才能从某种角度感受到开源社区文化的强大活力，反过来也正是这种活力才能让 Linux 有着与其它闭源商业操作系统不一样的叙事。</p>
 <p>回到本章的标题：什么是 Linux？这个问题在不同的语境下有不同的答案：它可以指代 Linux 内核，也可能指代一个或者多个 Linux 发行版。在日常领域或是作为新手接触到的情境来看，这个词通常都是指代后者，而且往往指的是 GNU/Linux 的发行版。</p>
 </details>
 <h2 id="linux-around-us">我们身边的 Linux<a class="headerlink" href="#linux-around-us" title="Permanent link">&para;</a></h2>
@@ -1720,22 +1728,26 @@
 <h3 id="get-vm-softwares">获取虚拟机管理软件<a class="headerlink" href="#get-vm-softwares" title="Permanent link">&para;</a></h3>
 <p>现在在 Windows / macOS 上主流的虚拟机管理软件有：</p>
 <ul>
-<li>
-<p><a href="https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html">VMware Workstation Player</a> 是 VMware 公司推出的一款 Windows 上专业的虚拟机管理软件。</p>
-</li>
-<li>
-<p><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。</p>
-</li>
+<li><a href="https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html">VMware Workstation Player</a> 是 VMware 公司推出的一款 Windows 上专业的虚拟机管理软件。</li>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。</li>
 </ul>
 <p>以上两款软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。</p>
 <h3 id="get-vm-images">获取 Xubuntu 虚拟机镜像<a class="headerlink" href="#get-vm-images" title="Permanent link">&para;</a></h3>
 <p>Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。</p>
-<p><a href="https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova">VMware Xubuntu 18.04 32 位</a></p>
-<p><a href="https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-64bit.ova">VMware Xubuntu 18.04 64 位</a></p>
-<p><a href="https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-32bit.ova">VirtualBox Xubuntu 18.04 32 位</a></p>
-<p><a href="https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-64bit.ova">VirtualBox Xubuntu 18.04 64 位</a></p>
+<ul>
+<li><a href="https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova">VMware Xubuntu 20.04 64 位</a></li>
+<li><a href="https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova">VMware Xubuntu 18.04 32 位</a></li>
+<li><a href="https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-64bit.ova">VMware Xubuntu 18.04 64 位</a></li>
+</ul>
+<!-- - [VirtualBox Xubuntu 20.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova) -->
+<ul>
+<li><a href="https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-32bit.ova">VirtualBox Xubuntu 18.04 32 位</a></li>
+<li><a href="https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-64bit.ova">VirtualBox Xubuntu 18.04 64 位</a></li>
+</ul>
 <p>推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。</p>
-<details class="tip"><summary>Xubuntu</summary><p>Xubuntu 的设计理念是创造一个易用且更轻量的 Ubuntu。与 Ubuntu 不同的是，它采用的是更轻量和兼容性更强的 Xfce 桌面系统，并基于 GTK 运行。Xubuntu 和 Ubuntu 使用完全一致的软件源，因此 Xubuntu 能运行绝大部分 Ubuntu 下的软件。</p>
+<details class="tip">
+<summary>Xubuntu</summary>
+<p>Xubuntu 的设计理念是创造一个易用且更轻量的 Ubuntu。与 Ubuntu 不同的是，它采用的是更轻量和兼容性更强的 Xfce 桌面系统，并基于 GTK 运行。Xubuntu 和 Ubuntu 使用完全一致的软件源，因此 Xubuntu 能运行绝大部分 Ubuntu 下的软件。</p>
 <p><img alt="" src="images/Xubuntu-Logo.png" />
 <p class="caption">Xubuntu 图标</p></p>
 </details>
@@ -1748,11 +1760,11 @@
 <h3 id="start-vm">启动虚拟机<a class="headerlink" href="#start-vm" title="Permanent link">&para;</a></h3>
 <p>若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。</p>
 <p><img alt="" src="images/VWP-Xubuntu-32bit-Login.png" /></p>
-<p class="caption">VMware Workstation 成功启动 Xubuntu 32 位虚拟机</p>
+<p class="caption">VMware Workstation 启动 Xubuntu 18.04 虚拟机</p>
 
 <p>如果读者采用了上面列出的虚拟机之一，其默认登录密码为 <code>ustc</code>，输入密码即可登录虚拟机系统桌面。</p>
 <p><img alt="" src="images/VWP-Xubuntu-32bit-Desktop.png" /></p>
-<p class="caption">Xubuntu 32 位虚拟机桌面</p>
+<p class="caption">Xubuntu 18.04 虚拟机桌面</p>
 
 <h2 id="lug-ustc">中科大开源社群：LUG@USTC<a class="headerlink" href="#lug-ustc" title="Permanent link">&para;</a></h2>
 <p>LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的技术性社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像之一 <a href="https://mirrors.ustc.edu.cn/">USTC Mirrors</a>，其作为本土的软件源为国内许多开源软件用户提供了镜像服务，是本社群对社会作出的一项重要贡献。</p>
