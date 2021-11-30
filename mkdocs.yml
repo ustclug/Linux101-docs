@@ -29,6 +29,7 @@ theme:
     repo: octicons/mark-github-16
   features:
     - navigation.top
+    - navigation.tracking
 
 markdown_extensions:
   - admonition
