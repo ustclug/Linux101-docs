@@ -343,6 +343,42 @@ COPY ./app /app
 
 Docker Compose 是一个方便的小型容器编排工具。
 
-### 子项目？
+### 使用 Docker Compose 创建 WordPress 博客 {#use-docker-compose-build-wordpress-with-mysql}
+
+WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。
+
+新建一个文件夹，在其中放入一个名为 `docker-compose.yml` 的配置文件：
+
+```docker-compose
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    container_name: wordpress_db
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: linux101-test
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_HOST: "%"
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: linux101-test
+```
+
+在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。
 
 [^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。
