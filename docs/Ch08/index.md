@@ -349,7 +349,7 @@ WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创�
 
 新建一个文件夹，在其中放入一个名为 `docker-compose.yml` 的配置文件：
 
-```docker-compose
+```yaml
 version: "3"
 services:
   db:
