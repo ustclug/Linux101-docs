@@ -49,7 +49,7 @@ extra:
       link: https://lug.ustc.edu.cn/
 
 extra_javascript:
-  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'
 
 extra_css:
   - 'css/extra.css'
