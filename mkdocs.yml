@@ -28,6 +28,7 @@ theme:
     logo: fontawesome/brands/linux
     repo: octicons/mark-github-16
   features:
+    - navigation.indexes
     - navigation.top
     - navigation.tracking
 
@@ -64,41 +65,41 @@ nav:
         - 演示文稿规格: Spec/slide.md
     - 序: preface.md
     - 零：欢迎:
-        - 欢迎: index.md
+        - index.md
         - 记号约定: notations.md
         - 功劳簿: credits.md
     - 一：初识 Linux:
-        - 讲义: Ch01/index.md
+        - Ch01/index.md
         - 拓展阅读: Ch01/supplement.md
         - 思考题解答: Ch01/solution.md
     - 二：个性化配置与建站体验:
-        - 讲义: Ch02/index.md
+        - Ch02/index.md
         - 拓展阅读: Ch02/supplement.md
         - 思考题解答: Ch02/solution.md
     - 三：软件安装与文件操作:
-        - 讲义: Ch03/index.md
+        - Ch03/index.md
         - 拓展阅读: Ch03/supplement.md
         - 思考题解答: Ch03/solution.md
     - 四：进程、前后台、服务与例行性任务:
-        - 讲义: Ch04/index.md
+        - Ch04/index.md
         - 拓展阅读: Ch04/supplement.md
         - 思考题解答: Ch04/solution.md
     - 五：用户与用户组、文件权限、文件系统层次结构:
-        - 讲义: Ch05/index.md
+        - Ch05/index.md
         - 拓展阅读: Ch05/supplement.md
         - 思考题解答: Ch05/solution.md
     - 六：网络下载工具与 Shell 脚本:
-        - 讲义: Ch06/index.md
+        - Ch06/index.md
         - 拓展阅读: Ch06/supplement.md
         - 思考题解答: Ch06/solution.md
     - 七：Linux 上的编程:
-        - 讲义: Ch07/index.md
+        - Ch07/index.md
         - 拓展阅读: Ch07/supplement.md
     - 八：Docker:
-        - 讲义: Ch08/index.md
+        - Ch08/index.md
         - 拓展阅读: Ch08/supplement.md
     - 九：Shell 文字处理工具与正则表达式:
-        - 讲义: Ch09/index.md
+        - Ch09/index.md
         - 拓展阅读: Ch09/supplement.md
     - 附录:
         - 词汇表: Appendix/glossary.md
