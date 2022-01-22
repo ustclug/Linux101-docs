@@ -13,15 +13,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
     
     
       
-        <title>讲义 - Linux 101</title>
+        <title>进程、前后台、服务与例行性任务 {#process-background-service-crontab} - Linux 101</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.edf004c2.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cd566b2a.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -60,7 +60,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              讲义
+              进程、前后台、服务与例行性任务 {#process-background-service-crontab}
             
           </span>
         </div>
@@ -240,6 +240,12 @@
       
       
       
+        
+          
+        
+          
+        
+      
       
         <label class="md-nav__link" for="__nav_1">
           负一：计划规格
@@ -317,11 +323,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_3">
-          零：欢迎
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="..">零：欢迎</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="零：欢迎" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
@@ -330,18 +352,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        欢迎
-      </a>
-    </li>
-  
-
             
           
             
@@ -393,11 +403,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_4">
-          一：初识 Linux
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch01/">一：初识 Linux</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="一：初识 Linux" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
@@ -406,18 +432,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch01/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -469,11 +483,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_5">
-          二：个性化配置与建站体验
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch02/">二：个性化配置与建站体验</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="二：个性化配置与建站体验" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
@@ -482,18 +512,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch02/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -545,11 +563,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_6">
-          三：软件安装与文件操作
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch03/">三：软件安装与文件操作</a>
+          
+            <label for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="三：软件安装与文件操作" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
@@ -558,18 +592,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch03/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -623,11 +645,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_7">
-          四：进程、前后台、服务与例行性任务
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href="./">四：进程、前后台、服务与例行性任务</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="四：进程、前后台、服务与例行性任务" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
@@ -636,316 +674,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          讲义
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        讲义
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#process" class="md-nav__link">
-    进程
-  </a>
-  
-    <nav class="md-nav" aria-label="进程">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pid" class="md-nav__link">
-    进程标识符
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#process-struct" class="md-nav__link">
-    进程组织结构
-  </a>
-  
-    <nav class="md-nav" aria-label="进程组织结构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parent-child" class="md-nav__link">
-    进程父子关系
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pgroup" class="md-nav__link">
-    进程组
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#session" class="md-nav__link">
-    会话——前台与后台
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#schedule" class="md-nav__link">
-    进程调度
-  </a>
-  
-    <nav class="md-nav" aria-label="进程调度">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#priority" class="md-nav__link">
-    优先级与 nice 值
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#process-state" class="md-nav__link">
-    进程状态
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-control" class="md-nav__link">
-    用户进程控制
-  </a>
-  
-    <nav class="md-nav" aria-label="用户进程控制">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#signal" class="md-nav__link">
-    信号
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bg-fg" class="md-nav__link">
-    前后台切换
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kill-processes" class="md-nav__link">
-    终止进程
-  </a>
-  
-    <nav class="md-nav" aria-label="终止进程">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#htop" class="md-nav__link">
-    在 htop 中发送信号
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kill" class="md-nav__link">
-    kill
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pgrep-pkill-killall" class="md-nav__link">
-    pgrep / pkill、 killall 等
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#background-task" class="md-nav__link">
-    脱离终端
-  </a>
-  
-    <nav class="md-nav" aria-label="脱离终端">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nohup" class="md-nav__link">
-    nohup
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tmux" class="md-nav__link">
-    命令行多终端方案——tmux
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customizing-tmux" class="md-nav__link">
-    定制 tmux
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#service" class="md-nav__link">
-    服务
-  </a>
-  
-    <nav class="md-nav" aria-label="服务">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#daemon" class="md-nav__link">
-    守护进程
-  </a>
-  
-    <nav class="md-nav" aria-label="守护进程">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#daemon-creation" class="md-nav__link">
-    守护进程的产生
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    服务管理
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customizing-service" class="md-nav__link">
-    自定义服务
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cron" class="md-nav__link">
-    例行性任务
-  </a>
-  
-    <nav class="md-nav" aria-label="例行性任务">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#at" class="md-nav__link">
-    at 命令
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#crontab" class="md-nav__link">
-    crontab 命令
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    思考题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extra-resources" class="md-nav__link">
-    其他资料
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
             
           
             
@@ -997,11 +725,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_8">
-          五：用户与用户组、文件权限、文件系统层次结构
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch05/">五：用户与用户组、文件权限、文件系统层次结构</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="五：用户与用户组、文件权限、文件系统层次结构" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
@@ -1010,18 +754,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch05/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -1073,11 +805,27 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_9">
-          六：网络下载工具与 Shell 脚本
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch06/">六：网络下载工具与 Shell 脚本</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
@@ -1086,18 +834,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch06/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -1149,11 +885,25 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_10">
-          七：Linux 上的编程
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch07/">七：Linux 上的编程</a>
+          
+            <label for="__nav_10">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="七：Linux 上的编程" data-md-level="1">
         <label class="md-nav__title" for="__nav_10">
@@ -1162,18 +912,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch07/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -1211,11 +949,25 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_11">
-          八：Docker
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch08/">八：Docker</a>
+          
+            <label for="__nav_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="八：Docker" data-md-level="1">
         <label class="md-nav__title" for="__nav_11">
@@ -1224,18 +976,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch08/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -1273,11 +1013,25 @@
       
       
       
+        
+          
+            
+          
+        
+          
+        
       
-        <label class="md-nav__link" for="__nav_12">
-          九：Shell 文字处理工具与正则表达式
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Ch09/">九：Shell 文字处理工具与正则表达式</a>
+          
+            <label for="__nav_12">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" aria-label="九：Shell 文字处理工具与正则表达式" data-md-level="1">
         <label class="md-nav__title" for="__nav_12">
@@ -1286,18 +1040,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ch09/" class="md-nav__link">
-        讲义
-      </a>
-    </li>
-  
-
             
           
             
@@ -1334,6 +1076,14 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" >
       
       
+      
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_13">
@@ -1820,10 +1570,10 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 </details>
 <p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
 <img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
-<div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">第一个进程为</span> <span class="n n-Quoted">`watchdogd`</span><span class="n">，是一个定时监测以保证系统可用性的程序。</span>
-  <span class="n">（试试</span> <span class="n n-Quoted">`echo hi &gt; /dev/watchdog`</span> <span class="n">吧。</span><span class="p">)</span>
-<span class="o">-</span> <span class="n">第二到五</span> <span class="p">(</span><span class="n n-Quoted">`migration`</span><span class="p">)</span> <span class="n">为负载均衡程序，CPU</span> <span class="n">有几个核就有几个负载均衡。</span>
-<span class="o">-</span> <span class="n">图中以</span> <span class="n n-Quoted">`irq`</span> <span class="n">开头的便是中断处理程序了。</span>
+<div class="codehilite"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">第一个进程为</span><span class="w"> </span><span class="n n-Quoted">`watchdogd`</span><span class="n">，是一个定时监测以保证系统可用性的程序。</span><span class="w"></span>
+<span class="w">  </span><span class="n">（试试</span><span class="w"> </span><span class="n n-Quoted">`echo hi &gt; /dev/watchdog`</span><span class="w"> </span><span class="n">吧。</span><span class="p">)</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">第二到五</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`migration`</span><span class="p">)</span><span class="w"> </span><span class="n">为负载均衡程序，CPU</span><span class="w"> </span><span class="n">有几个核就有几个负载均衡。</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">图中以</span><span class="w"> </span><span class="n n-Quoted">`irq`</span><span class="w"> </span><span class="n">开头的便是中断处理程序了。</span><span class="w"></span>
 </code></pre></div>
 
 <p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
@@ -1845,7 +1595,7 @@ nice -n 10 vim
 <p><img alt="" src="images/state.png" width="80%" /></p>
 <p class="caption">进程状态转换图</p>
 <p>在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span> <span class="n">R</span><span class="o">:</span> <span class="n">running</span><span class="o">;</span> <span class="n">S</span><span class="o">:</span> <span class="n">sleeping</span><span class="o">;</span> <span class="n">T</span><span class="o">:</span> <span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span> <span class="n">Z</span><span class="o">:</span> <span class="n">zombie</span><span class="o">;</span> <span class="n">D</span><span class="o">:</span> <span class="n">disk</span> <span class="n">sleep</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span><span class="w"> </span><span class="n">R</span><span class="o">:</span><span class="w"> </span><span class="n">running</span><span class="o">;</span><span class="w"> </span><span class="n">S</span><span class="o">:</span><span class="w"> </span><span class="n">sleeping</span><span class="o">;</span><span class="w"> </span><span class="n">T</span><span class="o">:</span><span class="w"> </span><span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span><span class="w"> </span><span class="n">Z</span><span class="o">:</span><span class="w"> </span><span class="n">zombie</span><span class="o">;</span><span class="w"> </span><span class="n">D</span><span class="o">:</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="n">sleep</span><span class="w"></span>
 </code></pre></div>
 
 <p>其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。</p>
@@ -2164,18 +1914,18 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <div class="admonition example">
 <p class="admonition-title">编写 .service 文件并运行（以 Jupyter Notebook 为例）</p>
 <p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并做如下编辑。</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span><span class="w"></span>
 
-<span class="k">[Service]</span>
-<span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always                  # 重启模式，这里是无论因何退出都重启</span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">10                   # 退出后多少秒重启</span>
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项</span><span class="w"></span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root</span><span class="w"></span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always                  # 重启模式，这里是无论因何退出都重启</span><span class="w"></span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">10                   # 退出后多少秒重启</span><span class="w"></span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务</span>
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务</span><span class="w"></span>
 </code></pre></div>
 <p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
 <div class="highlight"><pre><span></span><code>$ systemctl start jupyter
@@ -2241,15 +1991,15 @@ usage:  crontab [-u user] file
 <p>E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。</p>
 </div>
 <p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span>
-<span class="c1"># 下面是几个示例</span>
-<span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span>
-<span class="c1"># 每分钟输出 hello 到家目录下 count 文件</span>
-<span class="na">0,15,30,45 0-6 * JAN SUN  command</span>
-<span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span>
-<span class="c1"># 反映了 crontab 中大部分语法。</span>
-<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span>
-<span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span><span class="w"></span>
+<span class="c1"># 下面是几个示例</span><span class="w"></span>
+<span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span><span class="w"></span>
+<span class="c1"># 每分钟输出 hello 到家目录下 count 文件</span><span class="w"></span>
+<span class="na">0,15,30,45 0-6 * JAN SUN  command</span><span class="w"></span>
+<span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span><span class="w"></span>
+<span class="c1"># 反映了 crontab 中大部分语法。</span><span class="w"></span>
+<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span><span class="w"></span>
+<span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）</span><span class="w"></span>
 </code></pre></div>
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。</p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
@@ -2357,10 +2107,10 @@ usage:  crontab [-u user] file
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      <script src="../assets/javascripts/bundle.01de222e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       
