@@ -1,4 +1,4 @@
-# 初识 Linux {#first-class}
+# 初识 Linux
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
 
