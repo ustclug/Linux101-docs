@@ -1439,6 +1439,10 @@
 ❌ ### 为标题和小标题添加 ID {# heading-ids}
 </code></pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">注意 2</p>
+<p>请不要在每页最开始的标题（唯一一个 h1）后添加 <code>{#id-tag}</code>，否则可能会出现一些意料之外的显示错误。</p>
+</div>
 <h3 id="image-caption">为图片添加配字<a class="headerlink" href="#image-caption" title="Permanent link">&para;</a></h3>
 <p>在图片下方写一行文字作为配字，并在这行字<strong>紧接着的下一行</strong>（不能有空行）写上 <code>{: .caption }</code>，这样配的这行字渲染成 HTML 时就加上了 <code>class="caption"</code>，显示为 0.94 倍的字体、灰色、贴近图片。</p>
 <div class="highlight"><pre><span></span><code>![<span class="nt">image</span>](<span class="na">url</span>)
