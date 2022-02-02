@@ -20,7 +20,7 @@ $ sudo apt install ubuntu-gnome-desktop
 
 !!! tip "注意"
 
-    若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+    若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)
 
 安装完成后输入
 
