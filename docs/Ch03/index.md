@@ -255,7 +255,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         ```
 
         当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
-        
+
         ```text
         deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
         ```
@@ -644,7 +644,7 @@ tar [OPTIONS] [FILE]...
         ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
-  
+
         ```shell
         tar -x -f target.tar -C test/
         ```

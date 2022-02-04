@@ -20,10 +20,10 @@ wsl --install
 
 会完成如下几个操作
 
-* 启用 WSL 和虚拟化平台
-* 下载并安装 WSL 的 Linux 内核
-* 设定 WSL 2 默认的版本
-* 从微软商店里面下载 Ubuntu 进行安装
+- 启用 WSL 和虚拟化平台
+- 下载并安装 WSL 的 Linux 内核
+- 设定 WSL 2 默认的版本
+- 从微软商店里面下载 Ubuntu 进行安装
 
 安装完了之后可以直接通过 `ubuntu` 启动
 
@@ -42,7 +42,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 #### 安装 Linux 内核
 
-从微软下载Linux内核用于Windows的更新，并安装
+从微软下载 Linux 内核用于 Windows 的更新，并安装
 
 [x64 内核](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
@@ -82,15 +82,15 @@ LxRunOffline 是进行 WSL 管理的一个应用程序，可以帮助管理 WSL 
 
 LxRunOffline 仓库：[LxRunOffline](https://github.com/DDoSolitary/LxRunOffline)
 
-LxRunOffline是通过Windows提供的API来进行管理WSL的一个命令行工具
+LxRunOffline 是通过 Windows 提供的 API 来进行管理 WSL 的一个命令行工具
 
 #### 例：安装 ArchLinux
 
 可以从 [LxRunOffline/wiki](https://github.com/DDoSolitary/LxRunOffline/wiki) 里面下载需要的发行版的 rootfs
 
-对于 ArchLinux，可以从[这个链接](https://lxrunoffline.apphb.com/download/ArchLinux)，下载ArchLinux的rootfs得到 `archlinux-bootstrap-*.tar.gz`
+对于 ArchLinux，可以从[这个链接](https://lxrunoffline.apphb.com/download/ArchLinux)，下载 ArchLinux 的 rootfs 得到 `archlinux-bootstrap-*.tar.gz`
 
-使用LxRunOffline进行安装
+使用 LxRunOffline 进行安装
 
 ```powershell
 ./LxRunOffline i -n ArchLinux -d D:/wsl/ArchLinux -f ./archlinux-bootstrap-*.tar.gz
@@ -98,7 +98,7 @@ LxRunOffline是通过Windows提供的API来进行管理WSL的一个命令行工�
 
 - `-n` WSL 的名称
 
-- `-d` 希望安装的位置，通过这种方法可以不需要将wsl安装在C盘
+- `-d` 希望安装的位置，通过这种方法可以不需要将 wsl 安装在 C 盘
 
 需要注意的是，这个安装方法不会在开始菜单中添加启动快捷方式，只能够通过命令行的方式启动
 
@@ -146,7 +146,7 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
 
 ## 已知的问题
 
-### 运行32位应用程序
+### 运行 32 位应用程序
 
 由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，可以在安装了对应的
 运行时后可以运行 32 位应用程序。
