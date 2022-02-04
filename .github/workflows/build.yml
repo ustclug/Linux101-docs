@@ -1,6 +1,12 @@
 name: build
 
-on: push
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -10,15 +16,23 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.8
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
     - name: Install dependencies
       run: |
         pip3 install -r requirements.txt
+        npm install
+    - name: Markdown style check (prettier)
+      run: |
+        npm run check
     - name: Build docs
       run: |
         mkdocs -v build
         : > site/.nojekyll
         echo -n '101.ustclug.org' > site/CNAME
     - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/master'
       run: |
         CINFO="$(git log -1 --pretty="%an: [%h] %s")"
         git clone --depth=1 --branch=gh-pages --single-branch --no-checkout \
