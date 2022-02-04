@@ -1337,7 +1337,7 @@
         
           <li class="md-nav__item">
   <a href="#32" class="md-nav__link">
-    运行32位应用程序
+    运行 32 位应用程序
   </a>
   
 </li>
@@ -1408,7 +1408,7 @@
 <span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="p">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></div>
 <h4 id="linux">安装 Linux 内核<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h4>
-<p>从微软下载Linux内核用于Windows的更新，并安装</p>
+<p>从微软下载 Linux 内核用于 Windows 的更新，并安装</p>
 <p><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x64 内核</a></p>
 <p><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ARM64 内核</a></p>
 <h4 id="wsl-2-wsl">设置 WSL 2 为默认的 WSL 版本<a class="headerlink" href="#wsl-2-wsl" title="Permanent link">&para;</a></h4>
@@ -1432,11 +1432,11 @@
 <h3 id="lxrunoffline">使用 LxRunOffline 进行安装<a class="headerlink" href="#lxrunoffline" title="Permanent link">&para;</a></h3>
 <p>LxRunOffline 是进行 WSL 管理的一个应用程序，可以帮助管理 WSL 的安装与配置</p>
 <p>LxRunOffline 仓库：<a href="https://github.com/DDoSolitary/LxRunOffline">LxRunOffline</a></p>
-<p>LxRunOffline是通过Windows提供的API来进行管理WSL的一个命令行工具</p>
+<p>LxRunOffline 是通过 Windows 提供的 API 来进行管理 WSL 的一个命令行工具</p>
 <h4 id="archlinux">例：安装 ArchLinux<a class="headerlink" href="#archlinux" title="Permanent link">&para;</a></h4>
 <p>可以从 <a href="https://github.com/DDoSolitary/LxRunOffline/wiki">LxRunOffline/wiki</a> 里面下载需要的发行版的 rootfs</p>
-<p>对于 ArchLinux，可以从<a href="https://lxrunoffline.apphb.com/download/ArchLinux">这个链接</a>，下载ArchLinux的rootfs得到 <code>archlinux-bootstrap-*.tar.gz</code></p>
-<p>使用LxRunOffline进行安装</p>
+<p>对于 ArchLinux，可以从<a href="https://lxrunoffline.apphb.com/download/ArchLinux">这个链接</a>，下载 ArchLinux 的 rootfs 得到 <code>archlinux-bootstrap-*.tar.gz</code></p>
+<p>使用 LxRunOffline 进行安装</p>
 <div class="highlight"><pre><span></span><code><span class="p">./</span><span class="n">LxRunOffline</span> <span class="n">i</span> <span class="n">-n</span> <span class="n">ArchLinux</span> <span class="n">-d</span> <span class="n">D</span><span class="p">:/</span><span class="n">wsl</span><span class="p">/</span><span class="n">ArchLinux</span> <span class="o">-f</span> <span class="p">./</span><span class="n">archlinux-bootstrap</span><span class="p">-*.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
 </code></pre></div>
 <ul>
@@ -1444,7 +1444,7 @@
 <p><code>-n</code> WSL 的名称</p>
 </li>
 <li>
-<p><code>-d</code> 希望安装的位置，通过这种方法可以不需要将wsl安装在C盘</p>
+<p><code>-d</code> 希望安装的位置，通过这种方法可以不需要将 wsl 安装在 C 盘</p>
 </li>
 </ul>
 <p>需要注意的是，这个安装方法不会在开始菜单中添加启动快捷方式，只能够通过命令行的方式启动</p>
@@ -1475,7 +1475,7 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
 <h3 id="wsl_1">在 WSL 中使用资源管理器打开文件夹<a class="headerlink" href="#wsl_1" title="Permanent link">&para;</a></h3>
 <p>在 WSL 的终端中，直接输入 <code>explorer.exe .</code>，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件</p>
 <h2 id="_7">已知的问题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="32">运行32位应用程序<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<h3 id="32">运行 32 位应用程序<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
 <p>由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，可以在安装了对应的
 运行时后可以运行 32 位应用程序。</p>
 <h3 id="wsl-mnt">WSL 下 <code>/mnt/</code> 性能问题<a class="headerlink" href="#wsl-mnt" title="Permanent link">&para;</a></h3>
