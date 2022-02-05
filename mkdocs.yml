@@ -48,16 +48,15 @@ extra:
   social:
     - icon: octicons/globe-16
       link: https://lug.ustc.edu.cn/
+  analytics:
+    provider: google
+    property: UA-160637954-1
 
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'
 
 extra_css:
   - 'css/extra.css'
-
-google_analytics:
-  - 'UA-160637954-1'
-  - 'auto'
 
 nav:
     - 负一：计划规格:
