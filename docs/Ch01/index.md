@@ -80,13 +80,15 @@ Debian 是一个完全由自由软件构成的类 UNIX 操作系统，第一个�
 
 ![](images/Debian-Logo.png)
 
-<p class="caption">Debian 图标</p>
+Debian 图标
+{: .caption }
 
 Debian GNU/Linux 也派生了很多发行版，其中最为著名的便是 Ubuntu（官方译名“友邦拓”）。Ubuntu 由英国的 Canonical 公司主导创立，是一个主打桌面应用的操作系统。其为一般用户提供了一个时新且稳定的由自由软件构成的操作系统，且拥有庞大的社群力量和资源，十分适合普通用户使用。
 
 ![](images/Ubuntu-Logo.png)
 
-<p class="caption">Ubuntu 图标</p>
+Ubuntu 图标
+{: .caption }
 
 #### Red Hat 分支 {#red-hat-branch}
 
@@ -94,13 +96,15 @@ Red Hat Linux 是美国的 Red Hat 公司发行的一个发行版，第一个版
 
 ![](images/Red-Hat-Logo.png)
 
-<p class="caption">Red Hat 公司商标，RHEL 是其旗下产品</p>
+Red Hat 公司商标，RHEL 是其旗下产品
+{: .caption }
 
 在 Red Hat Linux 在停止官方更新后，由社群启动的 Fedora 项目接管了其源代码并构筑了自己的更新，演变成了如今的 Fedora 发行版。Fedora 是一套功能完备且更新迅速的系统，且本身计划也受到了 Red Hat 公司的赞助，成为了公司测试新技术的平台。
 
 ![](images/Fedora-Logo.png)
 
-<p class="caption">Fedora 图标</p>
+Fedora 图标
+{: .caption }
 
 虽然 RHEL 是一个收费的、商业化的系统，但是其遵循 GNU 通用公共许可证，因此会开放源代码。编译这些源代码可以重新得到一个可以使用的操作系统，即一个新的发行版：CentOS（Community Enterprise Operating System，社区版企业操作系统）。因为 CentOS 几乎完全编译自 RHEL 的代码，所以其也像 RHEL 一样具有企业级别的稳定性，适合在要求高度稳定的服务器上运行。
 
@@ -108,7 +112,8 @@ Red Hat Linux 是美国的 Red Hat 公司发行的一个发行版，第一个版
 
 ![](images/CentOS-Logo.png)
 
-<p class="caption">CentOS 图标</p>
+CentOS 图标
+{: .caption }
 
 #### Arch Linux 分支 {#arch-linux-branch}
 
@@ -116,13 +121,15 @@ Arch Linux 是一个基于 x86-64 架构的 Linux 发行版，不过因为其内
 
 ![](images/Arch-Linux-Logo.png)
 
-<p class="caption">Arch Linux 图标</p>
+Arch Linux 图标
+{: .caption }
 
 Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使用。为了能让一般用户也能用上 Arch Linux 的强大功能，它的变种 Manjaro 发行版于 2011 年问世。Manjaro 发行版基于 Arch Linux，但更注重易用，因而更适合一般用户。
 
 ![](images/Manjaro-Logo.png)
 
-<p class="caption">Manjaro 图标</p>
+Manjaro 图标
+{: .caption }
 
 以上是若干个常见的 Linux 发行版系列，由上文可见，Linux 的发行版非常丰富，不同的发行版有其各自的特性，因而可以面向不同的用户满足独特的需求。对于新手来说，一个拥有丰富的图形界面的发行版更加适合初步探索和后续使用。**本书推荐初次接触 Linux 的读者优先采用 Ubuntu 发行版或者它的子发行版（Lubuntu, Xubuntu 等）** 作为自己接触和探索 Linux 的平台，在以后可以自行上手其它发行版。
 
@@ -144,7 +151,8 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 ![](images/Android-10-Native.png)
 
-<p class="caption">Android 10 原生界面</p>
+Android 10 原生界面
+{: .caption }
 
 ### 服务器 {#servers}
 
@@ -154,7 +162,8 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 ![](images/Windows-Server.png)
 
-<p class="caption">Windows Server 图标</p>
+Windows Server 图标
+{: .caption }
 
 ### 电视机顶盒 {#digital-tv}
 
@@ -162,7 +171,8 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 ![](images/Android-TV.png)
 
-<p class="caption">Android TV 图标</p>
+Android TV 图标
+{: .caption }
 
 ## 让自己的计算机用上 Linux {#use-linux}
 
@@ -209,7 +219,9 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
     Xubuntu 的设计理念是创造一个易用且更轻量的 Ubuntu。与 Ubuntu 不同的是，它采用的是更轻量和兼容性更强的 Xfce 桌面系统，并基于 GTK 运行。Xubuntu 和 Ubuntu 使用完全一致的软件源，因此 Xubuntu 能运行绝大部分 Ubuntu 下的软件。
 
     ![](images/Xubuntu-Logo.png)
-    <p class="caption">Xubuntu 图标</p>
+
+    Xubuntu 图标
+    {: .caption }
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
@@ -224,13 +236,15 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 
-<p class="caption">VMware Workstation 启动 Xubuntu 18.04 虚拟机</p>
+VMware Workstation 启动 Xubuntu 18.04 虚拟机
+{: .caption }
 
 如果读者采用了上面列出的虚拟机之一，其默认登录密码为 `ustc`，输入密码即可登录虚拟机系统桌面。
 
 ![](images/VWP-Xubuntu-32bit-Desktop.png)
 
-<p class="caption">Xubuntu 18.04 虚拟机桌面</p>
+Xubuntu 18.04 虚拟机桌面
+{: .caption }
 
 ## 中科大开源社群：LUG@USTC {#lug-ustc}
 
@@ -238,7 +252,8 @@ LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大�
 
 ![](images/LUG@USTC-Logo.png)
 
-<p class="caption">LUG@USTC 图标</p>
+LUG@USTC 图标
+{: .caption }
 
 ### 了解与加入 LUG@USTC {#join-lug-ustc}
 
@@ -267,7 +282,9 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
     著作传（英文：copyleft）源于自由软件运动，是一种利用现有著作权的法律体制巧妙地保证用户自由使用软件的权利的许可方式。著作传一般包含哪些规则？它和常见的著作权有什么区别？它和完全放弃权利的“公有领域”又有什么不同？
 
     ![](images/Copyleft.png)
-    <p class="caption">著作传的标志，注意到它与常见的著作权标志左右颠倒</p>
+
+    著作传的标志，注意到它与常见的著作权标志左右颠倒
+    {: .caption }
 
 ## 引用来源 {#references .no-underline}
 
