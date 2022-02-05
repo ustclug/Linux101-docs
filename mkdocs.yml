@@ -35,12 +35,11 @@ theme:
 markdown_extensions:
   - admonition
   - attr_list
-  - codehilite
   - footnotes
   - pymdownx.details
+  - pymdownx.inlinehilite
   - pymdownx.superfences
   - markdown.extensions.def_list
-  - attr_list
   - toc:
       permalink: true
 
