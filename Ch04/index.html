@@ -1580,12 +1580,11 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 </details>
 <p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
 <img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
-<div class="codehilite"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">第一个进程为</span><span class="w"> </span><span class="n n-Quoted">`watchdogd`</span><span class="n">，是一个定时监测以保证系统可用性的程序。</span><span class="w"></span>
-<span class="w">  </span><span class="n">（试试</span><span class="w"> </span><span class="n n-Quoted">`echo hi &gt; /dev/watchdog`</span><span class="w"> </span><span class="n">吧。</span><span class="p">)</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n">第二到五</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`migration`</span><span class="p">)</span><span class="w"> </span><span class="n">为负载均衡程序，CPU</span><span class="w"> </span><span class="n">有几个核就有几个负载均衡。</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n">图中以</span><span class="w"> </span><span class="n n-Quoted">`irq`</span><span class="w"> </span><span class="n">开头的便是中断处理程序了。</span><span class="w"></span>
-</code></pre></div>
-
+<pre><code>- 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
+  （试试 `echo hi &gt; /dev/watchdog` 吧。)
+- 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
+- 图中以 `irq` 开头的便是中断处理程序了。
+</code></pre>
 <p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
 <div class="highlight"><pre><span></span><code>nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help]
  [--version] [command [arg...]]
@@ -1605,9 +1604,8 @@ nice -n 10 vim
 <p><img alt="" src="images/state.png" width="80%" /></p>
 <p class="caption">进程状态转换图</p>
 <p>在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span><span class="w"> </span><span class="n">R</span><span class="o">:</span><span class="w"> </span><span class="n">running</span><span class="o">;</span><span class="w"> </span><span class="n">S</span><span class="o">:</span><span class="w"> </span><span class="n">sleeping</span><span class="o">;</span><span class="w"> </span><span class="n">T</span><span class="o">:</span><span class="w"> </span><span class="n">traced</span><span class="o">/</span><span class="n">stopped</span><span class="o">;</span><span class="w"> </span><span class="n">Z</span><span class="o">:</span><span class="w"> </span><span class="n">zombie</span><span class="o">;</span><span class="w"> </span><span class="n">D</span><span class="o">:</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="n">sleep</span><span class="w"></span>
-</code></pre></div>
-
+<pre><code>Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
+</code></pre>
 <p>其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。</p>
 <p>需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思是「可以被中断」；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被中断，一般是因为阻塞在磁盘读写操作上。</p>
 <p>Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。</p>
@@ -1736,9 +1734,8 @@ nice -n 10 vim
 <p class="admonition-title">关于 SIGHUP 的细节</p>
 </div>
 <p>如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 <code>kill -9</code> (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
-<div class="codehilite"><pre><span></span><code>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。
-</code></pre></div>
-
+<pre><code>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。
+</code></pre>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
 <div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
@@ -1813,23 +1810,22 @@ $ tmux
 <div class="admonition info">
 <p class="admonition-title">简易的自定义脚本</p>
 <p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，将以下内容保存到文件 <code>~/.tmux.conf</code>（家目录下的 <code>.tmux.conf</code> 文件）：</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">set</span> <span class="o">-</span><span class="nv">g</span> <span class="nv">prefix</span> <span class="nv">C</span><span class="o">-</span><span class="nv">a</span>                                 # 设置前缀按键 <span class="nv">Ctrl</span> <span class="o">+</span> <span class="nv">A</span>。
-<span class="nv">unbind</span> <span class="nv">C</span><span class="o">-</span><span class="nv">b</span>                                        # 取消 <span class="nv">Ctrl</span> <span class="o">+</span> <span class="nv">B</span> 快捷键。
-<span class="nv">bind</span> <span class="nv">C</span><span class="o">-</span><span class="nv">a</span> <span class="k">send</span><span class="o">-</span><span class="nv">prefix</span>                              # 第二次按下 <span class="nv">Ctrl</span> <span class="o">+</span> <span class="nv">A</span> 为向 <span class="nv">shell</span> 发送 <span class="nv">Ctrl</span> <span class="o">+</span> <span class="nv">A</span>。
-                                                   （<span class="nv">Shell</span> 中 <span class="nv">Ctrl</span> <span class="o">+</span> <span class="nv">A</span> 表示光标移动到最前端）。
-<span class="nv">set</span> <span class="o">-</span><span class="nv">g</span> <span class="nv">mouse</span> <span class="nv">on</span>                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
-<span class="nv">unbind</span> <span class="o">-</span><span class="nv">n</span> <span class="nv">MouseDrag1Pane</span>
-<span class="nv">unbind</span> <span class="o">-</span><span class="nv">Tcopy</span><span class="o">-</span><span class="nv">mode</span> <span class="nv">MouseDrag1Pane</span>
+<pre><code>set -g prefix C-a                                 # 设置前缀按键 Ctrl + A。
+unbind C-b                                        # 取消 Ctrl + B 快捷键。
+bind C-a send-prefix                              # 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。
+                                                   （Shell 中 Ctrl + A 表示光标移动到最前端）。
+set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
+unbind -n MouseDrag1Pane
+unbind -Tcopy-mode MouseDrag1Pane
 
-<span class="nv">unbind</span> <span class="s1">&#39;</span><span class="s">&quot;</span><span class="s1">&#39;</span>                                        # 使用 <span class="o">-</span> 代表横向分割。
-<span class="nv">bind</span> <span class="o">-</span> <span class="nv">splitw</span> <span class="o">-</span><span class="nv">v</span> <span class="o">-</span><span class="nv">c</span> <span class="s1">&#39;</span><span class="s">#{pane_current_path}</span><span class="s1">&#39;</span>
+unbind '"'                                        # 使用 - 代表横向分割。
+bind - splitw -v -c '#{pane_current_path}'
 
-<span class="nv">unbind</span> <span class="o">%</span>                                          # 使用 \ 代表纵向分割（因为我不想按 <span class="nv">Shift</span>）。
-<span class="nv">bind</span> \ <span class="nv">splitw</span> <span class="o">-</span><span class="nv">h</span> <span class="o">-</span><span class="nv">c</span> <span class="s1">&#39;</span><span class="s">#{pane_current_path}</span><span class="s1">&#39;</span>
+unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）。
+bind \ splitw -h -c '#{pane_current_path}'
 
-<span class="nv">setw</span> <span class="o">-</span><span class="nv">g</span> <span class="nv">mode</span><span class="o">-</span><span class="nv">keys</span> <span class="nv">vi</span>                              # 设置 <span class="nv">copy</span><span class="o">-</span><span class="nv">mode</span> 快捷键模式为 <span class="nv">vi</span>。
-</code></pre></div>
-
+setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
+</code></pre>
 <p>以 . 开头的为隐藏文件，需要使用 <code>ls -a</code> 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。</p>
 <p>保存后，使用 <code>tmux source ~/.tmux.conf</code> 重新载入配置，或者 <code>tmux kill-server</code> 后重启 tmux。</p>
 </div>
