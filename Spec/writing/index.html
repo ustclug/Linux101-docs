@@ -1386,6 +1386,11 @@
 <p>“章节编写指导”是一份写给该讲义的创作者所用的参考教程。在接下来的编写中，推荐在本地也安装一个 MkDocs 来实时预览项目。MkDocs 基于 Python，故可以使用诸如 <code>pip install mkdocs</code> 等命令完成安装。更全面的安装流程请参考 <a href="https://www.mkdocs.org/#installation">MkDocs 官网安装说明</a> 实现。</p>
 <p>使用形如 <code>!!! abstract "导言"</code> 的方式添加一个导言框，并在下面若干行通过缩进 1 个制表符或 4 个空格的方式填写导言里的内容，行与行之间请空 1 行。</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Markdown 格式注意事项</p>
+<p>目前 CI (GitHub Actions) 在部署文档时，额外添加了使用 prettier 检查 Markdown 风格的步骤，如果不符合要求，你的修改会被拒绝。请在编辑完成后使用 prettier 检查并修复 Markdown 格式。</p>
+<p>可以在仓库根目录使用 <code>npm install</code> 安装 prettier，使用 <code>npm run check</code> 检查文件格式，使用 <code>npm run fix</code> 修复。</p>
+</div>
 <h2 id="main-content">章节主体（主体内容请从 h2 等级以下按层次编写。）<a class="headerlink" href="#main-content" title="Permanent link">&para;</a></h2>
 <p>章节里的主要内容都应该写在主体里。主体包括标题和正文：标题都从 h2 等级以下按层次编写，而正文则直接使用普通文本即可。</p>
 <p>主体里应当包括与该章节主题相关的详细内容，具体内容依赖于课纲。建议每个 h2 等级的标题都包含一个完整的子模块，不同的 h2 子模块的内容尽可能没有强烈的依赖。这个标准同样适用于 h3 及以下的子段落。</p>
