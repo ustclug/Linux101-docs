@@ -1462,7 +1462,7 @@
 <div class="admonition info">
 <p class="admonition-title">其它发行版的应用商店</p>
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。</p>
-<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">snapcraft</a> 获得应用商店。（Snap 商店在国内的访问速度较慢。）</p>
+<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">Snapcraft</a> 获得应用商店。（注意：Snap 商店在国内的访问速度较慢。）</p>
 </div>
 <h3 id="use-package-management-system">使用包管系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
 <p>软件包管理器是一系列工具的集合，他自动化地完成软件的安装、更新、配置和移除功能。</p>
@@ -1470,7 +1470,7 @@
 <p>软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p>有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装。通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动地进行安装。</p>
 <p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
-<p>包管理系统有很多，比如管理 <code>deb</code> 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（使用于 <code>Debian</code> 系的系统）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 <code>Fedora</code>）、前端 <code>yum</code> （用于 RedHat 系）等等。</p>
+<p>包管理系统有很多，比如管理 Debian (.deb) 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（用于 Debian 系的发行版）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 <code>yum</code>（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。</p>
 <p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
 <p>apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。</p>
 <p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
@@ -1564,7 +1564,7 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 <p>具体有关权限的知识点将在<a href="../Ch05/">第五章</a>展开。</p>
 </div>
 <h4 id="software-sources">官方软件源镜像<a class="headerlink" href="#software-sources" title="Permanent link">&para;</a></h4>
-<p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
+<p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了丰富的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
 <details class="example">
 <summary>查看本地的软件源列表</summary>
 <div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v &quot;#&quot;
@@ -1588,7 +1588,7 @@ deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
 <div class="highlight"><pre><span></span><code>deb http://site.example.com/ubuntu/ distribution component1 component2 component3
 deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
 </code></pre></div>
-<p>分别是 Archive type、Repository URL、Distribution 和 Component。</p>
+<p>分别是 Archive type、Repository URL、Distribution 和 Components。</p>
 <p>在 Ubuntu 下，Component 可以为如下几个之一<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>：</p>
 <table>
 <thead>
@@ -1643,11 +1643,10 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <div class="highlight"><pre><span></span><code>$ sudo apt-get update
 
 $ sudo apt-get install <span class="se">\</span>
-  apt-transport-https <span class="se">\</span>
-  ca-certificates <span class="se">\</span>
-  curl <span class="se">\</span>
-  gnupg-agent <span class="se">\</span>
-  software-properties-common
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    gnupg-agent <span class="se">\</span>
+    software-properties-common
 </code></pre></div>
 </li>
 <li>
@@ -1674,9 +1673,9 @@ $ sudo add-apt-repository <span class="se">\</span>
 <p>首先需要从第三方源更新软件列表。</p>
 <div class="highlight"><pre><span></span><code>apt update
 </code></pre></div>
-<p>之后便是直接安装 docker-ce。
+<p>之后便可以直接安装 <code>docker-ce</code> 软件包。</p>
 <div class="highlight"><pre><span></span><code>apt install docker-ce
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
 <p>检查安装情况并确认启动</p>
@@ -1688,7 +1687,7 @@ $ sudo add-apt-repository <span class="se">\</span>
   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
   Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
   Docs: https://docs.docker.com
-Main PID: 1115 (dockerd)
+  Main PID: 1115 (dockerd)
   Tasks: 18
   CGroup: /system.slice/docker.service
       └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
@@ -1699,9 +1698,9 @@ Main PID: 1115 (dockerd)
   Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
   Docs: https://docs.docker.com
   Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
-Main PID: 1115 (code=exited, status=0/SUCCESS)
+  Main PID: 1115 (code=exited, status=0/SUCCESS)
 </code></pre></div>
-<p>这时候，我们可以通过 <code>systemctl</code> 以启动 Docker：</p>
+<p>这时候，我们可以通过 <code>systemctl</code> 命令启动 Docker 服务：</p>
 <div class="highlight"><pre><span></span><code>systemctl start docker
 </code></pre></div>
 <p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书<a href="../Ch04/">第四章</a>展开。</p>
@@ -1730,7 +1729,7 @@ Reading state information... Done
 158 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
 </code></pre></div>
 <p>每一行对应获取一个软件源。</p>
-<p>在最后，<code>158 packages can be upgraded</code> 表示了可以被更新的软件包的数量。</p>
+<p>在最后，<code>158 packages can be upgraded</code> 表示了系统中可以被更新的软件包的数量。</p>
 </div>
 <h4 id="apt-upgrade">更新软件<a class="headerlink" href="#apt-upgrade" title="Permanent link">&para;</a></h4>
 <p>在获取到了新的软件列表后，可以进行软件更新，这时候使用的是 <code>apt upgrade</code> 命令。</p>
@@ -1749,7 +1748,7 @@ Need to get 5062 kB of archives.
 After this operation, 236 kB of additional disk space will be used.
 Do you want to continue? [Y/n]
 </code></pre></div>
-<p>在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。</p>
+<p>apt 会列出将要更新的软件包、需要下载的大小以及更新这些包需要消耗（或释放）的磁盘空间。</p>
 </div>
 <h3 id="use-package-manager-manually">使用包管理器手动安装软件包<a class="headerlink" href="#use-package-manager-manually" title="Permanent link">&para;</a></h3>
 <p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
@@ -1757,17 +1756,17 @@ Do you want to continue? [Y/n]
 <p class="admonition-title">什么是软件包</p>
 <p>软件包是将软件安装升级中需要地多个数据文件合并得到的一个单独文件，便于传输和减少存储空间。软件包中包括了所有需要的元数据，如软件的名称、软件的说明、版本号以及要运行这个软件所需要的依赖包等。</p>
 </div>
-<p>安装软件包需要相应的软件包管理器。<code>deb</code> 对应的是 <code>dpkg</code>。</p>
+<p>安装软件包需要相应的软件包管理器，deb 格式的软件包对应的是 <code>dpkg</code>。</p>
 <p>相对于 <code>apt</code> 而言，<code>dpkg</code> 会更加底层，<code>apt</code> 是一个包管理器的前端，并不直接执行软件包的安装工作，相反的则是交由 <code>dpkg</code> 完成。<code>dpkg</code> 反馈的依赖信息则会告知 <code>apt</code> 还需要安装的其他软件包，并从软件仓库中获取到相应的软件包进行安装，从而完成依赖管理问题。</p>
-<p>直接通过 <code>dpkg</code> 安装 <code>deb</code> 并不会安装需要的依赖，只会报告出相应的依赖缺失了。</p>
+<p>直接通过 <code>dpkg</code> 安装 deb 并不会安装需要的依赖，只会报告出相应的依赖缺失了。</p>
 <p>可以通过如下的方式调用 <code>apt</code> 帮助修复依赖管理：</p>
 <div class="highlight"><pre><span></span><code>sudo apt -f install
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">用 deb 文件安装 VSCode</p>
-<p>Visual Studio Code 并不在 <code>apt</code> 的官方源中，可以通过安装微软提供的 <code>deb</code> 文件的方式进行安装。</p>
+<p>Visual Studio Code 并不在 Ubuntu 的官方源中，可以通过安装微软提供的 deb 文件的方式进行安装。</p>
 <p>首先，下载 <a href="https://go.microsoft.com/fwlink/?LinkID=760868">微软提供的 <code>deb</code> 文件</a>。</p>
-<p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 <code>deb</code> 文件）。</p>
+<p>然后运行 <code>apt install ./&lt;file&gt;.deb</code> （<code>&lt;file&gt;.deb</code> 为下载得到的 deb 文件）。</p>
 </div>
 <h3 id="install-precompiled">安装预编译可执行文件<a class="headerlink" href="#install-precompiled" title="Permanent link">&para;</a></h3>
 <p>对于用户数量较多的发行版，软件提供商还可能提供预编译好的二进制文件，可以直接运行。对于没有在软件仓库中提供的软件，免去了从源码编译安装的麻烦。</p>
@@ -2076,6 +2075,14 @@ tar -tv -f target.tar
 </code></pre></div>
 </li>
 </ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">组合 tar 的选项</p>
+<p>与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 <code>-</code> 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：</p>
+<div class="highlight"><pre><span></span><code>tar -c -z -v -f target.tar test/
+tar -czvf target.tar test/
+tar -f target.tar -czv test/
+</code></pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">存档文件的后缀名</p>
