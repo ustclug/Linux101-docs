@@ -73,7 +73,7 @@
         提示框内容
     ```
 
-更多种类的提示框请参考 [提示框一览](https://squidfunk.github.io/mkdocs-material/extensions/admonition/)。
+更多种类的提示框请参考 [提示框一览](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)。
 
 ### 为标题和小标题添加 ID {#heading-ids}
 
