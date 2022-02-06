@@ -1398,8 +1398,8 @@
 </div>
 <div class="admonition info">
 <p class="admonition-title">Markdown 格式注意事项</p>
-<p>目前 CI (GitHub Actions) 在部署文档时，额外添加了使用 prettier 检查 Markdown 风格的步骤，如果不符合要求，你的修改会被拒绝。请在编辑完成后使用 prettier 检查并修复 Markdown 格式。</p>
-<p>可以在仓库根目录使用 <code>npm install</code> 安装 prettier，使用 <code>npm run check</code> 检查文件格式，使用 <code>npm run fix</code> 修复。</p>
+<p>目前 CI (GitHub Actions) 在部署文档时，额外添加了使用 <a href="https://prettier.io">Prettier</a> 检查 Markdown 风格的步骤，如果不符合要求，你的修改会被拒绝。请在编辑完成后使用 Prettier 检查并修复 Markdown 格式。</p>
+<p>可以在仓库根目录使用 <code>npm install</code> 安装 Prettier，使用 <code>npm run check</code> 检查文件格式，使用 <code>npm run fix</code> 修复。</p>
 </div>
 <h2 id="main-content">章节主体（主体内容请从 h2 等级以下按层次编写。）<a class="headerlink" href="#main-content" title="Permanent link">&para;</a></h2>
 <p>章节里的主要内容都应该写在主体里。主体包括标题和正文：标题都从 h2 等级以下按层次编写，而正文则直接使用普通文本即可。</p>
@@ -1428,12 +1428,12 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">请在提示框的标题行后面留一个空行</p>
-<p>由于 <a href="https://prettier.io">Prettier</a> 的解析方式问题，请在所有提示框的起始行后面添加一个空行，<strong>不要像 Material 主题官网那样没有空行直接开始提示框内容</strong>。</p>
-<p><strong>错误</strong>格式：</p>
+<p>由于 Prettier 的解析方式问题，请在所有提示框的起始行后面添加一个空行，<strong>不要像 Material 主题官网那样没有空行直接开始提示框内容</strong>。</p>
+<p><span class="twemoji orangered"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg></span> <strong>错误</strong>格式：</p>
 <div class="highlight"><pre><span></span><code>!!! note
     提示框内容
 </code></pre></div>
-<p><strong>正确</strong>格式：</p>
+<p><span class="twemoji limegreen"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg></span> <strong>正确</strong>格式：</p>
 <div class="highlight"><pre><span></span><code>!!! note
 
     提示框内容
@@ -1441,10 +1441,10 @@
 </div>
 <p>更多种类的提示框请参考 <a href="https://squidfunk.github.io/mkdocs-material/extensions/admonition/">提示框一览</a>。</p>
 <h3 id="heading-ids">为标题和小标题添加 ID<a class="headerlink" href="#heading-ids" title="Permanent link">&para;</a></h3>
-<p>由于文章篇目较长，使用时会经常遇到需要链接到文章某一段的情况。受限于 MkDocs 对于自动生成 ID 的功能（只支持英文字符），纯中文的标题会导致生成 <code>_1</code>, <code>_2</code> 这样的 ID。一方面这样的 ID 看起来不直观，另一方面每当标题发生增减时这些 ID 都会变，因此请为每个标题（最上方的 H1 不用）手动添加一个有意义的 ID，方法如下：</p>
+<p>由于文章篇目较长，使用时会经常遇到需要链接到文章某一段的情况。受限于 MkDocs 自动生成 Anchor ID 的功能（只支持英文字符），纯中文的标题会导致生成 <code>_1</code>, <code>_2</code> 这样的 ID。一方面这样的 ID 看起来不直观，另一方面每当标题发生增减时这些 ID 都会变，因此请为每个标题手动添加一个有意义的 ID（最开始的标题 H1 除外），方法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="gu">### 为标题和小标题添加 ID {#heading-ids}</span>
 </code></pre></div>
-<p>建议 ID 只包含小写字母、数字和横线 <code>-</code>（<strong>没有</strong>大写字母和点）</p>
+<p>建议 ID 只包含小写字母、数字和横线 <code>-</code>，必要时使用句点（不使用大写字母和其他标点符号）。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p><code>{#</code> <strong>前面</strong>需要有一个空格，否则你会像下面这位同学一样翻车：</p>
@@ -1456,7 +1456,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意 2</p>
-<p>请不要在每页最开始的标题（唯一一个 h1）后添加 <code>{#id-tag}</code>，否则可能会出现一些意料之外的显示错误。</p>
+<p>请不要在每页最开始的标题（唯一一个 H1）后添加 <code>{#id-tag}</code>，否则可能会出现一些意料之外的显示错误。</p>
 </div>
 <h3 id="image-caption">为图片添加配字<a class="headerlink" href="#image-caption" title="Permanent link">&para;</a></h3>
 <p>在图片下方写一行文字作为配字，并在这行字<strong>紧接着的下一行</strong>（不能有空行）写上 <code>{: .caption }</code>，这样配的这行字渲染成 HTML 时就加上了 <code>class="caption"</code>，显示为 0.94 倍的字体、灰色、贴近图片。</p>
