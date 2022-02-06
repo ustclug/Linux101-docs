@@ -288,5 +288,5 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 ## 引用来源 {#references .no-underline}
 
-[^1]: 数据来自中国互联网信息中心第 48 次 《中国互联网络发展状况统计报告》（全文），由[新浪财经](https://finance.sina.com.cn/chanjing/cyxw/2021-08-27/doc-ikqcfncc5270431.shtml)报道。
+[^1]: 数据来自中国互联网信息中心[第 48 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.cn/hlwfzyj/hlwxzbg/hlwtjbg/202109/P020210915523670981527.pdf)。
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。

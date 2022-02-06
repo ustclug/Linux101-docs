@@ -6,7 +6,17 @@
 
 Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的一系列工具和库。Android 还大幅度修改了 Linux 内核以精简运行时开销、适应移动设备。
 
-[AOSP (Android Open Source Project)](https://source.android.com/) 只使用了 GPL 许可证的 Linux Kernel，而在 Kernel 之上的 Dalvik 虚拟机、Bionic Libc 库、驱动透明化的 HAL 则作为用户态存在，避免 Android 系统框架、Google 移动应用服务框架（GMS）和各厂商的驱动程序被 GPL 污染而开源。
+[AOSP (Android Open Source Project)](https://source.android.com/) 只使用了 GPL 许可证的 Linux Kernel，而在 Kernel 之上的 Dalvik 虚拟机、Bionic Libc 库、驱动透明化的 HAL 则作为用户态存在，避免 Android 系统框架、Google 移动应用服务框架（GMS）和各厂商的驱动程序被 GPL 感染而开源。
+
+??? tip "GPL 感染，以及开源许可证的区别"
+
+    简单而不太严谨地来说，如果你的程序使用了 GPL 许可证的代码，那么你的程序就必须以 GPL 许可证开源，这被称为「GPL 感染」。由于许多公司不希望自己的代码被感染开源，因而 Android 经过设计规避了相关的法律问题，只需要厂商将对 Linux 内核的修改开源即可。
+
+    一个被 GPL 感染的例子是用于嵌入式路由器设备的 OpenWrt。由于 Linksys 在编写自己的无线路由器固件时使用了 GPL 的代码，因此不得不将相关的代码开源。OpenWrt 即由此发展而来。
+
+    GPL 许可证是在第一章正文中提到的「著作传」（Copyleft）许可的代表。而另一类开源许可证则更加宽松，允许用户在署名等前提下将代码使用在闭源软件中。这样的许可证代表如 MIT 许可证、Apache 许可证等。
+
+    目前，GitHub 网页版在创建 `LICENSE` 文件时，会给出一些开源许可证的选项以供选择。网络上也有相关的资料以供需要选择开源许可证的开发者们参考。
 
 ## 关闭 SELinux {#close-seLinux}
 
