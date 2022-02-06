@@ -27,7 +27,7 @@
 
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。
 
-    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（Snap 商店在国内的访问速度较慢。）
+    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [Snapcraft](https://snapcraft.io/) 获得应用商店。（注意：Snap 商店在国内的访问速度较慢。）
 
 ### 使用包管系统安装 {#use-package-management-system}
 
@@ -41,7 +41,7 @@
 
 但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
 
-包管理系统有很多，比如管理 `deb` 软件包的 `dpkg` 以及它的前端 `apt`（使用于 `Debian` 系的系统）；`rpm` 包管理器以及它的前端 `dnf`（用于 `Fedora`）、前端 `yum` （用于 RedHat 系）等等。
+包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。
 
 **为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
@@ -146,7 +146,7 @@ Do you want to continue? [Y/n]
 
 #### 官方软件源镜像 {#software-sources}
 
-通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
+通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了丰富的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? example "查看本地的软件源列表"
 
@@ -176,7 +176,7 @@ Do you want to continue? [Y/n]
     deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
     ```
 
-    分别是 Archive type、Repository URL、Distribution 和 Component。
+    分别是 Archive type、Repository URL、Distribution 和 Components。
 
     在 Ubuntu 下，Component 可以为如下几个之一[^1]：
 
@@ -227,11 +227,10 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         $ sudo apt-get update
 
         $ sudo apt-get install \
-          apt-transport-https \
-          ca-certificates \
-          curl \
-          gnupg-agent \
-          software-properties-common
+            ca-certificates \
+            curl \
+            gnupg-agent \
+            software-properties-common
         ```
 
     2. 添加 Docker 软件源的 GPG Key
@@ -268,7 +267,8 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         apt update
         ```
 
-        之后便是直接安装 docker-ce。
+        之后便可以直接安装 `docker-ce` 软件包。
+
         ```shell
         apt install docker-ce
         ```
@@ -288,7 +288,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
           Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
           Docs: https://docs.docker.com
-        Main PID: 1115 (dockerd)
+          Main PID: 1115 (dockerd)
           Tasks: 18
           CGroup: /system.slice/docker.service
               └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
@@ -302,10 +302,10 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
           Docs: https://docs.docker.com
           Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
-        Main PID: 1115 (code=exited, status=0/SUCCESS)
+          Main PID: 1115 (code=exited, status=0/SUCCESS)
         ```
 
-        这时候，我们可以通过 `systemctl` 以启动 Docker：
+        这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
 
         ```shell
         systemctl start docker
@@ -343,7 +343,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     每一行对应获取一个软件源。
 
-    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
+    在最后，`158 packages can be upgraded` 表示了系统中可以被更新的软件包的数量。
 
 #### 更新软件 {#apt-upgrade}
 
@@ -367,7 +367,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     Do you want to continue? [Y/n]
     ```
 
-    在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
+    apt 会列出将要更新的软件包、需要下载的大小以及更新这些包需要消耗（或释放）的磁盘空间。
 
 ### 使用包管理器手动安装软件包 {#use-package-manager-manually}
 
@@ -377,11 +377,11 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     软件包是将软件安装升级中需要地多个数据文件合并得到的一个单独文件，便于传输和减少存储空间。软件包中包括了所有需要的元数据，如软件的名称、软件的说明、版本号以及要运行这个软件所需要的依赖包等。
 
-安装软件包需要相应的软件包管理器。`deb` 对应的是 `dpkg`。
+安装软件包需要相应的软件包管理器，deb 格式的软件包对应的是 `dpkg`。
 
 相对于 `apt` 而言，`dpkg` 会更加底层，`apt` 是一个包管理器的前端，并不直接执行软件包的安装工作，相反的则是交由 `dpkg` 完成。`dpkg` 反馈的依赖信息则会告知 `apt` 还需要安装的其他软件包，并从软件仓库中获取到相应的软件包进行安装，从而完成依赖管理问题。
 
-直接通过 `dpkg` 安装 `deb` 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
+直接通过 `dpkg` 安装 deb 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
 
 可以通过如下的方式调用 `apt` 帮助修复依赖管理：
 
@@ -391,11 +391,11 @@ sudo apt -f install
 
 !!! example "用 deb 文件安装 VSCode"
 
-    Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
+    Visual Studio Code 并不在 Ubuntu 的官方源中，可以通过安装微软提供的 deb 文件的方式进行安装。
 
     首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
 
-    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）。
+    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 deb 文件）。
 
 ### 安装预编译可执行文件 {#install-precompiled}
 
@@ -675,6 +675,16 @@ tar [OPTIONS] [FILE]...
         # 打印出文件的详细信息
         tar -tv -f target.tar
         ```
+
+!!! tip "组合 tar 的选项"
+
+    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
+
+    ```shell
+    tar -c -z -v -f target.tar test/
+    tar -czvf target.tar test/
+    tar -f target.tar -czv test/
+    ```
 
 !!! tip "存档文件的后缀名"
 
