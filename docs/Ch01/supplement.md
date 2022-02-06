@@ -18,7 +18,7 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 
     目前，GitHub 网页版在创建 `LICENSE` 文件时，会给出一些开源许可证的选项以供选择。网络上也有相关的资料以供需要选择开源许可证的开发者们参考。
 
-## 关闭 SELinux {#close-seLinux}
+## 禁用 SELinux {#disable-selinux}
 
 读者在使用 Fedora、CentOS、Scientific Linux、RHEL 等系统时，可能会遇到这样的错误：
 

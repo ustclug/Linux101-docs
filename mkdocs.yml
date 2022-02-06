@@ -37,6 +37,9 @@ markdown_extensions:
   - attr_list
   - footnotes
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - markdown.extensions.def_list

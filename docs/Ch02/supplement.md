@@ -2,9 +2,9 @@
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
-## 桌面环境的安装
+## 桌面环境的安装 {#desktop-install}
 
-如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就要自己安装桌面环境。
+如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就需要自己安装桌面环境。
 
 下面就来介绍如何手动安装桌面环境。
 
@@ -20,7 +20,7 @@ $ sudo apt install ubuntu-gnome-desktop
 
 !!! tip "注意"
 
-    若安装非常缓慢，可以尝试更换国内源。[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+    若安装非常缓慢，可以尝试更换国内的软件源。[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)
 
 安装完成后输入
 
@@ -45,7 +45,7 @@ $ sudo reboot
 
 ## GNOME 相关
 
-### Gnome 桌面环境的个性化
+### GNOME 桌面环境的个性化 {#gnome-personalization}
 
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
 
@@ -62,7 +62,7 @@ $ sudo apt install gnome-tweaks
 
     不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。
 
-点击 Download 下载一个压缩包
+点击 Download 下载一个压缩包：
 
 ![](images/themes-download-icon.png)
 
@@ -94,7 +94,7 @@ $ gnome-tweaks
 
 如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。
 
-#### GNOME 的拓展程序
+#### GNOME 的拓展程序 {#gnome-extensions}
 
 GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
 
@@ -112,7 +112,7 @@ Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会�
 
 我们可以输入
 
-```bash
+```shell
 $ gnome-shell --version
 ```
 
@@ -122,11 +122,11 @@ $ gnome-shell --version
 
 这时我们打开文件夹里的 `metadata.json` 文件。
 
-将文件夹的名字改为 `metadata.json` 中的 UUID
+将文件夹的名字改为 `metadata.json` 中的 UUID：
 
 ![](images/metadata.png)
 
-uuid 为 "caffeine@patapon.info"
+UUID 为 "caffeine@patapon.info"
 
 ![](images/caffeine-folder.png)
 
@@ -138,7 +138,7 @@ uuid 为 "caffeine@patapon.info"
 $ gnome-tweaks
 ```
 
-在拓展一栏即可启用我们刚刚装的 caffeine
+在拓展一栏即可启用我们刚刚装的 caffeine。
 
 ![](images/gnome-extensions.png)
 
@@ -162,7 +162,7 @@ $ gnome-tweaks
 
     ![](images/extensions-management.png)
 
-## Xfce 联网下载安装更多主题
+## Xfce 联网下载安装更多主题 {#xfce-themes}
 
 除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 [Xfce-look](https://www.xfce-look.org/) 上，就有上万个不同类型的主题。安装方法也十分简单。
 
@@ -209,11 +209,11 @@ $ gnome-tweaks
 
     接下来在 <https://www.xfce-look.org/> 中所有的主题只需要点击 Install 即可自动安装到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。
 
-## 终端的个性化
+## 终端的个性化 {#terminal-personalization}
 
 使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。
 
-### 更换 Shell
+### 更换 Shell {#chsh}
 
 在那之前我们可以通过
 
@@ -275,7 +275,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 具体主题可以在 [oh-my-zsh 的项目 Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 中找到。
 当然你也可以自己尝试自己做一个主题。
 
-## 其它的个性化
+## 其它的个性化 {#other-personalizations}
 
 上面内容都是外观上的个性化，更多地，Linux 系统的可客制化还体现在一些配置文件上。
 
@@ -347,7 +347,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
     当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
-## 搭建简易的网站
+## 搭建简易的网站 {#website}
 
 ### WordPress 的手动配置
 
@@ -359,7 +359,7 @@ $ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 
 创建一个 `/etc/apache2/sites-available/wordpress.conf` 文件，把下面内容填入
 
-```
+```apache
 Alias /blog /usr/share/wordpress
 <Directory /usr/share/wordpress>
     Options FollowSymLinks
@@ -417,7 +417,7 @@ mysql> FLUSH PRIVILEGES;
 Query OK, 1 row affected (0,00 sec)
 ```
 
-退出
+退出 MySQL 命令行：
 
 ```mysql
 mysql> quit
@@ -450,6 +450,6 @@ $ sudo service mysql start
 
 来完成最后的配置。
 
-## 参考资料
+## 参考资料 {#references .no-underline}
 
 - [How to install themes with GNOME tweak tool? - Ask Ubuntu](https://askubuntu.com/a/1128098/612877)
