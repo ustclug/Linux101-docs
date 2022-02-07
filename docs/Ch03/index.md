@@ -835,6 +835,20 @@ https://www.gnu.org/software/tar
 
     这会导致什么后果？尝试解释原因。（提示：`*` 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）
 
+!!! question "为什么不建议使用 `apt-key`"
+
+    在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
+
+    ```shell
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    ```
+
+    但是如今可以注意到，Docker 官方的安装教程也不再使用此方式，转而先手动下载、经过 `gpg` 程序处理后放置在 `/usr/share/keyrings/` 下，然后在软件源配置文件中使用 `signed-by` 参数指定成这个文件。为什么要换成这么麻烦的步骤？
+
+    背景知识：GPG 签名是非对称密码体系的一个例子。这里，软件包发布者有两把密钥：公钥（供用户公开下载）和私钥（必须妥善保存，不能让别人知道）。发布者使用**私钥**对软件包签名后，用户可以用**公钥**验证软件包确实为该发布者发布，且未被篡改。
+
+    提示：私钥泄漏之后可能会发生什么？
+
 ## 引用来源 {#references .no-underline}
 
 [^1]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
