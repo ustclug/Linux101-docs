@@ -233,44 +233,38 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
             software-properties-common
         ```
 
-    2. 添加 Docker 软件源的 GPG Key
+    2. 下载 Docker 软件源的 GPG Key
 
-        这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
-
-        ```shell
-        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        ```
-
-    3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
-
-        在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
+        这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。
 
         ```shell
-        # 此为 Ubuntu amd64 的命令
-        $ sudo add-apt-repository \
-          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-          $(lsb_release -cs) \
-          stable"
+        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
 
-        当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
+    3. 添加 Docker 软件源到 `/etc/apt/sources.list.d/` 中
 
-        ```text
-        deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+        为了方便维护，第三方的 APT 软件源一般都放在 `/etc/apt/sources.list.d/` 目录下（而非直接编辑 `/etc/apt/sources.list`）。
+
+        ```shell
+        $ echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         ```
+        
+        这里通过 `dpkg --print-architecture` 命令获取系统当前的架构，`lsb_release -cs` 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 `/etc/apt/sources.list.d/docker.list` 文件中。
 
     4. 使用 apt 安装 Docker
 
         首先需要从第三方源更新软件列表。
 
         ```shell
-        apt update
+        $ sudo apt update
         ```
 
-        之后便可以直接安装 `docker-ce` 软件包。
+        之后便可以直接安装 `docker-ce` 以及相关的软件包。
 
         ```shell
-        apt install docker-ce
+        $ sudo apt install docker-ce docker-ce-cli containerd.io
         ```
 
     5. 检查安装情况并确认启动
@@ -278,7 +272,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 
         ```shell
-        systemctl status docker
+        $ sudo systemctl status docker
         ```
 
         如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
@@ -308,7 +302,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
 
         ```shell
-        systemctl start docker
+        $ sudo systemctl start docker
         ```
 
         再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
