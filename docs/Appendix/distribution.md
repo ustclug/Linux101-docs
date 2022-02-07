@@ -70,6 +70,14 @@ AUR (Arch User Repository) 由 Arch 用户维护，是 Arch Linux 的一大特�
 
 提示：关于 openSUSE 有一份不错的手册 [opensuse-guide.org](https://opensuse-guide.org/)（[中文翻译](https://opensuse-guide.ustclug.org)）。
 
+### 发行版本 {#opensuse-release}
+
+openSUSE 最主要使用的发行版本为 Leap 和 Tumbleweed。
+
+openSUSE Leap 是定期发布的常规版本，截至 2022 年初，最新的版本为 15.3。而 openSUSE Tumbleweed（又名「风滚草」）是滚动更新的，类似于 Arch Linux。
+
+!!! warning "openSUSE Leap 15.x 比 openSUSE Leap 42.x 更新。"
+
 ### 软件包管理 {#suse-software-management}
 
 openSUSE 使用 RPM 作为其软件包格式，但是与 Fedora、CentOS 等不同的是，其软件包管理器为 ZYpp（Zen / YaST Packages Patches Patterns Products）。用户可以在命令行中使用 `zypper` 进行安装、卸载、升级软件等操作。
@@ -86,6 +94,11 @@ $ sudo zypper search audacity  # 搜索 Audacity
 ### 系统管理工具 YaST {#yast}
 
 YaST 工具是 openSUSE 的一大特色。它提供了图形化的界面，可以帮助系统管理员完成各种常见操作。
+
+![YaST](images/yast.png)
+
+YaST 控制中心截图
+{: .caption }
 
 ### Open Build Service (OBS) {#obs}
 
