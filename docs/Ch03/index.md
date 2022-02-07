@@ -250,7 +250,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         ```
-        
+
         这里通过 `dpkg --print-architecture` 命令获取系统当前的架构，`lsb_release -cs` 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 `/etc/apt/sources.list.d/docker.list` 文件中。
 
     4. 使用 apt 安装 Docker
