@@ -1650,37 +1650,33 @@ $ sudo apt-get install <span class="se">\</span>
 </code></pre></div>
 </li>
 <li>
-<p>添加 Docker 软件源的 GPG Key</p>
-<p>这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。</p>
-<div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+<p>下载 Docker 软件源的 GPG Key</p>
+<p>这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。</p>
+<div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 </code></pre></div>
 </li>
 <li>
-<p>添加 Docker 软件源到 <code>/etc/apt/sources.list</code> 中</p>
-<p>在这里，我么通过 <code>add-apt-repository</code> 作为代理，帮助我们编辑系统中的软件源列表。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 此为 Ubuntu amd64 的命令</span>
-$ sudo add-apt-repository <span class="se">\</span>
-  <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
-<span class="s2">  </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \</span>
-<span class="s2">  stable&quot;</span>
+<p>添加 Docker 软件源到 <code>/etc/apt/sources.list.d/</code> 中</p>
+<p>为了方便维护，第三方的 APT 软件源一般都放在 <code>/etc/apt/sources.list.d/</code> 目录下（而非直接编辑 <code>/etc/apt/sources.list</code>）。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="se">\</span>
+<span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
 </code></pre></div>
-<p>当然直接编辑 <code>/etc/apt/sources.list</code> 文件也是可以的。对于 Ubuntu 18.04 amd64，在 <code>/etc/apt/sources.list</code> 最后添加：</p>
-<div class="highlight"><pre><span></span><code>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-</code></pre></div>
+<p>这里通过 <code>dpkg --print-architecture</code> 命令获取系统当前的架构，<code>lsb_release -cs</code> 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 <code>/etc/apt/sources.list.d/docker.list</code> 文件中。</p>
 </li>
 <li>
 <p>使用 apt 安装 Docker</p>
 <p>首先需要从第三方源更新软件列表。</p>
-<div class="highlight"><pre><span></span><code>apt update
+<div class="highlight"><pre><span></span><code>$ sudo apt update
 </code></pre></div>
-<p>之后便可以直接安装 <code>docker-ce</code> 软件包。</p>
-<div class="highlight"><pre><span></span><code>apt install docker-ce
+<p>之后便可以直接安装 <code>docker-ce</code> 以及相关的软件包。</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install docker-ce docker-ce-cli containerd.io
 </code></pre></div>
 </li>
 <li>
 <p>检查安装情况并确认启动</p>
 <p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：</p>
-<div class="highlight"><pre><span></span><code>systemctl status docker
+<div class="highlight"><pre><span></span><code>$ sudo systemctl status docker
 </code></pre></div>
 <p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
@@ -1701,7 +1697,7 @@ $ sudo add-apt-repository <span class="se">\</span>
   Main PID: 1115 (code=exited, status=0/SUCCESS)
 </code></pre></div>
 <p>这时候，我们可以通过 <code>systemctl</code> 命令启动 Docker 服务：</p>
-<div class="highlight"><pre><span></span><code>systemctl start docker
+<div class="highlight"><pre><span></span><code>$ sudo systemctl start docker
 </code></pre></div>
 <p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书<a href="../Ch04/">第四章</a>展开。</p>
 </li>
