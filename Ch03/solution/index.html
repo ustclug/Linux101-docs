@@ -687,6 +687,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-not-use-apt-key" class="md-nav__link">
+    为什么不建议使用 apt-key
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1287,6 +1294,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-not-use-apt-key" class="md-nav__link">
+    为什么不建议使用 apt-key
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1383,6 +1397,25 @@ Birth: -
 <div class="highlight"><pre><span></span><code>tar -cf file1 file2 ... target.tar
 </code></pre></div>
 <p>此时，<code>tar</code> 会把 <code>file2</code> 一直到 <code>target.tar</code> 打包的结果放在 <code>file1</code> 文件中，于是 <code>file1</code> 的内容就被覆盖了。</p>
+</details>
+<h2 id="why-not-use-apt-key">为什么不建议使用 <code>apt-key</code><a class="headerlink" href="#why-not-use-apt-key" title="Permanent link">&para;</a></h2>
+<div class="admonition tips">
+<p class="admonition-title">提示</p>
+<p><code>sudo apt-key add -</code> 命令将密钥添加到了全局信任。</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<p>如果使用 <code>apt-key</code> 信任密钥，在私钥泄漏之后，攻击者可以使用泄漏的私钥为其他软件包签名，而信任这对密钥的用户就有可能从其他软件源下载软件包时下载并安装攻击者签名的软件包。</p>
+<p>一个场景是：</p>
+<ol>
+<li>你使用 <code>apt-key</code> 信任了软件源 A 的密钥；</li>
+<li>软件源 A 的私钥不幸被攻击者 E 得到；</li>
+<li>攻击者 E 成为了你连接网络的中间人，能够截获、修改所有明文的 HTTP 流量；</li>
+<li>攻击者 E 为后门软件 X 打包并签名；</li>
+<li>只要软件源配置中有使用 HTTP 协议的软件源（不一定是软件源 A），攻击者就可以在你安装其他软件包时悄悄将 X 安装到你的机器上。</li>
+</ol>
+<p>如果单独设置每个软件源信任的密钥，那么造成的攻击面相比之下就小得多了。</p>
+<p>在 2021 年 12 月，Cloudflare 发表<a href="https://blog.cloudflare.com/dont-use-apt-key/">博客</a>称其 Cloudflare WARP 软件源的私钥疑似泄漏，并且指出了 <code>apt-key</code> 信任密钥带来的可能的安全隐患。此后，一些开源软件（如 Docker）的帮助文档也相应更新。</p>
 </details>
 
               
