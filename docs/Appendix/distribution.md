@@ -104,6 +104,10 @@ YaST 控制中心截图
 
 [OBS](https://openbuildservice.org/) 源于 openSUSE 为社区打包软件所提供的服务，目前支持为各大 Linux 发行版提供打包服务。用户也可以自己搭建 OBS 服务。
 
+### Btrfs 与系统集成 {#suse-btrfs}
+
+Btrfs 文件系统是 openSUSE 在安装时为根分区选择的默认文件系统。借助 Btrfs 的快照特性，openSUSE 的 Snapper 可以实现在软件管理操作前后创建快照，允许用户回滚到之前的状态，或者从快照启动系统。
+
 ## Gentoo {#gentoo}
 
 ### 软件包管理 {#gentoo-software-management}
