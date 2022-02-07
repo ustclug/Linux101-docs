@@ -139,7 +139,7 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 ![htop 的内核线程优先级](images/top8.png){: width=75% }
 
 - 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
-（试试 `echo hi > /dev/watchdog` 吧。)
+  （试试 `echo hi > /dev/watchdog` 吧。)
 - 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
 - 图中以 `irq` 开头的便是中断处理程序了。
 
@@ -642,4 +642,4 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 _The TTY demystified_: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
-:   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
+: 本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
