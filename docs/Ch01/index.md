@@ -225,6 +225,14 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
     Xubuntu 图标
     {: .caption }
 
+??? tip "Ubuntu 的支持周期"
+
+    不管从经济上还是技术上考虑，为一个固定版本的软件提供无限长时间的技术支持都是不现实的，对操作系统来说更是如此。因此，用户需要选择合适的操作系统版本，并且在支持周期结束前迁移或更新至新版本。在停止支持（End of Life，EOL）后，操作系统仍然可以继续运行，但是不再能够得到安全更新和功能更新。
+
+    对 Ubuntu 来说，其发行的版本主要分为两类：长期支持版本（Long Term Support，LTS）和中间版本（Interim releases）。Ubuntu 一般在每年四月和十月各发布一次新版本。其中 LTS 版本于每隔两年的四月份发布一次新版本，诸如 20.04、18.04、16.04；在其他时间发布的则是中间版本。
+
+    中间版本的支持周期为 9 个月，一般被需要使用最新特性的开发者使用；而 LTS 有五年[^3]的标准支持周期。根据 Ubuntu 官方的估算[^4]，在所有 Ubuntu 系统中有 95% 安装的都是 LTS 版本。
+
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
 - [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
@@ -288,7 +296,9 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
     著作传的标志，注意到它与常见的著作权标志左右颠倒
     {: .caption }
 
-## 引用来源 {#references .no-underline}
+## 引用来源与备注 {#references .no-underline}
 
 [^1]: 数据来自中国互联网信息中心[第 48 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.cn/hlwfzyj/hlwxzbg/hlwtjbg/202109/P020210915523670981527.pdf)。
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。
+[^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要付费的 Ubuntu Advantage 订阅，或者最多 3 台设备的个人免费订阅。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
+[^4]: 数据来自 Ubuntu 介绍：[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)。
