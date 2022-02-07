@@ -135,16 +135,17 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 
 ??? tip "关于内核线程的优先级"
 如果你按下了 Shift + K 键显示**内核线程**，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
+
 ![htop 的内核线程优先级](images/top8.png){: width=75% }
 
-    - 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
-      （试试 `echo hi > /dev/watchdog` 吧。)
-    - 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
-    - 图中以 `irq` 开头的便是中断处理程序了。
+- 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
+（试试 `echo hi > /dev/watchdog` 吧。)
+- 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
+- 图中以 `irq` 开头的便是中断处理程序了。
 
 对于普通用户，有 `nice` 命令可以选择，可以以低优先级开始任务。`renice` 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 `sudo`（毕竟不能随便就把自己的优先级设置得更高）。
 
-```text
+```shell
 nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help]
  [--version] [command [arg...]]
 
@@ -166,7 +167,7 @@ nice -n 10 vim
 
 如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行。
 
-![](images/state.png){:width=80%}
+![](images/state.png){: width=80% }
 
 进程状态转换图
 {: .caption }
@@ -209,7 +210,7 @@ Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只�
 
 ![signal_slide](images/signal_slide.png)
 
-（来自前年 Linux 101 ——进程、服务、任务的演示文稿截图）
+（来自 2018 年《Linux 101 ——进程、服务、任务》的演示文稿截图）
 {: .caption }
 
 ### 前后台切换 {#bg-fg}
@@ -240,7 +241,7 @@ Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只�
 
 正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。
 
-#### 在 htop 中发送信号
+#### 在 htop 中发送信号 {#kill-processes-htop}
 
 htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。
 
@@ -346,20 +347,20 @@ $ tmux
 
 !!! info "一些 tmux 中的常见功能"
 
-    |快捷键（需先按下 Ctrl + B）|功能|
-    |------|-----|
-    |%|左右分屏|
-    |"|上下分屏|
-    |↑ ↓ ← →|焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。|
-    |d (detach)|从 tmux 中脱离，回到命令行界面|
-    |z (zoom)|将 pane 暂时全屏，再按一次恢复原状|
-    |c|新建窗口|
-    |,|为窗口命名|
-    |s|列出所有 session|
+    | 快捷键（需先按下 Ctrl + B） | 功能                                                            |
+    | --------------------------- | --------------------------------------------------------------- |
+    | %                           | 左右分屏                                                        |
+    | "                           | 上下分屏                                                        |
+    | ↑ ↓ ← →                     | 焦点切换为上、下、左、右侧 pane，正在交互的 pane 被绿色框选中。 |
+    | d (detach)                  | 从 tmux 中脱离，回到命令行界面                                  |
+    | z (zoom)                    | 将 pane 暂时全屏，再按一次恢复原状                              |
+    | c                           | 新建窗口                                                        |
+    | ,                           | 为窗口命名                                                      |
+    | s                           | 列出所有 session                                                |
 
 ![test](images/test.gif)
 
-刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 `tmux attach + 窗口名称` 重新连接窗口，不加参数将默认连接最后一次打开的窗口。
+刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 `tmux attach [-t 窗口名称]` 重新连接窗口，不加 `-t` 参数将默认连接最后一次打开的窗口。
 
 ### 定制 tmux {#customizing-tmux}
 
@@ -369,31 +370,33 @@ $ tmux
 
     使用你最喜欢的编辑器，gedit、vim、emacs 都可以，将以下内容保存到文件 `~/.tmux.conf`（家目录下的 `.tmux.conf` 文件）：
 
-        set -g prefix C-a                                 # 设置前缀按键 Ctrl + A。
-        unbind C-b                                        # 取消 Ctrl + B 快捷键。
-        bind C-a send-prefix                              # 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。
-                                                           （Shell 中 Ctrl + A 表示光标移动到最前端）。
-        set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
-        unbind -n MouseDrag1Pane
-        unbind -Tcopy-mode MouseDrag1Pane
+    ```shell
+    set -g prefix C-a                                 # 设置前缀按键 Ctrl + A。
+    unbind C-b                                        # 取消 Ctrl + B 快捷键。
+    bind C-a send-prefix                              # 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。
+                                                        （Shell 中 Ctrl + A 表示光标移动到最前端）。
+    set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
+    unbind -n MouseDrag1Pane
+    unbind -Tcopy-mode MouseDrag1Pane
 
-        unbind '"'                                        # 使用 - 代表横向分割。
-        bind - splitw -v -c '#{pane_current_path}'
+    unbind '"'                                        # 使用 - 代表横向分割。
+    bind - splitw -v -c '#{pane_current_path}'
 
-        unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）。
-        bind \ splitw -h -c '#{pane_current_path}'
+    unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）。
+    bind \ splitw -h -c '#{pane_current_path}'
 
-        setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
+    setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
+    ```
 
-    以 . 开头的为隐藏文件，需要使用 `ls -a` 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。
+    以 `.` 开头的文件为隐藏文件，需要使用 `ls -a` 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。
 
     保存后，使用 `tmux source ~/.tmux.conf` 重新载入配置，或者 `tmux kill-server` 后重启 tmux。
 
 可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。
 
-更多功能，可以到这张 [cheatsheet](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询
+更多功能，可以到这张 [cheatsheet](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询。
 
-关于 tmux 的更多介绍，可以参见[这篇博客](http://louiszhai.github.io/2017/09/30/tmux/)
+关于 tmux 的更多介绍，可以参见[这篇博客](http://louiszhai.github.io/2017/09/30/tmux/)。
 
 ??? note "Tmux 的工作原理"
 
@@ -417,13 +420,13 @@ Linux 用作服务器，自然有其得天独厚的优势，有时是完善的�
 
 许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
 
-实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。
+实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。
 
 打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。
 
 ### 服务管理 {#services}
 
-在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。service 命令主要是为了跨 `init` 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。
+在 init 进程为 systmed 的系统中，管理系统服务的接口主要有 `systemctl` 和 service 两个命令。service 命令主要是为了跨 `init` 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。
 
 要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
@@ -639,4 +642,4 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 _The TTY demystified_: [原文](http://www.linusakesson.net/programming/tty/) [中文翻译](https://www.cnblogs.com/liqiuhao/p/9031803.html)
 
-: 本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
+:   本文从 tty 设备说起，顺带涵盖了本章上半部分内容，熟悉基础再看此文，定有收获。（系统功能的设计与最初所使用的硬件总是分不开的，了解硬件就是了解机制。）
