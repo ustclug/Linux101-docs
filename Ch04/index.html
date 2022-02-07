@@ -1309,7 +1309,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#htop" class="md-nav__link">
+  <a href="#kill-processes-htop" class="md-nav__link">
     在 htop 中发送信号
   </a>
   
@@ -1578,23 +1578,24 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 <details class="tip">
 <summary>关于内核线程的优先级</summary>
 </details>
-<p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。
-<img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
-<pre><code>- 第一个进程为 `watchdogd`，是一个定时监测以保证系统可用性的程序。
-  （试试 `echo hi &gt; /dev/watchdog` 吧。)
-- 第二到五 (`migration`) 为负载均衡程序，CPU 有几个核就有几个负载均衡。
-- 图中以 `irq` 开头的便是中断处理程序了。
-</code></pre>
+<p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。</p>
+<p><img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
+<ul>
+<li>第一个进程为 <code>watchdogd</code>，是一个定时监测以保证系统可用性的程序。
+  （试试 <code>echo hi &gt; /dev/watchdog</code> 吧。)</li>
+<li>第二到五 (<code>migration</code>) 为负载均衡程序，CPU 有几个核就有几个负载均衡。</li>
+<li>图中以 <code>irq</code> 开头的便是中断处理程序了。</li>
+</ul>
 <p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
-<div class="highlight"><pre><span></span><code>nice [-n adjustment] [-adjustment] [--adjustment=adjustment] [--help]
- [--version] [command [arg...]]
+<div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span>
+ <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
 
-# 以下命令等效
+<span class="c1"># 以下命令等效</span>
 nice vim
 nice -10 vim
-nice -n 10 vim
+nice -n <span class="m">10</span> vim
 
-(sudo) renice priority [[-p] pid ...] [[-g] pgrp ...] [[-u] user ...]
+<span class="o">(</span>sudo<span class="o">)</span> renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
 </code></pre></div>
 <h4 id="process-state">进程状态<a class="headerlink" href="#process-state" title="Permanent link">&para;</a></h4>
 <p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于<strong>运行态</strong> (running)，一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong> (ready)。调度时轮流选择可以运行的程序运行，构成就绪态与运行态循环。</p>
@@ -1663,7 +1664,7 @@ nice -n 10 vim
 <p>信号是 Unix 系列系统中进程之间相互通信的一种机制。发送信号的 Linux 命令叫作 <code>kill</code>。被称作 "kill" 的原因是：早期信号的作用就是关闭（杀死）进程。</p>
 <p>信号列表可以使用 <code>man 7 signal</code> 查看。</p>
 <p><img alt="signal_slide" src="images/signal_slide.png" /></p>
-<p class="caption">（来自前年 Linux 101 ——进程、服务、任务的演示文稿截图）</p>
+<p class="caption">（来自 2018 年《Linux 101 ——进程、服务、任务》的演示文稿截图）</p>
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
@@ -1680,7 +1681,7 @@ nice -n 10 vim
 <p>即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。</p>
 <h3 id="kill-processes">终止进程<a class="headerlink" href="#kill-processes" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
-<h4 id="htop">在 htop 中发送信号<a class="headerlink" href="#htop" title="Permanent link">&para;</a></h4>
+<h4 id="kill-processes-htop">在 htop 中发送信号<a class="headerlink" href="#kill-processes-htop" title="Permanent link">&para;</a></h4>
 <p>htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
 <p>htop 之外，还有一些传统的发送信号的方式。</p>
 <h4 id="kill">kill<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h4>
@@ -1804,34 +1805,34 @@ $ tmux
 </table>
 </div>
 <p><img alt="test" src="images/test.gif" /></p>
-<p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 <code>tmux attach + 窗口名称</code> 重新连接窗口，不加参数将默认连接最后一次打开的窗口。</p>
+<p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 <code>tmux attach [-t 窗口名称]</code> 重新连接窗口，不加 <code>-t</code> 参数将默认连接最后一次打开的窗口。</p>
 <h3 id="customizing-tmux">定制 tmux<a class="headerlink" href="#customizing-tmux" title="Permanent link">&para;</a></h3>
 <p>说实在的，tmux 默认的快捷键的确有些苦手，比如 Ctrl + B 这个对手指相当不友好的长距快捷键就应当改进。而且你可能会想，横竖分屏居然需要 <code>%</code> 和 <code>"</code>，为什么不使用更为直观的 <code>-</code> 和 <code>|</code> 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
 <div class="admonition info">
 <p class="admonition-title">简易的自定义脚本</p>
 <p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，将以下内容保存到文件 <code>~/.tmux.conf</code>（家目录下的 <code>.tmux.conf</code> 文件）：</p>
-<pre><code>set -g prefix C-a                                 # 设置前缀按键 Ctrl + A。
-unbind C-b                                        # 取消 Ctrl + B 快捷键。
-bind C-a send-prefix                              # 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。
-                                                   （Shell 中 Ctrl + A 表示光标移动到最前端）。
-set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
+<div class="highlight"><pre><span></span><code><span class="nb">set</span> -g prefix C-a                                 <span class="c1"># 设置前缀按键 Ctrl + A。</span>
+unbind C-b                                        <span class="c1"># 取消 Ctrl + B 快捷键。</span>
+<span class="nb">bind</span> C-a send-prefix                              <span class="c1"># 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。</span>
+                                                    （Shell 中 Ctrl + A 表示光标移动到最前端）。
+<span class="nb">set</span> -g mouse on                                   <span class="c1"># 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
 unbind -n MouseDrag1Pane
 unbind -Tcopy-mode MouseDrag1Pane
 
-unbind '"'                                        # 使用 - 代表横向分割。
-bind - splitw -v -c '#{pane_current_path}'
+unbind <span class="s1">&#39;&quot;&#39;</span>                                        <span class="c1"># 使用 - 代表横向分割。</span>
+<span class="nb">bind</span> - splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
 
-unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）。
-bind \ splitw -h -c '#{pane_current_path}'
+unbind %                                          <span class="c1"># 使用 \ 代表纵向分割（因为我不想按 Shift）。</span>
+<span class="nb">bind</span> <span class="se">\ </span>splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
 
-setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
-</code></pre>
-<p>以 . 开头的为隐藏文件，需要使用 <code>ls -a</code> 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。</p>
+setw -g mode-keys vi                              <span class="c1"># 设置 copy-mode 快捷键模式为 vi。</span>
+</code></pre></div>
+<p>以 <code>.</code> 开头的文件为隐藏文件，需要使用 <code>ls -a</code> 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。</p>
 <p>保存后，使用 <code>tmux source ~/.tmux.conf</code> 重新载入配置，或者 <code>tmux kill-server</code> 后重启 tmux。</p>
 </div>
 <p>可以按照以上方法类比，进行其他快捷键的绑定，让 tmux 更加易用。</p>
-<p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet</a> 中查询</p>
-<p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客</a></p>
+<p>更多功能，可以到这张 <a href="https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/">cheatsheet</a> 中查询。</p>
+<p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客</a>。</p>
 <details class="note">
 <summary>Tmux 的工作原理</summary>
 <p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
@@ -1845,10 +1846,10 @@ setw -g mode-keys vi                              # 设置 copy-mode 快捷键�
 <p>服务的特征，意味着服务进程必须独立于用户的登录，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离会话才能避免因为终端的关闭而消失。而这类一直默默工作于后台的进程被称为<strong>守护进程</strong> (daemon)。</p>
 <h4 id="daemon-creation">守护进程的产生<a class="headerlink" href="#daemon-creation" title="Permanent link">&para;</a></h4>
 <p>许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。</p>
-<p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 做为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。</p>
+<p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。</p>
 <p>打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。</p>
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
-<p>在 init 进程为 systmed 的系统中，服务管理的接口主要有 systemctl 和 service 两个命令。service 命令主要是为了跨 <code>init</code> 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。</p>
+<p>在 init 进程为 systmed 的系统中，管理系统服务的接口主要有 <code>systemctl</code> 和 service 两个命令。service 命令主要是为了跨 <code>init</code> 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。</p>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>service --status-all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
 <div class="highlight"><pre><span></span><code>$ service --status-all
  <span class="o">[</span> - <span class="o">]</span>  atftpd
