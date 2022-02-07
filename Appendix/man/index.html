@@ -1305,7 +1305,9 @@
 
 
 <h1 id="man">man 文档的一些示例<a class="headerlink" href="#man" title="Permanent link">&para;</a></h1>
-<p>man 文档非常详细。当然，详细的后果，就是我们在阅读的时候很容易变得一头雾水。必须承认的是，尽管 man 文档有一些有中文翻译（安装 <code>manpages-zh</code>），但是阅读它们，仍然是一件非常痛苦的事情。况且中文翻译有一些也已经十分老旧（例如，<code>execve()</code> 文档的最新翻译在 2003 年 5 月，而现在已经过去 17 年了），且有一些错误（例如，<code>man</code> 的文档中介绍 <code>-a|-b</code> 的含义的时候，将 "cannot be used together" 翻译为了「可以一起使用」）。下面会给出一些 man 文档以及其内容结构的解释，以帮助你更好地理解，man 文档到底在做什么长篇大论。</p>
+<p>作为手册而非教程，man 文档面面俱到，非常详细。当然，详细的后果，就是我们在阅读的时候很容易变得一头雾水。</p>
+<p>必须承认的是，尽管 man 文档有一些有中文翻译（安装 <code>manpages-zh</code> 软件包即可），但是阅读它们，仍然是一件非常痛苦的事情。况且中文翻译有一些也已经十分老旧（例如，<code>execve()</code> 文档的最新翻译仍然在 2003 年 5 月），且有一些错误（例如，<code>man(1)</code> 的文档中介绍 <code>-a|-b</code> 的含义的时候，将 "cannot be used together" 翻译为了「可以一起使用」）。所以建议有能力的同学尽可能阅读英文版本的 man 文档。</p>
+<p>下面会给出一些 man 文档以及其内容结构的解释，以帮助你更好地理解，man 文档到底在做什么长篇大论。</p>
 <h2 id="man-sections">数字的含义<a class="headerlink" href="#man-sections" title="Permanent link">&para;</a></h2>
 <p>在查阅资料时，你常常会见到如 <code>chmod(1)</code> 或 <code>mount(8)</code> 这样的表达方式。正如上面所述，数字表示这个条目所属的章节。</p>
 <p>但是为什么要加数字呢？这是因为不同的章节可能有相同的条目，例如 <code>chmod</code> 既是一条命令，又是一个系统调用。当你要查看 <code>chmod</code> 命令的 man 文档时，你会去看 <code>chmod(1)</code>；而当你要查看 <code>chmod</code> 系统调用的 man 文档时，你会去看 <code>chmod(2)</code>。这时候条目后面数字的作用就体现出来了，你可以放心的说 <em>chmod(1) 内部使用了 chmod(2)</em> 这样的话而不必担心造成困惑。</p>
