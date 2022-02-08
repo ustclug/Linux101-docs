@@ -1350,7 +1350,8 @@
 <li>SELinux is preventing XXXX from read access on the file YYYY.</li>
 </ul>
 <p>这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。</p>
-<p>SELinux 的全称是 Security-Enhanced Linux，起初是为了弥补 Linux 下没有强制访问控制（Mandatory Access Control, MAC）的缺憾，但是 SELinux 的设置相当繁复，由于默认设置不可能尽善尽美，一些配置上的小问题可能会影响用户的正常使用，而初学者没有足够的技能去调试 SELinux 策略。因此在初学时，可以暂且关闭 SELinux，在掌握足够的技能后再启用它。</p>
+<p>SELinux 的全称是 Security-Enhanced Linux，起初是为了弥补 Linux 下没有强制访问控制（Mandatory Access Control, MAC）的缺憾。我们在<a href="../../Appendix/distribution/#selinux">附录</a>中也对 SELinux 做了进一步的介绍。</p>
+<p>但是 SELinux 的设置相当繁复，由于默认设置不可能尽善尽美，一些配置上的小问题可能会影响用户的正常使用，而初学者没有足够的技能去调试 SELinux 策略。因此在初学时，可以暂且关闭 SELinux，在掌握足够的技能后再启用它。</p>
 <details class="tip">
 <summary>AppArmor</summary>
 <p>在 Debian、Ubuntu 系发行版中，默认使用的是称作 AppArmor 的同类组件。与 SELinux 相比，AppArmor 更简单一些，且一般不会对用户的正常使用造成困扰。</p>
