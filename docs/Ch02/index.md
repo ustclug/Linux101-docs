@@ -379,7 +379,7 @@ $ sh run.sh
 $ pwd
 ```
 
-会打印出当前所在的目录
+会打印出当前所在的目录：
 
 ```text
 /home/ustc
@@ -391,7 +391,7 @@ $ pwd
 $ ls
 ```
 
-会打印出当前目录的内容
+会打印出当前目录的内容：
 
 ```text
 Desktop Documents Music Pictures Public Templates Videos
@@ -434,7 +434,7 @@ WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和�
 $ sudo apt install curl
 ```
 
-打开终端并运行
+打开终端并运行：
 
 ```shell
 $ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh | sudo bash
@@ -446,9 +446,7 @@ $ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh | sudo bash
 
     这个脚本随机生成了 WordPress 数据库的密码并储存在了 `/root` 目录下。
 
-最后我们打开浏览器并进入 `http://localhost/blog`
-
-来完成最后的配置。
+最后我们打开浏览器并进入 `http://localhost/blog` 来完成最后的配置。
 
 ![](images/wordpress-installation.png)
 
@@ -462,7 +460,7 @@ Jekyll 是一个将纯文本转化为静态博客和网站的工具。
 $ sudo apt install jekyll
 ```
 
-再输入几行命令用于创建网站
+再输入几行命令用于创建网站：
 
 ```shell
 $ jekyll new my-awesome-site

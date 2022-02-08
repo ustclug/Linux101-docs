@@ -198,11 +198,10 @@ $ gnome-tweaks
 
     ![](images/ocs-url-download.png)
 
-    命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。
+    命令行进入下载好的安装包所在文件夹，输入以下命令。注意替换「下载的包」为你的安装包名，例如如果下载的安装包名为 `ocs-url_3.1.0-0ubuntu1_amd64.deb`，则 `install` 后面的参数为 `./ocs-url_3.1.0-0ubuntu1_amd64.deb`。
 
     ```shell
-    sudo dpkg -i 下载的包.deb
-    sudo apt-get install --fix-broken
+    $ sudo apt install ./下载的包.deb
     ```
 
     即可完成安装。
@@ -250,7 +249,7 @@ $ chsh -s /bin/zsh
 oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 !!! info "如果无法下载安装脚本"
@@ -258,7 +257,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
     如果遇到了网络连通性问题，可以使用以下替换命令：
 
     ```shell
-    sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
+    $ sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh)"
     ```
 
 安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。
