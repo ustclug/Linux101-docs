@@ -26,7 +26,9 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 
 这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。
 
-SELinux 的全称是 Security-Enhanced Linux，起初是为了弥补 Linux 下没有强制访问控制（Mandatory Access Control, MAC）的缺憾，但是 SELinux 的设置相当繁复，由于默认设置不可能尽善尽美，一些配置上的小问题可能会影响用户的正常使用，而初学者没有足够的技能去调试 SELinux 策略。因此在初学时，可以暂且关闭 SELinux，在掌握足够的技能后再启用它。
+SELinux 的全称是 Security-Enhanced Linux，起初是为了弥补 Linux 下没有强制访问控制（Mandatory Access Control, MAC）的缺憾。我们在[附录](../Appendix/distribution.md#selinux)中也对 SELinux 做了进一步的介绍。
+
+但是 SELinux 的设置相当繁复，由于默认设置不可能尽善尽美，一些配置上的小问题可能会影响用户的正常使用，而初学者没有足够的技能去调试 SELinux 策略。因此在初学时，可以暂且关闭 SELinux，在掌握足够的技能后再启用它。
 
 ??? tip "AppArmor"
 
