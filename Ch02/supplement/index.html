@@ -1646,9 +1646,8 @@ $ sudo reboot
 <p>我们可以安装插件在网页上直接安装主题。</p>
 <p>在 <a href="https://www.pling.com/p/1136805/">https://www.pling.com/p/1136805/</a> 中，下载 ocs-url，下载时选择 deb 后缀的安装包。</p>
 <p><img alt="" src="../images/ocs-url-download.png" /></p>
-<p>命令行进入下载好的安装包所在文件夹，输入以下命令，注意替换「下载的包」为你的安装包名。</p>
-<div class="highlight"><pre><span></span><code>sudo dpkg -i 下载的包.deb
-sudo apt-get install --fix-broken
+<p>命令行进入下载好的安装包所在文件夹，输入以下命令。注意替换「下载的包」为你的安装包名，例如如果下载的安装包名为 <code>ocs-url_3.1.0-0ubuntu1_amd64.deb</code>，则 <code>install</code> 后面的参数为 <code>./ocs-url_3.1.0-0ubuntu1_amd64.deb</code>。</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install ./下载的包.deb
 </code></pre></div>
 <p>即可完成安装。</p>
 <p>接下来在 <a href="https://www.xfce-look.org/">https://www.xfce-look.org/</a> 中所有的主题只需要点击 Install 即可自动安装到相应的目录。你只需要在 gnome-tweaks 中更换主题即可。</p>
@@ -1673,12 +1672,12 @@ sudo apt-get install --fix-broken
 <p>然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。</p>
 <h5 id="oh-my-zsh">oh-my-zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h5>
 <p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。</p>
-<div class="highlight"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>$ sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">如果无法下载安装脚本</p>
 <p>如果遇到了网络连通性问题，可以使用以下替换命令：</p>
-<div class="highlight"><pre><span></span><code>sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>$ sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh@master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 </div>
 <p>安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。</p>

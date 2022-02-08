@@ -1837,13 +1837,13 @@ rm main.out
 <h4 id="shell-commands-example-1">示例 1<a class="headerlink" href="#shell-commands-example-1" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>
 </code></pre></div>
-<p>会打印出当前所在的目录</p>
+<p>会打印出当前所在的目录：</p>
 <div class="highlight"><pre><span></span><code>/home/ustc
 </code></pre></div>
 <h4 id="shell-commands-example-2">示例 2<a class="headerlink" href="#shell-commands-example-2" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>$ ls
 </code></pre></div>
-<p>会打印出当前目录的内容</p>
+<p>会打印出当前目录的内容：</p>
 <div class="highlight"><pre><span></span><code>Desktop Documents Music Pictures Public Templates Videos
 </code></pre></div>
 <h4 id="shell-commands-example-3">示例 3<a class="headerlink" href="#shell-commands-example-3" title="Permanent link">&para;</a></h4>
@@ -1869,7 +1869,7 @@ $ ls
 <p>下载脚本要使用 <code>curl</code> 命令，我们要先安装 curl。</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install curl
 </code></pre></div>
-<p>打开终端并运行</p>
+<p>打开终端并运行：</p>
 <div class="highlight"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh <span class="p">|</span> sudo bash
 </code></pre></div>
 <p>等待片刻即可完成安装。</p>
@@ -1877,15 +1877,14 @@ $ ls
 <p class="admonition-title">注意</p>
 <p>这个脚本随机生成了 WordPress 数据库的密码并储存在了 <code>/root</code> 目录下。</p>
 </div>
-<p>最后我们打开浏览器并进入 <code>http://localhost/blog</code></p>
-<p>来完成最后的配置。</p>
+<p>最后我们打开浏览器并进入 <code>http://localhost/blog</code> 来完成最后的配置。</p>
 <p><img alt="" src="images/wordpress-installation.png" /></p>
 <h3 id="jekyll">Jekyll<a class="headerlink" href="#jekyll" title="Permanent link">&para;</a></h3>
 <p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。</p>
 <p>我们只需要通过命令行安装它。</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install jekyll
 </code></pre></div>
-<p>再输入几行命令用于创建网站</p>
+<p>再输入几行命令用于创建网站：</p>
 <div class="highlight"><pre><span></span><code>$ jekyll new my-awesome-site
 $ <span class="nb">cd</span> my-awesome-site
 $ jekyll serve
