@@ -1536,15 +1536,15 @@
 <p>如果你安装的系统没有预装桌面环境，或者你想要更换其他桌面环境，我们就需要自己安装桌面环境。</p>
 <p>下面就来介绍如何手动安装桌面环境。</p>
 <p>以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：</p>
-<p>安装 ubuntu-gnome-desktop 软件</p>
+<p>安装 <code>ubuntu-gnome-desktop</code> 软件：</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install ubuntu-gnome-desktop
 </code></pre></div>
-<p>接下来的提示中按输入 Y 回车即安装</p>
+<p>接下来的提示中按输入 Y 回车即安装。</p>
 <div class="admonition tip">
 <p class="admonition-title">注意</p>
 <p>若安装非常缓慢，可以尝试更换国内的软件源。<a href="https://mirrors.ustc.edu.cn/help/ubuntu.html">科大源更换教程</a></p>
 </div>
-<p>安装完成后输入</p>
+<p>安装完成后输入：</p>
 <div class="highlight"><pre><span></span><code>$ sudo reboot
 </code></pre></div>
 <p>重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。</p>
@@ -1561,7 +1561,7 @@ $ sudo reboot
 <h3 id="gnome-personalization">GNOME 桌面环境的个性化<a class="headerlink" href="#gnome-personalization" title="Permanent link">&para;</a></h3>
 <p>大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。</p>
 <p>在 GNOME 桌面下用户可以轻松更换主题。
-首先安装 gnome-tweaks 软件</p>
+首先安装 <code>gnome-tweaks</code> 软件：</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install gnome-tweaks
 </code></pre></div>
 <p>在 <a href="https://www.gnome-look.org/">GNOME Look</a> 中找到自己喜欢的主题。</p>
@@ -1579,7 +1579,7 @@ $ sudo reboot
 <p><code>~</code> 是用来简单表示用户的家目录（主目录）的符号，普通用户的家目录一般位于 <code>/home/用户名/</code>。<code>~/.themes</code> 即代表家目录下的 <code>.themes</code> 文件夹。</p>
 <p>以 <code>.</code> 开头的文件和文件夹是隐藏的。如果使用图形界面解压缩，有可能看不到 <code>.themes</code> 目录。此时可以按下 Ctrl + H 快捷键显示隐藏文件夹。</p>
 </div>
-<p>输入</p>
+<p>输入：</p>
 <div class="highlight"><pre><span></span><code>$ gnome-tweaks
 </code></pre></div>
 <p>打开 gnome-tweaks，在外观选项中选中想要的主题。</p>
@@ -1591,13 +1591,13 @@ $ sudo reboot
 <p>如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。</p>
 <h4 id="gnome-extensions">GNOME 的 Shell 扩展<a class="headerlink" href="#gnome-extensions" title="Permanent link">&para;</a></h4>
 <p>GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
-<p>要使用 GNOME 扩展，我们要先安装 gnome-shell-extensions</p>
+<p>要使用 GNOME 扩展，我们要先安装 <code>gnome-shell-extensions</code>。</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install gnome-shell-extensions
 </code></pre></div>
 <p>接下来进入扩展插件的网站并选择其中一款扩展。</p>
 <p><img alt="" src="../images/caffeine.png" /></p>
 <p>Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
-<p>我们可以输入</p>
+<p>我们可以输入：</p>
 <div class="highlight"><pre><span></span><code>$ gnome-shell --version
 </code></pre></div>
 <p>查看版本。</p>
@@ -1608,7 +1608,7 @@ $ sudo reboot
 <p>UUID 为 "caffeine@patapon.info"</p>
 <p><img alt="" src="../images/caffeine-folder.png" /></p>
 <p>并将该文件夹放到<code>~/.local/share/gnome-shell/extensions/</code>中。</p>
-<p>打开 gnome-tweaks</p>
+<p>打开 <code>gnome-tweaks</code>。</p>
 <div class="highlight"><pre><span></span><code>$ gnome-tweaks
 </code></pre></div>
 <p>在扩展一栏即可启用我们刚刚装的 caffeine。</p>
@@ -1619,7 +1619,7 @@ $ sudo reboot
 <p>首先安装浏览器插件：</p>
 <p>对于 Google Chrome、Chromium 和 Vivaldi：<a href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep">Chrome Web 商店</a></p>
 <p>对于 Firefox： <a href="https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/">Mozilla Addons</a></p>
-<p>再安装本地连接器</p>
+<p>再安装本地连接器：</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install chrome-gnome-shell
 </code></pre></div>
 <p>即可在 https://extensions.gnome.org/ 网页中管理、安装插件。</p>
@@ -1630,13 +1630,13 @@ $ sudo reboot
 <p><img alt="" src="../images/xfce-look-mainpage.png" /></p>
 <p>我们可以选中任意一款主题。我们以下面这个为例。</p>
 <p><img alt="" src="../images/xfce-look-theme.png" /></p>
-<p>点击 Download 按钮下载它，一般会得到压缩包格式的文件。我们打开设置管理器中的「外观」首选项，把下载好的压缩包文件直接拖拽到样式列表中</p>
+<p>点击 Download 按钮下载它，一般会得到压缩包格式的文件。我们打开设置管理器中的「外观」首选项，把下载好的压缩包文件直接拖拽到样式列表中。</p>
 <p><img alt="" src="../images/Xfce-style-installation.png" /></p>
 <p>选中刚刚拖拽进去的主题即可更换。</p>
 <p><img alt="" src="../images/Xfce-style-installation_2.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
-<p>有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现</p>
+<p>有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现：</p>
 <p><img alt="" src="../images/Xfce-WM-style-installation.png" /></p>
 <p>选中后，窗口样式就变了。</p>
 </div>
@@ -1655,20 +1655,20 @@ $ sudo reboot
 <h2 id="terminal-personalization">终端的个性化<a class="headerlink" href="#terminal-personalization" title="Permanent link">&para;</a></h2>
 <p>使用 Linux 系统时，不可避免接触终端命令行操作，但是默认的终端黑底白字。有什么办法可以既美化终端，又提高工作效率呢？下面我们介绍一些美化终端的方法。</p>
 <h3 id="chsh">更换 Shell<a class="headerlink" href="#chsh" title="Permanent link">&para;</a></h3>
-<p>在那之前我们可以通过</p>
+<p>在此之前我们可以通过：</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
 </code></pre></div>
-<p>检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具—— zsh。</p>
+<p>检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具——Z shell（Zsh）。</p>
 <h4 id="zsh">Zsh<a class="headerlink" href="#zsh" title="Permanent link">&para;</a></h4>
-<p>首先通过 apt 安装 zsh</p>
+<p>首先通过 apt 安装 <code>zsh</code>：</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install zsh
 </code></pre></div>
-<p>将 zsh 设定为默认 shell</p>
+<p>将 zsh 设定为默认 shell：</p>
 <div class="highlight"><pre><span></span><code>$ chsh -s /bin/zsh
 </code></pre></div>
 <p>重启后打开终端就会发现 shell 已经变成了 zsh。</p>
 <p>第一次打开 zsh 会有首次使用提示，这里我们按 0 跳过。</p>
-<p>接下来的提示中按 Y 回车即安装</p>
+<p>接下来的提示中按 Y 回车即安装。</p>
 <p>然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。</p>
 <h5 id="oh-my-zsh">oh-my-zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h5>
 <p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。</p>
@@ -1681,15 +1681,15 @@ $ sudo reboot
 </code></pre></div>
 </div>
 <p>安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。</p>
-<p>我们可以修改 <code>~/.zshrc</code> 里的一行</p>
+<p>我们可以修改 <code>~/.zshrc</code> 里的这一行中的引号部分切换主题：</p>
 <pre><code>ZSH_THEME="robbyrussell"
 </code></pre>
-<p>中引号部分切换主题，如果只想试用某个主题，可以使用</p>
+<p>如果只想试用某个主题，可以使用以下命令：</p>
 <pre><code>omz theme use robbyrussell
 </code></pre>
 <p>来临时试用某主题。
 具体主题可以在 <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">oh-my-zsh 的项目 Wiki</a> 中找到。
-当然你也可以自己尝试自己做一个主题。</p>
+当然你也可以尝试自己做一个主题。</p>
 <h2 id="other-personalizations">其它的个性化<a class="headerlink" href="#other-personalizations" title="Permanent link">&para;</a></h2>
 <p>上面内容都是外观上的个性化，更多地，Linux 系统的可客制化还体现在一些配置文件上。</p>
 <h3 id="etc">etc 目录<a class="headerlink" href="#etc" title="Permanent link">&para;</a></h3>
@@ -1698,19 +1698,19 @@ $ sudo reboot
 <p class="admonition-title">tips</p>
 <p>etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 <code>etc</code> 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 <code>/etc</code> 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。</p>
 </div>
-<p>下面介绍几个常用的配置文件</p>
+<p>下面介绍几个常用的配置文件：</p>
 <ul>
-<li><code>/etc/profile</code> 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置</li>
-<li><code>/etc/bash.bashrc</code> 启动 Bash 时读取的环境</li>
-<li><code>/etc/sudoers</code> sudo 权限的配置</li>
-<li><code>/etc/protocols</code> 网络协议簇的配置</li>
+<li><code>/etc/profile</code> 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置；</li>
+<li><code>/etc/bash.bashrc</code> 启动 Bash 时读取的环境；</li>
+<li><code>/etc/sudoers</code> sudo 权限的配置；</li>
+<li><code>/etc/hosts</code> 主机名与 IP 映射关系的配置。</li>
 </ul>
 <details class="example">
 <summary>示例</summary>
-<p>当我们登录用户成功时</p>
+<p>当我们登录用户成功时：</p>
 <div class="highlight"><pre><span></span><code>$ sudo login
 </code></pre></div>
-<p>会提示以下信息</p>
+<p>会提示以下信息：</p>
 <div class="highlight"><pre><span></span><code>Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -1734,11 +1734,11 @@ applicable law.
 <p class="admonition-title">提示</p>
 <p>有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 <code>/etc/motd</code></p>
 </div>
-<p>我们在 <code>/etc/update-motd.d/</code> 目录下新建一个文件 <code>99-test</code>，写入下面内容</p>
+<p>我们在 <code>/etc/update-motd.d/</code> 目录下新建一个文件 <code>99-test</code>，写入下面内容：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 <span class="nb">echo</span> helloworld
 </code></pre></div>
-<p>然后</p>
+<p>然后：</p>
 <div class="highlight"><pre><span></span><code>$ sudo chmod +x /etc/update-motd.d/99-test
 </code></pre></div>
 <p>设置好权限，登录后就可以看到在末尾加上了我们在 <code>99-test</code> 文件中 echo 的内容。</p>
@@ -1749,7 +1749,7 @@ applicable law.
 <div class="highlight"><pre><span></span><code>$ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 </code></pre></div>
 <p>这样就已经把 WordPress 所依赖的环境搭建好了，我们只需要稍微配置一下它。</p>
-<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，把下面内容填入</p>
+<p>创建一个 <code>/etc/apache2/sites-available/wordpress.conf</code> 文件，填入下面内容：</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Alias</span><span class="w"> </span><span class="sx">/blog</span><span class="w"> </span><span class="sx">/usr/share/wordpress</span><span class="w"></span>
 <span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/usr/share/wordpress</span><span class="nt">&gt;</span><span class="w"></span>
 <span class="w">    </span><span class="nb">Options</span><span class="w"> </span>FollowSymLinks<span class="w"></span>
@@ -1764,15 +1764,15 @@ applicable law.
 <span class="w">    </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span><span class="w"></span>
 <span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
 </code></pre></div>
-<p>保存后输入命令来重启 apache2</p>
+<p>保存后输入命令来重启 <code>apache2</code>：</p>
 <div class="highlight"><pre><span></span><code>$ sudo a2ensite wordpress
 $ sudo a2enmod rewrite
 $ sudo service apache2 reload
 </code></pre></div>
-<p>再配置数据库相关内容</p>
+<p>再配置数据库相关内容：</p>
 <div class="highlight"><pre><span></span><code>$ sudo mysql -u root
 </code></pre></div>
-<p>出现以下信息时</p>
+<p>出现以下信息时：</p>
 <div class="highlight"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 2
 Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
@@ -1780,7 +1780,7 @@ Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
 Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
 Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 </code></pre></div>
-<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码</p>
+<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">wordpress</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span><span class="w"></span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">wordpress</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
@@ -1788,7 +1788,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<p>这里每次执行成功都会得到</p>
+<p>这里每次执行成功都会得到：</p>
 <div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0,00 sec)
 </code></pre></div>
 <p>退出 MySQL 命令行：</p>
@@ -1805,12 +1805,11 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </code></pre></div>
-<p>然后输入</p>
+<p>然后输入：</p>
 <div class="highlight"><pre><span></span><code>$ sudo service mysql start
 </code></pre></div>
 <p>启动数据库。</p>
-<p>最后我们打开浏览器并进入 <code>localhost/blog</code></p>
-<p>来完成最后的配置。</p>
+<p>最后我们打开浏览器并进入 <code>localhost/blog</code> 来完成最后的配置。</p>
 <h2 class="no-underline" id="references">参考资料<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://askubuntu.com/a/1128098/612877">How to install themes with GNOME tweak tool? - Ask Ubuntu</a></li>
