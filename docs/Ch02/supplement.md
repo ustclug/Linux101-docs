@@ -288,8 +288,8 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
 下面介绍几个常用的配置文件：
 
-- `/etc/profile` 系统全局环境变量设置，里面可以添加对所有用户有效的环境变量，系统配置；
-- `/etc/bash.bashrc` 启动 Bash 时读取的环境；
+- `/etc/fstab` 系统磁盘挂载相关配置；
+- `/etc/bash.bashrc` 启动 Bash 时读取的配置脚本；
 - `/etc/sudoers` sudo 权限的配置；
 - `/etc/hosts` 主机名与 IP 映射关系的配置。
 
