@@ -1,4 +1,4 @@
-# 个性化配置与建站体验
+# 拓展阅读
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 
@@ -94,17 +94,17 @@ $ gnome-tweaks
 
 如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。
 
-#### GNOME 的拓展程序 {#gnome-extensions}
+#### GNOME 的 Shell 扩展 {#gnome-extensions}
 
-GNOME 支持很多拓展的程序，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
+GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
 
-要使用 Gnome 拓展程序我们要先安装 gnome-shell-extensions
+要使用 GNOME 扩展，我们要先安装 gnome-shell-extensions
 
 ```shell
 $ sudo apt install gnome-shell-extensions
 ```
 
-接下来进入拓展插件的网站并选择其中一款拓展。
+接下来进入扩展插件的网站并选择其中一款扩展。
 
 ![](images/caffeine.png)
 
@@ -138,13 +138,13 @@ UUID 为 "caffeine@patapon.info"
 $ gnome-tweaks
 ```
 
-在拓展一栏即可启用我们刚刚装的 caffeine。
+在扩展一栏即可启用我们刚刚装的 caffeine。
 
 ![](images/gnome-extensions.png)
 
 !!! tip "提示"
 
-    手动安装显然过于复杂，我们完全可以只使用浏览器来完成拓展插件的管理和安装。
+    手动安装显然过于复杂，我们完全可以只使用浏览器来完成扩展插件的管理和安装。
 
     首先安装浏览器插件：
 
