@@ -1417,7 +1417,7 @@
 <p>在 Windows 或 Mac OS X 这样带 GUI 的系统上，通过安装 IDE，我们可以使用 IDE 中的编译功能来编译出目标。
 实际上，这些带有图形界面的 IDE 的编译往往是封装了各种提供命令行接口的编译器。
 自然，在众多无 GUI 的 Linux 上，我们同样可以调用这些提供命令行接口的编译器进行编译。</p>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">各平台常见编译器</p>
 <p>Linux 上常用的编译器是 gcc 和 clang。
 其中 gcc 是由 GNU 组织维护的，而 clang 是由 LLVM 组织维护的。</p>
@@ -1438,7 +1438,7 @@
 <p>只在一个文件中编写代码，对于稍微大的开发都是不够的：
 对于个人维护的小项目尚可，但当你面临的是一个多人开发、模块复杂、功能繁多的大项目时（无论是在公司工程还是在实验室科研中，这都是普遍的情况），
 拆分代码到多个文件才是一个明智（或者说可行）的做法。</p>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">C 语言的多文件实现</p>
 <p>我们假设你对于 C 语言的多文件实现有着基本的认知：
 即能够在之前的系统中的 IDE 内完成 C 语言的多文件开发。</p>
@@ -1518,7 +1518,7 @@
 <code>gcc</code> 这一指令会根据输入文件的类型调用相应的程序完成整个编译流程。
 在这里，虽然同样是 gcc 指令，但是由于输入的为 .o 文件，gcc 将调用链接器进行链接，从而生成最终的可执行文件。</p>
 <p>同样是这个原因，实际上使用 <code>gcc main.c print.c -o main</code> 是可以一步到位，但在接下来的内容里，你会看到另一个方案。</p>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">gcc 的四个部分，编译的过程</p>
 <p>gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
 分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。</p>
@@ -1673,7 +1673,7 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 现在我们需要开发一个程序，也需要包 <code>a</code>，但要求版本大于 <code>2.0.0</code>。</p>
 <p>由于 pip 不允许同时安装不同版本的同一个包，当你运行 <code>pip3 install a&gt;=2.0.0</code> 时，pip 会更新 <code>a</code> 到 <code>2.0.0</code>，
 那原先依赖于 <code>a==1.0.0</code> 的软件就无法正常运行了。</p>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">注意 <code>&gt;=</code></p>
 <p>在一些 Shell（如 zsh）中，<code>&gt;=</code> 有特殊含义。
 此时上述命令应用引号包裹 <code>&gt;=</code> 部分，如 <code>pip3 install 'a&gt;=2.0.0'</code></p>

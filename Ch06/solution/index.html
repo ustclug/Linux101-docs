@@ -1340,7 +1340,7 @@
 <p>而对于 <code>wget</code>，对应的参数则是 <code>--header</code>.</p>
 </details>
 <h2 id="_1">关于断点续传<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>可能需要简单学习 HTTP 协议的大体特性。另外，如果你想要实现这样一个特性，你会希望服务器支持什么功能呢？</p>
 </div>
@@ -1351,7 +1351,7 @@
 <p>当然，不是所有服务器都支持这个特性，所以有的时候你可能会发现，「断点续传」会失败。</p>
 </details>
 <h2 id="usrbinenv"><code>/usr/bin/env</code><a class="headerlink" href="#usrbinenv" title="Permanent link">&para;</a></h2>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>一个常见的例子是，<code>#!/usr/bin/env python3</code>.</p>
 </div>
@@ -1361,7 +1361,7 @@
 <p><code>/usr/bin/env</code> 的功能是，在指定的环境变量中执行命令，它的参数可以不是程序的绝对路径。这个特性就让它变成了 Shebang 的常客：只要 <code>env</code> 在 <code>/usr/bin</code> 下面（一般都是这样子的），并且后面的命令可以执行，那么就没有问题了。</p>
 </details>
 <h2 id="shell-1">Shell 脚本编写练习 #1<a class="headerlink" href="#shell-1" title="Permanent link">&para;</a></h2>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>可以使用循环和通配符来完成。另外也需要简单掌握 ffmpeg 的使用（不需要对编码参数等有所了解）。</p>
 </div>
@@ -1379,7 +1379,7 @@
 <p><code>"${i/.mp4/.mp3}"</code> 的效果是类似的，但是直接将 <code>.mp4</code> 替换为 <code>.mp3</code> 的问题是，如果有视频文件名为 <code>xxx.mp4.xxx.mp4</code> 的话，非扩展名部分的 <code>mp4</code> 也会变为 <code>mp3</code>。</p>
 </details>
 <h2 id="shell-2">Shell 脚本编写练习 #2<a class="headerlink" href="#shell-2" title="Permanent link">&para;</a></h2>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>简单的数学计算，分支指令，与 <code>&amp;&amp;</code>。</p>
 </div>
@@ -1399,7 +1399,7 @@
 </code></pre></div>
 </details>
 <h2 id="shell-3">Shell 脚本编写练习 #3<a class="headerlink" href="#shell-3" title="Permanent link">&para;</a></h2>
-<div class="admonition tips">
+<div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>这里，需要解析 HTML 中所有的（<code>a</code> 标签的）<code>href</code> 属性，挑选出所有后缀为 <code>.pdf</code> 的文件，并调用 <code>wget</code> 下载。</p>
 </div>
