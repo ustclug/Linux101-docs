@@ -2,7 +2,7 @@
 
 ## Матрёшка {#meta}
 
-!!! tips "提示"
+!!! tip "提示"
 
     `man` 和 `tldr` 的用途是？
 
@@ -12,7 +12,7 @@
 
 ## 查找需要安装的软件包 {#finding-package-you-need}
 
-!!! tips "提示"
+!!! tip "提示"
 
     `apt` 有一些相关的小工具，可能可以帮到你。
 
@@ -40,7 +40,7 @@
 
 ## 硬链接与软链接的判断 {#hard-and-soft-links}
 
-!!! tips "提示"
+!!! tip "提示"
 
     你可能需要理解 `ls -l` 输出的含义。
 
@@ -84,7 +84,7 @@
 
 ## 错误使用 tar 命令导致的文件丢失 {#data-loss-by-tar}
 
-!!! tips "提示"
+!!! tip "提示"
 
     `tar` 的 `-f` 的意义是什么？
 
@@ -100,7 +100,7 @@
 
 ## 为什么不建议使用 `apt-key` {#why-not-use-apt-key}
 
-!!! tips "提示"
+!!! tip "提示"
 
     `sudo apt-key add -` 命令将密钥添加到了全局信任。
 

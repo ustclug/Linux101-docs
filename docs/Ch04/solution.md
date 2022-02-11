@@ -2,7 +2,7 @@
 
 ## 阻止 ping 命令的输出 {#stop-ping-output}
 
-!!! tips "提示"
+!!! tip "提示"
 
     nohup 命令是如何操作的？
 
@@ -12,7 +12,7 @@
 
 ## 按下 Ctrl + C 后发生了什么 {# after-hitting-ctrl-c}
 
-!!! tips "提示"
+!!! tip "提示"
 
     这个问题涉及了键盘按键的处理与信号机制。（答案仅供参考）
 
