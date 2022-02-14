@@ -4,7 +4,7 @@
 
 ## 编译安装 [^1] {#compiling-installation}
 
-_本节的操作基于 Ubuntu 18.04 操作系统。_
+本节的操作基于 Ubuntu 18.04 操作系统。
 
 除了在正文中提到的几种常见的安装方法外，还有从源代码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，就可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。
 
@@ -122,37 +122,106 @@ $ sudo make install
 
     在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等。
 
-## tar 的替代 {#tar-alternative}
+## tar 的替代与其他压缩软件 {#tar-alternative}
 
-在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件
+在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件。
 
 ### unar {#unar}
 
-unar 是 macOS 上的软件 [The Unarchiver](https://theunarchiver.com/) 的命令行工具，能够同样用于 Windows 和 Linux，软件介绍：[Command line tools](https://theunarchiver.com/command-line)
+unar 是 macOS 上的软件 [The Unarchiver](https://theunarchiver.com/) 的命令行工具，能够同样用于 Windows 和 Linux。
 
-Ubuntu 上的安装方式
+软件介绍：[Unar and Lsar | Command Line Tools for The Unarchiver](https://theunarchiver.com/command-line)。
 
-```shell
-apt install unar
-```
-
-> 对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装
-
-安装之后会得到两个命令：`unar` 和 `lsar`，分别用来解压存档文件以及浏览存档文件内容
+Ubuntu 上直接使用 apt 安装即可：
 
 ```shell
-# 将存档文件提取到 output 文件夹中
-unar archive.zip -o output
-
-# 浏览存档文件内容
-lsar archive.zip
-# 查看详细信息
-lsar -l archive.zip
-# 查看特别详细的信息
-lsar -L archive.zip
+$ sudo apt install unar
 ```
 
-## 引用来源 {#references .no-underline }
+对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装。
+
+安装之后会得到两个命令：`unar` 和 `lsar`，分别用来解压存档文件以及浏览存档文件内容：
+
+```shell
+$ unar archive.zip -o output # 将存档文件提取到 output 文件夹中
+$ lsar archive.zip # 浏览存档文件内容
+$ lsar -l archive.zip # 查看详细信息
+$ lsar -L archive.zip # 查看特别详细的信息
+```
+
+### 处理 ZIP 压缩包：`zip` 与 `unzip` {#zip}
+
+`zip` 和 `unzip` 工具分别负责 ZIP 压缩包的压缩与解压缩，使用以下命令安装：
+
+```shell
+$ sudo apt install zip unzip
+```
+
+以下提供一些命令例子，更多的功能需要查看对应的文档：
+
+```shell
+$ zip -r archive.zip path/file1 path/dir1  # （递归地）压缩文件和目录
+$ zip archive.zip path/file2 # 添加文件到已有的压缩包
+$ unzip archive.zip # 解压缩
+$ unzip archive.zip -d path/ # 解压缩到指定目录
+$ unzip -l archive.zip # 浏览压缩包内容
+```
+
+### 处理 RAR 压缩包：`rar` 与 `unrar` {#rar}
+
+`rar` 和 `unrar` 工具分别负责 RAR 压缩包的压缩与解压缩，使用以下命令安装：
+
+```shell
+$ sudo apt install rar unrar
+```
+
+!!! warning "RAR 压缩程序的版权问题"
+
+    RAR 的解压缩程序是免费的（源代码也是公开的[^3]），但是压缩程序并不是。Windows 下的 WinRAR，以及上面安装的 Linux 的 `rar` 程序都是 [RARLAB](https://www.rarlab.com/) 的商业共享软件。尽管软件层面没有功能限制，但是根据 RARLAB 的要求，在经过 `rar` 的 40 天试用期后，需要购买授权。具体要求可在安装后查看 `/usr/share/doc/rar/order.htm` 文件。
+
+例子如下：
+
+```shell
+$ rar a archive.rar path/file1 path/dir1 # 压缩文件和目录/添加文件和目录到压缩包
+$ unrar x archive.rar # 解压缩
+$ unrar x archive.rar path/ # 解压缩到指定目录
+$ unrar l archive.rar # 浏览压缩包内容
+```
+
+RARLAB 仅提供了 Linux 下命令行界面的 RAR 压缩包处理工具。但在安装以上软件包后，Linux 下桌面环境中的压缩工具应当都能够支持 RAR 格式的处理。如有特殊需要，可以使用 Wine（Windows 兼容层）运行 WinRAR。
+
+### 处理 7zip 等压缩包：`p7zip` {#7z}
+
+Ubuntu 下 `p7zip-full` 包提供了 `7z` 等工具处理 7z 包（以及其他各种压缩格式）：
+
+```
+$ sudo apt install p7zip-full
+```
+
+!!! info "`7z`、`7za`、`7zr` 与 `p7zip` 的区别"
+
+    `p7zip-full` 软件包同时提供了以上的命令行工具。其中 `7z`、`7za` 和 `7zr` 都是直接处理 7zip 压缩包的程序，区别如下[^4]：
+
+    - `7z`：通过插件支持各类压缩格式的处理；
+    - `7za`：是独立的程序，支持的格式比 `7z` 少一些；
+    - `7zr`：轻量级的 `7za`，仅包含 7zip 等少量压缩算法支持的工具。
+
+    而 `p7zip` 基于 `7za` 或 `7zr`，提供类似于 `gzip` 的接口。
+
+以下给出 `7z` 命令行工具的一些例子：
+
+```shell
+$ 7z a archive.7z path/file1 path/dir1 # 压缩文件和目录/添加文件和目录到压缩包
+$ 7z x archive.7z # 解压缩
+$ 7z x archive.7z -opath/ # 解压缩到 path/ 目录下
+$ 7z l archive.7z # 浏览压缩包内容
+```
+
+与 `rar` 类似，7z 未提供 GUI 工具。如有特殊需要，可以使用 Wine 运行 Windows 版的 7-Zip。
+
+## 引用来源与注释 {#references .no-underline }
 
 [^1]: 本节使用的示例参考自 Nginx 官方说明 [Compiling and Installing from Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)。
 [^2]: 信息来自维基百科条目：[Nginx](https://zh.wikipedia.org/wiki/Nginx)。
+[^3]: 但是 `unrar` 不是开源软件，因为它的[协议](https://github.com/debian-calibre/unrar-nonfree/blob/master/license.txt)不允许使用其代码制作压缩 RAR 包的工具，这违背了开源软件的定义。
+[^4]: 参考了 <https://wiki.archlinux.org/title/p7zip#Differences_between_7z,_7za_and_7zr_binaries> 与相关 man 文档编写。
