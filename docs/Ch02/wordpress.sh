@@ -29,10 +29,11 @@ a2enmod rewrite
 service apache2 reload
 
 echo "Creating database."
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8 COLLATE utf8_general_ci;"
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci;"
 
 echo "Configurating privileges."
-mysql -u root -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY '${your_password}';"
+mysql -u root -e "CREATE USER IF NOT EXISTS wordpress@localhost IDENTIFIED BY '${your_password}';"
+mysql -u root -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost;"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 echo "${your_password}" > /root/mysql_wordpress_password.txt
@@ -43,7 +44,7 @@ define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpress');
 define('DB_PASSWORD', '${your_password}');
 define('DB_HOST', 'localhost');
-define('DB_COLLATE', 'utf8_general_ci');
+define('DB_COLLATE', 'utf8mb4_general_ci');
 define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 EOF

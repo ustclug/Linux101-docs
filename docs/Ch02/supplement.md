@@ -130,7 +130,7 @@ UUID 为 "caffeine@patapon.info"
 
 ![](images/caffeine-folder.png)
 
-并将该文件夹放到`~/.local/share/gnome-shell/extensions/`中。
+并将该文件夹放到 `~/.local/share/gnome-shell/extensions/` 中。
 
 打开 `gnome-tweaks`。
 
@@ -399,7 +399,7 @@ Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Ot
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 ```
 
-参照下面的命令，输入，其中 `<your-password>` 替换为你自己设定的密码：
+Ubuntu 18.04 默认安装的是 MySQL 5.7。参照下面的命令，输入，其中 `<your-password>` 替换为你自己设定的密码：
 
 ```mysql
 mysql> CREATE DATABASE wordpress;
@@ -407,6 +407,17 @@ mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
     -> ON wordpress.*
     -> TO wordpress@localhost
     -> IDENTIFIED BY '<your-password>';
+mysql> FLUSH PRIVILEGES;
+```
+
+Ubuntu 20.04 默认安装的是 MySQL 8.0。由于其不再支持使用 `GRANT` 直接创建用户，命令需要小幅修改：
+
+```mysql
+mysql> CREATE DATABASE wordpress;
+mysql> CREATE USER wordpress@localhost IDENTIFIED BY '<your-password>';
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+    -> ON wordpress.*
+    -> TO wordpress@localhost;
 mysql> FLUSH PRIVILEGES;
 ```
 
@@ -432,7 +443,7 @@ define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpress');
 define('DB_PASSWORD', '<your-password>');
 define('DB_HOST', 'localhost');
-define('DB_COLLATE', 'utf8_general_ci');
+define('DB_COLLATE', 'utf8mb4_general_ci');
 define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 ```
