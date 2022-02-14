@@ -647,10 +647,10 @@
       
         <li class="md-nav__item">
   <a href="#compiling-installation" class="md-nav__link">
-    编译安装 1
+    编译安装
   </a>
   
-    <nav class="md-nav" aria-label="编译安装 1">
+    <nav class="md-nav" aria-label="编译安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -708,15 +708,36 @@
       
         <li class="md-nav__item">
   <a href="#tar-alternative" class="md-nav__link">
-    tar 的替代
+    tar 的替代与其他压缩软件
   </a>
   
-    <nav class="md-nav" aria-label="tar 的替代">
+    <nav class="md-nav" aria-label="tar 的替代与其他压缩软件">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#unar" class="md-nav__link">
     unar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip" class="md-nav__link">
+    处理 ZIP 压缩包：zip 与 unzip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rar" class="md-nav__link">
+    处理 RAR 压缩包：rar 与 unrar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7z" class="md-nav__link">
+    处理 7zip 等压缩包：p7zip
   </a>
   
 </li>
@@ -728,7 +749,7 @@
       
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
-    引用来源
+    引用来源与注释
   </a>
   
 </li>
@@ -1321,10 +1342,10 @@
       
         <li class="md-nav__item">
   <a href="#compiling-installation" class="md-nav__link">
-    编译安装 1
+    编译安装
   </a>
   
-    <nav class="md-nav" aria-label="编译安装 1">
+    <nav class="md-nav" aria-label="编译安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1382,15 +1403,36 @@
       
         <li class="md-nav__item">
   <a href="#tar-alternative" class="md-nav__link">
-    tar 的替代
+    tar 的替代与其他压缩软件
   </a>
   
-    <nav class="md-nav" aria-label="tar 的替代">
+    <nav class="md-nav" aria-label="tar 的替代与其他压缩软件">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#unar" class="md-nav__link">
     unar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip" class="md-nav__link">
+    处理 ZIP 压缩包：zip 与 unzip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rar" class="md-nav__link">
+    处理 RAR 压缩包：rar 与 unrar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7z" class="md-nav__link">
+    处理 7zip 等压缩包：p7zip
   </a>
   
 </li>
@@ -1402,7 +1444,7 @@
       
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
-    引用来源
+    引用来源与注释
   </a>
   
 </li>
@@ -1428,8 +1470,8 @@
 <div class="admonition success">
 <p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
 </div>
-<h2 id="compiling-installation">编译安装 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><a class="headerlink" href="#compiling-installation" title="Permanent link">&para;</a></h2>
-<p><em>本节的操作基于 Ubuntu 18.04 操作系统。</em></p>
+<h2 id="compiling-installation">编译安装<a class="headerlink" href="#compiling-installation" title="Permanent link">&para;</a></h2>
+<p>本节<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>的操作基于 Ubuntu 18.04 操作系统。</p>
 <p>除了在正文中提到的几种常见的安装方法外，还有从源代码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，就可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。</p>
 <p>本文以编译安装 Nginx 软件作为示范。</p>
 <div class="admonition tip">
@@ -1528,28 +1570,69 @@ $ sudo make install
 <p>在这个过程中，make 命令会将编译好的二进制文件拷贝到相对应的安装目录，拷贝用户手册等。</p>
 </li>
 </ol>
-<h2 id="tar-alternative">tar 的替代<a class="headerlink" href="#tar-alternative" title="Permanent link">&para;</a></h2>
-<p>在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件</p>
+<h2 id="tar-alternative">tar 的替代与其他压缩软件<a class="headerlink" href="#tar-alternative" title="Permanent link">&para;</a></h2>
+<p>在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件。</p>
 <h3 id="unar">unar<a class="headerlink" href="#unar" title="Permanent link">&para;</a></h3>
-<p>unar 是 macOS 上的软件 <a href="https://theunarchiver.com/">The Unarchiver</a> 的命令行工具，能够同样用于 Windows 和 Linux，软件介绍：<a href="https://theunarchiver.com/command-line">Command line tools</a></p>
-<p>Ubuntu 上的安装方式</p>
-<div class="highlight"><pre><span></span><code>apt install unar
+<p>unar 是 macOS 上的软件 <a href="https://theunarchiver.com/">The Unarchiver</a> 的命令行工具，能够同样用于 Windows 和 Linux。</p>
+<p>软件介绍：<a href="https://theunarchiver.com/command-line">Unar and Lsar | Command Line Tools for The Unarchiver</a>。</p>
+<p>Ubuntu 上直接使用 apt 安装即可：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install unar
 </code></pre></div>
-<blockquote>
-<p>对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装</p>
-</blockquote>
-<p>安装之后会得到两个命令：<code>unar</code> 和 <code>lsar</code>，分别用来解压存档文件以及浏览存档文件内容</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 将存档文件提取到 output 文件夹中</span>
-unar archive.zip -o output
-
-<span class="c1"># 浏览存档文件内容</span>
-lsar archive.zip
-<span class="c1"># 查看详细信息</span>
-lsar -l archive.zip
-<span class="c1"># 查看特别详细的信息</span>
-lsar -L archive.zip
+<p>对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装。</p>
+<p>安装之后会得到两个命令：<code>unar</code> 和 <code>lsar</code>，分别用来解压存档文件以及浏览存档文件内容：</p>
+<div class="highlight"><pre><span></span><code>$ unar archive.zip -o output <span class="c1"># 将存档文件提取到 output 文件夹中</span>
+$ lsar archive.zip <span class="c1"># 浏览存档文件内容</span>
+$ lsar -l archive.zip <span class="c1"># 查看详细信息</span>
+$ lsar -L archive.zip <span class="c1"># 查看特别详细的信息</span>
 </code></pre></div>
-<h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h3 id="zip">处理 ZIP 压缩包：<code>zip</code> 与 <code>unzip</code><a class="headerlink" href="#zip" title="Permanent link">&para;</a></h3>
+<p><code>zip</code> 和 <code>unzip</code> 工具分别负责 ZIP 压缩包的压缩与解压缩，使用以下命令安装：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install zip unzip
+</code></pre></div>
+<p>以下提供一些命令例子，更多的功能需要查看对应的文档：</p>
+<div class="highlight"><pre><span></span><code>$ zip -r archive.zip path/file1 path/dir1  <span class="c1"># （递归地）压缩文件和目录</span>
+$ zip archive.zip path/file2 <span class="c1"># 添加文件到已有的压缩包</span>
+$ unzip archive.zip <span class="c1"># 解压缩</span>
+$ unzip archive.zip -d path/ <span class="c1"># 解压缩到指定目录</span>
+$ unzip -l archive.zip <span class="c1"># 浏览压缩包内容</span>
+</code></pre></div>
+<h3 id="rar">处理 RAR 压缩包：<code>rar</code> 与 <code>unrar</code><a class="headerlink" href="#rar" title="Permanent link">&para;</a></h3>
+<p><code>rar</code> 和 <code>unrar</code> 工具分别负责 RAR 压缩包的压缩与解压缩，使用以下命令安装：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install rar unrar
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">RAR 压缩程序的版权问题</p>
+<p>RAR 的解压缩程序是免费的（源代码也是公开的<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>），但是压缩程序并不是。Windows 下的 WinRAR，以及上面安装的 Linux 的 <code>rar</code> 程序都是 <a href="https://www.rarlab.com/">RARLAB</a> 的商业共享软件。尽管软件层面没有功能限制，但是根据 RARLAB 的要求，在经过 <code>rar</code> 的 40 天试用期后，需要购买授权。具体要求可在安装后查看 <code>/usr/share/doc/rar/order.htm</code> 文件。</p>
+</div>
+<p>例子如下：</p>
+<div class="highlight"><pre><span></span><code>$ rar a archive.rar path/file1 path/dir1 <span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
+$ unrar x archive.rar <span class="c1"># 解压缩</span>
+$ unrar x archive.rar path/ <span class="c1"># 解压缩到指定目录</span>
+$ unrar l archive.rar <span class="c1"># 浏览压缩包内容</span>
+</code></pre></div>
+<p>RARLAB 仅提供了 Linux 下命令行界面的 RAR 压缩包处理工具。但在安装以上软件包后，Linux 下桌面环境中的压缩工具应当都能够支持 RAR 格式的处理。如有特殊需要，可以使用 Wine（Windows 兼容层）运行 WinRAR。</p>
+<h3 id="7z">处理 7zip 等压缩包：<code>p7zip</code><a class="headerlink" href="#7z" title="Permanent link">&para;</a></h3>
+<p>Ubuntu 下 <code>p7zip-full</code> 包提供了 <code>7z</code> 等工具处理 7z 包（以及其他各种压缩格式）：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install p7zip-full
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title"><code>7z</code>、<code>7za</code>、<code>7zr</code> 与 <code>p7zip</code> 的区别</p>
+<p><code>p7zip-full</code> 软件包同时提供了以上的命令行工具。其中 <code>7z</code>、<code>7za</code> 和 <code>7zr</code> 都是直接处理 7zip 压缩包的程序，区别如下<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>：</p>
+<ul>
+<li><code>7z</code>：通过插件支持各类压缩格式的处理；</li>
+<li><code>7za</code>：是独立的程序，支持的格式比 <code>7z</code> 少一些；</li>
+<li><code>7zr</code>：轻量级的 <code>7za</code>，仅包含 7zip 等少量压缩算法支持的工具。</li>
+</ul>
+<p>而 <code>p7zip</code> 基于 <code>7za</code> 或 <code>7zr</code>，提供类似于 <code>gzip</code> 的接口。</p>
+</div>
+<p>以下给出 <code>7z</code> 命令行工具的一些例子：</p>
+<div class="highlight"><pre><span></span><code>$ 7z a archive.7z path/file1 path/dir1 <span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
+$ 7z x archive.7z <span class="c1"># 解压缩</span>
+$ 7z x archive.7z -opath/ <span class="c1"># 解压缩到 path/ 目录下</span>
+$ 7z l archive.7z <span class="c1"># 浏览压缩包内容</span>
+</code></pre></div>
+<p>与 <code>rar</code> 类似，7z 未提供 GUI 工具。如有特殊需要，可以使用 Wine 运行 Windows 版的 7-Zip。</p>
+<h2 class="no-underline" id="references">引用来源与注释<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>
@@ -1558,6 +1641,12 @@ lsar -L archive.zip
 </li>
 <li id="fn:2">
 <p>信息来自维基百科条目：<a href="https://zh.wikipedia.org/wiki/Nginx">Nginx</a>。&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>但是 <code>unrar</code> 不是开源软件，因为它的<a href="https://github.com/debian-calibre/unrar-nonfree/blob/master/license.txt">协议</a>不允许使用其代码制作压缩 RAR 包的工具，这违背了开源软件的定义。&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>参考了 <a href="https://wiki.archlinux.org/title/p7zip#Differences_between_7z,_7za_and_7zr_binaries">https://wiki.archlinux.org/title/p7zip#Differences_between_7z,_7za_and_7zr_binaries</a> 与相关 man 文档编写。&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
