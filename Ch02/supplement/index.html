@@ -1607,7 +1607,7 @@ $ sudo reboot
 <p><img alt="" src="../images/metadata.png" /></p>
 <p>UUID 为 "caffeine@patapon.info"</p>
 <p><img alt="" src="../images/caffeine-folder.png" /></p>
-<p>并将该文件夹放到<code>~/.local/share/gnome-shell/extensions/</code>中。</p>
+<p>并将该文件夹放到 <code>~/.local/share/gnome-shell/extensions/</code> 中。</p>
 <p>打开 <code>gnome-tweaks</code>。</p>
 <div class="highlight"><pre><span></span><code>$ gnome-tweaks
 </code></pre></div>
@@ -1780,12 +1780,20 @@ Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
 Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
 Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 </code></pre></div>
-<p>参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码：</p>
+<p>Ubuntu 18.04 默认安装的是 MySQL 5.7。参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">wordpress</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span><span class="w"></span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">wordpress</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="w"></span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>Ubuntu 20.04 默认安装的是 MySQL 8.0。由于其不再支持使用 <code>GRANT</code> 直接创建用户，命令需要小幅修改：</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">wordpress</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span><span class="w"></span>
+<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">wordpress</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>这里每次执行成功都会得到：</p>
@@ -1801,7 +1809,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8mb4_general_ci&#39;</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </code></pre></div>
