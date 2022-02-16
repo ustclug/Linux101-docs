@@ -204,7 +204,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     可以使用如下命令：
 
     ```shell
-    sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+    $ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
     ```
 
     当然也可以直接使用 vim、nano 等文本编辑器进行修改。
@@ -377,11 +377,15 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 直接通过 `dpkg` 安装 deb 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
 
-可以通过如下的方式调用 `apt` 帮助修复依赖管理：
+!!! warning "请避免直接使用 `dpkg -i` 安装 deb 包。"
 
-```shell
-sudo apt -f install
-```
+    在绝大多数情况下，都应该使用 `apt` 来安装 deb 文件。
+
+    如果不小心执行了 `dpkg -i` 导致系统出现依赖问题，可以尝试通过如下的方式调用 `apt` 帮助修复依赖管理：
+
+    ```shell
+    $ sudo apt -f install
+    ```
 
 !!! example "用 deb 文件安装 VSCode"
 
@@ -404,16 +408,16 @@ sudo apt -f install
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
     ```shell
-    # 下载二进制的压缩文件存档
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+    $ # 下载二进制的压缩文件存档
+    $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
-    # 创建 clang 目录
-    mkdir clang
+    $ # 创建 clang 目录
+    $ mkdir clang
 
-    # 将下载得到的压缩文件解压到当前目录
-    tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
+    $ # 将下载得到的压缩文件解压到当前目录
+    $ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 
-    cd clang
+    $ cd clang
     ```
 
     在进入解压得到的目录后，可以查看当前的目录下有什么内容：
@@ -443,8 +447,8 @@ sudo apt -f install
     我们可以这样做：
 
     ```shell
-    # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
-    sudo cp -R * /usr/local/
+    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
+    $ sudo cp -R * /usr/local/
     ```
 
     为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
@@ -473,11 +477,11 @@ sudo apt -f install
 ### 复制文件和目录 {#cp}
 
 ```shell
-# 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
-cp [OPTION] SOURCE DEST
+$ # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
+$ cp [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
-cp [OPTION] SOURCE... DIRECTORY
+$ # 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
+$ cp [OPTION] SOURCE... DIRECTORY
 ```
 
 常用的选项:
@@ -494,17 +498,17 @@ cp [OPTION] SOURCE... DIRECTORY
 
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
     ```shell
-    cp file1.txt file2.txt
+    $ cp file1.txt file2.txt
     ```
 
     * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
     ```shell
-    cp file1.txt file2.txt ./file/
+    $ cp file1.txt file2.txt ./file/
     ```
 
     * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
     ```shell
-    cp -r dir1 ./test/
+    $ cp -r dir1 ./test/
     ```
 
 !!! tip "硬链接和软链接"
@@ -513,13 +517,16 @@ cp [OPTION] SOURCE... DIRECTORY
 
     简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。
 
-    需要先了解一个概念：inode
+    需要先了解一个概念：inode。
 
     在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。
 
     关于 inode 的进一步讲解可以参考[这篇文章](https://www.ruanyifeng.com/blog/2011/12/inode.html)。
 
     ![硬链接与软链接图例](images/link.png)
+
+    硬链接与软链接图例
+    {: .caption }
 
     硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
 
@@ -532,11 +539,11 @@ cp [OPTION] SOURCE... DIRECTORY
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
 ```shell
-# 将 SOURCE 文件移动到 DEST 文件
-mv [OPTION] SOURCE DEST
+$ # 将 SOURCE 文件移动到 DEST 文件
+$ mv [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件
-mv [OPTION] SOURCE... DIRECTORY
+$ # 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件
+$ mv [OPTION] SOURCE... DIRECTORY
 ```
 
 常用的选项：
@@ -552,7 +559,7 @@ mv [OPTION] SOURCE... DIRECTORY
 ```shell
 # 删除 FILE 文件，FILE 可以为多个文件。
 # 如果需要删除目录，需要通过 -r 选项递归删除目录
-rm [OPTION] FILE...
+$ rm [OPTION] FILE...
 ```
 
 常用的选项：
@@ -568,26 +575,26 @@ rm [OPTION] FILE...
     删除 `file1.txt` 文件：
 
     ```
-    rm file1.txt
+    $ rm file1.txt
     ```
 
     删除 `test` 目录及其下的所有文件：
 
     ```
-    rm -r test/
+    $ rm -r test/
     ```
 
     删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 
     ```
-    rm -rf test1/ test2/ file1.txt
+    $ rm -rf test1/ test2/ file1.txt
     ```
 
 ### 创建目录 {#mkdir}
 
 ```shell
-# 创建一个目录，名为 DIR_NAME
-mkdir DIR_NAME...
+$ # 创建一个目录，名为 DIR_NAME
+$ mkdir DIR_NAME...
 ```
 
 !!! example "创建目录示例"
@@ -595,7 +602,7 @@ mkdir DIR_NAME...
     创建名为 `test1`、`test2` 的目录：
 
     ```
-    mkdir test1 test2
+    $ mkdir test1 test2
     ```
 
 ## 使用 tar 操作存档、压缩文件 {#tar}
@@ -605,8 +612,8 @@ mkdir DIR_NAME...
 通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
 ```shell
-# 命令格式如下，请参考下面的使用样例了解使用方法
-tar [OPTIONS] [FILE]...
+$ # 命令格式如下，请参考下面的使用样例了解使用方法
+$ tar [OPTIONS] [FILE]...
 ```
 
 常用选项：
@@ -634,40 +641,40 @@ tar [OPTIONS] [FILE]...
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
 
         ```shell
-        tar -c -f target.tar file1 file2 file3
+        $ tar -c -f target.tar file1 file2 file3
         ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
 
         ```shell
-        tar -x -f target.tar -C test/
+        $ tar -x -f target.tar -C test/
         ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
 
         ```shell
-        tar -cz -f target.tar.gz file1 file2 file3
+        $ tar -cz -f target.tar.gz file1 file2 file3
         ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
 
         ```shell
-        tar -xz -f target.tar.gz -C test/
+        $ tar -xz -f target.tar.gz -C test/
         ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
 
         ```shell
-        tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+        $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
         ```
 
     * 列出 `target.tar` 存档文件中的内容
 
         ```shell
-        tar -t -f target.tar
+        $ tar -t -f target.tar
 
-        # 打印出文件的详细信息
-        tar -tv -f target.tar
+        $ # 打印出文件的详细信息
+        $ tar -tv -f target.tar
         ```
 
 !!! tip "组合 tar 的选项"
@@ -675,9 +682,9 @@ tar [OPTIONS] [FILE]...
     与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
 
     ```shell
-    tar -c -z -v -f target.tar test/
-    tar -czvf target.tar test/
-    tar -f target.tar -czv test/
+    $ tar -c -z -v -f target.tar test/
+    $ tar -czvf target.tar test/
+    $ tar -f target.tar -czv test/
     ```
 
 !!! tip "存档文件的后缀名"
@@ -709,9 +716,9 @@ tar [OPTIONS] [FILE]...
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
 ```shell
-# 调出 tar 命令和 ls 命令的文档
-man tar
-man ls
+$ # 调出 tar 命令和 ls 命令的文档
+$ man tar
+$ man ls
 ```
 
 文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 `tldr`。
@@ -760,7 +767,7 @@ DESCRIPTION
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
 ```shell
-apt install tldr
+$ sudo apt install tldr
 ```
 
 #### 使用 {#use-tldr}
