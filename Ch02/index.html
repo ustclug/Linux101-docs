@@ -1906,6 +1906,15 @@ $ ls
 <p>下载脚本要使用 <code>curl</code> 命令，我们要先安装 curl。</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install curl
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">关于记号约定</p>
+<p>如果直接复制以上的命令到终端，你可能会看到以下场景：</p>
+<div class="highlight"><pre><span></span><code>ustc@ustclug-linux101:~$ $ sudo apt install curl
+$：未找到命令
+</code></pre></div>
+<p>这里给出的命令开头的 <code>$</code> 代表该命令以非 root（最高权限）执行，并非命令的一部分。打开终端后，你也可以看到在光标前面有一个 <code>$</code> 符号。所以如果需要复制命令，请勿复制最开头的 <code>$</code>。</p>
+<p>可以阅读<a href="../notations/">记号约定</a>了解有关信息。</p>
+</div>
 <p>打开终端并运行：</p>
 <div class="highlight"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh <span class="p">|</span> sudo bash
 </code></pre></div>
