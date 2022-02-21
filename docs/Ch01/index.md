@@ -68,6 +68,18 @@ Linux 内核并不是一个完整的操作系统，因为它过于精简，单�
 
     如今智能手机上一个常见的系统是谷歌公司开发的 Android，它其实也是一个基于 Linux 内核开发的操作系统。不过它没有采用 GNU 组件作为工具，而是谷歌自行研发的另一套体系。基于这套体系构成的组合则被称为 Android/Linux，它和我们接下来讨论的 GNU/Linux 大相径庭，感兴趣的读者可以参考本章的拓展阅读：[Android/Linux](supplement.md#android-linux)。
 
+??? info "GNU 自由软件"
+
+    进入 GNU/Linux 世界，便意味着与 GNU 自由软件打交道。先看看一堆字母 g 开头的应用程序：
+
+    - gcc: GNU 的 C 和 C++ 编译器
+    - gdb: GNU 程序调试器
+    - gzip: gz 格式压缩与解压缩工具
+    - GNOME: 隶属于 GNU 项目的桌面环境
+    - gimp: GNU 图像编辑工具
+
+    它们的首字母 g 都是 GNU 的缩写（当然不是所有以 g 开头的都是 GNU 软件）。许多 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件；还有[更多优秀的软件](https://www.gnu.org/software/)，被自由软件爱好者维护、分享……选择 Linux，很大程度上是一种对极客精神与开源文化的认同。
+
 ### Linux 发行版 {#linux-distributions}
 
 一个典型的 Linux 发行版除了 Linux 内核以外，通常还会包括一系列 GNU 工具和库、一些附带的软件、说明文档、一个桌面系统、一个窗口管理器和一个桌面环境。不同的发行版之间除了 Linux 内核以外的其它部分都有可能不一样，因此有的时候我们对比某两种发行版的时候会觉得它们看起来像是完全不一样的操作系统，然而实质上它们却拥有着相同的核心，即 Linux 内核。
@@ -297,6 +309,12 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
     著作传的标志，注意到它与常见的著作权标志左右颠倒
     {: .caption }
+
+## 其他资料 {#extra-resources}
+
+[Red Hat 公司制作的录音节目 Command Line Heroes](https://www.redhat.com/en/command-line-heroes)
+
+: 纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。
 
 ## 引用来源与备注 {#references .no-underline}
 

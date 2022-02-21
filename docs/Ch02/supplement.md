@@ -458,6 +458,6 @@ $ sudo service mysql start
 
 最后我们打开浏览器并进入 `localhost/blog` 来完成最后的配置。
 
-## 参考资料 {#references .no-underline}
+## 引用来源 {#references .no-underline}
 
 - [How to install themes with GNOME tweak tool? - Ask Ubuntu](https://askubuntu.com/a/1128098/612877)

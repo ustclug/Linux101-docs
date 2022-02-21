@@ -219,7 +219,7 @@ $ 7z l archive.7z # 浏览压缩包内容
 
 与 `rar` 类似，7z 未提供 GUI 工具。如有特殊需要，可以使用 Wine 运行 Windows 版的 7-Zip。
 
-## 引用来源与注释 {#references .no-underline }
+## 引用来源与备注 {#references .no-underline }
 
 [^1]: 本节使用的示例参考自 Nginx 官方说明 [Compiling and Installing from Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)。
 [^2]: 信息来自维基百科条目：[Nginx](https://zh.wikipedia.org/wiki/Nginx)。
