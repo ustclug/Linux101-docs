@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -1092,8 +1092,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_13">
@@ -1107,20 +1105,6 @@
           附录
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Appendix/glossary/" class="md-nav__link">
-        词汇表
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -1478,6 +1462,7 @@
 </a>
 
 
+
 <h1 id="_1">进程、前后台、服务与例行性任务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div class="admonition success">
 <p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
@@ -1487,10 +1472,6 @@
 <p>进入 Linux 的世界，便意味着与系统管理直接打交道，无法像在 Windows 中一样独善其身。系统正在做什么？我们如何给系统安排任务？本章将要带大家走进进程，进而实现 Linux 更高级的自动化。</p>
 <p>其实应当坦言，对于许多仅仅是想应用 Linux 的同学而言，似乎系统层面的细节离自己需要的功能很远，不必加以理会。如果仅仅是以“个人使用”为目的，也许知道如何在程序失去响应时把它干掉就足够了。然而同学们有没有好奇过，我们为什么要装操作系统？重点是，为什么又装了一个 Linux 操作系统？简言之，操作系统可以帮程序“善后”，让程序过上“衣来伸手，饭来张口”的日子。而不同的操作系统会使用不同的策略和机制去提供相同的服务，策略机制的不同又体现着其服务理念的差异。当你大致了解 Linux 的机制时，“为什么”将自有答案。</p>
 <p>Linux 的特性，还需从操作系统管理进程的功能说起……</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">本章阅读须知</p>
-<p>本节内容将不可避免遇到以下名词：操作系统，内核 (kernel)，shell，中断，系统调用等等。建议先阅读本书<a href="../Appendix/glossary/">词汇表</a>，并在浏览本章内容时随时参考。</p>
 </div>
 <h2 id="process">进程<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
 <p><strong>现在设想你有一堆任务在一周之内完成，应该如何下手呢？</strong></p>
@@ -1548,8 +1529,8 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 <p>优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 <code>sched(7)</code> 的 Scheduling policies 小节。</p>
 <details class="info">
 <summary>协作与抢占</summary>
-</details>
 <p>实际上，并不是所有的操作系统都去操这个心，有的操作系统从来不管 CPU 怎么用：只要程序不放弃 CPU，就可以一直运行下去。这种操作系统为<strong>协作式</strong> (cooperative) 操作系统，而这往往意味着操作系统中软件之间高度耦合，互相考虑。但我们日常中经常使用不同来源的软件，不可能为彼此考虑周全。为了保证这些软件之间资源分配的公平性，显然必须引入轮流调度算法，分配<strong>时间片</strong> (time slice)，让每个进程在一定时间内都得到运行。这种运行模式的操作系统便称为<strong>抢占式</strong> (preemptive) 操作系统。</p>
+</details>
 <details class="info">
 <summary>中断与进程调度</summary>
 <p>系统进行调度，主要面临这样几个问题：</p>
@@ -1558,8 +1539,10 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 <li>要不要进行调度切换进程？</li>
 <li>该调度谁？</li>
 </ul>
-<p>首先若想进行调度，必有<a href="../Appendix/glossary/#irq">中断</a>参与。简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。没有中断，操作系统都无法介入运行，如何切换进程？可见，操作系统必然在有中断时进行调度。那么现代操作系统如何利用中断进行调度呢？</p>
-<p>已知我们一需要轮流调度算法、二需要支持高优先级抢占低优先级与事件驱动，则系统必然需要在周期性的时钟中断到来时，重新执行一遍调度，查看当前进程的时间片是否使用完毕，以及是否有高优先级程序已经准备就绪。而为了达成事件驱动，系统在一些其他中断发生后，也需要进行例行调度检查，如果响应该中断的程序更紧急，应当立即执行。</p>
+<p>首先若想进行调度，必有中断参与。想象这样一个场景：你正在看书，被电话铃声打断，接完电话，继续读书。在这里，电话铃声就是中断，而电话号决定了你要如何（使用什么处理程序）回应。</p>
+<p>在进程调度的场景中，时钟电路每隔一段时间会发送时钟中断，在收到这个中断之后，CPU 就会保存当前执行的程序的状态，然后执行操作系统的调度程序，调度程序会（根据调度算法）选择下一个执行的程序。</p>
+<p>简言之，中断即是为了能够让操作系统或是其他程序切入运行状态程序所提供的机制。而调度过程本身即是打断正在运行的程序，唤起另一个程序的过程。对于抢占式操作系统来说，中断是进程切换所必须的。那么现代操作系统如何利用中断进行调度呢？</p>
+<p>已知我们一需要轮流调度算法、二需要支持高优先级抢占低优先级与事件驱动，则系统必然需要在周期性的时钟中断到来时，重新执行一遍调度，查看当前进程的时间片是否使用完毕，以及是否有高优先级程序已经准备就绪。而为了达成事件驱动，系统在其他一些中断发生后，也需要进行例行调度检查，如果响应该中断的程序更紧急，应当立即执行。</p>
 <p>如上调度策略一旦确定，则三个问题迎刃而解：</p>
 <ul>
 <li>在中断发生时进行调度。</li>
@@ -1710,8 +1693,8 @@ nice -n <span class="m">10</span> vim
 <details class="tip">
 <summary>一点细节</summary>
 <p><img alt="type_kill" src="images/type_kill.png" /></p>
-<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为<a href="../Appendix/glossary/#builtin-command">内建命令</a>。行为与直接运行 man 命令得到的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
-<p><code>man builtins</code> 可以查看 bash 中的内建命令文档。</p>
+<p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为内建命令。行为与直接运行 man 命令得到的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
+<p><code>man builtins</code> 可以查看 bash 中的内建命令文档。使用 <code>type &lt;命令名&gt;</code> 可以查看实际运行的命令是否为内建命令。</p>
 </details>
 <h4 id="pgrep-pkill-killall">pgrep / pkill、 killall 等<a class="headerlink" href="#pgrep-pkill-killall" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，以及它们的简介。这里列举了一些：</p>
@@ -1733,10 +1716,9 @@ nice -n <span class="m">10</span> vim
 <p>许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会发送 SIGHUP (Signal hangup)，该信号会被广播到会话下每一个进程，默认动作即退出程序运行。</p>
 <div class="admonition info">
 <p class="admonition-title">关于 SIGHUP 的细节</p>
-</div>
 <p>如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 <code>kill -9</code> (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
-<pre><code>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。
-</code></pre>
+<p>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。</p>
+</div>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
 <div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
@@ -2114,10 +2096,10 @@ usage:  crontab [-u user] file
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../assets/javascripts/bundle.8aa65030.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       

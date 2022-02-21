@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -740,13 +740,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#priority" class="md-nav__link">
-    Linux 中的优先级
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fork" class="md-nav__link">
     关于 fork()
   </a>
@@ -761,64 +754,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#systemd-service" class="md-nav__link">
-    Systemd service 的文件结构
+  <a href="#terminal" class="md-nav__link">
+    终端 (Terminal) 与控制台 (Console)
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#init" class="md-nav__link">
-    init 的历史
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    常见服务一览
-  </a>
-  
-    <nav class="md-nav" aria-label="常见服务一览">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    系统服务
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    对外服务
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mail-server" class="md-nav__link">
-    mail server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dns-server" class="md-nav__link">
-    DNS server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxy-server" class="md-nav__link">
-    proxy server
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1223,8 +1161,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_13">
@@ -1238,20 +1174,6 @@
           附录
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Appendix/glossary/" class="md-nav__link">
-        词汇表
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -1343,13 +1265,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#priority" class="md-nav__link">
-    Linux 中的优先级
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fork" class="md-nav__link">
     关于 fork()
   </a>
@@ -1364,64 +1279,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#systemd-service" class="md-nav__link">
-    Systemd service 的文件结构
+  <a href="#terminal" class="md-nav__link">
+    终端 (Terminal) 与控制台 (Console)
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#init" class="md-nav__link">
-    init 的历史
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    常见服务一览
-  </a>
-  
-    <nav class="md-nav" aria-label="常见服务一览">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    系统服务
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    对外服务
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mail-server" class="md-nav__link">
-    mail server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dns-server" class="md-nav__link">
-    DNS server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proxy-server" class="md-nav__link">
-    proxy server
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1442,17 +1302,23 @@
 </a>
 
 
+
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
 <div class="admonition failure">
 <p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
 </div>
 <h2 id="proc">Linux 下进程查看原理<a class="headerlink" href="#proc" title="Permanent link">&para;</a></h2>
-<p>正文提到，htop 命令的前身是 ps 命令。ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控，但是它至少足够基础，可以供 strace 命令分析。</p>
+<p>正文提到，ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控。但是它足够简单，可以供我们进行分析。直接阅读 ps 的源代码是最直接的方法，但是成本可能过高，更好的方法是用 strace 命令来分析 ps 运行过程中使用到的系统调用。</p>
+<div class="admonition info">
+<p class="admonition-title">什么是系统调用</p>
+<p>现代操作系统有效地隔离了进程，不允许进程越过操作系统与外界交互。操作系统提供的和外界交互的方式就是系统调用。操作系统提供的系统调用可以让进程对文件、内存、进程等的状态进行控制，从而在安全隔离进程的前提下允许程序实现丰富多彩的功能。</p>
+<p>系统调用运行在操作系统核心，为内核与用户层提供了一种通信的方式，是各用户进程「使用」操作系统的统一接口。如果没有系统调用，用户程序就需要直接操作硬件来进行需要的操作，而这对于现代操作系统来说显然是无法接受的。</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">strace 命令</p>
 <p>strace 可以追踪程序使用的系统调用，输出在屏幕上，是一个程序调试工具。此处用来追踪 ps 打开的文件。</p>
 <p>strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。</p>
-<p>（注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="/Ch09/">第九章</a>。）</p>
+<p>注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="/Ch09/">第九章</a>。</p>
 </div>
 <div class="highlight"><pre><span></span><code>$ strace ps
 ...
@@ -1467,7 +1333,7 @@ close<span class="o">(</span><span class="m">6</span><span class="o">)</span>
 </code></pre></div>
 <p><code>strace</code> 会输出很多内容，上面是其中的典型案例。</p>
 <p>可以大致猜测，ps 通过打开 <code>/proc/1</code> 文件夹下的 <code>stat</code> 和 <code>status</code> 文件，获得 1 号进程的信息。我们也可以试着打开它：</p>
-<div class="highlight"><pre><span></span><code>$ cat /proc/1/stat                  <span class="c1"># 是否添加 sudo 会导致读取出不同内容</span>
+<div class="highlight"><pre><span></span><code>$ cat /proc/1/stat          <span class="c1"># 由于用户权限不同，是否添加 sudo 会导致读取出不同内容</span>
 <span class="m">1</span> <span class="o">(</span>systemd<span class="o">)</span> S <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> -1 <span class="m">4194560</span> <span class="m">113722</span> <span class="m">4652720</span> <span class="m">87</span> <span class="m">2258</span> <span class="m">79</span> <span class="m">670</span> <span class="m">19018</span> <span class="m">28647</span> <span class="se">\</span>
 <span class="m">20</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">4</span> <span class="m">231030784</span> <span class="m">2252</span> <span class="m">18446744073709551615</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">671173123</span> <span class="m">4096</span> <span class="m">1260</span> <span class="se">\</span>
 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">17</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">135</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
@@ -1511,7 +1377,8 @@ NSpgid: <span class="m">1</span>
 <li>U: 重新挂载所有的文件系统为只读状态。</li>
 <li>B: 立刻重启系统。</li>
 </ul>
-<h2 id="priority">Linux 中的优先级<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h2>
+<!-- ## Linux 中的优先级 {#priority} -->
+
 <h2 id="fork">关于 <code>fork()</code><a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
 <p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>程序文件 <code>forking.c</code>：</p>
@@ -1581,14 +1448,28 @@ NSpgid: <span class="m">1</span>
 <p>这就牵扯到「可重入性」(reentrant) 这个概念了。如果某程序可以在任意时刻被中断，并且这个程序在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 <code>man signal-safety</code>，可以查看到一份可重入库函数的列表。</p>
 <p>当然很遗憾，<code>printf()</code> 不是可重入的。</p>
 </div>
-<h2 id="systemd-service">Systemd service 的文件结构<a class="headerlink" href="#systemd-service" title="Permanent link">&para;</a></h2>
-<h2 id="init"><code>init</code> 的历史<a class="headerlink" href="#init" title="Permanent link">&para;</a></h2>
-<h2 id="_1">常见服务一览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">系统服务<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<h3 id="_3">对外服务<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<h3 id="mail-server">mail server<a class="headerlink" href="#mail-server" title="Permanent link">&para;</a></h3>
-<h3 id="dns-server">DNS server<a class="headerlink" href="#dns-server" title="Permanent link">&para;</a></h3>
-<h3 id="proxy-server">proxy server<a class="headerlink" href="#proxy-server" title="Permanent link">&para;</a></h3>
+<h2 id="terminal">终端 (Terminal) 与控制台 (Console)<a class="headerlink" href="#terminal" title="Permanent link">&para;</a></h2>
+<p>在上世纪六十年代，个人计算机尚未开始发展，用户使用计算机的一种常见方式就是通过终端，与远程的服务器连接交互。当时键盘和显示器连为一体，称为终端（terminal）。而主机自带的一套键盘与屏幕只能给系统管理员使用，称为控制台 (<abbr title="con- 表强调，-sol 整体，词源同 solid —— 即构成一个整体，整体控制的工具。">console</abbr>)，用来输出启动 debug 信息（现在的 Linux 系统如果因故障而不得不<abbr title="telinit 1">进入单用户修复模式</abbr>，则只有一个终端 <code>/dev/console</code> 开启）。</p>
+<p>然而随着时代的发展，这种模式逐渐被家庭电脑的分布式主机取代，我们不需要，也没有多套终端了，只有显示器、键盘、鼠标。但是为了向前兼容性，我们需要假装这是一个（甚至多个）终端，所以一般发行版 <code>/dev</code> 目录下有 7 个终端 <code>tty1 ~ tty7</code>，通过 <code>Ctrl + Alt + F1 ~ F7</code> 切换键盘与显示器与哪个终端相对应。</p>
+<p>再后来，随着时代发展，终端需要出现在图形界面上了，然而承载图形界面的也是终端，所以终端里的终端就需要终端模拟器来实现了。由此，出现在图形界面上的终端才叫终端模拟器。</p>
+<p>没有图形界面时，shell 一般为控制台 (tty) 的子进程，在图形界面上 shell 建立在虚拟终端 (pty, pseudo tty) 之上。顺带一提，服务器常用的远程连接工具 <code>ssh</code> 的父进程也是一个 pty。</p>
+<p><strong>注意：终端不是 Shell，尽管它们经常被弄混淆。</strong></p>
+<p>参考阅读: <a href="https://www.linuxdashen.com/%E4%BD%A0%E7%9C%9F%E7%9A%84%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%88%E7%AB%AF%E5%90%97%EF%BC%9F">你真的知道什么是终端吗？</a></p>
+<!-- ## Systemd service 的文件结构
+
+## `init` 的历史
+
+## 常见服务一览
+
+### 系统服务
+
+### 对外服务
+
+### mail server
+
+### DNS server
+
+### proxy server -->
 
               
             </article>
@@ -1676,10 +1557,10 @@ NSpgid: <span class="m">1</span>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       
