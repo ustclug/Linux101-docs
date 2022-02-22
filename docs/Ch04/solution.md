@@ -10,7 +10,7 @@
 
     当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 `/dev/null`（会在第五章介绍）以舍弃输出。
 
-## 按下 Ctrl + C 后发生了什么 {# after-hitting-ctrl-c}
+## 按下 Ctrl + C 后发生了什么 {#after-hitting-ctrl-c}
 
 !!! tip "提示"
 
@@ -27,3 +27,29 @@
     如果像 `Ctrl + C` 这种特殊字符被检测到，则该处理程序向该终端上的 shell 进程发送 SIGINT，shell 再向其前台进程转发 SIGINT，进程接到该信号，执行对应的信号处理例程。一般情况下，程序将正常退出。
 
     我们可以使用 `stty -a` 命令列出终端驱动所识别的一些具有特殊含义的字符。注意该命令必须于真正的终端（使用 `Ctrl + Alt + Fn` 切换得到的终端）才可以使用。
+
+## 查看系统中出现错误的服务 {#failed-services}
+
+!!! tip "提示"
+
+    `systemctl list-units` 可以查看系统中所有服务单元。
+
+??? info "解答"
+
+    使用 `systemctl list-units --state=failed` 来筛选即可，以下是一个例子：
+
+    ```shell
+    $ systemctl list-units --state=failed
+    UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
+    ● anacron.service        loaded failed failed Run anacron jobs
+    ● binfmt-support.service loaded failed failed Enable support for additional executable binary formats
+    ● rtkit-daemon.service   loaded failed failed RealtimeKit Scheduling Policy Service
+
+    LOAD   = Reflects whether the unit definition was properly loaded.
+    ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+    SUB    = The low-level unit activation state, values depend on unit type.
+
+    3 loaded units listed.
+    ```
+
+    当系统中出现这一类服务时，`systemctl status` 也会显示系统的状态是 degraded（降级）。
