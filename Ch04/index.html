@@ -1300,15 +1300,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kill" class="md-nav__link">
+  <a href="#kill-command" class="md-nav__link">
     kill
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pgrep-pkill-killall" class="md-nav__link">
-    pgrep / pkill、 killall 等
+  <a href="#kill-other-command" class="md-nav__link">
+    其他类 kill 命令
   </a>
   
 </li>
@@ -1492,15 +1492,9 @@
 <p>首先，有区分才有管理。<strong>进程标识符</strong> (PID, Process Identifier) 作为进程的唯一标识，便是身份证号一般的存在。在 htop 中，最左侧一列即为 PID。当系统想要调度进程，或者用户想挂起，继续或终止进程时将使用 PID 作为索引。</p>
 <p>在 htop 中，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</p>
 <p><img alt="PID" src="images/PID.png" /></p>
-<!-- 感觉这里的解释太简单了，PID 分配的代码这里不仅仅是一个 counter 那么简单，它还有一个 bitmap 存储已经分配的 PID。先注释掉了。
-
-??? tip "PID 是如何产生的"
-
-    很简单，使用一个变量做计数器从零开始增加就可以了。早期的 Linux 版本中，PID 最大值为 32767。虽然有一些程序中途退出，但系统执着地按照计数变量加一的方式赋给进程 PID。超过上限后会从用户进程 PID 最低值重新分配没有占用的进程标识符，直到全部占满。然而编者现在版本的内核该变量相当于 int 类型，所以进程标识符有时看起来会很大。（[systemd NEWS](https://github.com/systemd/systemd/blob/224ded670feeb59f7231e6102a5bee5d3b653a8a/NEWS#L31)——systemd 官方消息，直接解释了 PID 的范围） -->
-
 <details class="tip">
 <summary>Linux 进程启动顺序</summary>
-<p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号，2 号并非特意预留，而是产生进程的自然顺序使然。</p>
+<p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p>由于 kthreadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
 </details>
 <h3 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h3>
@@ -1510,7 +1504,7 @@
 <summary>孤儿进程 (orphan) 和僵尸进程 (zombie)</summary>
 <p>父子关系引出了两种特殊的运行情况——父进程先退出，它的子进程成为<strong>孤儿进程</strong> (orphan)；子进程先退出，而父进程未作出回应 (wait)，子进程则变为<strong>僵尸进程</strong> (zombie)。</p>
 <p>孤儿进程（即留下的子进程）由操作系统回收，交给 init「领养」。</p>
-<p>僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。<!-- 同时，进程一般不能主动脱离父子关系（至少没有改变父子关系的系统调用），只能由于进程一方退出执行才会发生关系变动。--></p>
+<p>僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。</p>
 </details>
 <p>我们可以使用 htop 查看进程的父进程等信息。按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例 (PPID)，点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 等列以便观察下面的实验结果。</p>
 <p><img alt="add_column" src="images/add_column.png" /></p>
@@ -1522,10 +1516,8 @@
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。<strong>前台</strong> (foreground) 与<strong>后台</strong> (background)，本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中若干进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
 <h3 id="schedule">进程调度<a class="headerlink" href="#schedule" title="Permanent link">&para;</a></h3>
 <h4 id="priority">优先级与 nice 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h4>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。内核中针对进程有实时 (realtime) 和非实时调度方法，它们别使用了 <strong>realtime priority (PRI)</strong> 和 <strong>nice (NI)</strong> 来表示优先级。
-nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友好），对应的优先级也就更低。
-通常，我们运行的程序会以非实时的方式调度，nice 值为 0。
-而 PRI 的大小对应着任务的重要程度，PRI 越大则优先级越大（deadline scheduling 始终拥有最大优先级）</p>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。内核中针对进程有实时 (realtime) 和非实时调度方法，它们分别使用了 <strong>realtime priority (PRI)</strong> 和 <strong>nice (NI)</strong> 来表示优先级。</p>
+<p>Nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友好），对应的优先级也就更低。通常，我们运行的程序会以非实时的方式调度，nice 值为 0。而 PRI 的大小对应着任务的重要程度，PRI 越大则优先级越大（deadline scheduling 始终拥有最大优先级）。</p>
 <p>优先级对于不同的调度方式有不同的含义，更多的信息可以阅读 <code>sched(7)</code> 的 Scheduling policies 小节。</p>
 <details class="info">
 <summary>协作与抢占</summary>
@@ -1550,41 +1542,32 @@ nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友�
 <li>将高优先级任务投入运行，直到程序因时间片用完或其他原因挂起。</li>
 </ul>
 </details>
-<!--??? info "优先级与时间片调整"-->
-
-<!--    Linux 默认对优先级和时间片有着人性化的调整：即如果进程将大部分时间消耗在 I/O 进程上，说明进程正在与用户（或磁盘等 I/O 设备）进行交互。如果它们不能获得优先级奖励，意味着当对应中断出现时，调度程序不能及时将该进程投入运行，用户使用时就会觉得卡。所以进程优先级应当向 I/O 进程倾斜。同时其时间片也应当延长，因为如果交互进程耗尽时间片，同样无法在得到中断时被唤醒。反之，CPU 消耗型进程会得到优先级与时间片的惩罚。该策略直观上如下图所示：
-
-    ![进程时间片的计算](images/time_slice.png){: width=45% } 需要引用来源 -->
-
 <p>我们可以打开 htop 观察每个进程的优先级和 nice 值。</p>
 <p><img alt="what's up?" src="images/privilege.png" /></p>
 <details class="tip">
 <summary>关于内核线程的优先级</summary>
-</details>
 <p>如果你按下了 Shift + K 键显示<strong>内核线程</strong>，那么你将见到它们的优先级比用户进程高得多，并且具有最高优先级的进程的优先级用 RT 表示。</p>
 <p><img alt="htop 的内核线程优先级" src="images/top8.png" width="75%" /></p>
+</details>
 <ul>
 <li>第一个进程为 <code>watchdogd</code>，是一个定时监测以保证系统可用性的程序。
   （试试 <code>echo hi &gt; /dev/watchdog</code> 吧。)</li>
 <li>第二到五 (<code>migration</code>) 为负载均衡程序，CPU 有几个核就有几个负载均衡。</li>
 <li>图中以 <code>irq</code> 开头的便是中断处理程序了。</li>
 </ul>
-<p>对于普通用户，有 <code>nice</code> 命令可以选择，可以以低优先级开始任务。<code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
-<div class="highlight"><pre><span></span><code>nice <span class="o">[</span>-n adjustment<span class="o">]</span> <span class="o">[</span>-adjustment<span class="o">]</span> <span class="o">[</span>--adjustment<span class="o">=</span>adjustment<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span>
- <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span><span class="nb">command</span> <span class="o">[</span>arg...<span class="o">]]</span>
-
-<span class="c1"># 以下命令等效</span>
-nice vim
-nice -10 vim
-nice -n <span class="m">10</span> vim
-
-<span class="o">(</span>sudo<span class="o">)</span> renice priority <span class="o">[[</span>-p<span class="o">]</span> pid ...<span class="o">]</span> <span class="o">[[</span>-g<span class="o">]</span> pgrp ...<span class="o">]</span> <span class="o">[[</span>-u<span class="o">]</span> user ...<span class="o">]</span>
+<p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，这两个命令若想设定 nice 值为负数，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高）。</p>
+<div class="highlight"><pre><span></span><code>$ nice -n <span class="m">10</span> vim <span class="c1"># 以 10 为 nice 值运行 vim</span>
+$ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
 </code></pre></div>
 <h4 id="process-state">进程状态<a class="headerlink" href="#process-state" title="Permanent link">&para;</a></h4>
 <p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于<strong>运行态</strong> (running)，一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong> (ready)。调度时轮流选择可以运行的程序运行，构成就绪态与运行态循环。</p>
 <p>加入事件这一因素后，出现<strong>阻塞态</strong> (waiting / blocked) 与前两种状态构成三循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。</p>
 <p>考虑三态循环后，又将进入循环之前的状态称为<strong>创建态</strong> (start)，退出循环状态称为<strong>终止态</strong> (terminated)。</p>
-<p>如果再考虑由于内存不够用而位于交换分区的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行。</p>
+<p>如果再考虑由于内存不够用而位于交换空间 (swap space) 的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行。</p>
+<details class="info">
+<summary>什么是交换空间</summary>
+<p>「交换」指在系统可用内存 (RAM) 不足时将内存中的数据写入到磁盘上，以在内存中空出更多空间的过程。磁盘上的这一块区域就是交换空间，它可以是分区，也可以是文件。</p>
+</details>
 <p><img alt="" src="images/state.png" width="80%" /></p>
 <p class="caption">进程状态转换图</p>
 <p>在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
@@ -1667,7 +1650,7 @@ nice -n <span class="m">10</span> vim
 <h4 id="kill-processes-htop">在 htop 中发送信号<a class="headerlink" href="#kill-processes-htop" title="Permanent link">&para;</a></h4>
 <p>htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
 <p>htop 之外，还有一些传统的发送信号的方式。</p>
-<h4 id="kill">kill<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h4>
+<h4 id="kill-command">kill<a class="headerlink" href="#kill-command" title="Permanent link">&para;</a></h4>
 <p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">kill</span> -l <span class="c1"># 显示所有信号名称</span>
  <span class="m">1</span><span class="o">)</span> SIGHUP       <span class="m">2</span><span class="o">)</span> SIGINT       <span class="m">3</span><span class="o">)</span> SIGQUIT      <span class="m">4</span><span class="o">)</span> SIGILL       <span class="m">5</span><span class="o">)</span> SIGTRAP
@@ -1696,16 +1679,20 @@ nice -n <span class="m">10</span> vim
 <p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为内建命令。行为与直接运行 man 命令得到的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
 <p><code>man builtins</code> 可以查看 bash 中的内建命令文档。使用 <code>type &lt;命令名&gt;</code> 可以查看实际运行的命令是否为内建命令。</p>
 </details>
-<h4 id="pgrep-pkill-killall">pgrep / pkill、 killall 等<a class="headerlink" href="#pgrep-pkill-killall" title="Permanent link">&para;</a></h4>
+<h4 id="kill-other-command">其他类 kill 命令<a class="headerlink" href="#kill-other-command" title="Permanent link">&para;</a></h4>
 <p>如果我们命令行中输入 <code>apropos kill</code>，我们可以发现各种其他的类 kill 命令，以及它们的简介。这里列举了一些：</p>
 <dl>
-<dt><code>killall5</code></dt>
-<dd>
-<p>向所有进程发送信号。实际上这个命令名称来自 Unix System V 的系统管理命令（V 是罗马数字的 5）。</p>
-</dd>
 <dt><code>pgrep</code> / <code>pkill</code></dt>
 <dd>
 <p>后面接模糊名称，实际上类似于对名称进行 <code>grep</code> 命令。<code>pgrep</code> 仅列出搜索到的进程名称为的进程标识符，而 <code>pkill</code> 会根据用户的输入向进程发送信号。</p>
+</dd>
+<dt><code>killall</code></dt>
+<dd>
+<p>与 <code>pkill</code> 有一些类似，会向指定名字的进程发送信号。</p>
+<div class="admonition warning">
+<p class="admonition-title">不要与 <code>killall5</code> 相混淆</p>
+<p>与 <code>killall</code> 不同，<code>killall5</code> 会向<strong>所有</strong>进程发送信号。这个命令名称来自 Unix System V 的系统管理命令（V 是罗马数字的 5）。</p>
+</div>
 </dd>
 <dt><code>xkill</code></dt>
 <dd>
@@ -1730,10 +1717,10 @@ nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERN
 <p><img alt="" src="images/tmux.gif" width="70%" /></p>
 <div class="admonition info">
 <p class="admonition-title">问题产生了！</p>
-</div>
 <p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。</p>
 <p>开启多个 SSH 连接似乎可以解决这个问题。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。</p>
 <p>这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登录时可以立即还原。</p>
+</div>
 <p>tmux 由会话 (session)，窗口 (window)，面板 (pane) 组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
 <p>下面先行讲解这一工具的用法：</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install tmux
@@ -1787,7 +1774,7 @@ $ tmux
 </table>
 </div>
 <p><img alt="test" src="images/test.gif" /></p>
-<p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登陆，可使用 <code>tmux attach [-t 窗口名称]</code> 重新连接窗口，不加 <code>-t</code> 参数将默认连接最后一次打开的窗口。</p>
+<p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登录，可使用 <code>tmux attach [-t 窗口名称]</code> 重新连接窗口，不加 <code>-t</code> 参数将默认连接最后一次打开的窗口。</p>
 <h3 id="customizing-tmux">定制 tmux<a class="headerlink" href="#customizing-tmux" title="Permanent link">&para;</a></h3>
 <p>说实在的，tmux 默认的快捷键的确有些苦手，比如 Ctrl + B 这个对手指相当不友好的长距快捷键就应当改进。而且你可能会想，横竖分屏居然需要 <code>%</code> 和 <code>"</code>，为什么不使用更为直观的 <code>-</code> 和 <code>|</code> 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
 <div class="admonition info">
@@ -1923,7 +1910,9 @@ $ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable �
 $ systemctl disable jupyter <span class="c1"># 取消自启</span>
 </code></pre></div>
 </div>
-<p>在<a href="https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html">浅析 Linux 初始化 init 系统，第 3 部分</a>这篇文章中有更详细的配置文件介绍。</p>
+<p>可以参考系统中其他 <code>service</code> 文件，以及 <code>systemd.service(5)</code> 手册页编写配置文件。</p>
+<!-- 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。 -->
+
 <h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
 <p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都作为系统服务存在。</p>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
@@ -2001,6 +1990,10 @@ usage:  crontab [-u user] file
 <div class="admonition question">
 <p class="admonition-title">关于 Ctrl + C</p>
 <p>尝试描述在终端运行程序时，用户按下 Ctrl + C 后发生的事情。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">查看系统中出现错误的服务</p>
+<p>查找资料，给出使用 <code>systemctl</code> 查看系统中运行出现错误的服务的命令。</p>
 </div>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>

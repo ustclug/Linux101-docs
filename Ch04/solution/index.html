@@ -747,8 +747,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#" class="md-nav__link">
+  <a href="#after-hitting-ctrl-c" class="md-nav__link">
     按下 Ctrl + C 后发生了什么
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failed-services" class="md-nav__link">
+    查看系统中出现错误的服务
   </a>
   
 </li>
@@ -1237,8 +1244,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#" class="md-nav__link">
+  <a href="#after-hitting-ctrl-c" class="md-nav__link">
     按下 Ctrl + C 后发生了什么
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failed-services" class="md-nav__link">
+    查看系统中出现错误的服务
   </a>
   
 </li>
@@ -1271,7 +1285,7 @@
 <summary>解答</summary>
 <p>当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 <code>/dev/null</code>（会在第五章介绍）以舍弃输出。</p>
 </details>
-<h2 after-hitting-ctrl-c="after-hitting-ctrl-c" id="">按下 Ctrl + C 后发生了什么<a class="headerlink" href="#" title="Permanent link">&para;</a></h2>
+<h2 id="after-hitting-ctrl-c">按下 Ctrl + C 后发生了什么<a class="headerlink" href="#after-hitting-ctrl-c" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>这个问题涉及了键盘按键的处理与信号机制。（答案仅供参考）</p>
@@ -1283,6 +1297,28 @@
 <p>如果是普通字符，则字符存放到对应终端的缓冲区等待读取。</p>
 <p>如果像 <code>Ctrl + C</code> 这种特殊字符被检测到，则该处理程序向该终端上的 shell 进程发送 SIGINT，shell 再向其前台进程转发 SIGINT，进程接到该信号，执行对应的信号处理例程。一般情况下，程序将正常退出。</p>
 <p>我们可以使用 <code>stty -a</code> 命令列出终端驱动所识别的一些具有特殊含义的字符。注意该命令必须于真正的终端（使用 <code>Ctrl + Alt + Fn</code> 切换得到的终端）才可以使用。</p>
+</details>
+<h2 id="failed-services">查看系统中出现错误的服务<a class="headerlink" href="#failed-services" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p><code>systemctl list-units</code> 可以查看系统中所有服务单元。</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<p>使用 <code>systemctl list-units --state=failed</code> 来筛选即可，以下是一个例子：</p>
+<div class="highlight"><pre><span></span><code>$ systemctl list-units --state<span class="o">=</span>failed
+UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
+● anacron.service        loaded failed failed Run anacron <span class="nb">jobs</span>
+● binfmt-support.service loaded failed failed Enable support <span class="k">for</span> additional executable binary formats
+● rtkit-daemon.service   loaded failed failed RealtimeKit Scheduling Policy Service
+
+<span class="nv">LOAD</span>   <span class="o">=</span> Reflects whether the unit definition was properly loaded.
+<span class="nv">ACTIVE</span> <span class="o">=</span> The high-level unit activation state, i.e. generalization of SUB.
+<span class="nv">SUB</span>    <span class="o">=</span> The low-level unit activation state, values depend on unit type.
+
+<span class="m">3</span> loaded units listed.
+</code></pre></div>
+<p>当系统中出现这一类服务时，<code>systemctl status</code> 也会显示系统的状态是 degraded（降级）。</p>
 </details>
 
               
