@@ -310,7 +310,7 @@ $ tmux
 
 ## 服务 {#service}
 
-说到**服务**，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」的功能；Linux 也有服务的概念，下面将作介绍。
+说到**「服务」**，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」；Linux 也有服务的概念，下面将作介绍。
 
 ### 守护进程 {#daemon}
 
@@ -360,13 +360,13 @@ $ systemctl status
 （以下省略）
 ```
 
-!!! tip "使用 less"
+!!! tip "使用 less 翻页器"
 
     当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 less 作为翻页器（Pager），方便我们阅读。
 
-    用户可以使用键盘的方向键移动一行/一列，使用 Page Up/Page Down 键翻整页，按 Q 键退出（Quit）；按 / 键后输入关键词可以搜索，按小写 n 键跳转到搜索结果下一项，大写 N 键（Shift + N）跳转到搜索结果上一项。
+    用户可以使用键盘的方向键移动一行/一列，使用 Page Up/Page Down 键翻整页，按 Q 键退出（Quit）；按 ++"/"++ 键后输入关键词可以搜索，按小写 n 键跳转到搜索结果下一项，大写 N 键（Shift + N）跳转到搜索结果上一项。
 
-上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看。该命令将显示所有 `systemd` 管理的单元，同时右面还会附上一句注释来表明该服务的任务。
+上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看。该命令将显示所有 systemd 管理的单元，同时右面还会附上一句注释来表明该服务的任务。
 
 !!! example "服务列表示例"
 
@@ -374,7 +374,7 @@ $ systemctl status
 
 至于服务的启动，终止，重载配置等命令可交付 tldr 介绍，我们也加入了一些注释。
 
-```
+```console
 $ tldr systemctl
 systemctl
 Control the systemd system and service manager.
@@ -400,7 +400,9 @@ Control the systemd system and service manager.
 
 !!! note "Unit 和 Service 是一回事吗？"
 
-    不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 systemd.unit(5)。
+    不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 [systemd.unit(5)][systemd.unit.5]。
+
+  [systemd.unit.5]: https://www.freedesktop.org/software/systemd/man/systemd.unit.html
 
 ??? info "传统的 service 管理程序"
 
@@ -455,7 +457,7 @@ Control the systemd system and service manager.
 
     Jupyter Notebook 是基于浏览器的交互式编程平台，在数据科学领域非常常用。
 
-    首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并做如下编辑。
+    首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并填入以下内容：
 
     ```ini
     [Unit]
@@ -463,13 +465,14 @@ Control the systemd system and service manager.
 
     [Service]
     PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
-    ExecStart=/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项
-    WorkingDirectory=/root
+    ExecStart=/usr/local/bin/jupyter-notebook --allow-root
+                                    # 使用绝对路径标明的命令及命令行参数
+    WorkingDirectory=/root          # 服务启动时的工作目录
     Restart=always                  # 重启模式，这里是无论因何退出都重启
     RestartSec=10                   # 退出后多少秒重启
 
     [Install]
-    WantedBy=multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务
+    WantedBy=multi-user.target      # 依赖目标，这里指进入多用户模式后再启动该服务
     ```
 
     将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
@@ -477,15 +480,17 @@ Control the systemd system and service manager.
     ```shell
     $ systemctl start jupyter
     $ systemctl stop jupyter
-    $ systemctl enable jupyter  # enable 表示标记服务的自动启动
+    $ systemctl enable jupyter  # enable 表示标记服务的开机自动启动
     $ systemctl disable jupyter # 取消自启
     ```
 
-可以参考系统中其他 `service` 文件，以及 `systemd.service(5)` 手册页编写配置文件。
+可以参考系统中其他 `service` 文件，以及 [systemd.service(5)][systemd.service.5] 手册页编写配置文件。
+
+  [systemd.service.5]: https://www.freedesktop.org/software/systemd/man/systemd.service.html
 
 <!-- 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。 -->
 
-### 例行性任务 {#cron}
+### 例行性任务 {#scheduled-tasks}
 
 所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都作为系统服务存在。
 
