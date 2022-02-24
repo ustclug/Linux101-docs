@@ -1359,7 +1359,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cron" class="md-nav__link">
+  <a href="#scheduled-tasks" class="md-nav__link">
     例行性任务
   </a>
   
@@ -1702,7 +1702,7 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
 </details>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
-<p>说到<strong>服务</strong>，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」的功能；Linux 也有服务的概念，下面将作介绍。</p>
+<p>说到<strong>「服务」</strong>，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」；Linux 也有服务的概念，下面将作介绍。</p>
 <h3 id="daemon">守护进程<a class="headerlink" href="#daemon" title="Permanent link">&para;</a></h3>
 <p>服务的特征，意味着服务进程必须独立于用户的登录，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离会话才能避免因为终端的关闭而消失。而这类一直默默工作于后台的进程被称为<strong>守护进程</strong> (daemon)。</p>
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
@@ -1745,41 +1745,41 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 （以下省略）
 </code></pre></div>
 <div class="admonition tip">
-<p class="admonition-title">使用 less</p>
+<p class="admonition-title">使用 less 翻页器</p>
 <p>当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 less 作为翻页器（Pager），方便我们阅读。</p>
-<p>用户可以使用键盘的方向键移动一行/一列，使用 Page Up/Page Down 键翻整页，按 Q 键退出（Quit）；按 / 键后输入关键词可以搜索，按小写 n 键跳转到搜索结果下一项，大写 N 键（Shift + N）跳转到搜索结果上一项。</p>
+<p>用户可以使用键盘的方向键移动一行/一列，使用 Page Up/Page Down 键翻整页，按 Q 键退出（Quit）；按 <span class="keys"><kbd>/</kbd></span> 键后输入关键词可以搜索，按小写 n 键跳转到搜索结果下一项，大写 N 键（Shift + N）跳转到搜索结果上一项。</p>
 </div>
-<p>上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看。该命令将显示所有 <code>systemd</code> 管理的单元，同时右面还会附上一句注释来表明该服务的任务。</p>
+<p>上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看。该命令将显示所有 systemd 管理的单元，同时右面还会附上一句注释来表明该服务的任务。</p>
 <div class="admonition example">
 <p class="admonition-title">服务列表示例</p>
 <p><img alt="services" src="images/services.png" /></p>
 </div>
 <p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍，我们也加入了一些注释。</p>
-<div class="highlight"><pre><span></span><code>$ tldr systemctl
-systemctl
-Control the systemd system and service manager.
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tldr systemctl
+<span class="go">systemctl</span>
+<span class="go">Control the systemd system and service manager.</span>
 
-    - List failed units:  # 列出运行失败的服务
-    systemctl --failed
+<span class="go">    - List failed units:  # 列出运行失败的服务</span>
+<span class="go">    systemctl --failed</span>
 
-    - Start/Stop/Restart/Reload a service:  # 开启/关闭/重启/重载服务。Reload 代表重载配置文件而不重启进程。
-    systemctl start/stop/restart/reload {{unit}}
+<span class="go">    - Start/Stop/Restart/Reload a service:  # 开启/关闭/重启/重载服务。Reload 代表重载配置文件而不重启进程。</span>
+<span class="go">    systemctl start/stop/restart/reload {{unit}}</span>
 
-    - Show the status of a unit:  # 显示服务状态
-    systemctl status {{unit}}
+<span class="go">    - Show the status of a unit:  # 显示服务状态</span>
+<span class="go">    systemctl status {{unit}}</span>
 
-    - Enable/Disable a unit to be started on bootup:  # 设置（Enable）/取消（Disable）服务开机自启
-    systemctl enable/disable {{unit}}
+<span class="go">    - Enable/Disable a unit to be started on bootup:  # 设置（Enable）/取消（Disable）服务开机自启</span>
+<span class="go">    systemctl enable/disable {{unit}}</span>
 
-    - Mask/Unmask a unit, prevent it to be started on bootup:  # 阻止/取消阻止服务被 enable
-    systemctl mask/unmask {{unit}}
+<span class="go">    - Mask/Unmask a unit, prevent it to be started on bootup:  # 阻止/取消阻止服务被 enable</span>
+<span class="go">    systemctl mask/unmask {{unit}}</span>
 
-    - Reload systemd, scanning for new or changed units:  # 重载 systemd，需要在创建或修改服务文件后执行
-    systemctl daemon-reload
+<span class="go">    - Reload systemd, scanning for new or changed units:  # 重载 systemd，需要在创建或修改服务文件后执行</span>
+<span class="go">    systemctl daemon-reload</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Unit 和 Service 是一回事吗？</p>
-<p>不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 systemd.unit(5)。</p>
+<p>不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 <a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html">systemd.unit(5)</a>。</p>
 </div>
 <details class="info">
 <summary>传统的 service 管理程序</summary>
@@ -1823,31 +1823,32 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <div class="admonition example">
 <p class="admonition-title">编写 .service 文件并运行（以 Jupyter Notebook 为例）</p>
 <p>Jupyter Notebook 是基于浏览器的交互式编程平台，在数据科学领域非常常用。</p>
-<p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并做如下编辑。</p>
+<p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并填入以下内容：</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span><span class="w"></span>
 <span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span><span class="w"></span>
 
 <span class="k">[Service]</span><span class="w"></span>
 <span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span><span class="w"></span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root  # 使用绝对路径标明的命令及选项</span><span class="w"></span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root</span><span class="w"></span>
+<span class="w">                                </span><span class="c1"># 使用绝对路径标明的命令及命令行参数</span><span class="w"></span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root          # 服务启动时的工作目录</span><span class="w"></span>
 <span class="na">Restart</span><span class="o">=</span><span class="s">always                  # 重启模式，这里是无论因何退出都重启</span><span class="w"></span>
 <span class="na">RestartSec</span><span class="o">=</span><span class="s">10                   # 退出后多少秒重启</span><span class="w"></span>
 
 <span class="k">[Install]</span><span class="w"></span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指多用户模式启动后再启动该服务</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指进入多用户模式后再启动该服务</span><span class="w"></span>
 </code></pre></div>
 <p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
 <div class="highlight"><pre><span></span><code>$ systemctl start jupyter
 $ systemctl stop jupyter
-$ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable 表示标记服务的自动启动</span>
+$ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable 表示标记服务的开机自动启动</span>
 $ systemctl disable jupyter <span class="c1"># 取消自启</span>
 </code></pre></div>
 </div>
-<p>可以参考系统中其他 <code>service</code> 文件，以及 <code>systemd.service(5)</code> 手册页编写配置文件。</p>
+<p>可以参考系统中其他 <code>service</code> 文件，以及 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service(5)</a> 手册页编写配置文件。</p>
 <!-- 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。 -->
 
-<h3 id="cron">例行性任务<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
+<h3 id="scheduled-tasks">例行性任务<a class="headerlink" href="#scheduled-tasks" title="Permanent link">&para;</a></h3>
 <p>所谓例行性任务，是指基于时间的一次或多次周期性定时任务。在 Linux 中，实现定时任务工作的程序主要有 at 和 crontab，它们无一例外都作为系统服务存在。</p>
 <h4 id="at">at 命令<a class="headerlink" href="#at" title="Permanent link">&para;</a></h4>
 <p>at 命令负责单次计划任务，当前许多发行版中，并没有预装该命令，需要 <code>sudo apt install at</code> 进行安装。</p>
