@@ -78,6 +78,181 @@ Mode from config file:          permissive  # <- 或 disabled
 [...]
 ```
 
+## 配置与使用 SSH 连接远程的 Linux 服务器 {#ssh}
+
+在本章节正文中，我们介绍了如何在本地运行 Linux 操作系统。但是在实际操作时，一个非常常见的需求是连接到远程的服务器。Linux 提供了非常方便安全的 SSH 功能，可以让用户连接到远程的 Linux 服务器命令行执行操作。
+
+在这里，我们将简单介绍在服务器上配置 SSH，以及如何使用 SSH 连接到远程的服务器。
+
+!!! warning "安装前请务必修改弱密码"
+
+    互联网上有着大量爆破用户名和弱密码的自动化程序，如果密码很弱（位数不够长，或者使用了常见的密码），那么黑客就能很快使用 SSH 登录到你的系统中获取控制权，使得你的电脑（服务器）成为肉鸡（被黑客利用攻击其他服务器），在你的电脑上安装挖矿软件等恶意软件，删除你的数据进行勒索。甚至在校园网中，服务器由于 SSH 弱密码被攻击的例子也屡见不鲜。
+
+    由于 SSH 服务器默认不关闭密码验证，在安装前请务必使用 `passwd` 命令修改弱密码！
+
+在服务器上首先安装 `openssh-server` 软件包，它提供了 SSH 服务器的功能。
+
+```
+$ sudo apt install openssh-server
+```
+
+启动并检查 SSH 服务状态：
+
+```
+$ sudo systemctl start ssh
+$ sudo systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-02-24 16:47:39 CST; 1min 15s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 1689 (sshd)
+      Tasks: 1 (limit: 2250)
+     Memory: 2.0M
+     CGroup: /system.slice/ssh.service
+             └─1689 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+2月 24 16:47:39 ustclug-linux101 systemd[1]: Starting OpenBSD Secure Shell server...
+2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on 0.0.0.0 port 22.
+2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on :: port 22.
+2月 24 16:47:39 ustclug-linux101 systemd[1]: Started OpenBSD Secure Shell server.
+```
+
+我们可以使用 `ssh` 命令直接连接到本地（localhost）的 SSH 服务器。其中 `@` 符号前的是登录的用户名，后面的是服务器的域名或 IP 地址。
+
+```
+$ ssh ustc@localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+ustc@localhost's password:
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.13.0-28-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+0 updates can be applied immediately.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+ustc@ustclug-linux101:~$
+```
+
+??? note "第一次连接时的提示"
+
+    在初次连接时会有类似于下面这样的提示，需要输入 `yes` 才能继续连接：
+
+    ```
+    The authenticity of host 'localhost (127.0.0.1)' can't be established.
+    ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
+    Are you sure you want to continue connecting (yes/no/[fingerprint])?
+    ```
+
+    这是因为初次连接时，SSH 不知道连接到的服务器是否真的是我们指定要连接的服务器：网络中的「中间人」可能会截获我们与服务器之间的网络流量，将自己伪装成对应的服务器。所以，SSH 会要求你确认密钥的指纹是否与预期相一致，如果不一致，则说明可能出现安全问题，应该立刻断开连接。
+
+    服务器的密钥信息会记录在本地，之后连接相同的服务器就不会再弹出这个提示。如果远程服务器的密钥和本地记录的信息不一致，会输出类似下面的错误信息：
+
+    ```
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+    Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+    It is also possible that a host key has just been changed.
+    The fingerprint for the RSA key sent by the remote host is
+    12:34:56:78:90:ab:cd:ef:12:23:34:45:56:67:78:89.
+    Please contact your system administrator.
+    Add correct host key in /home/ustc/.ssh/known_hosts to get rid of this message.
+    Offending RSA key in /home/ustc/.ssh/known_hosts:12
+    RSA host key for 127.0.0.1 has changed and you have requested strict checking.
+    Host key verification failed.
+    ```
+
+    可能的原因是你连接到了错误的服务器、服务器的密钥被更换，或者最糟糕的可能性：有人在尝试对你进行网络攻击。
+
+也可以测试一下从其他机器连接到服务器。
+
+!!! tip "可以使用 `ip a` 命令获取到服务器的 IP 地址。"
+
+!!! tip "如果无法连接，请检查服务器的防火墙是否放行了 TCP 22 端口。"
+
+!!! tip "配置密钥登录"
+
+    上面我们提到，弱密码会导致黑客能够轻而易举从 SSH 入侵服务器，但是每次登录输入复杂密码会很烦，怎么办呢？其实，SSH 提供了一种相当方便、简单、安全的连接方式：密钥认证。它的原理是，用户生成一对密钥，将公钥放在服务器上，登录时 SSH 自动使用私钥认证，两者相符则允许用户登录。
+
+    首先在自己的机器上使用 `ssh-keygen` 生成密钥：
+
+    ```
+    $ ssh-keygen
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/home/ustc/.ssh/id_rsa):
+    Enter passphrase (empty for no passphrase):
+    Enter same passphrase again:
+    Your identification has been saved in /home/ustc/.ssh/id_rsa
+    Your public key has been saved in /home/ustc/.ssh/id_rsa.pub
+    The key fingerprint is:
+    SHA256:/+4tXnjnilyLQvwa+qEKx0IK2jOzHRj0Nbarr3Vot1E ustc@ustclug-linux101
+    The key's randomart image is:
+    +---[RSA 3072]----+
+    |                 |
+    |                 |
+    |  .   +          |
+    | . . o o         |
+    |. . o . S.E      |
+    |.o = . o oo  .   |
+    |. B + B +.+.. + .|
+    |   * O o =.=oB + |
+    |  . +oo.+.o*O.+..|
+    +----[SHA256]-----+
+    ```
+
+    这里的 passphrase 是密钥的密码，设置之后即使私钥被别人拿到也无法使用，可以不输入。最终得到的 `id_rsa` 是私钥（**千万不要分享给别人！**），`id_rsa.pub` 是公钥（可以公开）。
+
+    在本地使用 `ssh-copy-id` 命令将公钥拷贝到服务器上：
+
+    ```
+    $ ssh-copy-id ustc@localhost
+    /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+    /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+    ustc@localhost's password:
+
+    Number of key(s) added: 1
+
+    Now try logging into the machine, with:   "ssh 'ustc@localhost'"
+    and check to make sure that only the key(s) you wanted were added.
+    ```
+
+    如果服务器不允许使用密码登录，可以将用户目录下 `.ssh/id_rsa.pub` 文件的内容复制到机器对应用户的 `.ssh/authorized_keys` 文件中。
+
+    配置完成后，可以考虑关闭 SSH 服务器的密码验证。做法是编辑 `/etc/ssh/sshd_config` 文件，将其中
+
+    ```
+    #PasswordAuthentication yes
+    ```
+
+    修改为
+
+    ```
+    PasswordAuthentication no
+    ```
+
+    然后让 SSH 服务器重新加载配置：
+
+    ```
+    $ sudo systemctl reload ssh
+    ```
+
+    我们建议除非有特殊原因，否则所有正式生产环境服务器（例如实验室服务器）都应该关闭 SSH 密码验证。
+
 ## 适用于 Linux 的 Windows 子系统 (Windows Subsystem for Linux，WSL) {#wsl}
 
 如何将 Linux 下的软件与开发生态移植到 Windows 上？在 WSL 出现之前，开发者们进行了各种尝试。这也催生出了一些软件与方案，例如：
