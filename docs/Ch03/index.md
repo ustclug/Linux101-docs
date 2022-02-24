@@ -474,6 +474,29 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
 
+### 查看文件内容 {#cat}
+
+```shell
+$ # 输出 FILE 文件的内容
+$ cat [OPTION] FILE
+```
+
+!!! example "输出示例"
+
+    * 查看 file.txt 的文件内容
+    ```shell
+    $ cat file.txt
+    ```
+
+    * 查看 file1.txt 与 file2.txt 连接后的内容
+    ```shell
+    $ cat file1.txt file2.txt
+    ```
+
+!!! note "为什么名字叫 cat？"
+
+    当然和猫咪没有关系，cat 这里是 con**cat**enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
+
 ### 复制文件和目录 {#cp}
 
 ```shell
@@ -511,7 +534,7 @@ $ cp [OPTION] SOURCE... DIRECTORY
     $ cp -r dir1 ./test/
     ```
 
-!!! tip "硬链接和软链接"
+??? tip "硬链接和软链接"
 
     cp 的 `-l` 和 `-s` 参数分布为创建硬链接和软链接（又称为“符号链接”）。
 
@@ -557,8 +580,8 @@ $ mv [OPTION] SOURCE... DIRECTORY
 ### 删除文件和目录 {#rm}
 
 ```shell
-# 删除 FILE 文件，FILE 可以为多个文件。
-# 如果需要删除目录，需要通过 -r 选项递归删除目录
+$ # 删除 FILE 文件，FILE 可以为多个文件。
+$ # 如果需要删除目录，需要通过 -r 选项递归删除目录
 $ rm [OPTION] FILE...
 ```
 
@@ -572,19 +595,19 @@ $ rm [OPTION] FILE...
 
 !!! example "删除示例"
 
-    删除 `file1.txt` 文件：
+    * 删除 `file1.txt` 文件：
 
     ```
     $ rm file1.txt
     ```
 
-    删除 `test` 目录及其下的所有文件：
+    * 删除 `test` 目录及其下的所有文件：
 
     ```
     $ rm -r test/
     ```
 
-    删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
+    * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 
     ```
     $ rm -rf test1/ test2/ file1.txt
@@ -603,6 +626,42 @@ $ mkdir DIR_NAME...
 
     ```
     $ mkdir test1 test2
+    ```
+
+### 搜索文件和目录 {#find}
+
+```shell
+$ # 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件
+$ find [OPTION] PATH [EXPRESSION]
+```
+
+常用的表达式：
+
+| 选项            | 含义                                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| `-name '*.ext'` | 文件名后缀为 ext。其中 `*` 是任意匹配符                              |
+| `-type d`       | 文件类型为目录，其他的类型例如 `f`（普通文件）                       |
+| `-size +1M`     | 大于 1M 的文件，`+` 代表大于这个大小，对应地，`-` 代表小于之后的大小 |
+| `-or`           | 或运算符，代表它前后两个条件满足一个即可                             |
+
+!!! example "搜索示例"
+
+    * 在当前目录搜索名为 report.pdf 的文件：
+
+    ```shell
+    $ find . -name 'report.pdf'
+    ```
+
+    * 全盘搜索大于 1G 的文件：
+
+    ```shell
+    $ find / -size +1G
+    ```
+
+    * 在用户目录搜索所有名为 node_modules 的文件夹：
+
+    ```shell
+    $ find ~/ -name 'node_modules' -type d
     ```
 
 ## 使用 tar 操作存档、压缩文件 {#tar}

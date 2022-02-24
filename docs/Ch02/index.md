@@ -417,9 +417,9 @@ $ sh run.sh
 
 ### 几条简单的命令 {#shell-commands}
 
-- `ls`: 列出目录的内容
-- `cd`: 更改目录
-- `pwd`: 查看当前所在的目录
+- `ls`: 列出（**l**i**s**t）目录的内容
+- `cd`: 更改目录（**c**hange **d**irectory）
+- `pwd`: 查看当前所在的目录（**p**rint **w**orking **d**irectory）
 
 更多的命令行操作我们将在[第三章](../Ch03/index.md)和[第六章](../Ch06/index.md)详细介绍。
 
