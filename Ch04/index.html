@@ -1606,7 +1606,7 @@ $ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运�
 <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">19258</span>
 nohup: ignoring input and appending output to <span class="s1">&#39;/home/ustc/nohup.out&#39;</span>
 </code></pre></div>
-<p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch09/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
+<p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch06/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
 <h3 id="tmux">命令行多终端方案——tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="images/tmux.gif" width="70%" /></p>
 <div class="admonition info">
@@ -1920,7 +1920,7 @@ usage:  crontab [-u user] file
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">在恢复暂停了的程序之后……</p>
-<p>在「<a href="#bg-fg">前后台切换</a>」的动图示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？</p>
+<p>在「<a href="#bg-fg">前后台切换</a>」的动图示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何避免此问题？</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">关于 Ctrl + C</p>

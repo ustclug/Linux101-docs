@@ -1391,12 +1391,13 @@
 </div>
 <h2 id="process-struct">进程组织结构<a class="headerlink" href="#process-struct" title="Permanent link">&para;</a></h2>
 <h3 id="parent-child">进程父子关系<a class="headerlink" href="#parent-child" title="Permanent link">&para;</a></h3>
-<p>除了最开始的 0 号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为<strong>父进程</strong>，被产生的是<strong>子进程</strong>。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
+<p>Fork 是类 UNIX 中创建进程的基本方法：将当前的进程完整复制一份。新进程和旧进程唯一的区别是 <code>fork()</code> 的返回值不同。程序员可以根据其返回值为新旧进程设置不同的逻辑。</p>
+<p>除了最开始的 0 号进程外，绝大多数情况下其他进程是由另一个进程通过 fork 产生的。这里产生进程的一方为<strong>父进程</strong>，被产生的是<strong>子进程</strong>。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。</p>
 <details class="tip">
 <summary>孤儿进程 (orphan) 和僵尸进程 (zombie)</summary>
 <p>父子关系引出了两种特殊的运行情况——父进程先退出，它的子进程成为<strong>孤儿进程</strong> (orphan)；子进程先退出，而父进程未作出回应 (wait)，子进程则变为<strong>僵尸进程</strong> (zombie)。</p>
 <p>孤儿进程（即留下的子进程）由操作系统回收，交给 init「领养」。</p>
-<p>僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。</p>
+<p>僵尸进程的进程资源大部分已释放，但占用一个 PID，并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。</p>
 </details>
 <p>我们可以使用 htop 查看进程的父进程等信息。按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例 (PPID)，点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 等列以便观察下面的实验结果。</p>
 <p><img alt="add_column" src="../images/add_column.png" /></p>
@@ -1435,28 +1436,24 @@
 <td align="center">SID</td>
 <td>Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。</td>
 </tr>
-<tr>
-<td align="center">USER / UID</td>
-<td>标识进程的权限。</td>
-</tr>
-<tr>
-<td align="center">Priority</td>
-<td>标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。</td>
-</tr>
-<tr>
-<td align="center">Nice</td>
-<td>普通进程的优先级标度，越 "nice" 优先级越低。</td>
-</tr>
-<tr>
-<td align="center">State</td>
-<td>标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。</td>
-</tr>
 </tbody>
 </table>
 <h2 id="daemon-creation">守护进程的产生<a class="headerlink" href="#daemon-creation" title="Permanent link">&para;</a></h2>
-<p>许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。</p>
+<p>许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话，否则父进程退出时子进程也会退出。创建会话的系统调用是 <code>setsid()</code>。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话：</p>
+<div class="highlight"><pre><span></span><code>DESCRIPTION
+       setsid() creates a new session if the calling process is not a process group leader.  The calling
+       process is the leader of the new session (i.e., its session ID is made the same  as  its  process
+       ID).   The  calling  process  also becomes the process group leader of a new process group in the
+       session (i.e., its process group ID is made the same as its process ID).
+
+       The calling process will be the only process in the new process group and in the new session.
+
+       Initially, the new session has no controlling terminal.  For details of how a session acquires  a
+       controlling terminal, see credentials(7).
+</code></pre></div>
+<p>所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。</p>
 <p>实际上，如果我们使用类似 <code>bash -c "ping localhost &amp;" &amp;</code> 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 <code>ping localhost</code> 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。</p>
-<p>打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。</p>
+<p>打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。可以注意到，守护进程的 SID 与自身 PID 相同。</p>
 <h2 id="proc">Linux 下进程查看原理<a class="headerlink" href="#proc" title="Permanent link">&para;</a></h2>
 <p>正文提到，ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控。但是它足够简单，可以供我们进行分析。直接阅读 ps 的源代码是最直接的方法，但是成本可能过高，更好的方法是用 strace 命令来分析 ps 运行过程中使用到的系统调用。</p>
 <div class="admonition info">
@@ -1468,7 +1465,7 @@
 <p class="admonition-title">strace 命令</p>
 <p>strace 可以追踪程序使用的系统调用，输出在屏幕上，是一个程序调试工具。此处用来追踪 ps 打开的文件。</p>
 <p>strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。</p>
-<p>注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="/Ch09/">第九章</a>。</p>
+<p>注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="../../Ch06/#redirect-and-pipe">第六章</a>。</p>
 </div>
 <div class="highlight"><pre><span></span><code>$ strace ps
 ...
@@ -1519,8 +1516,6 @@ NSpgid: <span class="m">1</span>
 <li>U: 重新挂载所有的文件系统为只读状态。</li>
 <li>B: 立刻重启系统。</li>
 </ul>
-<!-- ## Linux 中的优先级 {#priority} -->
-
 <h2 id="fork">关于 <code>fork()</code><a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
 <p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>程序文件 <code>forking.c</code>：</p>
@@ -1550,7 +1545,7 @@ NSpgid: <span class="m">1</span>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc forking.c -o forking &amp;&amp; ./forking</code>，就可以在另一终端打开 htop 查看成果了。</p>
 <p><img alt="forking" src="../images/forking.png" /></p>
 <p>按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。</p>
-<p>同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程， PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。</p>
+<p>同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。</p>
 <p>接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。</p>
 <div class="admonition question">
 <p class="admonition-title">问题</p>
@@ -1586,9 +1581,9 @@ NSpgid: <span class="m">1</span>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; ./signal_handle</code>，就可以在另一终端打开 htop 来试验了。</p>
 <div class="admonition warning">
 <p class="admonition-title">可重入性</p>
-<p>事实上，这个程序存在一个隐含的问题：如果在运行 <code>sig_handler()</code> 的时候，又有信号输入，会发生什么呢？</p>
-<p>这就牵扯到「可重入性」(reentrant) 这个概念了。如果某程序可以在任意时刻被中断，并且这个程序在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 <code>man signal-safety</code>，可以查看到一份可重入库函数的列表。</p>
-<p>当然很遗憾，<code>printf()</code> 不是可重入的。</p>
+<p>事实上，这个程序存在一个隐含的问题：信号输入后，程序的执行流变成了 <code>sig_handler()</code>，在处理函数执行完成之后，原来的程序是否还能正常运行？</p>
+<p>这就牵扯到「可重入性」(reentrant) 这个概念了。如果某个函数可以在任意时刻被中断，并且这个函数在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 <code>man signal-safety</code>，可以查看到一份可重入库函数的列表。</p>
+<p>但是很遗憾，<code>printf()</code> 不是可重入的：如果程序正在执行 <code>printf()</code> 的时候有信号输入，处理函数运行 <code>printf()</code> 会导致输出缓冲区的数据更新，之后回到原程序的 <code>printf()</code> 的时候，就有可能出现问题。</p>
 </div>
 <h2 id="terminal">终端 (Terminal) 与控制台 (Console)<a class="headerlink" href="#terminal" title="Permanent link">&para;</a></h2>
 <p>在上世纪六十年代，个人计算机尚未开始发展，用户使用计算机的一种常见方式就是通过终端，与远程的服务器连接交互。当时键盘和显示器连为一体，称为终端（terminal）。而主机自带的一套键盘与屏幕只能给系统管理员使用，称为控制台 (<abbr title="con- 表强调，-sol 整体，词源同 solid —— 即构成一个整体，整体控制的工具。">console</abbr>)，用来输出启动 debug 信息（现在的 Linux 系统如果因故障而不得不<abbr title="telinit 1">进入单用户修复模式</abbr>，则只有一个终端 <code>/dev/console</code> 开启）。</p>
