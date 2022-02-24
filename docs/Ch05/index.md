@@ -25,7 +25,7 @@
 
 ### Linux 下的用户简介 {#intro-user-under-linux}
 
-你可以查看 `/etc/passwd` 文件，来得到系统中用户的配置信息。**下文的内容，在没有特殊说明的情况下，都假设你的用户名是 `me`**。
+你可以查看 `/etc/passwd` 文件，来得到系统中用户的配置信息。
 
 !!! example "`/etc/passwd` 示例"
 
@@ -37,7 +37,7 @@
     bin:x:2:2:bin:/bin:/usr/sbin/nologin
     （中间内容省略）
     sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
-    me:x:1000:1000:me:/home/me:/bin/bash
+    ustc:x:1000:1000:ustc:/home/ustc:/bin/bash
     lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
     mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
     ```
@@ -104,7 +104,7 @@
     W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
     $ sudo !!
     sudo apt update
-    [sudo] password for me:
+    [sudo] password for ustc:
     Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
     （以下内容省略）
     ```
@@ -173,10 +173,10 @@ $
 
 ```
 $ groups
-me adm cdrom sudo dip plugdev lxd
+ustc adm cdrom sudo dip plugdev lxd
 ```
 
-可以看到，用户 `me` 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。
+可以看到，用户 `ustc` 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。
 
 对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 `docker` 用户组，从而不需要使用 `root` 权限，也可以访问它的接口。
 
@@ -218,14 +218,14 @@ $ sudo adduser 用户名 组名
 
     ```text
     $ sudo apt update
-    [sudo] password for me:
-    me is not in the sudoers file.  This incident will be reported.
+    [sudo] password for ustc:
+    ustc is not in the sudoers file.  This incident will be reported.
     ```
 
     除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
 
     ```shell
-    $ sudo adduser me sudo
+    $ sudo adduser ustc sudo
     ```
 
     再此切换到新的用户即可看到使用 sudo 的提示：
@@ -242,8 +242,8 @@ $ sudo adduser 用户名 组名
 ```
 $ ls -l
 total 8
--rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
+-rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
+drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 ```
 
 第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 `a_file` 为普通文件 (`-`)，所属用户权限为 `rwx`，所属用户组权限为 `rw-`，其他人的权限为 `r--`。
@@ -261,8 +261,8 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     ```
     $ ls -l
     total 8
-    -rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-    drw-rw-r-- 2 me me 4096 Feb  3 22:38 a_folder
+    -rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
+    drw-rw-r-- 2 ustc ustc 4096 Feb  3 22:38 a_folder
     $ （与上面不同，我们去掉了 a_folder 的执行权限）
     $ cd a_folder
     -bash: cd: a_folder/: Permission denied
