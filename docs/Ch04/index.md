@@ -172,7 +172,7 @@ $ kill -l # 显示所有信号名称
 63) SIGRTMAX-1	64) SIGRTMAX
 ```
 
-如果不加任何参数，只有 PID，`kill` 命令将自动使用 15 (SIGTERM) 做为信号参数。
+如果不加任何参数，只有 PID，`kill` 命令将自动使用 15 (SIGTERM) 作为信号参数。
 
 !!! tip "立刻结束进程"
 
@@ -310,81 +310,123 @@ $ tmux
 
 ## 服务 {#service}
 
-在日常生活中，我们做为信息的接收者，享受着各种网络资源随时随地唾手可得的便利。然而必然有计算机做为内容的提供者因此而全天待命，它们便是服务器，上面运行着各式各样的**服务**。
-
-Linux 用作服务器，自然有其得天独厚的优势，有时是完善的服务器生态，有时是高度的可定制化，抑或是低廉的成本（但维护成本也许并不低廉）。
-
-当然，服务并不仅仅是对外提供的，系统的正常运行也需要关键服务的支撑。在 Windows 的任务管理器中也可一窥 Windows 中的「服务」的功能。
+说到**服务**，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」的功能；Linux 也有服务的概念，下面将作介绍。
 
 ### 守护进程 {#daemon}
 
 服务的特征，意味着服务进程必须独立于用户的登录，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离会话才能避免因为终端的关闭而消失。而这类一直默默工作于后台的进程被称为**守护进程** (daemon)。
 
-#### 守护进程的产生 {#daemon-creation}
-
-许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
-
-实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。
-
-打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。
-
 ### 服务管理 {#services}
 
-在 init 进程为 systmed 的系统中，管理系统服务的接口主要有 `systemctl` 和 service 两个命令。service 命令主要是为了跨 `init` 系统的兼容性考虑，它的任务可以全部由 systemctl 完成。
+目前绝大多数 Linux 发行版的 init 方案都是 systemd，其管理系统服务的命令是 `systemctl`。
 
-要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
+要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `systemctl status` 命令一览系统服务运行情况。
 
 ```shell
-$ service --status-all
- [ - ]  atftpd
- [ - ]  avahi-daemon
- [ + ]  bind9
- [ - ]  bluetooth
- [ - ]  console-setup.sh
- [ + ]  cron
- [ + ]  cups
- [ - ]  cups-browsed
- [ + ]  dbus
- ……
+$ systemctl status
+● ustclug-linux101
+    State: running
+     Jobs: 0 queued
+   Failed: 0 units
+    Since: Thu 2022-02-24 22:57:43 CST; 43s ago
+   CGroup: /
+           ├─user.slice
+           │ └─user-1000.slice
+           │   ├─user@1000.service
+           │   │ ├─gvfs-goa-volume-monitor.service
+           │   │ │ └─1179 /usr/libexec/gvfs-goa-volume-monitor
+           │   │ ├─pulseaudio.service
+           │   │ │ └─908 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+           │   │ ├─gvfs-daemon.service
+           │   │ │ ├─1011 /usr/libexec/gvfsd
+           │   │ │ ├─1016 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+           │   │ │ └─1216 /usr/libexec/gvfsd-trash --spawner :1.8 /org/gtk/gvfs/exec_spaw/0
+           │   │ ├─gvfs-udisks2-volume-monitor.service
+           │   │ │ └─1168 /usr/libexec/gvfs-udisks2-volume-monitor
+           │   │ ├─xfce4-notifyd.service
+           │   │ │ └─1142 /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+           │   │ ├─init.scope
+           │   │ │ ├─900 /lib/systemd/systemd --user
+           │   │ │ └─901 (sd-pam)
+           │   │ ├─gvfs-gphoto2-volume-monitor.service
+           │   │ │ └─1183 /usr/libexec/gvfs-gphoto2-volume-monitor
+           │   │ ├─obex.service
+           │   │ │ └─1270 /usr/lib/bluetooth/obexd
+           │   │ ├─at-spi-dbus-bus.service
+           │   │ │ ├─1008 /usr/libexec/at-spi-bus-launcher
+           │   │ │ ├─1020 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf -->
+           │   │ │ └─1034 /usr/libexec/at-spi2-registryd --use-gnome-session
+           │   │ ├─indicator-messages.service
+（以下省略）
 ```
 
-??? note "/etc/init.d 目录与 systemd"
+!!! tip "使用 less"
 
-    /etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 支持从此目录中加载服务。
+    当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 less 作为翻页器（Pager），方便我们阅读。
 
-上面命令所列出的一般只是网络服务和一部分系统服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看，该命令将显示所有 `systemd` 管理的单元。同时右面还会附上一句注释来表明该服务的任务。（使用 `j` 和 `k` 进行上下翻页）
+    用户可以使用键盘的方向键移动一行/一列，使用 Page Up/Page Down 键翻整页，按 Q 键退出（Quit）；按 / 键后输入关键词可以搜索，按小写 n 键跳转到搜索结果下一项，大写 N 键（Shift + N）跳转到搜索结果上一项。
+
+上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看。该命令将显示所有 `systemd` 管理的单元，同时右面还会附上一句注释来表明该服务的任务。
 
 !!! example "服务列表示例"
 
     ![services](images/services.png)
 
-至于服务的启动，终止，重载配置等命令可交付 tldr 介绍：
+至于服务的启动，终止，重载配置等命令可交付 tldr 介绍，我们也加入了一些注释。
 
-??? info "查看两个命令的 tldr 文档"
+```
+$ tldr systemctl
+systemctl
+Control the systemd system and service manager.
 
-    ```text
-    $ tldr systemctl
-    systemctl
-    Control the systemd system and service manager.
+    - List failed units:  # 列出运行失败的服务
+    systemctl --failed
 
-     - List failed units:
-       systemctl --failed
+    - Start/Stop/Restart/Reload a service:  # 开启/关闭/重启/重载服务。Reload 代表重载配置文件而不重启进程。
+    systemctl start/stop/restart/reload {{unit}}
 
-     - Start/Stop/Restart/Reload a service:
-       systemctl start/stop/restart/reload {{unit}}
+    - Show the status of a unit:  # 显示服务状态
+    systemctl status {{unit}}
 
-     - Show the status of a unit:
-       systemctl status {{unit}}
+    - Enable/Disable a unit to be started on bootup:  # 设置（Enable）/取消（Disable）服务开机自启
+    systemctl enable/disable {{unit}}
 
-     - Enable/Disable a unit to be started on bootup:
-       systemctl enable/disable {{unit}}
+    - Mask/Unmask a unit, prevent it to be started on bootup:  # 阻止/取消阻止服务被 enable
+    systemctl mask/unmask {{unit}}
 
-     - Mask/Unmask a unit, prevent it to be started on bootup:
-       systemctl mask/unmask {{unit}}
+    - Reload systemd, scanning for new or changed units:  # 重载 systemd，需要在创建或修改服务文件后执行
+    systemctl daemon-reload
+```
 
-     - Reload systemd, scanning for new or changed units:
-       systemctl daemon-reload
+!!! note "Unit 和 Service 是一回事吗？"
 
+    不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 systemd.unit(5)。
+
+??? info "传统的 service 管理程序"
+
+    尽管 systemd 近年来已经占据了大半江山，但是有人很讨厌它，认为它违背了 KISS (Keep It Simple and Stupid) 原则，不符合 UNIX 哲学，因此有一些 Linux 发行版以不使用 systemd 为自身特色。并且，systemd 只能够用于 Linux，与其他的类 UNIX 操作系统（例如 FreeBSD）不兼容。因此，以下对传统的 `service` 命令作一个简单的介绍。
+
+    可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
+
+    ```shell
+    $ service --status-all
+    [ - ]  atftpd
+    [ - ]  avahi-daemon
+    [ + ]  bind9
+    [ - ]  bluetooth
+    [ - ]  console-setup.sh
+    [ + ]  cron
+    [ + ]  cups
+    [ - ]  cups-browsed
+    [ + ]  dbus
+    ……
+    ```
+
+    /etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 也支持从此目录中加载服务。
+
+    以下是 tldr 给出的 `service` 常见命令的列表：
+
+    ```
     $ tldr service
     service
     Manage services by running init scripts.
@@ -405,11 +447,13 @@ $ service --status-all
 
 ### 自定义服务 {#customizing-service}
 
-如果我想将一个基于 Web 的应用（如基于 Web 的 Python 交互应用）做为局域网内 Web 服务，以便于在其他设备上访问。那么如何将其注册为 systemd 服务呢？
+如果我想将一个基于 Web 的应用（如基于 Web 的 Python 交互应用）作为局域网内 Web 服务，以便于在其他设备上访问。那么如何将其注册为 systemd 服务呢？
 
 其实只需要编写一个简单的 .service 文件即可。
 
 !!! example "编写 .service 文件并运行（以 Jupyter Notebook 为例）"
+
+    Jupyter Notebook 是基于浏览器的交互式编程平台，在数据科学领域非常常用。
 
     首先使用文本编辑器在 `/etc/systemd/system` 目录下创建一个名为 `jupyter.service` 的文件。并做如下编辑。
 
@@ -485,9 +529,9 @@ job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 
     如果你还没有学习「计算机程序设计」课程，或者已经忘光了程序设计课的内容，你可能会对这三个词感到迷惑。对于命令行程序来说，它可以从标准输入 (stdin) 获得用户输入的信息，向标准输出 (stdout) 输出文本，向标准错误 (stderr) 输出日志和错误信息。
 
-    这个概念并非 Linux 所独有的。Windows 的命令行程序同样有这三类输入输出。它们是「标准流」(Standard streams)。
+    这个概念并非 Linux 所独有的。Windows 的命令行程序同样有这三类输入输出。它们被称为「标准流」(Standard streams)。
 
-设置完任务之后，我们需要管理任务，极为自然的想法是用 `at -l` 列出任务，`at -r 编号` 删除任务，不过它们分别是 atq 和 atrm 命令的别名。
+设置完任务之后，我们需要管理任务，我们可以用 `at -l` 列出任务，`at -r 编号` 删除任务。它们分别是 atq 和 atrm 命令的别名。
 
 #### crontab 命令 {#crontab}
 
@@ -525,7 +569,7 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 # 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么
 # 反映了 crontab 中大部分语法。
 5  3  *  *  * curl 'http://ip.42.pl/raw' | mail -s "ip today" xxx@xxx.com
-# 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （因为半夜 3 点重新拨号）
+# 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （假设半夜 3 点重新拨号）
 ```
 
 如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。
@@ -543,10 +587,6 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 !!! question "关于 Ctrl + C"
 
     尝试描述在终端运行程序时，用户按下 Ctrl + C 后发生的事情。
-
-!!! question "查看系统中出现错误的服务"
-
-    查找资料，给出使用 `systemctl` 查看系统中运行出现错误的服务的命令。
 
 ## 其他资料 {#extra-resources}
 

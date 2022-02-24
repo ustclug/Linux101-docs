@@ -46,6 +46,14 @@
 |    Nice    | 普通进程的优先级标度，越 "nice" 优先级越低。                                                                                                       |
 |   State    | 标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。 |
 
+## 守护进程的产生 {#daemon-creation}
+
+许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
+
+实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。
+
+打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。
+
 ## Linux 下进程查看原理 {#proc}
 
 正文提到，ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控。但是它足够简单，可以供我们进行分析。直接阅读 ps 的源代码是最直接的方法，但是成本可能过高，更好的方法是用 strace 命令来分析 ps 运行过程中使用到的系统调用。
