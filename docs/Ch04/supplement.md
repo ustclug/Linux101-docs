@@ -6,7 +6,9 @@
 
 ### 进程父子关系 {#parent-child}
 
-除了最开始的 0 号进程外，其他进程一定由另一个进程通过 fork 产生，显然产生进程的一方为**父进程**，被产生的是**子进程**。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。
+Fork 是类 UNIX 中创建进程的基本方法：将当前的进程完整复制一份。新进程和旧进程唯一的区别是 `fork()` 的返回值不同。程序员可以根据其返回值为新旧进程设置不同的逻辑。
+
+除了最开始的 0 号进程外，绝大多数情况下其他进程是由另一个进程通过 fork 产生的。这里产生进程的一方为**父进程**，被产生的是**子进程**。在 Linux 中，父进程可以等待子进程，接收子进程退出信号以及返回值。
 
 ??? tip "孤儿进程 (orphan) 和僵尸进程 (zombie)"
 
@@ -14,7 +16,7 @@
 
     孤儿进程（即留下的子进程）由操作系统回收，交给 init「领养」。
 
-    僵尸进程的进程资源大部分已释放，但占用一个 PID（上文已述，PID 个数有上限），并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。
+    僵尸进程的进程资源大部分已释放，但占用一个 PID，并保存返回值。系统中大量僵尸进程的存在将导致无法创建进程。
 
 我们可以使用 htop 查看进程的父进程等信息。按 F2，随后可以自主选择进程的属性列在面板上，以 Parent PID 为例 (PPID)，点击 colomns，点击 PPID，注意到下方提示按 F5 可以添加到左侧，再依照下方提示调整顺序。同理可以顺便在 PPID 后顺序添加 PGRP，TTY_NR，TPGID，SESSION 等列以便观察下面的实验结果。
 
@@ -34,25 +36,36 @@
 
 总结：
 
-|  进程属性  | 意义/目的                                                                                                                                          |
-| :--------: | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    PID     | Process ID，标识进程的唯一性。                                                                                                                     |
-|    PPID    | Parent PID，标识进程父子关系。                                                                                                                     |
-|    PGID    | Process Group ID，标识共同完成一个任务的整体。                                                                                                     |
-|   TPGID    | 标识一组会话中处于前台（与用户交流）的进程（组）。                                                                                                 |
-|    SID     | Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。                                      |
-| USER / UID | 标识进程的权限。                                                                                                                                   |
-|  Priority  | 标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。                                                                                       |
-|    Nice    | 普通进程的优先级标度，越 "nice" 优先级越低。                                                                                                       |
-|   State    | 标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。 |
+| 进程属性 | 意义/目的                                                                                                     |
+| :------: | ------------------------------------------------------------------------------------------------------------- |
+|   PID    | Process ID，标识进程的唯一性。                                                                                |
+|   PPID   | Parent PID，标识进程父子关系。                                                                                |
+|   PGID   | Process Group ID，标识共同完成一个任务的整体。                                                                |
+|  TPGID   | 标识一组会话中处于前台（与用户交流）的进程（组）。                                                            |
+|   SID    | Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。 |
 
 ## 守护进程的产生 {#daemon-creation}
 
-许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话。所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
+许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话，否则父进程退出时子进程也会退出。创建会话的系统调用是 `setsid()`。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话：
+
+```
+DESCRIPTION
+       setsid() creates a new session if the calling process is not a process group leader.  The calling
+       process is the leader of the new session (i.e., its session ID is made the same  as  its  process
+       ID).   The  calling  process  also becomes the process group leader of a new process group in the
+       session (i.e., its process group ID is made the same as its process ID).
+
+       The calling process will be the only process in the new process group and in the new session.
+
+       Initially, the new session has no controlling terminal.  For details of how a session acquires  a
+       controlling terminal, see credentials(7).
+```
+
+所以自身创建子进程后退出，子进程调用 setsid 脱离会话，自身成为会话组组长。此时大部分守护进程已初步形成。
 
 实际上，如果我们使用类似 `bash -c "ping localhost &" &` 这样的命令就可以模拟守护进程创建的过程：首先现有 shell 创建了 bash 作为子进程，该 bash 将 `ping localhost` 放入后台执行。由于不是交互模式，没有前台进程 bash 将自动退出。该 bash 的后台进程甚至不需要退出 session，就可以不受 SIGHUP 的影响。未 setsid 的 ping 命令可以一直在该终端输出，可见退出 session 的意义在于放弃该 tty。
 
-打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。显然，守护进程的 SID 与 自身 PID 相同。
+打开 htop，按 PID 顺序排列，排在前面的用户进程历来都是守护进程，它们大多数先于用户登录而启动。可以注意到，守护进程的 SID 与自身 PID 相同。
 
 ## Linux 下进程查看原理 {#proc}
 
@@ -70,7 +83,7 @@
 
     strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。
 
-    注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看[第九章](/Ch09/)。
+    注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看[第六章](../Ch06/index.md#redirect-and-pipe)。
 
 ```shell
 $ strace ps
@@ -131,8 +144,6 @@ NSpgid:	1
 - U: 重新挂载所有的文件系统为只读状态。
 - B: 立刻重启系统。
 
-<!-- ## Linux 中的优先级 {#priority} -->
-
 ## 关于 `fork()` {#fork}
 
 通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。
@@ -170,7 +181,7 @@ int main() {
 
 按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
 
-同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程， PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。
+同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。
 
 接下来会看到进程 SID 一律为该进程的控制 shell 的 PID。
 
@@ -215,11 +226,11 @@ void sig_handler(int sig) {
 
 !!! warning "可重入性"
 
-    事实上，这个程序存在一个隐含的问题：如果在运行 `sig_handler()` 的时候，又有信号输入，会发生什么呢？
+    事实上，这个程序存在一个隐含的问题：信号输入后，程序的执行流变成了 `sig_handler()`，在处理函数执行完成之后，原来的程序是否还能正常运行？
 
-    这就牵扯到「可重入性」(reentrant) 这个概念了。如果某程序可以在任意时刻被中断，并且这个程序在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 `man signal-safety`，可以查看到一份可重入库函数的列表。
+    这就牵扯到「可重入性」(reentrant) 这个概念了。如果某个函数可以在任意时刻被中断，并且这个函数在中断返回之前又再次被中断的代码执行而不会出现错误，那么它就是「可重入」的。信号处理函数应当可重入，以保证安全执行。不是所有的函数都是可重入的，访问 `man signal-safety`，可以查看到一份可重入库函数的列表。
 
-    当然很遗憾，`printf()` 不是可重入的。
+    但是很遗憾，`printf()` 不是可重入的：如果程序正在执行 `printf()` 的时候有信号输入，处理函数运行 `printf()` 会导致输出缓冲区的数据更新，之后回到原程序的 `printf()` 的时候，就有可能出现问题。
 
 ## 终端 (Terminal) 与控制台 (Console) {#terminal}
 

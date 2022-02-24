@@ -222,7 +222,7 @@ $ nohup ping 101.ustclug.org &
 nohup: ignoring input and appending output to '/home/ustc/nohup.out'
 ```
 
-在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被[重定向](../Ch09/index.md#redirect)到 nohup.out，也可以通过重定向手段自定义输出的文件。
+在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被[重定向](../Ch06/index.md#redirect)到 nohup.out，也可以通过重定向手段自定义输出的文件。
 
 ### 命令行多终端方案——tmux {#tmux}
 
@@ -587,7 +587,7 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 
 !!! question "在恢复暂停了的程序之后……"
 
-    在「[前后台切换](#bg-fg)」的动图示例中，`ping` 命令一直在输出，严重影响命令的输入，应如何操作？
+    在「[前后台切换](#bg-fg)」的动图示例中，`ping` 命令一直在输出，严重影响命令的输入，应如何避免此问题？
 
 !!! question "关于 Ctrl + C"
 
