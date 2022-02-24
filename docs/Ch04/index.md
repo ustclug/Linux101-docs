@@ -166,7 +166,7 @@ $ renice -n 10 -p 12345 # 设置 PID 为 12345 的进程的 nice 值为 10
 
 需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思是「可以被中断」；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被中断，一般是因为阻塞在磁盘读写操作上。
 
-Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等 debug 工具进行跟踪时的状态（小写 t）。
+Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等调试（Debug）工具进行跟踪时的状态（小写 t）。
 
 **上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：**
 
