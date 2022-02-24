@@ -90,7 +90,7 @@ nav:
         - Ch05/index.md
         - 拓展阅读: Ch05/supplement.md
         - 思考题解答: Ch05/solution.md
-    - 六：网络下载工具与 Shell 脚本:
+    - 六：网络、文本处理工具与 Shell 脚本:
         - Ch06/index.md
         - 拓展阅读: Ch06/supplement.md
         - 思考题解答: Ch06/solution.md

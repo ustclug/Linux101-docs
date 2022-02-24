@@ -10,133 +10,13 @@
 
 ## 一些铺垫 {#prerequisite}
 
-### I/O 重定向和管道 {#redirect-and-pipe}
-
-在 [六：网络下载工具与 Shell 脚本](../Ch06/index.md) 中提到过：
-
-> Bash 支持 I/O 重定向（>, >>, <）和管道（|）等
-
-下面简单介绍重定向和管道，为后续知识做铺垫
-
-#### 重定向 {#redirect}
-
-一般情况下命令从**标准输入（stdin）**读取输入，并输出到**标准输出（stdout）**，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 `echo` 为例的重定向输出：
-
-```shell
-$ echo "Hello Linux!" > output_file
-$ cat output_file
-Hello Linux!
-$ echo "rewrite it" > output_file
-$ cat output_file
-rewrite it
-$ echo "append it" >> output_file
-$ cat output_file
-rewrite it
-append it
-```
-
-无论是 `>` 还是 `>>`，当输出文件不存在时都会创建该文件
-
-重定向输入使用符号 `<`：
-
-```shell
-command < inputfile
-command < inpufile > outputfile
-```
-
-!!! tip "小知识"
-
-    除了 stdin 和 stdout 还有标准错误（stderr），0、1、2分别是他们的编号。stderr 可以用 `2>` 重定向。注意数字 2 和 > 之前没有空格。
-
-    使用 `2>&1` 可以将 stderr 合并到 stdout。
-
-!!! question "思考题"
-
-    `wc -l file` 和 `wc -l < file` 输出有什么区别？为什么？
-
-    `echo < file` 会输出什么？
-
-#### 管道 {#pipe}
-
-管道（pipe），操作符 `|`，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。
-
-![管道示例](./images/pipe.png)
-
-```shell
-$ ls / | grep bin
-bin
-sbin
-```
-
-#### 单双引号 {#qoutes}
+### 单双引号 {#qoutes}
 
 当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。
 
 在 bash 中，单引号意为“强引用”，即引号之间的特殊字符会被认为是普通字符，两个单引号之间不能再有单引号，即使使用‘\’进行转义。而双引号意为”弱引用“，'$', '`', '\'， '!' 在双引号之间有特殊含义。参考 [Bash Quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)
 
 ## 常用 shell 文字处理工具 {#tools-in-shell}
-
-### diff {#diff}
-
-diff 工具用于比较两个文件的不同，并列出差异。
-
-```shell
-$ echo hello > file1
-$ echo hallo > file2
-$ diff file1 file1
-$ diff file1 file2
-1c1
-< hello
----
-> hallo
-```
-
-!!! tip "小知识"
-
-    加参数 `-w` 可忽略所有空白字符， `-b` 可忽略空白字符的数量变化。
-
-    假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。
-
-### head & tail {#head-and-tail}
-
-顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。
-
-以 head 为例的共同用法：
-
-- 不加参数的时候默认显示前 10 行
-- `-n [NUM]` 指定行数，可简化为 `-[NUM]`
-- `-c [NUM]` 指定字节数
-- `-n +[NUM]` 输出从开头到倒数第 \[NUM\] 行，tail 可简化为 `+[NUM]`
-- `-c +[NUM]` 输出从开头到倒数第 \[NUM\] 字节
-
-```shell
-head file
-head -n 25 file
-head -25 file
-head -c 20 file
-```
-
-```shell
-head -10 file
-tail -10 file
-head -n +10 file
-tail +10 file
-```
-
-可以简化记忆为 `-` 表示想要多少（只要前 10 行 / 后 10 行），`+` 表示“不想要”多少（除了最后 10 行 / 最前 10 行都要）。
-
-tail 比 head 多出的用法：
-
-- `-f` 当文件末尾内容增长时，持续输出末尾增加的内容
-
-`tail -f file` 常用于动态显示 log 文件的更新
-
-head 和 tail 组合使用：
-
-```shell
-head -20 file | tail -5
-head -20 file | tail +5
-```
 
 ### sort {#sort}
 

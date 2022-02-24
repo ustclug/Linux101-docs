@@ -1,20 +1,69 @@
-# 网络下载（cURL, Wget）与 Shell 脚本
+# 网络、文本处理工具与 Shell 脚本
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "导言"
 
-    很多 Linux 的初学者都会对以下这些问题感到迷惑
+    很多 Linux 的初学者都会对以下这些问题感到迷惑：
 
+    - 如何把命令的输出放到文件里？如何把命令的输出作为其他命令的输入？
     - 在命令行黑乎乎的窗口，我要怎么下载文件？
-
     - 在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？
-
+    - 在命令行下怎么查找与替换文件中的字符串？
     - Bash 语法和 C 语言类似吗？和 Powershell 类似吗？
-
     - Bash script 出 bug 的时候我该如何调试呢？
 
     下面内容可以解答你的疑问。
+
+## I/O 重定向与管道 {#redirect-and-pipe}
+
+### 重定向 {#redirect}
+
+一般情况下命令从**标准输入（stdin）**读取输入，并输出到**标准输出（stdout）**，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 `echo` 为例的重定向输出：
+
+```shell
+$ echo "Hello Linux!" > output_file # 将输出写入到文件（覆盖原有内容）
+$ cat output_file
+Hello Linux!
+$ echo "rewrite it" > output_file
+$ cat output_file # 可以看到原来的 Hello Linux! 被覆盖了。
+rewrite it
+$ echo "append it" >> output_file # 将输出追加到文件（不会覆盖原有内容）
+$ cat output_file
+rewrite it
+append it
+```
+
+无论是 `>` 还是 `>>`，当输出文件不存在时都会创建该文件。
+
+重定向输入使用符号 `<`：
+
+```shell
+command < inputfile
+command < inpufile > outputfile
+```
+
+!!! tip "小知识"
+
+    除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 `2>` 重定向（注意数字 2 和 > 之前没有空格）。
+
+    使用 `2>&1` 可以将 stderr 合并到 stdout。
+
+### 管道 {#pipe}
+
+管道（pipe），操作符 `|`，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。
+
+![管道示例](./images/pipe.png)
+
+管道是类 UNIX 操作系统中非常强大的工具。通过管道，我们可以将实现各类小功能的程序拼接起来干大事。
+
+示例如下：
+
+```shell
+$ ls / | grep bin  # 筛选 ls / 输出中所有包含 bin 字符串的行
+bin
+sbin
+```
 
 ## 网络下载 {#download-utils}
 
@@ -88,6 +137,128 @@ cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输�
 ### 其他
 
 除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。
+
+## 文本处理 {#text-utils}
+
+在进行文本处理时，我们有一些常见的需求：
+
+- 获取文本的行数、字数
+- 比较两段文本的不同之处
+- 查看文本的开头几行和最后几行
+- 在文本中查找字符串
+- 在文本中替换字符串
+
+下面介绍如何在 shell 中做到这些事情。
+
+### 文本统计：wc {#wc}
+
+`wc` 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。
+
+```shell
+$ wc file
+     427    2768   20131 file
+```
+
+!!! warning "统计中文文本时的问题"
+
+    `wc` 在统计中文文本时，会出现一些问题，比如：
+
+    ```shell
+    $ echo '中文测试' | wc
+    1       1      13
+    ```
+
+    这里显示文本只有 1 个单词，但是有 13 个字符，这显然是不对的。
+
+    对于字符数统计结果，可以使用 `wc -m` 命令要求 `wc` 考虑宽字符：
+
+    ```shell
+    $ echo '中文测试' | wc -m
+    5
+    ```
+
+    换行符也是一个符号，所以结果为 5（而非 4）。
+
+    由于中文文本的单词统计涉及分词算法问题，`wc` 无法准确统计。
+
+### 文本比较：diff {#diff}
+
+diff 工具用于比较两个文件的不同，并列出差异。
+
+```shell
+$ echo hello > file1
+$ echo hallo > file2
+$ diff file1 file1
+$ diff file1 file2
+1c1
+< hello
+---
+> hallo
+```
+
+!!! tip "小知识"
+
+    加参数 `-w` 可忽略所有空白字符， `-b` 可忽略空白字符的数量变化。
+
+    假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。
+
+### 文本开头与结尾：head & tail {#head-and-tail}
+
+顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。
+
+以 head 为例，这里给出共同的用法：
+
+- 不加参数的时候默认显示前 10 行
+- `-n [NUM]` 指定行数，可简化为 `-[NUM]`
+- `-c [NUM]` 指定字节数
+
+```shell
+$ head file  # 显示 file 前 10 行
+$ head -n 25 file  # 显示 file 前 25 行
+$ head -25 file  # 显示 file 前 25 行
+$ head -c 20 file  # 显示 file 前 20 个字符
+$ tail -10 file  # 显示 file 最后 10 行
+```
+
+除此以外，tail 还有一个非常实用的参数 `-f`：当文件末尾内容增长时，持续输出末尾增加的内容。这个参数常用于动态显示 log 文件的更新（试一试 `tail -f /var/log/syslog`）。
+
+### 文本查找：grep {#grep}
+
+`grep` 命令可以查找文本中的字符串：
+
+```shell
+$ grep 'hello' file  # 查找文件 file 中包含 hello 的行
+$ ls | grep 'file'  # 查找当前目录下文件名包含 file 的文件
+$ grep -i 'Systemd' file  # 查找文件 file 中包含 Systemd 的行（忽略大小写）
+$ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
+```
+
+!!! info "不止如此！"
+
+    grep 事实上是非常强大的查找工具，[第九章](../Ch09/index.md)将在介绍正则表达式语法之后进一步介绍 grep。
+
+### 文本替换：sed {#sed}
+
+`sed` 命令可以替换文本中的字符串：
+
+```shell
+$ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
+$ sed 's/hello/world/' file  # 将文件 file 中第一个出现的 hello 替换为 world 后输出
+$ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
+$ sed -i 's/hello/world/g' file  # -i 参数会直接写入文件，操作前记得备份哦！
+$ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到 file.bak
+```
+
+对于大多数用户来说，最常用 `sed` 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：
+
+```shell
+$ sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+$ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+```
+
+!!! info "同样不止如此！"
+
+    sed 事实上是非常强大的文本操作工具（不仅支持正则表达式，而且能够做的操作也不止是替换），[第九章](../Ch09/index.md)将进一步介绍 sed。
 
 ## Shell 脚本 {#shell-scripts}
 
@@ -528,6 +699,12 @@ Bash shell 本身提供了调试方法：
 除了 Bash shell 内置的选项，还有 [BASH Debugger](http://bashdb.sourceforge.net/)、[shellcheck](https://github.com/koalaman/shellcheck) 等第三方脚本分析工具。
 
 ## 思考题 {#thinking-questions}
+
+!!! question "I/O 重定向的小细节"
+
+    `wc -l file` 和 `wc -l < file` 输出有什么区别？为什么？
+
+    `echo < file` 会输出什么？
 
 !!! question "设定 HTTP 请求头"
 
