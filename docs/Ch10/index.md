@@ -1,4 +1,4 @@
-# 十：Windows Subsystem for Linux
+# Windows Subsystem for Linux
 
 !!! Warning "本文仍在编辑中，尚未校对、审阅和和修订"
 
