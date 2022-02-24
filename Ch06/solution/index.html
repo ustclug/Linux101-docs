@@ -829,7 +829,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">六：网络下载工具与 Shell 脚本</a>
+          <a href="../">六：网络、文本处理工具与 Shell 脚本</a>
           
             <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
@@ -837,10 +837,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
+      <nav class="md-nav" aria-label="六：网络、文本处理工具与 Shell 脚本" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
-          六：网络下载工具与 Shell 脚本
+          六：网络、文本处理工具与 Shell 脚本
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -898,6 +898,13 @@
       目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    I/O 重定向的小细节
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#http" class="md-nav__link">
@@ -1258,6 +1265,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    I/O 重定向的小细节
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#http" class="md-nav__link">
     设定 HTTP 请求头
   </a>
@@ -1318,6 +1332,20 @@
 
 
 <h1 id="solution">思考题解答<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
+<h2 id="io">I/O 重定向的小细节<a class="headerlink" href="#io" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>解答</summary>
+<div class="highlight"><pre><span></span><code>$ wc -l file
+<span class="m">427</span> file
+$ wc -l &lt; file
+<span class="m">427</span>
+$ <span class="nb">echo</span> &lt; file
+
+$
+</code></pre></div>
+<p>可以看到，两种情况下 <code>wc</code> 都正确输出了文件的行数，因为 <code>wc</code> 既可以从标准输入读取内容，也可以从文件读取内容。当然，从标准输入读取内容的时候，<code>wc</code> 不知道文件名，所以没有显示出来。</p>
+<p>而 <code>echo</code> 只输出了空行，因为 <code>echo</code> 不从标准输入读取内容（它的输入从参数读取）。</p>
+</details>
 <h2 id="http">设定 HTTP 请求头<a class="headerlink" href="#http" title="Permanent link">&para;</a></h2>
 <details class="info">
 <summary>解答</summary>

@@ -17,7 +17,7 @@
     
     
       
-        <title>网络下载（cURL, Wget）与 Shell 脚本 - Linux 101</title>
+        <title>网络、文本处理工具与 Shell 脚本 - Linux 101</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#curl-wget-shell" class="md-skip">
+        <a href="#shell" class="md-skip">
           跳转至
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              网络下载（cURL, Wget）与 Shell 脚本
+              网络、文本处理工具与 Shell 脚本
             
           </span>
         </div>
@@ -829,7 +829,7 @@
         
         
         <div class="md-nav__link md-nav__link--index md-nav__link--active">
-          <a href="./">六：网络下载工具与 Shell 脚本</a>
+          <a href="./">六：网络、文本处理工具与 Shell 脚本</a>
           
             <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
@@ -837,10 +837,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
+      <nav class="md-nav" aria-label="六：网络、文本处理工具与 Shell 脚本" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
-          六：网络下载工具与 Shell 脚本
+          六：网络、文本处理工具与 Shell 脚本
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1182,6 +1182,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#redirect-and-pipe" class="md-nav__link">
+    I/O 重定向与管道
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O 重定向与管道">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirect" class="md-nav__link">
+    重定向
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipe" class="md-nav__link">
+    管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#download-utils" class="md-nav__link">
     网络下载
   </a>
@@ -1246,6 +1273,54 @@
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     其他
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-utils" class="md-nav__link">
+    文本处理
+  </a>
+  
+    <nav class="md-nav" aria-label="文本处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wc" class="md-nav__link">
+    文本统计：wc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    文本比较：diff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-and-tail" class="md-nav__link">
+    文本开头与结尾：head &amp; tail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    文本查找：grep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    文本替换：sed
   </a>
   
 </li>
@@ -1430,29 +1505,56 @@
 
 
 
-<h1 id="curl-wget-shell">网络下载（cURL, Wget）与 Shell 脚本<a class="headerlink" href="#curl-wget-shell" title="Permanent link">&para;</a></h1>
+<h1 id="shell">网络、文本处理工具与 Shell 脚本<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
 <div class="admonition success">
 <p class="admonition-title">本文已完稿并通过审阅，是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
-<p>很多 Linux 的初学者都会对以下这些问题感到迷惑</p>
+<p>很多 Linux 的初学者都会对以下这些问题感到迷惑：</p>
 <ul>
-<li>
-<p>在命令行黑乎乎的窗口，我要怎么下载文件？</p>
-</li>
-<li>
-<p>在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？</p>
-</li>
-<li>
-<p>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</p>
-</li>
-<li>
-<p>Bash script 出 bug 的时候我该如何调试呢？</p>
-</li>
+<li>如何把命令的输出放到文件里？如何把命令的输出作为其他命令的输入？</li>
+<li>在命令行黑乎乎的窗口，我要怎么下载文件？</li>
+<li>在命令行下，下载任务可以放在后台吗？如果我在命令行下结束下载任务，会不会使已下载部分全部白费？</li>
+<li>在命令行下怎么查找与替换文件中的字符串？</li>
+<li>Bash 语法和 C 语言类似吗？和 Powershell 类似吗？</li>
+<li>Bash script 出 bug 的时候我该如何调试呢？</li>
 </ul>
 <p>下面内容可以解答你的疑问。</p>
 </div>
+<h2 id="redirect-and-pipe">I/O 重定向与管道<a class="headerlink" href="#redirect-and-pipe" title="Permanent link">&para;</a></h2>
+<h3 id="redirect">重定向<a class="headerlink" href="#redirect" title="Permanent link">&para;</a></h3>
+<p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file <span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
+$ cat output_file
+Hello Linux!
+$ <span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span> &gt; output_file
+$ cat output_file <span class="c1"># 可以看到原来的 Hello Linux! 被覆盖了。</span>
+rewrite it
+$ <span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span> &gt;&gt; output_file <span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
+$ cat output_file
+rewrite it
+append it
+</code></pre></div>
+<p>无论是 <code>&gt;</code> 还是 <code>&gt;&gt;</code>，当输出文件不存在时都会创建该文件。</p>
+<p>重定向输入使用符号 <code>&lt;</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span> &lt; inputfile
+<span class="nb">command</span> &lt; inpufile &gt; outputfile
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">小知识</p>
+<p>除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 <code>2&gt;</code> 重定向（注意数字 2 和 &gt; 之前没有空格）。</p>
+<p>使用 <code>2&gt;&amp;1</code> 可以将 stderr 合并到 stdout。</p>
+</div>
+<h3 id="pipe">管道<a class="headerlink" href="#pipe" title="Permanent link">&para;</a></h3>
+<p>管道（pipe），操作符 <code>|</code>，作用为将符号左边的命令的 stdout 接到之后的命令的 stdin。管道不会处理 stderr。</p>
+<p><img alt="管道示例" src="images/pipe.png" /></p>
+<p>管道是类 UNIX 操作系统中非常强大的工具。通过管道，我们可以将实现各类小功能的程序拼接起来干大事。</p>
+<p>示例如下：</p>
+<div class="highlight"><pre><span></span><code>$ ls / <span class="p">|</span> grep bin  <span class="c1"># 筛选 ls / 输出中所有包含 bin 字符串的行</span>
+bin
+sbin
+</code></pre></div>
 <h2 id="download-utils">网络下载<a class="headerlink" href="#download-utils" title="Permanent link">&para;</a></h2>
 <h3 id="why-wget-and-curl">为何使用 wget 和 cURL<a class="headerlink" href="#why-wget-and-curl" title="Permanent link">&para;</a></h3>
 <p>在 Windows 下，很多人下载文件时会使用「迅雷」、「QQ 旋风」（停止运营）、「IDM」之类的软件来实现下载。那么在 Linux 环境下呢？在终端下，没有可视化软件提供点击下载。即使有桌面环境，有 Firefox 可以很方便地下载文件，硬件资源也会被很多不必要的服务浪费。通过以下内容讲述的 wget (<code>wget</code>) 和 cURL (<code>curl</code>) 工具，我们可以 Linux 上进行轻量的下载活动。</p>
@@ -1547,6 +1649,93 @@
 </details>
 <h3 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。</p>
+<h2 id="text-utils">文本处理<a class="headerlink" href="#text-utils" title="Permanent link">&para;</a></h2>
+<p>在进行文本处理时，我们有一些常见的需求：</p>
+<ul>
+<li>获取文本的行数、字数</li>
+<li>比较两段文本的不同之处</li>
+<li>查看文本的开头几行和最后几行</li>
+<li>在文本中查找字符串</li>
+<li>在文本中替换字符串</li>
+</ul>
+<p>下面介绍如何在 shell 中做到这些事情。</p>
+<h3 id="wc">文本统计：wc<a class="headerlink" href="#wc" title="Permanent link">&para;</a></h3>
+<p><code>wc</code> 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。</p>
+<div class="highlight"><pre><span></span><code>$ wc file
+     <span class="m">427</span>    <span class="m">2768</span>   <span class="m">20131</span> file
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">统计中文文本时的问题</p>
+<p><code>wc</code> 在统计中文文本时，会出现一些问题，比如：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;中文测试&#39;</span> <span class="p">|</span> wc
+<span class="m">1</span>       <span class="m">1</span>      <span class="m">13</span>
+</code></pre></div>
+<p>这里显示文本只有 1 个单词，但是有 13 个字符，这显然是不对的。</p>
+<p>对于字符数统计结果，可以使用 <code>wc -m</code> 命令要求 <code>wc</code> 考虑宽字符：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;中文测试&#39;</span> <span class="p">|</span> wc -m
+<span class="m">5</span>
+</code></pre></div>
+<p>换行符也是一个符号，所以结果为 5（而非 4）。</p>
+<p>由于中文文本的单词统计涉及分词算法问题，<code>wc</code> 无法准确统计。</p>
+</div>
+<h3 id="diff">文本比较：diff<a class="headerlink" href="#diff" title="Permanent link">&para;</a></h3>
+<p>diff 工具用于比较两个文件的不同，并列出差异。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> hello &gt; file1
+$ <span class="nb">echo</span> hallo &gt; file2
+$ diff file1 file1
+$ diff file1 file2
+1c1
+&lt; hello
+---
+&gt; hallo
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">小知识</p>
+<p>加参数 <code>-w</code> 可忽略所有空白字符， <code>-b</code> 可忽略空白字符的数量变化。</p>
+<p>假如比较的是两个文本文件，差异之处会被列出；假如比较的是二进制文件，只会指出是否有差异。</p>
+</div>
+<h3 id="head-and-tail">文本开头与结尾：head &amp; tail<a class="headerlink" href="#head-and-tail" title="Permanent link">&para;</a></h3>
+<p>顾名思义，head 和 tail 分别用来显示开头和结尾指定数量的文字。</p>
+<p>以 head 为例，这里给出共同的用法：</p>
+<ul>
+<li>不加参数的时候默认显示前 10 行</li>
+<li><code>-n [NUM]</code> 指定行数，可简化为 <code>-[NUM]</code></li>
+<li><code>-c [NUM]</code> 指定字节数</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ head file  <span class="c1"># 显示 file 前 10 行</span>
+$ head -n <span class="m">25</span> file  <span class="c1"># 显示 file 前 25 行</span>
+$ head -25 file  <span class="c1"># 显示 file 前 25 行</span>
+$ head -c <span class="m">20</span> file  <span class="c1"># 显示 file 前 20 个字符</span>
+$ tail -10 file  <span class="c1"># 显示 file 最后 10 行</span>
+</code></pre></div>
+<p>除此以外，tail 还有一个非常实用的参数 <code>-f</code>：当文件末尾内容增长时，持续输出末尾增加的内容。这个参数常用于动态显示 log 文件的更新（试一试 <code>tail -f /var/log/syslog</code>）。</p>
+<h3 id="grep">文本查找：grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
+<p><code>grep</code> 命令可以查找文本中的字符串：</p>
+<div class="highlight"><pre><span></span><code>$ grep <span class="s1">&#39;hello&#39;</span> file  <span class="c1"># 查找文件 file 中包含 hello 的行</span>
+$ ls <span class="p">|</span> grep <span class="s1">&#39;file&#39;</span>  <span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
+$ grep -i <span class="s1">&#39;Systemd&#39;</span> file  <span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
+$ grep -R <span class="s1">&#39;hello&#39;</span> .  <span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">不止如此！</p>
+<p>grep 事实上是非常强大的查找工具，<a href="../Ch09/">第九章</a>将在介绍正则表达式语法之后进一步介绍 grep。</p>
+</div>
+<h3 id="sed">文本替换：sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
+<p><code>sed</code> 命令可以替换文本中的字符串：</p>
+<div class="highlight"><pre><span></span><code>$ sed <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>
+$ sed <span class="s1">&#39;s/hello/world/&#39;</span> file  <span class="c1"># 将文件 file 中第一个出现的 hello 替换为 world 后输出</span>
+$ <span class="nb">echo</span> <span class="s1">&#39;helloworld&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/hello/world/g&#39;</span>  <span class="c1"># 管道也是可以的</span>
+$ sed -i <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># -i 参数会直接写入文件，操作前记得备份哦！</span>
+$ sed -i.bak <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class="c1"># 当然，也可以让 sed 帮你备份到 file.bak</span>
+</code></pre></div>
+<p>对于大多数用户来说，最常用 <code>sed</code> 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：</p>
+<div class="highlight"><pre><span></span><code>$ sudo sed -i <span class="s1">&#39;s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+$ sudo sed -i <span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">同样不止如此！</p>
+<p>sed 事实上是非常强大的文本操作工具（不仅支持正则表达式，而且能够做的操作也不止是替换），<a href="../Ch09/">第九章</a>将进一步介绍 sed。</p>
+</div>
 <h2 id="shell-scripts">Shell 脚本<a class="headerlink" href="#shell-scripts" title="Permanent link">&para;</a></h2>
 <h3 id="what-is-shell">什么是 Shell<a class="headerlink" href="#what-is-shell" title="Permanent link">&para;</a></h3>
 <p>Shell 是 Linux 的命令解释程序，是用户和内核之间的接口。除了作为命令解释程序外，Shell 同时还提供了一个可支持强大脚本语言的程序环境。</p>
@@ -2077,6 +2266,11 @@ hello, today&#39;s date is &lt;当前日期显示输出串&gt;
 <p>其中参数选项可以更改，<code>-n</code>：读一遍脚本中的命令但不执行，用于检查语法错误；<code>-v</code>：一边执行脚本、一边将执行过的脚本命令打印到标准输出；<code>-x</code>：提供跟踪执行信息，将执行的每一条命令和结果依次打印出来。注意避免几种调试选项混用。</p>
 <p>除了 Bash shell 内置的选项，还有 <a href="http://bashdb.sourceforge.net/">BASH Debugger</a>、<a href="https://github.com/koalaman/shellcheck">shellcheck</a> 等第三方脚本分析工具。</p>
 <h2 id="thinking-questions">思考题<a class="headerlink" href="#thinking-questions" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">I/O 重定向的小细节</p>
+<p><code>wc -l file</code> 和 <code>wc -l &lt; file</code> 输出有什么区别？为什么？</p>
+<p><code>echo &lt; file</code> 会输出什么？</p>
+</div>
 <div class="admonition question">
 <p class="admonition-title">设定 HTTP 请求头</p>
 <p>尝试查询 <code>curl</code> 和 <code>wget</code> 的文档，给出设定 HTTP 请求头的方法。</p>

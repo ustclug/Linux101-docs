@@ -829,7 +829,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../Ch06/">六：网络下载工具与 Shell 脚本</a>
+          <a href="../Ch06/">六：网络、文本处理工具与 Shell 脚本</a>
           
             <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
@@ -837,10 +837,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="六：网络下载工具与 Shell 脚本" data-md-level="1">
+      <nav class="md-nav" aria-label="六：网络、文本处理工具与 Shell 脚本" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
-          六：网络下载工具与 Shell 脚本
+          六：网络、文本处理工具与 Shell 脚本
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1899,7 +1899,7 @@ usage:  crontab [-u user] file
         -i      (prompt before deleting user&#39;s crontab)
 </code></pre></div>
 <p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
-<div class="admonition note">
+<div class="admonition warning">
 <p class="admonition-title"><code>crontab -e</code> 与 <code>crontab -r</code></p>
 <p>E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。</p>
 </div>
@@ -1920,7 +1920,7 @@ usage:  crontab [-u user] file
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">在恢复暂停了的程序之后……</p>
-<p>在「前后台切换」的示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？</p>
+<p>在「<a href="#bg-fg">前后台切换</a>」的动图示例中，<code>ping</code> 命令一直在输出，严重影响命令的输入，应如何操作？</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">关于 Ctrl + C</p>
