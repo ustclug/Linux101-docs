@@ -402,7 +402,7 @@ Control the systemd system and service manager.
 
     不是，以上的叙述仅仅是为了方便。Systemd 中的 unit 可以是服务（Service）、设备（Device）、挂载点（Mount）、定时器（Timer）……有关 systemd unit 的详细介绍，可见 [systemd.unit(5)][systemd.unit.5]。
 
-  [systemd.unit.5]: https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+[systemd.unit.5]: https://www.freedesktop.org/software/systemd/man/systemd.unit.html
 
 ??? info "传统的 service 管理程序"
 
@@ -486,7 +486,7 @@ Control the systemd system and service manager.
 
 可以参考系统中其他 `service` 文件，以及 [systemd.service(5)][systemd.service.5] 手册页编写配置文件。
 
-  [systemd.service.5]: https://www.freedesktop.org/software/systemd/man/systemd.service.html
+[systemd.service.5]: https://www.freedesktop.org/software/systemd/man/systemd.service.html
 
 <!-- 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。 -->
 
