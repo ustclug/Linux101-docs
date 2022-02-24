@@ -1313,6 +1313,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nano" class="md-nav__link">
+    编辑文件内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cp" class="md-nav__link">
     复制文件和目录
   </a>
@@ -1841,6 +1848,12 @@ $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 <p class="admonition-title">为什么名字叫 cat？</p>
 <p>当然和猫咪没有关系，cat 这里是 con<strong>cat</strong>enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。</p>
 </div>
+<h3 id="nano">编辑文件内容<a class="headerlink" href="#nano" title="Permanent link">&para;</a></h3>
+<p>Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。</p>
+<div class="highlight"><pre><span></span><code>$ nano file.txt  <span class="c1"># 使用 nano 编辑 file.txt 文件（如果没有则创建）</span>
+</code></pre></div>
+<p>Nano 启动后，用户可以直接开始输入需要的内容，使用方向键移动光标。在终端最下方是 nano 的快捷键，<code>^</code> 代表需要按下 Ctrl 键（例如，<code>^X</code> 就是需要同时按下 Ctrl + X）。在编辑完成后，按下 Ctrl + X，确认是否保存后即可。</p>
+<p>本章的<a href="supplement/#vim">拓展阅读</a>也简单介绍了 vim 的基础使用。</p>
 <h3 id="cp">复制文件和目录<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST</span>
 $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
