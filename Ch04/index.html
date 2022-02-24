@@ -1474,7 +1474,7 @@
 <p>我们平时使用操作系统的时候，可能同时会开启浏览器、聊天软件、音乐播放器、文本编辑器……前面提到它们都是进程，但是单个 CPU 核心一次只能执行一个进程。为了让这些软件看起来「同时」在执行，操作系统需要用非常快的速度将计算资源在这些进程之间切换，这也就引入了进程优先级和进程状态的概念。</p>
 <h4 id="nice">优先级与 nice 值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h4>
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：priority (PRI) 和 <strong>nice (NI)</strong>。以下主要介绍用户层使用的 nice 值。</p>
-<p>Nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
+<p>Nice 值越高代表一个进程对其它进程越 "nice"（友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
 <p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。</p>
 <div class="highlight"><pre><span></span><code>$ nice -n <span class="m">10</span> vim <span class="c1"># 以 10 为 nice 值运行 vim</span>
 $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
@@ -1540,7 +1540,13 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <p class="caption">（来自 2018 年《Linux 101 ——进程、服务、任务》的演示文稿截图）</p>
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
-<p>前后台切换的一般流程是，使用 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
+<p>默认情况下，在 shell 中运行的命令都在前台运行，如果需要在后台运行程序，需要在最后加上 <code>&amp;</code>：</p>
+<div class="highlight"><pre><span></span><code>$ ./matmul <span class="p">&amp;</span>  <span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
+$ ps <span class="p">|</span> grep matmul
+<span class="m">8844</span> pts/3    <span class="m">00</span>:00:06 matmul
+$ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
+</code></pre></div>
+<p>而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
 <p><img alt="" id="bg" src="images/bg.gif" width="80%" /></p>
 <p>我们可以使用 <code>jobs</code> 命令，看到当前 shell 上所有相关的进程了。这里，后台已经有一个进程在运行，所以 <code>ping localhost</code> 得到的代号是 2。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加 <code>%</code>，如将 2 号进程放入后台，则使用 <code>bg %2</code>，效果如图所示。</p>
