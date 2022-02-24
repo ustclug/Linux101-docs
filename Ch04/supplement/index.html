@@ -1392,6 +1392,53 @@
 <h3 id="session">会话——前台与后台<a class="headerlink" href="#session" title="Permanent link">&para;</a></h3>
 <p>而<strong>会话</strong> (session) 可以说是面向用户的登录出现的概念。当用户从终端登录进入 shell，就会以该 shell 为会话首进程展开本次会话。一个会话中通常包含着多个进程组，分别完成不同的工作。用户退出时，这个会话会结束，但有些进程仍然以该会话标识符 (session ID) 驻留系统中继续运行。</p>
 <p>说到会话，就必然涉及到 Linux 会话中的前后台管理机制。<strong>前台</strong> (foreground) 与<strong>后台</strong> (background)，本质上决定了是否需要与用户交互，对于单独的一个 shell，只能有一个前台进程（组），其余进程只能在后台默默运行，上述中若干进程组，正是前台进程组和后台进程组的概称。在稍后部分中我们将学习前后台切换的相关操作。</p>
+<p>总结：</p>
+<table>
+<thead>
+<tr>
+<th align="center">进程属性</th>
+<th>意义/目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">PID</td>
+<td>Process ID，标识进程的唯一性。</td>
+</tr>
+<tr>
+<td align="center">PPID</td>
+<td>Parent PID，标识进程父子关系。</td>
+</tr>
+<tr>
+<td align="center">PGID</td>
+<td>Process Group ID，标识共同完成一个任务的整体。</td>
+</tr>
+<tr>
+<td align="center">TPGID</td>
+<td>标识一组会话中处于前台（与用户交流）的进程（组）。</td>
+</tr>
+<tr>
+<td align="center">SID</td>
+<td>Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。</td>
+</tr>
+<tr>
+<td align="center">USER / UID</td>
+<td>标识进程的权限。</td>
+</tr>
+<tr>
+<td align="center">Priority</td>
+<td>标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。</td>
+</tr>
+<tr>
+<td align="center">Nice</td>
+<td>普通进程的优先级标度，越 "nice" 优先级越低。</td>
+</tr>
+<tr>
+<td align="center">State</td>
+<td>标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="proc">Linux 下进程查看原理<a class="headerlink" href="#proc" title="Permanent link">&para;</a></h2>
 <p>正文提到，ps 做为查看进程的基本命令，仅仅提供静态输出，并不能提供实时监控。但是它足够简单，可以供我们进行分析。直接阅读 ps 的源代码是最直接的方法，但是成本可能过高，更好的方法是用 strace 命令来分析 ps 运行过程中使用到的系统调用。</p>
 <div class="admonition info">

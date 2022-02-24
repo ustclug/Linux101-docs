@@ -1197,7 +1197,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#process-stat" class="md-nav__link">
+  <a href="#process-priority-and-stat" class="md-nav__link">
     进程优先级与状态
   </a>
   
@@ -1205,7 +1205,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#priority" class="md-nav__link">
+  <a href="#nice" class="md-nav__link">
     优先级与 nice 值
   </a>
   
@@ -1309,12 +1309,18 @@
     命令行多终端方案——tmux
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="命令行多终端方案——tmux">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#customizing-tmux" class="md-nav__link">
     定制 tmux
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1438,9 +1444,10 @@
 <p>在你的 Linux 系统中运行着很多东西：包括桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务。你是否好奇过：</p>
 <ul>
 <li>这些程序是以什么形态在电脑上运行的？</li>
-<li>在你结束进程的时候，到底发生了什么？</li>
+<li>如何关闭没有反应的程序呢？</li>
 <li>本地的终端可以开启标签页运行多个 Shell 运行多个程序，但是使用 <a href="../Ch01/supplement/#ssh">SSH 远程连接</a>时怎么运行多个程序呢？</li>
 <li>如何让我的任务一直执行，即使我关闭了终端/退出了 SSH？</li>
+<li>如何管理系统中的服务？</li>
 <li>如何让我的任务定时执行？</li>
 </ul>
 <p>本章节将解答这些问题。</p>
@@ -1463,9 +1470,10 @@
 <p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p>由于 kthreadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
 </details>
-<h3 id="process-stat">进程优先级与状态<a class="headerlink" href="#process-stat" title="Permanent link">&para;</a></h3>
-<h4 id="priority">优先级与 nice 值<a class="headerlink" href="#priority" title="Permanent link">&para;</a></h4>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：realtime priority (PRI) 和 <strong>nice (NI)</strong>。以下主要介绍用户层使用的 nice 值。</p>
+<h3 id="process-priority-and-stat">进程优先级与状态<a class="headerlink" href="#process-priority-and-stat" title="Permanent link">&para;</a></h3>
+<p>我们平时使用操作系统的时候，可能同时会开启浏览器、聊天软件、音乐播放器、文本编辑器……前面提到它们都是进程，但是单个 CPU 核心一次只能执行一个进程。为了让这些软件看起来「同时」在执行，操作系统需要用非常快的速度将计算资源在这些进程之间切换，这也就引入了进程优先级和进程状态的概念。</p>
+<h4 id="nice">优先级与 nice 值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h4>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：priority (PRI) 和 <strong>nice (NI)</strong>。以下主要介绍用户层使用的 nice 值。</p>
 <p>Nice 值越高代表一个进程对其它进程越 "nice"（对其他进程友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
 <p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。</p>
 <div class="highlight"><pre><span></span><code>$ nice -n <span class="m">10</span> vim <span class="c1"># 以 10 为 nice 值运行 vim</span>
@@ -1477,72 +1485,54 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <p>但在正常运行的 Linux 系统中，我们可能会发现有些进程的 PRI 值是 RT，或者是负数。这表明对应的进程有更高的实时性要求（例如内核进程、音频相关进程等），采用了与普通进程不同的调度策略，优先级也相应更高。</p>
 </details>
 <h4 id="process-state">进程状态<a class="headerlink" href="#process-state" title="Permanent link">&para;</a></h4>
-<p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：一类是正在运行的程序，即处于<strong>运行态</strong> (running)，一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong> (ready)。调度时轮流选择可以运行的程序运行，构成就绪态与运行态循环。</p>
-<p>加入事件这一因素后，出现<strong>阻塞态</strong> (waiting / blocked) 与前两种状态构成三循环：程序可以在运行时因为等待事件被阻塞，被阻塞时又因为事件被满足而就绪。</p>
-<p>考虑三态循环后，又将进入循环之前的状态称为<strong>创建态</strong> (start)，退出循环状态称为<strong>终止态</strong> (terminated)。</p>
-<p>如果再考虑由于内存不够用而位于交换空间 (swap space) 的进程，它们可以有就绪态，阻塞态，但它们整体又处于挂起状态，需要内存页交换才能投入运行。</p>
-<details class="info">
-<summary>什么是交换空间</summary>
-<p>「交换」指在系统可用内存 (RAM) 不足时将内存中的数据写入到磁盘上，以在内存中空出更多空间的过程。磁盘上的这一块区域就是交换空间，它可以是分区，也可以是文件。</p>
-</details>
-<p><img alt="" src="images/state.png" width="80%" /></p>
-<p class="caption">进程状态转换图</p>
-<p>在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
+<p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：</p>
+<p>一类是正在运行的程序，即处于<strong>运行态</strong> (running)；一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong> (ready)；最后一类是正在等待其他资源（例如网络或者磁盘等）而无法立刻开始运行的程序，即处于<strong>阻塞态</strong> (blocked)。</p>
+<p>调度时操作系统轮流选择可以运行的程序运行，构成就绪态与运行态循环。运行中的程序如果需要其他资源，则进入阻塞态；阻塞态中的程序如果得到了相应的资源，则进入就绪态。</p>
+<p>在实际的 Linux 系统中，进程的状态分类要稍微复杂一些。在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
 <pre><code>Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
 </code></pre>
-<p>其中 running 状态对应上文的运行和就绪态（即表明该程序可以运行），sleeping 对应于上文阻塞态。</p>
+<p>其中 R 状态对应上文的运行和就绪态（即表明该程序可以运行），S 和 D 状态对应上文阻塞态。</p>
 <p>需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思是「可以被中断」；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被中断，一般是因为阻塞在磁盘读写操作上。</p>
-<p>Zombie 对应终止态（僵尸进程），该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等调试（Debug）工具进行跟踪时的状态（小写 t）。</p>
-<p><strong>上面内容已经就进程的属性介绍了大概，用一张表简要总结如下：</strong></p>
+<p>Zombie 是僵尸进程，该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等调试（Debug）工具进行跟踪时的状态（小写 t）。</p>
 <table>
 <thead>
 <tr>
-<th align="center">进程属性</th>
-<th>意义/目的</th>
+<th>状态</th>
+<th>缩写表示</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">PID</td>
-<td>Process ID，标识进程的唯一性。</td>
+<td>Running</td>
+<td>R</td>
+<td>正在运行/可以立刻运行</td>
 </tr>
 <tr>
-<td align="center">PPID</td>
-<td>Parent PID，标识进程父子关系。</td>
+<td>Sleeping</td>
+<td>S</td>
+<td>可以被中断的睡眠</td>
 </tr>
 <tr>
-<td align="center">PGID</td>
-<td>Process Group ID，标识共同完成一个任务的整体。</td>
+<td>Disk Sleep</td>
+<td>D</td>
+<td>不可被中断的睡眠</td>
 </tr>
 <tr>
-<td align="center">TPGID</td>
-<td>标识一组会话中处于前台（与用户交流）的进程（组）。</td>
+<td>Traced / Stopped</td>
+<td>T</td>
+<td>被跟踪/被挂起的进程</td>
 </tr>
 <tr>
-<td align="center">SID</td>
-<td>Session ID，标识一组会话，传统意义上标识一次登录所做的任务的集合，如果是与具体登录无关的进程，其 SID 被重置。</td>
-</tr>
-<tr>
-<td align="center">USER / UID</td>
-<td>标识进程的权限。</td>
-</tr>
-<tr>
-<td align="center">Priority</td>
-<td>标识进程的重要性，值越大越得到优先处理（用于描述实时进程）。</td>
-</tr>
-<tr>
-<td align="center">Nice</td>
-<td>普通进程的优先级标度，越 "nice" 优先级越低。</td>
-</tr>
-<tr>
-<td align="center">State</td>
-<td>标识进程的状态：能不能运行 (running / sleep)，能不能投入运行 (interruptible / uninterruptible)，让不让运行 (stop / trace)，程序还在不在 (zombie)。</td>
+<td>Zombie</td>
+<td>Z</td>
+<td>僵尸进程</td>
 </tr>
 </tbody>
 </table>
+<p class="caption">进程状态表</p>
 <h2 id="process-control">用户进程控制<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h2>
 <p>要想控制进程，首先要与进程对话，那么必然需要了解进程间通信机制。由于进程之间不共享内存空间，也就无法直接发送信息，必须要操作系统帮忙，于是<strong>信号</strong>机制就产生了。</p>
-<p>如果说中断保证 CPU 可以从正常的控制流中脱出，转而执行中断处理代码，那么信号便可以保证进程可以从正常的控制流中脱出，执行信号处理例程。</p>
 <h3 id="signal">信号<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h3>
 <p>信号是 Unix 系列系统中进程之间相互通信的一种机制。发送信号的 Linux 命令叫作 <code>kill</code>。被称作 "kill" 的原因是：早期信号的作用就是关闭（杀死）进程。</p>
 <p>信号列表可以使用 <code>man 7 signal</code> 查看。</p>
@@ -1555,18 +1545,17 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <p>我们可以使用 <code>jobs</code> 命令，看到当前 shell 上所有相关的进程了。这里，后台已经有一个进程在运行，所以 <code>ping localhost</code> 得到的代号是 2。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加 <code>%</code>，如将 2 号进程放入后台，则使用 <code>bg %2</code>，效果如图所示。</p>
 <details class="info">
-<summary>一点细节</summary>
-<p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？加号标记了 fg 和 bg 命令的默认选项，像上面的命令也可以直接简化为 <code>bg</code>。减号表示如果加号标记进程退出，将会成为加号标记进程。同时这两个进程也可以被 <code>%+</code>（或 <code>%%</code>）、<code>%-</code> 指代。</p>
-<p>其实我们如果直接输入 <code>%1</code>，一样可以将编号为 1 的进程放入前台。</p>
+<summary><code>fg</code> 与 <code>bg</code> 的默认参数</summary>
+<p>然而我们也许会关注一个细节，在图中显示的编号后面跟着的加号和减号是什么？</p>
+<div class="highlight"><pre><span></span><code>[1]  - running    ./signal handle
+[2]  + suspended  ping localhost
+</code></pre></div>
+<p>这里的加号标记了 fg 和 bg 命令默认作用到的任务为 2，所以这里 <code>bg %2</code> 也可以直接简化为 <code>bg</code>。减号表示如果加号标记的进程退出了，它就会成为加号标记进程。我们也可以用 <code>%+</code> 和 <code>%-</code> 指代这两个任务。</p>
 </details>
-<p>在 htop 中，按照前面的提示添加额外的 TPGID（前台进程组号）列可以看出如图所示的规律：</p>
-<p><img alt="fg_bg" src="images/fg_bg.png" /></p>
-<p>即一个 shell 及其创建的所有进程都知道 shell 中前台进程是谁。</p>
 <h3 id="kill-processes">终止进程<a class="headerlink" href="#kill-processes" title="Permanent link">&para;</a></h3>
 <p>正如上所述，许多信号都会引发进程的终结，然而标准的终止进程信号是 SIGTERM，意味着一个进程的自然死亡。</p>
 <h4 id="kill-processes-htop">在 htop 中发送信号<a class="headerlink" href="#kill-processes-htop" title="Permanent link">&para;</a></h4>
 <p>htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
-<p>htop 之外，还有一些传统的发送信号的方式。</p>
 <h4 id="kill-command">kill<a class="headerlink" href="#kill-command" title="Permanent link">&para;</a></h4>
 <p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">kill</span> -l <span class="c1"># 显示所有信号名称</span>
@@ -1591,7 +1580,7 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <p>在使用时，直接 <code>kill -9 PID</code> 即可。一个简单的记忆方法是：9 是最大的个位数。</p>
 </div>
 <details class="tip">
-<summary>一点细节</summary>
+<summary>关于 <code>kill</code> 命令的来源</summary>
 <p><img alt="type_kill" src="images/type_kill.png" /></p>
 <p>我们可以看到，对于不同的 shell，kill 可能有不同的来源，如 zsh 和 bash 的 kill 命令均为内建命令。行为与直接运行 man 命令得到的文档不一定相同（比如 <code>/bin/kill %1</code> 会报错，而 kill 内建命令不会），需要小心此类命令的行为。</p>
 <p><code>man builtins</code> 可以查看 bash 中的内建命令文档。使用 <code>type &lt;命令名&gt;</code> 可以查看实际运行的命令是否为内建命令。</p>
@@ -1617,17 +1606,12 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 </dd>
 </dl>
 <h3 id="background-task">脱离终端<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>
-<p>许多情况下，我们是不希望自己的进程在登出时被终止的。但是终端一旦被关闭会发送 SIGHUP (Signal hangup)，该信号会被广播到会话下每一个进程，默认动作即退出程序运行。</p>
-<div class="admonition info">
-<p class="admonition-title">关于 SIGHUP 的细节</p>
-<p>如果终端被关闭，则整个 session 内的进程会一起结束；如果 shell 被 <code>kill -9</code> (SIGKILL)，则后台进程被接管。注意，shell 可以主动退出，这样后台进程不会接收 SIGHUP。但同时注意，ssh 的初始 shell 不适用于此情形，如果该 shell 主动退出，同样导致终端断开，session 销毁。</p>
-<p>利用与上面类似的实验可以证明，当子进程通过 setsid 脱离会话、放弃终端后，将不受终端断开影响。</p>
-</div>
+<p>如果你使用过 SSH 连接到远程服务器执行任务，那么你会发现，你在 shell 中执行的程序在 SSH 断开之后会被关闭。这是因为终端一旦被关闭会向其中每个进程发送 SIGHUP (Signal hangup)，而 SIGHUP 的默认动作即退出程序运行。</p>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
 <div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
 <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">19258</span>
-nohup: ignoring input and appending output to <span class="s1">&#39;/home/$USERNAME/nohup.out&#39;</span>
+nohup: ignoring input and appending output to <span class="s1">&#39;/home/ustc/nohup.out&#39;</span>
 </code></pre></div>
 <p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch09/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
 <h3 id="tmux">命令行多终端方案——tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
@@ -1692,7 +1676,7 @@ $ tmux
 </div>
 <p><img alt="test" src="images/test.gif" /></p>
 <p>刚才提到如果不幸掉线，会话仍然被保存在后台，如果再次登录，可使用 <code>tmux attach [-t 窗口名称]</code> 重新连接窗口，不加 <code>-t</code> 参数将默认连接最后一次打开的窗口。</p>
-<h3 id="customizing-tmux">定制 tmux<a class="headerlink" href="#customizing-tmux" title="Permanent link">&para;</a></h3>
+<h4 id="customizing-tmux">定制 tmux<a class="headerlink" href="#customizing-tmux" title="Permanent link">&para;</a></h4>
 <p>说实在的，tmux 默认的快捷键的确有些苦手，比如 Ctrl + B 这个对手指相当不友好的长距快捷键就应当改进。而且你可能会想，横竖分屏居然需要 <code>%</code> 和 <code>"</code>，为什么不使用更为直观的 <code>-</code> 和 <code>|</code> 呢？如果要对这些特性进行修改，可以在家目录下创建配置文件 <code>.tmux.conf</code> 达到所需目的。</p>
 <div class="admonition info">
 <p class="admonition-title">简易的自定义脚本</p>
@@ -1721,7 +1705,7 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 <p>关于 tmux 的更多介绍，可以参见<a href="http://louiszhai.github.io/2017/09/30/tmux/">这篇博客</a>。</p>
 <details class="note">
 <summary>Tmux 的工作原理</summary>
-<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP，做为孤儿进程被过继）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
+<p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的服务中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
 </details>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
