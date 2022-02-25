@@ -1931,6 +1931,9 @@ $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 <p>硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。</p>
 <p>软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。</p>
 <p><code>ln</code> 命令也可以用来创建硬链接和软链接。</p>
+<div class="highlight"><pre><span></span><code>$ ln -s file symlink  <span class="c1"># 创建指向文件 file 的软链接 symlink</span>
+$ ln file hardlink  <span class="c1"># 创建指向文件 file 的硬链接 hardlink</span>
+</code></pre></div>
 </details>
 <h3 id="mv">移动文件和目录<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
 <p><code>mv</code> 与 <code>cp</code> 的使用方式相似，效果类似于 Windows 下的剪切。</p>

@@ -714,6 +714,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#timestamp" class="md-nav__link">
+    文件的时间戳
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tar-alternative" class="md-nav__link">
     tar 的替代与其他压缩软件
   </a>
@@ -1400,6 +1407,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#timestamp" class="md-nav__link">
+    文件的时间戳
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tar-alternative" class="md-nav__link">
     tar 的替代与其他压缩软件
   </a>
@@ -1574,6 +1588,69 @@ $ sudo make install
 <p>使用 vim 打开文件后，新手会发现自己什么都做不了：不仅无法编辑文件，甚至连 vim 都退出不了。知名的程序员问答社区 Stack Overflow 曾<a href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">专门发文庆祝其问答帮助百万开发者退出 vim</a>。所以我们首先需要介绍的，是 vim 的两个最常见的模式：普通模式和编辑模式。</p>
 <p>在打开 vim 后，默认进入的是普通模式，按下 <span class="keys"><kbd>i</kbd></span> 就进入编辑模式，进入编辑模式后就可以随意编辑文件了。在这两个模式中，都可以使用键盘方向键移动光标。在编辑完成后，按下 <span class="keys"><kbd>Esc</kbd></span> 回到普通模式，然后输入 <code>:wq</code> 就可以保存文件并退出；如果不想保存文件直接退出，则输入 <code>:q!</code> 即可。</p>
 <p>以上的简单教学已经可以帮助你正常操作 vim 了，vim 也自带 <code>vimtutor</code> 教学程序，可以帮助你快速掌握 vim 的基本操作。熟练使用 vim 有助于提高编辑文本时的工作效率。</p>
+<h2 id="timestamp">文件的时间戳<a class="headerlink" href="#timestamp" title="Permanent link">&para;</a></h2>
+<p>使用 <code>stat</code> 工具可以看到一个文件有四个时间戳，分别为 Access，Modify，Change 和 Birth：</p>
+<div class="highlight"><pre><span></span><code>$ stat <span class="nb">test</span>
+File: <span class="nb">test</span>
+Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+</code></pre></div>
+<details class="info">
+<summary>如何编程获得文件的这四个时间戳？</summary>
+<p>答案是：使用 Linux 的 <code>statx()</code> 系统调用。阅读 <code>statx(2)</code> 的 man 文档，可以发现这些信息在返回的结构体中：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">statx</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 以上内容省略</span>
+
+<span class="w">    </span><span class="cm">/* The following fields are file timestamps */</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">statx_timestamp</span><span class="w"> </span><span class="n">stx_atime</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Last access */</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">statx_timestamp</span><span class="w"> </span><span class="n">stx_btime</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Creation */</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">statx_timestamp</span><span class="w"> </span><span class="n">stx_ctime</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Last status change */</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">statx_timestamp</span><span class="w"> </span><span class="n">stx_mtime</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Last modification */</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// 以下内容省略</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</details>
+<p>访问时间（atime）和创建（Birth, btime）时间很好理解，但是 Modify（mtime）和 Change（ctime）有什么区别呢？可以来试一下：</p>
+<div class="highlight"><pre><span></span><code>$ stat <span class="nb">test</span>
+File: <span class="nb">test</span>
+Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+$ vim <span class="nb">test</span>  <span class="c1"># 使用 vim 编辑文件</span>
+$ stat <span class="nb">test</span>
+  File: <span class="nb">test</span>
+  Size: <span class="m">4</span>           Blocks: <span class="m">8</span>          IO Block: <span class="m">4096</span>   regular file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     tao<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     tao<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">23</span>:24:29.674464348 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">23</span>:24:32.230343236 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">23</span>:24:32.230343236 +0800
+ Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+$ <span class="c1"># mtime 和 ctime（以及 atime）都变化了。</span>
+$ chmod +x <span class="nb">test</span>  <span class="c1"># 修改文件权限</span>
+$ stat <span class="nb">test</span>
+  File: <span class="nb">test</span>
+  Size: <span class="m">4</span>           Blocks: <span class="m">8</span>          IO Block: <span class="m">4096</span>   regular file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0755</span>/-rwxr-xr-x<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     tao<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     tao<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">23</span>:24:29.674464348 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">23</span>:24:32.230343236 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">23</span>:26:45.242321559 +0800
+ Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+$ <span class="c1"># 只有 ctime 发生了变化。</span>
+</code></pre></div>
+<p>可以观察到，mtime 仅会在文件数据变化时更新，而 ctime 会在文件数据以及文件元信息（例如权限、所有权）变化时更新。</p>
+<p>此外，由于 atime 的实际用途不大，有许多用户会在挂载磁盘时添加 <code>noatime</code> 参数，让操作系统在访问文件时不去更新 atime，以提高磁盘性能。</p>
 <h2 id="tar-alternative">tar 的替代与其他压缩软件<a class="headerlink" href="#tar-alternative" title="Permanent link">&para;</a></h2>
 <p>在 Linux 上的 tar 一般只支持 gzip、bzip、xz 和 lzip 几种压缩算法，如果需要解压 Windows 上更为常见的 7z、zip 和 rar 等，则需要寻求替代软件。</p>
 <h3 id="unar">unar<a class="headerlink" href="#unar" title="Permanent link">&para;</a></h3>
