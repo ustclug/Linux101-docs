@@ -629,15 +629,73 @@ $ rm [OPTION] FILE...
 
 ```shell
 $ # 创建一个目录，名为 DIR_NAME
-$ mkdir DIR_NAME...
+$ mkdir [OPTION] DIR_NAME...
 ```
+
+常用的选项：
+
+| 选项 | 含义                                                           |
+| ---- | -------------------------------------------------------------- |
+| `-p` | 如果中间目录不存在，则创建；如果要创建的目录已经存在，则不报错 |
 
 !!! example "创建目录示例"
 
-    创建名为 `test1`、`test2` 的目录：
+    * 创建两个目录，名字分别为 `test1`、`test2`：
+
+    ```shell
+    $ mkdir test1 test2
+    ```
+
+    * 创建路径 `test1/test2/test3/`：
+
+    ```shell
+    $ mkdir -p test1/test2/test3/
+    ```
+
+### 创建文件 {#touch}
+
+```shell
+$ # 创建一个文件，名为 FILE_NAME
+$ touch FILE_NAME...
+```
+
+!!! example "创建文件示例"
+
+    创建两个文件，名字分别为 `file1`、`file2`：
 
     ```
-    $ mkdir test1 test2
+    $ touch file1 file2
+    ```
+
+!!! note "为什么名字叫 touch 而非 create（或者类似意思的单词）呢？"
+
+    touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。
+
+    `stat` 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：
+
+    ```shell
+    $ touch test  # 创建文件 test
+    $ stat test  # 查看信息
+    File: test
+    Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+    Device: 801h/2049d	Inode: 1310743     Links: 1
+    Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
+    Access: 2022-02-25 18:12:28.403981478 +0800
+    Modify: 2022-02-25 18:12:28.403981478 +0800
+    Change: 2022-02-25 18:12:28.403981478 +0800
+    Birth: 2022-02-25 18:12:28.403981478 +0800
+    $ # 等待一段时间
+    $ touch test  # 「摸」一下文件 test
+    $ stat test  # 查看 touch 之后的信息
+      File: test
+    Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+    Device: 801h/2049d	Inode: 1310743     Links: 1
+    Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
+    Access: 2022-02-25 18:15:16.625288185 +0800
+    Modify: 2022-02-25 18:15:16.625288185 +0800
+    Change: 2022-02-25 18:15:16.625288185 +0800
+    Birth: 2022-02-25 18:12:28.403981478 +0800
+    $ # 可以看到 Access time 和 Modify time 变化了。
     ```
 
 ### 搜索文件和目录 {#find}
