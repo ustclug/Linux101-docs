@@ -183,7 +183,7 @@ $ stat test
   File: test
   Size: 4         	Blocks: 8          IO Block: 4096   regular file
 Device: 801h/2049d	Inode: 1310743     Links: 1
-Access: (0644/-rw-r--r--)  Uid: ( 1000/     tao)   Gid: ( 1000/     tao)
+Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
 Access: 2022-02-25 23:24:29.674464348 +0800
 Modify: 2022-02-25 23:24:32.230343236 +0800
 Change: 2022-02-25 23:24:32.230343236 +0800
@@ -194,7 +194,7 @@ $ stat test
   File: test
   Size: 4         	Blocks: 8          IO Block: 4096   regular file
 Device: 801h/2049d	Inode: 1310743     Links: 1
-Access: (0755/-rwxr-xr-x)  Uid: ( 1000/     tao)   Gid: ( 1000/     tao)
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
 Access: 2022-02-25 23:24:29.674464348 +0800
 Modify: 2022-02-25 23:24:32.230343236 +0800
 Change: 2022-02-25 23:26:45.242321559 +0800

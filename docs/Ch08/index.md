@@ -230,7 +230,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 <none>              <none>              fe0a84d81b86        54 seconds ago      116MB
 $ sudo docker save fe0a84d81b86 > example.tar
 $ ls -lh example.tar
--rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar
+-rw-r--r-- 1 ustc ustc 114M Feb 10 17:48 example.tar
 ```
 
 得到的 example.tar 即为我们的 Docker 镜像。可以使用 `docker load < example.tar` 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。
