@@ -1348,6 +1348,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    创建文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#find" class="md-nav__link">
     搜索文件和目录
   </a>
@@ -2004,12 +2011,72 @@ $ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 </div>
 <h3 id="mkdir">创建目录<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个目录，名为 DIR_NAME</span>
-$ mkdir DIR_NAME...
+$ mkdir <span class="o">[</span>OPTION<span class="o">]</span> DIR_NAME...
 </code></pre></div>
+<p>常用的选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code></td>
+<td>如果中间目录不存在，则创建；如果要创建的目录已经存在，则不报错</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition example">
 <p class="admonition-title">创建目录示例</p>
-<p>创建名为 <code>test1</code>、<code>test2</code> 的目录：</p>
+<ul>
+<li>创建两个目录，名字分别为 <code>test1</code>、<code>test2</code>：</li>
+</ul>
 <div class="highlight"><pre><span></span><code>$ mkdir test1 test2
+</code></pre></div>
+<ul>
+<li>创建路径 <code>test1/test2/test3/</code>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ mkdir -p test1/test2/test3/
+</code></pre></div>
+</div>
+<h3 id="touch">创建文件<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个文件，名为 FILE_NAME</span>
+$ touch FILE_NAME...
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">创建文件示例</p>
+<p>创建两个文件，名字分别为 <code>file1</code>、<code>file2</code>：</p>
+<div class="highlight"><pre><span></span><code>$ touch file1 file2
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">为什么名字叫 touch 而非 create（或者类似意思的单词）呢？</p>
+<p>touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。</p>
+<p><code>stat</code> 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：</p>
+<div class="highlight"><pre><span></span><code>$ touch <span class="nb">test</span>  <span class="c1"># 创建文件 test</span>
+$ stat <span class="nb">test</span>  <span class="c1"># 查看信息</span>
+File: <span class="nb">test</span>
+Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+$ <span class="c1"># 等待一段时间</span>
+$ touch <span class="nb">test</span>  <span class="c1"># 「摸」一下文件 test</span>
+$ stat <span class="nb">test</span>  <span class="c1"># 查看 touch 之后的信息</span>
+  File: <span class="nb">test</span>
+Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
+Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
+Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
+Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
+Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
+$ <span class="c1"># 可以看到 Access time 和 Modify time 变化了。</span>
 </code></pre></div>
 </div>
 <h3 id="find">搜索文件和目录<a class="headerlink" href="#find" title="Permanent link">&para;</a></h3>
