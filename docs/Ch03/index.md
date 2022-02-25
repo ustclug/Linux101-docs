@@ -569,6 +569,11 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
     `ln` 命令也可以用来创建硬链接和软链接。
 
+    ```shell
+    $ ln -s file symlink  # 创建指向文件 file 的软链接 symlink
+    $ ln file hardlink  # 创建指向文件 file 的硬链接 hardlink
+    ```
+
 ### 移动文件和目录 {#mv}
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
