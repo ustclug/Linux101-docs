@@ -739,6 +739,44 @@ $ find [OPTION] PATH [EXPRESSION]
     $ find ~/ -name 'node_modules' -type d
     ```
 
+### 搜索文件内容 {#grep}
+
+```shell
+$ # 在 FILE 文件中根据 PATTERN 搜索内容
+$ grep [OPTION]... PATTERNS [FILE]...
+```
+
+常用的表达式：
+
+| 选项 | 含义           |
+| ---- | -------------- |
+| `-R` | 进行递归搜索   |
+| `-l` | 列出找到的文件 |
+
+从文件中进行搜索可以用 `grep PATTERN FILE`，但一般来说，最常被使用的是 `cat FILE | grep PATTERNS`，`|` 的含义在之后的章节中会得到介绍。另一个常见的用途是在文件夹下找出包含某个字串的文件（例如寻找一个宏的定义，或是函数的引用）
+
+!!! example "grep 使用示例"
+
+    * 搜索 .bashrc 中的 alias：
+
+    ```shell
+    $ grep alias .bashrc
+    ```
+
+    * 或者：
+
+    ```shell
+    $ cat .bashrc | grep alias
+    ```
+
+    * 搜索并列出文件夹 src 下所有包含 UserDialog 字段的文件
+
+    ```shell
+    $ grep -Rl UserDialog src
+    ```
+
+grep 中的匹配模式（PATTERN）还支持使用正则表达式，正则表达式会在之后的章节里得到详细介绍。
+
 ## 使用 tar 操作存档、压缩文件 {#tar}
 
 经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 `tar` 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。
