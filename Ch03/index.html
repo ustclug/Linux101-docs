@@ -1382,7 +1382,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#patten" class="md-nav__link">
+  <a href="#pattern" class="md-nav__link">
     模式匹配
   </a>
   
@@ -1868,14 +1868,14 @@ $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 <p class="admonition-title">输出示例</p>
 <ul>
 <li>
-<p>输出 file.txt 的全部内容
+<p>输出 file.txt 的全部内容</p>
 <div class="highlight"><pre><span></span><code>$ cat file.txt
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>查看 file1.txt 与 file2.txt 连接后的内容
+<p>查看 file1.txt 与 file2.txt 连接后的内容</p>
 <div class="highlight"><pre><span></span><code>$ cat file1.txt file2.txt
-</code></pre></div></p>
+</code></pre></div>
 </li>
 </ul>
 </div>
@@ -1898,27 +1898,31 @@ $ less FILE
 </thead>
 <tbody>
 <tr>
-<td><code>d</code>/<code>u</code></td>
-<td>向下/上滚动半页（down/up）</td>
+<td><code>d</code> / <code>u</code></td>
+<td>向下/上滚动半页（<strong>d</strong>own/<strong>u</strong>p）</td>
 </tr>
 <tr>
-<td><span class="keys"><kbd>Page Down</kbd></span>/<span class="keys"><kbd>Page Up</kbd></span></td>
-<td>向下/上滚动一整页</td>
+<td><span class="keys"><kbd>Page Down</kbd></span> / <span class="keys"><kbd>Page Up</kbd></span><br><code>f</code> / <code>b</code></td>
+<td>向下/上滚动一整页（<strong>f</strong>orward/<strong>b</strong>ack）</td>
 </tr>
 <tr>
-<td><code>g</code>/<code>G</code></td>
+<td><code>g</code> / <code>G</code></td>
 <td>跳转到文件开头/结尾</td>
 </tr>
 <tr>
-<td><code>j</code>/<code>k</code></td>
-<td>向下/上移动一行（也可以使用方向键）</td>
+<td><code>j</code> / <span class="keys"><kbd>Down</kbd></span></td>
+<td>向下移动一行</td>
+</tr>
+<tr>
+<td><code>k</code> / <span class="keys"><kbd>Up</kbd></span></td>
+<td>向上移动一行</td>
 </tr>
 <tr>
 <td><code>/PATTERN</code></td>
 <td>在文件中搜索 PATTERN</td>
 </tr>
 <tr>
-<td><code>n</code>/<code>N</code></td>
+<td><code>n</code> / <code>N</code></td>
 <td>跳转到下一个/上一个找到的 PATTERN</td>
 </tr>
 <tr>
@@ -1927,7 +1931,7 @@ $ less FILE
 </tr>
 </tbody>
 </table>
-<p>其中移动光标的快捷键还可以和数字组合，例如 <code>10 h</code> 会向左移动十个字符。此外，less 的不少快捷键是和 vi/vim 相同的，掌握了这些快捷键再上手 vim 就会简单很多（vim 的介绍位于本章<a href="supplement/#vim">拓展阅读</a>内）。</p>
+<p>其中移动光标的快捷键还可以和数字组合，例如 <code>10 j</code> 会向下移动十行。此外，less 的不少快捷键是和 Vi/Vim 相同的，掌握了这些快捷键再上手 Vim 就会简单很多（Vim 的介绍位于本章<a href="supplement/#vim">拓展阅读</a>内）。</p>
 <details class="tip">
 <summary>more? most?</summary>
 <p>实际上 Linux 内还有 more 与 most 两个功能与 less 相似的指令，只是流行程度不如 less 高，你也可以尝试这些指令，比较它们之间的区别。</p>
@@ -1955,23 +1959,23 @@ $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </thead>
 <tbody>
 <tr>
-<td><code>-r, -R, --recursive</code></td>
+<td><code>-r</code>, <code>-R</code>, <code>--recursive</code></td>
 <td>递归复制，常用于复制目录</td>
 </tr>
 <tr>
-<td><code>-f, --force</code></td>
+<td><code>-f</code>, <code>--force</code></td>
 <td>覆盖目标地址同名文件</td>
 </tr>
 <tr>
-<td><code>-u, --update</code></td>
+<td><code>-u</code>, <code>--update</code></td>
 <td>仅当源文件比目标文件新才进行复制</td>
 </tr>
 <tr>
-<td><code>-l, --link</code></td>
+<td><code>-l</code>, <code>--link</code></td>
 <td>创建硬链接</td>
 </tr>
 <tr>
-<td><code>-s, --symbolic-link</code></td>
+<td><code>-s</code>, <code>--symbolic-link</code></td>
 <td>创建软链接</td>
 </tr>
 </tbody>
@@ -2030,15 +2034,15 @@ $ mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </thead>
 <tbody>
 <tr>
-<td><code>-r, -R, --recursive</code></td>
+<td><code>-r</code>, <code>-R</code>, <code>--recursive</code></td>
 <td>递归移动，常用于移动目录</td>
 </tr>
 <tr>
-<td><code>-f, --force</code></td>
+<td><code>-f</code>, <code>--force</code></td>
 <td>覆盖目标地址同名文件</td>
 </tr>
 <tr>
-<td><code>-u, --update</code></td>
+<td><code>-u</code>, <code>--update</code></td>
 <td>仅当源文件比目标文件新才进行移动</td>
 </tr>
 </tbody>
@@ -2058,15 +2062,15 @@ $ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 </thead>
 <tbody>
 <tr>
-<td><code>-f, --force</code></td>
+<td><code>-f</code>, <code>--force</code></td>
 <td>无视不存在或者没有权限的文件和参数</td>
 </tr>
 <tr>
-<td><code>-r, -R, --recursive</code></td>
+<td><code>-r</code>, <code>-R</code>, <code>--recursive</code></td>
 <td>递归删除目录及其子文件</td>
 </tr>
 <tr>
-<td><code>-d, --dir</code></td>
+<td><code>-d</code>, <code>--dir</code></td>
 <td>删除空目录</td>
 </tr>
 </tbody>
@@ -2074,20 +2078,22 @@ $ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 <div class="admonition example">
 <p class="admonition-title">删除示例</p>
 <ul>
-<li>删除 <code>file1.txt</code> 文件：</li>
-</ul>
+<li>
+<p>删除 <code>file1.txt</code> 文件：</p>
 <div class="highlight"><pre><span></span><code>$ rm file1.txt
 </code></pre></div>
-<ul>
-<li>删除 <code>test</code> 目录及其下的所有文件：</li>
-</ul>
+</li>
+<li>
+<p>删除 <code>test</code> 目录及其下的所有文件：</p>
 <div class="highlight"><pre><span></span><code>$ rm -r test/
 </code></pre></div>
-<ul>
-<li>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：</li>
-</ul>
+</li>
+<li>
+<p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：</p>
 <div class="highlight"><pre><span></span><code>$ rm -rf test1/ test2/ file1.txt
 </code></pre></div>
+</li>
+</ul>
 </div>
 <h3 id="mkdir">创建目录<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个目录，名为 DIR_NAME</span>
@@ -2111,15 +2117,17 @@ $ mkdir <span class="o">[</span>OPTION<span class="o">]</span> DIR_NAME...
 <div class="admonition example">
 <p class="admonition-title">创建目录示例</p>
 <ul>
-<li>创建两个目录，名字分别为 <code>test1</code>、<code>test2</code>：</li>
-</ul>
+<li>
+<p>创建两个目录，名字分别为 <code>test1</code>、<code>test2</code>：</p>
 <div class="highlight"><pre><span></span><code>$ mkdir test1 test2
 </code></pre></div>
-<ul>
-<li>创建路径 <code>test1/test2/test3/</code>：</li>
-</ul>
+</li>
+<li>
+<p>创建路径 <code>test1/test2/test3/</code>：</p>
 <div class="highlight"><pre><span></span><code>$ mkdir -p test1/test2/test3/
 </code></pre></div>
+</li>
+</ul>
 </div>
 <h3 id="touch">创建文件<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个文件，名为 FILE_NAME</span>
@@ -2193,22 +2201,24 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <div class="admonition example">
 <p class="admonition-title">搜索示例</p>
 <ul>
-<li>在当前目录搜索名为 report.pdf 的文件：</li>
-</ul>
+<li>
+<p>在当前目录搜索名为 report.pdf 的文件：</p>
 <div class="highlight"><pre><span></span><code>$ find . -name <span class="s1">&#39;report.pdf&#39;</span>
 </code></pre></div>
-<ul>
-<li>全盘搜索大于 1G 的文件：</li>
-</ul>
+</li>
+<li>
+<p>全盘搜索大于 1G 的文件：</p>
 <div class="highlight"><pre><span></span><code>$ find / -size +1G
 </code></pre></div>
-<ul>
-<li>在用户目录搜索所有名为 node_modules 的文件夹：</li>
-</ul>
+</li>
+<li>
+<p>在用户目录搜索所有名为 node_modules 的文件夹：</p>
 <div class="highlight"><pre><span></span><code>$ find ~/ -name <span class="s1">&#39;node_modules&#39;</span> -type d
 </code></pre></div>
+</li>
+</ul>
 </div>
-<h3 id="patten">模式匹配<a class="headerlink" href="#patten" title="Permanent link">&para;</a></h3>
+<h3 id="pattern">模式匹配<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
 <p>许多现代的 shell 都支持一定程度的模式匹配。举个例子，bash 的匹配模式被称为 <a href="https://mywiki.wooledge.org/glob">glob</a>，支持的操作如下：</p>
 <table>
 <thead>
@@ -2276,7 +2286,7 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 命令格式如下，请参考下面的使用样例了解使用方法</span>
-$ tar <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FILE<span class="o">]</span>...
+$ tar <span class="o">[</span>OPTIONS<span class="o">]</span> FILE...
 </code></pre></div>
 <p>常用选项：</p>
 <table>
@@ -2292,27 +2302,27 @@ $ tar <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[<
 <td>将一个存档文件中的内容追加到另一个存档文件中</td>
 </tr>
 <tr>
-<td><code>-r, --append</code></td>
+<td><code>-r</code>, <code>--append</code></td>
 <td>将一些文件追加到一个存档文件中</td>
 </tr>
 <tr>
-<td><code>-c, --create</code></td>
+<td><code>-c</code>, <code>--create</code></td>
 <td>从一些文件创建存档文件</td>
 </tr>
 <tr>
-<td><code>-t, --list</code></td>
+<td><code>-t</code>, <code>--list</code></td>
 <td>列出一个存档文件的内容</td>
 </tr>
 <tr>
-<td><code>-x, --extract, --get</code></td>
+<td><code>-x</code>, <code>--extract, --get</code></td>
 <td>从存档文件中提取出文件</td>
 </tr>
 <tr>
-<td><code>-f, --file=ARCHIVE</code></td>
+<td><code>-f</code>, <code>--file=ARCHIVE</code></td>
 <td>使用指定的存档文件</td>
 </tr>
 <tr>
-<td><code>-C, --directory=DIR</code></td>
+<td><code>-C</code>, <code>--directory=DIR</code></td>
 <td>指定输出的目录</td>
 </tr>
 </tbody>
@@ -2327,15 +2337,15 @@ $ tar <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[<
 </thead>
 <tbody>
 <tr>
-<td><code>-z, --gzip, --gunzip, --ungzip</code></td>
+<td><code>-z</code>, <code>--gzip</code>, <code>--gunzip</code>, <code>--ungzip</code></td>
 <td>使用 gzip 算法处理存档文件</td>
 </tr>
 <tr>
-<td><code>-j, --bzip2</code></td>
+<td><code>-j</code>, <code>--bzip2</code></td>
 <td>使用 bzip2 算法处理存档文件</td>
 </tr>
 <tr>
-<td><code>-J, --xz</code></td>
+<td><code>-J</code>, <code>--xz</code></td>
 <td>使用 xz 算法处理存档文件</td>
 </tr>
 </tbody>
@@ -2409,36 +2419,36 @@ $ man tar
 $ man ls
 </code></pre></div>
 <p>文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 <code>tldr</code>。</p>
-<div class="highlight"><pre><span></span><code>$ man tar
-TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>                      GNU TAR Manual                     TAR<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>man tar
+<span class="go">TAR(1)                      GNU TAR Manual                     TAR(1)</span>
 
-NAME
-       tar - an archiving utility
+<span class="go">NAME</span>
+<span class="go">       tar - an archiving utility</span>
 
-SYNOPSIS
-   Traditional usage
-       tar <span class="o">{</span>A<span class="p">|</span>c<span class="p">|</span>d<span class="p">|</span>r<span class="p">|</span>t<span class="p">|</span>u<span class="p">|</span>x<span class="o">}[</span>GnSkUWOmpsMBiajJzZhPlRvwo<span class="o">]</span> <span class="o">[</span>ARG...<span class="o">]</span>
+<span class="go">SYNOPSIS</span>
+<span class="go">   Traditional usage</span>
+<span class="go">       tar {A|c|d|r|t|u|x}[GnSkUWOmpsMBiajJzZhPlRvwo] [ARG...]</span>
 
-   UNIX-style usage
-       tar -A <span class="o">[</span>OPTIONS<span class="o">]</span> ARCHIVE ARCHIVE
+<span class="go">   UNIX-style usage</span>
+<span class="go">       tar -A [OPTIONS] ARCHIVE ARCHIVE</span>
 
-       tar -c <span class="o">[</span>-f ARCHIVE<span class="o">]</span> <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FILE...<span class="o">]</span>
+<span class="go">       tar -c [-f ARCHIVE] [OPTIONS] [FILE...]</span>
 
-$ man ls
-LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>                       User Commands                       LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<span class="gp">$ </span>man ls
+<span class="go">LS(1)                       User Commands                       LS(1)</span>
 
-NAME
-       ls - list directory contents
+<span class="go">NAME</span>
+<span class="go">       ls - list directory contents</span>
 
-SYNOPSIS
-       ls <span class="o">[</span>OPTION<span class="o">]</span>... <span class="o">[</span>FILE<span class="o">]</span>...
+<span class="go">SYNOPSIS</span>
+<span class="go">       ls [OPTION]... [FILE]...</span>
 
-DESCRIPTION
-       List  information  about  the  FILEs <span class="o">(</span>the current directory by
-       default<span class="o">)</span>.  Sort entries alphabetically <span class="k">if</span>  none  of  -cftuvSUX
-       nor --sort is specified.
+<span class="go">DESCRIPTION</span>
+<span class="go">       List  information  about  the  FILEs (the current directory by</span>
+<span class="go">       default).  Sort entries alphabetically if  none  of  -cftuvSUX</span>
+<span class="go">       nor --sort is specified.</span>
 
-<span class="o">(</span>Output omitted<span class="o">)</span>
+<span class="gp gp-VirtualEnv">(Output omitted)</span>
 </code></pre></div>
 <h3 id="tldr">tldr 软件<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h3>
 <p>通常，软件手册中的内容十分繁多，如果只是希望能够快速了解软件的常用用法，可以使用 <code>tldr</code> 软件。</p>

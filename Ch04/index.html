@@ -1824,7 +1824,7 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <p>Jupyter Notebook 是基于浏览器的交互式编程平台，在数据科学领域非常常用。</p>
 <p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并填入以下内容：</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span><span class="w"></span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务简要描述</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务的简要描述</span><span class="w"></span>
 
 <span class="k">[Service]</span><span class="w"></span>
 <span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span><span class="w"></span>
@@ -1844,7 +1844,7 @@ $ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable �
 $ systemctl disable jupyter <span class="c1"># 取消自启</span>
 </code></pre></div>
 </div>
-<p>可以参考系统中其他 <code>service</code> 文件，以及 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service(5)</a> 手册页编写配置文件。</p>
+<p>可以参考系统中其他 service 文件，以及 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service(5)</a> 手册页编写配置文件。</p>
 <!-- 在[浅析 Linux 初始化 init 系统，第 3 部分](https://www.ibm.com/developerworks/cn/linux/1407_liuming_init3/index.html)这篇文章中有更详细的配置文件介绍。 -->
 
 <h3 id="scheduled-tasks">例行性任务<a class="headerlink" href="#scheduled-tasks" title="Permanent link">&para;</a></h3>
