@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.2">
     
     
       
@@ -33,7 +33,7 @@
       
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1361,6 +1361,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    搜索文件内容
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2131,6 +2138,49 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <div class="highlight"><pre><span></span><code>$ find ~/ -name <span class="s1">&#39;node_modules&#39;</span> -type d
 </code></pre></div>
 </div>
+<h3 id="grep">搜索文件内容<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ <span class="c1"># 在 FILE 文件中根据 PATTERN 搜索内容</span>
+$ grep <span class="o">[</span>OPTION<span class="o">]</span>... PATTERNS <span class="o">[</span>FILE<span class="o">]</span>...
+</code></pre></div>
+<p>常用的表达式：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-R</code></td>
+<td>进行递归搜索</td>
+</tr>
+<tr>
+<td><code>-l</code></td>
+<td>列出找到的文件</td>
+</tr>
+</tbody>
+</table>
+<p>从文件中进行搜索可以用 <code>grep PATTERN FILE</code>，但一般来说，最常被使用的是 <code>cat FILE | grep PATTERNS</code>，<code>|</code> 的含义在之后的章节中会得到介绍。另一个常见的用途是在文件夹下找出包含某个字串的文件（例如寻找一个宏的定义，或是函数的引用）</p>
+<div class="admonition example">
+<p class="admonition-title">grep 使用示例</p>
+<ul>
+<li>搜索 .bashrc 中的 alias：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ grep <span class="nb">alias</span> .bashrc
+</code></pre></div>
+<ul>
+<li>或者：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ cat .bashrc <span class="p">|</span> grep <span class="nb">alias</span>
+</code></pre></div>
+<ul>
+<li>搜索并列出文件夹 src 下所有包含 UserDialog 字段的文件</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ grep -Rl UserDialog src
+</code></pre></div>
+</div>
+<p>grep 中的匹配模式（PATTERN）还支持使用正则表达式，正则表达式会在之后的章节里得到详细介绍。</p>
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
@@ -2479,7 +2529,7 @@ https://www.gnu.org/software/tar
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../assets/javascripts/bundle.9f3ca3d1.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       
