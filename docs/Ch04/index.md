@@ -30,6 +30,39 @@
 
 进程是现代操作系统中必不可少的概念。在 Windows 中，我们可以使用「任务管理器」查看系统运行中的进程；Linux 中同样也有进程的概念。下面我们简单介绍 Linux 中的进程。
 
+### 查看当前运行的进程 {#view-process}
+
+#### htop {#htop}
+
+Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。
+
+使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 ++"F1"++ 至 ++"F10"++ 功能键可以选择这些功能，常用的功能例如搜索进程（++"F3"++, Search）、过滤进程（++"F4"++, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（++"F5"++, Tree/List）等等。
+
+#### ps {#ps}
+
+ps (process status) 是常用的输出进程状态的工具。直接调用 `ps` 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 `ps aux`。
+
+```shell
+$ ps
+    PID TTY          TIME CMD
+   1720 pts/0    00:00:00 bash
+   1858 pts/0    00:00:00 ps
+$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.2  0.5 167312 11156 ?        Ss   02:33   0:04 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    02:33   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   02:33   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   02:33   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   02:33   0:00 [kworker/0:0H-events_highpri]
+root           9  0.0  0.0      0     0 ?        I<   02:33   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    02:33   0:00 [rcu_tasks_rude_]
+root          11  0.0  0.0      0     0 ?        S    02:33   0:00 [rcu_tasks_trace]
+root          12  0.0  0.0      0     0 ?        S    02:33   0:00 [ksoftirqd/0]
+root          13  0.0  0.0      0     0 ?        I    02:33   0:00 [rcu_sched]
+root          14  0.0  0.0      0     0 ?        S    02:33   0:00 [migration/0]
+（以下省略）
+```
+
 ### 进程标识符 {#pid}
 
 首先，有区分才有管理。**进程标识符** (PID, Process Identifier) 是一个数字，是进程的唯一标识。在 htop 中，最左侧一列即为 PID。当用户想挂起，继续或终止进程时可以使用 PID 作为索引。
@@ -119,8 +152,11 @@ Zombie 是僵尸进程，该状态下进程已经结束，只是仍然占用一�
 
 ```shell
 $ ./matmul &  # 例子：运行耗时的计算同时进行其他操作
-$ ps | grep matmul
-8844 pts/3    00:00:06 matmul
+$ ps
+    PID TTY          TIME CMD
+   1720 pts/0    00:00:00 bash
+   1861 pts/0    00:00:06 matmul
+   1862 pts/0    00:00:00 ps
 $ # 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell
 ```
 
@@ -522,7 +558,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 ```shell
 $ at now + 1min
 > echo "hello"
-> <EOT> （按下 Ctrl + D)
+> <EOT> （按下 Ctrl + D）
 job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间
 ```
 
@@ -590,6 +626,36 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 !!! question "关于 Ctrl + C"
 
     尝试描述在终端运行程序时，用户按下 Ctrl + C 后发生的事情。
+
+!!! question "SIGKILL（`kill -9`）可以杀死所有进程吗？"
+
+    思考两个有趣的小问题：
+
+    - 状态为 D（Disk sleep）与 Z（Zombie）的进程收到 SIGKILL 信号后会发生什么？
+
+    - 可以向 1 号进程 init 发送 SIGKILL 信号吗？发送之后会发生什么？
+
+!!! question "`nohup` 合适吗？"
+
+    某同学使用 Python 写了一个小网站，他准备登录服务器后用 `nohup` 来运行他的网站。
+
+    尝试指出这么做可能的问题。
+
+!!! question "多人使用的 tmux"
+
+    在实验室的机器中，可能出现一种场景：多个人同时使用同一个 Linux 账号。此时如果这几个人同时使用 tmux 的话，会出现很尴尬的事情：不同用户的操作会互相影响。请给出一种解决方案。
+
+!!! question "服务日志"
+
+    Systemd 提供的日志管理功能对于调试系统也非常实用。请搜索资料，给出使用 systemd 相关工具输出以下内容的命令：
+
+    - 某个服务的日志
+    - 某个**正在运行**的服务**正在**输出的日志
+    - 系统**正在**输出的日志
+
+!!! question "耗时的定时任务"
+
+    有的时候，我们需要定时执行一些需要不少时间的任务，例如系统备份。如果这个任务的执行时间超过了 crontab 中两次任务执行的时间间隔，会发生什么事情？如果用 systemd timer，能否避免这个问题？
 
 ## 其他资料 {#extra-resources}
 
