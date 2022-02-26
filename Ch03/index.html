@@ -1306,9 +1306,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cat" class="md-nav__link">
+  <a href="#view" class="md-nav__link">
     查看文件内容
   </a>
+  
+    <nav class="md-nav" aria-label="查看文件内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cat" class="md-nav__link">
+    cat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less" class="md-nav__link">
+    less
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1357,13 +1377,6 @@
           <li class="md-nav__item">
   <a href="#find" class="md-nav__link">
     搜索文件和目录
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#grep" class="md-nav__link">
-    搜索文件内容
   </a>
   
 </li>
@@ -1839,15 +1852,16 @@ $ sudo cp -R * /usr/local/
 <p>此部分内容请见拓展阅读：<a href="supplement/">编译安装</a>。</p>
 <h2 id="operate-files-and-dirs">操作文件与目录<a class="headerlink" href="#operate-files-and-dirs" title="Permanent link">&para;</a></h2>
 <p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
-<h3 id="cat">查看文件内容<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 输出 FILE 文件的内容</span>
+<h3 id="view">查看文件内容<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
+<h4 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$ <span class="c1"># 输出 FILE 文件的全部内容</span>
 $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">输出示例</p>
 <ul>
 <li>
-<p>查看 file.txt 的文件内容
+<p>输出 file.txt 的全部内容
 <div class="highlight"><pre><span></span><code>$ cat file.txt
 </code></pre></div></p>
 </li>
@@ -1862,6 +1876,51 @@ $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 <p class="admonition-title">为什么名字叫 cat？</p>
 <p>当然和猫咪没有关系，cat 这里是 con<strong>cat</strong>enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。</p>
 </div>
+<h4 id="less">less<a class="headerlink" href="#less" title="Permanent link">&para;</a></h4>
+<p>less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。</p>
+<div class="highlight"><pre><span></span><code>$ <span class="c1"># 在可交互的窗口内输出 FILE 文件的内容</span>
+$ less <span class="o">[</span>OPTION<span class="o">]</span> FILE
+</code></pre></div>
+<p>常用的快捷键:</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d</code>/<code>u</code></td>
+<td>向下/上滚动半页（down/up）</td>
+</tr>
+<tr>
+<td><code>g</code>/<code>G</code></td>
+<td>跳转到文件开头/结尾</td>
+</tr>
+<tr>
+<td><code>h</code>/<code>j</code>/<code>k</code>/<code>l</code></td>
+<td>向左/下/上/右移动一个字符</td>
+</tr>
+<tr>
+<td><code>/PATTERN</code></td>
+<td>在文件中搜索 PATTERN</td>
+</tr>
+<tr>
+<td><code>n</code>/<code>N</code></td>
+<td>跳转到下一个/上一个找到的 PATTERN</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>退出</td>
+</tr>
+</tbody>
+</table>
+<p>其中移动光标的快捷键还可以和数字组合，例如 <code>10 h</code> 会向左移动十个字符。此外，less 的不少快捷键是和 vi/vim 相同的，掌握了这些快捷键再上手 vim 就会简单很多（vim 的介绍位于本章拓展阅读内）。</p>
+<details class="tip">
+<summary>more? most?</summary>
+<p>实际上 Linux 内还有 more 与 most 两个功能与 less 相似的指令，只是流行程度不如 less 高，你也可以尝试这些指令，比较它们之间的区别。</p>
+</details>
 <h3 id="nano">编辑文件内容<a class="headerlink" href="#nano" title="Permanent link">&para;</a></h3>
 <p>Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。</p>
 <div class="highlight"><pre><span></span><code>$ nano file.txt  <span class="c1"># 使用 nano 编辑 file.txt 文件（如果没有则创建）</span>
@@ -2138,49 +2197,6 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <div class="highlight"><pre><span></span><code>$ find ~/ -name <span class="s1">&#39;node_modules&#39;</span> -type d
 </code></pre></div>
 </div>
-<h3 id="grep">搜索文件内容<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 在 FILE 文件中根据 PATTERN 搜索内容</span>
-$ grep <span class="o">[</span>OPTION<span class="o">]</span>... PATTERNS <span class="o">[</span>FILE<span class="o">]</span>...
-</code></pre></div>
-<p>常用的表达式：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>-R</code></td>
-<td>进行递归搜索</td>
-</tr>
-<tr>
-<td><code>-l</code></td>
-<td>列出找到的文件</td>
-</tr>
-</tbody>
-</table>
-<p>从文件中进行搜索可以用 <code>grep PATTERN FILE</code>，但一般来说，最常被使用的是 <code>cat FILE | grep PATTERNS</code>，<code>|</code> 的含义在之后的章节中会得到介绍。另一个常见的用途是在文件夹下找出包含某个字串的文件（例如寻找一个宏的定义，或是函数的引用）</p>
-<div class="admonition example">
-<p class="admonition-title">grep 使用示例</p>
-<ul>
-<li>搜索 .bashrc 中的 alias：</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ grep <span class="nb">alias</span> .bashrc
-</code></pre></div>
-<ul>
-<li>或者：</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ cat .bashrc <span class="p">|</span> grep <span class="nb">alias</span>
-</code></pre></div>
-<ul>
-<li>搜索并列出文件夹 src 下所有包含 UserDialog 字段的文件</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ grep -Rl UserDialog src
-</code></pre></div>
-</div>
-<p>grep 中的匹配模式（PATTERN）还支持使用正则表达式，正则表达式会在之后的章节里得到详细介绍。</p>
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
