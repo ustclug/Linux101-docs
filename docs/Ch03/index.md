@@ -5,7 +5,7 @@
 !!! abstract "导言"
 
     面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：
-
+    
     * 通过命令行的方式安装需要的软件
     * 创建、移动、删除等对文件与目录的操作
     * 压缩、解压一个压缩文件
@@ -26,7 +26,7 @@
 !!! info "其它发行版的应用商店"
 
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。
-
+    
     在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [Snapcraft](https://snapcraft.io/) 获得应用商店。（注意：Snap 商店在国内的访问速度较慢。）
 
 ### 使用包管系统安装 {#use-package-management-system}
@@ -110,38 +110,38 @@ Do you want to continue? [Y/n]
 !!! tip "可能会出现的权限问题"
 
     在一般情况下，如果直接运行 `apt install` 命令，会输出
-
+    
     ```text
     $ apt install firefox
     E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
     E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
     ```
-
+    
     这是由于当前用户的权限无法满足安装软件所需的权限。修正方法：在命令前面添加 `sudo`。
-
+    
     即使用 `sudo apt install firefox`。
-
+    
     在输入之后，终端显示：
-
+    
     ```text
     [sudo] password for ubuntu:
     ```
-
+    
     这里提示的是需要用户输入密码，以提升权限来执行命令。
-
+    
     当然，在用户输入密码的过程中，为了安全，终端是不会进行密码的回显的，即终端不会将用户的输入内容打印在屏幕上。
-
+    
     因此当你发现自己输入了很多内容也没有什么反应的时候，不用惊慌，只需要像平常一样输入正确的密码、回车，即可完成密码的正确性的鉴定。
-
+    
     如果密码输入正确，那么就可以正常地执行命令。
-
+    
     否则，则需要再次尝试：
-
+    
     ```text
     Sorry, try again.
     [sudo] password for ubuntu:
     ```
-
+    
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
 
 #### 官方软件源镜像 {#software-sources}
@@ -153,40 +153,40 @@ Do you want to continue? [Y/n]
     ```text
     $ cat /etc/apt/sources.list | grep -v "#"
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
-
+    
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
-
+    
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic universe
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates universe
-
+    
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic multiverse
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates multiverse
-
+    
     deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-
+    
     deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted
     deb http://security.ubuntu.com/ubuntu/ bionic-security universe
     deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
     ```
-
+    
     每一个条目都遵循如下的格式：
-
+    
     ```text
     deb http://site.example.com/ubuntu/ distribution component1 component2 component3
     deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
     ```
-
+    
     分别是 Archive type、Repository URL、Distribution 和 Components。
-
+    
     在 Ubuntu 下，Component 可以为如下几个之一[^1]：
-
+    
     | 类型       | 含义                                                                                        |
     | ---------- | ------------------------------------------------------------------------------------------- |
     | Main       | 包含自由软件的软件包                                                                        |
     | Restricted | 包含通常使用的软件，由 Ubuntu 团队支持，但不是完全的自由软件许可授权                        |
     | Universe   | 包含了数千个不由 Canonical 官方支持的软件包。授权于各种自由软件许可协议，来自各种公共来源。 |
     | Multiverse | 包含非自由软件的软件包                                                                      |
-
+    
     具体的含义见 [Source List](https://wiki.debian.org/SourcesList#sources.list_format)
 
 Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以通过修改官方源为其镜像实现更快的下载速度。
@@ -196,17 +196,17 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 !!! example "修改官方源为镜像，加快更新速度"
 
     本例以修改官方源为 USTC Mirror 为例[^2]。**注意：在操作前请做好备份。**
-
+    
     一般情况下，`/etc/apt/sources.list` 下的官方源地址为 `http://archive.ubuntu.com/` ，我们只需要将其替换为 `http://mirrors.ustc.edu.cn` 即可。
-
+    
     如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`。
-
+    
     可以使用如下命令：
-
+    
     ```shell
     $ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
     ```
-
+    
     当然也可以直接使用 vim、nano 等文本编辑器进行修改。
 
 #### 第三方软件源 {#third-party-software-sources}
@@ -216,67 +216,67 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 ??? example "通过添加 Docker 软件源安装 Docker"
 
     Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书[第八章](../Ch08/index.md)进行专门的介绍。
-
+    
     在各大软件源中已经提供了 Docker，在 Ubuntu/Debian 下的包名为 `docker.io`。
-
+    
     Docker 官方也提供了自己的软件源，包名为 `docker-ce`，它的版本会稍微更新一些。我们可以通过添加 Docker 的软件源到 `/etc/apt/sources.list` 中来进行安装。以下安装流程按照 [Docker 官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)展开。
-
+    
     1. 安装需要的的软件包
-
+    
         ```shell
         $ sudo apt-get update
-
+    
         $ sudo apt-get install \
             ca-certificates \
             curl \
             gnupg-agent \
             software-properties-common
         ```
-
+    
     2. 下载 Docker 软件源的 GPG Key
-
+    
         这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。
-
+    
         ```shell
         $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
-
+    
     3. 添加 Docker 软件源到 `/etc/apt/sources.list.d/` 中
-
+    
         为了方便维护，第三方的 APT 软件源一般都放在 `/etc/apt/sources.list.d/` 目录下（而非直接编辑 `/etc/apt/sources.list`）。
-
+    
         ```shell
         $ echo \
         "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         ```
-
+    
         这里通过 `dpkg --print-architecture` 命令获取系统当前的架构，`lsb_release -cs` 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 `/etc/apt/sources.list.d/docker.list` 文件中。
-
+    
     4. 使用 apt 安装 Docker
-
+    
         首先需要从第三方源更新软件列表。
-
+    
         ```shell
         $ sudo apt update
         ```
-
+    
         之后便可以直接安装 `docker-ce` 以及相关的软件包。
-
+    
         ```shell
         $ sudo apt install docker-ce docker-ce-cli containerd.io
         ```
-
+    
     5. 检查安装情况并确认启动
-
+    
         Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
-
+    
         ```shell
         $ sudo systemctl status docker
         ```
-
+    
         如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
-
+    
         ```text
         ● docker.service - Docker Application Container Engine
           Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -287,9 +287,9 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           CGroup: /system.slice/docker.service
               └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
         ```
-
+    
         如果没有启动，则会输出类似于这样的结果：
-
+    
         ```text
         ● docker.service - Docker Application Container Engine
           Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -298,13 +298,13 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
           Main PID: 1115 (code=exited, status=0/SUCCESS)
         ```
-
+    
         这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
-
+    
         ```shell
         $ sudo systemctl start docker
         ```
-
+    
         再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
 
 ### 更新软件列表与更新软件 {#update-and-upgrade}
@@ -334,9 +334,9 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     Reading state information... Done
     158 packages can be upgraded. Run 'apt list --upgradable' to see them.
     ```
-
+    
     每一行对应获取一个软件源。
-
+    
     在最后，`158 packages can be upgraded` 表示了系统中可以被更新的软件包的数量。
 
 #### 更新软件 {#apt-upgrade}
@@ -360,7 +360,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     After this operation, 236 kB of additional disk space will be used.
     Do you want to continue? [Y/n]
     ```
-
+    
     apt 会列出将要更新的软件包、需要下载的大小以及更新这些包需要消耗（或释放）的磁盘空间。
 
 ### 使用包管理器手动安装软件包 {#use-package-manager-manually}
@@ -380,9 +380,9 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 !!! warning "请避免直接使用 `dpkg -i` 安装 deb 包。"
 
     在绝大多数情况下，都应该使用 `apt` 来安装 deb 文件。
-
+    
     如果不小心执行了 `dpkg -i` 导致系统出现依赖问题，可以尝试通过如下的方式调用 `apt` 帮助修复依赖管理：
-
+    
     ```shell
     $ sudo apt -f install
     ```
@@ -390,9 +390,9 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 !!! example "用 deb 文件安装 VSCode"
 
     Visual Studio Code 并不在 Ubuntu 的官方源中，可以通过安装微软提供的 deb 文件的方式进行安装。
-
+    
     首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
-
+    
     然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 deb 文件）。
 
 ### 安装预编译可执行文件 {#install-precompiled}
@@ -402,33 +402,33 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 !!! example "安装预编译的 LLVM"
 
     下面我们以 LLVM 为例作介绍。LLVM 是一个编译器组件工具集，可以帮助开发者开发编译器以及周边工具。
-
+    
     注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 `apt install clang` （或对应版本的 clang 包名）命令安装即可。
-
+    
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
-
+    
     ```shell
     $ # 下载二进制的压缩文件存档
     $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-
+    
     $ # 创建 clang 目录
     $ mkdir clang
-
+    
     $ # 将下载得到的压缩文件解压到当前目录
     $ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
-
+    
     $ cd clang
     ```
-
+    
     在进入解压得到的目录后，可以查看当前的目录下有什么内容：
-
+    
     ```shell
     $ ls
     bin  include  lib  libexec  share
     ```
-
+    
     一般而言，软件的可执行文件都位于 bin 目录下：
-
+    
     ```shell
     $ cd bin
     $ ls
@@ -439,27 +439,27 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     clang-apply-replacements  dsymutil              llvm-cxxfilt
     (Output omitted)
     ```
-
+    
     这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。
-
+    
     当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。
-
+    
     我们可以这样做：
-
+    
     ```shell
     $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
     $ sudo cp -R * /usr/local/
     ```
-
+    
     为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
-
+    
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
-
+    
     ```shell
     $ echo $PATH
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
-
+    
     在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
 
 ### 更多用法 {#more-usage}
@@ -487,7 +487,7 @@ $ cat [OPTION] FILE
     ```shell
     $ cat file.txt
     ```
-
+    
     * 查看 file1.txt 与 file2.txt 连接后的内容
     ```shell
     $ cat file1.txt file2.txt
@@ -496,6 +496,8 @@ $ cat [OPTION] FILE
 !!! note "为什么名字叫 cat？"
 
     当然和猫咪没有关系，cat 这里是 con**cat**enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
+
+
 
 ### 编辑文件内容 {#nano}
 
@@ -535,12 +537,12 @@ $ cp [OPTION] SOURCE... DIRECTORY
     ```shell
     $ cp file1.txt file2.txt
     ```
-
+    
     * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
     ```shell
     $ cp file1.txt file2.txt ./file/
     ```
-
+    
     * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
     ```shell
     $ cp -r dir1 ./test/
@@ -549,26 +551,26 @@ $ cp [OPTION] SOURCE... DIRECTORY
 ??? tip "硬链接和软链接"
 
     cp 的 `-l` 和 `-s` 参数分布为创建硬链接和软链接（又称为“符号链接”）。
-
+    
     简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。
-
+    
     需要先了解一个概念：inode。
-
+    
     在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。
-
+    
     关于 inode 的进一步讲解可以参考[这篇文章](https://www.ruanyifeng.com/blog/2011/12/inode.html)。
-
+    
     ![硬链接与软链接图例](images/link.png)
-
+    
     硬链接与软链接图例
     {: .caption }
-
+    
     硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
-
+    
     软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。
-
+    
     `ln` 命令也可以用来创建硬链接和软链接。
-
+    
     ```shell
     $ ln -s file symlink  # 创建指向文件 file 的软链接 symlink
     $ ln file hardlink  # 创建指向文件 file 的硬链接 hardlink
@@ -613,19 +615,19 @@ $ rm [OPTION] FILE...
 !!! example "删除示例"
 
     * 删除 `file1.txt` 文件：
-
+    
     ```
     $ rm file1.txt
     ```
-
+    
     * 删除 `test` 目录及其下的所有文件：
-
+    
     ```
     $ rm -r test/
     ```
-
+    
     * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
-
+    
     ```
     $ rm -rf test1/ test2/ file1.txt
     ```
@@ -646,13 +648,13 @@ $ mkdir [OPTION] DIR_NAME...
 !!! example "创建目录示例"
 
     * 创建两个目录，名字分别为 `test1`、`test2`：
-
+    
     ```shell
     $ mkdir test1 test2
     ```
-
+    
     * 创建路径 `test1/test2/test3/`：
-
+    
     ```shell
     $ mkdir -p test1/test2/test3/
     ```
@@ -667,7 +669,7 @@ $ touch FILE_NAME...
 !!! example "创建文件示例"
 
     创建两个文件，名字分别为 `file1`、`file2`：
-
+    
     ```
     $ touch file1 file2
     ```
@@ -675,9 +677,9 @@ $ touch FILE_NAME...
 !!! note "为什么名字叫 touch 而非 create（或者类似意思的单词）呢？"
 
     touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。
-
+    
     `stat` 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：
-
+    
     ```shell
     $ touch test  # 创建文件 test
     $ stat test  # 查看信息
@@ -722,60 +724,22 @@ $ find [OPTION] PATH [EXPRESSION]
 !!! example "搜索示例"
 
     * 在当前目录搜索名为 report.pdf 的文件：
-
+    
     ```shell
     $ find . -name 'report.pdf'
     ```
-
+    
     * 全盘搜索大于 1G 的文件：
-
+    
     ```shell
     $ find / -size +1G
     ```
-
+    
     * 在用户目录搜索所有名为 node_modules 的文件夹：
-
+    
     ```shell
     $ find ~/ -name 'node_modules' -type d
     ```
-
-### 搜索文件内容 {#grep}
-
-```shell
-$ # 在 FILE 文件中根据 PATTERN 搜索内容
-$ grep [OPTION]... PATTERNS [FILE]...
-```
-
-常用的表达式：
-
-| 选项 | 含义           |
-| ---- | -------------- |
-| `-R` | 进行递归搜索   |
-| `-l` | 列出找到的文件 |
-
-从文件中进行搜索可以用 `grep PATTERN FILE`，但一般来说，最常被使用的是 `cat FILE | grep PATTERNS`，`|` 的含义在之后的章节中会得到介绍。另一个常见的用途是在文件夹下找出包含某个字串的文件（例如寻找一个宏的定义，或是函数的引用）
-
-!!! example "grep 使用示例"
-
-    * 搜索 .bashrc 中的 alias：
-
-    ```shell
-    $ grep alias .bashrc
-    ```
-
-    * 或者：
-
-    ```shell
-    $ cat .bashrc | grep alias
-    ```
-
-    * 搜索并列出文件夹 src 下所有包含 UserDialog 字段的文件
-
-    ```shell
-    $ grep -Rl UserDialog src
-    ```
-
-grep 中的匹配模式（PATTERN）还支持使用正则表达式，正则表达式会在之后的章节里得到详细介绍。
 
 ## 使用 tar 操作存档、压缩文件 {#tar}
 
@@ -811,40 +775,40 @@ $ tar [OPTIONS] [FILE]...
 !!! example "tar 使用实例"
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
-
+    
         ```shell
         $ tar -c -f target.tar file1 file2 file3
         ```
-
+    
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
-
+    
         ```shell
         $ tar -x -f target.tar -C test/
         ```
-
+    
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
-
+    
         ```shell
         $ tar -cz -f target.tar.gz file1 file2 file3
         ```
-
+    
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
-
+    
         ```shell
         $ tar -xz -f target.tar.gz -C test/
         ```
-
+    
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
-
+    
         ```shell
         $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
         ```
-
+    
     * 列出 `target.tar` 存档文件中的内容
-
+    
         ```shell
         $ tar -t -f target.tar
-
+    
         $ # 打印出文件的详细信息
         $ tar -tv -f target.tar
         ```
@@ -852,7 +816,7 @@ $ tar [OPTIONS] [FILE]...
 !!! tip "组合 tar 的选项"
 
     与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
-
+    
     ```shell
     $ tar -c -z -v -f target.tar test/
     $ tar -czvf target.tar test/
@@ -862,17 +826,17 @@ $ tar [OPTIONS] [FILE]...
 !!! tip "存档文件的后缀名"
 
     后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
-
+    
     在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
-
+    
     在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
-
+    
     同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
 !!! tip "为什么使用 tar 创建压缩包需要“两次处理”"
 
     tar 名字来源于英文 **t**ape **ar**chive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。**注意，这中间没有压缩的过程。**
-
+    
     为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。
 
 ## 软件的使用文档 {#software-manuals}
@@ -993,7 +957,7 @@ https://www.gnu.org/software/tar
 !!! question "Матрёшка"
 
     在本章[软件的使用文档](#software-manuals)一节中，我们介绍了两个十分有用的文档命令：`man` 和 `tldr`。这两个工具帮助我们详细或快速了解一个命令的功能和用法。
-
+    
     那么 `man` 和 `tldr` 的用法又要怎么查看呢？
 
 !!! question "查找需要安装的软件包"
@@ -1007,25 +971,25 @@ https://www.gnu.org/software/tar
 !!! question "错误使用 tar 命令导致的文件丢失"
 
     这是一个真实的故事。某同学希望打包一些文件传输给另一位同学，于是他执行了下面这条命令：
-
+    
     ```
     tar -cf * target.tar
     ```
-
+    
     这会导致什么后果？尝试解释原因。（提示：`*` 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）
 
 !!! question "为什么不建议使用 `apt-key`"
 
     在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
-
+    
     ```shell
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
-
+    
     但是如今可以注意到，Docker 官方的安装教程也不再使用此方式，转而先手动下载、经过 `gpg` 程序处理后放置在 `/usr/share/keyrings/` 下，然后在软件源配置文件中使用 `signed-by` 参数指定成这个文件。为什么要换成这么麻烦的步骤？
-
+    
     背景知识：GPG 签名是非对称密码体系的一个例子。这里，软件包发布者有两把密钥：公钥（供用户公开下载）和私钥（必须妥善保存，不能让别人知道）。发布者使用**私钥**对软件包签名后，用户可以用**公钥**验证软件包确实为该发布者发布，且未被篡改。
-
+    
     提示：私钥泄漏之后可能会发生什么？
 
 ## 引用来源 {#references .no-underline}
