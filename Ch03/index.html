@@ -1886,7 +1886,7 @@ $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 <h4 id="less">less<a class="headerlink" href="#less" title="Permanent link">&para;</a></h4>
 <p>less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。</p>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 在可交互的窗口内输出 FILE 文件的内容</span>
-$ less <span class="o">[</span>OPTION<span class="o">]</span> FILE
+$ less FILE
 </code></pre></div>
 <p>常用的快捷键:</p>
 <table>
@@ -1910,8 +1910,8 @@ $ less <span class="o">[</span>OPTION<span class="o">]</span> FILE
 <td>跳转到文件开头/结尾</td>
 </tr>
 <tr>
-<td><code>h</code>/<code>j</code>/<code>k</code>/<code>l</code></td>
-<td>向左/下/上/右移动一个字符（也可以使用方向键）</td>
+<td><code>j</code>/<code>k</code></td>
+<td>向下/上移动一行（也可以使用方向键）</td>
 </tr>
 <tr>
 <td><code>/PATTERN</code></td>
