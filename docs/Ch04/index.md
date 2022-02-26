@@ -459,7 +459,7 @@ Control the systemd system and service manager.
 
     ```ini
     [Unit]
-    Description=Jupyter Notebook    # 该服务简要描述
+    Description=Jupyter Notebook    # 该服务的简要描述
 
     [Service]
     PIDFile=/run/jupyter.pid        # 用来存放 PID 的文件
@@ -482,7 +482,7 @@ Control the systemd system and service manager.
     $ systemctl disable jupyter # 取消自启
     ```
 
-可以参考系统中其他 `service` 文件，以及 [systemd.service(5)][systemd.service.5] 手册页编写配置文件。
+可以参考系统中其他 service 文件，以及 [systemd.service(5)][systemd.service.5] 手册页编写配置文件。
 
 [systemd.service.5]: https://www.freedesktop.org/software/systemd/man/systemd.service.html
 
