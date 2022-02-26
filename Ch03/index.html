@@ -1381,6 +1381,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#patten" class="md-nav__link">
+    模式匹配
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2197,6 +2204,70 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <div class="highlight"><pre><span></span><code>$ find ~/ -name <span class="s1">&#39;node_modules&#39;</span> -type d
 </code></pre></div>
 </div>
+<h3 id="patten">模式匹配<a class="headerlink" href="#patten" title="Permanent link">&para;</a></h3>
+<p>许多现代的 shell 都支持一定程度的模式匹配。举个例子，bash 的匹配模式被称为 <a href="https://mywiki.wooledge.org/glob">glob</a>，支持的操作如下：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>匹配的字串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>任意字串</td>
+</tr>
+<tr>
+<td><code>foo*</code></td>
+<td>匹配 foo 开头的字串</td>
+</tr>
+<tr>
+<td><code>*x*</code></td>
+<td>匹配含 x 的字串</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>一个字符</td>
+</tr>
+<tr>
+<td><code>a?b</code></td>
+<td><code>acb</code>、<code>a0b</code> 等，但不包含 <code>a00b</code></td>
+</tr>
+<tr>
+<td><code>*.[ch]</code></td>
+<td>以 .c 或 .h 结尾的文件</td>
+</tr>
+</tbody>
+</table>
+<p>和上面提到的命令结合，可以显著提高操作效率。例如：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rm *.tar.gz</code></td>
+<td>删除所有以 <code>tar.gz</code> 结尾的压缩文件</td>
+</tr>
+<tr>
+<td><code>mv -r *.[ch] /path</code></td>
+<td>将当前及子目录下所有以 <code>.c</code> 或 <code>.h</code> 结尾的代码移动到 <code>/path</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">高效的代价</p>
+<p>使用通配符前请再三确认输入无误，否则可能出现严重的后果（如 <code>rm -rf *</code> 会删掉当前目录的所有文件）。</p>
+</div>
+<details>
+<summary>更好，更大，更强的模式匹配</summary>
+<p>除了上面提到的 glob，bash 还支持 <a href="https://www.linuxjournal.com/content/bash-extended-globbing">extglob</a>，不过需要先用 <code>shopt -s extglob</code> 启用。</p>
+<p>其他 shell 例如 zsh 还支持正则表达式（会在后续章节讲解）。</p>
+</details>
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
