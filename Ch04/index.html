@@ -1190,6 +1190,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#view-process" class="md-nav__link">
+    查看当前运行的进程
+  </a>
+  
+    <nav class="md-nav" aria-label="查看当前运行的进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    htop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ps" class="md-nav__link">
+    ps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pid" class="md-nav__link">
     进程标识符
   </a>
@@ -1448,6 +1475,31 @@
 <h2 id="process">进程<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
 <p>在导言中提到的「桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务」，它们都是进程。简单而不太严谨地来说，进程就是正在运行的程序：当我们启动一个程序的时候，操作系统会从硬盘中读取程序文件，将程序内容加载入内存中，之后 CPU 就会执行这个程序。</p>
 <p>进程是现代操作系统中必不可少的概念。在 Windows 中，我们可以使用「任务管理器」查看系统运行中的进程；Linux 中同样也有进程的概念。下面我们简单介绍 Linux 中的进程。</p>
+<h3 id="view-process">查看当前运行的进程<a class="headerlink" href="#view-process" title="Permanent link">&para;</a></h3>
+<h4 id="htop">htop<a class="headerlink" href="#htop" title="Permanent link">&para;</a></h4>
+<p>Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。</p>
+<p>使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 <span class="keys"><kbd>F1</kbd></span> 至 <span class="keys"><kbd>F10</kbd></span> 功能键可以选择这些功能，常用的功能例如搜索进程（<span class="keys"><kbd>F3</kbd></span>, Search）、过滤进程（<span class="keys"><kbd>F4</kbd></span>, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（<span class="keys"><kbd>F5</kbd></span>, Tree/List）等等。</p>
+<h4 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">&para;</a></h4>
+<p>ps (process status) 是常用的输出进程状态的工具。直接调用 <code>ps</code> 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 <code>ps aux</code>。</p>
+<div class="highlight"><pre><span></span><code>$ ps
+    PID TTY          TIME CMD
+   <span class="m">1720</span> pts/0    <span class="m">00</span>:00:00 bash
+   <span class="m">1858</span> pts/0    <span class="m">00</span>:00:00 ps
+$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           <span class="m">1</span>  <span class="m">0</span>.2  <span class="m">0</span>.5 <span class="m">167312</span> <span class="m">11156</span> ?        Ss   <span class="m">02</span>:33   <span class="m">0</span>:04 /sbin/init splash
+root           <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+root           <span class="m">3</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_gp<span class="o">]</span>
+root           <span class="m">4</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_par_gp<span class="o">]</span>
+root           <span class="m">6</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
+root           <span class="m">9</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>mm_percpu_wq<span class="o">]</span>
+root          <span class="m">10</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_tasks_rude_<span class="o">]</span>
+root          <span class="m">11</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_tasks_trace<span class="o">]</span>
+root          <span class="m">12</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+root          <span class="m">13</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_sched<span class="o">]</span>
+root          <span class="m">14</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>migration/0<span class="o">]</span>
+（以下省略）
+</code></pre></div>
 <h3 id="pid">进程标识符<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
 <p>首先，有区分才有管理。<strong>进程标识符</strong> (PID, Process Identifier) 是一个数字，是进程的唯一标识。在 htop 中，最左侧一列即为 PID。当用户想挂起，继续或终止进程时可以使用 PID 作为索引。</p>
 <p>在 htop 中，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</p>
@@ -1529,8 +1581,11 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>默认情况下，在 shell 中运行的命令都在前台运行，如果需要在后台运行程序，需要在最后加上 <code>&amp;</code>：</p>
 <div class="highlight"><pre><span></span><code>$ ./matmul <span class="p">&amp;</span>  <span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
-$ ps <span class="p">|</span> grep matmul
-<span class="m">8844</span> pts/3    <span class="m">00</span>:00:06 matmul
+$ ps
+    PID TTY          TIME CMD
+   <span class="m">1720</span> pts/0    <span class="m">00</span>:00:00 bash
+   <span class="m">1861</span> pts/0    <span class="m">00</span>:00:06 matmul
+   <span class="m">1862</span> pts/0    <span class="m">00</span>:00:00 ps
 $ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
 </code></pre></div>
 <p>而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
@@ -1873,7 +1928,7 @@ Service atd (or atrun) should be running for the actual executions.
 <p>所以该命令的基本用法示例如下：</p>
 <div class="highlight"><pre><span></span><code>$ at now + 1min
 &gt; <span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span>
-&gt; &lt;EOT&gt; （按下 Ctrl + D<span class="o">)</span>
+&gt; &lt;EOT&gt; （按下 Ctrl + D）
 job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m">16</span>:16:00 <span class="m">2020</span>   <span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
 <p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（需要本地安装 mail 相关的服务。）</p>
@@ -1924,6 +1979,40 @@ usage:  crontab [-u user] file
 <div class="admonition question">
 <p class="admonition-title">关于 Ctrl + C</p>
 <p>尝试描述在终端运行程序时，用户按下 Ctrl + C 后发生的事情。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">SIGKILL（<code>kill -9</code>）可以杀死所有进程吗？</p>
+<p>思考两个有趣的小问题：</p>
+<ul>
+<li>
+<p>状态为 D（Disk sleep）与 Z（Zombie）的进程收到 SIGKILL 信号后会发生什么？</p>
+</li>
+<li>
+<p>可以向 1 号进程 init 发送 SIGKILL 信号吗？发送之后会发生什么？</p>
+</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title"><code>nohup</code> 合适吗？</p>
+<p>某同学使用 Python 写了一个小网站，他准备登录服务器后用 <code>nohup</code> 来运行他的网站。</p>
+<p>尝试指出这么做可能的问题。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">多人使用的 tmux</p>
+<p>在实验室的机器中，可能出现一种场景：多个人同时使用同一个 Linux 账号。此时如果这几个人同时使用 tmux 的话，会出现很尴尬的事情：不同用户的操作会互相影响。请给出一种解决方案。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">服务日志</p>
+<p>Systemd 提供的日志管理功能对于调试系统也非常实用。请搜索资料，给出使用 systemd 相关工具输出以下内容的命令：</p>
+<ul>
+<li>某个服务的日志</li>
+<li>某个<strong>正在运行</strong>的服务<strong>正在</strong>输出的日志</li>
+<li>系统<strong>正在</strong>输出的日志</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">耗时的定时任务</p>
+<p>有的时候，我们需要定时执行一些需要不少时间的任务，例如系统备份。如果这个任务的执行时间超过了 crontab 中两次任务执行的时间间隔，会发生什么事情？如果用 systemd timer，能否避免这个问题？</p>
 </div>
 <h2 id="extra-resources">其他资料<a class="headerlink" href="#extra-resources" title="Permanent link">&para;</a></h2>
 <dl>
