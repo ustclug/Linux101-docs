@@ -2336,13 +2336,13 @@ clear
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># POSIX syntax</span>
 name<span class="o">()</span> <span class="o">{</span>
-    actions
+    commands
     <span class="o">[</span><span class="k">return</span> &lt;int&gt;<span class="o">]</span>
 <span class="o">}</span>
 
 <span class="c1"># Bash syntax</span>
-funcion name <span class="o">{</span>
-    action
+<span class="k">function</span> name <span class="o">{</span>
+    commands
     <span class="o">[</span><span class="k">return</span> &lt;int&gt;<span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>
@@ -2353,14 +2353,14 @@ funcion name <span class="o">{</span>
 <p>某带函数的某脚本程序内容如下：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 hello<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="s2">&quot;hello, today&#39;s date is `date`&quot;</span>
+  <span class="nb">echo</span> <span class="s2">&quot;hello </span><span class="nv">$1</span><span class="s2">, today&#39;s date is `date`&quot;</span>
 <span class="o">}</span>
 <span class="nb">echo</span> <span class="s2">&quot;going to call test function:&quot;</span>
-hello
+hello ustc
 </code></pre></div>
 <p>运行脚本，输出结果：</p>
 <div class="highlight"><pre><span></span><code>going to call test function:
-hello, today&#39;s date is Tue Feb 22 22:22:22 CST 2022
+hello ustc, today&#39;s date is Tue Feb 22 22:22:22 CST 2022
 </code></pre></div>
 </details>
 <h3 id="bash-debugging">Bash 脚本调试<a class="headerlink" href="#bash-debugging" title="Permanent link">&para;</a></h3>
