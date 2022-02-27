@@ -806,13 +806,13 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 ```shell
 # POSIX syntax
 name() {
-    actions
+    commands
     [return <int>]
 }
 
 # Bash syntax
-funcion name {
-    action
+function name {
+    commands
     [return <int>]
 }
 ```
@@ -828,17 +828,17 @@ funcion name {
     ```shell
     #!/bin/bash
     hello() {
-      echo "hello, today's date is `date`"
+      echo "hello $1, today's date is `date`"
     }
     echo "going to call test function:"
-    hello
+    hello ustc
     ```
 
     运行脚本，输出结果：
 
     ```text
     going to call test function:
-    hello, today's date is Tue Feb 22 22:22:22 CST 2022
+    hello ustc, today's date is Tue Feb 22 22:22:22 CST 2022
     ```
 
 ### Bash 脚本调试 {#bash-debugging}
