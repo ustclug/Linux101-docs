@@ -1349,8 +1349,8 @@
 
 
 <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
-<div class="admonition failure">
-<p class="admonition-title">本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。</p>
+<div class="admonition warning">
+<p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
@@ -1372,7 +1372,7 @@
 <p>上面提到，Docker 使用了 Linux 内核的容器特性，它依赖于 Linux。所以在 Windows 和 macOS 上，Docker 不得不通过虚拟 Linux 内核的方式来完成任务。其提供了一套被称为 Docker Desktop 的软件来帮助在 Windows 和 macOS 上配置 Docker。直接从<a href="https://www.docker.com/products/docker-desktop">官网下载</a>即可。</p>
 <div class="admonition info">
 <p class="admonition-title">Docker Desktop on Windows 的环境要求</p>
-<p>Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。如果使用 Windows 20H1 之前的版本且开启 Hyper-V 的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用；在 20H1 之后，虚拟机软件也需要升级到对应的版本才能与 Hyper-V 协同工作。如果环境要求无法达到，可以安装<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">老版本的 Docker Toolbox on Windows</a>。</p>
+<p>Docker Desktop on Windows <a href="https://docs.docker.com/desktop/windows/install/#system-requirements">对系统有一定的环境要求</a>，以便虚拟化运行 Linux。如果环境要求无法达到，可以安装<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">老版本的 Docker Toolbox on Windows</a>。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Windows 容器</p>
@@ -1396,8 +1396,8 @@
 <p>如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 <a href="https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2">Using Docker in WSL 2</a>。</p>
 </div>
 <p>在安装完成后，可以使用</p>
-<pre><code>adduser 用户名 docker
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 docker
+</code></pre></div>
 <p>将需要使用 Docker 的用户<a href="../Ch05/#adduser">加入</a> <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
 <h3 id="setup-registry-mirror">配置 Registry Mirror（可选，推荐）<a class="headerlink" href="#setup-registry-mirror" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
@@ -1606,7 +1606,9 @@ For more examples and ideas, visit:
 </code></pre></div>
 <p>这里使用了 <code>COPY</code> 指令，将本地的 <code>app</code> 目录复制进容器镜像的 <code>/app</code> 中。</p>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
-<p>Docker Compose 是一个方便的小型容器编排工具。</p>
+<p>Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 <code>docker.io</code> 软件包，那么系统中可能未安装 <code>docker-compose</code>，使用以下命令安装：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install docker-compose
+</code></pre></div>
 <h3 id="use-docker-compose-build-wordpress-with-mysql">使用 Docker Compose 创建 WordPress 博客<a class="headerlink" href="#use-docker-compose-build-wordpress-with-mysql" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。</p>
 <p>新建一个文件夹，在其中放入一个名为 <code>docker-compose.yml</code> 的配置文件：</p>
@@ -1638,7 +1640,7 @@ For more examples and ideas, visit:
 <span class="w">      </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span><span class="w"></span>
 <span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span><span class="w"></span>
 </code></pre></div>
-<p>在文件夹中运行 <code>docker-compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker-compose up -d</code> 命令可以让容器分离（detach）命令行。</p>
+<p>在文件夹中运行 <code>docker-compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker-compose up -d</code> 命令可以让容器分离（detach）命令行。运行完成后，可以使用 <code>docker-compose down</code> 停止并删除容器。</p>
 <div class="footnote">
 <hr />
 <ol>

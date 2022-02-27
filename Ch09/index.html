@@ -1326,14 +1326,15 @@
 <h2 id="prerequisite">一些铺垫<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
 <h3 id="qoutes">单双引号<a class="headerlink" href="#qoutes" title="Permanent link">&para;</a></h3>
 <p>当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。</p>
-<p>在 bash 中，单引号意为“强引用”，即引号之间的特殊字符会被认为是普通字符，两个单引号之间不能再有单引号，即使使用‘\’进行转义。而双引号意为”弱引用“，'$', '`', '\'， '!' 在双引号之间有特殊含义。参考 <a href="https://www.gnu.org/software/bash/manual/html_node/Quoting.html">Bash Quoting</a></p>
+<p>在 bash 中，单引号意为“强引用”，即引号之间的特殊字符会被认为是普通字符，两个单引号之间不能再有单引号，即使使用‘\’进行转义。而双引号意为”弱引用“，'$', '`', '\'， '!' 在双引号之间有特殊含义。</p>
+<p>相关内容可参考 <a href="https://www.gnu.org/software/bash/manual/html_node/Quoting.html">Bash Quoting</a>。</p>
 <h2 id="tools-in-shell">常用 shell 文字处理工具<a class="headerlink" href="#tools-in-shell" title="Permanent link">&para;</a></h2>
 <h3 id="sort">sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h3>
 <p>sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
 <p>一些基本用法：</p>
 <ul>
-<li><code>-r</code> 变成降序</li>
-<li><code>-u</code>去除重复行</li>
+<li><code>-r</code> 降序（从大到小）排序</li>
+<li><code>-u</code> 去除重复行</li>
 <li><code>-o [file]</code> 指定输出文件</li>
 <li><code>-n</code> 用于数值排序，否则“15”会排在“2”前</li>
 </ul>
@@ -1381,7 +1382,7 @@ $ sort -n numbers
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">小知识</p>
-<p>为什么有必要存在 <code>-o</code> 参数？试试重定向输出到原文件。</p>
+<p>为什么有必要存在 <code>-o</code> 参数？试试重定向输出到原文件会发生什么吧。</p>
 </div>
 <h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
