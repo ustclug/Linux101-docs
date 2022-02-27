@@ -704,7 +704,9 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 枚举循环：for
 
-:   ```shell
+:   for 循环可以对一个列表中的每个值都执行一系列命令。
+
+    ```shell
     for var in list
     do
       commands $var
@@ -717,6 +719,11 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
     ```shell
     while condition
+    do
+      commands
+    done
+
+    until condition
     do
       commands
     done
