@@ -1,6 +1,6 @@
 # Docker
 
-!!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
+!!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 
 !!! abstract "导言"
 
@@ -29,7 +29,7 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 !!! info "Docker Desktop on Windows 的环境要求"
 
-    Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。如果使用 Windows 20H1 之前的版本且开启 Hyper-V 的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用；在 20H1 之后，虚拟机软件也需要升级到对应的版本才能与 Hyper-V 协同工作。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
+    Docker Desktop on Windows [对系统有一定的环境要求](https://docs.docker.com/desktop/windows/install/#system-requirements)，以便虚拟化运行 Linux。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
 
 !!! note "Windows 容器"
 
@@ -62,7 +62,9 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 在安装完成后，可以使用
 
-    adduser 用户名 docker
+```shell
+$ sudo adduser 用户名 docker
+```
 
 将需要使用 Docker 的用户[加入](../Ch05/index.md#adduser) `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
 
@@ -341,7 +343,11 @@ COPY ./app /app
 
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
 
-Docker Compose 是一个方便的小型容器编排工具。
+Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
+
+```shell
+$ sudo apt install docker-compose
+```
 
 ### 使用 Docker Compose 创建 WordPress 博客 {#use-docker-compose-build-wordpress-with-mysql}
 
@@ -379,6 +385,6 @@ services:
       WORDPRESS_DB_PASSWORD: linux101-test
 ```
 
-在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。
+在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。运行完成后，可以使用 `docker-compose down` 停止并删除容器。
 
 [^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。
