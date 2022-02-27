@@ -196,17 +196,17 @@ Android TV 图标
 
 在本机上安装一个 Linux 发行版有很多种选择，如：安装方法可以选择实机安装或虚拟机安装；发行版则可以在诸多选项中任意抉择。然而，对于新手来说，本书**不建议直接采用实机安装 Linux**，因为这样做会面临以下问题：
 
-- 在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
-- 错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
-- 部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
-- 如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
+-   在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
+-   错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
+-   部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
+-   如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
 
 鉴于以上问题对于新手来说十分常见，本书的编写组为各位读者专门提供了另外一种更为安全高效的方法：在虚拟机上运行 Linux 发行版镜像。虚拟机简单来说可以视作一个安全可靠的沙盒，它受到虚拟机管理软件的管理，而管理软件是直接安装在自己目前常用的操作系统上的。本书**推荐使用虚拟机运行安装完毕的 Linux 镜像**，因为这样会有如下优点：
 
-- 读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
-- 无需考虑底层硬件的兼容性问题，稳定性大幅提升。
-- 系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
-- 如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
+-   读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
+-   无需考虑底层硬件的兼容性问题，稳定性大幅提升。
+-   系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
+-   如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
 
 因此，本书将主要讲解如何为自己搭建一个安全高效的 Linux 虚拟机。如果你有一台远程的 Linux 服务器，可以参考[拓展阅读](./supplement.md#ssh)的内容配置 SSH 连接。
 
@@ -214,9 +214,9 @@ Android TV 图标
 
 现在在 Windows / macOS 上主流的虚拟机管理软件有：
 
-- [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上用于非商业用途的虚拟机管理软件。
-- [VMware Fusion Player](https://customerconnect.vmware.com/web/vmware/evalcenter?p=fusion-player-personal) 是 VMware 公司为 macOS 平台推出的用于非商业用途的虚拟机管理软件。
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
+-   [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上用于非商业用途的虚拟机管理软件。
+-   [VMware Fusion Player](https://customerconnect.vmware.com/web/vmware/evalcenter?p=fusion-player-personal) 是 VMware 公司为 macOS 平台推出的用于非商业用途的虚拟机管理软件。
+-   [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
 
 以上软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
 
@@ -224,9 +224,9 @@ Android TV 图标
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
-- Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
-- Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
-- Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
+-   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
+-   Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
+-   Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
 
 推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
 
@@ -249,8 +249,8 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
-- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
-- [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
+-   [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
+-   [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
 对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 

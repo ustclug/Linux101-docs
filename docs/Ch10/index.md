@@ -20,10 +20,10 @@ wsl --install
 
 会完成如下几个操作
 
-- 启用 WSL 和虚拟化平台
-- 下载并安装 WSL 的 Linux 内核
-- 设定 WSL 2 默认的版本
-- 从微软商店里面下载 Ubuntu 进行安装
+-   启用 WSL 和虚拟化平台
+-   下载并安装 WSL 的 Linux 内核
+-   设定 WSL 2 默认的版本
+-   从微软商店里面下载 Ubuntu 进行安装
 
 安装完了之后可以直接通过 `ubuntu` 启动
 
@@ -71,10 +71,10 @@ wsl --set-default-version 2
 
 有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式
 
-- ArchLinux: [ArchWSL](https://github.com/yuk7/ArchWSL)
-- Fedora: [FedoraWSL](https://github.com/yosukes-dev/FedoraWSL)
-- Manjaro: [ManjaroWSL](https://github.com/sileshn/ManjaroWSL)
-- Gentoo: [GentooWSL](https://github.com/imaandrew/GentooWSL)
+-   ArchLinux: [ArchWSL](https://github.com/yuk7/ArchWSL)
+-   Fedora: [FedoraWSL](https://github.com/yosukes-dev/FedoraWSL)
+-   Manjaro: [ManjaroWSL](https://github.com/sileshn/ManjaroWSL)
+-   Gentoo: [GentooWSL](https://github.com/imaandrew/GentooWSL)
 
 ### 使用 LxRunOffline 进行安装
 
@@ -96,9 +96,9 @@ LxRunOffline 是通过 Windows 提供的 API 来进行管理 WSL 的一个命令
 ./LxRunOffline i -n ArchLinux -d D:/wsl/ArchLinux -f ./archlinux-bootstrap-*.tar.gz
 ```
 
-- `-n` WSL 的名称
+-   `-n` WSL 的名称
 
-- `-d` 希望安装的位置，通过这种方法可以不需要将 wsl 安装在 C 盘
+-   `-d` 希望安装的位置，通过这种方法可以不需要将 wsl 安装在 C 盘
 
 需要注意的是，这个安装方法不会在开始菜单中添加启动快捷方式，只能够通过命令行的方式启动
 
@@ -115,8 +115,8 @@ wsl -d ArchLinux
 
 其中
 
-- `ArchLinux` 是 WSL 的名
-- `-v 1000` 是设置登录的用户的 UID
+-   `ArchLinux` 是 WSL 的名
+-   `-v 1000` 是设置登录的用户的 UID
 
 ## 使用
 

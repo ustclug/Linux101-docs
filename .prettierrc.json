@@ -1,3 +1,4 @@
 {
-  "embeddedLanguageFormatting": "off"
+    "embeddedLanguageFormatting": "off",
+    "tabWidth": 4
 }

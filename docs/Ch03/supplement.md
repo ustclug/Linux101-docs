@@ -20,7 +20,7 @@
 
 在从源代码安装 Nginx 前，需要为它的库安装依赖：
 
-- PCRE - 用于支持正则表达式。
+-   PCRE - 用于支持正则表达式。
 
 ```shell
 $ wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
@@ -31,7 +31,7 @@ $ make
 $ sudo make install
 ```
 
-- zlib - 用于支持 HTTP 头部压缩。
+-   zlib - 用于支持 HTTP 头部压缩。
 
 ```shell
 $ wget https://zlib.net/zlib-1.2.11.tar.gz
@@ -42,7 +42,7 @@ $ make
 $ sudo make install
 ```
 
-- OpenSSL - 用于支持 HTTPS 协议。
+-   OpenSSL - 用于支持 HTTPS 协议。
 
 ```shell
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz

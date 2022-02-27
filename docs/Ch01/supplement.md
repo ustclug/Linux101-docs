@@ -22,7 +22,7 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 
 读者在使用 Fedora、CentOS、Scientific Linux、RHEL 等系统时，可能会遇到这样的错误：
 
-- SELinux is preventing XXXX from read access on the file YYYY.
+-   SELinux is preventing XXXX from read access on the file YYYY.
 
 这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。
 
@@ -257,10 +257,10 @@ ustc@ustclug-linux101:~$
 
 如何将 Linux 下的软件与开发生态移植到 Windows 上？在 WSL 出现之前，开发者们进行了各种尝试。这也催生出了一些软件与方案，例如：
 
-- Cygwin。它包含了一大批 Linux 上的 GNU 和其他的开源工具。它的核心是一个程序库 (`cygwin1.dll`)，这个程序库在 Windows 环境下实现了 POSIX API 的功能。Linux 上的软件，可以通过**重新编译**，链接 Cygwin 的方式，在 Windows 上运行。
-- MinGW。它包含了 GCC 和 GNU Binutils 等工具的 Windows 移植。它不支持类似于 `fork()` 这样无法简单用 Windows API 实现的 POSIX API，但是相比于 Cygwin 来说更加轻量，甚至可以在 Linux 上使用 MinGW 交叉编译 Windows 程序。
-- MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
-- Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
+-   Cygwin。它包含了一大批 Linux 上的 GNU 和其他的开源工具。它的核心是一个程序库 (`cygwin1.dll`)，这个程序库在 Windows 环境下实现了 POSIX API 的功能。Linux 上的软件，可以通过**重新编译**，链接 Cygwin 的方式，在 Windows 上运行。
+-   MinGW。它包含了 GCC 和 GNU Binutils 等工具的 Windows 移植。它不支持类似于 `fork()` 这样无法简单用 Windows API 实现的 POSIX API，但是相比于 Cygwin 来说更加轻量，甚至可以在 Linux 上使用 MinGW 交叉编译 Windows 程序。
+-   MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
+-   Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
 
 当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2016 及以上的版本上运行原生（ELF 格式）的 Linux 程序。
 
@@ -276,8 +276,8 @@ ustc@ustclug-linux101:~$
 
 第二代的 WSL (WSL2) 尝试解决一些 WSL1 的方式难以解决的问题：
 
-- 由于其是以翻译系统调用的方式实现 Linux 兼容，WSL1 无法运行依赖于内核复杂特性的程序（如 Docker），无法运行硬件驱动程序。
-- 没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL1 中实现。
-- 受到各种因素的影响（如 Windows Defender），WSL1 的 I/O 性能远低于 Linux 内核的实现。
+-   由于其是以翻译系统调用的方式实现 Linux 兼容，WSL1 无法运行依赖于内核复杂特性的程序（如 Docker），无法运行硬件驱动程序。
+-   没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL1 中实现。
+-   受到各种因素的影响（如 Windows Defender），WSL1 的 I/O 性能远低于 Linux 内核的实现。
 
 WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的 Linux 内核。
