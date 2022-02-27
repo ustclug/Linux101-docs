@@ -1350,31 +1350,10 @@
     Bash
   </a>
   
-    <nav class="md-nav" aria-label="Bash">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_1" class="md-nav__link">
-    Bash 的特点
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-usage" class="md-nav__link">
-    Bash 脚本基础
-  </a>
-  
-    <nav class="md-nav" aria-label="Bash 脚本基础">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bash_2" class="md-nav__link">
+  <a href="#run-bash-script" class="md-nav__link">
     Bash 脚本的运行
   </a>
   
@@ -1480,11 +1459,6 @@
   <a href="#functions" class="md-nav__link">
     函数
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1784,26 +1758,26 @@ $ sudo sed -i <span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&
 <h3 id="bash">Bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h3>
 <p>Bourne Shell (<code>sh</code>)，是 Unix 系统的默认 Shell，简单轻便，脚本编程功能强，但交互性差。</p>
 <p>Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 Linux 系统的默认 Shell，是 Bourne Shell 的扩展。</p>
-<h4 id="bash_1"><code>Bash</code> 的特点<a class="headerlink" href="#bash_1" title="Permanent link">&para;</a></h4>
-<ul>
-<li>
-<p>支持 I/O 重定向（<code>&gt;</code>, <code>&gt;&gt;</code>, <code>&lt;</code>）和管道（<code>|</code>）等。</p>
-</li>
-<li>
-<p>环境控制，允许用户定制环境以满足自己需要。环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>。通过配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
-</li>
-<li>
-<p>支持后台运行 <code>&amp;</code>。</p>
-</li>
-<li>
-<p>占用资源较少，来自 GNU，与 Linux 相容性高。支持命令行编辑，提供命令补全功能键 Tab。</p>
-</li>
-<li>
-<p>允许应用别名代替命令关键字（<code>alias name='命令'</code>）。</p>
-</li>
-</ul>
-<h3 id="bash-usage">Bash 脚本基础<a class="headerlink" href="#bash-usage" title="Permanent link">&para;</a></h3>
-<h4 id="bash_2">Bash 脚本的运行<a class="headerlink" href="#bash_2" title="Permanent link">&para;</a></h4>
+<p>Bash 允许用户定制环境以满足自己需要。通过修改环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>，配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
+<p>此外，bash 也支持使用 <code>alias</code> 别名代替命令关键字（<code>alias name='命令'</code>）。输入 <code>alias</code>，可以查看目前存在的别名：</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">alias</span>
+<span class="nb">alias</span> <span class="nv">alert</span><span class="o">=</span><span class="s1">&#39;notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e &#39;</span><span class="se">\&#39;</span><span class="s1">&#39;s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;)&quot;&#39;</span>
+<span class="nb">alias</span> <span class="nv">egrep</span><span class="o">=</span><span class="s1">&#39;egrep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">fgrep</span><span class="o">=</span><span class="s1">&#39;fgrep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">grep</span><span class="o">=</span><span class="s1">&#39;grep --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">l</span><span class="o">=</span><span class="s1">&#39;ls -CF&#39;</span>
+<span class="nb">alias</span> <span class="nv">la</span><span class="o">=</span><span class="s1">&#39;ls -A&#39;</span>
+<span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -alF&#39;</span>
+<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls --color=auto&#39;</span>
+$ ll  <span class="c1"># 执行 ll 相当于执行 ls -alF</span>
+总用量 <span class="m">128</span>
+drwxr-xr-x <span class="m">18</span> ustc ustc <span class="m">4096</span> 2月  <span class="m">28</span> <span class="m">00</span>:51 ./
+drwxr-xr-x  <span class="m">3</span> root root <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:26 ../
+drwxr-xr-x  <span class="m">2</span> ustc ustc <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:45 公共的/
+drwxr-xr-x  <span class="m">2</span> ustc ustc <span class="m">4096</span> 11月 <span class="m">17</span> <span class="m">20</span>:45 模板/
+（以下省略）
+</code></pre></div>
+<h3 id="run-bash-script">Bash 脚本的运行<a class="headerlink" href="#run-bash-script" title="Permanent link">&para;</a></h3>
 <p>可以使用几种方法运行 Bash 脚本：</p>
 <ul>
 <li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：</li>
@@ -1874,9 +1848,9 @@ $ <span class="nb">pwd</span>  <span class="c1"># 移动到了 /tmp 目录</span
 </code></pre></div>
 <p>执行组命令 <code>{ cd /tmp; pwd; }</code> 后，当前目录会被修改，但是执行 <code>(cd /tmp; pwd;)</code> 不会修改当前目录。</p>
 </details>
-<h4 id="bash-variables">shell 变量<a class="headerlink" href="#bash-variables" title="Permanent link">&para;</a></h4>
+<h3 id="bash-variables">shell 变量<a class="headerlink" href="#bash-variables" title="Permanent link">&para;</a></h3>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
-<h5 id="bash-user-variables">用户自定义变量<a class="headerlink" href="#bash-user-variables" title="Permanent link">&para;</a></h5>
+<h4 id="bash-user-variables">用户自定义变量<a class="headerlink" href="#bash-user-variables" title="Permanent link">&para;</a></h4>
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
 <div class="admonition example">
@@ -1914,7 +1888,7 @@ I am good at JavaScript
 <div class="highlight"><pre><span></span><code>example.sh: line 4: nonexist: unbound variable
 </code></pre></div>
 </details>
-<h5 id="bash-environment-variables">环境变量<a class="headerlink" href="#bash-environment-variables" title="Permanent link">&para;</a></h5>
+<h4 id="bash-environment-variables">环境变量<a class="headerlink" href="#bash-environment-variables" title="Permanent link">&para;</a></h4>
 <p>每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 <code>env</code> 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：</p>
 <ul>
 <li>
@@ -1947,7 +1921,7 @@ $ env <span class="p">|</span> grep <span class="nv">A</span><span class="o">=</
 $ env <span class="p">|</span> grep <span class="nv">B</span><span class="o">=</span>
 $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 </code></pre></div>
-<h5 id="bash-positional-parameters">位置变量<a class="headerlink" href="#bash-positional-parameters" title="Permanent link">&para;</a></h5>
+<h4 id="bash-positional-parameters">位置变量<a class="headerlink" href="#bash-positional-parameters" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>、<code>$2</code>、<code>$3</code>、……、<code>$9</code>，程序名本身对应 <code>$0</code>。</p>
@@ -1970,7 +1944,7 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 <span class="gp">$ </span><span class="c1"># 此时 $2 和 $3 已不存在</span>
 </code></pre></div>
 </details>
-<h5 id="bash-special-variables">特殊变量<a class="headerlink" href="#bash-special-variables" title="Permanent link">&para;</a></h5>
+<h4 id="bash-special-variables">特殊变量<a class="headerlink" href="#bash-special-variables" title="Permanent link">&para;</a></h4>
 <p>Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。</p>
 <table>
 <thead>
@@ -2006,7 +1980,7 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 </tr>
 </tbody>
 </table>
-<h5 id="bash-special-tokens">特殊字符<a class="headerlink" href="#bash-special-tokens" title="Permanent link">&para;</a></h5>
+<h4 id="bash-special-tokens">特殊字符<a class="headerlink" href="#bash-special-tokens" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <p>双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。</p>
@@ -2024,8 +1998,8 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 <p>反斜杠，消除单个字符的特殊含义（包括空格）。</p>
 </li>
 </ul>
-<h4 id="bash-input-output">变量输入与输出<a class="headerlink" href="#bash-input-output" title="Permanent link">&para;</a></h4>
-<h5 id="bash-input">输入<a class="headerlink" href="#bash-input" title="Permanent link">&para;</a></h5>
+<h3 id="bash-input-output">变量输入与输出<a class="headerlink" href="#bash-input-output" title="Permanent link">&para;</a></h3>
+<h4 id="bash-input">输入<a class="headerlink" href="#bash-input" title="Permanent link">&para;</a></h4>
 <p>可以使用 <code>read</code> 命令读取用户输入，并将输入的内容赋值给变量。其中 <code>-p</code> 参数后可以设置输出的提示信息。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <span class="gp">$ </span><span class="nb">read</span> -p <span class="s2">&quot;Enter your name: &quot;</span> name  <span class="c1"># 输出提示，然后从输入读取一个值，存储到 $name 中</span>
@@ -2044,7 +2018,7 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 <span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$message</span>  <span class="c1"># 加上 -r 参数后，反斜杠完好无损</span>
 <span class="go">\(^o^)/~</span>
 </code></pre></div>
-<h5 id="bash-output">输出<a class="headerlink" href="#bash-output" title="Permanent link">&para;</a></h5>
+<h4 id="bash-output">输出<a class="headerlink" href="#bash-output" title="Permanent link">&para;</a></h4>
 <p>可以使用 <code>echo</code> 命令输出变量信息。其中 <code>-n</code> 参数不会在结尾输出换行符，而 <code>-e</code> 参数会解析文本中的转义字符（例如 <code>\n</code>）。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span> -n <span class="s2">&quot;hello&quot;</span>
 <span class="go">hello$ # 由于这里 echo 结尾不输出换行，shell 就会在这里继续接受用户输入</span>
@@ -2064,7 +2038,7 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 <span class="go">Hello linux</span>
 <span class="gp">$ </span><span class="c1"># 所以为了正常显示，需要在结尾补上 \n</span>
 </code></pre></div>
-<h4 id="bash-arithmetic">算术运算<a class="headerlink" href="#bash-arithmetic" title="Permanent link">&para;</a></h4>
+<h3 id="bash-arithmetic">算术运算<a class="headerlink" href="#bash-arithmetic" title="Permanent link">&para;</a></h3>
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是 <code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
 <p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以赋值。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1。若表达式的结果非零，那么 <code>(( 表达式 ))</code> 命令返回零，而当表达式结果为零时命令返回 1。</p>
 <details class="example">
@@ -2095,7 +2069,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <span class="m">3</span>
 </code></pre></div>
 </details>
-<h4 id="expr">条件表达式<a class="headerlink" href="#expr" title="Permanent link">&para;</a></h4>
+<h3 id="expr">条件表达式<a class="headerlink" href="#expr" title="Permanent link">&para;</a></h3>
 <p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意表达式与方括号之间有空格。</p>
 <!-- prettier-ignore-start -->
 
@@ -2232,7 +2206,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </dl>
 <!-- prettier-ignore-end -->
 
-<h4 id="flow-control">流程控制<a class="headerlink" href="#flow-control" title="Permanent link">&para;</a></h4>
+<h3 id="flow-control">流程控制<a class="headerlink" href="#flow-control" title="Permanent link">&para;</a></h3>
 <!-- prettier-ignore-start -->
 
 <dl>
@@ -2350,7 +2324,7 @@ clear
 </code></pre></div>
 </details>
 <p>除此之外，用于流程控制的还有在 C 语言中同样常见的 <code>break</code> 和 <code>continue</code>。与 C 语言不同的是，它们还接受一个数字作为参数，即 <code>break n</code> 和 <code>continue n</code>，其中参数 <code>n</code> 均表示跳出或跳过 n 层循环。</p>
-<h4 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<h3 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># POSIX syntax</span>
 name<span class="o">()</span> <span class="o">{</span>
