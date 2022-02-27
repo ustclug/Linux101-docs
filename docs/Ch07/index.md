@@ -437,14 +437,14 @@ $ python3 -m venv venv
 
 正如我们之前所讲，Python 不是一个新的编程语言。
 现在的 Python，最新的版本已到 3.8。
-实际上还在使用中的 Python，主要在 2.7、3.5——3.8 这个区间内。
+实际上还在使用中的 Python，主要在 2.7 以及 3.5 以上这个区间内。
 
 Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
 在从 2 到 3 的升级中，一方面众多底层语法都发生了改变，使得迁移异常麻烦。
 另一方面，由于 Python 2 的盛行，程序 `python` 普遍指向 `python2`。
 因此当 Python 3 出现时，为了有效区分两者，调用解释器时我们需要特地使用 `python3` 这一指令。
 尽管在某些平台（例如 Arch 系 Linux）上，`python` 己经变为指向 `python3`，
-但考虑到 Ubuntu、CentOS、Debian 等发行版上 `python` 仍指向 `python2`，
+但考虑到 Ubuntu、CentOS、Debian 等发行版上 `python` 有可能仍指向 `python2`，
 显式地指定一个版本是更明智的选择。
 
 实际上，Python 2 已在 2020 年初正式宣告停止维护，
