@@ -478,6 +478,8 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 条件表达式写成 `test 条件表达式`，或 `[ 条件表达式 ]`，注意表达式与方括号之间有空格。
 
+<!-- prettier-ignore-start -->
+
 字符串比较
 
 :   | 表达式                  | 含义                                     |
@@ -519,7 +521,11 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
     | `expr1 –a expr2` | 与运算 |
     | `expr1 –o expr2` | 或运算 |
 
+<!-- prettier-ignore-end -->
+
 #### 流程控制 {#flow-control}
+
+<!-- prettier-ignore-start -->
 
 条件分支：if
 
@@ -575,6 +581,8 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
       commands
     done
     ```
+
+<!-- prettier-ignore-end -->
 
 ??? example "流程控制样例"
 
