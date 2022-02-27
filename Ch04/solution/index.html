@@ -740,15 +740,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stop-ping-output" class="md-nav__link">
-    阻止 ping 命令的输出
+  <a href="#after-hitting-ctrl-c" class="md-nav__link">
+    按下 Ctrl + C 后发生了什么
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#after-hitting-ctrl-c" class="md-nav__link">
-    按下 Ctrl + C 后发生了什么
+  <a href="#sigkill-effectiveness" class="md-nav__link">
+    SIGKILL（kill -9）可以杀死所有进程吗？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nohup-suitableness" class="md-nav__link">
+    nohup 合适吗？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiuser-tmux" class="md-nav__link">
+    多人使用的 tmux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journal" class="md-nav__link">
+    服务日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-consuming-crontab" class="md-nav__link">
+    耗时的定时任务
   </a>
   
 </li>
@@ -1230,15 +1258,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stop-ping-output" class="md-nav__link">
-    阻止 ping 命令的输出
+  <a href="#after-hitting-ctrl-c" class="md-nav__link">
+    按下 Ctrl + C 后发生了什么
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#after-hitting-ctrl-c" class="md-nav__link">
-    按下 Ctrl + C 后发生了什么
+  <a href="#sigkill-effectiveness" class="md-nav__link">
+    SIGKILL（kill -9）可以杀死所有进程吗？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nohup-suitableness" class="md-nav__link">
+    nohup 合适吗？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiuser-tmux" class="md-nav__link">
+    多人使用的 tmux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journal" class="md-nav__link">
+    服务日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-consuming-crontab" class="md-nav__link">
+    耗时的定时任务
   </a>
   
 </li>
@@ -1262,15 +1318,16 @@
 
 
 <h1 id="solution">思考题解答<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h1>
-<h2 id="stop-ping-output">阻止 ping 命令的输出<a class="headerlink" href="#stop-ping-output" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">提示</p>
-<p>nohup 命令是如何操作的？</p>
-</div>
-<details class="info">
-<summary>解答</summary>
-<p>当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 <code>/dev/null</code>（会在第五章介绍）以舍弃输出。</p>
-</details>
+<!-- ## 阻止 ping 命令的输出 {#stop-ping-output}
+
+!!! tip "提示"
+
+    nohup 命令是如何操作的？
+
+??? info "解答"
+
+    当然是 IO 重定向。比如，如果我们希望稍后查看输出，可以重定向到一个文件；如果单纯不想查看输出，可以重定向到空文件 `/dev/null`（会在第五章介绍）以舍弃输出。 -->
+
 <h2 id="after-hitting-ctrl-c">按下 Ctrl + C 后发生了什么<a class="headerlink" href="#after-hitting-ctrl-c" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
@@ -1283,6 +1340,88 @@
 <p>如果是普通字符，则字符存放到对应终端的缓冲区等待读取。</p>
 <p>如果像 <code>Ctrl + C</code> 这种特殊字符被检测到，则该处理程序向该终端上的 shell 进程发送 SIGINT，shell 再向其前台进程转发 SIGINT，进程接到该信号，执行对应的信号处理例程。一般情况下，程序将正常退出。</p>
 <p>我们可以使用 <code>stty -a</code> 命令列出终端驱动所识别的一些具有特殊含义的字符。注意该命令必须于真正的终端（使用 <code>Ctrl + Alt + Fn</code> 切换得到的终端）才可以使用。</p>
+</details>
+<h2 id="sigkill-effectiveness">SIGKILL（<code>kill -9</code>）可以杀死所有进程吗？<a class="headerlink" href="#sigkill-effectiveness" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>解答</summary>
+<ol>
+<li>
+<p>状态为 D（Disk sleep）与 Z（Zombie）的进程收到 SIGKILL 信号后会发生什么？</p>
+<p>处于 D 状态的进程正在不可中断的系统调用（或者说正在执行无法被中断的内核代码）中，因此发送 SIGKILL 信号之后，需要等待它退出该系统调用，回到自己的代码时才会被杀死。</p>
+<p>处于 Z 状态的进程事实上已经不再执行，所以发送 SIGKILL 信号也不会让它再退出。这种情况一般是它的父进程没有妥善处理好生成的子进程。有时候将其父进程杀死后，子进程会被转交给 init 进程。绝大多数情况下，init 进程都能够恰当处理这个问题，将该进程移除。</p>
+</li>
+<li>
+<p>可以向 1 号进程 init 发送 SIGKILL 信号吗？发送之后会发生什么？</p>
+<p>可以发送，但是会被操作系统（内核）忽略，因此 init 不会被 SIGKILL 杀死。</p>
+</li>
+</ol>
+</details>
+<h2 id="nohup-suitableness"><code>nohup</code> 合适吗？<a class="headerlink" href="#nohup-suitableness" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>如果同学的 web 程序崩溃了会发生什么？如果机器重启了呢？</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<p>Nohup 是非常方便的工具，但是对于运行需要长时间服务的程序来讲并不可靠。如果出现程序崩溃、系统重启等情况，用 nohup 启动的「服务」不会自动重启。</p>
+<p>可以将这个 web 程序配置为 systemd service。如果没有对应服务器的 root 权限，也可以使用 systemd user service，或者使用诸如 supervisor 等工具运行服务程序。</p>
+</details>
+<h2 id="multiuser-tmux">多人使用的 tmux<a class="headerlink" href="#multiuser-tmux" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>使用会话（Session）。</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<p>在启动 tmux 时，可以为启动的会话命名：</p>
+<div class="highlight"><pre><span></span><code>$ tmux new -s session-a  <span class="c1"># 启动名为 session-a 的 tmux 会话</span>
+</code></pre></div>
+<p>脱离 tmux 之后如果还需要再进入这个会话，使用以下命令即可：</p>
+<div class="highlight"><pre><span></span><code>$ tmux a -t session-a
+</code></pre></div>
+<p>对于实验室这个场景，与其他同学提前约定好即可。</p>
+</details>
+<h2 id="journal">服务日志<a class="headerlink" href="#journal" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>使用 <code>journalctl</code> 查看日志。</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<ol>
+<li>某个服务的日志</li>
+</ol>
+<p><code>journalctl</code> 的 <code>-u</code> 参数可以指定 unit，例子如下：</p>
+<div class="highlight"><pre><span></span><code>$ sudo journalctl -u ssh  <span class="c1"># 查看 ssh 服务的日志</span>
+</code></pre></div>
+<ol>
+<li>某个<strong>正在运行</strong>的服务<strong>正在</strong>输出的日志</li>
+</ol>
+<p>在第一条的基础上，可以指定 <code>-f</code> 参数，以获取正在输出的日志：</p>
+<div class="highlight"><pre><span></span><code>$ sudo journalctl -u ssh -f
+</code></pre></div>
+<p>按下 Ctrl + C 退出输出即可。</p>
+<ol>
+<li>系统<strong>正在</strong>输出的日志</li>
+</ol>
+<div class="highlight"><pre><span></span><code>$ sudo journalctl -f
+</code></pre></div>
+<p>系统日志对于调试系统状态来说是非常有用的信息。</p>
+</details>
+<h2 id="time-consuming-crontab">耗时的定时任务<a class="headerlink" href="#time-consuming-crontab" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>解答</summary>
+<p>Crontab 做的事情就是定时执行任务，它不会去管上一次执行的任务是否已经完成（维护状态也有一定的开销）。设想这样一种情况：</p>
+<ol>
+<li>你使用 crontab 设置了一个每日 rsync 任务（rsync 是用于机器间同步文件的工具），将远程的机器上的一些数据同步到你的机器上；</li>
+<li>有一天，机器突然断网了。此时 crontab 仍然会启动 rsync。由于默认不超时，所以 rsync 会等待网络建立、同步成功后才会退出；</li>
+<li>一个月之后，你发现这台机器断网了，修好之后，你发现同时有 30 个 rsync 进程在执行同步操作，这会对网络以及磁盘都带来很大的压力。</li>
+</ol>
+<p>Systemd timer 则会检查任务（timer 对应的服务）是否在执行，如果在执行，就不会产生新的进程。</p>
+<p>如果仍然需要使用 crontab，那么可以考虑使用 <code>flock</code>。首先指定一个「锁」文件，然后将命令改成这样：</p>
+<div class="highlight"><pre><span></span><code>flock -n [锁文件的路径] [你需要执行的命令]
+</code></pre></div>
+<p>这样的话，如果其他命令正在执行，那么这个文件锁会被其占用；crontab 尝试再执行命令时，flock 会发现对应的文件已经锁上，因此会立刻退出（<code>-n</code> 参数）。</p>
 </details>
 
               
