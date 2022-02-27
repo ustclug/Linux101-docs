@@ -2245,16 +2245,22 @@ value3<span class="o">)</span>
 </dd>
 <dt>枚举循环：for</dt>
 <dd>
-<p><code>shell
-for var in list
-do
-  commands $var
-done</code></p>
+<p>for 循环可以对一个列表中的每个值都执行一系列命令。</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> var <span class="k">in</span> list
+<span class="k">do</span>
+  commands <span class="nv">$var</span>
+<span class="k">done</span>
+</code></pre></div>
 </dd>
 <dt>条件循环：while 和 until</dt>
 <dd>
 <p>while 循环用于不断执行一系列命令，命令通常为测试条件。until 与 while 相反，仅在测试条件失败时循环。</p>
 <div class="highlight"><pre><span></span><code><span class="k">while</span> condition
+<span class="k">do</span>
+  commands
+<span class="k">done</span>
+
+<span class="k">until</span> condition
 <span class="k">do</span>
   commands
 <span class="k">done</span>
