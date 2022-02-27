@@ -15,13 +15,13 @@
 
     下面内容可以解答你的疑问。
 
-## I/O 重定向与管道 {#redirect-and-pipe}
+## I/O 重定向与管道 {#redirection-and-pipe}
 
-### 重定向 {#redirect}
+### 重定向 {#redirection}
 
 一般情况下命令从**标准输入（stdin）**读取输入，并输出到**标准输出（stdout）**，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 `echo` 为例的重定向输出：
 
-```shell
+```console
 $ echo "Hello Linux!" > output_file # 将输出写入到文件（覆盖原有内容）
 $ cat output_file
 Hello Linux!
@@ -45,7 +45,7 @@ command < inpufile > outputfile
 
 !!! tip "小知识"
 
-    除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 `2>` 重定向（注意数字 2 和 > 之前没有空格）。
+    除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 `2>` 重定向（注意数字 2 和 > 之间没有空格）。
 
     使用 `2>&1` 可以将 stderr 合并到 stdout。
 
@@ -59,7 +59,7 @@ command < inpufile > outputfile
 
 示例如下：
 
-```shell
+```console
 $ ls / | grep bin  # 筛选 ls / 输出中所有包含 bin 字符串的行
 bin
 sbin
@@ -93,12 +93,12 @@ sbin
 
 常用的选项
 
-| 选项                         | 含义                                   |
-| ---------------------------- | -------------------------------------- |
-| `-i, --input-file=文件`      | 下载本地或外部文件中的 URL             |
-| `-O, --output-document=文件` | 将输出写入文件                         |
-| `-b, --background`           | 在后台运行 wget                        |
-| `-d, --debug`                | 调试模式，打印出 wget 运行时的调试信息 |
+| 选项                           | 含义                                   |
+| ------------------------------ | -------------------------------------- |
+| `-i`, `--input-file=文件`      | 下载本地或外部文件中的 URL             |
+| `-O`, `--output-document=文件` | 将输出写入文件                         |
+| `-b`, `--background`           | 在后台运行 wget                        |
+| `-d`, `--debug`                | 调试模式，打印出 wget 运行时的调试信息 |
 
 ??? example "范例"
 
@@ -108,7 +108,7 @@ sbin
 
 ### cURL {#curl}
 
-cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。
+cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 Wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。
 
 #### `curl` 使用 {#curl-usage}
 
@@ -130,13 +130,13 @@ cURL (`curl`) 是一个利用 `URL` 语法在命令行下工作的文件传输�
 
     `$ curl -o bing.html "http://cn.bing.com"` 同时也可以使用 `-o` 选项指定输出文件
 
-    `$ curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"` 下载 LUG 的 logo
+    `$ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"` 下载 LUG 的 logo
 
     `$ curl -I "http://cn.bing.com"` 只展示响应头内容
 
-### 其他
+### 其他 {#download-others}
 
-除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。
+除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。
 
 ## 文本处理 {#text-utils}
 
@@ -209,10 +209,10 @@ $ diff file1 file2
 以 head 为例，这里给出共同的用法：
 
 - 不加参数的时候默认显示前 10 行
-- `-n [NUM]` 指定行数，可简化为 `-[NUM]`
-- `-c [NUM]` 指定字节数
+- `-n <NUM>` 指定行数，可简化为 `-<NUM>`
+- `-c <NUM>` 指定字节数
 
-```shell
+```console
 $ head file  # 显示 file 前 10 行
 $ head -n 25 file  # 显示 file 前 25 行
 $ head -25 file  # 显示 file 前 25 行
@@ -226,7 +226,7 @@ $ tail -10 file  # 显示 file 最后 10 行
 
 `grep` 命令可以查找文本中的字符串：
 
-```shell
+```console
 $ grep 'hello' file  # 查找文件 file 中包含 hello 的行
 $ ls | grep 'file'  # 查找当前目录下文件名包含 file 的文件
 $ grep -i 'Systemd' file  # 查找文件 file 中包含 Systemd 的行（忽略大小写）
@@ -253,12 +253,13 @@ $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到
 
 ```shell
 $ sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+$ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 ```
 
 !!! info "同样不止如此！"
 
-    sed 事实上是非常强大的文本操作工具（不仅支持正则表达式，而且能够做的操作也不止是替换），[第九章](../Ch09/index.md)将进一步介绍 sed。
+    sed 事实上是非常强大的文本操作工具，不仅支持正则表达式，而且能够做的操作也不止是替换。[第九章](../Ch09/index.md)将进一步介绍 sed。
 
 ## Shell 脚本 {#shell-scripts}
 
@@ -290,26 +291,26 @@ Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 
 
 可以使用几种方法运行 Bash 脚本：
 
-- 在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。
+- 在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：
 
   ```shell
-  $ bash show.sh [option];
+  $ bash show.sh [option]
   ```
 
-- 使用「.」命令执行脚本，「.」后要有空格。
+- 使用 `.` 命令执行脚本。与其他命令一样，`.` 也是一条命令，其后要有空格：
 
   ```shell
-  $ . ./show.sh [option];
+  $ . ./show.sh [option]
   ```
 
-- 将脚本设置为可执行，然后当做外部命令执行执行。
+- 将脚本设置为可执行，然后像外部命令一样执行：
 
   ```shell
-  $ chmod a+x showinfo
-  $ ./show.sh [option];
+  $ chmod a+x show.sh
+  $ ./show.sh [option]
   ```
 
-许多 Bash 脚本会在文件首行加上 `#!/bin/bash` 。这里 `#!` 符号的名称是 shebang （也叫 sha-bang，即 sharp `#` 与 bang `!`）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。
+许多 Bash 脚本会在文件首行加上 `#!/bin/bash` 。这里 `#!` 符号的名称是 shebang（也叫 sha-bang，即 sharp `#` 与 bang `!`）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。
 
 例如，某个 `foo.sh` 首行为 `#!/bin/bash`，则执行 `./foo.sh` 就等于执行 `/bin/bash ./foo.sh`。
 
@@ -345,11 +346,11 @@ Bash 也支持在同一个行中安排多个命令：
 
     执行组命令 `{ cd /tmp; pwd; }` 后，当前目录会被修改，但是执行 `(cd /tmp; pwd;)` 不会修改当前目录。
 
-#### shell 变量 {#bash-variable}
+#### shell 变量 {#bash-variables}
 
 像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。
 
-##### 用户自定义变量
+##### 用户自定义变量 {#bash-user-variables}
 
 变量定义：`name=串`，其中 `=` 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 `$name` 或 `${name}`，后者花括号是为了帮助解释器识别变量边界。
 
@@ -374,8 +375,7 @@ Bash 也支持在同一个行中安排多个命令：
     I am good at JavaScript
     ```
 
-    如果不给 `skill` 加花括号，写成 `echo "I am good at $skillScript"` ，解释器就会把 `$skillScript` 当成一个变量（其值为空）。
-
+    如果不给 `skill` 加花括号标明变量名的边界，写成 `echo "I am good at $skillScript"` ，解释器就会把 `$skillScript` 当成一个变量（其值为空）。
 
     删除变量：
 
@@ -387,7 +387,7 @@ Bash 也支持在同一个行中安排多个命令：
 
     输出为空
 
-##### 环境变量
+##### 环境变量 {#bash-environment-variables}
 
 每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 `env` 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：
 
@@ -403,26 +403,27 @@ Bash 也支持在同一个行中安排多个命令：
 
 - `TERM`：使用的终端名。
 
-##### 位置变量
+##### 位置变量 {#bash-positional-parameters}
 
-- Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 `$1`, `$2`, `$3`, ..., `$9`，程序名本身对应 `$0`。
+- Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 `$1`、`$2`、`$3`、……、`$9`，程序名本身对应 `$0`。
 
-- 可用 `shift n` 命令，改变命令行参数与 `$1`, `$2`, `$3`, ... 的对应关系。
+- 可用 `shift <n>` 命令，丢弃开头的 n 个位置变量，改变 `$1`、`$2`、`$3` 等的对应关系。
 
-- 可用 `set` 命令，直接给 `$1`, `$2`, `$3`, ... 等赋值。
+- 可用 `set` 命令，重置整个位置变量列表，从而给 `$1`、`$2`、`$3` 等赋值。
 
 ??? example "范例"
 
-    ```shell
+    ```console
     $ set one two three
     $ echo $1 $2 $3
     one two three
     $ shift 2
     $ echo $1 $2 $3
     three
+    $ # 此时 $2 和 $3 已不存在
     ```
 
-##### 特殊变量
+##### 特殊变量 {#bash-special-variables}
 
 Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。
 
@@ -435,7 +436,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 | `$*`     | 命令行所有参数构成的一个字符串                 |
 | `$@`     | 用双引号括起的命令行各参数拼接构成的一个字符串 |
 
-##### 特殊字符
+##### 特殊字符 {#bash-special-tokens}
 
 - 双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。
 
@@ -445,15 +446,15 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
   - 与反引号相同的语法是 `$(command)`，它的好处是界限更明确，且可以嵌套。
 
-- 反斜杠，消除单个字符的特殊含义。
+- 反斜杠，消除单个字符的特殊含义（包括空格）。
 
-#### 算术运算 {#arithmetic-ops}
+#### 算术运算 {#bash-arithmetic}
 
 在 Bash 中进行算术运算，需要使用 `expr` 计算算术表达式值或 `let` 命令赋值表达式值到变量。基本运算符是 `+`、`-`、`\*` (转义)、`/`、`%`。在 `expr` 中，运算符两边与操作数之间必须有空格，小括号要转义；但 `let` 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 `=` 前后不能有空格。
 
-另外，所有标准的 shell 都支持另一种语法 `(( 表达式 ))`，其中 `表达式` 是一个 C 风格的数学表达式，可以计算，也可以复制。`(( 表达式 ))` **是一条完整的命令**，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 `(())` 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好想法（回想一下，C 语言中 `return 0` 表示**正常**退出）。
+另外，所有标准的 shell 都支持另一种语法 `(( 表达式 ))`，其中 `表达式` 是一个 C 风格的数学表达式，可以计算，也可以赋值。`(( 表达式 ))` **是一条完整的命令**，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 `(())` 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好相反（回想一下，C 语言中 `return 0` 表示**正常**退出）。
 
-使用 `$(( 表达式 ))` 可以将计算结果用作为命令行的一部分。
+使用 `$(( 表达式 ))` 可以将计算结果用作为命令行的一部分，就像使用变量一样。
 
 ??? example "`expr` 和 `let` 使用示例"
 
@@ -477,105 +478,105 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 条件表达式写成 `test 条件表达式`，或 `[ 条件表达式 ]`，注意表达式与方括号之间有空格。
 
-- 字符串比较
+字符串比较
 
-| 表达式                  | 含义                                     |
-| ----------------------- | ---------------------------------------- |
-| `string1 = string2`     | 如果两个串相等，则结果为真 (true: 0)     |
-| `string1 != string2`    | 如果两个串不相等，则结果为真             |
-| `string` 或 `-n string` | 如果字符串 string 长度不为 0，则结果为真 |
-| `-z string`             | 如果字符串 string 长度为 0，则结果为真   |
+:   | 表达式                  | 含义                                     |
+    | ----------------------- | ---------------------------------------- |
+    | `string1 = string2`     | 如果两个串相等，则结果为真（true: 0）    |
+    | `string1 != string2`    | 如果两个串不相等，则结果为真             |
+    | `string` 或 `-n string` | 如果字符串 string 长度不为 0，则结果为真 |
+    | `-z string`             | 如果字符串 string 长度为 0，则结果为真   |
 
-- 数值比较
+数值比较
 
-表达式：`int1 [option] int2`，其中的参数可以用下列替换。
+:   表达式：`int1 [option] int2`，其中的参数可以用下列替换。
 
-| 参数  | 说明     |
-| ----- | -------- |
-| `-eq` | 等于     |
-| `-ne` | 不等于   |
-| `-gt` | 大于     |
-| `-ge` | 大于等于 |
-| `-lt` | 小于     |
-| `-le` | 小于等于 |
+    | 参数  | 说明     |
+    | ----- | -------- |
+    | `-eq` | 等于     |
+    | `-ne` | 不等于   |
+    | `-gt` | 大于     |
+    | `-ge` | 大于等于 |
+    | `-lt` | 小于     |
+    | `-le` | 小于等于 |
 
-- 文件状态
+文件状态
 
-| 表达式    | 含义                 |
-| --------- | -------------------- |
-| `-r file` | 文件存在且可读       |
-| `-w file` | 文件存在且可写       |
-| `-x file` | 文件存在且可执行     |
-| `-f file` | 文件存在且为普通文件 |
-| `-d file` | 文件存在且为目录     |
-| `-s file` | 文件存在且长度大于 0 |
+:   | 表达式    | 含义                 |
+    | --------- | -------------------- |
+    | `-r file` | 文件存在且可读       |
+    | `-w file` | 文件存在且可写       |
+    | `-x file` | 文件存在且可执行     |
+    | `-f file` | 文件存在且为普通文件 |
+    | `-d file` | 文件存在且为目录     |
+    | `-s file` | 文件存在且长度大于 0 |
 
-- 复合逻辑表达式
+复合逻辑表达式
 
-| 表达式           | 含义   |
-| ---------------- | ------ |
-| `! expr`         | 否运算 |
-| `expr1 –a expr2` | 与运算 |
-| `expr1 –o expr2` | 或运算 |
+:   | 表达式           | 含义   |
+    | ---------------- | ------ |
+    | `! expr`         | 否运算 |
+    | `expr1 –a expr2` | 与运算 |
+    | `expr1 –o expr2` | 或运算 |
 
 #### 流程控制 {#flow-control}
 
-- if
+条件分支：if
 
-序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 `fi` 就是 `if` 倒过来写，后面还会遇到类似的。
+:   序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 `fi` 就是 `if` 倒过来写，后面还会遇到类似的结束符。
 
-```shell
-if condition1
-then
-  command1
-elif condition2
-then
-  command2
-else
-  command3
-fi
-```
+    ```shell
+    if condition1
+    then
+      commands1
+    elif condition2
+    then
+      commands2
+    else
+      commands3
+    fi
+    ```
 
-- case
+按值选择：case
 
-选项值必须以右括号 `)` 结尾，若匹配多个离散值，用 `|` 分隔。这里的 `esac` 也是 `case` 倒着写。
+:   选项值必须以右括号 `)` 结尾，若匹配多个离散值，用 `|` 分隔。这里的 `esac` 也是 `case` 倒着写。
 
-```shell
-case <variable> in
-value1|value2)
-  command1
-  command2
-  ;;
-value3)
-  command3
-  ;;
-*)
-  command4
-  ;;
-esac
-```
+    ```shell
+    case <variable> in
+    value1|value2)
+      command1
+      command2
+      ;;
+    value3)
+      command3
+      ;;
+    *)
+      command4
+      ;;
+    esac
+    ```
 
-- for
+枚举循环：for
 
-```shell
-for var in list
-do
-  commands $var
-done
-```
+:   ```shell
+    for var in list
+    do
+      commands $var
+    done
+    ```
 
-- while
+条件循环：while 和 until
 
-while 循环用于不断执行一系列命令，命令通常为测试条件。
+:   while 循环用于不断执行一系列命令，命令通常为测试条件。until 与 while 相反，仅在测试条件失败时循环。
 
-```shell
-while condition
-do
-  commands
-done
-```
+    ```shell
+    while condition
+    do
+      commands
+    done
+    ```
 
-??? example "流程控制样例脚本"
+??? example "流程控制样例"
 
     ```shell
     MAX_NO=0
@@ -639,7 +640,7 @@ done
              .
     ```
 
-除此之外，用于流程控制的还有 `until`（处理与 `while` 恰恰相反）、在 C 语言中同样常见的 `break n` 和 `continute n`（参数 `n` 均表示跳过 n 层循环）。
+除此之外，用于流程控制的还有在 C 语言中同样常见的 `break` 和 `continue`。与 C 语言不同的是，它们还接受一个数字作为参数，即 `break n` 和 `continue n`，其中参数 `n` 均表示跳出或跳过 n 层循环。
 
 #### 函数 {#functions}
 
@@ -659,7 +660,7 @@ funcion name {
 }
 ```
 
-其中 function 和函数参数可以省略。返回参数可以显示用 `return` 返回，或以最后一条命令运行结果作为返回值。在函数中使用 `return` 会结束本次函数执行，而使用 `exit` 会直接结束退出包含函数的当前脚本程序。
+其中函数的参数可以像命令一样通过 `$1`、`$2`、`$3` 等获取，返回值可以显式用 `return` 返回，或以最后一条命令运行结果作为返回值。在函数中使用 `return` 会结束本次函数执行，而使用 `exit` 会直接结束退出包含函数的当前脚本程序。
 
 函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。
 
@@ -680,7 +681,7 @@ funcion name {
 
     ```text
     going to call test function:
-    hello, today's date is <当前日期显示输出串>
+    hello, today's date is Tue Feb 22 22:22:22 CST 2022
     ```
 
 ### Bash 脚本调试 {#bash-debugging}
@@ -720,7 +721,7 @@ Bash shell 本身提供了调试方法：
 
     在 `GET / HTTP/1.1` 下面的几行就是 HTTP 请求头。
 
-    HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名 (Host)、用户程序标识 (User-agent)、希望接收到的语言 (Accept-Language) 等各种信息。
+    HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名（Host）、用户程序标识（User-Agent）、希望接收到的语言（Accept-Language）等各种信息。
 
 !!! question "关于断点续传"
 

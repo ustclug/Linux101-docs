@@ -16,6 +16,7 @@
 .md-typeset h4 { font-size: 1.17em; }
 .md-typeset h5 { font-size: 1.08em; }
 .md-typeset h6 { font-size: 1em; }
+.md-typeset dt { font-weight: bold; }
 .md-typeset img { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset .img-inline { display: inline-block; vertical-align: text-bottom; }
 .md-typeset .img-border { border: 1px solid black; }
