@@ -40,7 +40,7 @@ append it
 
 ```shell
 command < inputfile
-command < inpufile > outputfile
+command < inputfile > outputfile
 ```
 
 !!! tip "小知识"
@@ -102,9 +102,17 @@ sbin
 
 ??? example "范例"
 
-    `$ wget -i filelist.txt` 批量下载 filelist.txt 中给出的链接
+    批量下载 filelist.txt 中给出的链接：
 
-    `$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"` 安装 oh-my-zsh
+    ```shell
+    $ wget -i filelist.txt
+    ```
+
+    安装 oh-my-zsh：
+
+    ```shell
+    $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    ```
 
 ### cURL {#curl}
 
@@ -124,15 +132,35 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
 ??? example "范例"
 
-    `$ curl "http://cn.bing.com"` 会看到必应页面代码输出
+    输出必应主页的代码：
 
-    `$ curl "http://cn.bing.com" > bing.html` 把必应页面保存至 `bing.html` 本地，源码就被重定向到工作目录
+    ```shell
+    $ curl "http://cn.bing.com"
+    ```
 
-    `$ curl -o bing.html "http://cn.bing.com"` 同时也可以使用 `-o` 选项指定输出文件
+    使用重定向把必应页面保存至 `bing.html` 本地：
 
-    `$ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"` 下载 LUG 的 logo
+    ```shell
+    $ curl "http://cn.bing.com" > bing.html
+    ```
 
-    `$ curl -I "http://cn.bing.com"` 只展示响应头内容
+    也可以使用 `-o` 选项指定输出文件：
+
+    ```shell
+    $ curl -o bing.html "http://cn.bing.com"
+    ```
+
+    下载 USTCLUG 的 logo：
+
+    ```shell
+    $ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"
+    ```
+
+    只展示 HTTP 响应头内容：
+
+    ```shell
+    $ curl -I "http://cn.bing.com"
+    ```
 
 ### 其他 {#download-others}
 
@@ -356,7 +384,7 @@ Bash 也支持在同一个行中安排多个命令：
 
 已定义的变量可以通过 `unset name` 来删除。
 
-??? example "变量使用示例"
+!!! example "变量使用示例"
 
     变量定义：
 
@@ -385,7 +413,27 @@ Bash 也支持在同一个行中安排多个命令：
     echo $Today
     ```
 
-    输出为空
+    输出为空。
+
+??? tip "处理未定义的变量"
+
+    在以上的例子中，我们可以注意到 bash 中未定义的变量默认值为空值。在编写 shell 脚本时，我们可能会希望能够严格一些：如果变量未定义，就直接报错退出。这样的话，如果变量名出现了拼写错误，我们就能第一时间发现。
+
+    可以在脚本开头加上 `set -u` 来实现这一点：
+
+    ```shell
+    #!/bin/bash
+
+    set -u
+    echo $nonexist
+    echo "This will never be printed."
+    ```
+
+    执行可以发现输出类似如下的错误：
+
+    ```
+    example.sh: line 4: nonexist: unbound variable
+    ```
 
 ##### 环境变量 {#bash-environment-variables}
 
@@ -395,13 +443,30 @@ Bash 也支持在同一个行中安排多个命令：
 
 - `LOGNAME`：登录用户名。
 
-- `PATH`：命令搜索路径。
+- `PATH`：命令搜索路径，路径以冒号分割。当我们输入命令名时，系统会在 `PATH` 变量中从前往后逐个搜索对应的程序是否在目录中。
 
 - `PWD`：用户当前工作目录路径。
 
 - `SHELL`：默认 shell 的路径名。
 
 - `TERM`：使用的终端名。
+
+可以使用 `export` 命令来定义环境变量。在同一个 shell 中使用 `export` 定义之后，这个环境变量会一直保留，直到这个 shell 退出。
+
+```shell
+$ export A=1
+$ env | grep A=
+A=1
+```
+
+此外，也可以在命令前加上环境变量的定义。此时只有这一条命令的环境变量出现变化。
+
+```shell
+$ B=1 env | grep B=
+B=1
+$ env | grep B=
+$ # B=1 的环境变量定义仅对该命令有效
+```
 
 ##### 位置变量 {#bash-positional-parameters}
 
@@ -448,11 +513,77 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 - 反斜杠，消除单个字符的特殊含义（包括空格）。
 
+#### 变量输入与输出 {#bash-input-output}
+
+##### 输入 {#bash-input}
+
+可以使用 `read` 命令读取用户输入，并将输入的内容赋值给变量。其中 `-p` 参数后可以设置输出的提示信息。
+
+```console
+$ name=""
+$ read -p "Enter your name: " name  # 输出提示，然后从输入读取一个值，存储到 $name 中
+Enter your name: linux
+$ echo $name
+linux
+```
+
+在使用 `read` 时，建议加上 `-r` 参数，否则 `\` 会被视为转义符号。
+
+```console
+$ message=""
+$ read -p "Enter your message: " message
+Enter your message: \(^o^)/~
+$ echo $message  # 可以看到，反斜杠被认为是转义符号，结果被丢弃
+(^o^)/~
+$ read -r -p "Enter your message: " message
+Enter your message: \(^o^)/~
+$ echo $message  # 加上 -r 参数后，反斜杠完好无损
+\(^o^)/~
+```
+
+##### 输出 {#bash-output}
+
+可以使用 `echo` 命令输出变量信息。其中 `-n` 参数不会在结尾输出换行符，而 `-e` 参数会解析文本中的转义字符（例如 `\n`）。
+
+```console
+$ echo -n "hello"
+hello$ # 由于这里 echo 结尾不输出换行，shell 就会在这里继续接受用户输入
+$ # 这也是为什么在 C 语言中最后的 printf 输出需要加上 \n 的原因
+$ name="linux"
+$ echo "Hello $name.\nWelcome to bash!"  # 可以看到 \n 没有被转义成换行
+Hello linux.\nWelcome to bash!
+$ echo -e "Hello $name.\nWelcome to bash!"  # 加上 -e 之后就被转义了
+Hello linux.
+Welcome to bash!
+```
+
+此外，`printf` 命令也可以用来输出，它的使用方法类似于 C 中的 `printf()` 函数。
+
+```console
+$ name="linux"
+$ printf "Hello %s" "$name"
+Hello linux$ # 和 echo 不同，printf 结尾默认不输出换行符
+$ printf "Hello %s\n" "$name"
+Hello linux
+$ # 所以为了正常显示，需要在结尾补上 \n
+```
+
 #### 算术运算 {#bash-arithmetic}
 
 在 Bash 中进行算术运算，需要使用 `expr` 计算算术表达式值或 `let` 命令赋值表达式值到变量。基本运算符是 `+`、`-`、`\*` (转义)、`/`、`%`。在 `expr` 中，运算符两边与操作数之间必须有空格，小括号要转义；但 `let` 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 `=` 前后不能有空格。
 
-另外，所有标准的 shell 都支持另一种语法 `(( 表达式 ))`，其中 `表达式` 是一个 C 风格的数学表达式，可以计算，也可以赋值。`(( 表达式 ))` **是一条完整的命令**，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 `(())` 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好相反（回想一下，C 语言中 `return 0` 表示**正常**退出）。
+另外，所有标准的 shell 都支持另一种语法 `(( 表达式 ))`，其中 `表达式` 是一个 C 风格的数学表达式，可以计算，也可以赋值。`(( 表达式 ))` **是一条完整的命令**，命令的返回值为 0 或 1。若表达式的结果非零，那么 `(( 表达式 ))` 命令返回零，而当表达式结果为零时命令返回 1。
+
+??? example "`(( 表达式 ))` 的返回值"
+
+    ```shell
+    $ (( 1 + 1 ))
+    $ echo $?  # 结果为 2，所以返回值为 0
+    0
+    $ (( 1 - 1 ))
+    $ echo $?  # 返回值为 1，因为结果是 0
+    1
+    ```
 
 使用 `$(( 表达式 ))` 可以将计算结果用作为命令行的一部分，就像使用变量一样。
 
@@ -587,9 +718,11 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 ??? example "流程控制样例"
 
     ```shell
+    #!/bin/bash
+
     MAX_NO=0
-    read -p "Enter Number between (5 to 9) : " MAX_NO
-    if ! [ $MAX_NO -ge 5 -a $MAX_NO -le 9 ] ; then
+    read -r -p "Enter Number between (5 to 9) : " MAX_NO
+    if ! [ "$MAX_NO" -ge 5 -a "$MAX_NO" -le 9 ] ; then
       echo "I ask to enter number between 5 and 9, Okay"
       exit 1
     fi
@@ -677,7 +810,7 @@ funcion name {
     某带函数的某脚本程序内容如下：
 
     ```shell
-    #!/bin/sh
+    #!/bin/bash
     hello() {
       echo "hello, today's date is `date`"
     }
@@ -696,9 +829,9 @@ funcion name {
 
 Bash shell 本身提供了调试方法：
 
-- 命令行中：`$ sh -x script.sh`。
+- 命令行中：`$ bash -x script.sh`。
 
-- 脚本开头：`#!/bin/sh -x`。
+- 脚本开头：`#!/bin/bash -x`。
 
 - 在脚本中用 set 命令调整（`set -x` 启用，`set +x` 禁用）。
 
