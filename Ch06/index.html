@@ -1182,7 +1182,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#redirect-and-pipe" class="md-nav__link">
+  <a href="#redirection-and-pipe" class="md-nav__link">
     I/O 重定向与管道
   </a>
   
@@ -1190,7 +1190,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#redirect" class="md-nav__link">
+  <a href="#redirection" class="md-nav__link">
     重定向
   </a>
   
@@ -1271,7 +1271,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#download-others" class="md-nav__link">
     其他
   </a>
   
@@ -1381,7 +1381,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-variable" class="md-nav__link">
+  <a href="#bash-variables" class="md-nav__link">
     shell 变量
   </a>
   
@@ -1389,35 +1389,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#bash-user-variables" class="md-nav__link">
     用户自定义变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#bash-environment-variables" class="md-nav__link">
     环境变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#bash-positional-parameters" class="md-nav__link">
     位置变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#bash-special-variables" class="md-nav__link">
     特殊变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#bash-special-tokens" class="md-nav__link">
     特殊字符
   </a>
   
@@ -1429,7 +1429,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arithmetic-ops" class="md-nav__link">
+  <a href="#bash-arithmetic" class="md-nav__link">
     算术运算
   </a>
   
@@ -1522,19 +1522,19 @@
 </ul>
 <p>下面内容可以解答你的疑问。</p>
 </div>
-<h2 id="redirect-and-pipe">I/O 重定向与管道<a class="headerlink" href="#redirect-and-pipe" title="Permanent link">&para;</a></h2>
-<h3 id="redirect">重定向<a class="headerlink" href="#redirect" title="Permanent link">&para;</a></h3>
+<h2 id="redirection-and-pipe">I/O 重定向与管道<a class="headerlink" href="#redirection-and-pipe" title="Permanent link">&para;</a></h2>
+<h3 id="redirection">重定向<a class="headerlink" href="#redirection" title="Permanent link">&para;</a></h3>
 <p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file <span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
-$ cat output_file
-Hello Linux!
-$ <span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span> &gt; output_file
-$ cat output_file <span class="c1"># 可以看到原来的 Hello Linux! 被覆盖了。</span>
-rewrite it
-$ <span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span> &gt;&gt; output_file <span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
-$ cat output_file
-rewrite it
-append it
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;Hello Linux!&quot;</span> &gt; output_file <span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
+<span class="gp">$ </span>cat output_file
+<span class="go">Hello Linux!</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;rewrite it&quot;</span> &gt; output_file
+<span class="gp">$ </span>cat output_file <span class="c1"># 可以看到原来的 Hello Linux! 被覆盖了。</span>
+<span class="go">rewrite it</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="s2">&quot;append it&quot;</span> &gt;&gt; output_file <span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
+<span class="gp">$ </span>cat output_file
+<span class="go">rewrite it</span>
+<span class="go">append it</span>
 </code></pre></div>
 <p>无论是 <code>&gt;</code> 还是 <code>&gt;&gt;</code>，当输出文件不存在时都会创建该文件。</p>
 <p>重定向输入使用符号 <code>&lt;</code>：</p>
@@ -1543,7 +1543,7 @@ append it
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">小知识</p>
-<p>除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 <code>2&gt;</code> 重定向（注意数字 2 和 &gt; 之前没有空格）。</p>
+<p>除了 stdin 和 stdout 还有标准错误（stderr），他们的编号分别是 0、1、2。stderr 可以用 <code>2&gt;</code> 重定向（注意数字 2 和 &gt; 之间没有空格）。</p>
 <p>使用 <code>2&gt;&amp;1</code> 可以将 stderr 合并到 stdout。</p>
 </div>
 <h3 id="pipe">管道<a class="headerlink" href="#pipe" title="Permanent link">&para;</a></h3>
@@ -1551,9 +1551,9 @@ append it
 <p><img alt="管道示例" src="images/pipe.png" /></p>
 <p>管道是类 UNIX 操作系统中非常强大的工具。通过管道，我们可以将实现各类小功能的程序拼接起来干大事。</p>
 <p>示例如下：</p>
-<div class="highlight"><pre><span></span><code>$ ls / <span class="p">|</span> grep bin  <span class="c1"># 筛选 ls / 输出中所有包含 bin 字符串的行</span>
-bin
-sbin
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls / <span class="p">|</span> grep bin  <span class="c1"># 筛选 ls / 输出中所有包含 bin 字符串的行</span>
+<span class="go">bin</span>
+<span class="go">sbin</span>
 </code></pre></div>
 <h2 id="download-utils">网络下载<a class="headerlink" href="#download-utils" title="Permanent link">&para;</a></h2>
 <h3 id="why-wget-and-curl">为何使用 wget 和 cURL<a class="headerlink" href="#why-wget-and-curl" title="Permanent link">&para;</a></h3>
@@ -1590,19 +1590,19 @@ sbin
 </thead>
 <tbody>
 <tr>
-<td><code>-i, --input-file=文件</code></td>
+<td><code>-i</code>, <code>--input-file=文件</code></td>
 <td>下载本地或外部文件中的 URL</td>
 </tr>
 <tr>
-<td><code>-O, --output-document=文件</code></td>
+<td><code>-O</code>, <code>--output-document=文件</code></td>
 <td>将输出写入文件</td>
 </tr>
 <tr>
-<td><code>-b, --background</code></td>
+<td><code>-b</code>, <code>--background</code></td>
 <td>在后台运行 wget</td>
 </tr>
 <tr>
-<td><code>-d, --debug</code></td>
+<td><code>-d</code>, <code>--debug</code></td>
 <td>调试模式，打印出 wget 运行时的调试信息</td>
 </tr>
 </tbody>
@@ -1613,7 +1613,7 @@ sbin
 <p><code>$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"</code> 安装 oh-my-zsh</p>
 </details>
 <h3 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h3>
-<p>cURL (<code>curl</code>) 是一个利用 <code>URL</code> 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
+<p>cURL (<code>curl</code>) 是一个利用 URL 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 Wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。</p>
 <h4 id="curl-usage"><code>curl</code> 使用<a class="headerlink" href="#curl-usage" title="Permanent link">&para;</a></h4>
 <p>同 <code>wget</code> 部分，我们可以查看帮助 <code>curl -h</code> 了解其用法。</p>
 <p>常用的选项</p>
@@ -1644,11 +1644,11 @@ sbin
 <p><code>$ curl "http://cn.bing.com"</code> 会看到必应页面代码输出</p>
 <p><code>$ curl "http://cn.bing.com" &gt; bing.html</code> 把必应页面保存至 <code>bing.html</code> 本地，源码就被重定向到工作目录</p>
 <p><code>$ curl -o bing.html "http://cn.bing.com"</code> 同时也可以使用 <code>-o</code> 选项指定输出文件</p>
-<p><code>$ curl -O "https://lug.ustc.edu.cn/wiki/_media/wiki/logo.png"</code> 下载 LUG 的 logo</p>
+<p><code>$ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"</code> 下载 LUG 的 logo</p>
 <p><code>$ curl -I "http://cn.bing.com"</code> 只展示响应头内容</p>
 </details>
-<h3 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>除了 wget、curl，还有 mwget（多线程版本 wget）、axel、aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 aria2 在 Windows 下使用也很广泛。</p>
+<h3 id="download-others">其他<a class="headerlink" href="#download-others" title="Permanent link">&para;</a></h3>
+<p>除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。</p>
 <h2 id="text-utils">文本处理<a class="headerlink" href="#text-utils" title="Permanent link">&para;</a></h2>
 <p>在进行文本处理时，我们有一些常见的需求：</p>
 <ul>
@@ -1699,22 +1699,22 @@ $ diff file1 file2
 <p>以 head 为例，这里给出共同的用法：</p>
 <ul>
 <li>不加参数的时候默认显示前 10 行</li>
-<li><code>-n [NUM]</code> 指定行数，可简化为 <code>-[NUM]</code></li>
-<li><code>-c [NUM]</code> 指定字节数</li>
+<li><code>-n &lt;NUM&gt;</code> 指定行数，可简化为 <code>-&lt;NUM&gt;</code></li>
+<li><code>-c &lt;NUM&gt;</code> 指定字节数</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ head file  <span class="c1"># 显示 file 前 10 行</span>
-$ head -n <span class="m">25</span> file  <span class="c1"># 显示 file 前 25 行</span>
-$ head -25 file  <span class="c1"># 显示 file 前 25 行</span>
-$ head -c <span class="m">20</span> file  <span class="c1"># 显示 file 前 20 个字符</span>
-$ tail -10 file  <span class="c1"># 显示 file 最后 10 行</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>head file  <span class="c1"># 显示 file 前 10 行</span>
+<span class="gp">$ </span>head -n <span class="m">25</span> file  <span class="c1"># 显示 file 前 25 行</span>
+<span class="gp">$ </span>head -25 file  <span class="c1"># 显示 file 前 25 行</span>
+<span class="gp">$ </span>head -c <span class="m">20</span> file  <span class="c1"># 显示 file 前 20 个字符</span>
+<span class="gp">$ </span>tail -10 file  <span class="c1"># 显示 file 最后 10 行</span>
 </code></pre></div>
 <p>除此以外，tail 还有一个非常实用的参数 <code>-f</code>：当文件末尾内容增长时，持续输出末尾增加的内容。这个参数常用于动态显示 log 文件的更新（试一试 <code>tail -f /var/log/syslog</code>）。</p>
 <h3 id="grep">文本查找：grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p><code>grep</code> 命令可以查找文本中的字符串：</p>
-<div class="highlight"><pre><span></span><code>$ grep <span class="s1">&#39;hello&#39;</span> file  <span class="c1"># 查找文件 file 中包含 hello 的行</span>
-$ ls <span class="p">|</span> grep <span class="s1">&#39;file&#39;</span>  <span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
-$ grep -i <span class="s1">&#39;Systemd&#39;</span> file  <span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
-$ grep -R <span class="s1">&#39;hello&#39;</span> .  <span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>grep <span class="s1">&#39;hello&#39;</span> file  <span class="c1"># 查找文件 file 中包含 hello 的行</span>
+<span class="gp">$ </span>ls <span class="p">|</span> grep <span class="s1">&#39;file&#39;</span>  <span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
+<span class="gp">$ </span>grep -i <span class="s1">&#39;Systemd&#39;</span> file  <span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
+<span class="gp">$ </span>grep -R <span class="s1">&#39;hello&#39;</span> .  <span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">不止如此！</p>
@@ -1730,11 +1730,12 @@ $ sed -i.bak <span class="s1">&#39;s/hello/world/g&#39;</span> file  <span class
 </code></pre></div>
 <p>对于大多数用户来说，最常用 <code>sed</code> 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：</p>
 <div class="highlight"><pre><span></span><code>$ sudo sed -i <span class="s1">&#39;s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
+$ sudo sed -i <span class="s1">&#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
 $ sudo sed -i <span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">同样不止如此！</p>
-<p>sed 事实上是非常强大的文本操作工具（不仅支持正则表达式，而且能够做的操作也不止是替换），<a href="../Ch09/">第九章</a>将进一步介绍 sed。</p>
+<p>sed 事实上是非常强大的文本操作工具，不仅支持正则表达式，而且能够做的操作也不止是替换。<a href="../Ch09/">第九章</a>将进一步介绍 sed。</p>
 </div>
 <h2 id="shell-scripts">Shell 脚本<a class="headerlink" href="#shell-scripts" title="Permanent link">&para;</a></h2>
 <h3 id="what-is-shell">什么是 Shell<a class="headerlink" href="#what-is-shell" title="Permanent link">&para;</a></h3>
@@ -1764,22 +1765,22 @@ $ sudo sed -i <span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&
 <h4 id="bash_2">Bash 脚本的运行<a class="headerlink" href="#bash_2" title="Permanent link">&para;</a></h4>
 <p>可以使用几种方法运行 Bash 脚本：</p>
 <ul>
-<li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数。</li>
+<li>在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ bash show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>$ bash show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
 <ul>
-<li>使用「.」命令执行脚本，「.」后要有空格。</li>
+<li>使用 <code>.</code> 命令执行脚本。与其他命令一样，<code>.</code> 也是一条命令，其后要有空格：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ . ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>$ . ./show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
 <ul>
-<li>将脚本设置为可执行，然后当做外部命令执行执行。</li>
+<li>将脚本设置为可执行，然后像外部命令一样执行：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ chmod a+x showinfo
-$ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>$ chmod a+x show.sh
+$ ./show.sh <span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
-<p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang （也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
+<p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang（也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
 <p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
@@ -1832,9 +1833,9 @@ $ <span class="nb">pwd</span>  <span class="c1"># 移动到了 /tmp 目录</span
 </code></pre></div>
 <p>执行组命令 <code>{ cd /tmp; pwd; }</code> 后，当前目录会被修改，但是执行 <code>(cd /tmp; pwd;)</code> 不会修改当前目录。</p>
 </details>
-<h4 id="bash-variable">shell 变量<a class="headerlink" href="#bash-variable" title="Permanent link">&para;</a></h4>
+<h4 id="bash-variables">shell 变量<a class="headerlink" href="#bash-variables" title="Permanent link">&para;</a></h4>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
-<h5 id="_2">用户自定义变量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<h5 id="bash-user-variables">用户自定义变量<a class="headerlink" href="#bash-user-variables" title="Permanent link">&para;</a></h5>
 <p>变量定义：<code>name=串</code>，其中 <code>=</code> 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 <code>$name</code> 或 <code>${name}</code>，后者花括号是为了帮助解释器识别变量边界。</p>
 <p>已定义的变量可以通过 <code>unset name</code> 来删除。</p>
 <details class="example">
@@ -1850,7 +1851,7 @@ I am good at CoffeeScript
 I am good at ActionScript
 I am good at JavaScript
 </code></pre></div>
-<p>如果不给 <code>skill</code> 加花括号，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
+<p>如果不给 <code>skill</code> 加花括号标明变量名的边界，写成 <code>echo "I am good at $skillScript"</code> ，解释器就会把 <code>$skillScript</code> 当成一个变量（其值为空）。</p>
 <p>删除变量：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Today</span><span class="o">=</span><span class="m">1024</span>
 <span class="nb">unset</span> Today
@@ -1858,7 +1859,7 @@ I am good at JavaScript
 </code></pre></div>
 <p>输出为空</p>
 </details>
-<h5 id="_3">环境变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<h5 id="bash-environment-variables">环境变量<a class="headerlink" href="#bash-environment-variables" title="Permanent link">&para;</a></h5>
 <p>每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 <code>env</code> 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：</p>
 <ul>
 <li>
@@ -1880,29 +1881,30 @@ I am good at JavaScript
 <p><code>TERM</code>：使用的终端名。</p>
 </li>
 </ul>
-<h5 id="_4">位置变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<h5 id="bash-positional-parameters">位置变量<a class="headerlink" href="#bash-positional-parameters" title="Permanent link">&para;</a></h5>
 <ul>
 <li>
-<p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>, <code>$2</code>, <code>$3</code>, ..., <code>$9</code>，程序名本身对应 <code>$0</code>。</p>
+<p>Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 <code>$1</code>、<code>$2</code>、<code>$3</code>、……、<code>$9</code>，程序名本身对应 <code>$0</code>。</p>
 </li>
 <li>
-<p>可用 <code>shift n</code> 命令，改变命令行参数与 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 的对应关系。</p>
+<p>可用 <code>shift &lt;n&gt;</code> 命令，丢弃开头的 n 个位置变量，改变 <code>$1</code>、<code>$2</code>、<code>$3</code> 等的对应关系。</p>
 </li>
 <li>
-<p>可用 <code>set</code> 命令，直接给 <code>$1</code>, <code>$2</code>, <code>$3</code>, ... 等赋值。</p>
+<p>可用 <code>set</code> 命令，重置整个位置变量列表，从而给 <code>$1</code>、<code>$2</code>、<code>$3</code> 等赋值。</p>
 </li>
 </ul>
 <details class="example">
 <summary>范例</summary>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">set</span> one two three
-$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
-one two three
-$ <span class="nb">shift</span> <span class="m">2</span>
-$ <span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
-three
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">set</span> one two three
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
+<span class="go">one two three</span>
+<span class="gp">$ </span><span class="nb">shift</span> <span class="m">2</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$1</span> <span class="nv">$2</span> <span class="nv">$3</span>
+<span class="go">three</span>
+<span class="gp">$ </span><span class="c1"># 此时 $2 和 $3 已不存在</span>
 </code></pre></div>
 </details>
-<h5 id="_5">特殊变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<h5 id="bash-special-variables">特殊变量<a class="headerlink" href="#bash-special-variables" title="Permanent link">&para;</a></h5>
 <p>Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。</p>
 <table>
 <thead>
@@ -1938,7 +1940,7 @@ three
 </tr>
 </tbody>
 </table>
-<h5 id="_6">特殊字符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<h5 id="bash-special-tokens">特殊字符<a class="headerlink" href="#bash-special-tokens" title="Permanent link">&para;</a></h5>
 <ul>
 <li>
 <p>双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。</p>
@@ -1953,13 +1955,13 @@ three
 <p>与反引号相同的语法是 <code>$(command)</code>，它的好处是界限更明确，且可以嵌套。</p>
 </li>
 <li>
-<p>反斜杠，消除单个字符的特殊含义。</p>
+<p>反斜杠，消除单个字符的特殊含义（包括空格）。</p>
 </li>
 </ul>
-<h4 id="arithmetic-ops">算术运算<a class="headerlink" href="#arithmetic-ops" title="Permanent link">&para;</a></h4>
+<h4 id="bash-arithmetic">算术运算<a class="headerlink" href="#bash-arithmetic" title="Permanent link">&para;</a></h4>
 <p>在 Bash 中进行算术运算，需要使用 <code>expr</code> 计算算术表达式值或 <code>let</code> 命令赋值表达式值到变量。基本运算符是 <code>+</code>、<code>-</code>、<code>\*</code> (转义)、<code>/</code>、<code>%</code>。在 <code>expr</code> 中，运算符两边与操作数之间必须有空格，小括号要转义；但 <code>let</code> 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 <code>=</code> 前后不能有空格。</p>
-<p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以复制。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 <code>(())</code> 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好想法（回想一下，C 语言中 <code>return 0</code> 表示<strong>正常</strong>退出）。</p>
-<p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分。</p>
+<p>另外，所有标准的 shell 都支持另一种语法 <code>(( 表达式 ))</code>，其中 <code>表达式</code> 是一个 C 风格的数学表达式，可以计算，也可以赋值。<code>(( 表达式 ))</code> <strong>是一条完整的命令</strong>，命令的返回值为 0 或 1，它的真假性与表达式在 C 中的真假性相同。也就是说，若表达式的结果非零，那么 <code>(())</code> 命令返回零，而当表达式结果为零时命令返回 1，这是因为 shell 中用零表示真值，这一点与 C 语言恰好相反（回想一下，C 语言中 <code>return 0</code> 表示<strong>正常</strong>退出）。</p>
+<p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分，就像使用变量一样。</p>
 <details class="example">
 <summary><code>expr</code> 和 <code>let</code> 使用示例</summary>
 <div class="highlight"><pre><span></span><code>$ expr length <span class="s2">&quot;ustclug&quot;</span>
@@ -1979,9 +1981,11 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </details>
 <h4 id="expr">条件表达式<a class="headerlink" href="#expr" title="Permanent link">&para;</a></h4>
 <p>条件表达式写成 <code>test 条件表达式</code>，或 <code>[ 条件表达式 ]</code>，注意表达式与方括号之间有空格。</p>
-<ul>
-<li>字符串比较</li>
-</ul>
+<!-- prettier-ignore-start -->
+
+<dl>
+<dt>字符串比较</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -1992,7 +1996,7 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 <tbody>
 <tr>
 <td><code>string1 = string2</code></td>
-<td>如果两个串相等，则结果为真 (true: 0)</td>
+<td>如果两个串相等，则结果为真（true: 0）</td>
 </tr>
 <tr>
 <td><code>string1 != string2</code></td>
@@ -2008,9 +2012,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>数值比较</li>
-</ul>
+</dd>
+<dt>数值比较</dt>
+<dd>
 <p>表达式：<code>int1 [option] int2</code>，其中的参数可以用下列替换。</p>
 <table>
 <thead>
@@ -2046,9 +2050,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>文件状态</li>
-</ul>
+</dd>
+<dt>文件状态</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -2083,9 +2087,9 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
-<ul>
-<li>复合逻辑表达式</li>
-</ul>
+</dd>
+<dt>复合逻辑表达式</dt>
+<dd>
 <table>
 <thead>
 <tr>
@@ -2108,24 +2112,30 @@ $ <span class="nb">echo</span> <span class="k">$((</span><span class="nv">a</spa
 </tr>
 </tbody>
 </table>
+</dd>
+</dl>
+<!-- prettier-ignore-end -->
+
 <h4 id="flow-control">流程控制<a class="headerlink" href="#flow-control" title="Permanent link">&para;</a></h4>
-<ul>
-<li>if</li>
-</ul>
-<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的。</p>
+<!-- prettier-ignore-start -->
+
+<dl>
+<dt>条件分支：if</dt>
+<dd>
+<p>序列中可嵌套 if 语句，在 shell 中也允许有多个 elif ，但 shell 的流程控制不可为空。末尾的 <code>fi</code> 就是 <code>if</code> 倒过来写，后面还会遇到类似的结束符。</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> condition1
 <span class="k">then</span>
-  command1
+  commands1
 <span class="k">elif</span> condition2
 <span class="k">then</span>
-  command2
+  commands2
 <span class="k">else</span>
-  command3
+  commands3
 <span class="k">fi</span>
 </code></pre></div>
-<ul>
-<li>case</li>
-</ul>
+</dd>
+<dt>按值选择：case</dt>
+<dd>
 <p>选项值必须以右括号 <code>)</code> 结尾，若匹配多个离散值，用 <code>|</code> 分隔。这里的 <code>esac</code> 也是 <code>case</code> 倒着写。</p>
 <div class="highlight"><pre><span></span><code><span class="k">case</span> &lt;variable&gt; <span class="k">in</span>
 value1<span class="p">|</span>value2<span class="o">)</span>
@@ -2140,25 +2150,29 @@ value3<span class="o">)</span>
   <span class="p">;;</span>
 <span class="k">esac</span>
 </code></pre></div>
-<ul>
-<li>for</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> var <span class="k">in</span> list
-<span class="k">do</span>
-  commands <span class="nv">$var</span>
-<span class="k">done</span>
-</code></pre></div>
-<ul>
-<li>while</li>
-</ul>
-<p>while 循环用于不断执行一系列命令，命令通常为测试条件。</p>
+</dd>
+<dt>枚举循环：for</dt>
+<dd>
+<p><code>shell
+for var in list
+do
+  commands $var
+done</code></p>
+</dd>
+<dt>条件循环：while 和 until</dt>
+<dd>
+<p>while 循环用于不断执行一系列命令，命令通常为测试条件。until 与 while 相反，仅在测试条件失败时循环。</p>
 <div class="highlight"><pre><span></span><code><span class="k">while</span> condition
 <span class="k">do</span>
   commands
 <span class="k">done</span>
 </code></pre></div>
+</dd>
+</dl>
+<!-- prettier-ignore-end -->
+
 <details class="example">
-<summary>流程控制样例脚本</summary>
+<summary>流程控制样例</summary>
 <div class="highlight"><pre><span></span><code><span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
 <span class="nb">read</span> -p <span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span> MAX_NO
 <span class="k">if</span> ! <span class="o">[</span> <span class="nv">$MAX_NO</span> -ge <span class="m">5</span> -a <span class="nv">$MAX_NO</span> -le <span class="m">9</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
@@ -2217,7 +2231,7 @@ clear
          .
 </code></pre></div>
 </details>
-<p>除此之外，用于流程控制的还有 <code>until</code>（处理与 <code>while</code> 恰恰相反）、在 C 语言中同样常见的 <code>break n</code> 和 <code>continute n</code>（参数 <code>n</code> 均表示跳过 n 层循环）。</p>
+<p>除此之外，用于流程控制的还有在 C 语言中同样常见的 <code>break</code> 和 <code>continue</code>。与 C 语言不同的是，它们还接受一个数字作为参数，即 <code>break n</code> 和 <code>continue n</code>，其中参数 <code>n</code> 均表示跳出或跳过 n 层循环。</p>
 <h4 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># POSIX syntax</span>
@@ -2232,7 +2246,7 @@ funcion name <span class="o">{</span>
     <span class="o">[</span><span class="k">return</span> &lt;int&gt;<span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>
-<p>其中 function 和函数参数可以省略。返回参数可以显示用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
+<p>其中函数的参数可以像命令一样通过 <code>$1</code>、<code>$2</code>、<code>$3</code> 等获取，返回值可以显式用 <code>return</code> 返回，或以最后一条命令运行结果作为返回值。在函数中使用 <code>return</code> 会结束本次函数执行，而使用 <code>exit</code> 会直接结束退出包含函数的当前脚本程序。</p>
 <p>函数在使用前必须定义，因此应将函数定义放在脚本开始的部分。在调用函数时仅使用其函数名即可。</p>
 <details class="example">
 <summary>范例</summary>
@@ -2246,7 +2260,7 @@ hello
 </code></pre></div>
 <p>运行脚本，输出结果：</p>
 <div class="highlight"><pre><span></span><code>going to call test function:
-hello, today&#39;s date is &lt;当前日期显示输出串&gt;
+hello, today&#39;s date is Tue Feb 22 22:22:22 CST 2022
 </code></pre></div>
 </details>
 <h3 id="bash-debugging">Bash 脚本调试<a class="headerlink" href="#bash-debugging" title="Permanent link">&para;</a></h3>
@@ -2280,7 +2294,7 @@ User-Agent: curl/7.54.0
 Accept: */*
 </code></pre></div>
 <p>在 <code>GET / HTTP/1.1</code> 下面的几行就是 HTTP 请求头。</p>
-<p>HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名 (Host)、用户程序标识 (User-agent)、希望接收到的语言 (Accept-Language) 等各种信息。</p>
+<p>HTTP 请求头在向服务器发送 HTTP 请求时发出，包含了诸如访问服务的域名（Host）、用户程序标识（User-Agent）、希望接收到的语言（Accept-Language）等各种信息。</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">关于断点续传</p>
