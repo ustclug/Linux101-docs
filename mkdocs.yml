@@ -51,6 +51,8 @@ extra:
   social:
     - icon: octicons/globe-16
       link: https://lug.ustc.edu.cn/
+    - icon: octicons/mark-github-16
+      link: https://github.com/ustclug
   analytics:
     provider: google
     property: UA-160637954-1

@@ -58,6 +58,6 @@
 
 ## 联系我们 {#contact-us}
 
-本书的成长离不开大家的帮助。本书的源代码存放在 [GitHub Linux101-docs 仓库](https://github.com/ustclug/Linux101-docs) 中，所有内容以 CC BY-SA 4.0 协议开放。
+本书的成长离不开大家的帮助。本书的源代码存放在 [:fontawesome-brands-github: Linux101-docs 仓库](https://github.com/ustclug/Linux101-docs) 中，所有内容以 [:fontawesome-brands-creative-commons: CC BY-SA 4.0 协议](https://creativecommons.org/licenses/by-sa/4.0/)开放。
 
-若您对本书有任何意见或建议，可以在本书的 GitHub 仓库中提出 Issue，也欢迎致信 ![](https://lug.ustc.edu.cn/static/email.png){: .img-inline }，我们重视您的想法。
+若您对本书有任何意见或建议，可以在本书的 GitHub 仓库中提出 Issue，也欢迎致信 ![我们](https://lug.ustc.edu.cn/static/email.png){: .img-inline }，我们重视您的想法。
