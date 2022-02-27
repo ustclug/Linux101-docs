@@ -301,21 +301,30 @@ Bourne Shell (`sh`)，是 Unix 系统的默认 Shell，简单轻便，脚本编�
 
 Bourne Again Shell，即 Bash，是 GNU 开发的一个 Shell，也是大部分 Linux 系统的默认 Shell，是 Bourne Shell 的扩展。
 
-#### `Bash` 的特点
+Bash 允许用户定制环境以满足自己需要。通过修改环境文件 `.bash_profile`、`.bashrc`、`.bash_logout`，配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。
 
-- 支持 I/O 重定向（`>`, `>>`, `<`）和管道（`|`）等。
+此外，bash 也支持使用 `alias` 别名代替命令关键字（`alias name='命令'`）。输入 `alias`，可以查看目前存在的别名：
 
-- 环境控制，允许用户定制环境以满足自己需要。环境文件 `.bash_profile`、`.bashrc`、`.bash_logout`。通过配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。
+```shell
+$ alias
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
+$ ll  # 执行 ll 相当于执行 ls -alF
+总用量 128
+drwxr-xr-x 18 ustc ustc 4096 2月  28 00:51 ./
+drwxr-xr-x  3 root root 4096 11月 17 20:26 ../
+drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 公共的/
+drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
+（以下省略）
+```
 
-- 支持后台运行 `&`。
-
-- 占用资源较少，来自 GNU，与 Linux 相容性高。支持命令行编辑，提供命令补全功能键 Tab。
-
-- 允许应用别名代替命令关键字（`alias name='命令'`）。
-
-### Bash 脚本基础 {#bash-usage}
-
-#### Bash 脚本的运行
+### Bash 脚本的运行 {#run-bash-script}
 
 可以使用几种方法运行 Bash 脚本：
 
@@ -374,11 +383,11 @@ Bash 也支持在同一个行中安排多个命令：
 
     执行组命令 `{ cd /tmp; pwd; }` 后，当前目录会被修改，但是执行 `(cd /tmp; pwd;)` 不会修改当前目录。
 
-#### shell 变量 {#bash-variables}
+### shell 变量 {#bash-variables}
 
 像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。
 
-##### 用户自定义变量 {#bash-user-variables}
+#### 用户自定义变量 {#bash-user-variables}
 
 变量定义：`name=串`，其中 `=` 两边不允许有空格。如果字串中含空格，就要用双引号括起。在引用时，使用 `$name` 或 `${name}`，后者花括号是为了帮助解释器识别变量边界。
 
@@ -435,7 +444,7 @@ Bash 也支持在同一个行中安排多个命令：
     example.sh: line 4: nonexist: unbound variable
     ```
 
-##### 环境变量 {#bash-environment-variables}
+#### 环境变量 {#bash-environment-variables}
 
 每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 `env` 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：
 
@@ -468,7 +477,7 @@ $ env | grep B=
 $ # B=1 的环境变量定义仅对该命令有效
 ```
 
-##### 位置变量 {#bash-positional-parameters}
+#### 位置变量 {#bash-positional-parameters}
 
 - Shell 解释用户的命令时，把命令程序名后面的所有字串作为程序的参数。分别对应 `$1`、`$2`、`$3`、……、`$9`，程序名本身对应 `$0`。
 
@@ -488,7 +497,7 @@ $ # B=1 的环境变量定义仅对该命令有效
     $ # 此时 $2 和 $3 已不存在
     ```
 
-##### 特殊变量 {#bash-special-variables}
+#### 特殊变量 {#bash-special-variables}
 
 Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引用，而不能直接改变或重置这些变量。
 
@@ -501,7 +510,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 | `$*`     | 命令行所有参数构成的一个字符串                 |
 | `$@`     | 用双引号括起的命令行各参数拼接构成的一个字符串 |
 
-##### 特殊字符 {#bash-special-tokens}
+#### 特殊字符 {#bash-special-tokens}
 
 - 双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。
 
@@ -513,9 +522,9 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 - 反斜杠，消除单个字符的特殊含义（包括空格）。
 
-#### 变量输入与输出 {#bash-input-output}
+### 变量输入与输出 {#bash-input-output}
 
-##### 输入 {#bash-input}
+#### 输入 {#bash-input}
 
 可以使用 `read` 命令读取用户输入，并将输入的内容赋值给变量。其中 `-p` 参数后可以设置输出的提示信息。
 
@@ -541,7 +550,7 @@ $ echo $message  # 加上 -r 参数后，反斜杠完好无损
 \(^o^)/~
 ```
 
-##### 输出 {#bash-output}
+#### 输出 {#bash-output}
 
 可以使用 `echo` 命令输出变量信息。其中 `-n` 参数不会在结尾输出换行符，而 `-e` 参数会解析文本中的转义字符（例如 `\n`）。
 
@@ -568,7 +577,7 @@ Hello linux
 $ # 所以为了正常显示，需要在结尾补上 \n
 ```
 
-#### 算术运算 {#bash-arithmetic}
+### 算术运算 {#bash-arithmetic}
 
 在 Bash 中进行算术运算，需要使用 `expr` 计算算术表达式值或 `let` 命令赋值表达式值到变量。基本运算符是 `+`、`-`、`\*` (转义)、`/`、`%`。在 `expr` 中，运算符两边与操作数之间必须有空格，小括号要转义；但 `let` 则没有这个要求，运算符前后有无空格均可，小括号不需转义，但 `=` 前后不能有空格。
 
@@ -605,7 +614,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
     3
     ```
 
-#### 条件表达式 {#expr}
+### 条件表达式 {#expr}
 
 条件表达式写成 `test 条件表达式`，或 `[ 条件表达式 ]`，注意表达式与方括号之间有空格。
 
@@ -654,7 +663,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 <!-- prettier-ignore-end -->
 
-#### 流程控制 {#flow-control}
+### 流程控制 {#flow-control}
 
 <!-- prettier-ignore-start -->
 
@@ -783,7 +792,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 除此之外，用于流程控制的还有在 C 语言中同样常见的 `break` 和 `continue`。与 C 语言不同的是，它们还接受一个数字作为参数，即 `break n` 和 `continue n`，其中参数 `n` 均表示跳出或跳过 n 层循环。
 
-#### 函数 {#functions}
+### 函数 {#functions}
 
 与其他编程语言类似，shell 也可以定义函数。其定义格式为：
 
