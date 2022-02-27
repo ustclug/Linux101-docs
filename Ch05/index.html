@@ -1499,7 +1499,7 @@ ustc is not in the sudoers file.  This incident will be reported.
 <p>除了可以通过 <code>visudo</code> 命令编辑 <code>sudoers</code> 文件外，可以直接通过将新的用户加入到 <code>sudo</code> 用户组，以能够使用 <code>sudo</code> 命令。</p>
 <div class="highlight"><pre><span></span><code>$ sudo adduser ustc sudo
 </code></pre></div>
-<p>再此切换到新的用户即可看到使用 sudo 的提示：</p>
+<p>再次切换到新的用户即可看到使用 sudo 的提示：</p>
 <div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
 See &quot;man sudo_root&quot; for details.
 </code></pre></div>
@@ -1576,6 +1576,13 @@ $ ./program
 <div class="admonition tip">
 <p class="admonition-title">什么是设备文件？</p>
 <p>设备文件是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。</p>
+<p>有一些常用的设备文件如：</p>
+<ul>
+<li><code>/dev/null</code>：总是返回空（EOF）数据。</li>
+<li><code>/dev/zero</code>：总是返回零数据。</li>
+<li><code>/dev/urandom</code>：输出随机数据。</li>
+</ul>
+<p>配合<a href="../Ch06/#redirect">第六章中提到的重定向功能</a>，这些设备文件可以帮助我们做到丢弃程序输出等操作。</p>
 </div>
 </dd>
 <dt><code>/etc</code></dt>
@@ -1635,6 +1642,11 @@ $ ./program
 <li><code>/usr/local</code>: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 <code>apt</code>）控制。<code>/usr/local</code> 里面的层次结构和 <code>/usr</code> 相似。</li>
 <li><code>/usr/share</code>: 存储程序的数据文件（如 <code>man</code> 文档、GUI 程序使用的图片等）</li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title"><code>usrmerge</code></p>
+<p>近年来，部分发行版选择将 <code>/usr/bin</code>、<code>/usr/sbin</code>、<code>/usr/lib</code> 与根目录下的 <code>/bin</code>、<code>/sbin</code>、<code>/lib</code> 合并，根目录下的对应目录软链接到 <code>/usr</code> 下的目录，以简化文件结构。</p>
+<p>Ubuntu 与 Debian 中可以安装 <code>usrmerge</code> 软件包来进行转换。</p>
+</div>
 </dd>
 <dt><code>/var</code></dt>
 <dd>存储会发生变化的程序相关文件。</dd>

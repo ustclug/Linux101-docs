@@ -1301,7 +1301,7 @@ $ ls -l /usr/bin/sudo
 -rwsr-xr-x 1 root root 161448 Feb  1 01:07 /usr/bin/sudo
 </code></pre></div>
 <p>所以它们可以帮你切换用户、提升权限。</p>
-<p>拥有 <code>setuid</code> 位、所有者为 <code>root</code> 的程序是非常危险的，因为稍不谨慎，它们的漏洞就会直接让普通的无权限用户获得 <code>root</code> 权限的大门，这在服务器上是及其致命的。近期，<code>sudo</code> 就爆出一个安全漏洞 (CVE-2019-18634)，对于 1.8.31 之前的版本，<code>sudo</code> 在开启了 <code>pwfeedback</code> 选项（将输入的密码显示为 * 号，而非不显示）之后，有一个缓冲区溢出漏洞可以被利用来以 <code>root</code> 的身份执行任意命令。</p>
+<p>拥有 <code>setuid</code> 位、所有者为 <code>root</code> 的程序是非常危险的，因为稍不谨慎，它们的漏洞就会直接让普通的无权限用户获得 <code>root</code> 权限的大门，这在服务器上是及其致命的。<code>sudo</code> 曾经爆出一个安全漏洞（CVE-2019-18634），对于 1.8.31 之前的版本，<code>sudo</code> 在开启了 <code>pwfeedback</code> 选项（将输入的密码显示为 * 号，而非不显示）之后，有一个缓冲区溢出漏洞可以被利用来以 <code>root</code> 的身份执行任意命令；而在 2022 年初，另一个用于验证用户身份、提升权限的工具 <code>pkexec</code> 也被爆出安全漏洞（CVE-2021-4034）：由于编写 C 语言程序时未考虑到 <code>main()</code> 函数参数 <code>argc</code> 可以为 0 的情况，攻击者可以编写程序引发其逻辑问题，从而提升自己的权限。</p>
 <p>当然，Linux 在发展中也在尽可能减少 <code>setuid</code> 程序的使用。例如 <code>ping</code> 程序因为需要创建只能由 <code>root</code> 用户创建的原始 (raw) 的网络套接字 (socket)，在以往也是一个 <code>setuid</code> 程序。但是随着 "Capabilities" 的概念引入 Linux 内核，<code>ping</code> 不再需要 <code>setuid</code>，只需要为它设置创建原始网络套接字的 capability 即可，提高了系统的安全性。</p>
 <h2 id="uid-and-euid">实际用户与有效用户<a class="headerlink" href="#uid-and-euid" title="Permanent link">&para;</a></h2>
 <p>于是，我们就有了另一个问题：如果 <code>passwd</code> 在执行的时候的权限是 <code>root</code> 的话，那它是怎么知道是我（而不是 <code>root</code>）执行它的呢？</p>
