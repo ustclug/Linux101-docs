@@ -894,10 +894,10 @@
       
         <li class="md-nav__item">
   <a href="#fork" class="md-nav__link">
-    Fork 炸弹
+    Fork 炸弹原理解析
   </a>
   
-    <nav class="md-nav" aria-label="Fork 炸弹">
+    <nav class="md-nav" aria-label="Fork 炸弹原理解析">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1265,10 +1265,10 @@
       
         <li class="md-nav__item">
   <a href="#fork" class="md-nav__link">
-    Fork 炸弹
+    Fork 炸弹原理解析
   </a>
   
-    <nav class="md-nav" aria-label="Fork 炸弹">
+    <nav class="md-nav" aria-label="Fork 炸弹原理解析">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1316,7 +1316,6 @@
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
-<p><strong><em>以下内容为编者认为有参考价值应当提及的内容。为了不破坏章节主旨的连续性与阅读体验连续性，特置于此。</em></strong></p>
 <h2 c-style-for="c-style-for" id="c-for">类 C 语言的 for 循环<a class="headerlink" href="#c-for" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="o">((</span>assignment<span class="p">;</span>condition<span class="p">;</span>next<span class="o">))</span><span class="p">;</span><span class="k">do</span>
     command_1<span class="p">;</span>
@@ -1333,20 +1332,20 @@
 <span class="k">done</span><span class="p">;</span>
 </code></pre></div>
 <p>输出结果：</p>
-<div class="highlight"><pre><span></span><code>这是第1次调用
-这是第2次调用
-这是第3次调用
-这是第4次调用
-这是第5次调用
+<div class="highlight"><pre><span></span><code>这是第 1 次调用
+这是第 2 次调用
+这是第 3 次调用
+这是第 4 次调用
+这是第 5 次调用
 </code></pre></div>
 </div>
 <p>与 C 中相似，赋值和下一步执行可以放到代码之前循环语句之中执行，这里要注意一点：如果要在循环体中进行 for 中的 next 操作，记得变量要加 $，不然程序会变成死循环。</p>
-<h2 fork-bomb="fork-bomb" id="fork">Fork 炸弹<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
+<h2 fork-bomb="fork-bomb" id="fork">Fork 炸弹原理解析<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">命令含有危险性</p>
 <p>以下的命令均包含一定的危险性，请在任何情况下都不要执行，除非你清楚你在做什么。</p>
 </div>
-<p>Fork 炸弹通过创建大量进程，以此消耗大量的系统资源，从而拖慢系统与正常进程的运行速度，增大相应的响应时间，使得操作系统的正常运作受到较大影响。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>在<a href="../../Ch05/">第五章</a>中，我们介绍过 fork 炸弹。它通过创建大量进程消耗大量的系统资源，从而拖慢系统与正常进程的运行速度，增大响应时间，使得操作系统的正常运作受到较大影响。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h3 fork-bomb-theory="fork-bomb-theory" id="_1">原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>Fork 炸弹有如下的这种形式：</p>
 <div class="highlight"><pre><span></span><code>:<span class="o">(){</span> :<span class="p">|</span>: <span class="p">&amp;</span> <span class="o">}</span><span class="p">;</span>:

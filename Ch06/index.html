@@ -1782,32 +1782,12 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 <p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang （也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时， shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
 <p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
-<table>
-<thead>
-<tr>
-<th><strong>分隔符</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>;</code></td>
-<td>按命令出现的先后，顺序执行</td>
-</tr>
-<tr>
-<td><code>&amp;&amp;</code></td>
-<td>先执行前面的命令，若成功，才接着执行后面命令；若失败，不执行后面命令</td>
-</tr>
-<tr>
-<td><code>\|\|</code></td>
-<td>先执行前面的命令，若成功，不执行后面命令；若失败，才执行后面命令</td>
-</tr>
-<tr>
-<td>后缀 <code>&amp;</code></td>
-<td>后台方式执行命令</td>
-</tr>
-</tbody>
-</table>
+<p>| <strong>分隔符</strong> | <strong>说明</strong>                                                             |
+| ---------- | -------------------------------------------------------------------- | --- | ---------------------------------------------------------------- |
+| <code>;</code>        | 按命令出现的先后，顺序执行                                           |
+| <code>&amp;&amp;</code>       | 先执行前面的命令，若成功，才接着执行后面命令；若失败，不执行后面命令 |
+| <code>|                                                                      |</code>   | 先执行前面的命令，若成功，不执行后面命令；若失败，才执行后面命令 |
+| 后缀 <code>&amp;</code>   | 后台方式执行命令                                                     |</p>
 <p>组命令：</p>
 <ul>
 <li>
@@ -1819,19 +1799,18 @@ $ ./show.sh <span class="o">[</span>option<span class="o">]</span><span class="p
 </ul>
 <details class="example">
 <summary>组命令示例</summary>
-<div class="highlight"><pre><span></span><code>➜  ~ tree tmp
-tmp
-└── temp
-<span class="c1">#------</span>
-➜  ~ <span class="o">(</span><span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span><span class="o">)</span>
-temp
-➜  ~
-<span class="c1">#------</span>
-➜  ~ <span class="o">{</span> <span class="nb">cd</span> tmp<span class="p">;</span> ls<span class="p">;</span> <span class="o">}</span>
-temp
-➜  tmp
+<div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>  <span class="c1"># 当前在家目录</span>
+/home/ustc
+$ <span class="o">(</span><span class="nb">cd</span> /tmp<span class="p">;</span> pwd<span class="p">;</span><span class="o">)</span>
+/tmp
+$ <span class="nb">pwd</span>  <span class="c1"># 仍然在家目录</span>
+/home/ustc
+$ <span class="o">{</span> <span class="nb">cd</span> /tmp<span class="p">;</span> pwd<span class="p">;</span> <span class="o">}</span>
+/tmp
+$ <span class="nb">pwd</span>  <span class="c1"># 移动到了 /tmp 目录</span>
+/tmp
 </code></pre></div>
-<p>执行组命令 <code>{ cd tmp; ls; }</code> 后，当前目录会被修改，但是执行 <code>(cd tmp; ls;)</code> 不会修改当前目录。</p>
+<p>执行组命令 <code>{ cd /tmp; pwd; }</code> 后，当前目录会被修改，但是执行 <code>(cd /tmp; pwd;)</code> 不会修改当前目录。</p>
 </details>
 <h4 id="bash-variable">shell 变量<a class="headerlink" href="#bash-variable" title="Permanent link">&para;</a></h4>
 <p>像大多数程序设计语言一样，shell 也允许用户在程序中使用变量。但 shell 不支持数据类型，它将任何变量值都当作字符串。但从赋值形式上看，可将 shell 变量分成四种形式：用户自定义、环境变量、位置变量和预定义特殊变量。</p>
