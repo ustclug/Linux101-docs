@@ -228,7 +228,7 @@ $ sudo adduser 用户名 组名
     $ sudo adduser ustc sudo
     ```
 
-    再此切换到新的用户即可看到使用 sudo 的提示：
+    再次切换到新的用户即可看到使用 sudo 的提示：
 
     ```text
     To run a command as administrator (user "root"), use "sudo <command>".
@@ -334,6 +334,14 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
         设备文件是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。
 
+        有一些常用的设备文件如：
+
+        - `/dev/null`：总是返回空（EOF）数据。
+        - `/dev/zero`：总是返回零数据。
+        - `/dev/urandom`：输出随机数据。
+
+        配合[第六章中提到的重定向功能](../Ch06/index.md#redirect)，这些设备文件可以帮助我们做到丢弃程序输出等操作。
+
 `/etc`
 
 : 存储系统和程序的配置文件。
@@ -391,6 +399,12 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
     - `/usr/include`: 存储系统通用的 C 头文件。当然，里面会有你非常熟悉的头文件，如 `stdio.h`。
     - `/usr/local`: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 `apt`）控制。`/usr/local` 里面的层次结构和 `/usr` 相似。
     - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）
+
+    !!! tip "`usrmerge`"
+
+        近年来，部分发行版选择将 `/usr/bin`、`/usr/sbin`、`/usr/lib` 与根目录下的 `/bin`、`/sbin`、`/lib` 合并，根目录下的对应目录软链接到 `/usr` 下的目录，以简化文件结构。
+
+        Ubuntu 与 Debian 中可以安装 `usrmerge` 软件包来进行转换。
 
 `/var`
 : 存储会发生变化的程序相关文件。
