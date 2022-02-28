@@ -1183,10 +1183,10 @@
       
         <li class="md-nav__item">
   <a href="#tools-in-shell" class="md-nav__link">
-    常用 shell 文字处理工具
+    其他 shell 文字处理工具
   </a>
   
-    <nav class="md-nav" aria-label="常用 shell 文字处理工具">
+    <nav class="md-nav" aria-label="其他 shell 文字处理工具">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1276,6 +1276,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    思考题
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1301,9 +1308,9 @@
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
 <p>本章节将介绍一些常用的 shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
-<p>为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
+<p>为保持简洁，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
 </div>
-<h2 id="tools-in-shell">常用 shell 文字处理工具<a class="headerlink" href="#tools-in-shell" title="Permanent link">&para;</a></h2>
+<h2 id="tools-in-shell">其他 shell 文字处理工具<a class="headerlink" href="#tools-in-shell" title="Permanent link">&para;</a></h2>
 <h3 id="sort">sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h3>
 <p>sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
 <p>一些基本用法：</p>
@@ -1362,18 +1369,18 @@ $ sort -n numbers
 <h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
 <p>通常会和 sort 一起使用：</p>
-<div class="highlight"><pre><span></span><code>sort animals <span class="p">|</span> uniq
+<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq
 </code></pre></div>
 <p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途。</p>
 <p><code>uniq -d</code> 可以用于仅输出重复行：</p>
-<div class="highlight"><pre><span></span><code>sort animals <span class="p">|</span> uniq -d
+<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq -d
 </code></pre></div>
 <p><code>uniq -c</code> 可以用于统计各行重复次数：</p>
-<div class="highlight"><pre><span></span><code>sort animals <span class="p">|</span> uniq -c
+<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq -c
 </code></pre></div>
 <h2 id="regular-expression">正则表达式<a class="headerlink" href="#regular-expression" title="Permanent link">&para;</a></h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
-<p>此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步补充内容。</p>
+<p>此处仅简单介绍正则表达式的一些用法，对正则表达式有更多兴趣，请移步<a href="supplement/">拓展阅读</a>。</p>
 <h3 id="special-char">特殊字符<a class="headerlink" href="#special-char" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1384,52 +1391,52 @@ $ sort -n numbers
 </thead>
 <tbody>
 <tr>
-<td>[]</td>
-<td>方括号表达式，表示匹配的字符集合，例如 [0-9],[abcde]</td>
+<td><code>[]</code></td>
+<td>方括号表达式，表示匹配的字符集合，例如 <code>[0-9]</code>、<code>[abcde]</code></td>
 </tr>
 <tr>
-<td>()</td>
+<td><code>()</code></td>
 <td>标记子表达式起止位置</td>
 </tr>
 <tr>
-<td>*</td>
+<td><code>*</code></td>
 <td>匹配前面的子表达式零或多次</td>
 </tr>
 <tr>
-<td>+</td>
+<td><code>+</code></td>
 <td>匹配前面的子表达式一或多次</td>
 </tr>
 <tr>
-<td>?</td>
+<td><code>?</code></td>
 <td>匹配前面的子表达式零或一次</td>
 </tr>
 <tr>
-<td>\</td>
-<td>转义字符，除了常用转义外，还有："\b"匹配单词边界"；\B"匹配非单词边界等</td>
+<td><code>\</code></td>
+<td>转义字符，除了常用转义外，还有：<code>\b</code> 匹配单词边界；<code>\B</code> 匹配非单词边界等</td>
 </tr>
 <tr>
-<td>.</td>
-<td>匹配除“\n"外的任意单个字符</td>
+<td><code>.</code></td>
+<td>匹配除 <code>\n</code>（换行）外的任意单个字符</td>
 </tr>
 <tr>
-<td>{}</td>
-<td>标记限定符表达式的起止。例如 {n} 表示匹配前一子表达式 n 次；{n,} 匹配至少 n 次；{n,m} 匹配 n 至 m 次</td>
+<td><code>{}</code></td>
+<td>标记限定符表达式的起止。例如 <code>{n}</code> 表示匹配前一子表达式 n 次；<code>{n,}</code> 匹配至少 n 次；<code>{n,m}</code> 匹配 n 至 m 次</td>
 </tr>
 <tr>
-<td>|</td>
+<td><code>|</code></td>
 <td>表明前后两项二选一</td>
 </tr>
 <tr>
-<td>$</td>
+<td><code>$</code></td>
 <td>匹配字符串的结尾</td>
 </tr>
 <tr>
-<td>^</td>
+<td><code>^</code></td>
 <td>匹配字符串的开头，在方括号表达式中表示不接受该方括号表达式中的字符集合</td>
 </tr>
 </tbody>
 </table>
-<p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符“\”</p>
+<p>以上特殊字符，若是想要匹配特殊字符本身，需要在之前加上转义字符 <code>\</code>。</p>
 <h3 id="re-example">简单示例<a class="headerlink" href="#re-example" title="Permanent link">&para;</a></h3>
 <p>匹配正整数：</p>
 <div class="highlight"><pre><span></span><code>[1-9][0-9]*
@@ -1444,37 +1451,37 @@ $ sort -n numbers
 <div class="highlight"><pre><span></span><code>ter\b
 </code></pre></div>
 <h3 id="bre-ere">基本/扩展正则表达式<a class="headerlink" href="#bre-ere" title="Permanent link">&para;</a></h3>
-<p>基本正则表达式（Basic Regular Expressions）和扩展正则表达式（Extended Regular Expressions）是两种 POSIX 正则表达式风格。</p>
+<p>基本正则表达式（Basic Regular Expressions, BRE）和扩展正则表达式（Extended Regular Expressions, ERE）是两种 POSIX 正则表达式风格。</p>
 <p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如 <code>+</code>, <code>?</code>, <code>|</code>, <code>{</code>）需要加上转义符 <code>\</code> 才能表达其特殊含义。</p>
 <p>ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符默认发挥特殊作用，加上 <code>\</code> 之后表达普通含义。</p>
 <p>具体的例子在下文介绍工具时可以看到。</p>
-<div class="admonition question">
-<p class="admonition-title">思考题</p>
-<p>什么是 DFA/NFA 正则表达式引擎？如今常见编程语言里的正则表达式实现和此处的 BRE/ERE 有什么异同？</p>
+<div class="admonition tip">
+<p class="admonition-title">帮助理解正则表达式的工具</p>
+<p><a href="https://regex101.com/">Regex101</a> 网站集成了常见编程语言正则表达式的解析工具，在编写正则时可以作为一个不错的参考。</p>
 </div>
 <h2 id="tools-with-re">常用 Shell 文字处理工具（正则）<a class="headerlink" href="#tools-with-re" title="Permanent link">&para;</a></h2>
 <h3 id="grep">grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p>grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个或多个文件中搜索指定 pattern 并显示相关行。</p>
-<p>grep 默认使用 BRE，要使用 ERE 可以 grep -E 或 egrep。</p>
+<p>grep 默认使用 BRE，要使用 ERE 可以使用 <code>grep -E</code> 或 egrep。</p>
 <p>命令格式：<code>grep [option] pattern file</code></p>
 <p>一些用法：</p>
 <ul>
-<li>-n 显示匹配到内容的行号</li>
-<li>-v 显示不被匹配到的行</li>
-<li>-i 忽略字符大小写</li>
+<li><code>-n</code>：显示匹配到内容的行号</li>
+<li><code>-v</code>：显示不被匹配到的行</li>
+<li><code>-i</code>：忽略字符大小写</li>
 </ul>
-<div class="highlight"><pre><span></span><code>ls /bin <span class="p">|</span> grep -n <span class="s2">&quot;^man</span>$<span class="s2">&quot;</span>
-ls /bin <span class="p">|</span> grep -v <span class="s2">&quot;[a-z]\|[0-9]&quot;</span>
-ls /bin <span class="p">|</span> grep -iv <span class="s2">&quot;[A-Z]\|[0-9]&quot;</span>
+<div class="highlight"><pre><span></span><code>$ ls /bin <span class="p">|</span> grep -n <span class="s2">&quot;^man</span>$<span class="s2">&quot;</span>  <span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
+$ ls /bin <span class="p">|</span> grep -v <span class="s2">&quot;[a-z]\|[0-9]&quot;</span>  <span class="c1"># 搜索不含小写字母和数字的行</span>
+$ ls /bin <span class="p">|</span> grep -iv <span class="s2">&quot;[A-Z]\|[0-9]&quot;</span>  <span class="c1"># 搜索不含字母和数字的行</span>
 </code></pre></div>
 <h3 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
 <p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
 <p>命令格式：</p>
-<div class="highlight"><pre><span></span><code>sed <span class="o">[</span>options<span class="o">]</span> <span class="s1">&#39;command&#39;</span> file<span class="o">(</span>s<span class="o">)</span>
-sed <span class="o">[</span>options<span class="o">]</span> -f scriptfile file<span class="o">(</span>s<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$ sed <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="s1">&#39;command&#39;</span> file<span class="o">(</span>s<span class="o">)</span>
+$ sed <span class="o">[</span>OPTIONS<span class="o">]</span> -f scriptfile file<span class="o">(</span>s<span class="o">)</span>
 </code></pre></div>
-<p>此处的“commond”和“scriptfile”中的命令均指的是 sed 命令。</p>
+<p>此处的 command 和 scriptfile 中的命令均指的是 sed 命令。</p>
 <p>常见 sed 命令：</p>
 <ul>
 <li>s 替换</li>
@@ -1483,11 +1490,22 @@ sed <span class="o">[</span>options<span class="o">]</span> -f scriptfile file<s
 <li>a 当前行下插入文本</li>
 <li>i 当前行上插入文本</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> -e <span class="s2">&quot;seD\nIS\ngOod&quot;</span> &gt; sed_demo
-sed <span class="s2">&quot;2d&quot;</span> sed_demo
-sed <span class="s2">&quot;2d&quot;</span> sed_demo
-sed <span class="s2">&quot;s/[a-z]/~/g&quot;</span> sed_demo
-sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> -e <span class="s2">&quot;seD\nIS\ngOod&quot;</span> &gt; sed_demo
+$ cat sed_demo
+seD
+IS
+gOod
+$ sed <span class="s2">&quot;2d&quot;</span> sed_demo  <span class="c1"># 删除第二行</span>
+seD
+gOod
+$ sed <span class="s2">&quot;s/[a-z]/~/g&quot;</span> sed_demo  <span class="c1"># 替换所有小写字母为 ~</span>
+~~D
+IS
+~O~~
+$ sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo  <span class="c1"># 选定第三行，改成 pErfeCt</span>
+seD
+IS
+pErfeCt
 </code></pre></div>
 <h3 id="awk">awk<a class="headerlink" href="#awk" title="Permanent link">&para;</a></h3>
 <p>awk 是一种用于处理文本的编程语言工具，名字来源于三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。</p>
@@ -1502,16 +1520,23 @@ kathy   <span class="m">4</span>.00    <span class="m">10</span>
 Mark    <span class="m">5</span>.00    <span class="m">20</span>
 Mary    <span class="m">5</span>.50    <span class="m">22</span>
 Susie   <span class="m">4</span>.25    <span class="m">18</span>
+$ <span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
 $ awk <span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span> awk_demo
 kathy <span class="m">40</span>
 Mark <span class="m">100</span>
 Mary <span class="m">121</span>
 Susie <span class="m">76</span>.5
 </code></pre></div>
-<p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1，2，3，列。特别地，$0 指代本行。</p>
+<p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
+<p>关于 awk，有一本知名的书籍《The AWK Programming Language》，感兴趣的读者可以考虑阅读。<a href="https://github.com/wuzhouhui/awk">中文翻译</a></p>
+<h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">思考题</p>
-<p>如何使用 <code>sed</code> 对示例中文本的第二列数值求和？</p>
+<p>什么是 DFA/NFA 正则表达式引擎？如今常见编程语言里的正则表达式实现和此处的 BRE/ERE 有什么异同？</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">思考题</p>
+<p>如何使用 <code>awk</code> 对<a href="#awk">示例</a>中文本的第二列数值求和？</p>
 </div>
 
               

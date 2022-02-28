@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#supplement" class="md-skip">
           跳转至
         </a>
       
@@ -1092,7 +1092,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#regex" class="md-nav__link">
     正则
   </a>
   
@@ -1100,42 +1100,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#lazy-and-greedy" class="md-nav__link">
     懒惰和贪婪
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#backreference" class="md-nav__link">
     后向引用
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#lookaround" class="md-nav__link">
     零宽断言
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    扩展阅读
+  <a href="#ddos" class="md-nav__link">
+    正则表达式的代价
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    shell 文字处理工具
-  </a>
   
 </li>
       
@@ -1264,7 +1257,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#regex" class="md-nav__link">
     正则
   </a>
   
@@ -1272,42 +1265,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#lazy-and-greedy" class="md-nav__link">
     懒惰和贪婪
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#backreference" class="md-nav__link">
     后向引用
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#lookaround" class="md-nav__link">
     零宽断言
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    扩展阅读
+  <a href="#ddos" class="md-nav__link">
+    正则表达式的代价
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    shell 文字处理工具
-  </a>
   
 </li>
       
@@ -1329,15 +1315,15 @@
 
 
 
-<h1 id="_1">补充内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">正则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
+<h2 id="regex">正则<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h2>
 <p>注：以下正则语法如需在 <code>grep</code> 中使用，需要加上参数 <code>-P</code>，表示使用 Perl 语法。</p>
-<h3 id="_3">懒惰和贪婪<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>使用 <code>*</code> <code>+</code> 的时候默认是贪婪模式，即尽可能匹配更多的子表达式。在 <code>*</code> <code>+</code> 之后加上 <code>?</code>变为懒惰模式，即尽可能匹配更少的子表达式。</p>
+<h3 id="lazy-and-greedy">懒惰和贪婪<a class="headerlink" href="#lazy-and-greedy" title="Permanent link">&para;</a></h3>
+<p>使用 <code>*</code> <code>+</code> 的时候默认是贪婪模式，即尽可能匹配更多的子表达式。在 <code>*</code> <code>+</code> 之后加上 <code>?</code> 变为懒惰模式，即尽可能匹配更少的子表达式。</p>
 <p>例如：<code>123456456</code></p>
 <p>贪婪：<code>1.+6</code> -&gt; <code>123456456</code></p>
 <p>懒惰：<code>1.+?6</code> -&gt; <code>123456</code></p>
-<h3 id="_4">后向引用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="backreference">后向引用<a class="headerlink" href="#backreference" title="Permanent link">&para;</a></h3>
 <p>后向引用可以将之前匹配到的具体内容再次利用。在正则表达式中，<code>()</code> 以及它们包含的内容为一个分组，每个分组默认拥有一个组号。</p>
 <p>组号分配规则：</p>
 <ul>
@@ -1345,15 +1331,21 @@
 <li>从左至右，按左括号的出现顺序分配，第一个为 1，第二个为 2，以此类推</li>
 <li>扫描两遍，第一次只分配未命名的组，第二次只分配命名的组。即任意命名组的组号都大于未命名的组号</li>
 </ul>
-<p>例如 <code>\b(\w+)\b\s+\1\b</code> 可以用来匹配用空白字符分割的两个重复的单词，<code>\1</code> 是对组号为 1 的组 <code>(\w+)</code> 的引用。</p>
-<p>例如 <code>\b(?'Word'\w+)\b\s+\k'Word'\b</code> 也可以起到同样的效果，其中 <code>?'Word'</code> 用于命名组，<code>\k'Word'</code> 用于引用组。</p>
-<h3 id="_5">零宽断言<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p><code>\b(\w+)\b\s+\1\b</code> 可以用来匹配用空白字符分割的两个重复的单词（例如 <code>linux linux</code>），其中 <code>\1</code> 是对组号为 1 的组 <code>(\w+)</code> 的引用。</p>
+<p><code>\b(?'Word'\w+)\b\s+\k'Word'\b</code> 也可以起到同样的效果，其中 <code>?'Word'</code> 用于命名组，<code>\k'Word'</code> 用于引用组。</p>
+</div>
+<h3 id="lookaround">零宽断言<a class="headerlink" href="#lookaround" title="Permanent link">&para;</a></h3>
 <p>零宽断言用于查找某些内容进行定位，但内容并不放入匹配结果，就像 <code>\b</code> <code>^</code> <code>$</code> 的定位一样。<code>(?=exp)</code> 用于匹配表达式 <code>exp</code> 前面的位置，<code>(?&lt;=exp)</code> 用于匹配后面的位置。</p>
-<p>例如，<code>\b\w+(?=ing\b)</code> 可以匹配 <code>ing</code> 结尾的单词前面的部分，<code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开开头的单词的后面一部分。</p>
-<h3 id="_6">扩展阅读<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p><a href="https://zhuanlan.zhihu.com/p/46294360">乱用正则引发的惨案</a></p>
-<h2 id="shell">shell 文字处理工具<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
-<p><a href="https://awk.readthedocs.io/en/latest/chapter-one.html">awk 指南</a></p>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p><code>\b\w+(?=ing\b)</code> 可以匹配 <code>ing</code> 结尾的单词前面的部分。例如 <code>going</code> 中的 <code>go</code> 会被该正则匹配。</p>
+<p><code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开开头的单词的后面一部分。例如 <code>revue</code> 中的 <code>vue</code> 会被该正则匹配。</p>
+</div>
+<h3 id="ddos">正则表达式的代价<a class="headerlink" href="#ddos" title="Permanent link">&para;</a></h3>
+<p>为了支持复杂语法，现在的正则表达式引擎一般使用回溯搜索的方法来进行匹配。对于某些特定的正则，攻击者可以构造出能够让其执行很长时间的字符串，从而导致系统崩溃。</p>
+<p>相关介绍：<a href="https://zhuanlan.zhihu.com/p/46294360">乱用正则引发的惨案</a></p>
 
               
             </article>

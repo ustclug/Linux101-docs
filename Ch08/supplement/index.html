@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#supplement" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -995,10 +1000,84 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          拓展阅读
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         拓展阅读
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dive" class="md-nav__link">
+    查看容器镜像的工具：Dive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-container-tools" class="md-nav__link">
+    Docker 以外的容器工具
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker 以外的容器工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman" class="md-nav__link">
+    Podman
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lxc" class="md-nav__link">
+    LXC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-nspawn" class="md-nav__link">
+    systemd-nspawn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-a-simple-container-runtime" class="md-nav__link">
+    自制简单的容器运行时
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1165,6 +1244,80 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dive" class="md-nav__link">
+    查看容器镜像的工具：Dive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-container-tools" class="md-nav__link">
+    Docker 以外的容器工具
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker 以外的容器工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman" class="md-nav__link">
+    Podman
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lxc" class="md-nav__link">
+    LXC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-nspawn" class="md-nav__link">
+    systemd-nspawn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-a-simple-container-runtime" class="md-nav__link">
+    自制简单的容器运行时
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
@@ -1176,9 +1329,26 @@
 
 
 
-  <h1>拓展阅读</h1>
-
-
+<h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
+<h2 id="dive">查看容器镜像的工具：Dive<a class="headerlink" href="#dive" title="Permanent link">&para;</a></h2>
+<p>在调试容器时，我们可能想看一下使用的容器镜像里有哪些文件。<a href="https://github.com/wagoodman/dive">Dive</a> 是一个很方便的小工具。</p>
+<p>对于 Debian/Ubuntu 用户，由于其不在官方软件源中，需要手动下载 deb 包安装：</p>
+<div class="highlight"><pre><span></span><code>$ wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
+$ sudo apt install ./dive_0.9.2_linux_amd64.deb
+</code></pre></div>
+<p>之后直接使用即可：</p>
+<div class="highlight"><pre><span></span><code>$ dive ubuntu:20.04  <span class="c1"># 查看 Ubuntu 20.04 镜像中的内容</span>
+</code></pre></div>
+<h2 id="other-container-tools">Docker 以外的容器工具<a class="headerlink" href="#other-container-tools" title="Permanent link">&para;</a></h2>
+<p>Docker 目前已几乎是容器的代名词了，但是实际上，用户还可以选择其他的程序来运行容器。其中一些代表性的方案有 Podman、LXC 等。</p>
+<h3 id="podman">Podman<a class="headerlink" href="#podman" title="Permanent link">&para;</a></h3>
+<p>Podman 是由 Red Hat 编写的容器工具。相比于 Docker，Podman 是无守护进程的（daemonless），不需要像 Docker 一样运行系统服务。并且，Podman 的 CLI 工具与 Docker 的语法兼容（甚至可以设置 <code>alias docker=podman</code>），方便用户迁移到 Podman。</p>
+<h3 id="lxc">LXC<a class="headerlink" href="#lxc" title="Permanent link">&para;</a></h3>
+<p>相比于 Docker 专注应用容器化而言，LXC（Linux Containers）更加注重完整 Linux 系统的容器虚拟化，用户可以使用 LXC 启动一个近似完整的 Linux 系统。Canonical 公司基于 LXC 编写的 LXD 工具则为管理员提供了一个方便的管理接口。</p>
+<h3 id="systemd-nspawn">systemd-nspawn<a class="headerlink" href="#systemd-nspawn" title="Permanent link">&para;</a></h3>
+<p>systemd-nspawn 是非常轻量级的容器，但「麻雀虽小，五脏俱全」。类似于 Unix 环境中历史悠久的 chroot，它能够很方便地从已有的系统文件启动，并且执行需要的系统管理命令。</p>
+<h3 id="write-a-simple-container-runtime">自制简单的容器运行时<a class="headerlink" href="#write-a-simple-container-runtime" title="Permanent link">&para;</a></h3>
+<p>Linux 下的容器本身的运行原理并不复杂。在了解相关概念后，甚至可以自己写一个简单的容器实现。科大 OS(H) 课程 2020 年曾有过编写容器运行时的实验，详情可参考 <a href="https://osh-2020.github.io/lab-4/">OSH 2020 Lab 4</a>。</p>
 
               
             </article>
