@@ -1485,16 +1485,16 @@
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
-<p>面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：</p>
+<p>面对一个新的系统，你要怎样将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：</p>
 <ul>
-<li>通过命令行的方式安装需要的软件</li>
-<li>创建、移动、删除等对文件与目录的操作</li>
-<li>压缩、解压一个压缩文件</li>
-<li>面对一个没有使用过的软件，能够更快地了解使用方法</li>
+<li>通过命令行安装需要的软件</li>
+<li>对文件与目录进行创建、移动、删除等</li>
+<li>压缩、解压文件</li>
+<li>对没有使用过的软件能够更快地了解使用方法</li>
 </ul>
 </div>
 <h2 id="software-installation">软件安装<a class="headerlink" href="#software-installation" title="Permanent link">&para;</a></h2>
-<p>软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法：</p>
+<p>软件安装的方法较多，这里将会提到几个比较常用的软件安装方法：</p>
 <h3 id="use-app-store">使用应用商店安装<a class="headerlink" href="#use-app-store" title="Permanent link">&para;</a></h3>
 <p>使用应用商店安装比较符合我们在 Google Play 和 App Store 安装应用的习惯，无需用户的干预，只需轻点鼠标即可完成安装。</p>
 <p>在 Ubuntu 下，我们可以使用 Ubuntu Application Store 来进行安装，下图为应用商店中的 VSCode 应用页面。</p>
@@ -1502,21 +1502,21 @@
 <div class="admonition info">
 <p class="admonition-title">其它发行版的应用商店</p>
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。</p>
-<p>在其他的发行版上，如果没有预装好的应用商店，可以通过安装 <a href="https://snapcraft.io/">Snapcraft</a> 获得应用商店。（注意：Snap 商店在国内的访问速度较慢。）</p>
+<p>在其他的发行版上，如果没有预装好的应用商店，可以安装 <a href="https://snapcraft.io/">Snapcraft</a> 或 <a href="https://flatpak.org/">Flatpak</a> 等在不同发行版上通用的应用商店。（注意：Snap 商店在国内的访问速度较慢。）</p>
 </div>
 <h3 id="use-package-management-system">使用包管系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
 <p>软件包管理器是一系列工具的集合，他自动化地完成软件的安装、更新、配置和移除功能。</p>
 <p>在 Linux 下，相比起使用应用商店安装软件，包管理系统的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
-<p>软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p>有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装。通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动地进行安装。</p>
-<p>但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。</p>
+<p>软件包管理器的一个重要组成部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>有了软件仓库，我们不需要手动下载大量的软件包再通过包管理器安装。只需要知道软件在软件仓库中的名称，即可让包管理器从网络中抓取到相应的软件包到本地，自动进行安装。</p>
+<p>但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。</p>
 <p>包管理系统有很多，比如管理 Debian (.deb) 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（用于 Debian 系的发行版）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 <code>yum</code>（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。</p>
 <p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
 <p>apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。</p>
-<p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
-<p>此外，由于可以自定义软件源，因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
+<p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、自动处理软件包之间的依赖关系、升级软件包以至升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
+<p>此外，由于可以自定义软件源（软件仓库），因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
 <h4 id="apt-search">搜索<a class="headerlink" href="#apt-search" title="Permanent link">&para;</a></h4>
-<p>在安装前，使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code>。</p>
+<p>安装前，可以在浏览器中搜索所需的软件，查找包名，也可以使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code>。</p>
 <p>下面是 <code>apt search firefox</code> 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：</p>
 <div class="highlight"><pre><span></span><code>$ apt search firefox
 Sorting... Done
@@ -1671,7 +1671,7 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <p>当然也可以直接使用 vim、nano 等文本编辑器进行修改。</p>
 </div>
 <h4 id="third-party-software-sources">第三方软件源<a class="headerlink" href="#third-party-software-sources" title="Permanent link">&para;</a></h4>
-<p>有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 <code>apt install package-name</code> 安装我们需要的软件。</p>
+<p>有时候，由于种种原因，官方软件源中并没有我们需要的软件，但是第三方软件提供商可以提供自己的软件源。在将第三方软件源添加到 <code>/etc/apt/sources.list</code> 中之后，就可以获取到第三方提供的软件列表，再通过 <code>apt install package-name</code> 安装我们需要的第三方软件。你一般可以在需要的第三方软件官网找到这样的配置说明。</p>
 <details class="example">
 <summary>通过添加 Docker 软件源安装 Docker</summary>
 <p>Docker 是一个十分流行的容器实现，常见于开发、交付、运行应用，极大地简化了部署应用的流程。关于 Docker 将在本书<a href="../Ch08/">第八章</a>进行专门的介绍。</p>
@@ -1787,7 +1787,7 @@ Do you want to continue? [Y/n]
 <p>apt 会列出将要更新的软件包、需要下载的大小以及更新这些包需要消耗（或释放）的磁盘空间。</p>
 </div>
 <h3 id="use-package-manager-manually">使用包管理器手动安装软件包<a class="headerlink" href="#use-package-manager-manually" title="Permanent link">&para;</a></h3>
-<p>在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
+<p>在一些情况下，软件仓库中并加入没有我们所需要的软件。除了添加第三方软件源，从源安装外，有时候还可以直接下载安装软件供应商打包好的 <code>deb</code>、<code>rpm</code> 等二进制包。</p>
 <div class="admonition tip">
 <p class="admonition-title">什么是软件包</p>
 <p>软件包是将软件安装升级中需要地多个数据文件合并得到的一个单独文件，便于传输和减少存储空间。软件包中包括了所有需要的元数据，如软件的名称、软件的说明、版本号以及要运行这个软件所需要的依赖包等。</p>
@@ -1846,19 +1846,19 @@ clang-apply-replacements  dsymutil              llvm-cxxfilt
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下</span>
 $ sudo cp -R * /usr/local/
 </code></pre></div>
-<p>为什么是 <code>/usr/local</code> 呢？因为这个目录下的 <code>bin</code> 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 <code>apt</code> 一样，在任意地方调用我们的程序。</p>
+<p>为什么是 <code>/usr/local</code> 呢？因为 <code>/usr/local/bin</code> 处在 PATH 环境变量下。当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 <code>apt</code> 一样，在任意地方调用我们的程序。</p>
 <p>通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$PATH</span>
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 </code></pre></div>
-<p>在上面的复制过程中，源目录和目标目录的两个 <code>bin</code> 目录会相互合并，<code>clang</code> 和 <code>clang++</code> 两个可执行文件也就倍复制到了 <code>/usr/local/bin/</code> 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。</p>
+<p>在上面的复制过程中，源目录和目标目录的两个 <code>bin</code> 目录会相互合并，<code>clang</code> 和 <code>clang++</code> 两个可执行文件也就倍复制到了 <code>/usr/local/bin/</code> 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 <code>/usr/local</code>  下的对应目录合并，将 clang 的库和文档加到系统当中。</p>
 </div>
 <h3 id="more-usage">更多用法<a class="headerlink" href="#more-usage" title="Permanent link">&para;</a></h3>
 <p>关于软件包管理器的更多用法可查看 <a href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">Pacman/Rosetta</a> 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。</p>
 <h3 id="compiling-installation">使用源代码编译安装<a class="headerlink" href="#compiling-installation" title="Permanent link">&para;</a></h3>
 <p>此部分内容请见拓展阅读：<a href="supplement/">编译安装</a>。</p>
 <h2 id="operate-files-and-dirs">操作文件与目录<a class="headerlink" href="#operate-files-and-dirs" title="Permanent link">&para;</a></h2>
-<p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
+<p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
 <h3 id="view">查看文件内容<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
 <h4 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>$ <span class="c1"># 输出 FILE 文件的全部内容</span>
@@ -2003,7 +2003,7 @@ $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 <details class="tip">
 <summary>硬链接和软链接</summary>
 <p>cp 的 <code>-l</code> 和 <code>-s</code> 参数分布为创建硬链接和软链接（又称为“符号链接”）。</p>
-<p>简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。</p>
+<p>简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的实现。</p>
 <p>需要先了解一个概念：inode。</p>
 <p>在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。</p>
 <p>关于 inode 的进一步讲解可以参考<a href="https://www.ruanyifeng.com/blog/2011/12/inode.html">这篇文章</a>。</p>
