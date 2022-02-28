@@ -1263,7 +1263,7 @@
 
 <h1 id="_1">记号约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="command-line">命令行环境<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
-<p>对于在终端（命令行）环境下执行的连续几条命令、需要强调用户权限（例如使用到 <code>sudo</code>）或者是需要展示输出结果的命令，用以下的方式表示：</p>
+<p>对于在终端（命令行）环境下执行的连续几条命令，用以下方式表示：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>某条命令
 <span class="go">命令的输出</span>
 
@@ -1271,7 +1271,7 @@
 
 <span class="gp"># </span>需要使用 root 权限执行的命令
 </code></pre></div>
-<p>这里：命令开头的 <code>$</code> 代表此命令使用普通用户权限运行，命令开头的 <code>#</code> 代表此命令使用 root 权限（最高权限）运行，命令末尾的 <code>#</code> 代表此符号与其后的内容都是注释。</p>
+<p>命令开头的 <code>$</code> 代表此命令使用普通用户权限运行；命令开头的 <code>#</code> 代表执行命令需要使用 root 权限（最高权限），一般等价于 <code>$ sudo 该命令</code>。命令末尾的 <code>#</code> 代表此符号与其后的内容都是注释。</p>
 <h2 id="users">用户<a class="headerlink" href="#users" title="Permanent link">&para;</a></h2>
 <p>在没有特殊说明的情况下，本书假设你的用户名为 <code>ustc</code>，这也是我们提供的虚拟机镜像中的默认用户名。</p>
 
