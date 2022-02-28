@@ -8,7 +8,7 @@
 
     为保持简洁，各工具的介绍皆点到即止，进一步的用法请自行查找。
 
-## 其他 shell 文字处理工具 {#tools-in-shell}
+## 其他 shell 文本处理工具 {#tools-in-shell}
 
 ### sort {#sort}
 
@@ -157,7 +157,7 @@ ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符
 
     [Regex101](https://regex101.com/) 网站集成了常见编程语言正则表达式的解析工具，在编写正则时可以作为一个不错的参考。
 
-## 常用 Shell 文字处理工具（正则） {#tools-with-re}
+## 常用 Shell 文本处理工具（正则） {#tools-with-re}
 
 ### grep {#grep}
 
@@ -251,14 +251,78 @@ Susie 76.5
 
 示例中 `$1`，`$2`，`$3` 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。
 
-关于 awk，有一本知名的书籍《The AWK Programming Language》，感兴趣的读者可以考虑阅读。[中文翻译](https://github.com/wuzhouhui/awk)
+关于 awk，有一本知名的书籍《The AWK Programming Language》（[中文翻译](https://github.com/wuzhouhui/awk)），感兴趣的读者可以考虑阅读。
 
 ## 思考题 {#questions}
 
-!!! question "思考题"
+!!! question "正则表达式引擎"
 
     什么是 DFA/NFA 正则表达式引擎？如今常见编程语言里的正则表达式实现和此处的 BRE/ERE 有什么异同？
 
-!!! question "思考题"
+!!! question "正则表达式练习 1：邮件标题匹配"
+
+    最近你收到了很多垃圾邮件，而且垃圾邮件检测似乎没有生效。你发现这些垃圾邮件的标题似乎都满足一个正则表达式。这些垃圾邮件的标题类似如下：
+
+    - `162935832----系统通知`
+    - `166819038----系统警告`
+
+    请写出能够匹配类似标题的正则表达式。
+
+    此外，作为一个负责任的系统管理员，你订阅了 Debian Security 邮件列表（订阅后能够收到 Debian 安全更新的通知和说明邮件）。但是你发现，你的邮件系统真是成事不足败事有余，似乎喜欢把这些邮件放进垃圾邮件箱，要是漏掉了什么重要的安全更新就麻烦了！Debian Security 发送的邮件标题类似如下：
+
+    - `[SECURITY] [DSA 5075-1] minetest security update`
+    - `[SECURITY] [DSA 5059-1] policykit-1 security update`
+    - `[SECURITY] [DSA 5086-1] thunderbird security update`
+
+    同样，请写出能够匹配类似标题的正则表达式。
+
+!!! question "正则表达式练习 2：弹幕过滤"
+
+    某弹幕视频网站支持使用正则表达式过滤不想看到的弹幕。某日忍无可忍之下，你希望编写一条正则表达式过滤掉类似如下的弹幕（其中全角省略号为任意文本）：
+
+    - `当年我就是听的这首歌才……`
+    - `我就是听的这首歌帮……`
+    - `当年爷……时就是听的这首歌`
+    - `当年那天晚上要不是放这首歌我就被……`
+
+    可以接受少许的误过滤（false positive）。
+
+!!! question "正则表达式练习 3：Vscode 中的文本批量替换"
+
+    Vscode 支持使用正则表达式语法查找与替换文本内容。有一天，你的项目中使用的某个函数更新了：调用方式从 `func1(a, b, c)` 变成了 `func1_new(c, b, a, null)`。其中假设 `a`、`b`、`c` 均为不含逗号的表达式。
+
+    尝试写出搜索的正则表达式与替换目标表达式。提示：正则表达式中使用 `()` 包裹的为一组，在 vscode 的替换目标表达式中可以使用 `$1`、`$2` 的格式来引用第一组、第二组等内容。
+
+!!! question "Shell 文本处理工具练习 1：文件内容替换"
+
+    某 shell 脚本会随着图形界面启动而启动，启动后会根据环境变量替换某程序配置文件的内容。该配置文件内容如下：
+
+    ```ini
+    [settings]
+    homepage=http://example.com/
+    location-entry-search=http://cn.bing.com/search?q=%s
+    ```
+
+    我们希望编写一条或多条 sed 命令，使得脚本运行后配置文件被修改为：
+
+    ```ini
+    [settings]
+    homepage=http://example.com/index_new.html
+    location-entry-search=http://www.wolframalpha.com/input/?i=%s
+    ```
+
+    假设配置文件路径存储在变量 `$F` 中。请注意：图形界面可能会重置，此时脚本会对已经修改的配置文件再次修改，如果编写不小心，可能会得到错误的结果。
+
+!!! question "Shell 文本处理工具练习 2：Nginx 日志分析"
+
+    你的网站最近收到了一大批不正常的请求大量消耗服务器带宽，你希望通过 shell 文本处理工具确认攻击者的来源 IP。Nginx 访问日志的格式类似于如下：
+
+    ```
+    123.45.67.89 - - [01/Mar/2022:00:58:17 +0800] "GET /downloads/nonexist HTTP/1.1" 404 190 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36"
+    ```
+
+    其中我们主要关注 IP（第一列）和下载大小（第 10 列，例子中为 190）。请给出使用 `awk`、`sort` 等工具输出下载量最大的前 50 个 IP 的命令。
+
+!!! question "awk 程序小练习"
 
     如何使用 `awk` 对[示例](#awk)中文本的第二列数值求和？
