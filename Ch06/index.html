@@ -1985,21 +1985,46 @@ $ <span class="c1"># B=1 的环境变量定义仅对该命令有效</span>
 <h4 id="bash-special-tokens">特殊字符<a class="headerlink" href="#bash-special-tokens" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。</p>
-</li>
-<li>
-<p>单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。</p>
-</li>
-<li>
-<p>反引号括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。</p>
+<p>反斜杠，消除单个字符的特殊含义。</p>
 <ul>
-<li>与反引号相同的语法是 <code>$(command)</code>，它的好处是界限更明确，且可以嵌套。</li>
+<li>包含空白字符（空格和制表符）、反斜杠本身、各种引号，以及 <code>$</code>、<code>!</code> 等。</li>
+<li>与其他语言不同，shell 中反斜杠不会将普通字符转义为其他含义（例如 <code>\n</code> 不会被视作换行符）。</li>
 </ul>
 </li>
 <li>
-<p>反斜杠，消除单个字符的特殊含义（包括空格）。</p>
+<p>使用双引号包裹字符串可以消除空白字符切分参数的特殊含义，但是很多其他特殊字符的特殊含义仍然保留。双引号也被称为「弱引用」。</p>
+</li>
+<li>
+<p>单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。单引号也被称为「强引用」。</p>
+</li>
+<li>
+<p>反引号（<code>`</code>）括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。</p>
+<ul>
+<li>与反引号相同的语法是 <code>$(command)</code>，它的好处是界限更明确，且可以嵌套。因此编写新脚本时，更建议使用此语法。</li>
+</ul>
 </li>
 </ul>
+<div class="admonition example">
+<p class="admonition-title">特殊字符示例</p>
+<div class="highlight"><pre><span></span><code>$ ls /mnt/c/Program Files/
+ls: cannot access /mnt/c/Program: No such file or directory
+ls: cannot access Files/: No such file or directory
+$ <span class="c1"># 对于 ls 来说，它接收到了两个参数：/mnt/c/Program 和 Files/，因此会报错。</span>
+$ <span class="c1"># 可以使用反斜杠来转义空格</span>
+$ ls /mnt/c/Program<span class="se">\ </span>Files/  <span class="c1"># 输出省略</span>
+$ <span class="c1"># 或者使用双引号或单引号包裹</span>
+$ ls <span class="s2">&quot;/mnt/c/Program Files/&quot;</span>
+$ ls <span class="s1">&#39;/mnt/c/Program Files/&#39;</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>  <span class="c1"># 双引号中仍然可以使用各种 shell 特殊符号</span>
+/home/ustc
+$ <span class="nb">echo</span> <span class="s1">&#39;$PWD&#39;</span>  <span class="c1"># 但是单引号则不行</span>
+<span class="nv">$PWD</span>
+$ ls -lh <span class="sb">`</span>which ls<span class="sb">`</span>  <span class="c1"># 查看 ls 命令对应的程序信息，使用反引号语法</span>
+-rwxr-xr-x <span class="m">1</span> root root 139K Sep  <span class="m">5</span>  <span class="m">2019</span> /usr/bin/ls
+$ ls -lh <span class="k">$(</span>which ls<span class="k">)</span> <span class="c1"># 使用 $(command) 语法也是一样的</span>
+-rwxr-xr-x <span class="m">1</span> root root 139K Sep  <span class="m">5</span>  <span class="m">2019</span> /usr/bin/ls
+</code></pre></div>
+</div>
 <h3 id="bash-input-output">变量输入与输出<a class="headerlink" href="#bash-input-output" title="Permanent link">&para;</a></h3>
 <h4 id="bash-input">输入<a class="headerlink" href="#bash-input" title="Permanent link">&para;</a></h4>
 <p>可以使用 <code>read</code> 命令读取用户输入，并将输入的内容赋值给变量。其中 <code>-p</code> 参数后可以设置输出的提示信息。</p>
@@ -2429,6 +2454,7 @@ Accept: */*
 <li><a href="http://cn.linux.vbird.org">vbird</a></li>
 <li><a href="https://www.runoob.com/linux/linux-shell.html">runoob</a></li>
 <li><a href="https://man.linuxde.net">linuxde</a></li>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Quoting.html">Bash Quoting</a></li>
 </ul>
 
               
