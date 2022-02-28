@@ -97,12 +97,153 @@ getaddrinfo.c:(.text+0xd2): warning: Using 'getaddrinfo' in statically linked ap
     $ sudo apt install musl-tools  # musl-tools 提供了 musl-gcc 等方便的编译工具
     $ musl-gcc -o hello-static-musl hello.c -static  # 静态链接 musl libc
     $ ls -lha hello hello-static hello-static-musl
-    -rwxrwxr-x 1 ubuntu ubuntu  17K Feb 28 14:43 hello
-    -rwxrwxr-x 1 ubuntu ubuntu 852K Feb 28 14:39 hello-static
-    -rwxrwxr-x 1 ubuntu ubuntu  26K Feb 28 15:00 hello-static-musl
+    -rwxrwxr-x 1 ustc ustc  17K Feb 28 14:43 hello
+    -rwxrwxr-x 1 ustc ustc 852K Feb 28 14:39 hello-static
+    -rwxrwxr-x 1 ustc ustc  26K Feb 28 15:00 hello-static-musl
     $ # 可以看到静态链接 musl 得到的文件与动态链接接近，并且远小于静态链接 glibc 得到的文件。
     $ musl-gcc -o getaddrinfo-example-musl getaddrinfo.c -static
     $ # musl libc 的 getaddrinfo() 实现不依赖于额外的系统组件，所以可以正常静态链接
     ```
 
 ## 交叉编译示例 {#cross-compile-example}
+
+有时候，我们需要为其他的平台编写程序，例如：
+
+-   我正在使用的电脑是 x86_64 架构的，但是我现在需要给树莓派编写程序（体系结构不同）。
+-   我正在使用 Linux，但是我现在需要编译出一个 Windows 程序（操作系统不同）。
+
+怎么办呢？只能用虚拟化程序运行目标架构，然后在上面跑编译了吗？这样会很麻烦、速度可能会很慢，甚至有的时候不可行（例如性能低下的嵌入式设备，可能连编译器都加载不了）。
+
+这时候就需要交叉编译了。对于常见的架构，Ubuntu/Debian 提供了对应的交叉编译器，很大程度方便了使用。以下将给出交叉编译简单的示例。
+
+### 在 x86_64 架构编译 aarch64 的程序 {#x86_64-cross-compile-aarch64}
+
+Aarch64 是 ARM 指令集的 64 位架构。
+
+```console
+$ sudo apt install gcc-aarch64-linux-gnu  # 安装交叉编译到 aarch64 架构的编译器，同时也会安装对应架构的依赖库
+$ aarch64-linux-gnu-gcc -o hello-aarch64 hello.c  # 直接编译即可
+$ file hello-aarch64  # 看一下文件信息，可以看到是 aarch64 架构的
+hello-aarch64: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=09d2ad67b8e2f3b4befe3ce846182743d27910db, for GNU/Linux 3.7.0, not stripped
+$ ./hello-aarch64  # 无法直接运行，因为架构不兼容
+-bash: ./hello-aarch64: cannot execute binary file: Exec format error
+$ sudo apt install qemu-user-static  # 安装 qemu 模拟器
+$ qemu-aarch64-static ./hello-aarch64  # 使用 aarch64 模拟器运行程序
+/lib/ld-linux-aarch64.so.1: No such file or directory
+$ # 为什么仍然无法运行？这是因为 qemu 不知道从哪里找运行时库
+$ # 需要补充 QEMU_LD_PREFIX 环境变量
+$ QEMU_LD_PREFIX=/usr/aarch64-linux-gnu/ qemu-aarch64-static ./hello-aarch64
+Hello, world!
+```
+
+### 在 Linux 下编译 Windows 程序 {#linux-cross-compile-windows}
+
+这里使用 mingw 来进行交叉编译。
+
+```console
+$ sudo apt install gcc-mingw-w64  # 安装 mingw 交叉编译器
+$ sudo apt install wine  # 安装 wine Windows 兼容层（默认仅安装 64 位架构支持）
+$ x86_64-w64-mingw32-gcc -o hello.exe hello.c  # 编译为 64 位的 Windows 程序
+$ file hello.exe  # 确认为 Windows 程序
+hello.exe: PE32+ executable (console) x86-64, for MS Windows
+$ wine hello.exe  # 使用 wine 运行
+it looks like wine32 is missing, you should install it.
+as root, please execute "apt-get install wine32"
+wine: created the configuration directory '/home/ubuntu/.wine'
+（忽略首次配置的输出）
+wine: configuration in L"/home/ubuntu/.wine" has been updated.
+Hello, world!
+```
+
+Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
+
+```console
+$ cat winhello.c
+#ifndef UNICODE
+#define UNICODE
+#endif
+
+#include <windows.h>
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE _, PWSTR pCmdLine, int nCmdShow)
+{
+
+    // Register the window class.
+    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+
+    WNDCLASS wc = { };
+
+    wc.lpfnWndProc   = WindowProc;
+    wc.hInstance     = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    RegisterClass(&wc);
+
+    // Create the window.
+
+    HWND hwnd = CreateWindowEx(
+        0,                              // Optional window styles.
+        CLASS_NAME,                     // Window class
+        L"Learn to Program Windows",    // Window text
+        WS_OVERLAPPEDWINDOW,            // Window style
+
+        // Size and position
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+
+        NULL,       // Parent window
+        NULL,       // Menu
+        hInstance,  // Instance handle
+        NULL        // Additional application data
+        );
+
+    if (hwnd == NULL)
+    {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    // Run the message loop.
+    MSG msg = { };
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch (uMsg)
+    {
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        return 0;
+
+    case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            // All painting occurs here, between BeginPaint and EndPaint.
+            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+            EndPaint(hwnd, &ps);
+        }
+        return 0;
+    }
+
+    return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+$ x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
+/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main':
+./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain'
+collect2: error: ld returned 1 exit status
+$ # 编译失败，这是因为编译 Windows Unicode（UTF-16）程序需要额外的参数 -municode。
+$ # 参见 https://sourceforge.net/p/mingw-w64/wiki2/Unicode%20apps/
+$ x86_64-w64-mingw32-gcc -o winhello.exe winhello.c -municode
+$ wine winhello.exe  # 需要在图形界面下执行，或者复制到 Windows 中执行亦可
+```

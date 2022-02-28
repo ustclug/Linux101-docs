@@ -243,7 +243,7 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 
 #### 构建简单的交叉编译环境 {#cross-compile-example}
 
-这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译[^1]工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
+这个例子尝试使用 Debian 仓库中的 RISC-V [交叉编译](../Ch07/supplement.md#cross-compile-example)工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
 FROM debian:buster-slim
@@ -386,5 +386,3 @@ services:
 ```
 
 在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。运行完成后，可以使用 `docker-compose down` 停止并删除容器。
-
-[^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。
