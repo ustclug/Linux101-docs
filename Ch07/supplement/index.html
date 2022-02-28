@@ -1278,6 +1278,84 @@
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
 <h2 id="anaconda">Python 环境的另一种管理方式：Anaconda<a class="headerlink" href="#anaconda" title="Permanent link">&para;</a></h2>
 <h2 id="dynamic-or-static-link">动态链接与静态链接<a class="headerlink" href="#dynamic-or-static-link" title="Permanent link">&para;</a></h2>
+<p>在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 <code>ldd</code> 命令确认：</p>
+<div class="highlight"><pre><span></span><code>$ cat hello.c
+<span class="c1">#include &lt;stdio.h&gt;</span>
+
+int main<span class="o">()</span> <span class="o">{</span>
+    puts<span class="o">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="o">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+<span class="o">}</span>
+$ gcc -o hello hello.c
+$ ldd ./hello
+    linux-vdso.so.1 <span class="o">(</span>0x00007ffc49703000<span class="o">)</span>
+    libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007f36767d3000<span class="o">)</span>
+    /lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007f36769ea000<span class="o">)</span>
+</code></pre></div>
+<p>这里，我们编译得到程序就依赖于 <code>linux-vdso.so.1</code>、<code>libc.so.6</code> 和 <code>/lib64/ld-linux-x86-64.so.2</code> 三个库文件，如果系统中没有这三个库文件，程序就无法执行。</p>
+<details class="info">
+<summary>这三个文件的用途</summary>
+<p>可以看到，即使是 Hello, world 这么简单的程序，也需要外部库文件。</p>
+<ul>
+<li>linux-vdso.so.1：这个库是为了减小用户程序调用系统调用产生的切换模式（用户态 -&gt; 内核态 -&gt; 用户态）的开销而设计的。这个文件事实上并不存在。在内核加载程序时，这一部分会被自动加载入程序内存中。详情可参考 vdso(7) 文档。</li>
+<li>libc.so.6：C 运行时库，提供各种 C 函数的实现。</li>
+<li>ld-linux-x86-64.so.2：动态链接加载器。当程序需要动态链接库中的函数时负责查找并加载对应的函数。</li>
+</ul>
+</details>
+<p>我们在编写程序时，有时需要使用到第三方的库，此时需要加上 <code>-l</code> 参数指定在<strong>链接</strong>时链接到的库。</p>
+<div class="highlight"><pre><span></span><code>$ gcc -o thread thread.c -lpthread  <span class="c1"># 编译一个依赖于 pthread 线程库的应用</span>
+$ ldd ./thread  <span class="c1"># 可以看到多出了 libpthread.so.0 的动态链接依赖</span>
+    linux-vdso.so.1 <span class="o">(</span>0x00007ffe6ad93000<span class="o">)</span>
+    libpthread.so.0 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libpthread.so.0 <span class="o">(</span>0x00007fad173c7000<span class="o">)</span>
+    libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007fad171d5000<span class="o">)</span>
+    /lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007fad17407000<span class="o">)</span>
+</code></pre></div>
+<p>对于复杂的应用来说，下载后可能会因为没有动态链接库而无法运行。这一点在打包、分发自己编写的程序时也要特别注意。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ldd MegaCli64
+<span class="go">    linux-vdso.so.1 (0x00007ffca1868000)</span>
+<span class="go">    libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fa77f6c9000)</span>
+<span class="go">    libncurses.so.5 =&gt; not found</span>
+<span class="go">    libdl.so.2 =&gt; /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fa77f6c3000)</span>
+<span class="go">    libstdc++.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fa77f4e1000)</span>
+<span class="go">    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa77f392000)</span>
+<span class="go">    libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa77f375000)</span>
+<span class="go">    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa77f183000)</span>
+<span class="go">    /lib64/ld-linux-x86-64.so.2 (0x00007fa77f704000)</span>
+<span class="gp">$ </span>./MegaCli64  <span class="c1"># 缺少 libncurses.so.5，从而无法执行</span>
+<span class="go">./MegaCli64: error while loading shared libraries: libncurses.so.5: cannot open shared object file: No such file or directory</span>
+</code></pre></div>
+<p>而静态链接则将依赖的库全部打包到程序文件中。</p>
+<div class="highlight"><pre><span></span><code>$ gcc -o hello-static hello.c -static  <span class="c1"># 编译一个静态链接的应用</span>
+$ ldd ./hello-static  <span class="c1"># 没有动态链接库的依赖</span>
+    not a dynamic executable
+</code></pre></div>
+<p>此时编译得到的程序文件没有额外的依赖，在其他机器上一般也能顺利运行。近年来流行的 Go 语言的一大特点也是静态链接，编译得到的程序有着很好的兼容性。</p>
+<p>但是静态链接也存在一些问题。首先是程序大小，比较一下前面编译的 hello-static 和 hello 的大小吧：</p>
+<div class="highlight"><pre><span></span><code>$ ls -l hello hello-static
+-rwxrwxr-x <span class="m">1</span> ustc ustc  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
+-rwxrwxr-x <span class="m">1</span> ustc ustc 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
+</code></pre></div>
+<p>可以看到，动态链接的程序比较小，而静态链接的程序大小接近 1M，况且这还只是一个最简单的 hello world！并且在大小方面，静态链接的程序在运行时无法共享运行库的内存，从而导致内存占用也有一定程度增加。</p>
+<p>其次，当运行库出现问题时，用户可以选择更新库，此时所有动态链接的程序都能得到修复，但是静态链接的程序由于不使用系统库，就不得不一个个重新编译。</p>
+<p>最后一点是，Linux 的默认 C 库 glibc 对静态链接并不友好，如果程序使用了一部分函数，在静态链接时会受到限制。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>gcc -o getaddrinfo-example getaddrinfo.c -static
+<span class="go">/usr/bin/ld: /tmp/ccPZTyKT.o: in function `main&#39;:</span>
+<span class="go">getaddrinfo.c:(.text+0xd2): warning: Using &#39;getaddrinfo&#39; in statically linked applications requires at runtime the shared libraries from the glibc version used for linking</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Musl libc</p>
+<p>近年来，musl libc 开始流行，并且它也是 Alpine Linux 的 C 运行时库。它的特点是轻量、快速、对静态链接友好。我们也可以来试一下：</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install musl-tools  <span class="c1"># musl-tools 提供了 musl-gcc 等方便的编译工具</span>
+$ musl-gcc -o hello-static-musl hello.c -static  <span class="c1"># 静态链接 musl libc</span>
+$ ls -lha hello hello-static hello-static-musl
+-rwxrwxr-x <span class="m">1</span> ubuntu ubuntu  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
+-rwxrwxr-x <span class="m">1</span> ubuntu ubuntu 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
+-rwxrwxr-x <span class="m">1</span> ubuntu ubuntu  26K Feb <span class="m">28</span> <span class="m">15</span>:00 hello-static-musl
+$ <span class="c1"># 可以看到静态链接 musl 得到的文件与动态链接接近，并且远小于静态链接 glibc 得到的文件。</span>
+$ musl-gcc -o getaddrinfo-example-musl getaddrinfo.c -static
+$ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系统组件，所以可以正常静态链接</span>
+</code></pre></div>
+</div>
 <h2 id="cross-compile-example">交叉编译示例<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h2>
 
               
