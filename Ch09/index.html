@@ -1183,10 +1183,10 @@
       
         <li class="md-nav__item">
   <a href="#tools-in-shell" class="md-nav__link">
-    其他 shell 文字处理工具
+    其他 shell 文本处理工具
   </a>
   
-    <nav class="md-nav" aria-label="其他 shell 文字处理工具">
+    <nav class="md-nav" aria-label="其他 shell 文本处理工具">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1244,10 +1244,10 @@
       
         <li class="md-nav__item">
   <a href="#tools-with-re" class="md-nav__link">
-    常用 Shell 文字处理工具（正则）
+    常用 Shell 文本处理工具（正则）
   </a>
   
-    <nav class="md-nav" aria-label="常用 Shell 文字处理工具（正则）">
+    <nav class="md-nav" aria-label="常用 Shell 文本处理工具（正则）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1310,7 +1310,7 @@
 <p>本章节将介绍一些常用的 shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
 <p>为保持简洁，各工具的介绍皆点到即止，进一步的用法请自行查找。</p>
 </div>
-<h2 id="tools-in-shell">其他 shell 文字处理工具<a class="headerlink" href="#tools-in-shell" title="Permanent link">&para;</a></h2>
+<h2 id="tools-in-shell">其他 shell 文本处理工具<a class="headerlink" href="#tools-in-shell" title="Permanent link">&para;</a></h2>
 <h3 id="sort">sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h3>
 <p>sort 用于文本的行排序。默认排序方式是升序，按每行的字典序排序。</p>
 <p>一些基本用法：</p>
@@ -1459,7 +1459,7 @@ $ sort -n numbers
 <p class="admonition-title">帮助理解正则表达式的工具</p>
 <p><a href="https://regex101.com/">Regex101</a> 网站集成了常见编程语言正则表达式的解析工具，在编写正则时可以作为一个不错的参考。</p>
 </div>
-<h2 id="tools-with-re">常用 Shell 文字处理工具（正则）<a class="headerlink" href="#tools-with-re" title="Permanent link">&para;</a></h2>
+<h2 id="tools-with-re">常用 Shell 文本处理工具（正则）<a class="headerlink" href="#tools-with-re" title="Permanent link">&para;</a></h2>
 <h3 id="grep">grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p>grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个或多个文件中搜索指定 pattern 并显示相关行。</p>
 <p>grep 默认使用 BRE，要使用 ERE 可以使用 <code>grep -E</code> 或 egrep。</p>
@@ -1528,14 +1528,67 @@ Mary <span class="m">121</span>
 Susie <span class="m">76</span>.5
 </code></pre></div>
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
-<p>关于 awk，有一本知名的书籍《The AWK Programming Language》，感兴趣的读者可以考虑阅读。<a href="https://github.com/wuzhouhui/awk">中文翻译</a></p>
+<p>关于 awk，有一本知名的书籍《The AWK Programming Language》（<a href="https://github.com/wuzhouhui/awk">中文翻译</a>），感兴趣的读者可以考虑阅读。</p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
-<p class="admonition-title">思考题</p>
+<p class="admonition-title">正则表达式引擎</p>
 <p>什么是 DFA/NFA 正则表达式引擎？如今常见编程语言里的正则表达式实现和此处的 BRE/ERE 有什么异同？</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">思考题</p>
+<p class="admonition-title">正则表达式练习 1：邮件标题匹配</p>
+<p>最近你收到了很多垃圾邮件，而且垃圾邮件检测似乎没有生效。你发现这些垃圾邮件的标题似乎都满足一个正则表达式。这些垃圾邮件的标题类似如下：</p>
+<ul>
+<li><code>162935832----系统通知</code></li>
+<li><code>166819038----系统警告</code></li>
+</ul>
+<p>请写出能够匹配类似标题的正则表达式。</p>
+<p>此外，作为一个负责任的系统管理员，你订阅了 Debian Security 邮件列表（订阅后能够收到 Debian 安全更新的通知和说明邮件）。但是你发现，你的邮件系统真是成事不足败事有余，似乎喜欢把这些邮件放进垃圾邮件箱，要是漏掉了什么重要的安全更新就麻烦了！Debian Security 发送的邮件标题类似如下：</p>
+<ul>
+<li><code>[SECURITY] [DSA 5075-1] minetest security update</code></li>
+<li><code>[SECURITY] [DSA 5059-1] policykit-1 security update</code></li>
+<li><code>[SECURITY] [DSA 5086-1] thunderbird security update</code></li>
+</ul>
+<p>同样，请写出能够匹配类似标题的正则表达式。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">正则表达式练习 2：弹幕过滤</p>
+<p>某弹幕视频网站支持使用正则表达式过滤不想看到的弹幕。某日忍无可忍之下，你希望编写一条正则表达式过滤掉类似如下的弹幕（其中全角省略号为任意文本）：</p>
+<ul>
+<li><code>当年我就是听的这首歌才……</code></li>
+<li><code>我就是听的这首歌帮……</code></li>
+<li><code>当年爷……时就是听的这首歌</code></li>
+<li><code>当年那天晚上要不是放这首歌我就被……</code></li>
+</ul>
+<p>可以接受少许的误过滤（false positive）。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">正则表达式练习 3：Vscode 中的文本批量替换</p>
+<p>Vscode 支持使用正则表达式语法查找与替换文本内容。有一天，你的项目中使用的某个函数更新了：调用方式从 <code>func1(a, b, c)</code> 变成了 <code>func1_new(c, b, a, null)</code>。其中假设 <code>a</code>、<code>b</code>、<code>c</code> 均为不含逗号的表达式。</p>
+<p>尝试写出搜索的正则表达式与替换目标表达式。提示：正则表达式中使用 <code>()</code> 包裹的为一组，在 vscode 的替换目标表达式中可以使用 <code>$1</code>、<code>$2</code> 的格式来引用第一组、第二组等内容。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Shell 文本处理工具练习 1：文件内容替换</p>
+<p>某 shell 脚本会随着图形界面启动而启动，启动后会根据环境变量替换某程序配置文件的内容。该配置文件内容如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span><span class="w"></span>
+<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/</span><span class="w"></span>
+<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://cn.bing.com/search?q=%s</span><span class="w"></span>
+</code></pre></div>
+<p>我们希望编写一条或多条 sed 命令，使得脚本运行后配置文件被修改为：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span><span class="w"></span>
+<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/index_new.html</span><span class="w"></span>
+<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://www.wolframalpha.com/input/?i=%s</span><span class="w"></span>
+</code></pre></div>
+<p>假设配置文件路径存储在变量 <code>$F</code> 中。请注意：图形界面可能会重置，此时脚本会对已经修改的配置文件再次修改，如果编写不小心，可能会得到错误的结果。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Shell 文本处理工具练习 2：Nginx 日志分析</p>
+<p>你的网站最近收到了一大批不正常的请求大量消耗服务器带宽，你希望通过 shell 文本处理工具确认攻击者的来源 IP。Nginx 访问日志的格式类似于如下：</p>
+<div class="highlight"><pre><span></span><code>123.45.67.89 - - [01/Mar/2022:00:58:17 +0800] &quot;GET /downloads/nonexist HTTP/1.1&quot; 404 190 &quot;-&quot; &quot;Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36&quot;
+</code></pre></div>
+<p>其中我们主要关注 IP（第一列）和下载大小（第 10 列，例子中为 190）。请给出使用 <code>awk</code>、<code>sort</code> 等工具输出下载量最大的前 50 个 IP 的命令。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">awk 程序小练习</p>
 <p>如何使用 <code>awk</code> 对<a href="#awk">示例</a>中文本的第二列数值求和？</p>
 </div>
 
