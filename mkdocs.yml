@@ -102,7 +102,7 @@ nav:
     - 八：Docker:
         - Ch08/index.md
         - 拓展阅读: Ch08/supplement.md
-    - 九：Shell 文字处理工具与正则表达式:
+    - 九：Shell 高级文本处理与正则表达式:
         - Ch09/index.md
         - 拓展阅读: Ch09/supplement.md
     - 附录:
