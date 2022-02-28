@@ -982,6 +982,26 @@
     交叉编译示例
   </a>
   
+    <nav class="md-nav" aria-label="交叉编译示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86_64-cross-compile-aarch64" class="md-nav__link">
+    在 x86_64 架构编译 aarch64 的程序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-cross-compile-windows" class="md-nav__link">
+    在 Linux 下编译 Windows 程序
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1255,6 +1275,26 @@
     交叉编译示例
   </a>
   
+    <nav class="md-nav" aria-label="交叉编译示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86_64-cross-compile-aarch64" class="md-nav__link">
+    在 x86_64 架构编译 aarch64 的程序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-cross-compile-windows" class="md-nav__link">
+    在 Linux 下编译 Windows 程序
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1348,15 +1388,143 @@ $ ldd ./hello-static  <span class="c1"># 没有动态链接库的依赖</span>
 <div class="highlight"><pre><span></span><code>$ sudo apt install musl-tools  <span class="c1"># musl-tools 提供了 musl-gcc 等方便的编译工具</span>
 $ musl-gcc -o hello-static-musl hello.c -static  <span class="c1"># 静态链接 musl libc</span>
 $ ls -lha hello hello-static hello-static-musl
--rwxrwxr-x <span class="m">1</span> ubuntu ubuntu  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
--rwxrwxr-x <span class="m">1</span> ubuntu ubuntu 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
--rwxrwxr-x <span class="m">1</span> ubuntu ubuntu  26K Feb <span class="m">28</span> <span class="m">15</span>:00 hello-static-musl
+-rwxrwxr-x <span class="m">1</span> ustc ustc  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
+-rwxrwxr-x <span class="m">1</span> ustc ustc 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
+-rwxrwxr-x <span class="m">1</span> ustc ustc  26K Feb <span class="m">28</span> <span class="m">15</span>:00 hello-static-musl
 $ <span class="c1"># 可以看到静态链接 musl 得到的文件与动态链接接近，并且远小于静态链接 glibc 得到的文件。</span>
 $ musl-gcc -o getaddrinfo-example-musl getaddrinfo.c -static
 $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系统组件，所以可以正常静态链接</span>
 </code></pre></div>
 </div>
 <h2 id="cross-compile-example">交叉编译示例<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h2>
+<p>有时候，我们需要为其他的平台编写程序，例如：</p>
+<ul>
+<li>我正在使用的电脑是 x86_64 架构的，但是我现在需要给树莓派编写程序（体系结构不同）。</li>
+<li>我正在使用 Linux，但是我现在需要编译出一个 Windows 程序（操作系统不同）。</li>
+</ul>
+<p>怎么办呢？只能用虚拟化程序运行目标架构，然后在上面跑编译了吗？这样会很麻烦、速度可能会很慢，甚至有的时候不可行（例如性能低下的嵌入式设备，可能连编译器都加载不了）。</p>
+<p>这时候就需要交叉编译了。对于常见的架构，Ubuntu/Debian 提供了对应的交叉编译器，很大程度方便了使用。以下将给出交叉编译简单的示例。</p>
+<h3 id="x86_64-cross-compile-aarch64">在 x86_64 架构编译 aarch64 的程序<a class="headerlink" href="#x86_64-cross-compile-aarch64" title="Permanent link">&para;</a></h3>
+<p>Aarch64 是 ARM 指令集的 64 位架构。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo apt install gcc-aarch64-linux-gnu  <span class="c1"># 安装交叉编译到 aarch64 架构的编译器，同时也会安装对应架构的依赖库</span>
+<span class="gp">$ </span>aarch64-linux-gnu-gcc -o hello-aarch64 hello.c  <span class="c1"># 直接编译即可</span>
+<span class="gp">$ </span>file hello-aarch64  <span class="c1"># 看一下文件信息，可以看到是 aarch64 架构的</span>
+<span class="go">hello-aarch64: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=09d2ad67b8e2f3b4befe3ce846182743d27910db, for GNU/Linux 3.7.0, not stripped</span>
+<span class="gp">$ </span>./hello-aarch64  <span class="c1"># 无法直接运行，因为架构不兼容</span>
+<span class="go">-bash: ./hello-aarch64: cannot execute binary file: Exec format error</span>
+<span class="gp">$ </span>sudo apt install qemu-user-static  <span class="c1"># 安装 qemu 模拟器</span>
+<span class="gp">$ </span>qemu-aarch64-static ./hello-aarch64  <span class="c1"># 使用 aarch64 模拟器运行程序</span>
+<span class="go">/lib/ld-linux-aarch64.so.1: No such file or directory</span>
+<span class="gp">$ </span><span class="c1"># 为什么仍然无法运行？这是因为 qemu 不知道从哪里找运行时库</span>
+<span class="gp">$ </span><span class="c1"># 需要补充 QEMU_LD_PREFIX 环境变量</span>
+<span class="gp">$ </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/aarch64-linux-gnu/ qemu-aarch64-static ./hello-aarch64
+<span class="go">Hello, world!</span>
+</code></pre></div>
+<h3 id="linux-cross-compile-windows">在 Linux 下编译 Windows 程序<a class="headerlink" href="#linux-cross-compile-windows" title="Permanent link">&para;</a></h3>
+<p>这里使用 mingw 来进行交叉编译。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo apt install gcc-mingw-w64  <span class="c1"># 安装 mingw 交叉编译器</span>
+<span class="gp">$ </span>sudo apt install wine  <span class="c1"># 安装 wine Windows 兼容层（默认仅安装 64 位架构支持）</span>
+<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o hello.exe hello.c  <span class="c1"># 编译为 64 位的 Windows 程序</span>
+<span class="gp">$ </span>file hello.exe  <span class="c1"># 确认为 Windows 程序</span>
+<span class="go">hello.exe: PE32+ executable (console) x86-64, for MS Windows</span>
+<span class="gp">$ </span>wine hello.exe  <span class="c1"># 使用 wine 运行</span>
+<span class="go">it looks like wine32 is missing, you should install it.</span>
+<span class="go">as root, please execute &quot;apt-get install wine32&quot;</span>
+<span class="go">wine: created the configuration directory &#39;/home/ubuntu/.wine&#39;</span>
+<span class="go">（忽略首次配置的输出）</span>
+<span class="go">wine: configuration in L&quot;/home/ubuntu/.wine&quot; has been updated.</span>
+<span class="go">Hello, world!</span>
+</code></pre></div>
+<p>Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample">Windows Hello World Sample</a>（MIT License），稍作修改以符合 C 语言的语法。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat winhello.c
+<span class="gp">#</span>ifndef UNICODE
+<span class="gp">#</span>define UNICODE
+<span class="gp">#</span>endif
+
+<span class="gp">#</span>include &lt;windows.h&gt;
+
+<span class="go">LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);</span>
+
+<span class="go">int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE _, PWSTR pCmdLine, int nCmdShow)</span>
+<span class="go">{</span>
+
+<span class="go">    // Register the window class.</span>
+<span class="go">    const wchar_t CLASS_NAME[]  = L&quot;Sample Window Class&quot;;</span>
+
+<span class="go">    WNDCLASS wc = { };</span>
+
+<span class="go">    wc.lpfnWndProc   = WindowProc;</span>
+<span class="go">    wc.hInstance     = hInstance;</span>
+<span class="go">    wc.lpszClassName = CLASS_NAME;</span>
+
+<span class="go">    RegisterClass(&amp;wc);</span>
+
+<span class="go">    // Create the window.</span>
+
+<span class="go">    HWND hwnd = CreateWindowEx(</span>
+<span class="go">        0,                              // Optional window styles.</span>
+<span class="go">        CLASS_NAME,                     // Window class</span>
+<span class="go">        L&quot;Learn to Program Windows&quot;,    // Window text</span>
+<span class="go">        WS_OVERLAPPEDWINDOW,            // Window style</span>
+
+<span class="go">        // Size and position</span>
+<span class="go">        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,</span>
+
+<span class="go">        NULL,       // Parent window</span>
+<span class="go">        NULL,       // Menu</span>
+<span class="go">        hInstance,  // Instance handle</span>
+<span class="go">        NULL        // Additional application data</span>
+<span class="go">        );</span>
+
+<span class="go">    if (hwnd == NULL)</span>
+<span class="go">    {</span>
+<span class="go">        return 0;</span>
+<span class="go">    }</span>
+
+<span class="go">    ShowWindow(hwnd, nCmdShow);</span>
+
+<span class="go">    // Run the message loop.</span>
+<span class="go">    MSG msg = { };</span>
+<span class="go">    while (GetMessage(&amp;msg, NULL, 0, 0))</span>
+<span class="go">    {</span>
+<span class="go">        TranslateMessage(&amp;msg);</span>
+<span class="go">        DispatchMessage(&amp;msg);</span>
+<span class="go">    }</span>
+
+<span class="go">    return 0;</span>
+<span class="go">}</span>
+
+<span class="go">LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)</span>
+<span class="go">{</span>
+<span class="go">    switch (uMsg)</span>
+<span class="go">    {</span>
+<span class="go">    case WM_DESTROY:</span>
+<span class="go">        PostQuitMessage(0);</span>
+<span class="go">        return 0;</span>
+
+<span class="go">    case WM_PAINT:</span>
+<span class="go">        {</span>
+<span class="go">            PAINTSTRUCT ps;</span>
+<span class="go">            HDC hdc = BeginPaint(hwnd, &amp;ps);</span>
+
+<span class="go">            // All painting occurs here, between BeginPaint and EndPaint.</span>
+<span class="go">            FillRect(hdc, &amp;ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));</span>
+<span class="go">            EndPaint(hwnd, &amp;ps);</span>
+<span class="go">        }</span>
+<span class="go">        return 0;</span>
+<span class="go">    }</span>
+
+<span class="go">    return DefWindowProc(hwnd, uMsg, wParam, lParam);</span>
+<span class="go">}</span>
+<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
+<span class="go">/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main&#39;:</span>
+<span class="go">./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain&#39;</span>
+<span class="go">collect2: error: ld returned 1 exit status</span>
+<span class="gp">$ </span><span class="c1"># 编译失败，这是因为编译 Windows Unicode（UTF-16）程序需要额外的参数 -municode。</span>
+<span class="gp">$ </span><span class="c1"># 参见 https://sourceforge.net/p/mingw-w64/wiki2/Unicode%20apps/</span>
+<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c -municode
+<span class="gp">$ </span>wine winhello.exe  <span class="c1"># 需要在图形界面下执行，或者复制到 Windows 中执行亦可</span>
+</code></pre></div>
 
               
             </article>

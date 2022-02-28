@@ -1525,7 +1525,7 @@ For more examples and ideas, visit:
 <h3 id="build-with-dockerfile">使用 Dockerfile 自动化构建<a class="headerlink" href="#build-with-dockerfile" title="Permanent link">&para;</a></h3>
 <p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
 <h4 id="cross-compile-example">构建简单的交叉编译环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
-<p>这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
+<p>这个例子尝试使用 Debian 仓库中的 RISC-V <a href="../Ch07/supplement/#cross-compile-example">交叉编译</a>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:buster-slim</span>
 
 <span class="k">RUN</span><span class="w"> </span>sed -i <span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
@@ -1641,14 +1641,6 @@ For more examples and ideas, visit:
 <span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span><span class="w"></span>
 </code></pre></div>
 <p>在文件夹中运行 <code>docker-compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker-compose up -d</code> 命令可以让容器分离（detach）命令行。运行完成后，可以使用 <code>docker-compose down</code> 停止并删除容器。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
 
               
             </article>
