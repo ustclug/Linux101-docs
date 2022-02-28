@@ -512,15 +512,40 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 #### 特殊字符 {#bash-special-tokens}
 
--   双引号，能消除空格、制表符的特殊含义，但不能消除很多其他特殊字符的特殊含义。
+-   反斜杠，消除单个字符的特殊含义。
 
--   单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。
+    -   包含空白字符（空格和制表符）、反斜杠本身、各种引号，以及 `$`、`!` 等。
+    -   与其他语言不同，shell 中反斜杠不会将普通字符转义为其他含义（例如 `\n` 不会被视作换行符）。
 
--   反引号括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。
+-   使用双引号包裹字符串可以消除空白字符切分参数的特殊含义，但是很多其他特殊字符的特殊含义仍然保留。双引号也被称为「弱引用」。
 
-    -   与反引号相同的语法是 `$(command)`，它的好处是界限更明确，且可以嵌套。
+-   单引号，能消除所有特殊字符的特殊含义，包括反斜杠，因此单引号字符串中不能使用反斜杠转义单引号本身。单引号也被称为「强引用」。
 
--   反斜杠，消除单个字符的特殊含义（包括空格）。
+-   反引号（`` ` ``）括起的字符串，被 shell 解释为命令，执行时用命令输出结果代替整个反引号对界限部分。
+
+    -   与反引号相同的语法是 `$(command)`，它的好处是界限更明确，且可以嵌套。因此编写新脚本时，更建议使用此语法。
+
+!!! example "特殊字符示例"
+
+    ```shell
+    $ ls /mnt/c/Program Files/
+    ls: cannot access /mnt/c/Program: No such file or directory
+    ls: cannot access Files/: No such file or directory
+    $ # 对于 ls 来说，它接收到了两个参数：/mnt/c/Program 和 Files/，因此会报错。
+    $ # 可以使用反斜杠来转义空格
+    $ ls /mnt/c/Program\ Files/  # 输出省略
+    $ # 或者使用双引号或单引号包裹
+    $ ls "/mnt/c/Program Files/"
+    $ ls '/mnt/c/Program Files/'
+    $ echo "$PWD"  # 双引号中仍然可以使用各种 shell 特殊符号
+    /home/ustc
+    $ echo '$PWD'  # 但是单引号则不行
+    $PWD
+    $ ls -lh `which ls`  # 查看 ls 命令对应的程序信息，使用反引号语法
+    -rwxr-xr-x 1 root root 139K Sep  5  2019 /usr/bin/ls
+    $ ls -lh $(which ls) # 使用 $(command) 语法也是一样的
+    -rwxr-xr-x 1 root root 139K Sep  5  2019 /usr/bin/ls
+    ```
 
 ### 变量输入与输出 {#bash-input-output}
 
@@ -915,3 +940,4 @@ Bash shell 本身提供了调试方法：
 -   [vbird](http://cn.linux.vbird.org)
 -   [runoob](https://www.runoob.com/linux/linux-shell.html)
 -   [linuxde](https://man.linuxde.net)
+-   [Bash Quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)

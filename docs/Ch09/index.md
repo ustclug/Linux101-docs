@@ -8,16 +8,6 @@
 
     为保持简介，各工具的介绍皆点到即止，进一步的用法请自行查找。
 
-## 一些铺垫 {#prerequisite}
-
-### 单双引号 {#qoutes}
-
-当你需要输入一个含有空白字符的字符串的时候，加上引号可以避免它被切分。
-
-在 bash 中，单引号意为“强引用”，即引号之间的特殊字符会被认为是普通字符，两个单引号之间不能再有单引号，即使使用‘\’进行转义。而双引号意为”弱引用“，'$', '`', '\'， '!' 在双引号之间有特殊含义。
-
-相关内容可参考 [Bash Quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)。
-
 ## 常用 shell 文字处理工具 {#tools-in-shell}
 
 ### sort {#sort}
