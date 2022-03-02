@@ -16,7 +16,7 @@
 -   第八章: [taoky](https://github.com/taoky)
 -   第九章: [RubyOcelot](https://github.com/RubyOcelot)
 
-编排与校对: [iBug](https://github.com/iBug)
+编排与校对: [iBug](https://github.com/iBug)，[taoky](https://github.com/taoky)
 
 ## 贡献者 {#contributors}
 
