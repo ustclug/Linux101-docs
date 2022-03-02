@@ -87,7 +87,7 @@ sbin
 
 -   支持代理服务器，以减轻网络负载，加快检索速度。
 
-#### `wget` 使用 {#wget-usage}
+#### 使用 Wget {#wget-usage}
 
 使用 `man wget` 得到的结果为 `wget [option]... [URL]...`，其中的更多参数可以通过查看帮助 `wget -h` 来获取。
 
@@ -118,7 +118,7 @@ sbin
 
 cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工具，其中 c 意为 client。虽然 cURL 和 Wget 基础功能有诸多重叠，如下载。但 cURL 由于可自定义各种请求参数，所以在模拟 web 请求方面更擅长；wget 由于支持 FTP 协议和递归遍历，所以在下载文件方面更擅长。
 
-#### `curl` 使用 {#curl-usage}
+#### 使用 cURL {#curl-usage}
 
 同 `wget` 部分，我们可以查看帮助 `curl -h` 了解其用法。
 
