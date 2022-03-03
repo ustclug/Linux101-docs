@@ -1552,7 +1552,7 @@
 <p>Ubuntu 基于 Debian，并且相比 Debian 而言更加新手友好。而 Debian 的开发周期更慢，它的 Stable 分支也更加稳定。在很多方面来说，它们的区别不大，但是仍然需要注意一些事情：</p>
 <ul>
 <li>不同的发行版、不同的分支的软件源不能混用。向 Debian 添加 Ubuntu 或 Ubuntu PPAs 的源可能会导致软件依赖的混乱。</li>
-<li>Debian 不会预置一些 Ubuntu 特有的特性。从 <code>snap</code>, Livepatch（在不停机的情况下修复内核漏洞的服务）到 <code>zsys</code>（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。</li>
+<li>Debian 不会预置一些 Ubuntu 特有的特性。从 Snapcraft 商店、Livepatch（在不停机的情况下修复内核漏洞的服务）到 ZSys（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。</li>
 <li>在日常使用中，Debian 也有一些小的区别，例如默认情况下，<code>/sbin</code> 不在普通用户的 PATH 中。</li>
 </ul>
 <h2 id="centos-and-fedora">CentOS 与 Fedora<a class="headerlink" href="#centos-and-fedora" title="Permanent link">&para;</a></h2>
@@ -1577,7 +1577,7 @@ $ sudo dnf upgrade  <span class="c1"># 更新系统</span>
 <p>在 Ubuntu 等发行版中，使用的类似于 SELinux 的安全模块是 AppArmor。AppArmor 使用文件路径（而非标签）进行管理，使用相较于 SELinux 简单一些。</p>
 <h2 id="archlinux">Arch Linux<a class="headerlink" href="#archlinux" title="Permanent link">&para;</a></h2>
 <h3 id="archwiki">Arch Wiki<a class="headerlink" href="#archwiki" title="Permanent link">&para;</a></h3>
-<p>Arch Wiki (<a href="https://wiki.archlinux.org/">https://wiki.archlinux.org/</a>) 是安装和使用 Arch Linux 必读的资料，内容非常详细。就算不是 Arch 的使用者，Wiki 的内容也非常有参考价值。</p>
+<p><a href="https://wiki.archlinux.org/">Arch Wiki</a> 是安装和使用 Arch Linux 必读的资料，内容非常详细。即使不是 Arch Linux 的使用者，Wiki 的内容也非常有参考价值。</p>
 <h3 id="arch-software-management">软件包管理<a class="headerlink" href="#arch-software-management" title="Permanent link">&para;</a></h3>
 <p>Arch 使用的默认软件包管理器是 <code>pacman</code>。以下是一些常用的命令。</p>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -Syu  <span class="c1"># 更新系统所有软件包</span>
