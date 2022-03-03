@@ -7,7 +7,7 @@
 Ubuntu 基于 Debian，并且相比 Debian 而言更加新手友好。而 Debian 的开发周期更慢，它的 Stable 分支也更加稳定。在很多方面来说，它们的区别不大，但是仍然需要注意一些事情：
 
 -   不同的发行版、不同的分支的软件源不能混用。向 Debian 添加 Ubuntu 或 Ubuntu PPAs 的源可能会导致软件依赖的混乱。
--   Debian 不会预置一些 Ubuntu 特有的特性。从 `snap`, Livepatch（在不停机的情况下修复内核漏洞的服务）到 `zsys`（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。
+-   Debian 不会预置一些 Ubuntu 特有的特性。从 Snapcraft 商店、Livepatch（在不停机的情况下修复内核漏洞的服务）到 ZSys（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。
 -   在日常使用中，Debian 也有一些小的区别，例如默认情况下，`/sbin` 不在普通用户的 PATH 中。
 
 ## CentOS 与 Fedora {#centos-and-fedora}
@@ -45,7 +45,7 @@ SELinux 添加了额外的「强制访问控制」安全措施：系统中所有
 
 ### Arch Wiki {#archwiki}
 
-Arch Wiki (<https://wiki.archlinux.org/>) 是安装和使用 Arch Linux 必读的资料，内容非常详细。就算不是 Arch 的使用者，Wiki 的内容也非常有参考价值。
+[Arch Wiki](https://wiki.archlinux.org/) 是安装和使用 Arch Linux 必读的资料，内容非常详细。即使不是 Arch Linux 的使用者，Wiki 的内容也非常有参考价值。
 
 ### 软件包管理 {#arch-software-management}
 
