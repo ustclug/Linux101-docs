@@ -18,7 +18,7 @@ jobs:
         python-version: 3.8
     - uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 16
     - name: Install dependencies
       run: |
         pip3 install -r requirements.txt
