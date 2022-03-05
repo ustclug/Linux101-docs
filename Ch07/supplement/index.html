@@ -1437,87 +1437,88 @@ $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系�
 <span class="go">Hello, world!</span>
 </code></pre></div>
 <p>Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample">Windows Hello World Sample</a>（MIT License），稍作修改以符合 C 语言的语法。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat winhello.c
-<span class="gp">#</span>ifndef UNICODE
-<span class="gp">#</span>define UNICODE
-<span class="gp">#</span>endif
+<div class="highlight"><pre><span></span><code><span class="c1">// winhello.c</span>
+<span class="cp">#ifndef UNICODE</span>
+<span class="cp">#define UNICODE</span>
+<span class="cp">#endif</span>
 
-<span class="gp">#</span>include &lt;windows.h&gt;
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
 
-<span class="go">LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);</span>
+<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span><span class="w"></span>
 
-<span class="go">int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE _, PWSTR pCmdLine, int nCmdShow)</span>
-<span class="go">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">WINAPI</span><span class="w"> </span><span class="nf">wWinMain</span><span class="p">(</span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">hInstance</span><span class="p">,</span><span class="w"> </span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">PWSTR</span><span class="w"> </span><span class="n">pCmdLine</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
 
-<span class="go">    // Register the window class.</span>
-<span class="go">    const wchar_t CLASS_NAME[]  = L&quot;Sample Window Class&quot;;</span>
+<span class="w">    </span><span class="c1">// Register the window class.</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">[]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Sample Window Class&quot;</span><span class="p">;</span><span class="w"></span>
 
-<span class="go">    WNDCLASS wc = { };</span>
+<span class="w">    </span><span class="n">WNDCLASS</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
 
-<span class="go">    wc.lpfnWndProc   = WindowProc;</span>
-<span class="go">    wc.hInstance     = hInstance;</span>
-<span class="go">    wc.lpszClassName = CLASS_NAME;</span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpfnWndProc</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">hInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">hInstance</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpszClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">;</span><span class="w"></span>
 
-<span class="go">    RegisterClass(&amp;wc);</span>
+<span class="w">    </span><span class="n">RegisterClass</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wc</span><span class="p">);</span><span class="w"></span>
 
-<span class="go">    // Create the window.</span>
+<span class="w">    </span><span class="c1">// Create the window.</span>
 
-<span class="go">    HWND hwnd = CreateWindowEx(</span>
-<span class="go">        0,                              // Optional window styles.</span>
-<span class="go">        CLASS_NAME,                     // Window class</span>
-<span class="go">        L&quot;Learn to Program Windows&quot;,    // Window text</span>
-<span class="go">        WS_OVERLAPPEDWINDOW,            // Window style</span>
+<span class="w">    </span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateWindowEx</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w">                              </span><span class="c1">// Optional window styles.</span>
+<span class="w">        </span><span class="n">CLASS_NAME</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Window class</span>
+<span class="w">        </span><span class="sa">L</span><span class="s">&quot;Learn to Program Windows&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1">// Window text</span>
+<span class="w">        </span><span class="n">WS_OVERLAPPEDWINDOW</span><span class="p">,</span><span class="w">            </span><span class="c1">// Window style</span>
 
-<span class="go">        // Size and position</span>
-<span class="go">        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,</span>
+<span class="w">        </span><span class="c1">// Size and position</span>
+<span class="w">        </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"></span>
 
-<span class="go">        NULL,       // Parent window</span>
-<span class="go">        NULL,       // Menu</span>
-<span class="go">        hInstance,  // Instance handle</span>
-<span class="go">        NULL        // Additional application data</span>
-<span class="go">        );</span>
+<span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">// Parent window</span>
+<span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">// Menu</span>
+<span class="w">        </span><span class="n">hInstance</span><span class="p">,</span><span class="w">  </span><span class="c1">// Instance handle</span>
+<span class="w">        </span><span class="nb">NULL</span><span class="w">        </span><span class="c1">// Additional application data</span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
 
-<span class="go">    if (hwnd == NULL)</span>
-<span class="go">    {</span>
-<span class="go">        return 0;</span>
-<span class="go">    }</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hwnd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="go">    ShowWindow(hwnd, nCmdShow);</span>
+<span class="w">    </span><span class="n">ShowWindow</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">);</span><span class="w"></span>
 
-<span class="go">    // Run the message loop.</span>
-<span class="go">    MSG msg = { };</span>
-<span class="go">    while (GetMessage(&amp;msg, NULL, 0, 0))</span>
-<span class="go">    {</span>
-<span class="go">        TranslateMessage(&amp;msg);</span>
-<span class="go">        DispatchMessage(&amp;msg);</span>
-<span class="go">    }</span>
+<span class="w">    </span><span class="c1">// Run the message loop.</span>
+<span class="w">    </span><span class="n">MSG</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TranslateMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="go">    return 0;</span>
-<span class="go">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="go">LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)</span>
-<span class="go">{</span>
-<span class="go">    switch (uMsg)</span>
-<span class="go">    {</span>
-<span class="go">    case WM_DESTROY:</span>
-<span class="go">        PostQuitMessage(0);</span>
-<span class="go">        return 0;</span>
+<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">uMsg</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nl">WM_DESTROY</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">PostQuitMessage</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="go">    case WM_PAINT:</span>
-<span class="go">        {</span>
-<span class="go">            PAINTSTRUCT ps;</span>
-<span class="go">            HDC hdc = BeginPaint(hwnd, &amp;ps);</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nl">WM_PAINT</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PAINTSTRUCT</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">HDC</span><span class="w"> </span><span class="n">hdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span><span class="w"></span>
 
-<span class="go">            // All painting occurs here, between BeginPaint and EndPaint.</span>
-<span class="go">            FillRect(hdc, &amp;ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));</span>
-<span class="go">            EndPaint(hwnd, &amp;ps);</span>
-<span class="go">        }</span>
-<span class="go">        return 0;</span>
-<span class="go">    }</span>
+<span class="w">            </span><span class="c1">// All painting occurs here, between BeginPaint and EndPaint.</span>
+<span class="w">            </span><span class="n">FillRect</span><span class="p">(</span><span class="n">hdc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">.</span><span class="n">rcPaint</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">HBRUSH</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">COLOR_WINDOW</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">EndPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="go">    return DefWindowProc(hwnd, uMsg, wParam, lParam);</span>
-<span class="go">}</span>
-<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
 <span class="go">/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main&#39;:</span>
 <span class="go">./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain&#39;</span>
 <span class="go">collect2: error: ld returned 1 exit status</span>
