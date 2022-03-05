@@ -157,8 +157,8 @@ Hello, world!
 
 Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
 
-```console
-$ cat winhello.c
+```c
+// winhello.c
 #ifndef UNICODE
 #define UNICODE
 #endif
@@ -238,6 +238,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
+```
+
+```console
 $ x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
 /usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main':
 ./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain'
