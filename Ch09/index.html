@@ -1529,6 +1529,10 @@ Mary <span class="m">121</span>
 Susie <span class="m">76</span>.5
 </code></pre></div>
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
+<p>awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：</p>
+<div class="highlight"><pre><span></span><code>$ awk <span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span> awk_demo
+<span class="m">337</span>.5
+</code></pre></div>
 <p>关于 awk，有一本知名的书籍《The AWK Programming Language》（<a href="https://github.com/wuzhouhui/awk">中文翻译</a>），感兴趣的读者可以考虑阅读。</p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
@@ -1589,8 +1593,19 @@ Susie <span class="m">76</span>.5
 <p>其中我们主要关注 IP（第一列）和下载大小（第 10 列，例子中为 190）。请给出使用 <code>awk</code>、<code>sort</code> 等工具输出下载量最大的前 50 个 IP 的命令。</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">awk 程序小练习</p>
-<p>如何使用 <code>awk</code> 对<a href="#awk">示例</a>中文本的第二列数值求和？</p>
+<p class="admonition-title">Shell 文本处理工具练习 3：文件列表解析</p>
+<p>Ports 是 BSD 系列操作系统管理编译软件的方式。下面我们将介绍 FreeBSD 操作系统中的 ports 目录结构。</p>
+<p>Ports 目录的第一层为不同软件的分类（诸如音频程序、数据库程序会分别放置在 audio 和 databases 目录下），第二层则为各个软件的目录。在绝大多数软件的目录下都有 <code>distinfo</code> 文件，用于描述其依赖的源代码包文件的名称、大小和 SHA256 校验值信息。</p>
+<p>例如，<code>gcc10</code> 软件包的 <code>distinfo</code> 位于 <code>lang/gcc10/distinfo</code>，内容类似如下：</p>
+<div class="highlight"><pre><span></span><code>TIMESTAMP = 1619249722
+SHA256 (gcc-10.3.0.tar.xz) = 64f404c1a650f27fc33da242e1f2df54952e3963a49e06e73f6940f3223ac344
+SIZE (gcc-10.3.0.tar.xz) = 76692288
+</code></pre></div>
+<p>你的任务是：搜索 ports 中的所有 distinfo，提取所有文件名和 SHA256，按照文件名以字典序排序并输出，每行格式要求如下：</p>
+<div class="highlight"><pre><span></span><code>64f404c1a650f27fc33da242e1f2df54952e3963a49e06e73f6940f3223ac344 gcc-10.3.0.tar.xz
+</code></pre></div>
+<p>现实中的 ports 文件可以从 <a href="https://mirrors.ustc.edu.cn/freebsd-ports/ports.tar.gz">https://mirrors.ustc.edu.cn/freebsd-ports/ports.tar.gz</a> 下载解压得到。</p>
+<p>注意：少量 <code>distinfo</code> 文件的 SHA256 对应行最后会有多余的空格或制表符，需要妥善处理。</p>
 </div>
 
               
