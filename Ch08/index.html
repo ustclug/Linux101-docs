@@ -1455,41 +1455,44 @@ For more examples and ideas, visit:
 <p>接下来我们来尝试几个例子，体验 Docker 环境的独立性与易用性。</p>
 <h3 id="use-ubuntu-bash">在 Ubuntu 容器中使用 shell<a class="headerlink" href="#use-ubuntu-bash" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>docker run -it --rm ubuntu</code></li>
+<li><code>docker run -it --rm --name ubuntu-container ubuntu:20.04</code></li>
 </ul>
-<p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除。</p>
+<p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除；<code>--name</code> 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。</p>
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
 <p>在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。</p>
 <p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 或者 <code>docker container ls</code> 查看系统中所有的容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker ps -a
-<span class="go">CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES</span>
-<span class="go">39d8ef1d4acf        ubuntu                &quot;/bin/bash&quot;              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta</span>
+<span class="go">CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
+<span class="go">39d8ef1d4acf   ubuntu:20.04   &quot;bash&quot;    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
 </code></pre></div>
 <p>之后使用 <code>docker start</code> 启动容器。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker start -ai ubuntu-container
+<span class="gp">root@39d8ef1d4acf:/#</span>
+</code></pre></div>
+<p><code>-a</code> 代表连接输出以及信号。最后的 <code>ubuntu-container</code> 代指我们刚刚创建的那个容器。也可以输入容器的 ID 来启动（不需要输入完整的 ID，只需要前几位即可）：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker start -ai 39d
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
-<p><code>-a</code> 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。</p>
 <p>如果忘记加上了参数直接启动，也可以使用 <code>docker attach</code> 将容器的主进程的输入输出接上。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker attach 39d
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker attach ubuntu-container
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p><code>docker exec</code> 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker <span class="nb">exec</span> -it 39d bash
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker <span class="nb">exec</span> -it ubuntu-container bash
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p>由于 <code>docker exec</code> 创建的进程不是主进程，退出后容器也不会退出，适合需要调试容器的场合。</p>
 <p>与 <code>docker start</code> 相对应，<code>docker stop</code> 可以关闭一个容器，<code>docker rm</code> 可以删除一个容器。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker stop 39d
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker stop ubuntu-container
 <span class="go">39d</span>
-<span class="gp">$ </span>sudo docker rm 39d
+<span class="gp">$ </span>sudo docker rm ubuntu-container
 <span class="go">39d</span>
 </code></pre></div>
 <h3 id="use-python-repl">在 Python 容器中使用 Python 命令行<a class="headerlink" href="#use-python-repl" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>docker run -it --name python3 python</code></li>
 </ul>
-<p>与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 <code>--name</code> 将创建的容器命名为 <code>python3</code>。之后的容器操作中我们就不需要查询容器 ID，直接使用 <code>python3</code> 代表这个容器即可。</p>
+<p>与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 <code>--name</code> 将创建的容器命名为 <code>python3</code>。</p>
 <h3 id="use-mkdocs-material-build">在 MkDocs 容器中构建本书<a class="headerlink" href="#use-mkdocs-material-build" title="Permanent link">&para;</a></h3>
 <ul>
 <li>从 GitHub 上获取本书源码：<code>git clone https://github.com/ustclug/Linux101-docs.git</code></li>
