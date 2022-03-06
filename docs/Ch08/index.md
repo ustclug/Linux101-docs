@@ -141,9 +141,9 @@ For more examples and ideas, visit:
 
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
--   `docker run -it --rm ubuntu`
+-   `docker run -it --rm --name ubuntu-container ubuntu:20.04`
 
-这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除。
+这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除；`--name` 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
@@ -153,30 +153,35 @@ For more examples and ideas, visit:
 
 ```console
 $ sudo docker ps -a
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
-39d8ef1d4acf        ubuntu                "/bin/bash"              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta
+CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES
+39d8ef1d4acf   ubuntu:20.04   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
 ```
 
 之后使用 `docker start` 启动容器。
+
+```console
+$ sudo docker start -ai ubuntu-container
+root@39d8ef1d4acf:/#
+```
+
+`-a` 代表连接输出以及信号。最后的 `ubuntu-container` 代指我们刚刚创建的那个容器。也可以输入容器的 ID 来启动（不需要输入完整的 ID，只需要前几位即可）：
 
 ```console
 $ sudo docker start -ai 39d
 root@39d8ef1d4acf:/#
 ```
 
-`-a` 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。
-
 如果忘记加上了参数直接启动，也可以使用 `docker attach` 将容器的主进程的输入输出接上。
 
 ```console
-$ sudo docker attach 39d
+$ sudo docker attach ubuntu-container
 root@39d8ef1d4acf:/#
 ```
 
 `docker exec` 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。
 
 ```console
-$ sudo docker exec -it 39d bash
+$ sudo docker exec -it ubuntu-container bash
 root@39d8ef1d4acf:/#
 ```
 
@@ -185,9 +190,9 @@ root@39d8ef1d4acf:/#
 与 `docker start` 相对应，`docker stop` 可以关闭一个容器，`docker rm` 可以删除一个容器。
 
 ```console
-$ sudo docker stop 39d
+$ sudo docker stop ubuntu-container
 39d
-$ sudo docker rm 39d
+$ sudo docker rm ubuntu-container
 39d
 ```
 
@@ -195,7 +200,7 @@ $ sudo docker rm 39d
 
 -   `docker run -it --name python3 python`
 
-与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。之后的容器操作中我们就不需要查询容器 ID，直接使用 `python3` 代表这个容器即可。
+与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
