@@ -251,6 +251,13 @@ Susie 76.5
 
 示例中 `$1`，`$2`，`$3` 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。
 
+awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：
+
+```shell
+$ awk 'BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }' awk_demo
+337.5
+```
+
 关于 awk，有一本知名的书籍《The AWK Programming Language》（[中文翻译](https://github.com/wuzhouhui/awk)），感兴趣的读者可以考虑阅读。
 
 ## 思考题 {#questions}
@@ -323,6 +330,26 @@ Susie 76.5
 
     其中我们主要关注 IP（第一列）和下载大小（第 10 列，例子中为 190）。请给出使用 `awk`、`sort` 等工具输出下载量最大的前 50 个 IP 的命令。
 
-!!! question "awk 程序小练习"
+!!! question "Shell 文本处理工具练习 3：文件列表解析"
 
-    如何使用 `awk` 对[示例](#awk)中文本的第二列数值求和？
+    Ports 是 BSD 系列操作系统管理编译软件的方式。下面我们将介绍 FreeBSD 操作系统中的 ports 目录结构。
+
+    Ports 目录的第一层为不同软件的分类（诸如音频程序、数据库程序会分别放置在 audio 和 databases 目录下），第二层则为各个软件的目录。在绝大多数软件的目录下都有 `distinfo` 文件，用于描述其依赖的源代码包文件的名称、大小和 SHA256 校验值信息。
+
+    例如，`gcc10` 软件包的 `distinfo` 位于 `lang/gcc10/distinfo`，内容类似如下：
+
+    ```
+    TIMESTAMP = 1619249722
+    SHA256 (gcc-10.3.0.tar.xz) = 64f404c1a650f27fc33da242e1f2df54952e3963a49e06e73f6940f3223ac344
+    SIZE (gcc-10.3.0.tar.xz) = 76692288
+    ```
+
+    你的任务是：搜索 ports 中的所有 distinfo，提取所有文件名和 SHA256，按照文件名以字典序排序并输出，每行格式要求如下：
+
+    ```
+    64f404c1a650f27fc33da242e1f2df54952e3963a49e06e73f6940f3223ac344 gcc-10.3.0.tar.xz
+    ```
+
+    现实中的 ports 文件可以从 <https://mirrors.ustc.edu.cn/freebsd-ports/ports.tar.gz> 下载解压得到。
+
+    注意：少量 `distinfo` 文件的 SHA256 对应行最后会有多余的空格或制表符，需要妥善处理。
