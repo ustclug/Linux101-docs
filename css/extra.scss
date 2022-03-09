@@ -67,7 +67,8 @@ $color-codes: red, darkred, orangered, green, limegreen;
   }
 
   .admonition,
-  details {
+  details,
+  :-webkit-any(.admonition, details) {
     font-size: 0.9em;
   }
 
