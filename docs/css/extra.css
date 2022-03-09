@@ -21,7 +21,7 @@
 .md-typeset .img-inline { display: inline-block; vertical-align: text-bottom; }
 .md-typeset .img-border { border: 1px solid black; }
 .md-typeset kbd { box-shadow: 0 0 0 0.05rem var(--md-default-fg-color--lighter), 0 0.1rem 0 var(--md-default-fg-color--lighter), inset 0 -0.1rem 0.2rem var(--md-default-bg-color); }
-.md-typeset .admonition, .md-typeset details { font-size: 0.9em; }
+.md-typeset .admonition, .md-typeset details, .md-typeset :-webkit-any(.admonition, details) { font-size: 0.9em; }
 .md-typeset .md-typeset__table { display: block; margin-left: auto; margin-right: auto; }
 .md-typeset .md-typeset__table > table { display: table; width: auto; margin: 0 auto; }
 .md-typeset p.caption { text-align: center; font-size: 0.94em; color: grey; margin: -0.7em 0 0; }
