@@ -1,3 +1,5 @@
+@import "https://101.lug.ustc.edu.cn/_extra/roboto.css";
+@import "https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css";
 .red, .red-important { color: red !important; }
 
 .darkred, .darkred-important { color: darkred !important; }
@@ -8,7 +10,7 @@
 
 .limegreen, .limegreen-important { color: limegreen !important; }
 
-:root { --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
+:root { --md-text-font: Roboto; --md-code-font: Roboto Mono; --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
 
 .md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
