@@ -32,7 +32,6 @@ theme:
     - navigation.indexes
     - navigation.top
     - navigation.tracking
-  custom_dir: overrides
 
 markdown_extensions:
   - admonition
