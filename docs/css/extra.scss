@@ -2,9 +2,6 @@
 //
 // scss extra.scss > extra.css
 
-@import "https://101.lug.ustc.edu.cn/_extra/roboto.css";
-@import "https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css";
-
 $color-codes: red, darkred, orangered, green, limegreen;
 @each $color in $color-codes {
   .#{"" + $color}, .#{"" + $color}-important {

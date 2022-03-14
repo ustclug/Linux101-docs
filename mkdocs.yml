@@ -60,6 +60,8 @@ extra:
 
 extra_css:
   - 'css/extra.css'
+  - 'https://101.lug.ustc.edu.cn/_extra/roboto.css'
+  - 'https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css'
 
 nav:
     - 负一：计划规格:
