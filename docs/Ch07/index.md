@@ -392,9 +392,10 @@ Python 有非常多的依赖管理方案，某种意义上讲是自带的 pip �
 
 让我们考虑以下情况：
 
-Python 通过 pip 安装的包，默认安装在系统目录 `/usr/lib/python[version]` 下，
+Python 通过包管理器如 apt 安装的包，默认安装在系统目录 `/usr/lib/python[version]` 下，
+而通过 pip 安装的包，默认安装目录在 `/usr/local/lib/python[version]` 下，
 当传入了一个 `--user` 选项时，则会安装在用户目录 `~/.local/lib/python[version]` 下。
-当普通地运行 Python 解释器时，这两个目录下的包均可见。
+当普通地运行 Python 解释器时，这几个目录下的包均可见。
 
 现在假设用户目录下已有一个包 `a`，版本为 `1.0.0`。
 现在我们需要开发一个程序，也需要包 `a`，但要求版本大于 `2.0.0`。
