@@ -1657,9 +1657,11 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 一般而言，只需熟悉常用的 requirements.txt 和 setuptools 方案即可。</p>
 <h3 id="py-venv">Virtualenv<a class="headerlink" href="#py-venv" title="Permanent link">&para;</a></h3>
 <p>让我们考虑以下情况：</p>
-<p>Python 通过 pip 安装的包，默认安装在系统目录 <code>/usr/lib/python[version]</code> 下，
-当传入了一个 <code>--user</code> 选项时，则会安装在用户目录 <code>~/.local/lib/python[version]</code> 下。
-当普通地运行 Python 解释器时，这两个目录下的包均可见。</p>
+<p>Python 通过包管理器如 apt 安装的包，默认安装在系统目录 <code>/usr/lib/python[version]</code> 下，
+而通过 pip 安装的包，默认安装目录在 <code>/usr/local/lib/python[version]</code> 下，
+当通过 pip 安装时显式传入了一个 <code>--user</code> 选项时，则会安装在用户目录 <code>~/.local/lib/python[version]</code> 下，
+另外，在普通用户下直接执行 pip install 而没有传入 <code>--user</code> 选项时，也会因为用户没有系统目录的写权限而安装到用户目录。
+当普通地运行 Python 解释器时，这几个目录下的包均可见。</p>
 <p>现在假设用户目录下已有一个包 <code>a</code>，版本为 <code>1.0.0</code>。
 现在我们需要开发一个程序，也需要包 <code>a</code>，但要求版本大于 <code>2.0.0</code>。</p>
 <p>由于 pip 不允许同时安装不同版本的同一个包，当你运行 <code>pip3 install a&gt;=2.0.0</code> 时，pip 会更新 <code>a</code> 到 <code>2.0.0</code>，
