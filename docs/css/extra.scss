@@ -2,7 +2,7 @@
 //
 // scss extra.scss > extra.css
 
-$color-codes: red, darkred, orangered, green, limegreen;
+$color-codes: red, darkred, orangered, green, limegreen, cyan, darkcyan;
 @each $color in $color-codes {
   .#{"" + $color}, .#{"" + $color}-important {
     color: #{$color} !important;
@@ -10,8 +10,8 @@ $color-codes: red, darkred, orangered, green, limegreen;
 }
 
 :root {
-  --md-text-font: Roboto;
-  --md-code-font: Roboto Mono;
+  //--md-text-font: Roboto;
+  //--md-code-font: Roboto Mono;
   --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
 }
 
@@ -69,8 +69,7 @@ $color-codes: red, darkred, orangered, green, limegreen;
   }
 
   .admonition,
-  details,
-  :-webkit-any(.admonition, details) {
+  details {
     font-size: 0.9em;
   }
 
