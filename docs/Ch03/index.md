@@ -547,7 +547,7 @@ Nano 启动后，用户可以直接开始输入需要的内容，使用方向键
 $ # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
 $ cp [OPTION] SOURCE DEST
 
-$ # 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
+$ # 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
 $ cp [OPTION] SOURCE... DIRECTORY
 ```
 
