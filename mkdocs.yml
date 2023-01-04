@@ -29,6 +29,10 @@ theme:
     logo: fontawesome/brands/linux
     repo: octicons/mark-github-16
   features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - navigation.footer
     - navigation.indexes
     - navigation.top
     - navigation.tracking
