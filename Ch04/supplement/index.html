@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../solution/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1387,10 +1388,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch04/supplement.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
@@ -1475,40 +1475,40 @@
 <p>strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。</p>
 <p>注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="../../Ch06/#redirect-and-pipe">第六章</a>。</p>
 </div>
-<div class="highlight"><pre><span></span><code>$ strace ps
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>strace<span class="w"> </span>ps
 ...
-openat<span class="o">(</span>AT_FDCWD, <span class="s2">&quot;/proc/1/stat&quot;</span>, O_RDONLY<span class="o">)</span> <span class="o">=</span> <span class="m">6</span>
-read<span class="o">(</span><span class="m">6</span>, <span class="s2">&quot;1 (systemd) S 0 1 1 0 -1 4194560&quot;</span>..., <span class="m">1024</span><span class="o">)</span> <span class="o">=</span> <span class="m">193</span>
-close<span class="o">(</span><span class="m">6</span><span class="o">)</span>                                <span class="o">=</span> <span class="m">0</span>
-openat<span class="o">(</span>AT_FDCWD, <span class="s2">&quot;/proc/1/status&quot;</span>, O_RDONLY<span class="o">)</span> <span class="o">=</span> <span class="m">6</span>
-read<span class="o">(</span><span class="m">6</span>, <span class="s2">&quot;Name:\tsystemd\nUmask:\t0000\nState:&quot;</span>..., <span class="m">1024</span><span class="o">)</span> <span class="o">=</span> <span class="m">1024</span>
-read<span class="o">(</span><span class="m">6</span>, <span class="s2">&quot;00,00000000,00000000,00000000,00&quot;</span>..., <span class="m">1024</span><span class="o">)</span> <span class="o">=</span> <span class="m">295</span>
+openat<span class="o">(</span>AT_FDCWD,<span class="w"> </span><span class="s2">&quot;/proc/1/stat&quot;</span>,<span class="w"> </span>O_RDONLY<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
+read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;1 (systemd) S 0 1 1 0 -1 4194560&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">193</span>
+close<span class="o">(</span><span class="m">6</span><span class="o">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+openat<span class="o">(</span>AT_FDCWD,<span class="w"> </span><span class="s2">&quot;/proc/1/status&quot;</span>,<span class="w"> </span>O_RDONLY<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
+read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;Name:\tsystemd\nUmask:\t0000\nState:&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1024</span>
+read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;00,00000000,00000000,00000000,00&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">295</span>
 close<span class="o">(</span><span class="m">6</span><span class="o">)</span>
 ...
 </code></pre></div>
 <p><code>strace</code> 会输出很多内容，上面是其中的典型案例。</p>
 <p>可以大致猜测，ps 通过打开 <code>/proc/1</code> 文件夹下的 <code>stat</code> 和 <code>status</code> 文件，获得 1 号进程的信息。我们也可以试着打开它：</p>
-<div class="highlight"><pre><span></span><code>$ cat /proc/1/stat          <span class="c1"># 由于用户权限不同，是否添加 sudo 会导致读取出不同内容</span>
-<span class="m">1</span> <span class="o">(</span>systemd<span class="o">)</span> S <span class="m">0</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> -1 <span class="m">4194560</span> <span class="m">113722</span> <span class="m">4652720</span> <span class="m">87</span> <span class="m">2258</span> <span class="m">79</span> <span class="m">670</span> <span class="m">19018</span> <span class="m">28647</span> <span class="se">\</span>
-<span class="m">20</span> <span class="m">0</span> <span class="m">1</span> <span class="m">0</span> <span class="m">4</span> <span class="m">231030784</span> <span class="m">2252</span> <span class="m">18446744073709551615</span> <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">671173123</span> <span class="m">4096</span> <span class="m">1260</span> <span class="se">\</span>
-<span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">17</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">135</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/proc/1/stat<span class="w">          </span><span class="c1"># 由于用户权限不同，是否添加 sudo 会导致读取出不同内容</span>
+<span class="m">1</span><span class="w"> </span><span class="o">(</span>systemd<span class="o">)</span><span class="w"> </span>S<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>-1<span class="w"> </span><span class="m">4194560</span><span class="w"> </span><span class="m">113722</span><span class="w"> </span><span class="m">4652720</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">2258</span><span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">670</span><span class="w"> </span><span class="m">19018</span><span class="w"> </span><span class="m">28647</span><span class="w"> </span><span class="se">\</span>
+<span class="m">20</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">231030784</span><span class="w"> </span><span class="m">2252</span><span class="w"> </span><span class="m">18446744073709551615</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">671173123</span><span class="w"> </span><span class="m">4096</span><span class="w"> </span><span class="m">1260</span><span class="w"> </span><span class="se">\</span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
 
-$ cat /proc/1/status
-Name:   systemd
-Umask:  <span class="m">0000</span>
-State:  S <span class="o">(</span>sleeping<span class="o">)</span>
-Tgid:   <span class="m">1</span>
-Ngid:   <span class="m">0</span>
-Pid:    <span class="m">1</span>
-PPid:   <span class="m">0</span>
-TracerPid:  <span class="m">0</span>
-Uid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>
-Gid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>
-FDSize: <span class="m">256</span>
+$<span class="w"> </span>cat<span class="w"> </span>/proc/1/status
+Name:<span class="w">   </span>systemd
+Umask:<span class="w">  </span><span class="m">0000</span>
+State:<span class="w">  </span>S<span class="w"> </span><span class="o">(</span>sleeping<span class="o">)</span>
+Tgid:<span class="w">   </span><span class="m">1</span>
+Ngid:<span class="w">   </span><span class="m">0</span>
+Pid:<span class="w">    </span><span class="m">1</span>
+PPid:<span class="w">   </span><span class="m">0</span>
+TracerPid:<span class="w">  </span><span class="m">0</span>
+Uid:<span class="w">    </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>
+Gid:<span class="w">    </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>
+FDSize:<span class="w"> </span><span class="m">256</span>
 Groups:
-NStgid: <span class="m">1</span>
-NSpid:  <span class="m">1</span>
-NSpgid: <span class="m">1</span>
+NStgid:<span class="w"> </span><span class="m">1</span>
+NSpid:<span class="w">  </span><span class="m">1</span>
+NSpgid:<span class="w"> </span><span class="m">1</span>
 （以下内容省略）
 </code></pre></div>
 <p>也许第一个文件不是那么好看，但第二个文件就很直白了。至此可以得出结论，根目录下 <code>/proc</code> 文件夹储存进程信息，而 htop 等命令通过对该文件夹下的文件进行自动读取来监视进程。实际上，<code>/proc</code> 是一个虚拟的文件系统，存在于内存中，反映着系统的运行状态。</p>
@@ -1527,28 +1527,28 @@ NSpgid: <span class="m">1</span>
 <h2 id="fork">关于 <code>fork()</code><a class="headerlink" href="#fork" title="Permanent link">&para;</a></h2>
 <p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>程序文件 <code>forking.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Unix standard header，提供 POSIX 标准 API</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Unix standard header，提供 POSIX 标准 API</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span><span class="w">   </span><span class="c1">// fork 系统调用，全面复制父进程所有信息。</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// 子进程返回 pid=0。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// fork 失败，pid 为负值。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w">  </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// 父进程返回子进程 pid。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc forking.c -o forking &amp;&amp; ./forking</code>，就可以在另一终端打开 htop 查看成果了。</p>
 <p><img alt="forking" src="../images/forking.png" /></p>
@@ -1563,28 +1563,28 @@ NSpgid: <span class="m">1</span>
 <p>你可能会注意到，有些程序对你按下 Ctrl + C 的操作会有一些独特的响应，例如 <code>ping</code>，如果使用 Ctrl + C 键盘中断 (SIGINT)，在程序终止之前会有一段总结；而使用 SIGTERM 不会有此效果。</p>
 <p>这个实验中，我们使用系统调用 <code>signal()</code> 来重新设置进程对信号的响应函数。</p>
 <p>程序文件 <code>signal_handle.c</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span><span class="c1">   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // sleep 函数</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span><span class="c1">   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // sleep 函数</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">);</span><span class="w">  </span><span class="c1">// 设置一个处理信号的函数</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">sig_handler</span><span class="p">);</span><span class="w">    </span><span class="c1">// 替换默认终止信号处理例程</span>
 <span class="w">    </span><span class="c1">// signal(SIGINT, sig_handler);  // 替换键盘中断（keyboard interrupt）处理例程</span>
 <span class="w">    </span><span class="c1">// signal(SIGHUP, sig_handler);  // 替换控制进程挂起信号处理例程</span>
 <span class="w">    </span><span class="c1">// signal(SIGKILL, sig_handler); // 替换……不存在的！</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// do something</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w">     </span><span class="c1">// 在收到信号时输出</span>
 <span class="w">    </span><span class="c1">// fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </code></pre></div>
 <p>随后，在文件所在目录下打开 shell，运行 <code>gcc signal_handle.c -o signal_handle &amp;&amp; ./signal_handle</code>，就可以在另一终端打开 htop 来试验了。</p>
 <div class="admonition warning">
@@ -1638,42 +1638,6 @@ NSpgid: <span class="m">1</span>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 进程、前后台、服务与例行性任务" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              进程、前后台、服务与例行性任务
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../solution/" class="md-footer__link md-footer__link--next" aria-label="下一页: 思考题解答" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1721,12 +1685,11 @@ NSpgid: <span class="m">1</span>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

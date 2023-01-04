@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../solution/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1317,17 +1318,16 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch06/supplement.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
 <h2 id="c-style-for">类 C 语言的 for 循环<a class="headerlink" href="#c-style-for" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="o">((</span>assignment<span class="p">;</span>condition<span class="p">;</span>next<span class="o">))</span><span class="p">;</span><span class="k">do</span>
-    command_1<span class="p">;</span>
-    command_2<span class="p">;</span>
+<span class="w">    </span>command_1<span class="p">;</span>
+<span class="w">    </span>command_2<span class="p">;</span>
 <span class="k">done</span><span class="p">;</span>
 </code></pre></div>
 <p>这里的 for 循环与 C 中的相似。我们知道，在 shell 里变量调用需要加 <code>$</code>，但是 for 中的 <code>(())</code> 中不需要。</p>
@@ -1337,7 +1337,7 @@
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="k">for</span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>i&lt;<span class="o">=</span><span class="m">5</span><span class="p">;</span>i++<span class="o">))</span><span class="p">;</span><span class="k">do</span>
-    <span class="nb">echo</span> <span class="s2">&quot;这是第 </span><span class="nv">$i</span><span class="s2"> 次调用&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;这是第 </span><span class="nv">$i</span><span class="s2"> 次调用&quot;</span><span class="p">;</span>
 <span class="k">done</span><span class="p">;</span>
 </code></pre></div>
 <p>输出结果：</p>
@@ -1357,19 +1357,19 @@
 <p>在<a href="../../Ch05/">第五章</a>中，我们介绍过 fork 炸弹。它通过创建大量进程消耗大量的系统资源，从而拖慢系统与正常进程的运行速度，增大响应时间，使得操作系统的正常运作受到较大影响。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h3 id="fork-bomb-theory">原理<a class="headerlink" href="#fork-bomb-theory" title="Permanent link">&para;</a></h3>
 <p>Fork 炸弹有如下的这种形式：</p>
-<div class="highlight"><pre><span></span><code>:<span class="o">(){</span> :<span class="p">|</span>: <span class="p">&amp;</span> <span class="o">}</span><span class="p">;</span>:
+<div class="highlight"><pre><span></span><code>:<span class="o">(){</span><span class="w"> </span>:<span class="p">|</span>:<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="o">}</span><span class="p">;</span>:
 </code></pre></div>
 <p>这是一个函数定义以及对其的调用语句，可以格式化为：</p>
 <div class="highlight"><pre><span></span><code>:<span class="o">()</span>
 <span class="o">{</span>
-    :<span class="p">|</span>: <span class="p">&amp;</span>
+<span class="w">    </span>:<span class="p">|</span>:<span class="w"> </span><span class="p">&amp;</span>
 <span class="o">}</span><span class="p">;</span>
 :
 </code></pre></div>
 <p>在 Bash 中，<code>:</code>、<code>.</code>、<code>/</code> 等一些字符也能够被用于函数命名，因此，上面的代码等价于：</p>
 <div class="highlight"><pre><span></span><code>func<span class="o">()</span>
 <span class="o">{</span>
-    func <span class="p">|</span> func <span class="p">&amp;</span>
+<span class="w">    </span>func<span class="w"> </span><span class="p">|</span><span class="w"> </span>func<span class="w"> </span><span class="p">&amp;</span>
 <span class="o">}</span><span class="p">;</span>
 func
 </code></pre></div>
@@ -1413,42 +1413,6 @@ func
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 网络、文本处理工具与 Shell 脚本" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              网络、文本处理工具与 Shell 脚本
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../solution/" class="md-footer__link md-footer__link--next" aria-label="下一页: 思考题解答" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1497,12 +1461,11 @@ func
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

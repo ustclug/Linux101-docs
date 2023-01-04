@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../solution/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1277,10 +1278,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch05/supplement.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
@@ -1298,8 +1298,8 @@
 <p>在很早的时候（1974 年 Unix 第五版），sticky bit 是为可执行文件设计的，它告诉操作系统在程序运行结束后将程序的代码段（text 段）保留在内存或交换区中，以便下一次更快地启动这个程序，因此这个位被称作 sticky（粘滞位）。由于现代计算机存储容量的增加和操作系统缓存功能的完善，已经没有系统再将 sticky bit 解释为这个最初的含义了。在 Linux 系统中，文件上的 sticky bit 从未有过任何功能，仅有目录的 sticky bit 功能如上所述。</p>
 </details>
 <p>我们可以看一下，<code>/usr/bin/passwd</code> 的文件权限设置：</p>
-<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/passwd
--rwsr-xr-x <span class="m">1</span> root root <span class="m">67992</span> Aug <span class="m">29</span>  <span class="m">2019</span> /usr/bin/passwd
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/passwd
+-rwsr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">67992</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">29</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>/usr/bin/passwd
 </code></pre></div>
 <p>可以看到，本来是执行权限位的地方变成了 <code>s</code>。这代表此文件有 <code>setuid</code> 特殊权限位。在你执行 <code>passwd</code> 的时候，它的实际权限和 <code>root</code> 一样，只是它知道，执行它的人是你（而非 <code>root</code>），所以只提供修改你自己的密码的功能。</p>
 <p>同样，<code>su</code> 和 <code>sudo</code> 也有 <code>setuid</code> 权限位：</p>
@@ -1329,10 +1329,10 @@ $ ls -l /usr/bin/sudo
 <li>在桌面环境中打开的终端（模拟器），启动的也是「非登录 Shell」</li>
 </ul>
 <p>一般地，「登录 Shell」会额外加载 <code>profile</code> 文件（文件名根据你使用的 Shell 的不同而有区别），且它的 <code>argv[0][0] == '-'</code>（相信你已经学过 C 语言了）。可以用以下方法验证：</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$0</span>  <span class="c1"># 查看当前 Shell 的 argv[0] 的值</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$0</span><span class="w">  </span><span class="c1"># 查看当前 Shell 的 argv[0] 的值</span>
 -bash
-$ <span class="c1"># 是 Login shell</span>
-$ sudo su <span class="c1"># 进入 root</span>
+$<span class="w"> </span><span class="c1"># 是 Login shell</span>
+$<span class="w"> </span>sudo<span class="w"> </span>su<span class="w"> </span><span class="c1"># 进入 root</span>
 <span class="c1"># echo $0</span>
 bash
 <span class="c1"># # 是 Non-login shell</span>
@@ -1359,42 +1359,6 @@ bash
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 用户与用户组、文件权限、文件系统层次结构" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              用户与用户组、文件权限、文件系统层次结构
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../solution/" class="md-footer__link md-footer__link--next" aria-label="下一页: 思考题解答" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1443,12 +1407,11 @@ bash
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

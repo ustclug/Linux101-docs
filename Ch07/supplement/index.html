@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../Ch08/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1317,28 +1318,27 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch07/supplement.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
 <h2 id="anaconda">Python 环境的另一种管理方式：Anaconda<a class="headerlink" href="#anaconda" title="Permanent link">&para;</a></h2>
 <h2 id="dynamic-or-static-link">动态链接与静态链接<a class="headerlink" href="#dynamic-or-static-link" title="Permanent link">&para;</a></h2>
 <p>在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 <code>ldd</code> 命令确认：</p>
-<div class="highlight"><pre><span></span><code>$ cat hello.c
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>hello.c
 <span class="c1">#include &lt;stdio.h&gt;</span>
 
-int main<span class="o">()</span> <span class="o">{</span>
-    puts<span class="o">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="o">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+int<span class="w"> </span>main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>puts<span class="o">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="o">}</span>
-$ gcc -o hello hello.c
-$ ldd ./hello
-    linux-vdso.so.1 <span class="o">(</span>0x00007ffc49703000<span class="o">)</span>
-    libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007f36767d3000<span class="o">)</span>
-    /lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007f36769ea000<span class="o">)</span>
+$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>hello.c
+$<span class="w"> </span>ldd<span class="w"> </span>./hello
+<span class="w">    </span>linux-vdso.so.1<span class="w"> </span><span class="o">(</span>0x00007ffc49703000<span class="o">)</span>
+<span class="w">    </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>0x00007f36767d3000<span class="o">)</span>
+<span class="w">    </span>/lib64/ld-linux-x86-64.so.2<span class="w"> </span><span class="o">(</span>0x00007f36769ea000<span class="o">)</span>
 </code></pre></div>
 <p>这里，我们编译得到程序就依赖于 <code>linux-vdso.so.1</code>、<code>libc.so.6</code> 和 <code>/lib64/ld-linux-x86-64.so.2</code> 三个库文件，如果系统中没有这三个库文件，程序就无法执行。</p>
 <details class="info">
@@ -1351,15 +1351,15 @@ $ ldd ./hello
 </ul>
 </details>
 <p>我们在编写程序时，有时需要使用到第三方的库，此时需要加上 <code>-l</code> 参数指定在<strong>链接</strong>时链接到的库。</p>
-<div class="highlight"><pre><span></span><code>$ gcc -o thread thread.c -lpthread  <span class="c1"># 编译一个依赖于 pthread 线程库的应用</span>
-$ ldd ./thread  <span class="c1"># 可以看到多出了 libpthread.so.0 的动态链接依赖</span>
-    linux-vdso.so.1 <span class="o">(</span>0x00007ffe6ad93000<span class="o">)</span>
-    libpthread.so.0 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libpthread.so.0 <span class="o">(</span>0x00007fad173c7000<span class="o">)</span>
-    libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007fad171d5000<span class="o">)</span>
-    /lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007fad17407000<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>thread<span class="w"> </span>thread.c<span class="w"> </span>-lpthread<span class="w">  </span><span class="c1"># 编译一个依赖于 pthread 线程库的应用</span>
+$<span class="w"> </span>ldd<span class="w"> </span>./thread<span class="w">  </span><span class="c1"># 可以看到多出了 libpthread.so.0 的动态链接依赖</span>
+<span class="w">    </span>linux-vdso.so.1<span class="w"> </span><span class="o">(</span>0x00007ffe6ad93000<span class="o">)</span>
+<span class="w">    </span>libpthread.so.0<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libpthread.so.0<span class="w"> </span><span class="o">(</span>0x00007fad173c7000<span class="o">)</span>
+<span class="w">    </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>0x00007fad171d5000<span class="o">)</span>
+<span class="w">    </span>/lib64/ld-linux-x86-64.so.2<span class="w"> </span><span class="o">(</span>0x00007fad17407000<span class="o">)</span>
 </code></pre></div>
 <p>对于复杂的应用来说，下载后可能会因为没有动态链接库而无法运行。这一点在打包、分发自己编写的程序时也要特别注意。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ldd MegaCli64
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ldd<span class="w"> </span>MegaCli64
 <span class="go">    linux-vdso.so.1 (0x00007ffca1868000)</span>
 <span class="go">    libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fa77f6c9000)</span>
 <span class="go">    libncurses.so.5 =&gt; not found</span>
@@ -1369,39 +1369,39 @@ $ ldd ./thread  <span class="c1"># 可以看到多出了 libpthread.so.0 的动�
 <span class="go">    libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa77f375000)</span>
 <span class="go">    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa77f183000)</span>
 <span class="go">    /lib64/ld-linux-x86-64.so.2 (0x00007fa77f704000)</span>
-<span class="gp">$ </span>./MegaCli64  <span class="c1"># 缺少 libncurses.so.5，从而无法执行</span>
+<span class="gp">$ </span>./MegaCli64<span class="w">  </span><span class="c1"># 缺少 libncurses.so.5，从而无法执行</span>
 <span class="go">./MegaCli64: error while loading shared libraries: libncurses.so.5: cannot open shared object file: No such file or directory</span>
 </code></pre></div>
 <p>而静态链接则将依赖的库全部打包到程序文件中。</p>
-<div class="highlight"><pre><span></span><code>$ gcc -o hello-static hello.c -static  <span class="c1"># 编译一个静态链接的应用</span>
-$ ldd ./hello-static  <span class="c1"># 没有动态链接库的依赖</span>
-    not a dynamic executable
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>hello-static<span class="w"> </span>hello.c<span class="w"> </span>-static<span class="w">  </span><span class="c1"># 编译一个静态链接的应用</span>
+$<span class="w"> </span>ldd<span class="w"> </span>./hello-static<span class="w">  </span><span class="c1"># 没有动态链接库的依赖</span>
+<span class="w">    </span>not<span class="w"> </span>a<span class="w"> </span>dynamic<span class="w"> </span>executable
 </code></pre></div>
 <p>此时编译得到的程序文件没有额外的依赖，在其他机器上一般也能顺利运行。近年来流行的 Go 语言的一大特点也是静态链接，编译得到的程序有着很好的兼容性。</p>
 <p>但是静态链接也存在一些问题。首先是程序大小，比较一下前面编译的 hello-static 和 hello 的大小吧：</p>
-<div class="highlight"><pre><span></span><code>$ ls -l hello hello-static
--rwxrwxr-x <span class="m">1</span> ustc ustc  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
--rwxrwxr-x <span class="m">1</span> ustc ustc 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>hello<span class="w"> </span>hello-static
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>ustc<span class="w"> </span>ustc<span class="w">  </span>17K<span class="w"> </span>Feb<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">14</span>:43<span class="w"> </span>hello
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>ustc<span class="w"> </span>ustc<span class="w"> </span>852K<span class="w"> </span>Feb<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">14</span>:39<span class="w"> </span>hello-static
 </code></pre></div>
 <p>可以看到，动态链接的程序比较小，而静态链接的程序大小接近 1M，况且这还只是一个最简单的 hello world！并且在大小方面，静态链接的程序在运行时无法共享运行库的内存，从而导致内存占用也有一定程度增加。</p>
 <p>其次，当运行库出现问题时，用户可以选择更新库，此时所有动态链接的程序都能得到修复，但是静态链接的程序由于不使用系统库，就不得不一个个重新编译。</p>
 <p>最后一点是，Linux 的默认 C 库 glibc 对静态链接并不友好，如果程序使用了一部分函数，在静态链接时会受到限制。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>gcc -o getaddrinfo-example getaddrinfo.c -static
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>gcc<span class="w"> </span>-o<span class="w"> </span>getaddrinfo-example<span class="w"> </span>getaddrinfo.c<span class="w"> </span>-static
 <span class="go">/usr/bin/ld: /tmp/ccPZTyKT.o: in function `main&#39;:</span>
 <span class="go">getaddrinfo.c:(.text+0xd2): warning: Using &#39;getaddrinfo&#39; in statically linked applications requires at runtime the shared libraries from the glibc version used for linking</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Musl libc</p>
 <p>近年来，musl libc 开始流行，并且它也是 Alpine Linux 的 C 运行时库。它的特点是轻量、快速、对静态链接友好。我们也可以来试一下：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install musl-tools  <span class="c1"># musl-tools 提供了 musl-gcc 等方便的编译工具</span>
-$ musl-gcc -o hello-static-musl hello.c -static  <span class="c1"># 静态链接 musl libc</span>
-$ ls -lha hello hello-static hello-static-musl
--rwxrwxr-x <span class="m">1</span> ustc ustc  17K Feb <span class="m">28</span> <span class="m">14</span>:43 hello
--rwxrwxr-x <span class="m">1</span> ustc ustc 852K Feb <span class="m">28</span> <span class="m">14</span>:39 hello-static
--rwxrwxr-x <span class="m">1</span> ustc ustc  26K Feb <span class="m">28</span> <span class="m">15</span>:00 hello-static-musl
-$ <span class="c1"># 可以看到静态链接 musl 得到的文件与动态链接接近，并且远小于静态链接 glibc 得到的文件。</span>
-$ musl-gcc -o getaddrinfo-example-musl getaddrinfo.c -static
-$ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系统组件，所以可以正常静态链接</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>musl-tools<span class="w">  </span><span class="c1"># musl-tools 提供了 musl-gcc 等方便的编译工具</span>
+$<span class="w"> </span>musl-gcc<span class="w"> </span>-o<span class="w"> </span>hello-static-musl<span class="w"> </span>hello.c<span class="w"> </span>-static<span class="w">  </span><span class="c1"># 静态链接 musl libc</span>
+$<span class="w"> </span>ls<span class="w"> </span>-lha<span class="w"> </span>hello<span class="w"> </span>hello-static<span class="w"> </span>hello-static-musl
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>ustc<span class="w"> </span>ustc<span class="w">  </span>17K<span class="w"> </span>Feb<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">14</span>:43<span class="w"> </span>hello
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>ustc<span class="w"> </span>ustc<span class="w"> </span>852K<span class="w"> </span>Feb<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">14</span>:39<span class="w"> </span>hello-static
+-rwxrwxr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>ustc<span class="w"> </span>ustc<span class="w">  </span>26K<span class="w"> </span>Feb<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">15</span>:00<span class="w"> </span>hello-static-musl
+$<span class="w"> </span><span class="c1"># 可以看到静态链接 musl 得到的文件与动态链接接近，并且远小于静态链接 glibc 得到的文件。</span>
+$<span class="w"> </span>musl-gcc<span class="w"> </span>-o<span class="w"> </span>getaddrinfo-example-musl<span class="w"> </span>getaddrinfo.c<span class="w"> </span>-static
+$<span class="w"> </span><span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系统组件，所以可以正常静态链接</span>
 </code></pre></div>
 </div>
 <h2 id="cross-compile-example">交叉编译示例<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h2>
@@ -1414,28 +1414,28 @@ $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系�
 <p>这时候就需要交叉编译了。对于常见的架构，Ubuntu/Debian 提供了对应的交叉编译器，很大程度方便了使用。以下将给出交叉编译简单的示例。</p>
 <h3 id="x86_64-cross-compile-aarch64">在 x86_64 架构编译 aarch64 的程序<a class="headerlink" href="#x86_64-cross-compile-aarch64" title="Permanent link">&para;</a></h3>
 <p>Aarch64 是 ARM 指令集的 64 位架构。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo apt install gcc-aarch64-linux-gnu  <span class="c1"># 安装交叉编译到 aarch64 架构的编译器，同时也会安装对应架构的依赖库</span>
-<span class="gp">$ </span>aarch64-linux-gnu-gcc -o hello-aarch64 hello.c  <span class="c1"># 直接编译即可</span>
-<span class="gp">$ </span>file hello-aarch64  <span class="c1"># 看一下文件信息，可以看到是 aarch64 架构的</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gcc-aarch64-linux-gnu<span class="w">  </span><span class="c1"># 安装交叉编译到 aarch64 架构的编译器，同时也会安装对应架构的依赖库</span>
+<span class="gp">$ </span>aarch64-linux-gnu-gcc<span class="w"> </span>-o<span class="w"> </span>hello-aarch64<span class="w"> </span>hello.c<span class="w">  </span><span class="c1"># 直接编译即可</span>
+<span class="gp">$ </span>file<span class="w"> </span>hello-aarch64<span class="w">  </span><span class="c1"># 看一下文件信息，可以看到是 aarch64 架构的</span>
 <span class="go">hello-aarch64: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=09d2ad67b8e2f3b4befe3ce846182743d27910db, for GNU/Linux 3.7.0, not stripped</span>
-<span class="gp">$ </span>./hello-aarch64  <span class="c1"># 无法直接运行，因为架构不兼容</span>
+<span class="gp">$ </span>./hello-aarch64<span class="w">  </span><span class="c1"># 无法直接运行，因为架构不兼容</span>
 <span class="go">-bash: ./hello-aarch64: cannot execute binary file: Exec format error</span>
-<span class="gp">$ </span>sudo apt install qemu-user-static  <span class="c1"># 安装 qemu 模拟器</span>
-<span class="gp">$ </span>qemu-aarch64-static ./hello-aarch64  <span class="c1"># 使用 aarch64 模拟器运行程序</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qemu-user-static<span class="w">  </span><span class="c1"># 安装 qemu 模拟器</span>
+<span class="gp">$ </span>qemu-aarch64-static<span class="w"> </span>./hello-aarch64<span class="w">  </span><span class="c1"># 使用 aarch64 模拟器运行程序</span>
 <span class="go">/lib/ld-linux-aarch64.so.1: No such file or directory</span>
 <span class="gp">$ </span><span class="c1"># 为什么仍然无法运行？这是因为 qemu 不知道从哪里找运行时库</span>
 <span class="gp">$ </span><span class="c1"># 需要补充 QEMU_LD_PREFIX 环境变量</span>
-<span class="gp">$ </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/aarch64-linux-gnu/ qemu-aarch64-static ./hello-aarch64
+<span class="gp">$ </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/aarch64-linux-gnu/<span class="w"> </span>qemu-aarch64-static<span class="w"> </span>./hello-aarch64
 <span class="go">Hello, world!</span>
 </code></pre></div>
 <h3 id="linux-cross-compile-windows">在 Linux 下编译 Windows 程序<a class="headerlink" href="#linux-cross-compile-windows" title="Permanent link">&para;</a></h3>
 <p>这里使用 mingw 来进行交叉编译。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo apt install gcc-mingw-w64  <span class="c1"># 安装 mingw 交叉编译器</span>
-<span class="gp">$ </span>sudo apt install wine  <span class="c1"># 安装 wine Windows 兼容层（默认仅安装 64 位架构支持）</span>
-<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o hello.exe hello.c  <span class="c1"># 编译为 64 位的 Windows 程序</span>
-<span class="gp">$ </span>file hello.exe  <span class="c1"># 确认为 Windows 程序</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gcc-mingw-w64<span class="w">  </span><span class="c1"># 安装 mingw 交叉编译器</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wine<span class="w">  </span><span class="c1"># 安装 wine Windows 兼容层（默认仅安装 64 位架构支持）</span>
+<span class="gp">$ </span>x86_64-w64-mingw32-gcc<span class="w"> </span>-o<span class="w"> </span>hello.exe<span class="w"> </span>hello.c<span class="w">  </span><span class="c1"># 编译为 64 位的 Windows 程序</span>
+<span class="gp">$ </span>file<span class="w"> </span>hello.exe<span class="w">  </span><span class="c1"># 确认为 Windows 程序</span>
 <span class="go">hello.exe: PE32+ executable (console) x86-64, for MS Windows</span>
-<span class="gp">$ </span>wine hello.exe  <span class="c1"># 使用 wine 运行</span>
+<span class="gp">$ </span>wine<span class="w"> </span>hello.exe<span class="w">  </span><span class="c1"># 使用 wine 运行</span>
 <span class="go">it looks like wine32 is missing, you should install it.</span>
 <span class="go">as root, please execute &quot;apt-get install wine32&quot;</span>
 <span class="go">wine: created the configuration directory &#39;/home/ubuntu/.wine&#39;</span>
@@ -1449,90 +1449,90 @@ $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系�
 <span class="cp">#define UNICODE</span>
 <span class="cp">#endif</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
 
-<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span><span class="w"></span>
+<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="n">WINAPI</span><span class="w"> </span><span class="nf">wWinMain</span><span class="p">(</span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">hInstance</span><span class="p">,</span><span class="w"> </span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">PWSTR</span><span class="w"> </span><span class="n">pCmdLine</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">WINAPI</span><span class="w"> </span><span class="nf">wWinMain</span><span class="p">(</span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">hInstance</span><span class="p">,</span><span class="w"> </span><span class="n">HINSTANCE</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">PWSTR</span><span class="w"> </span><span class="n">pCmdLine</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">)</span>
+<span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// Register the window class.</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">[]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Sample Window Class&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">[]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Sample Window Class&quot;</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">WNDCLASS</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">WNDCLASS</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpfnWndProc</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">hInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">hInstance</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpszClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpfnWndProc</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">;</span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">hInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">hInstance</span><span class="p">;</span>
+<span class="w">    </span><span class="n">wc</span><span class="p">.</span><span class="n">lpszClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">RegisterClass</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wc</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">RegisterClass</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wc</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// Create the window.</span>
 
-<span class="w">    </span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateWindowEx</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateWindowEx</span><span class="p">(</span>
 <span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w">                              </span><span class="c1">// Optional window styles.</span>
 <span class="w">        </span><span class="n">CLASS_NAME</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Window class</span>
 <span class="w">        </span><span class="sa">L</span><span class="s">&quot;Learn to Program Windows&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1">// Window text</span>
 <span class="w">        </span><span class="n">WS_OVERLAPPEDWINDOW</span><span class="p">,</span><span class="w">            </span><span class="c1">// Window style</span>
 
 <span class="w">        </span><span class="c1">// Size and position</span>
-<span class="w">        </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">CW_USEDEFAULT</span><span class="p">,</span>
 
 <span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">// Parent window</span>
 <span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="c1">// Menu</span>
 <span class="w">        </span><span class="n">hInstance</span><span class="p">,</span><span class="w">  </span><span class="c1">// Instance handle</span>
 <span class="w">        </span><span class="nb">NULL</span><span class="w">        </span><span class="c1">// Additional application data</span>
-<span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hwnd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hwnd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">ShowWindow</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ShowWindow</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">nCmdShow</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// Run the message loop.</span>
-<span class="w">    </span><span class="n">MSG</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TranslateMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">MSG</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TranslateMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">uMsg</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">WM_DESTROY</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">PostQuitMessage</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">uMsg</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">WM_DESTROY</span><span class="p">:</span>
+<span class="w">        </span><span class="n">PostQuitMessage</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">WM_PAINT</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">PAINTSTRUCT</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">HDC</span><span class="w"> </span><span class="n">hdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">WM_PAINT</span><span class="p">:</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">PAINTSTRUCT</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span>
+<span class="w">            </span><span class="n">HDC</span><span class="w"> </span><span class="n">hdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span>
 
 <span class="w">            </span><span class="c1">// All painting occurs here, between BeginPaint and EndPaint.</span>
-<span class="w">            </span><span class="n">FillRect</span><span class="p">(</span><span class="n">hdc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">.</span><span class="n">rcPaint</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">HBRUSH</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">COLOR_WINDOW</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
-<span class="w">            </span><span class="n">EndPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">FillRect</span><span class="p">(</span><span class="n">hdc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">.</span><span class="n">rcPaint</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">HBRUSH</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">COLOR_WINDOW</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">            </span><span class="n">EndPaint</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">uMsg</span><span class="p">,</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>x86_64-w64-mingw32-gcc<span class="w"> </span>-o<span class="w"> </span>winhello.exe<span class="w"> </span>winhello.c
 <span class="go">/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main&#39;:</span>
 <span class="go">./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain&#39;</span>
 <span class="go">collect2: error: ld returned 1 exit status</span>
 <span class="gp">$ </span><span class="c1"># 编译失败，这是因为编译 Windows Unicode（UTF-16）程序需要额外的参数 -municode。</span>
 <span class="gp">$ </span><span class="c1"># 参见 https://sourceforge.net/p/mingw-w64/wiki2/Unicode%20apps/</span>
-<span class="gp">$ </span>x86_64-w64-mingw32-gcc -o winhello.exe winhello.c -municode
-<span class="gp">$ </span>wine winhello.exe  <span class="c1"># 需要在图形界面下执行，或者复制到 Windows 中执行亦可</span>
+<span class="gp">$ </span>x86_64-w64-mingw32-gcc<span class="w"> </span>-o<span class="w"> </span>winhello.exe<span class="w"> </span>winhello.c<span class="w"> </span>-municode
+<span class="gp">$ </span>wine<span class="w"> </span>winhello.exe<span class="w">  </span><span class="c1"># 需要在图形界面下执行，或者复制到 Windows 中执行亦可</span>
 </code></pre></div>
 
 
@@ -1556,42 +1556,6 @@ $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系�
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: Linux 上的编程" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              Linux 上的编程
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../Ch08/" class="md-footer__link md-footer__link--next" aria-label="下一页: Docker" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              Docker
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1640,12 +1604,11 @@ $ <span class="c1"># musl libc 的 getaddrinfo() 实现不依赖于额外的系�
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

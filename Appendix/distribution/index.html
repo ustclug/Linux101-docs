@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../man/">
+      
+      
+        <link rel="next" href="../../postface/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1547,10 +1548,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/distribution.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="linux">其他的 Linux 发行版：技术差异简介<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
@@ -1566,10 +1566,10 @@
 <h3 id="rh-software-management">软件包管理<a class="headerlink" href="#rh-software-management" title="Permanent link">&para;</a></h3>
 <p>「红帽系」的 Linux 发行版与 Ubuntu 等 Debian 系列的发行版最直观的区别就在于它们使用的软件包管理方式不一样。一般使用 <code>dnf</code>（推荐）或者 <code>yum</code> 来进行软件包管理。<code>dnf</code> 和 <code>yum</code> 都是使用 Python 编写的程序，谨慎变动系统 Python 环境，以免出现问题。</p>
 <p>简单使用：</p>
-<div class="highlight"><pre><span></span><code>$ sudo dnf install audacity  <span class="c1"># 安装 audacity</span>
-$ sudo dnf remove firefox  <span class="c1"># 卸载 firefox</span>
-$ sudo dnf search thunderbird  <span class="c1"># 搜索 thunderbird</span>
-$ sudo dnf upgrade  <span class="c1"># 更新系统</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 安装 audacity</span>
+$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 卸载 firefox</span>
+$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>search<span class="w"> </span>thunderbird<span class="w">  </span><span class="c1"># 搜索 thunderbird</span>
+$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade<span class="w">  </span><span class="c1"># 更新系统</span>
 </code></pre></div>
 <p>此外，<code>dnf</code> 和 <code>yum</code> 还可以回滚到以前的软件安装状态，具体可以自行搜索了解。</p>
 <h3 id="selinux">关于 SELinux<a class="headerlink" href="#selinux" title="Permanent link">&para;</a></h3>
@@ -1580,17 +1580,17 @@ $ sudo dnf upgrade  <span class="c1"># 更新系统</span>
 <li>用户的进程继承用户的权限，如果进程本身有问题或是不安全，那么攻击者可以以该用户的权限作任何事情。例如，如果浏览器被攻击，它可以读取到用户的 SSH 密钥，但浏览器显然不应该做这种事情。</li>
 </ul>
 <p>SELinux 添加了额外的「强制访问控制」安全措施：系统中所有的文件、进程和端口等都被贴上了 SELinux 标签，如果访问者（Subject）和被访问对象（Object）的标签不符合规则，访问则会被拒绝。</p>
-<p>虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些奇怪的权限问题，或是让某些程序运行失败。但是我们不建议在需要强安全性的环境中关闭 SELinux。<a href="https://tuna.moe">清华大学 TUNA 协会</a>曾在活动中做过 <a href="https://tuna.moe/event/2020/selinux-introduction/">SELinux 的使用介绍</a>，希望进一步了解 SELinux 的同学可以在线观看其<a href="https://cloud.tsinghua.edu.cn/f/55d0ee97fce44c078982/">活动录像</a>。</p>
+<p>虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些奇怪的权限问题，或是让某些程序运行失败。但是我们不建议在需要强安全性的环境中关闭 SELinux。<a href="https://tuna.moe">清华大学 TUNA 协会</a>曾在活动中做过 <a href="https://tuna.moe/event/2020/selinux-introduction/">SELinux 的使用介绍</a>，希望进一步了解 SELinux 的同学可以在线观看其<a href="https://mirrors.tuna.tsinghua.edu.cn/tuna/tunight/2020-06-27-selinux-introduction/">活动录像</a>。</p>
 <p>在 Ubuntu 等发行版中，使用的类似于 SELinux 的安全模块是 AppArmor。AppArmor 使用文件路径（而非标签）进行管理，使用相较于 SELinux 简单一些。</p>
 <h2 id="archlinux">Arch Linux<a class="headerlink" href="#archlinux" title="Permanent link">&para;</a></h2>
 <h3 id="archwiki">Arch Wiki<a class="headerlink" href="#archwiki" title="Permanent link">&para;</a></h3>
 <p><a href="https://wiki.archlinux.org/">Arch Wiki</a> 是安装和使用 Arch Linux 必读的资料，内容非常详细。即使不是 Arch Linux 的使用者，Wiki 的内容也非常有参考价值。</p>
 <h3 id="arch-software-management">软件包管理<a class="headerlink" href="#arch-software-management" title="Permanent link">&para;</a></h3>
 <p>Arch 使用的默认软件包管理器是 <code>pacman</code>。以下是一些常用的命令。</p>
-<div class="highlight"><pre><span></span><code>$ sudo pacman -Syu  <span class="c1"># 更新系统所有软件包</span>
-$ sudo pacman -S firefox  <span class="c1"># 安装 Firefox</span>
-$ sudo pacman -Rs chromium  <span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$ sudo pacman -Ss audacity  <span class="c1"># 搜索 Audacity</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
+$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Rs<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Ss<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h4 id="arch-manual-intervention">手动介入 (manual intervention)：更新失败时的处理方式<a class="headerlink" href="#arch-manual-intervention" title="Permanent link">&para;</a></h4>
 <p>由于其滚动发行的特性，在更新时可能会出现安装错误的情况。一般来说，你需要关注 Arch 的主页新闻 (<a href="https://www.archlinux.org/">https://www.archlinux.org/</a>)，当有软件包需要手动介入更新时，可以看到错误提示和解决方法。</p>
@@ -1608,10 +1608,10 @@ $ sudo pacman -Ss audacity  <span class="c1"># 搜索 Audacity</span>
 <h3 id="suse-software-management">软件包管理<a class="headerlink" href="#suse-software-management" title="Permanent link">&para;</a></h3>
 <p>openSUSE 使用 RPM 作为其软件包格式，但是与 Fedora、CentOS 等不同的是，其软件包管理器为 ZYpp（Zen / YaST Packages Patches Patterns Products）。用户可以在命令行中使用 <code>zypper</code> 进行安装、卸载、升级软件等操作。</p>
 <p>以下是一些常用的命令：</p>
-<div class="highlight"><pre><span></span><code>$ sudo zypper update  <span class="c1"># 更新系统所有软件包</span>
-$ sudo zypper install firefox  <span class="c1"># 安装 Firefox</span>
-$ sudo zypper remove chromium  <span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$ sudo zypper search audacity  <span class="c1"># 搜索 Audacity</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>update<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
+$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>remove<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h3 id="yast">系统管理工具 YaST<a class="headerlink" href="#yast" title="Permanent link">&para;</a></h3>
 <p>YaST 工具是 openSUSE 的一大特色。它提供了图形化的界面，可以帮助系统管理员完成各种常见操作。</p>
@@ -1625,11 +1625,11 @@ $ sudo zypper search audacity  <span class="c1"># 搜索 Audacity</span>
 <h3 id="gentoo-software-management">软件包管理<a class="headerlink" href="#gentoo-software-management" title="Permanent link">&para;</a></h3>
 <p>Gentoo 的软件包管理器是 Portage。其对应最常用的 CLI 工具是 <code>emerge</code>。</p>
 <p>以下是一些常用的命令：</p>
-<div class="highlight"><pre><span></span><code>$ sudo emerge --sync  <span class="c1"># 更新软件包索引</span>
-$ sudo emerge --update --ask @world  <span class="c1"># 更新已安装的程序（不包含依赖）</span>
-$ sudo emerge -a firefox  <span class="c1"># 安装 Firefox</span>
-$ sudo emerge --unmerge chromium  <span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$ sudo emerge --search audacity  <span class="c1"># 搜索名字中含 audacity 的包</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--sync<span class="w">  </span><span class="c1"># 更新软件包索引</span>
+$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--update<span class="w"> </span>--ask<span class="w"> </span>@world<span class="w">  </span><span class="c1"># 更新已安装的程序（不包含依赖）</span>
+$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>-a<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--unmerge<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索名字中含 audacity 的包</span>
 </code></pre></div>
 <p>由于 Gentoo 以编译安装为主，和其他 Linux 发行版不同，用户可以指定在安装时需要软件的哪些特性。例如，服务器需要的软件特性肯定与桌面不同，一些桌面上必须的功能在服务器上并不需要，反之亦然。用户可以通过修改 USE 标志来为软件包添加或删除特性。</p>
 <p>关于 USE 标志的使用可以参考 <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/USE/zh-cn">Gentoo 官方手册中的简要介绍</a>。</p>
@@ -1665,42 +1665,6 @@ $ sudo emerge --search audacity  <span class="c1"># 搜索名字中含 audacity 
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../man/" class="md-footer__link md-footer__link--prev" aria-label="上一页: man 文档的一些示例" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              man 文档的一些示例
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../postface/" class="md-footer__link md-footer__link--next" aria-label="下一页: 跋" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              跋
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1749,12 +1713,11 @@ $ sudo emerge --search audacity  <span class="c1"># 搜索名字中含 audacity 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

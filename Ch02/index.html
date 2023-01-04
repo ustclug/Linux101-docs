@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../Ch01/solution/">
+      
+      
+        <link rel="next" href="supplement/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1593,10 +1594,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch02/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="_1">个性化配置与建站体验<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1777,7 +1777,7 @@
 <li>从 <code>../source/</code> 文件夹拖拽文件 <code>file.txt</code> 到 <code>../dest/</code> 文件夹中</li>
 </ul>
 <p>然而使用命令行，我们只需要执行一条指令。</p>
-<div class="highlight"><pre><span></span><code>$ mv ../source/file.txt ../dest/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mv<span class="w"> </span>../source/file.txt<span class="w"> </span>../dest/
 </code></pre></div>
 <p>可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。</p>
 <div class="admonition tip">
@@ -1791,9 +1791,9 @@
 </code></pre></div>
 <p>代表根目录下的 <code>bin</code> 文件夹下的 <code>ls</code> 文件。可以发现除了分隔符不同以外，类 UNIX 系统也不采用 Windows 下的盘符机制，而是采用统一的根目录。Linux 的文件系统层次结构会在<a href="../Ch05/#fhs">第五章</a>介绍。</p>
 <p>另外，以上的路径都是绝对路径，还有一种「相对路径」：</p>
-<div class="highlight"><pre><span></span><code>./file.txt  <span class="c1"># 当前目录下的 file.txt 文件</span>
-../file.txt <span class="c1"># 上一级目录（父目录）下的 file.txt 文件</span>
-../abc/file.txt <span class="c1"># 上一级目录（父目录）下的 abc 文件夹下的 file.txt 文件</span>
+<div class="highlight"><pre><span></span><code>./file.txt<span class="w">  </span><span class="c1"># 当前目录下的 file.txt 文件</span>
+../file.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 file.txt 文件</span>
+../abc/file.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 abc 文件夹下的 file.txt 文件</span>
 </code></pre></div>
 <p>每个正在运行中的进程（包括 Shell）都有自己的「当前工作目录」（当前所在的目录），进程可以切换自己的当前工作目录，以上的相对路径都是相对于当前工作目录的。可以发现，不管当前工作目录在哪里，绝对路径对应的文件都是一致的，而相对路径对应的文件就会随着当前工作目录的变化而变化。</p>
 </div>
@@ -1806,20 +1806,20 @@
 <p>两个文件内容分别如下。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># run.sh</span>
 
-gcc main.c -o main.out
+gcc<span class="w"> </span>main.c<span class="w"> </span>-o<span class="w"> </span>main.out
 ./main.out
-rm main.out
+rm<span class="w"> </span>main.out
 </code></pre></div>
 <p>之后我们直接输入</p>
-<div class="highlight"><pre><span></span><code>$ sh run.sh
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sh<span class="w"> </span>run.sh
 </code></pre></div>
 <p>即可看到程序输出结果。</p>
 <div class="admonition tip">
@@ -1836,7 +1836,7 @@ rm main.out
 <p class="admonition-title"><code>cmatrix</code>：命令行界面模拟《黑客帝国》特效显示</p>
 <p>Linux 的命令行界面有一些显示效果很有意思的程序，<code>cmatrix</code> 是其中之一。</p>
 <p>使用以下命令安装（软件的安装将在<a href="../Ch03/">第三章</a>详细介绍）：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install cmatrix
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmatrix
 </code></pre></div>
 <p>之后就可以使用 <code>cmatrix</code> 命令来查看特效效果了。按下 <code>q</code> 键或者 Ctrl + C 组合键退出。</p>
 </div>
@@ -1862,20 +1862,20 @@ rm main.out
 </ul>
 <p>更多的命令行操作我们将在<a href="../Ch03/">第三章</a>和<a href="../Ch06/">第六章</a>详细介绍。</p>
 <h4 id="shell-commands-example-1">示例 1<a class="headerlink" href="#shell-commands-example-1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">pwd</span>
 </code></pre></div>
 <p>会打印出当前所在的目录：</p>
 <div class="highlight"><pre><span></span><code>/home/ustc
 </code></pre></div>
 <h4 id="shell-commands-example-2">示例 2<a class="headerlink" href="#shell-commands-example-2" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$ ls
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls
 </code></pre></div>
 <p>会打印出当前目录的内容：</p>
 <div class="highlight"><pre><span></span><code>Desktop Documents Music Pictures Public Templates Videos
 </code></pre></div>
 <h4 id="shell-commands-example-3">示例 3<a class="headerlink" href="#shell-commands-example-3" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> Desktop
-$ ls
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Desktop
+$<span class="w"> </span>ls
 </code></pre></div>
 <p>进入桌面，并打印出桌面的内容。</p>
 <div class="highlight"><pre><span></span><code>hi.txt
@@ -1902,21 +1902,21 @@ $ ls
 <p>如果你正在使用我们提供的虚拟机，建议将虚拟机分配的内存从 1GB 添加至至少 2GB（2048 MB），以同时供桌面环境与 MySQL 数据库流畅使用。</p>
 </div>
 <p>下载脚本要使用 <code>curl</code> 命令，我们要先安装 curl。</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install curl
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">关于记号约定</p>
 <p>如果直接复制以上的命令到终端，你可能会看到以下场景：</p>
-<div class="highlight"><pre><span></span><code>ustc@ustclug-linux101:~$ $ sudo apt install curl
+<div class="highlight"><pre><span></span><code>ustc@ustclug-linux101:~$<span class="w"> </span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 $：未找到命令
 </code></pre></div>
 <p>这里给出的命令开头的 <code>$</code> 代表该命令以非 root（最高权限）执行，并非命令的一部分。打开终端后，你也可以看到在光标前面有一个 <code>$</code> 符号。所以如果需要复制命令，请勿复制最开头的 <code>$</code>。</p>
 <p>可以阅读<a href="../notations/">记号约定</a>了解有关信息。</p>
 </div>
 <p>打开终端并运行：</p>
-<div class="highlight"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh &gt; wordpress.sh
-$ <span class="c1"># 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：</span>
-$ sudo bash wordpress.sh
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.ustclug.org/Ch02/wordpress.sh<span class="w"> </span>&gt;<span class="w"> </span>wordpress.sh
+$<span class="w"> </span><span class="c1"># 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：</span>
+$<span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span>wordpress.sh
 </code></pre></div>
 <p>等待片刻即可完成安装。</p>
 <div class="admonition warning">
@@ -1926,7 +1926,7 @@ $ sudo bash wordpress.sh
 <div class="admonition warning">
 <p class="admonition-title">避免执行类似于 curl | sh 的命令</p>
 <p>在本节之前的版本中，以上的命令是：</p>
-<div class="highlight"><pre><span></span><code>$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh <span class="p">|</span> sudo bash
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.ustclug.org/Ch02/wordpress.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
 </code></pre></div>
 <p>它的功能是从对应的 URL 获取脚本内容后，直接用 <code>sudo bash</code> 去执行。但是从安全性的角度这是不恰当的，因为网络上的脚本有可能包含恶意内容，直接执行可能会对系统带来安全风险。因此相关命令修改为了首先下载脚本到文件中（<code>wordpress.sh</code> 文件），然后再执行。如果对脚本内容有疑虑，则可以阅读脚本内容，检查其是否和你的预期相一致。</p>
 </div>
@@ -1935,12 +1935,12 @@ $ sudo bash wordpress.sh
 <h3 id="jekyll">Jekyll<a class="headerlink" href="#jekyll" title="Permanent link">&para;</a></h3>
 <p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。</p>
 <p>我们只需要通过命令行安装它。</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install jekyll
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jekyll
 </code></pre></div>
 <p>再输入几行命令用于创建网站：</p>
-<div class="highlight"><pre><span></span><code>$ jekyll new my-awesome-site
-$ <span class="nb">cd</span> my-awesome-site
-$ jekyll serve
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jekyll<span class="w"> </span>new<span class="w"> </span>my-awesome-site
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-awesome-site
+$<span class="w"> </span>jekyll<span class="w"> </span>serve
 </code></pre></div>
 <p>打开浏览器，在浏览器中输入 <code>localhost:4000</code> 进入我们搭建的网站。</p>
 <p><img alt="" src="images/jekyll-installation.png" /></p>
@@ -1980,42 +1980,6 @@ $ jekyll serve
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../Ch01/solution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 思考题解答" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2064,12 +2028,11 @@ $ jekyll serve
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

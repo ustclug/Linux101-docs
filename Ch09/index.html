@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../Ch08/supplement/">
+      
+      
+        <link rel="next" href="supplement/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1303,10 +1304,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch09/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="shell">Shell 高级文本处理与正则表达式<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
@@ -1328,42 +1328,42 @@
 <li><code>-o [file]</code> 指定输出文件</li>
 <li><code>-n</code> 用于数值排序，否则“15”会排在“2”前</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> -e <span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span> &gt; animals
-$ sort animals
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>animals
+$<span class="w"> </span>sort<span class="w"> </span>animals
 cat
 dog
 fish
 fish
 fox
 snake
-$ sort -r animals
+$<span class="w"> </span>sort<span class="w"> </span>-r<span class="w"> </span>animals
 snake
 fox
 fish
 fish
 dog
 cat
-$ sort -u animals
+$<span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>animals
 cat
 dog
 fish
 fox
 snake
-$ sort -u animals -o animals
-$ cat animals
+$<span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>animals<span class="w"> </span>-o<span class="w"> </span>animals
+$<span class="w"> </span>cat<span class="w"> </span>animals
 cat
 dog
 fish
 fox
 snake
-$ <span class="nb">echo</span> -e <span class="s2">&quot;1\n2\n15\n3\n4&quot;</span> &gt; numbers
-$ sort numbers
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;1\n2\n15\n3\n4&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>numbers
+$<span class="w"> </span>sort<span class="w"> </span>numbers
 <span class="m">1</span>
 <span class="m">15</span>
 <span class="m">2</span>
 <span class="m">3</span>
 <span class="m">4</span>
-$ sort -n numbers
+$<span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>numbers
 <span class="m">1</span>
 <span class="m">2</span>
 <span class="m">3</span>
@@ -1377,14 +1377,14 @@ $ sort -n numbers
 <h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
 <p>通常会和 sort 一起使用：</p>
-<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </code></pre></div>
 <p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途。</p>
 <p><code>uniq -d</code> 可以用于仅输出重复行：</p>
-<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq -d
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-d
 </code></pre></div>
 <p><code>uniq -c</code> 可以用于统计各行重复次数：</p>
-<div class="highlight"><pre><span></span><code>$ sort animals <span class="p">|</span> uniq -c
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
 </code></pre></div>
 <h2 id="regular-expression">正则表达式<a class="headerlink" href="#regular-expression" title="Permanent link">&para;</a></h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
@@ -1478,16 +1478,16 @@ $ sort -n numbers
 <li><code>-v</code>：显示不被匹配到的行</li>
 <li><code>-i</code>：忽略字符大小写</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ ls /bin <span class="p">|</span> grep -n <span class="s2">&quot;^man</span>$<span class="s2">&quot;</span>  <span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
-$ ls /bin <span class="p">|</span> grep -v <span class="s2">&quot;[a-z]\|[0-9]&quot;</span>  <span class="c1"># 搜索不含小写字母和数字的行</span>
-$ ls /bin <span class="p">|</span> grep -iv <span class="s2">&quot;[A-Z]\|[0-9]&quot;</span>  <span class="c1"># 搜索不含字母和数字的行</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^man</span>$<span class="s2">&quot;</span><span class="w">  </span><span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
+$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;[a-z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含小写字母和数字的行</span>
+$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">&quot;[A-Z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含字母和数字的行</span>
 </code></pre></div>
 <h3 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
 <p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
 <p>命令格式：</p>
-<div class="highlight"><pre><span></span><code>$ sed <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="s1">&#39;command&#39;</span> file<span class="o">(</span>s<span class="o">)</span>
-$ sed <span class="o">[</span>OPTIONS<span class="o">]</span> -f scriptfile file<span class="o">(</span>s<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="s1">&#39;command&#39;</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
+$<span class="w"> </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>scriptfile<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 </code></pre></div>
 <p>此处的 command 和 scriptfile 中的命令均指的是 sed 命令。</p>
 <p>常见 sed 命令：</p>
@@ -1498,19 +1498,19 @@ $ sed <span class="o">[</span>OPTIONS<span class="o">]</span> -f scriptfile file
 <li>a 当前行下插入文本</li>
 <li>i 当前行上插入文本</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> -e <span class="s2">&quot;seD\nIS\ngOod&quot;</span> &gt; sed_demo
-$ cat sed_demo
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;seD\nIS\ngOod&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>sed_demo
+$<span class="w"> </span>cat<span class="w"> </span>sed_demo
 seD
 IS
 gOod
-$ sed <span class="s2">&quot;2d&quot;</span> sed_demo  <span class="c1"># 删除第二行</span>
+$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 删除第二行</span>
 seD
 gOod
-$ sed <span class="s2">&quot;s/[a-z]/~/g&quot;</span> sed_demo  <span class="c1"># 替换所有小写字母为 ~</span>
+$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;s/[a-z]/~/g&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 替换所有小写字母为 ~</span>
 ~~D
 IS
 ~O~~
-$ sed <span class="s2">&quot;3cpErfeCt&quot;</span> sed_demo  <span class="c1"># 选定第三行，改成 pErfeCt</span>
+$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;3cpErfeCt&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 选定第三行，改成 pErfeCt</span>
 seD
 IS
 pErfeCt
@@ -1521,23 +1521,23 @@ pErfeCt
 <p>命令格式：<code>awk [options] 'pattern {action}' [file]</code></p>
 <p>awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的是，awk 使用单引号时可以直接用 <code>$</code>，使用双引号则要用 <code>\$</code>。</p>
 <p>一些示例：</p>
-<div class="highlight"><pre><span></span><code>$ cat awk_demo
-Beth    <span class="m">4</span>.00    <span class="m">0</span>
-Dan     <span class="m">3</span>.75    <span class="m">0</span>
-kathy   <span class="m">4</span>.00    <span class="m">10</span>
-Mark    <span class="m">5</span>.00    <span class="m">20</span>
-Mary    <span class="m">5</span>.50    <span class="m">22</span>
-Susie   <span class="m">4</span>.25    <span class="m">18</span>
-$ <span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
-$ awk <span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span> awk_demo
-kathy <span class="m">40</span>
-Mark <span class="m">100</span>
-Mary <span class="m">121</span>
-Susie <span class="m">76</span>.5
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>awk_demo
+Beth<span class="w">    </span><span class="m">4</span>.00<span class="w">    </span><span class="m">0</span>
+Dan<span class="w">     </span><span class="m">3</span>.75<span class="w">    </span><span class="m">0</span>
+kathy<span class="w">   </span><span class="m">4</span>.00<span class="w">    </span><span class="m">10</span>
+Mark<span class="w">    </span><span class="m">5</span>.00<span class="w">    </span><span class="m">20</span>
+Mary<span class="w">    </span><span class="m">5</span>.50<span class="w">    </span><span class="m">22</span>
+Susie<span class="w">   </span><span class="m">4</span>.25<span class="w">    </span><span class="m">18</span>
+$<span class="w"> </span><span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
+$<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span><span class="w"> </span>awk_demo
+kathy<span class="w"> </span><span class="m">40</span>
+Mark<span class="w"> </span><span class="m">100</span>
+Mary<span class="w"> </span><span class="m">121</span>
+Susie<span class="w"> </span><span class="m">76</span>.5
 </code></pre></div>
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
 <p>awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：</p>
-<div class="highlight"><pre><span></span><code>$ awk <span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span> awk_demo
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span><span class="w"> </span>awk_demo
 <span class="m">337</span>.5
 </code></pre></div>
 <p>关于 awk，有一本知名的书籍《The AWK Programming Language》（<a href="https://github.com/wuzhouhui/awk">中文翻译</a>），感兴趣的读者可以考虑阅读。</p>
@@ -1581,14 +1581,14 @@ Susie <span class="m">76</span>.5
 <div class="admonition question">
 <p class="admonition-title">Shell 文本处理工具练习 1：文件内容替换</p>
 <p>某 shell 脚本会随着图形界面启动而启动，启动后会根据环境变量替换某程序配置文件的内容。该配置文件内容如下：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[settings]</span><span class="w"></span>
-<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/</span><span class="w"></span>
-<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://cn.bing.com/search?q=%s</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
+<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/</span>
+<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://cn.bing.com/search?q=%s</span>
 </code></pre></div>
 <p>我们希望编写一条或多条 sed 命令，使得脚本运行后配置文件被修改为：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[settings]</span><span class="w"></span>
-<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/index_new.html</span><span class="w"></span>
-<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://www.wolframalpha.com/input/?i=%s</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
+<span class="na">homepage</span><span class="o">=</span><span class="s">http://example.com/index_new.html</span>
+<span class="na">location-entry-search</span><span class="o">=</span><span class="s">http://www.wolframalpha.com/input/?i=%s</span>
 </code></pre></div>
 <p>假设配置文件路径存储在变量 <code>$F</code> 中。请注意：图形界面可能会重置，此时脚本会对已经修改的配置文件再次修改，如果编写不小心，可能会得到错误的结果。</p>
 </div>
@@ -1637,42 +1637,6 @@ SIZE (gcc-10.3.0.tar.xz) = 76692288
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../Ch08/supplement/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 拓展阅读" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1720,12 +1684,11 @@ SIZE (gcc-10.3.0.tar.xz) = 76692288
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

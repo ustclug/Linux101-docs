@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../Ch02/solution/">
+      
+      
+        <link rel="next" href="supplement/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1481,10 +1482,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch03/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="_1">软件安装与文件操作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1674,7 +1674,7 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <p>一般情况下，<code>/etc/apt/sources.list</code> 下的官方源地址为 <code>http://archive.ubuntu.com/</code> ，我们只需要将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可。</p>
 <p>如果你使用 Ubuntu 图形安装器安装，默认的源地址通常不是 <code>http://archive.ubuntu.com/</code> ， 而是 <code>http://&lt;country-code&gt;.archive.ubuntu.com/ubuntu/</code> ，如 <code>http://cn.archive.ubuntu.com/ubuntu/</code>，同样也将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可。</p>
 <p>可以使用如下命令：</p>
-<div class="highlight"><pre><span></span><code>$ sudo sed -i <span class="s1">&#39;s|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g&#39;</span> /etc/apt/sources.list
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g&#39;</span><span class="w"> </span>/etc/apt/sources.list
 </code></pre></div>
 <p>当然也可以直接使用 vim、nano 等文本编辑器进行修改。</p>
 </div>
@@ -1688,43 +1688,43 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <ol>
 <li>
 <p>安装需要的的软件包</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt-get update
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 
-$ sudo apt-get install <span class="se">\</span>
-    ca-certificates <span class="se">\</span>
-    curl <span class="se">\</span>
-    gnupg-agent <span class="se">\</span>
-    software-properties-common
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ca-certificates<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gnupg-agent<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>software-properties-common
 </code></pre></div>
 </li>
 <li>
 <p>下载 Docker 软件源的 GPG Key</p>
 <p>这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。</p>
-<div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/docker-archive-keyring.gpg
 </code></pre></div>
 </li>
 <li>
 <p>添加 Docker 软件源到 <code>/etc/apt/sources.list.d/</code> 中</p>
 <p>为了方便维护，第三方的 APT 软件源一般都放在 <code>/etc/apt/sources.list.d/</code> 目录下（而非直接编辑 <code>/etc/apt/sources.list</code>）。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="se">\</span>
-<span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
-<span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+<span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 <p>这里通过 <code>dpkg --print-architecture</code> 命令获取系统当前的架构，<code>lsb_release -cs</code> 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 <code>/etc/apt/sources.list.d/docker.list</code> 文件中。</p>
 </li>
 <li>
 <p>使用 apt 安装 Docker</p>
 <p>首先需要从第三方源更新软件列表。</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt update
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <p>之后便可以直接安装 <code>docker-ce</code> 以及相关的软件包。</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install docker-ce docker-ce-cli containerd.io
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io
 </code></pre></div>
 </li>
 <li>
 <p>检查安装情况并确认启动</p>
 <p>Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：</p>
-<div class="highlight"><pre><span></span><code>$ sudo systemctl status docker
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker
 </code></pre></div>
 <p>如果 Docker 已经在后台启动了，则会输出与下面相似的内容：</p>
 <div class="highlight"><pre><span></span><code>● docker.service - Docker Application Container Engine
@@ -1745,7 +1745,7 @@ $ sudo apt-get install <span class="se">\</span>
   Main PID: 1115 (code=exited, status=0/SUCCESS)
 </code></pre></div>
 <p>这时候，我们可以通过 <code>systemctl</code> 命令启动 Docker 服务：</p>
-<div class="highlight"><pre><span></span><code>$ sudo systemctl start docker
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
 </code></pre></div>
 <p>再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书<a href="../Ch04/">第四章</a>展开。</p>
 </li>
@@ -1807,7 +1807,7 @@ Do you want to continue? [Y/n]
 <p class="admonition-title">请避免直接使用 <code>dpkg -i</code> 安装 deb 包。</p>
 <p>在绝大多数情况下，都应该使用 <code>apt</code> 来安装 deb 文件。</p>
 <p>如果不小心执行了 <code>dpkg -i</code> 导致系统出现依赖问题，可以尝试通过如下的方式调用 <code>apt</code> 帮助修复依赖管理：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt -f install
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>-f<span class="w"> </span>install
 </code></pre></div>
 </div>
 <div class="admonition example">
@@ -1823,40 +1823,40 @@ Do you want to continue? [Y/n]
 <p>下面我们以 LLVM 为例作介绍。LLVM 是一个编译器组件工具集，可以帮助开发者开发编译器以及周边工具。</p>
 <p>注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 <code>apt install clang</code> （或对应版本的 clang 包名）命令安装即可。</p>
 <p>在 LLVM 的 <a href="https://releases.llvm.org/download.html">Prebuilt 下载页面</a> 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 下载二进制的压缩文件存档</span>
-$ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 下载二进制的压缩文件存档</span>
+$<span class="w"> </span>wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
-$ <span class="c1"># 创建 clang 目录</span>
-$ mkdir clang
+$<span class="w"> </span><span class="c1"># 创建 clang 目录</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>clang
 
-$ <span class="c1"># 将下载得到的压缩文件解压到当前目录</span>
-$ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
+$<span class="w"> </span><span class="c1"># 将下载得到的压缩文件解压到当前目录</span>
+$<span class="w"> </span>tar<span class="w"> </span>xf<span class="w"> </span>clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz<span class="w"> </span>-C<span class="w"> </span>clang
 
-$ <span class="nb">cd</span> clang
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>clang
 </code></pre></div>
 <p>在进入解压得到的目录后，可以查看当前的目录下有什么内容：</p>
-<div class="highlight"><pre><span></span><code>$ ls
-bin  include  lib  libexec  share
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls
+bin<span class="w">  </span>include<span class="w">  </span>lib<span class="w">  </span>libexec<span class="w">  </span>share
 </code></pre></div>
 <p>一般而言，软件的可执行文件都位于 bin 目录下：</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> bin
-$ ls
-<span class="o">(</span>Output omitted<span class="o">)</span>
-clang                     clang-tidy            llvm-cov
-clang++                   clangd                llvm-cvtres
-clang-10                  diagtool              llvm-cxxdump
-clang-apply-replacements  dsymutil              llvm-cxxfilt
-<span class="o">(</span>Output omitted<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>bin
+$<span class="w"> </span>ls
+<span class="o">(</span>Output<span class="w"> </span>omitted<span class="o">)</span>
+clang<span class="w">                     </span>clang-tidy<span class="w">            </span>llvm-cov
+clang++<span class="w">                   </span>clangd<span class="w">                </span>llvm-cvtres
+clang-10<span class="w">                  </span>diagtool<span class="w">              </span>llvm-cxxdump
+clang-apply-replacements<span class="w">  </span>dsymutil<span class="w">              </span>llvm-cxxfilt
+<span class="o">(</span>Output<span class="w"> </span>omitted<span class="o">)</span>
 </code></pre></div>
 <p>这个目录下的 <code>clang</code> 和 <code>clang++</code> 就类似于我们比较熟悉的 <code>gcc</code> 和 <code>g++</code>。这两个是可以直接运行进行编译源代码的可执行文件。</p>
 <p>当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 <code>clang</code> 和 <code>clang++</code>，而更希望的是能够像 <code>apt</code> 那样在任何地方都可以直接运行。</p>
 <p>我们可以这样做：</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下</span>
-$ sudo cp -R * /usr/local/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下</span>
+$<span class="w"> </span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>*<span class="w"> </span>/usr/local/
 </code></pre></div>
 <p>为什么是 <code>/usr/local</code> 呢？因为 <code>/usr/local/bin</code> 处在 PATH 环境变量下。当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 <code>apt</code> 一样，在任意地方调用我们的程序。</p>
 <p>通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="nv">$PATH</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 </code></pre></div>
 <p>在上面的复制过程中，源目录和目标目录的两个 <code>bin</code> 目录会相互合并，<code>clang</code> 和 <code>clang++</code> 两个可执行文件也就倍复制到了 <code>/usr/local/bin/</code> 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 <code>/usr/local</code>  下的对应目录合并，将 clang 的库和文档加到系统当中。</p>
@@ -1869,20 +1869,20 @@ $ sudo cp -R * /usr/local/
 <p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
 <h3 id="view">查看文件内容<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
 <h4 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 输出 FILE 文件的全部内容</span>
-$ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 输出 FILE 文件的全部内容</span>
+$<span class="w"> </span>cat<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>FILE
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">输出示例</p>
 <ul>
 <li>
 <p>输出 file.txt 的全部内容</p>
-<div class="highlight"><pre><span></span><code>$ cat file.txt
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>file.txt
 </code></pre></div>
 </li>
 <li>
 <p>查看 file1.txt 与 file2.txt 连接后的内容</p>
-<div class="highlight"><pre><span></span><code>$ cat file1.txt file2.txt
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
 </code></pre></div>
 </li>
 </ul>
@@ -1893,8 +1893,8 @@ $ cat <span class="o">[</span>OPTION<span class="o">]</span> FILE
 </div>
 <h4 id="less">less<a class="headerlink" href="#less" title="Permanent link">&para;</a></h4>
 <p>less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 在可交互的窗口内输出 FILE 文件的内容</span>
-$ less FILE
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 在可交互的窗口内输出 FILE 文件的内容</span>
+$<span class="w"> </span>less<span class="w"> </span>FILE
 </code></pre></div>
 <p>常用的快捷键:</p>
 <table>
@@ -1946,16 +1946,16 @@ $ less FILE
 </details>
 <h3 id="nano">编辑文件内容<a class="headerlink" href="#nano" title="Permanent link">&para;</a></h3>
 <p>Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。</p>
-<div class="highlight"><pre><span></span><code>$ nano file.txt  <span class="c1"># 使用 nano 编辑 file.txt 文件（如果没有则创建）</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nano<span class="w"> </span>file.txt<span class="w">  </span><span class="c1"># 使用 nano 编辑 file.txt 文件（如果没有则创建）</span>
 </code></pre></div>
 <p>Nano 启动后，用户可以直接开始输入需要的内容，使用方向键移动光标。在终端最下方是 nano 的快捷键，<code>^</code> 代表需要按下 Ctrl 键（例如，<code>^X</code> 就是需要同时按下 Ctrl + X）。在编辑完成后，按下 Ctrl + X，确认是否保存后即可。</p>
 <p>本章的<a href="supplement/#vim">拓展阅读</a>也简单介绍了 vim 的基础使用。</p>
 <h3 id="cp">复制文件和目录<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST</span>
-$ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST</span>
+$<span class="w"> </span>cp<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>SOURCE<span class="w"> </span>DEST
 
-$ <span class="c1"># 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件</span>
-$ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
+$<span class="w"> </span><span class="c1"># 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件</span>
+$<span class="w"> </span>cp<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>SOURCE...<span class="w"> </span>DIRECTORY
 </code></pre></div>
 <p>常用的选项:</p>
 <table>
@@ -1993,17 +1993,17 @@ $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 <ul>
 <li>
 <p>将 <code>file1.txt</code> 复制一份到同目录，命名为 <code>file2.txt</code>
-<div class="highlight"><pre><span></span><code>$ cp file1.txt file2.txt
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
 </code></pre></div></p>
 </li>
 <li>
 <p>将 <code>file1.txt</code>、<code>file2.txt</code> 文件复制到同目录下的 <code>file</code> 目录中
-<div class="highlight"><pre><span></span><code>$ cp file1.txt file2.txt ./file/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w"> </span>./file/
 </code></pre></div></p>
 </li>
 <li>
 <p>将 <code>dir1</code> 文件夹及其所有子文件复制到同目录下的 <code>test</code> 文件夹中
-<div class="highlight"><pre><span></span><code>$ cp -r dir1 ./test/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>./test/
 </code></pre></div></p>
 </li>
 </ul>
@@ -2020,17 +2020,17 @@ $ cp <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 <p>硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。</p>
 <p>软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。</p>
 <p><code>ln</code> 命令也可以用来创建硬链接和软链接。</p>
-<div class="highlight"><pre><span></span><code>$ ln -s file symlink  <span class="c1"># 创建指向文件 file 的软链接 symlink</span>
-$ ln file hardlink  <span class="c1"># 创建指向文件 file 的硬链接 hardlink</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>file<span class="w"> </span>symlink<span class="w">  </span><span class="c1"># 创建指向文件 file 的软链接 symlink</span>
+$<span class="w"> </span>ln<span class="w"> </span>file<span class="w"> </span>hardlink<span class="w">  </span><span class="c1"># 创建指向文件 file 的硬链接 hardlink</span>
 </code></pre></div>
 </details>
 <h3 id="mv">移动文件和目录<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
 <p><code>mv</code> 与 <code>cp</code> 的使用方式相似，效果类似于 Windows 下的剪切。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 将 SOURCE 文件移动到 DEST 文件</span>
-$ mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE DEST
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 将 SOURCE 文件移动到 DEST 文件</span>
+$<span class="w"> </span>mv<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>SOURCE<span class="w"> </span>DEST
 
-$ <span class="c1"># 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件</span>
-$ mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
+$<span class="w"> </span><span class="c1"># 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件</span>
+$<span class="w"> </span>mv<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>SOURCE...<span class="w"> </span>DIRECTORY
 </code></pre></div>
 <p>常用的选项：</p>
 <table>
@@ -2056,9 +2056,9 @@ $ mv <span class="o">[</span>OPTION<span class="o">]</span> SOURCE... DIRECTORY
 </tbody>
 </table>
 <h3 id="rm">删除文件和目录<a class="headerlink" href="#rm" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 删除 FILE 文件，FILE 可以为多个文件。</span>
-$ <span class="c1"># 如果需要删除目录，需要通过 -r 选项递归删除目录</span>
-$ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 删除 FILE 文件，FILE 可以为多个文件。</span>
+$<span class="w"> </span><span class="c1"># 如果需要删除目录，需要通过 -r 选项递归删除目录</span>
+$<span class="w"> </span>rm<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>FILE...
 </code></pre></div>
 <p>常用的选项：</p>
 <table>
@@ -2104,8 +2104,8 @@ $ rm <span class="o">[</span>OPTION<span class="o">]</span> FILE...
 </ul>
 </div>
 <h3 id="mkdir">创建目录<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个目录，名为 DIR_NAME</span>
-$ mkdir <span class="o">[</span>OPTION<span class="o">]</span> DIR_NAME...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 创建一个目录，名为 DIR_NAME</span>
+$<span class="w"> </span>mkdir<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>DIR_NAME...
 </code></pre></div>
 <p>常用的选项：</p>
 <table>
@@ -2127,19 +2127,19 @@ $ mkdir <span class="o">[</span>OPTION<span class="o">]</span> DIR_NAME...
 <ul>
 <li>
 <p>创建两个目录，名字分别为 <code>test1</code>、<code>test2</code>：</p>
-<div class="highlight"><pre><span></span><code>$ mkdir test1 test2
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>test1<span class="w"> </span>test2
 </code></pre></div>
 </li>
 <li>
 <p>创建路径 <code>test1/test2/test3/</code>：</p>
-<div class="highlight"><pre><span></span><code>$ mkdir -p test1/test2/test3/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>test1/test2/test3/
 </code></pre></div>
 </li>
 </ul>
 </div>
 <h3 id="touch">创建文件<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 创建一个文件，名为 FILE_NAME</span>
-$ touch FILE_NAME...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 创建一个文件，名为 FILE_NAME</span>
+$<span class="w"> </span>touch<span class="w"> </span>FILE_NAME...
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">创建文件示例</p>
@@ -2151,33 +2151,33 @@ $ touch FILE_NAME...
 <p class="admonition-title">为什么名字叫 touch 而非 create（或者类似意思的单词）呢？</p>
 <p>touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。</p>
 <p><code>stat</code> 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：</p>
-<div class="highlight"><pre><span></span><code>$ touch <span class="nb">test</span>  <span class="c1"># 创建文件 test</span>
-$ stat <span class="nb">test</span>  <span class="c1"># 查看信息</span>
-File: <span class="nb">test</span>
-Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
-Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
-Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
-Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
-Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
-Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
-Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
-$ <span class="c1"># 等待一段时间</span>
-$ touch <span class="nb">test</span>  <span class="c1"># 「摸」一下文件 test</span>
-$ stat <span class="nb">test</span>  <span class="c1"># 查看 touch 之后的信息</span>
-  File: <span class="nb">test</span>
-Size: <span class="m">0</span>             Blocks: <span class="m">0</span>          IO Block: <span class="m">4096</span>   regular empty file
-Device: 801h/2049d  Inode: <span class="m">1310743</span>     Links: <span class="m">1</span>
-Access: <span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>   Gid: <span class="o">(</span> <span class="m">1000</span>/     ustc<span class="o">)</span>
-Access: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
-Modify: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
-Change: <span class="m">2022</span>-02-25 <span class="m">18</span>:15:16.625288185 +0800
-Birth: <span class="m">2022</span>-02-25 <span class="m">18</span>:12:28.403981478 +0800
-$ <span class="c1"># 可以看到 Access time 和 Modify time 变化了。</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>touch<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 创建文件 test</span>
+$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 查看信息</span>
+File:<span class="w"> </span><span class="nb">test</span>
+Size:<span class="w"> </span><span class="m">0</span><span class="w">             </span>Blocks:<span class="w"> </span><span class="m">0</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>empty<span class="w"> </span>file
+Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
+Access:<span class="w"> </span><span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
+Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+$<span class="w"> </span><span class="c1"># 等待一段时间</span>
+$<span class="w"> </span>touch<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 「摸」一下文件 test</span>
+$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 查看 touch 之后的信息</span>
+<span class="w">  </span>File:<span class="w"> </span><span class="nb">test</span>
+Size:<span class="w"> </span><span class="m">0</span><span class="w">             </span>Blocks:<span class="w"> </span><span class="m">0</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>empty<span class="w"> </span>file
+Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
+Access:<span class="w"> </span><span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
+Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
+Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
+Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
+Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+$<span class="w"> </span><span class="c1"># 可以看到 Access time 和 Modify time 变化了。</span>
 </code></pre></div>
 </div>
 <h3 id="find">搜索文件和目录<a class="headerlink" href="#find" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件</span>
-$ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="o">[</span>EXPRESSION<span class="o">]</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件</span>
+$<span class="w"> </span>find<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span>PATH<span class="w"> </span><span class="o">[</span>EXPRESSION<span class="o">]</span>
 </code></pre></div>
 <p>常用的表达式：</p>
 <table>
@@ -2211,17 +2211,17 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <ul>
 <li>
 <p>在当前目录搜索名为 report.pdf 的文件：</p>
-<div class="highlight"><pre><span></span><code>$ find . -name <span class="s1">&#39;report.pdf&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;report.pdf&#39;</span>
 </code></pre></div>
 </li>
 <li>
 <p>全盘搜索大于 1G 的文件：</p>
-<div class="highlight"><pre><span></span><code>$ find / -size +1G
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/<span class="w"> </span>-size<span class="w"> </span>+1G
 </code></pre></div>
 </li>
 <li>
 <p>在用户目录搜索所有名为 node_modules 的文件夹：</p>
-<div class="highlight"><pre><span></span><code>$ find ~/ -name <span class="s1">&#39;node_modules&#39;</span> -type d
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>~/<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;node_modules&#39;</span><span class="w"> </span>-type<span class="w"> </span>d
 </code></pre></div>
 </li>
 </ul>
@@ -2293,8 +2293,8 @@ $ find <span class="o">[</span>OPTION<span class="o">]</span> PATH <span class="
 <h2 id="tar">使用 tar 操作存档、压缩文件<a class="headerlink" href="#tar" title="Permanent link">&para;</a></h2>
 <p>经常，我们希望将许多文件打包然后发送给其他人，这时候就会用到 <code>tar</code> 这个命令，作为一个存档工具，它可以将许多文件打包为一个存档文件。</p>
 <p>通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 命令格式如下，请参考下面的使用样例了解使用方法</span>
-$ tar <span class="o">[</span>OPTIONS<span class="o">]</span> FILE...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 命令格式如下，请参考下面的使用样例了解使用方法</span>
+$<span class="w"> </span>tar<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>FILE...
 </code></pre></div>
 <p>常用选项：</p>
 <table>
@@ -2363,35 +2363,35 @@ $ tar <span class="o">[</span>OPTIONS<span class="o">]</span> FILE...
 <ul>
 <li>
 <p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>：</p>
-<div class="highlight"><pre><span></span><code>$ tar -c -f target.tar file1 file2 file3
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
 </li>
 <li>
 <p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 目录中：</p>
-<div class="highlight"><pre><span></span><code>$ tar -x -f target.tar -C test/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
 </code></pre></div>
 </li>
 <li>
 <p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> ：</p>
-<div class="highlight"><pre><span></span><code>$ tar -cz -f target.tar.gz file1 file2 file3
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-cz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
 </li>
 <li>
 <p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 目录中：</p>
-<div class="highlight"><pre><span></span><code>$ tar -xz -f target.tar.gz -C test/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-xz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span>test/
 </code></pre></div>
 </li>
 <li>
 <p>将 <code>archive1.tar</code>、<code>archive2.tar</code>、<code>archive3.tar</code> 三个存档文件中的文件追加到 <code>archive.tar</code> 中</p>
-<div class="highlight"><pre><span></span><code>$ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-Af<span class="w"> </span>archive.tar<span class="w"> </span>archive1.tar<span class="w"> </span>archive2.tar<span class="w"> </span>archive3.tar
 </code></pre></div>
 </li>
 <li>
 <p>列出 <code>target.tar</code> 存档文件中的内容</p>
-<div class="highlight"><pre><span></span><code>$ tar -t -f target.tar
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>target.tar
 
-$ <span class="c1"># 打印出文件的详细信息</span>
-$ tar -tv -f target.tar
+$<span class="w"> </span><span class="c1"># 打印出文件的详细信息</span>
+$<span class="w"> </span>tar<span class="w"> </span>-tv<span class="w"> </span>-f<span class="w"> </span>target.tar
 </code></pre></div>
 </li>
 </ul>
@@ -2399,9 +2399,9 @@ $ tar -tv -f target.tar
 <div class="admonition tip">
 <p class="admonition-title">组合 tar 的选项</p>
 <p>与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 <code>-</code> 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：</p>
-<div class="highlight"><pre><span></span><code>$ tar -c -z -v -f target.tar test/
-$ tar -czvf target.tar test/
-$ tar -f target.tar -czv test/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-c<span class="w"> </span>-z<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>test/
+$<span class="w"> </span>tar<span class="w"> </span>-czvf<span class="w"> </span>target.tar<span class="w"> </span>test/
+$<span class="w"> </span>tar<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>-czv<span class="w"> </span>test/
 </code></pre></div>
 </div>
 <div class="admonition tip">
@@ -2422,12 +2422,12 @@ $ tar -f target.tar -czv test/
 <h3 id="man">man 命令<a class="headerlink" href="#man" title="Permanent link">&para;</a></h3>
 <p>通过 <code>man 命令名</code> 可以得到大部分安装在 Linux 上的软件的用户手册。</p>
 <p>大部分软件在安装时会将它的软件手册安装在系统的特定目录， <code>man</code> 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="c1"># 调出 tar 命令和 ls 命令的文档</span>
-$ man tar
-$ man ls
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="c1"># 调出 tar 命令和 ls 命令的文档</span>
+$<span class="w"> </span>man<span class="w"> </span>tar
+$<span class="w"> </span>man<span class="w"> </span>ls
 </code></pre></div>
 <p>文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 <code>tldr</code>。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>man tar
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>man<span class="w"> </span>tar
 <span class="go">TAR(1)                      GNU TAR Manual                     TAR(1)</span>
 
 <span class="go">NAME</span>
@@ -2442,7 +2442,7 @@ $ man ls
 
 <span class="go">       tar -c [-f ARCHIVE] [OPTIONS] [FILE...]</span>
 
-<span class="gp">$ </span>man ls
+<span class="gp">$ </span>man<span class="w"> </span>ls
 <span class="go">LS(1)                       User Commands                       LS(1)</span>
 
 <span class="go">NAME</span>
@@ -2463,7 +2463,7 @@ $ man ls
 <p><code>tldr</code> 软件中包含有一个由<a href="https://github.com/tldr-pages/tldr">社区</a>维护的精简版文档，通过几个简单的例子让用户可以快速地一窥软件的使用方法。</p>
 <h4 id="install-tldr">安装<a class="headerlink" href="#install-tldr" title="Permanent link">&para;</a></h4>
 <p>在 Debian 系下，可以直接通过 <code>apt</code> 进行安装：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install tldr
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tldr
 </code></pre></div>
 <h4 id="use-tldr">使用<a class="headerlink" href="#use-tldr" title="Permanent link">&para;</a></h4>
 <p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
@@ -2530,7 +2530,7 @@ https://www.gnu.org/software/tar
 <div class="admonition question">
 <p class="admonition-title">为什么不建议使用 <code>apt-key</code></p>
 <p>在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 <code>apt-key</code> 添加信任的 GPG Key，如下所示：</p>
-<div class="highlight"><pre><span></span><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
 </code></pre></div>
 <p>但是如今可以注意到，Docker 官方的安装教程也不再使用此方式，转而先手动下载、经过 <code>gpg</code> 程序处理后放置在 <code>/usr/share/keyrings/</code> 下，然后在软件源配置文件中使用 <code>signed-by</code> 参数指定成这个文件。为什么要换成这么麻烦的步骤？</p>
 <p>背景知识：GPG 签名是非对称密码体系的一个例子。这里，软件包发布者有两把密钥：公钥（供用户公开下载）和私钥（必须妥善保存，不能让别人知道）。发布者使用<strong>私钥</strong>对软件包签名后，用户可以用<strong>公钥</strong>验证软件包确实为该发布者发布，且未被篡改。</p>
@@ -2570,42 +2570,6 @@ https://www.gnu.org/software/tar
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../Ch02/solution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 思考题解答" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2654,12 +2618,11 @@ https://www.gnu.org/software/tar
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

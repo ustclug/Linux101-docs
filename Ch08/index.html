@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../Ch07/supplement/">
+      
+      
+        <link rel="next" href="supplement/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1350,10 +1351,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch08/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
@@ -1394,8 +1394,8 @@
 <p><code>docker.io</code> 是由 Debian/Ubuntu 维护的 Docker 版本，和软件源里的其他程序一样，它比官方的最新版本要稍微老一些。它所依赖的程序库由 Debian/Ubuntu 软件源中的其他软件包提供。</p>
 <p>而 <code>docker-ce</code> 是由 Docker 官方维护的。它依赖的程序库都被打包在了这个包中。本章中，可以安装这两个版本中的任意一个。</p>
 <p>Docker 官方提供了安装 Docker 社区版本的简易安装脚本：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl -fsSL https://get.docker.com -o get-docker.sh
-<span class="gp">$ </span>sudo sh get-docker.sh
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.docker.com<span class="w"> </span>-o<span class="w"> </span>get-docker.sh
+<span class="gp">$ </span>sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </code></pre></div>
 </div>
 <div class="admonition warning">
@@ -1404,7 +1404,7 @@
 <p>如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 <a href="https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2">Using Docker in WSL 2</a>。</p>
 </div>
 <p>在安装完成后，可以使用</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 docker
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名<span class="w"> </span>docker
 </code></pre></div>
 <p>将需要使用 Docker 的用户<a href="../Ch05/#adduser">加入</a> <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
 <h3 id="setup-registry-mirror">配置 Registry Mirror（可选，推荐）<a class="headerlink" href="#setup-registry-mirror" title="Permanent link">&para;</a></h3>
@@ -1414,12 +1414,12 @@
 </div>
 <p>Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。一些服务在中国提供了 Docker Hub 的镜像（反代缓存）。以下内容以网易云与百度云为例。</p>
 <p>为了使用这些 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 <code>/etc/docker/daemon.json</code> 文件（如果文件不存在，请新建一个），写入以下内容。</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="s2">&quot;https://hub-mirror.c.163.com&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="s2">&quot;https://mirror.baidubce.com&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://hub-mirror.c.163.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://mirror.baidubce.com&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>使用 <code>sudo systemctl restart docker</code> 命令重启 Docker 服务后，再次运行 <code>docker info</code> 命令，可以看到如下输出：</p>
 <div class="highlight"><pre><span></span><code> Registry Mirrors:
@@ -1468,31 +1468,31 @@ For more examples and ideas, visit:
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
 <p>在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。</p>
 <p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 或者 <code>docker container ls</code> 查看系统中所有的容器。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker ps -a
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
 <span class="go">CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
 <span class="go">39d8ef1d4acf   ubuntu:20.04   &quot;bash&quot;    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
 </code></pre></div>
 <p>之后使用 <code>docker start</code> 启动容器。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker start -ai ubuntu-container
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>ubuntu-container
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p><code>-a</code> 代表连接输出以及信号。最后的 <code>ubuntu-container</code> 代指我们刚刚创建的那个容器。也可以输入容器的 ID 来启动（不需要输入完整的 ID，只需要前几位即可）：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker start -ai 39d
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>39d
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p>如果忘记加上了参数直接启动，也可以使用 <code>docker attach</code> 将容器的主进程的输入输出接上。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker attach ubuntu-container
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>attach<span class="w"> </span>ubuntu-container
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p><code>docker exec</code> 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker <span class="nb">exec</span> -it ubuntu-container bash
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>ubuntu-container<span class="w"> </span>bash
 <span class="gp">root@39d8ef1d4acf:/#</span>
 </code></pre></div>
 <p>由于 <code>docker exec</code> 创建的进程不是主进程，退出后容器也不会退出，适合需要调试容器的场合。</p>
 <p>与 <code>docker start</code> 相对应，<code>docker stop</code> 可以关闭一个容器，<code>docker rm</code> 可以删除一个容器。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker stop ubuntu-container
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span>ubuntu-container
 <span class="go">39d</span>
-<span class="gp">$ </span>sudo docker rm ubuntu-container
+<span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>ubuntu-container
 <span class="go">39d</span>
 </code></pre></div>
 <h3 id="use-python-repl">在 Python 容器中使用 Python 命令行<a class="headerlink" href="#use-python-repl" title="Permanent link">&para;</a></h3>
@@ -1515,21 +1515,21 @@ For more examples and ideas, visit:
 <h2 id="build-docker-image">构建自己的 Docker 镜像<a class="headerlink" href="#build-docker-image" title="Permanent link">&para;</a></h2>
 <h3 id="build-manually">手工构建镜像<a class="headerlink" href="#build-manually" title="Permanent link">&para;</a></h3>
 <p><code>docker commit</code> 命令可以从当前运行的容器新建镜像。以下是一个简单的例子：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker run -it ubuntu
-<span class="gp">root@82d245a5a4a1:/# </span>apt update <span class="o">&amp;&amp;</span> apt install curl
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu
+<span class="gp">root@82d245a5a4a1:/# </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 <span class="go">（输出省略）</span>
 <span class="gp">root@82d245a5a4a1:/# </span><span class="nb">exit</span>
 <span class="go">exit</span>
-<span class="gp">$ </span>sudo docker ps -a
+<span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
 <span class="go">CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                      PORTS               NAMES</span>
 <span class="go">82d245a5a4a1        ubuntu               &quot;/bin/bash&quot;              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal</span>
-<span class="gp">$ </span>sudo docker commit 82d245a5a4a1
+<span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>commit<span class="w"> </span>82d245a5a4a1
 <span class="go">sha256:fe0a84d81b867949b27bacec4794303852b05ae76df14818bae85751b14f6e20</span>
-<span class="gp">$ </span>sudo docker images
+<span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>images
 <span class="go">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span>
 <span class="go">&lt;none&gt;              &lt;none&gt;              fe0a84d81b86        54 seconds ago      116MB</span>
-<span class="gp">$ </span>sudo docker save fe0a84d81b86 &gt; example.tar
-<span class="gp">$ </span>ls -lh example.tar
+<span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>save<span class="w"> </span>fe0a84d81b86<span class="w"> </span>&gt;<span class="w"> </span>example.tar
+<span class="gp">$ </span>ls<span class="w"> </span>-lh<span class="w"> </span>example.tar
 <span class="go">-rw-r--r-- 1 ustc ustc 114M Feb 10 17:48 example.tar</span>
 </code></pre></div>
 <p>得到的 example.tar 即为我们的 Docker 镜像。可以使用 <code>docker load &lt; example.tar</code> 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。</p>
@@ -1539,12 +1539,12 @@ For more examples and ideas, visit:
 <p>这个例子尝试使用 Debian 仓库中的 RISC-V <a href="../Ch07/supplement/#cross-compile-example">交叉编译</a>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:buster-slim</span>
 
-<span class="k">RUN</span><span class="w"> </span>sed -i <span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
-    apt update <span class="o">&amp;&amp;</span> apt install -y gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross <span class="se">\</span>
-                                 binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross <span class="se">\</span>
-                                 qemu-system-misc qemu-user-static qemu-user binfmt-support <span class="se">\</span>
-                                 fish vim --no-install-recommends
-<span class="k">RUN</span><span class="w"> </span>mkdir /workspace/
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>gcc-riscv64-linux-gnu<span class="w"> </span>g++-riscv64-linux-gnu<span class="w"> </span>libc6-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
+<span class="w">                                 </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
+<span class="w">                                 </span>qemu-system-misc<span class="w"> </span>qemu-user-static<span class="w"> </span>qemu-user<span class="w"> </span>binfmt-support<span class="w"> </span><span class="se">\</span>
+<span class="w">                                 </span>fish<span class="w"> </span>vim<span class="w"> </span>--no-install-recommends
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/workspace/
 
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace/</span>
 <span class="k">ENV</span><span class="w"> </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/riscv64-linux-gnu/
@@ -1555,11 +1555,11 @@ For more examples and ideas, visit:
 <div class="highlight"><pre><span></span><code><span class="go">sudo docker build -t riscv-cross:example .</span>
 </code></pre></div>
 <p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签。构建完成后，使用 <code>docker run</code> 执行即可：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo docker run -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace -it riscv-cross:example
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace<span class="w"> </span>-it<span class="w"> </span>riscv-cross:example
 <span class="go">Welcome to fish, the friendly interactive shell</span>
-<span class="gp">root@dec3d33003ee /workspace# </span>vim helloworld.c
-<span class="gp">root@dec3d33003ee /workspace# </span>riscv64-linux-gnu-gcc helloworld.c
-<span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64 ./a.out
+<span class="gp">root@dec3d33003ee /workspace# </span>vim<span class="w"> </span>helloworld.c
+<span class="gp">root@dec3d33003ee /workspace# </span>riscv64-linux-gnu-gcc<span class="w"> </span>helloworld.c
+<span class="gp">root@dec3d33003ee /workspace# </span>qemu-riscv64<span class="w"> </span>./a.out
 <span class="go">Hello, world!</span>
 </code></pre></div>
 <p>从这个例子中，我们可以看到 Dockerfile 的一些指令：</p>
@@ -1580,29 +1580,29 @@ For more examples and ideas, visit:
 <p>因为 Docker 容器镜像的分层设计，上面提到，<code>RUN</code> 中将多个命令通过 <code>&amp;&amp;</code> 的方式合并在了一起执行，有助于减小镜像的冗余大小。Dockerfile 不是 Shell 脚本，请避免每条命令都使用单独的 <code>RUN</code> 来执行的写法，以下是一个生产环境的错误例子节选（删除了某些部分以方便展示），<strong>无论如何，请不要这么写 Dockerfile</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">centos:7</span>
 
-<span class="k">RUN</span><span class="w"> </span>yum -y install wget make yum-utils
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>make<span class="w"> </span>yum-utils
 
-<span class="k">RUN</span><span class="w"> </span>yum-builddep python -y
+<span class="k">RUN</span><span class="w"> </span>yum-builddep<span class="w"> </span>python<span class="w"> </span>-y
 
-<span class="k">RUN</span><span class="w"> </span>yum -y install gcc
-<span class="k">RUN</span><span class="w"> </span>yum -y install vim
-<span class="k">RUN</span><span class="w"> </span>yum -y install mariadb-devel
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>gcc
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>vim
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>mariadb-devel
 
-<span class="k">RUN</span><span class="w"> </span>wget -O /tmp/Python-3.7.3.tgz https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
-<span class="k">RUN</span><span class="w"> </span>tar -zxvf /tmp/Python-3.7.3.tgz -C /tmp/
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>/tmp/Python-3.7.3.tgz<span class="w"> </span>https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+<span class="k">RUN</span><span class="w"> </span>tar<span class="w"> </span>-zxvf<span class="w"> </span>/tmp/Python-3.7.3.tgz<span class="w"> </span>-C<span class="w"> </span>/tmp/
 <span class="k">RUN</span><span class="w"> </span>/tmp/Python-3.7.3/configure
-<span class="k">RUN</span><span class="w"> </span>make <span class="o">&amp;&amp;</span> make install
+<span class="k">RUN</span><span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
 
-<span class="k">RUN</span><span class="w"> </span>rm -f /usr/bin/python
-<span class="k">RUN</span><span class="w"> </span>ln -s /usr/local/bin/python3 /usr/bin/python
-<span class="k">RUN</span><span class="w"> </span>ln -s /usr/local/bin/pip3 /usr/bin/pip
+<span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/usr/bin/python
+<span class="k">RUN</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/bin/python3<span class="w"> </span>/usr/bin/python
+<span class="k">RUN</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/bin/pip3<span class="w"> </span>/usr/bin/pip
 
-<span class="k">RUN</span><span class="w"> </span>pip install --upgrade pip
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 
-<span class="k">RUN</span><span class="w"> </span>sed -i <span class="s1">&#39;s/python/python2/&#39;</span> /usr/bin/yum
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/python/python2/&#39;</span><span class="w"> </span>/usr/bin/yum
 
-<span class="k">RUN</span><span class="w"> </span>rm -rf /tmp/Python-3.7.3*
-<span class="k">RUN</span><span class="w"> </span>yum clean all
+<span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/Python-3.7.3*
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all
 </code></pre></div>
 <p>当然，这不等于说必须要把所有命令都写在一条 <code>RUN</code> 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 <code>RUN</code> 运行，因为 Docker 在构建镜像时，可以重复使用之前构建好的层。这么做可以节约构建与调试 Dockerfile 的时间。</p>
 </div>
@@ -1610,46 +1610,46 @@ For more examples and ideas, visit:
 <p>Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">tiangolo/uwsgi-nginx-flask:python3.8</span>
 
-<span class="k">RUN</span><span class="w"> </span>pip3 config <span class="nb">set</span> global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
-<span class="k">RUN</span><span class="w"> </span>pip3 install pyopenssl
+<span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>global.index-url<span class="w"> </span>https://mirrors.bfsu.edu.cn/pypi/web/simple
+<span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>pyopenssl
 
-<span class="k">COPY</span><span class="w"> </span>./app /app
+<span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/app
 </code></pre></div>
 <p>这里使用了 <code>COPY</code> 指令，将本地的 <code>app</code> 目录复制进容器镜像的 <code>/app</code> 中。</p>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
 <p>Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 <code>docker.io</code> 软件包，那么系统中可能未安装 <code>docker-compose</code>，使用以下命令安装：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install docker-compose
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose
 </code></pre></div>
 <h3 id="use-docker-compose-build-wordpress-with-mysql">使用 Docker Compose 创建 WordPress 博客<a class="headerlink" href="#use-docker-compose-build-wordpress-with-mysql" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。</p>
 <p>新建一个文件夹，在其中放入一个名为 <code>docker-compose.yml</code> 的配置文件：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="w"></span>
-<span class="nt">services</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span><span class="w"></span>
-<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress_db</span><span class="w"></span>
-<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./mysql:/var/lib/mysql</span><span class="w"></span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span><span class="w"></span>
-<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span><span class="w"></span>
-<span class="w">      </span><span class="nt">MYSQL_ROOT_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress_db</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./mysql:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span>
+<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%&quot;</span>
 
-<span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span><span class="w"></span>
-<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span><span class="w"></span>
-<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span><span class="w"></span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./wp-content:/var/www/html/wp-content</span><span class="w"></span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db:3306</span><span class="w"></span>
-<span class="w">      </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span><span class="w"></span>
-<span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span><span class="w"></span>
+<span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./wp-content:/var/www/html/wp-content</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db:3306</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span>
 </code></pre></div>
 <p>在文件夹中运行 <code>docker-compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker-compose up -d</code> 命令可以让容器分离（detach）命令行。运行完成后，可以使用 <code>docker-compose down</code> 停止并删除容器。</p>
 
@@ -1674,42 +1674,6 @@ For more examples and ideas, visit:
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../Ch07/supplement/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 拓展阅读" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1758,12 +1722,11 @@ For more examples and ideas, visit:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

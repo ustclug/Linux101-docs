@@ -12,8 +12,10 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +126,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +133,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1375,10 +1372,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch10/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="windows-subsystem-for-linux">Windows Subsystem for Linux<a class="headerlink" href="#windows-subsystem-for-linux" title="Permanent link">&para;</a></h1>
@@ -1393,7 +1389,7 @@
 <h2 id="install">安装<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
 <h3 id="install-auto">自动安装方法<a class="headerlink" href="#install-auto" title="Permanent link">&para;</a></h3>
 <p>在 Windows 10 Build 19041（Windows 10 2004）版本或以上，可以通过一条命令直接完成安装（需要以管理员身份运行）：</p>
-<div class="highlight"><pre><span></span><code>wsl --install
+<div class="highlight"><pre><span></span><code>wsl<span class="w"> </span>--install
 </code></pre></div>
 <p>这条命令会完成如下几个操作：</p>
 <ul>
@@ -1439,7 +1435,7 @@ Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRes
 <p>可以从 <a href="https://github.com/DDoSolitary/LxRunOffline/wiki">LxRunOffline/wiki</a> 里面下载需要的发行版的 rootfs</p>
 <p>对于 ArchLinux，可以从<a href="https://lxrunoffline.apphb.com/download/ArchLinux">这个链接</a>，下载 ArchLinux 的 rootfs 得到 <code>archlinux-bootstrap-*.tar.gz</code></p>
 <p>使用 LxRunOffline 进行安装</p>
-<div class="highlight"><pre><span></span><code>./LxRunOffline i -n ArchLinux -d D:/wsl/ArchLinux -f ./archlinux-bootstrap-*.tar.gz
+<div class="highlight"><pre><span></span><code>./LxRunOffline<span class="w"> </span>i<span class="w"> </span>-n<span class="w"> </span>ArchLinux<span class="w"> </span>-d<span class="w"> </span>D:/wsl/ArchLinux<span class="w"> </span>-f<span class="w"> </span>./archlinux-bootstrap-*.tar.gz
 </code></pre></div>
 <ul>
 <li>
@@ -1453,7 +1449,7 @@ Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRes
 <div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="n">-d</span> <span class="n">ArchLinux</span>
 </code></pre></div>
 <p>在安装完成后打开，默认是以 root 的身份执行，如果需要默认以其他的用户的身份运行，可以在添加了用户后，使用 LxRunOffline 运行：</p>
-<div class="highlight"><pre><span></span><code>./LxRunOffline su -n ArchLinux -v <span class="m">1000</span>
+<div class="highlight"><pre><span></span><code>./LxRunOffline<span class="w"> </span>su<span class="w"> </span>-n<span class="w"> </span>ArchLinux<span class="w"> </span>-v<span class="w"> </span><span class="m">1000</span>
 </code></pre></div>
 <p>其中：</p>
 <ul>
@@ -1555,12 +1551,11 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>

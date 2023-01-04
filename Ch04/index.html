@@ -12,8 +12,14 @@
         <meta name="author" content="LUG@USTC">
       
       
+      
+        <link rel="prev" href="../Ch03/solution/">
+      
+      
+        <link rel="next" href="supplement/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,11 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -125,8 +130,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_2" hidden>
@@ -134,8 +137,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_2">
           
@@ -1451,10 +1452,9 @@
                 
                   
 
-  <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch04/index.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="_1">进程、前后台、服务与例行性任务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1489,23 +1489,23 @@
 <p>使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 <span class="keys"><kbd>F1</kbd></span> 至 <span class="keys"><kbd>F10</kbd></span> 功能键可以选择这些功能，常用的功能例如搜索进程（<span class="keys"><kbd>F3</kbd></span>, Search）、过滤进程（<span class="keys"><kbd>F4</kbd></span>, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（<span class="keys"><kbd>F5</kbd></span>, Tree/List）等等。</p>
 <h4 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">&para;</a></h4>
 <p>ps (process status) 是常用的输出进程状态的工具。直接调用 <code>ps</code> 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 <code>ps aux</code>。</p>
-<div class="highlight"><pre><span></span><code>$ ps
-    PID TTY          TIME CMD
-   <span class="m">1720</span> pts/0    <span class="m">00</span>:00:00 bash
-   <span class="m">1858</span> pts/0    <span class="m">00</span>:00:00 ps
-$ ps aux
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           <span class="m">1</span>  <span class="m">0</span>.2  <span class="m">0</span>.5 <span class="m">167312</span> <span class="m">11156</span> ?        Ss   <span class="m">02</span>:33   <span class="m">0</span>:04 /sbin/init splash
-root           <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
-root           <span class="m">3</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_gp<span class="o">]</span>
-root           <span class="m">4</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_par_gp<span class="o">]</span>
-root           <span class="m">6</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
-root           <span class="m">9</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>mm_percpu_wq<span class="o">]</span>
-root          <span class="m">10</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_tasks_rude_<span class="o">]</span>
-root          <span class="m">11</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_tasks_trace<span class="o">]</span>
-root          <span class="m">12</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
-root          <span class="m">13</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>rcu_sched<span class="o">]</span>
-root          <span class="m">14</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">02</span>:33   <span class="m">0</span>:00 <span class="o">[</span>migration/0<span class="o">]</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ps
+<span class="w">    </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
+<span class="w">   </span><span class="m">1720</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
+<span class="w">   </span><span class="m">1858</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
+$<span class="w"> </span>ps<span class="w"> </span>aux
+USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.2<span class="w">  </span><span class="m">0</span>.5<span class="w"> </span><span class="m">167312</span><span class="w"> </span><span class="m">11156</span><span class="w"> </span>?<span class="w">        </span>Ss<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:04<span class="w"> </span>/sbin/init<span class="w"> </span>splash
+root<span class="w">           </span><span class="m">2</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>kthreadd<span class="o">]</span>
+root<span class="w">           </span><span class="m">3</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_gp<span class="o">]</span>
+root<span class="w">           </span><span class="m">4</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_par_gp<span class="o">]</span>
+root<span class="w">           </span><span class="m">6</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
+root<span class="w">           </span><span class="m">9</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>mm_percpu_wq<span class="o">]</span>
+root<span class="w">          </span><span class="m">10</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_tasks_rude_<span class="o">]</span>
+root<span class="w">          </span><span class="m">11</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_tasks_trace<span class="o">]</span>
+root<span class="w">          </span><span class="m">12</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+root<span class="w">          </span><span class="m">13</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_sched<span class="o">]</span>
+root<span class="w">          </span><span class="m">14</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>migration/0<span class="o">]</span>
 （以下省略）
 </code></pre></div>
 <h3 id="pid">进程标识符<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
@@ -1523,8 +1523,8 @@ root          <span class="m">14</span>  <span class="m">0</span>.0  <span class
 <p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：priority (PRI) 和 <strong>nice (NI)</strong>。以下主要介绍用户层使用的 nice 值。</p>
 <p>Nice 值越高代表一个进程对其它进程越 "nice"（友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
 <p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。</p>
-<div class="highlight"><pre><span></span><code>$ nice -n <span class="m">10</span> vim <span class="c1"># 以 10 为 nice 值运行 vim</span>
-$ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>vim<span class="w"> </span><span class="c1"># 以 10 为 nice 值运行 vim</span>
+$<span class="w"> </span>renice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">12345</span><span class="w"> </span><span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
 </code></pre></div>
 <details class="tip">
 <summary>那 PRI 呢？</summary>
@@ -1588,13 +1588,13 @@ $ renice -n <span class="m">10</span> -p <span class="m">12345</span> <span clas
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>默认情况下，在 shell 中运行的命令都在前台运行，如果需要在后台运行程序，需要在最后加上 <code>&amp;</code>：</p>
-<div class="highlight"><pre><span></span><code>$ ./matmul <span class="p">&amp;</span>  <span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
-$ ps
-    PID TTY          TIME CMD
-   <span class="m">1720</span> pts/0    <span class="m">00</span>:00:00 bash
-   <span class="m">1861</span> pts/0    <span class="m">00</span>:00:06 matmul
-   <span class="m">1862</span> pts/0    <span class="m">00</span>:00:00 ps
-$ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./matmul<span class="w"> </span><span class="p">&amp;</span><span class="w">  </span><span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
+$<span class="w"> </span>ps
+<span class="w">    </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
+<span class="w">   </span><span class="m">1720</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
+<span class="w">   </span><span class="m">1861</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:06<span class="w"> </span>matmul
+<span class="w">   </span><span class="m">1862</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
+$<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
 </code></pre></div>
 <p>而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
 <p><img alt="" id="bg" src="images/bg.gif" width="80%" /></p>
@@ -1614,20 +1614,20 @@ $ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运�
 <p>htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
 <h4 id="kill-command">kill<a class="headerlink" href="#kill-command" title="Permanent link">&para;</a></h4>
 <p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">kill</span> -l <span class="c1"># 显示所有信号名称</span>
- <span class="m">1</span><span class="o">)</span> SIGHUP       <span class="m">2</span><span class="o">)</span> SIGINT       <span class="m">3</span><span class="o">)</span> SIGQUIT      <span class="m">4</span><span class="o">)</span> SIGILL       <span class="m">5</span><span class="o">)</span> SIGTRAP
- <span class="m">6</span><span class="o">)</span> SIGABRT      <span class="m">7</span><span class="o">)</span> SIGBUS       <span class="m">8</span><span class="o">)</span> SIGFPE       <span class="m">9</span><span class="o">)</span> SIGKILL     <span class="m">10</span><span class="o">)</span> SIGUSR1
-<span class="m">11</span><span class="o">)</span> SIGSEGV     <span class="m">12</span><span class="o">)</span> SIGUSR2     <span class="m">13</span><span class="o">)</span> SIGPIPE     <span class="m">14</span><span class="o">)</span> SIGALRM     <span class="m">15</span><span class="o">)</span> SIGTERM
-<span class="m">16</span><span class="o">)</span> SIGSTKFLT   <span class="m">17</span><span class="o">)</span> SIGCHLD     <span class="m">18</span><span class="o">)</span> SIGCONT     <span class="m">19</span><span class="o">)</span> SIGSTOP     <span class="m">20</span><span class="o">)</span> SIGTSTP
-<span class="m">21</span><span class="o">)</span> SIGTTIN     <span class="m">22</span><span class="o">)</span> SIGTTOU     <span class="m">23</span><span class="o">)</span> SIGURG      <span class="m">24</span><span class="o">)</span> SIGXCPU     <span class="m">25</span><span class="o">)</span> SIGXFSZ
-<span class="m">26</span><span class="o">)</span> SIGVTALRM   <span class="m">27</span><span class="o">)</span> SIGPROF     <span class="m">28</span><span class="o">)</span> SIGWINCH    <span class="m">29</span><span class="o">)</span> SIGIO       <span class="m">30</span><span class="o">)</span> SIGPWR
-<span class="m">31</span><span class="o">)</span> SIGSYS      <span class="m">34</span><span class="o">)</span> SIGRTMIN    <span class="m">35</span><span class="o">)</span> SIGRTMIN+1  <span class="m">36</span><span class="o">)</span> SIGRTMIN+2  <span class="m">37</span><span class="o">)</span> SIGRTMIN+3
-<span class="m">38</span><span class="o">)</span> SIGRTMIN+4  <span class="m">39</span><span class="o">)</span> SIGRTMIN+5  <span class="m">40</span><span class="o">)</span> SIGRTMIN+6  <span class="m">41</span><span class="o">)</span> SIGRTMIN+7  <span class="m">42</span><span class="o">)</span> SIGRTMIN+8
-<span class="m">43</span><span class="o">)</span> SIGRTMIN+9  <span class="m">44</span><span class="o">)</span> SIGRTMIN+10 <span class="m">45</span><span class="o">)</span> SIGRTMIN+11 <span class="m">46</span><span class="o">)</span> SIGRTMIN+12 <span class="m">47</span><span class="o">)</span> SIGRTMIN+13
-<span class="m">48</span><span class="o">)</span> SIGRTMIN+14 <span class="m">49</span><span class="o">)</span> SIGRTMIN+15 <span class="m">50</span><span class="o">)</span> SIGRTMAX-14 <span class="m">51</span><span class="o">)</span> SIGRTMAX-13 <span class="m">52</span><span class="o">)</span> SIGRTMAX-12
-<span class="m">53</span><span class="o">)</span> SIGRTMAX-11 <span class="m">54</span><span class="o">)</span> SIGRTMAX-10 <span class="m">55</span><span class="o">)</span> SIGRTMAX-9  <span class="m">56</span><span class="o">)</span> SIGRTMAX-8  <span class="m">57</span><span class="o">)</span> SIGRTMAX-7
-<span class="m">58</span><span class="o">)</span> SIGRTMAX-6  <span class="m">59</span><span class="o">)</span> SIGRTMAX-5  <span class="m">60</span><span class="o">)</span> SIGRTMAX-4  <span class="m">61</span><span class="o">)</span> SIGRTMAX-3  <span class="m">62</span><span class="o">)</span> SIGRTMAX-2
-<span class="m">63</span><span class="o">)</span> SIGRTMAX-1  <span class="m">64</span><span class="o">)</span> SIGRTMAX
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-l<span class="w"> </span><span class="c1"># 显示所有信号名称</span>
+<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SIGHUP<span class="w">       </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>SIGINT<span class="w">       </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>SIGQUIT<span class="w">      </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>SIGILL<span class="w">       </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>SIGTRAP
+<span class="w"> </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>SIGABRT<span class="w">      </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>SIGBUS<span class="w">       </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>SIGFPE<span class="w">       </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>SIGKILL<span class="w">     </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SIGUSR1
+<span class="m">11</span><span class="o">)</span><span class="w"> </span>SIGSEGV<span class="w">     </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>SIGUSR2<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>SIGPIPE<span class="w">     </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>SIGALRM<span class="w">     </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>SIGTERM
+<span class="m">16</span><span class="o">)</span><span class="w"> </span>SIGSTKFLT<span class="w">   </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>SIGCHLD<span class="w">     </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>SIGCONT<span class="w">     </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>SIGSTOP<span class="w">     </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>SIGTSTP
+<span class="m">21</span><span class="o">)</span><span class="w"> </span>SIGTTIN<span class="w">     </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>SIGTTOU<span class="w">     </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>SIGURG<span class="w">      </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>SIGXCPU<span class="w">     </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>SIGXFSZ
+<span class="m">26</span><span class="o">)</span><span class="w"> </span>SIGVTALRM<span class="w">   </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>SIGPROF<span class="w">     </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>SIGWINCH<span class="w">    </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>SIGIO<span class="w">       </span><span class="m">30</span><span class="o">)</span><span class="w"> </span>SIGPWR
+<span class="m">31</span><span class="o">)</span><span class="w"> </span>SIGSYS<span class="w">      </span><span class="m">34</span><span class="o">)</span><span class="w"> </span>SIGRTMIN<span class="w">    </span><span class="m">35</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+1<span class="w">  </span><span class="m">36</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+2<span class="w">  </span><span class="m">37</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+3
+<span class="m">38</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+4<span class="w">  </span><span class="m">39</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+5<span class="w">  </span><span class="m">40</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+6<span class="w">  </span><span class="m">41</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+7<span class="w">  </span><span class="m">42</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+8
+<span class="m">43</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+9<span class="w">  </span><span class="m">44</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+10<span class="w"> </span><span class="m">45</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+11<span class="w"> </span><span class="m">46</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+12<span class="w"> </span><span class="m">47</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+13
+<span class="m">48</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+14<span class="w"> </span><span class="m">49</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+15<span class="w"> </span><span class="m">50</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-14<span class="w"> </span><span class="m">51</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-13<span class="w"> </span><span class="m">52</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-12
+<span class="m">53</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-11<span class="w"> </span><span class="m">54</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-10<span class="w"> </span><span class="m">55</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-9<span class="w">  </span><span class="m">56</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-8<span class="w">  </span><span class="m">57</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-7
+<span class="m">58</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-6<span class="w">  </span><span class="m">59</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-5<span class="w">  </span><span class="m">60</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-4<span class="w">  </span><span class="m">61</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-3<span class="w">  </span><span class="m">62</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-2
+<span class="m">63</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-1<span class="w">  </span><span class="m">64</span><span class="o">)</span><span class="w"> </span>SIGRTMAX
 </code></pre></div>
 <p>如果不加任何参数，只有 PID，<code>kill</code> 命令将自动使用 15 (SIGTERM) 作为信号参数。</p>
 <div class="admonition tip">
@@ -1665,9 +1665,9 @@ $ <span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运�
 <p>如果你使用过 SSH 连接到远程服务器执行任务，那么你会发现，你在 shell 中执行的程序在 SSH 断开之后会被关闭。这是因为终端一旦被关闭会向其中每个进程发送 SIGHUP (Signal hangup)，而 SIGHUP 的默认动作即退出程序运行。</p>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
-<div class="highlight"><pre><span></span><code>$ nohup ping <span class="m">101</span>.ustclug.org <span class="p">&amp;</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">19258</span>
-nohup: ignoring input and appending output to <span class="s1">&#39;/home/ustc/nohup.out&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nohup<span class="w"> </span>ping<span class="w"> </span><span class="m">101</span>.ustclug.org<span class="w"> </span><span class="p">&amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">19258</span>
+nohup:<span class="w"> </span>ignoring<span class="w"> </span>input<span class="w"> </span>and<span class="w"> </span>appending<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;/home/ustc/nohup.out&#39;</span>
 </code></pre></div>
 <p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch06/#redirect">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
 <h3 id="tmux">命令行多终端方案——tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
@@ -1680,8 +1680,8 @@ nohup: ignoring input and appending output to <span class="s1">&#39;/home/ustc/n
 </div>
 <p>tmux 由会话 (session)，窗口 (window)，面板 (pane) 组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
 <p>下面先行讲解这一工具的用法：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install tmux
-$ tmux
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
+$<span class="w"> </span>tmux
 </code></pre></div>
 <p>我们便打开了第一个 tmux 窗口：</p>
 <p>首先，Ctrl + B 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
@@ -1737,21 +1737,21 @@ $ tmux
 <div class="admonition info">
 <p class="admonition-title">简易的自定义脚本</p>
 <p>使用你最喜欢的编辑器，gedit、vim、emacs 都可以，将以下内容保存到文件 <code>~/.tmux.conf</code>（家目录下的 <code>.tmux.conf</code> 文件）：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">set</span> -g prefix C-a                                 <span class="c1"># 设置前缀按键 Ctrl + A。</span>
-unbind C-b                                        <span class="c1"># 取消 Ctrl + B 快捷键。</span>
-<span class="nb">bind</span> C-a send-prefix                              <span class="c1"># 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。</span>
-                                                    （Shell 中 Ctrl + A 表示光标移动到最前端）。
-<span class="nb">set</span> -g mouse on                                   <span class="c1"># 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
-unbind -n MouseDrag1Pane
-unbind -Tcopy-mode MouseDrag1Pane
+<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>prefix<span class="w"> </span>C-a<span class="w">                                 </span><span class="c1"># 设置前缀按键 Ctrl + A。</span>
+unbind<span class="w"> </span>C-b<span class="w">                                        </span><span class="c1"># 取消 Ctrl + B 快捷键。</span>
+<span class="nb">bind</span><span class="w"> </span>C-a<span class="w"> </span>send-prefix<span class="w">                              </span><span class="c1"># 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。</span>
+<span class="w">                                                    </span>（Shell<span class="w"> </span>中<span class="w"> </span>Ctrl<span class="w"> </span>+<span class="w"> </span>A<span class="w"> </span>表示光标移动到最前端）。
+<span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>mouse<span class="w"> </span>on<span class="w">                                   </span><span class="c1"># 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
+unbind<span class="w"> </span>-n<span class="w"> </span>MouseDrag1Pane
+unbind<span class="w"> </span>-Tcopy-mode<span class="w"> </span>MouseDrag1Pane
 
-unbind <span class="s1">&#39;&quot;&#39;</span>                                        <span class="c1"># 使用 - 代表横向分割。</span>
-<span class="nb">bind</span> - splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+unbind<span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w">                                        </span><span class="c1"># 使用 - 代表横向分割。</span>
+<span class="nb">bind</span><span class="w"> </span>-<span class="w"> </span>splitw<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span>
 
-unbind %                                          <span class="c1"># 使用 \ 代表纵向分割（因为我不想按 Shift）。</span>
-<span class="nb">bind</span> <span class="se">\ </span>splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+unbind<span class="w"> </span>%<span class="w">                                          </span><span class="c1"># 使用 \ 代表纵向分割（因为我不想按 Shift）。</span>
+<span class="nb">bind</span><span class="w"> </span><span class="se">\ </span>splitw<span class="w"> </span>-h<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span>
 
-setw -g mode-keys vi                              <span class="c1"># 设置 copy-mode 快捷键模式为 vi。</span>
+setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> </span>vi<span class="w">                              </span><span class="c1"># 设置 copy-mode 快捷键模式为 vi。</span>
 </code></pre></div>
 <p>以 <code>.</code> 开头的文件为隐藏文件，需要使用 <code>ls -a</code> 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。</p>
 <p>保存后，使用 <code>tmux source ~/.tmux.conf</code> 重新载入配置，或者 <code>tmux kill-server</code> 后重启 tmux。</p>
@@ -1771,40 +1771,40 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
 <p>目前绝大多数 Linux 发行版的 init 方案都是 systemd，其管理系统服务的命令是 <code>systemctl</code>。</p>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>systemctl status</code> 命令一览系统服务运行情况。</p>
-<div class="highlight"><pre><span></span><code>$ systemctl status
-● ustclug-linux101
-    State: running
-     Jobs: <span class="m">0</span> queued
-   Failed: <span class="m">0</span> units
-    Since: Thu <span class="m">2022</span>-02-24 <span class="m">22</span>:57:43 CST<span class="p">;</span> 43s ago
-   CGroup: /
-           ├─user.slice
-           │ └─user-1000.slice
-           │   ├─user@1000.service
-           │   │ ├─gvfs-goa-volume-monitor.service
-           │   │ │ └─1179 /usr/libexec/gvfs-goa-volume-monitor
-           │   │ ├─pulseaudio.service
-           │   │ │ └─908 /usr/bin/pulseaudio --daemonize<span class="o">=</span>no --log-target<span class="o">=</span>journal
-           │   │ ├─gvfs-daemon.service
-           │   │ │ ├─1011 /usr/libexec/gvfsd
-           │   │ │ ├─1016 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
-           │   │ │ └─1216 /usr/libexec/gvfsd-trash --spawner :1.8 /org/gtk/gvfs/exec_spaw/0
-           │   │ ├─gvfs-udisks2-volume-monitor.service
-           │   │ │ └─1168 /usr/libexec/gvfs-udisks2-volume-monitor
-           │   │ ├─xfce4-notifyd.service
-           │   │ │ └─1142 /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
-           │   │ ├─init.scope
-           │   │ │ ├─900 /lib/systemd/systemd --user
-           │   │ │ └─901 <span class="o">(</span>sd-pam<span class="o">)</span>
-           │   │ ├─gvfs-gphoto2-volume-monitor.service
-           │   │ │ └─1183 /usr/libexec/gvfs-gphoto2-volume-monitor
-           │   │ ├─obex.service
-           │   │ │ └─1270 /usr/lib/bluetooth/obexd
-           │   │ ├─at-spi-dbus-bus.service
-           │   │ │ ├─1008 /usr/libexec/at-spi-bus-launcher
-           │   │ │ ├─1020 /usr/bin/dbus-daemon --config-file<span class="o">=</span>/usr/share/defaults/at-spi2/accessibility.conf --&gt;
-           │   │ │ └─1034 /usr/libexec/at-spi2-registryd --use-gnome-session
-           │   │ ├─indicator-messages.service
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>systemctl<span class="w"> </span>status
+●<span class="w"> </span>ustclug-linux101
+<span class="w">    </span>State:<span class="w"> </span>running
+<span class="w">     </span>Jobs:<span class="w"> </span><span class="m">0</span><span class="w"> </span>queued
+<span class="w">   </span>Failed:<span class="w"> </span><span class="m">0</span><span class="w"> </span>units
+<span class="w">    </span>Since:<span class="w"> </span>Thu<span class="w"> </span><span class="m">2022</span>-02-24<span class="w"> </span><span class="m">22</span>:57:43<span class="w"> </span>CST<span class="p">;</span><span class="w"> </span>43s<span class="w"> </span>ago
+<span class="w">   </span>CGroup:<span class="w"> </span>/
+<span class="w">           </span>├─user.slice
+<span class="w">           </span>│<span class="w"> </span>└─user-1000.slice
+<span class="w">           </span>│<span class="w">   </span>├─user@1000.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-goa-volume-monitor.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1179<span class="w"> </span>/usr/libexec/gvfs-goa-volume-monitor
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─pulseaudio.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─908<span class="w"> </span>/usr/bin/pulseaudio<span class="w"> </span>--daemonize<span class="o">=</span>no<span class="w"> </span>--log-target<span class="o">=</span>journal
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-daemon.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1011<span class="w"> </span>/usr/libexec/gvfsd
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1016<span class="w"> </span>/usr/libexec/gvfsd-fuse<span class="w"> </span>/run/user/1000/gvfs<span class="w"> </span>-f<span class="w"> </span>-o<span class="w"> </span>big_writes
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1216<span class="w"> </span>/usr/libexec/gvfsd-trash<span class="w"> </span>--spawner<span class="w"> </span>:1.8<span class="w"> </span>/org/gtk/gvfs/exec_spaw/0
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-udisks2-volume-monitor.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1168<span class="w"> </span>/usr/libexec/gvfs-udisks2-volume-monitor
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─xfce4-notifyd.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1142<span class="w"> </span>/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─init.scope
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─900<span class="w"> </span>/lib/systemd/systemd<span class="w"> </span>--user
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─901<span class="w"> </span><span class="o">(</span>sd-pam<span class="o">)</span>
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-gphoto2-volume-monitor.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1183<span class="w"> </span>/usr/libexec/gvfs-gphoto2-volume-monitor
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─obex.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1270<span class="w"> </span>/usr/lib/bluetooth/obexd
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─at-spi-dbus-bus.service
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1008<span class="w"> </span>/usr/libexec/at-spi-bus-launcher
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1020<span class="w"> </span>/usr/bin/dbus-daemon<span class="w"> </span>--config-file<span class="o">=</span>/usr/share/defaults/at-spi2/accessibility.conf<span class="w"> </span>--&gt;
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1034<span class="w"> </span>/usr/libexec/at-spi2-registryd<span class="w"> </span>--use-gnome-session
+<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─indicator-messages.service
 （以下省略）
 </code></pre></div>
 <div class="admonition tip">
@@ -1817,7 +1817,7 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 <p><img alt="services" src="images/services.png" /></p>
 </div>
 <p>至于服务的启动，终止，重载配置等命令可交付 tldr 介绍，我们也加入了一些注释。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tldr systemctl
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tldr<span class="w"> </span>systemctl
 <span class="go">systemctl</span>
 <span class="go">Control the systemd system and service manager.</span>
 
@@ -1847,16 +1847,16 @@ setw -g mode-keys vi                              <span class="c1"># 设置 copy
 <summary>传统的 service 管理程序</summary>
 <p>尽管 systemd 近年来已经占据了大半江山，但是有人很讨厌它，认为它违背了 KISS (Keep It Simple and Stupid) 原则，不符合 UNIX 哲学，因此有一些 Linux 发行版以不使用 systemd 为自身特色。并且，systemd 只能够用于 Linux，与其他的类 UNIX 操作系统（例如 FreeBSD）不兼容。因此，以下对传统的 <code>service</code> 命令作一个简单的介绍。</p>
 <p>可以通过 <code>service --status-all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
-<div class="highlight"><pre><span></span><code>$ service --status-all
-<span class="o">[</span> - <span class="o">]</span>  atftpd
-<span class="o">[</span> - <span class="o">]</span>  avahi-daemon
-<span class="o">[</span> + <span class="o">]</span>  bind9
-<span class="o">[</span> - <span class="o">]</span>  bluetooth
-<span class="o">[</span> - <span class="o">]</span>  console-setup.sh
-<span class="o">[</span> + <span class="o">]</span>  cron
-<span class="o">[</span> + <span class="o">]</span>  cups
-<span class="o">[</span> - <span class="o">]</span>  cups-browsed
-<span class="o">[</span> + <span class="o">]</span>  dbus
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>service<span class="w"> </span>--status-all
+<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>atftpd
+<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>avahi-daemon
+<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>bind9
+<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>bluetooth
+<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>console-setup.sh
+<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>cron
+<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>cups
+<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>cups-browsed
+<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>dbus
 ……
 </code></pre></div>
 <p>/etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 也支持从此目录中加载服务。</p>
@@ -1886,25 +1886,25 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <p class="admonition-title">编写 .service 文件并运行（以 Jupyter Notebook 为例）</p>
 <p>Jupyter Notebook 是基于浏览器的交互式编程平台，在数据科学领域非常常用。</p>
 <p>首先使用文本编辑器在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>jupyter.service</code> 的文件。并填入以下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span><span class="w"></span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook    # 该服务的简要描述</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Jupyter Notebook</span><span class="w">    </span><span class="c1"># 该服务的简要描述</span>
 
-<span class="k">[Service]</span><span class="w"></span>
-<span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid        # 用来存放 PID 的文件</span><span class="w"></span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root</span><span class="w"></span>
-<span class="w">                                </span><span class="c1"># 使用绝对路径标明的命令及命令行参数</span><span class="w"></span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root          # 服务启动时的工作目录</span><span class="w"></span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always                  # 重启模式，这里是无论因何退出都重启</span><span class="w"></span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">10                   # 退出后多少秒重启</span><span class="w"></span>
+<span class="k">[Service]</span>
+<span class="na">PIDFile</span><span class="o">=</span><span class="s">/run/jupyter.pid</span><span class="w">        </span><span class="c1"># 用来存放 PID 的文件</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/jupyter-notebook --allow-root</span>
+<span class="w">                                </span><span class="c1"># 使用绝对路径标明的命令及命令行参数</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/root</span><span class="w">          </span><span class="c1"># 服务启动时的工作目录</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span><span class="w">                  </span><span class="c1"># 重启模式，这里是无论因何退出都重启</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">10</span><span class="w">                   </span><span class="c1"># 退出后多少秒重启</span>
 
-<span class="k">[Install]</span><span class="w"></span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target      # 依赖目标，这里指进入多用户模式后再启动该服务</span><span class="w"></span>
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w">      </span><span class="c1"># 依赖目标，这里指进入多用户模式后再启动该服务</span>
 </code></pre></div>
 <p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
-<div class="highlight"><pre><span></span><code>$ systemctl start jupyter
-$ systemctl stop jupyter
-$ systemctl <span class="nb">enable</span> jupyter  <span class="c1"># enable 表示标记服务的开机自动启动</span>
-$ systemctl disable jupyter <span class="c1"># 取消自启</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>jupyter
+$<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>jupyter
+$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>jupyter<span class="w">  </span><span class="c1"># enable 表示标记服务的开机自动启动</span>
+$<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>jupyter<span class="w"> </span><span class="c1"># 取消自启</span>
 </code></pre></div>
 </div>
 <p>可以参考系统中其他 service 文件，以及 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service(5)</a> 手册页编写配置文件。</p>
@@ -1934,10 +1934,10 @@ Service atd (or atrun) should be running for the actual executions.
 </code></pre></div>
 </details>
 <p>所以该命令的基本用法示例如下：</p>
-<div class="highlight"><pre><span></span><code>$ at now + 1min
-&gt; <span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span>
-&gt; &lt;EOT&gt; （按下 Ctrl + D）
-job <span class="m">3</span> at Sat Apr <span class="m">18</span> <span class="m">16</span>:16:00 <span class="m">2020</span>   <span class="c1"># 任务编号与任务开始时间</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>at<span class="w"> </span>now<span class="w"> </span>+<span class="w"> </span>1min
+&gt;<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+&gt;<span class="w"> </span>&lt;EOT&gt;<span class="w"> </span>（按下<span class="w"> </span>Ctrl<span class="w"> </span>+<span class="w"> </span>D）
+job<span class="w"> </span><span class="m">3</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Apr<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">16</span>:16:00<span class="w"> </span><span class="m">2020</span><span class="w">   </span><span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
 <p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了。（需要本地安装 mail 相关的服务。）</p>
 <div class="admonition tip">
@@ -1966,15 +1966,15 @@ usage:  crontab [-u user] file
 <p>E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。</p>
 </div>
 <p>crontab 的配置格式很简单，对于配置文件的每一行，前半段为时间，后半段为 shell 执行命令。其中前半段的时间配置格式为：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span><span class="w"></span>
-<span class="c1"># 下面是几个示例</span><span class="w"></span>
-<span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span><span class="w"></span>
-<span class="c1"># 每分钟输出 hello 到家目录下 count 文件</span><span class="w"></span>
-<span class="na">0,15,30,45 0-6 * JAN SUN  command</span><span class="w"></span>
-<span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span><span class="w"></span>
-<span class="c1"># 反映了 crontab 中大部分语法。</span><span class="w"></span>
-<span class="na">5  3  *  *  * curl &#39;http://ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span><span class="w"></span>
-<span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （假设半夜 3 点重新拨号）</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 分   时   日   月   星期  | 命令</span>
+<span class="c1"># 下面是几个示例</span>
+<span class="na">*  *  *  *  *  echo &quot;hello&quot; &gt;&gt; ~/count</span>
+<span class="c1"># 每分钟输出 hello 到家目录下 count 文件</span>
+<span class="na">0,15,30,45 0-6 * JAN SUN  command</span>
+<span class="c1"># 随意举一个例子，翻译过来是每年一月份的每个星期日半夜 0 点到早晨 6 点每 15 分钟随便做点什么</span>
+<span class="c1"># 反映了 crontab 中大部分语法。</span>
+<span class="na">5  3  *  *  * curl &#39;http</span><span class="o">:</span><span class="s">//ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span>
+<span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （假设半夜 3 点重新拨号）</span>
 </code></pre></div>
 <p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。</p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
@@ -2052,42 +2052,6 @@ usage:  crontab [-u user] file
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../Ch03/solution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 思考题解答" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              思考题解答
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="supplement/" class="md-footer__link md-footer__link--next" aria-label="下一页: 拓展阅读" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              拓展阅读
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -2135,12 +2099,11 @@ usage:  crontab [-u user] file
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>
