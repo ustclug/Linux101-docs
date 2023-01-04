@@ -37,7 +37,7 @@ SELinux 是由 NSA 编写的开源的 Linux 安全模块，在 CentOS 和 Fedora
 
 SELinux 添加了额外的「强制访问控制」安全措施：系统中所有的文件、进程和端口等都被贴上了 SELinux 标签，如果访问者（Subject）和被访问对象（Object）的标签不符合规则，访问则会被拒绝。
 
-虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些奇怪的权限问题，或是让某些程序运行失败。但是我们不建议在需要强安全性的环境中关闭 SELinux。[清华大学 TUNA 协会](https://tuna.moe)曾在活动中做过 [SELinux 的使用介绍](https://tuna.moe/event/2020/selinux-introduction/)，希望进一步了解 SELinux 的同学可以在线观看其[活动录像](https://cloud.tsinghua.edu.cn/f/55d0ee97fce44c078982/)。
+虽然很多人安装完 CentOS/Fedora 之后做的头几件事之一，就是把 SELinux 关掉。它可能会导致一些奇怪的权限问题，或是让某些程序运行失败。但是我们不建议在需要强安全性的环境中关闭 SELinux。[清华大学 TUNA 协会](https://tuna.moe)曾在活动中做过 [SELinux 的使用介绍](https://tuna.moe/event/2020/selinux-introduction/)，希望进一步了解 SELinux 的同学可以在线观看其[活动录像](https://mirrors.tuna.tsinghua.edu.cn/tuna/tunight/2020-06-27-selinux-introduction/)。
 
 在 Ubuntu 等发行版中，使用的类似于 SELinux 的安全模块是 AppArmor。AppArmor 使用文件路径（而非标签）进行管理，使用相较于 SELinux 简单一些。
 
