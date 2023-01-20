@@ -8,7 +8,7 @@
 
 除了在正文中提到的几种常见的安装方法外，还有从源代码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，就可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。
 
-本文以编译安装 Nginx 软件作为示范。
+本文以编译安装 Nginx 软件作为示范，参考 [NGINX Plus 文档中提供的开源版本 nginx 编译指南](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-nginx-dependencies)修改。
 
 !!! tip "Nginx 软件简介[^2]"
 
@@ -20,23 +20,26 @@
 
 在从源代码安装 Nginx 前，需要为它的库安装依赖：
 
--   PCRE - 用于支持正则表达式。
+-   PCRE2 - 用于支持正则表达式。
 
 ```shell
-$ wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
-$ tar -zxf pcre-8.43.tar.gz
-$ cd pcre-8.43
+$ wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+$ tar -zxf pcre2-10.42.tar.gz
+$ cd pcre2-10.42
 $ ./configure
 $ make
 $ sudo make install
 ```
 
+??? tip "PCRE 的版本"
+    PCRE 有两个大版本，其中最新的 PCRE2 正在持续维护，而发布于 1997 年的旧版的 PCRE 已经停止维护。PCRE2 的源代码包目前托管于 GitHub 上。相关信息可阅读 [PCRE 官网](https://pcre.org/)。
+
 -   zlib - 用于支持 HTTP 头部压缩。
 
 ```shell
-$ wget https://zlib.net/zlib-1.2.11.tar.gz
-$ tar -zxf zlib-1.2.11.tar.gz
-$ cd zlib-1.2.11
+$ wget https://zlib.net/zlib-1.2.13.tar.gz
+$ tar -zxf zlib-1.2.13.tar.gz
+$ cd zlib-1.2.13
 $ ./configure
 $ make
 $ sudo make install
@@ -48,19 +51,20 @@ $ sudo make install
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
-$ ./Configure linux-x86_64 --prefix=/usr
+$ ./config
 $ make
 $ sudo make install
 ```
 
-> 在文档中第 4 步使用的是 `./Configure darwin64-x86_64-cc --prefix=/usr`，这个是在 macOS 下进行配置时使用的参数，对于在 Ubuntu 64bit 下，需要修改为 `linux-x86_64`。
+??? tip "关于 OpenSSL 编译"
+    OpenSSL 的编译的有关细节可以参考其[官方 wiki 中的说明](https://wiki.openssl.org/index.php/Compilation_and_Installation)。如果你点击阅读了开头提到的编译文档，可以注意到它使用了 `./Configure darwin64-x86_64-cc --prefix=/usr`，但该指令仅适用于 macOS 操作系统（darwin 为 macOS 操作系统内核名）。
 
 ### 下载 Nginx 源代码 {#download-source}
 
 ```shell
-$ wget https://nginx.org/download/nginx-1.17.6.tar.gz
-$ tar -zxf nginx-1.17.6.tar.gz
-$ cd nginx-1.17.6
+$ wget https://nginx.org/download/nginx-1.23.3.tar.gz
+$ tar -zxf nginx-1.23.3.tar.gz
+$ cd nginx-1.23.3
 ```
 
 ### 使用源代码安装 {#install-from-source}
@@ -74,8 +78,8 @@ $ ./configure \
 --pid-path=/usr/local/nginx/nginx.pid \
 --with-http_ssl_module \
 --with-stream \
---with-pcre=../pcre-8.43 \
---with-zlib=../zlib-1.2.11 \
+--with-pcre=../pcre2-10.42 \
+--with-zlib=../zlib-1.2.13 \
 --without-http_empty_gif_module
 ```
 
@@ -112,7 +116,7 @@ $ sudo make install
 
         * 指定了一部分配置文件的位置（`sbin-path`、`conf-path`、`pid-path`）；
         * 说明了需要添加或删除的模块（`http_ssl_module`、`steam`、`pcre`、`zlib`、`http_empty_gif_module`）；
-        * 指定了依赖库的位置（`../pcre-8.43` 与 `../zlib-1.2.11`）。
+        * 指定了依赖库的位置（`../pcre2-10.42` 与 `../zlib-1.2.13`）。
 
 3.  执行 `make` 命令。
 
