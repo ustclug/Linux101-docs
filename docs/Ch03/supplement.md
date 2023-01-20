@@ -117,7 +117,7 @@ $ sudo make install
         在上面的对 Nginx 源代码进行 `./configure` 时，传入了一些参数，实现了：
 
         * 指定了一部分配置文件的位置（`sbin-path`、`conf-path`、`pid-path`）；
-        * 说明了需要添加或删除的模块（`http_ssl_module`、`steam`、`pcre`、`zlib`、`http_empty_gif_module`）；
+        * 说明了需要添加或删除的模块（`http_ssl_module`、`stream`、`pcre`、`zlib`、`http_empty_gif_module`）；
         * 指定了依赖库的位置（`../pcre2-10.42` 与 `../zlib-1.2.13`）。
 
 3.  执行 `make` 命令。
