@@ -32,6 +32,7 @@ $ sudo make install
 ```
 
 ??? tip "PCRE 的版本"
+
     PCRE 有两个大版本，其中最新的 PCRE2 正在持续维护，而发布于 1997 年的旧版的 PCRE 已经停止维护。PCRE2 的源代码包目前托管于 GitHub 上。相关信息可阅读 [PCRE 官网](https://pcre.org/)。
 
 -   zlib - 用于支持 HTTP 头部压缩。
@@ -57,6 +58,7 @@ $ sudo make install
 ```
 
 ??? tip "关于 OpenSSL 编译"
+
     OpenSSL 的编译的有关细节可以参考其[官方 wiki 中的说明](https://wiki.openssl.org/index.php/Compilation_and_Installation)。如果你点击阅读了开头提到的编译文档，可以注意到它使用了 `./Configure darwin64-x86_64-cc --prefix=/usr`，但该指令仅适用于 macOS 操作系统（darwin 为 macOS 操作系统内核名）。
 
 ### 下载 Nginx 源代码 {#download-source}
