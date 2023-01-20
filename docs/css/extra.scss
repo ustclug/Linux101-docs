@@ -10,9 +10,8 @@ $color-codes: red, darkred, orangered, green, limegreen, cyan, darkcyan;
 }
 
 :root {
-  //--md-text-font: Roboto;
-  //--md-code-font: Roboto Mono;
-  --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  --md-text-font: Roboto;
+  --md-code-font: Roboto Mono;
 }
 
 .md-typeset {
