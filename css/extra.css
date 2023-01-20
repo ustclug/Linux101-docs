@@ -12,7 +12,7 @@
 
 .darkcyan, .darkcyan-important { color: darkcyan !important; }
 
-:root { --md-code-font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important; }
+:root { --md-text-font: Roboto; --md-code-font: Roboto Mono; }
 
 .md-typeset #references, .md-typeset .no-underline { margin-bottom: 0; padding-bottom: 0; border: none; }
 .md-typeset h2 { padding-bottom: 0.2em; border-bottom: 1px solid #d3d3d3; }
