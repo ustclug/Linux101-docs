@@ -48,7 +48,7 @@ $ sudo make install
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
-$ ./Configure linux-x86_64 --prefix=/usr
+$ ./Configure darwin64-x86_64-cc --prefix=/usr
 $ make
 $ sudo make install
 ```
@@ -59,7 +59,7 @@ $ sudo make install
 
 ```shell
 $ wget https://nginx.org/download/nginx-1.17.6.tar.gz
-$ tar zxf nginx-1.17.6.tar.gz
+$ tar -zxf nginx-1.17.6.tar.gz
 $ cd nginx-1.17.6
 ```
 
