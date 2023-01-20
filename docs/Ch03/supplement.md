@@ -59,7 +59,7 @@ $ sudo make install
 
 ```shell
 $ wget https://nginx.org/download/nginx-1.17.6.tar.gz
-$ tar zxf nginx-1.17.6.tar.gz
+$ tar -zxf nginx-1.17.6.tar.gz
 $ cd nginx-1.17.6
 ```
 
