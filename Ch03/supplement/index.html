@@ -1519,7 +1519,7 @@
 <h2 id="compiling-installation">编译安装<a class="headerlink" href="#compiling-installation" title="Permanent link">&para;</a></h2>
 <p>本节<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>的操作基于 Ubuntu 18.04 操作系统。</p>
 <p>除了在正文中提到的几种常见的安装方法外，还有从源代码编译安装这种方法，更多地常见于开源软件中。在一个新的平台上（如 amd64），只要有 GCC 编译器，就可以通过编译，快速地将许多常用的软件（如 x86_64 平台上的软件）移植到新的平台上。当然，这并不能解决一些对特定指令集有依赖的软件的移植。</p>
-<p>本文以编译安装 Nginx 软件作为示范。</p>
+<p>本文以编译安装 Nginx 软件作为示范，参考 <a href="https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-nginx-dependencies">NGINX Plus 文档中提供的开源版本 nginx 编译指南</a>修改。</p>
 <div class="admonition tip">
 <p class="admonition-title">Nginx 软件简介<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <p>Nginx 是一个异步框架的网页服务器，也可以用作反向代理、负载平衡器和 HTTP 缓存。</p>
@@ -1528,21 +1528,25 @@
 <h3 id="install-dependencies">安装依赖<a class="headerlink" href="#install-dependencies" title="Permanent link">&para;</a></h3>
 <p>在从源代码安装 Nginx 前，需要为它的库安装依赖：</p>
 <ul>
-<li>PCRE - 用于支持正则表达式。</li>
+<li>PCRE2 - 用于支持正则表达式。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>pcre-8.43.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pcre-8.43
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>pcre2-10.42.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pcre2-10.42
 $<span class="w"> </span>./configure
 $<span class="w"> </span>make
 $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
+<details class="tip">
+<summary>PCRE 的版本</summary>
+<p>PCRE 有两个大版本，其中最新的 PCRE2 正在持续维护，而发布于 1997 年的旧版的 PCRE 已经停止维护。PCRE2 的源代码包目前托管于 GitHub 上。相关信息可阅读 <a href="https://pcre.org/">PCRE 官网</a>。</p>
+</details>
 <ul>
 <li>zlib - 用于支持 HTTP 头部压缩。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://zlib.net/zlib-1.2.11.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>zlib-1.2.11.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>zlib-1.2.11
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://zlib.net/zlib-1.2.13.tar.gz
+$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>zlib-1.2.13.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>zlib-1.2.13
 $<span class="w"> </span>./configure
 $<span class="w"> </span>make
 $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
@@ -1553,17 +1557,18 @@ $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>openssl-1.1.1c.tar.gz
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>openssl-1.1.1c
-$<span class="w"> </span>./Configure<span class="w"> </span>linux-x86_64<span class="w"> </span>--prefix<span class="o">=</span>/usr
+$<span class="w"> </span>./config
 $<span class="w"> </span>make
 $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
-<blockquote>
-<p>在文档中第 4 步使用的是 <code>./Configure darwin64-x86_64-cc --prefix=/usr</code>，这个是在 macOS 下进行配置时使用的参数，对于在 Ubuntu 64bit 下，需要修改为 <code>linux-x86_64</code>。</p>
-</blockquote>
+<details class="tip">
+<summary>关于 OpenSSL 编译</summary>
+<p>OpenSSL 的编译的有关细节可以参考其<a href="https://wiki.openssl.org/index.php/Compilation_and_Installation">官方 wiki 中的说明</a>。如果你点击阅读了开头提到的编译文档，可以注意到它使用了 <code>./Configure darwin64-x86_64-cc --prefix=/usr</code>，但该指令仅适用于 macOS 操作系统（darwin 为 macOS 操作系统内核名）。</p>
+</details>
 <h3 id="download-source">下载 Nginx 源代码<a class="headerlink" href="#download-source" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://nginx.org/download/nginx-1.17.6.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>nginx-1.17.6.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nginx-1.17.6
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://nginx.org/download/nginx-1.23.3.tar.gz
+$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>nginx-1.23.3.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nginx-1.23.3
 </code></pre></div>
 <h3 id="install-from-source">使用源代码安装<a class="headerlink" href="#install-from-source" title="Permanent link">&para;</a></h3>
 <h4 id="configure">配置编译选项<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h4>
@@ -1573,8 +1578,8 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nginx
 --pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid<span class="w"> </span><span class="se">\</span>
 --with-http_ssl_module<span class="w"> </span><span class="se">\</span>
 --with-stream<span class="w"> </span><span class="se">\</span>
---with-pcre<span class="o">=</span>../pcre-8.43<span class="w"> </span><span class="se">\</span>
---with-zlib<span class="o">=</span>../zlib-1.2.11<span class="w"> </span><span class="se">\</span>
+--with-pcre<span class="o">=</span>../pcre2-10.42<span class="w"> </span><span class="se">\</span>
+--with-zlib<span class="o">=</span>../zlib-1.2.13<span class="w"> </span><span class="se">\</span>
 --without-http_empty_gif_module
 </code></pre></div>
 <div class="admonition tip">
@@ -1603,7 +1608,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span
 <ul>
 <li>指定了一部分配置文件的位置（<code>sbin-path</code>、<code>conf-path</code>、<code>pid-path</code>）；</li>
 <li>说明了需要添加或删除的模块（<code>http_ssl_module</code>、<code>steam</code>、<code>pcre</code>、<code>zlib</code>、<code>http_empty_gif_module</code>）；</li>
-<li>指定了依赖库的位置（<code>../pcre-8.43</code> 与 <code>../zlib-1.2.11</code>）。</li>
+<li>指定了依赖库的位置（<code>../pcre2-10.42</code> 与 <code>../zlib-1.2.13</code>）。</li>
 </ul>
 </div>
 </li>
