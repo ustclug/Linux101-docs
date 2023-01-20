@@ -48,7 +48,7 @@ $ sudo make install
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
-$ ./Configure darwin64-x86_64-cc --prefix=/usr
+$ ./Configure linux-x86_64 --prefix=/usr
 $ make
 $ sudo make install
 ```
