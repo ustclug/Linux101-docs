@@ -60,14 +60,14 @@
 
     由于 Prettier 的解析方式问题，请在所有提示框的起始行后面添加一个空行，**不要像 Material 主题官网那样没有空行直接开始提示框内容**。
 
-    :fontawesome-solid-times-circle:{: .orangered } **错误**格式：
+    :fontawesome-solid-circle-xmark:{: .orangered } **错误**格式：
 
     ```markdown
     !!! note
         提示框内容
     ```
 
-    :fontawesome-solid-check-circle:{: .limegreen } **正确**格式：
+    :fontawesome-solid-circle-check:{: .limegreen } **正确**格式：
 
     ```markdown
     !!! note
