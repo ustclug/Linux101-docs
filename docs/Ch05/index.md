@@ -398,7 +398,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
     - `/usr/include`: 存储系统通用的 C 头文件。当然，里面会有你非常熟悉的头文件，如 `stdio.h`。
     - `/usr/local`: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 `apt`）控制。`/usr/local` 里面的层次结构和 `/usr` 相似。
-    - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）
+    - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）。
 
     !!! tip "`usrmerge`"
 
@@ -407,7 +407,12 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
         Ubuntu 与 Debian 中可以安装 `usrmerge` 软件包来进行转换。
 
 `/var`
-: 存储会发生变化的程序相关文件。
+: 存储会发生变化的程序相关文件。例如下面的目录：
+
+    - `/var/log`：存储程序的日志文件。
+    - `/var/lib`：存储程序自身的状态信息（如 lock file）。
+    - `/var/run`：存储程序运行时的数据（部分发行版会将该目录符号链接到 `/run` 目录）。
+    - `/var/spool`：存储「等待进一步处理」的程序数据。
 
 ## 思考题 {#questions}
 
