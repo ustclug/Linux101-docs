@@ -11,11 +11,11 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 ??? tip "GPL 感染，以及开源许可证的区别"
 
     简单而不太严谨地来说，如果你的程序使用了 GPL 许可证的代码，那么你的程序就必须以 GPL 许可证开源，这被称为「GPL 感染」。由于许多公司不希望自己的代码被感染开源，因而 Android 经过设计规避了相关的法律问题，只需要厂商将对 Linux 内核的修改开源即可。
-    
+
     一个被 GPL 感染的例子是用于嵌入式路由器设备的 OpenWrt。由于 Linksys 在编写自己的无线路由器固件时使用了 GPL 的代码，因此不得不将相关的代码开源。OpenWrt 即由此发展而来。
-    
+
     GPL 许可证是在第一章正文中提到的「著作传」（Copyleft）许可的代表。而另一类开源许可证则更加宽松，允许用户在署名等前提下将代码使用在闭源软件中。这样的许可证代表如 MIT 许可证、Apache 许可证等。
-    
+
     目前，GitHub 网页版在创建 `LICENSE` 文件时，会给出一些开源许可证的选项以供选择。网络上也有相关的资料以供需要选择开源许可证的开发者们参考。
 
 ## 禁用 SELinux {#disable-selinux}
@@ -87,7 +87,7 @@ Mode from config file:          permissive  # <- 或 disabled
 !!! warning "安装前请务必修改弱密码"
 
     互联网上有着大量爆破用户名和弱密码的自动化程序，如果密码很弱（位数不够长，或者使用了常见的密码），那么黑客就能很快使用 SSH 登录到你的系统中获取控制权，使得你的电脑（服务器）成为肉鸡（被黑客利用攻击其他服务器），在你的电脑上安装挖矿软件等恶意软件，删除你的数据进行勒索。甚至在校园网中，服务器由于 SSH 弱密码被攻击的例子也屡见不鲜。
-    
+
     由于 SSH 服务器默认不关闭密码验证，在安装前请务必使用 `passwd` 命令修改弱密码！
 
 在服务器上首先安装 `openssh-server` 软件包，它提供了 SSH 服务器的功能。
@@ -150,17 +150,17 @@ ustc@ustclug-linux101:~$
 ??? note "第一次连接时的提示"
 
     在初次连接时会有类似于下面这样的提示，需要输入 `yes` 才能继续连接：
-    
+
     ```
     The authenticity of host 'localhost (127.0.0.1)' can't be established.
     ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
     Are you sure you want to continue connecting (yes/no/[fingerprint])?
     ```
-    
+
     这是因为初次连接时，SSH 不知道连接到的服务器是否真的是我们指定要连接的服务器：网络中的「中间人」可能会截获我们与服务器之间的网络流量，将自己伪装成对应的服务器。所以，SSH 会要求你确认密钥的指纹是否与预期相一致，如果不一致，则说明可能出现安全问题，应该立刻断开连接。
-    
+
     服务器的密钥信息会记录在本地，之后连接相同的服务器就不会再弹出这个提示。如果远程服务器的密钥和本地记录的信息不一致，会输出类似下面的错误信息：
-    
+
     ```
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
@@ -176,7 +176,7 @@ ustc@ustclug-linux101:~$
     RSA host key for 127.0.0.1 has changed and you have requested strict checking.
     Host key verification failed.
     ```
-    
+
     可能的原因是你连接到了错误的服务器、服务器的密钥被更换，或者最糟糕的可能性：有人在尝试对你进行网络攻击。
 
 也可以测试一下从其他机器连接到服务器。
@@ -188,9 +188,9 @@ ustc@ustclug-linux101:~$
 !!! tip "配置密钥登录"
 
     上面我们提到，弱密码会导致黑客能够轻而易举从 SSH 入侵服务器，但是每次登录输入复杂密码会很烦，怎么办呢？其实，SSH 提供了一种相当方便、简单、安全的连接方式：密钥认证。它的原理是，用户生成一对密钥，将公钥放在服务器上，登录时 SSH 自动使用私钥认证，两者相符则允许用户登录。
-    
+
     首先在自己的机器上使用 `ssh-keygen` 生成密钥：
-    
+
     ```
     $ ssh-keygen
     Generating public/private rsa key pair.
@@ -214,43 +214,43 @@ ustc@ustclug-linux101:~$
     |  . +oo.+.o*O.+..|
     +----[SHA256]-----+
     ```
-    
+
     这里的 passphrase 是密钥的密码，设置之后即使私钥被别人拿到也无法使用，可以不输入。最终得到的 `id_rsa` 是私钥（**千万不要分享给别人！**），`id_rsa.pub` 是公钥（可以公开）。
-    
+
     在本地使用 `ssh-copy-id` 命令将公钥拷贝到服务器上：
-    
+
     ```
     $ ssh-copy-id ustc@localhost
     /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
     /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
     ustc@localhost's password:
-    
+
     Number of key(s) added: 1
-    
+
     Now try logging into the machine, with:   "ssh 'ustc@localhost'"
     and check to make sure that only the key(s) you wanted were added.
     ```
-    
+
     如果服务器不允许使用密码登录，可以将用户目录下 `.ssh/id_rsa.pub` 文件的内容复制到机器对应用户的 `.ssh/authorized_keys` 文件中。
     
     配置完成后，可以考虑关闭 SSH 服务器的密码验证。做法是编辑 `/etc/ssh/sshd_config` 文件，将其中
-    
+
     ```
     #PasswordAuthentication yes
     ```
-    
+
     修改为
-    
+
     ```
     PasswordAuthentication no
     ```
-    
+
     然后让 SSH 服务器重新加载配置：
-    
+
     ```
     $ sudo systemctl reload ssh
     ```
-    
+
     我们建议除非有特殊原因，否则所有正式生产环境服务器（例如实验室服务器）都应该关闭 SSH 密码验证。
 
 ## 适用于 Linux 的 Windows 子系统 (Windows Subsystem for Linux，WSL) {#wsl}
