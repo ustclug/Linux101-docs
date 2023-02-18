@@ -1369,7 +1369,7 @@ $ echo $?
 <details class="info">
 <summary>解答</summary>
 <p><code>/etc/shadow</code> 第二列（记录密码哈希的那一列）的 <code>!</code> 或 <code>*</code> 表明这个用户不允许使用密码登录。那么我们再用 <code>passwd</code> 设置个密码就可以了。</p>
-<p>如果要禁用 <code>root</code> 的话，<code>passwd -d root</code> 即可。</p>
+<p>如果要重新禁止使用密码登录 <code>root</code> 用户的话，<code>passwd -l root</code> 即可。</p>
 </details>
 <h2 id="_1">文件的可执行权限<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <details class="info">
