@@ -282,7 +282,7 @@ ustc@ustclug-linux101:~$
 
 WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的 Linux 内核。
 
-## 在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机
+## 在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机 {#configure-vm-in-apple-silicon}
 
 正在查看 Linux 101 的你可能正在使用基于 Apple Silicon 处理器的 Mac。此时使用在文章正文中的教程是无法安装虚拟机的。本节将帮助你使用 VMWare Fusion 在基于 Apple Silicon 处理器的 Mac 上配置一个 Ubuntu 20.04 的虚拟机。
 
@@ -294,7 +294,7 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 若想查看你的 Mac 是否使用了 Apple Silicon，请参照[这个网页](https://support.apple.com/en-us/HT211814)。
 
-### X86_64 架构和 ARM64 两种架构都是什么？它们有什么区别？
+### X86_64 架构和 ARM64 两种架构都是什么？它们有什么区别？ {#x86_64-arm64}
 
 ARM64（也被称为 AArch64），是 ARM 公司推出的 64 位处理器架构。它被广泛用于移动设备、嵌入式系统和服务器领域。与之前的 32 位架构相比，它具有更高的性能和更好的功耗管理。
 
@@ -302,7 +302,7 @@ x86_64 也被称为 x64 或者 AMD64。它广泛应用于PC和服务器领域，
 
 在使用上，这两种架构是不兼容的，即针对一种架构编译的程序无法直接在另一种架构上运行。这也是使用 Apple Silicon 处理器的 Mac 无法通过正文中的流程配置 Ubuntu 虚拟机的原因。
 
-### 使用 VMWare Fusion 配置你的第一个 Ubuntu 虚拟机
+### 使用 VMWare Fusion 配置你的第一个 Ubuntu 虚拟机 {#first-vm-on-vmware}
 
 !!! warning "本节内容涉及到尚未完善的系统及软件，实际操作随时会发生变化。本次更新在 2023 年 2 月。"
 
