@@ -377,6 +377,8 @@ $ sudo apt-get install ubuntu-desktop
 虚拟机的图形界面
 {: .caption }
 
+值得注意的是，在选择软件源时，你应该使用 [Ubuntu Ports 源](https://mirrors.ustc.edu.cn/help/ubuntu-ports.html) 而不是 [Ubuntu 源](https://mirrors.ustc.edu.cn/help/ubuntu.html#id3)。
+
 !!! bug "在 VMWare Fusion 22H2 Tech Preview 上安装的 Ubuntu 20.04.5 (arm64, server) 虚拟机并不原生支持修改分辨率"
 
     如果你通过上面的步骤安装好了带有图形界面的 Ubuntu 虚拟机，你可能会发现在设置中并不能调整图形界面的分辨率（它被限制在了 1024*768）。简而言之，这是因为 VMWare 为 Linux 适配的图形驱动 `vmwgfx` 在 5.14 版本之后的内核才被包含。而 Ubuntu 20.04 原生 Linux 内核是 5.4 版本的，并不包含 VMWare 适配的驱动。所以如果你想修改 Ubuntu 虚拟机的分辨率的话，有两种选择：
