@@ -1441,11 +1441,11 @@
 </code></pre></div>
 <h3 id="conda-as-package-management-system">Conda 作为包管理器<a class="headerlink" href="#conda-as-package-management-system" title="Permanent link">&para;</a></h3>
 <p>类似于 pip，可以使用 <code>conda install</code> 来安装软件包。部分软件包既可以使用 pip 安装，也可以使用 conda 安装。
-相比于 pip，conda 会执行更加严格的依赖检查，并且除了 python 软件包外，还可以安装一些 C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 python 软件包的数量远小于 PyPi。</p>
+相比于 pip，conda 会执行更加严格的依赖检查，并且除了 Python 软件包外，还可以安装一些 C/C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 Python 软件包的数量远少于 PyPI。</p>
 <h3 id="conda-as-environment-management-system">Conda 作为环境管理器<a class="headerlink" href="#conda-as-environment-management-system" title="Permanent link">&para;</a></h3>
 <p>类似于 Virtualenv，可以使用 conda 来管理虚拟环境。</p>
 <p>常见的使用方式如下：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>venv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11<span class="w"> </span><span class="c1"># 创建一个名为 venv，python 版本为 3.11 的虚拟环境</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>venv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11<span class="w"> </span><span class="c1"># 创建一个名为 venv，Python 版本为 3.11 的虚拟环境</span>
 <span class="gp"># </span>请确认虚拟环境已经成功创建
 <span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>venv<span class="w"> </span><span class="c1"># 切换到名为 venv 的虚拟环境</span>
 <span class="gp">$ </span>conda<span class="w"> </span>deactivate<span class="w"> </span><span class="c1"># 退出当前虚拟环境</span>
@@ -1568,7 +1568,7 @@ $<span class="w"> </span><span class="c1"># musl libc 的 getaddrinfo() 实现�
 <span class="go">wine: configuration in L&quot;/home/ubuntu/.wine&quot; has been updated.</span>
 <span class="go">Hello, world!</span>
 </code></pre></div>
-<p>Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample">Windows Hello World Sample</a>（MIT License），稍作修改以符合 C 语言的语法。</p>
+<p>MinGW 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample">Windows Hello World Sample</a>（MIT License），稍作修改以符合 C 语言的语法。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// winhello.c</span>
 <span class="cp">#ifndef UNICODE</span>
 <span class="cp">#define UNICODE</span>
