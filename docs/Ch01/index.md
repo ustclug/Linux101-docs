@@ -256,7 +256,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 !!! warning
 
-    请注意，本节中在 macOS 下安装虚拟机的步骤只适用于使用 Intel 处理器的 Mac。如果你使用的是基于 Apple Silicon 的 Mac，请参见[在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机](/Ch01/supplement/#configure-vm-in-apple-silicon)。
+    请注意，本节中在 macOS 下安装虚拟机的步骤只适用于使用 Intel 处理器的 Mac。如果你使用的是基于 Apple Silicon 的 Mac，请参见[在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机](supplement.md#configure-vm-in-apple-silicon)。
 
 ### 启动虚拟机 {#start-vm}
 
