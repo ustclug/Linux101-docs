@@ -1,7 +1,7 @@
 site_name: Linux 101
 site_description: Linux 101 课程讲义
 site_author: LUG@USTC
-#site_url: https://101.lug.ustc.edu.cn/
+site_url: https://101.lug.ustc.edu.cn/
 repo_name: ustclug/Linux101-docs
 repo_url: https://github.com/ustclug/Linux101-docs
 copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Available freely under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
@@ -9,19 +9,46 @@ copyright: Brought to you by <a href="https://lug.ustc.edu.cn/">LUG@USTC</a>. Av
 theme:
   name: 'material'
   language: 'zh'
+  font: false
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换至深色模式
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至浅色模式
   icon:
     logo: fontawesome/brands/linux
     repo: octicons/mark-github-16
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
 
 markdown_extensions:
   - admonition
   - attr_list
-  - codehilite
   - footnotes
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
   - pymdownx.superfences
   - markdown.extensions.def_list
-  - attr_list
   - toc:
       permalink: true
 
@@ -29,17 +56,16 @@ extra:
   social:
     - icon: octicons/globe-16
       link: https://lug.ustc.edu.cn/
-
-extra_javascript:
-  - 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'
-  # 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/js/all.min.js'
+    - icon: octicons/mark-github-16
+      link: https://github.com/ustclug
+  analytics:
+    provider: google
+    property: UA-160637954-1
 
 extra_css:
   - 'css/extra.css'
-
-google_analytics:
-  - 'UA-160637954-1'
-  - 'auto'
+  - 'https://101.lug.ustc.edu.cn/_extra/roboto.css'
+  - 'https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css'
 
 nav:
     - 负一：计划规格:
@@ -47,44 +73,43 @@ nav:
         - 演示文稿规格: Spec/slide.md
     - 序: preface.md
     - 零：欢迎:
-        - 欢迎: index.md
+        - index.md
         - 记号约定: notations.md
         - 功劳簿: credits.md
     - 一：初识 Linux:
-        - 讲义: Ch01/index.md
+        - Ch01/index.md
         - 拓展阅读: Ch01/supplement.md
         - 思考题解答: Ch01/solution.md
     - 二：个性化配置与建站体验:
-        - 讲义: Ch02/index.md
+        - Ch02/index.md
         - 拓展阅读: Ch02/supplement.md
         - 思考题解答: Ch02/solution.md
     - 三：软件安装与文件操作:
-        - 讲义: Ch03/index.md
+        - Ch03/index.md
         - 拓展阅读: Ch03/supplement.md
         - 思考题解答: Ch03/solution.md
     - 四：进程、前后台、服务与例行性任务:
-        - 讲义: Ch04/index.md
+        - Ch04/index.md
         - 拓展阅读: Ch04/supplement.md
         - 思考题解答: Ch04/solution.md
     - 五：用户与用户组、文件权限、文件系统层次结构:
-        - 讲义: Ch05/index.md
+        - Ch05/index.md
         - 拓展阅读: Ch05/supplement.md
         - 思考题解答: Ch05/solution.md
-    - 六：网络下载工具与 Shell 脚本:
-        - 讲义: Ch06/index.md
+    - 六：网络、文本处理工具与 Shell 脚本:
+        - Ch06/index.md
         - 拓展阅读: Ch06/supplement.md
         - 思考题解答: Ch06/solution.md
     - 七：Linux 上的编程:
-        - 讲义: Ch07/index.md
+        - Ch07/index.md
         - 拓展阅读: Ch07/supplement.md
     - 八：Docker:
-        - 讲义: Ch08/index.md
+        - Ch08/index.md
         - 拓展阅读: Ch08/supplement.md
-    - 九：Shell 文字处理工具与正则表达式:
-        - 讲义: Ch09/index.md
+    - 九：Shell 高级文本处理与正则表达式:
+        - Ch09/index.md
         - 拓展阅读: Ch09/supplement.md
     - 附录:
-        - 词汇表: Appendix/glossary.md
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
     - 跋: postface.md

@@ -6,7 +6,7 @@
 
     很多 Linux 的初学者都会对以下这些问题感到迷惑：
 
-    * 为什么我动不动改个设置，装个软件就要输密码？
+    * 为什么我改个设置，装个软件，动不动就要我输密码？
     * 为什么有些命令要 `sudo`，有些不要？
     * 为什么我运行不了网上下载的程序？为什么系统里面有些目录我看不了？
     * 我的 C 盘、D 盘跑哪里去了？根目录 (`/`) 里面一堆 `etc`, `usr` 是什么玩意啊？
@@ -19,13 +19,13 @@
 
 早期的操作系统没有用户的概念（如 MS-DOS），或者有「用户」的概念，但是几乎不区分用户的权限（如 Windows 9x）。而现在，这不管对于服务器，还是个人用户来说，都是无法接受的。
 
-在服务器环境中，「用户」的概念是明确的：服务器的管理员可以为不同的使用者创建用户，分配不同的权限，保障系统的正常运行。也可以为网络服务创建用户（此时，用户就不再是一个有血有肉的人），通过权限限制，以减小服务被攻击时对系统安全的破坏。
+在服务器环境中，「用户」的概念是明确的：服务器的管理员可以为不同的使用者创建用户，分配不同的权限，保障系统的正常运行；也可以为网络服务创建用户（此时，用户就不再是一个有血有肉的人），通过权限限制，以减小服务被攻击时对系统安全的破坏。
 
-而对于个人用户来说，他们的设备不会有第二个人在使用。此时，现代操作系统一般区分使用者的用户与「系统用户」，并且划分权限，以尽可能保证系统的完整性不会因为用户的误操作，或恶意程序破坏。
+而对于个人用户来说，他们的设备不会有第二个人在使用。此时，现代操作系统一般区分使用者的用户与「系统用户」，并且划分权限，以尽可能保证系统的完整性不会因为用户的误操作或恶意程序而遭到破坏。
 
 ### Linux 下的用户简介 {#intro-user-under-linux}
 
-你可以查看 `/etc/passwd` 文件，来得到系统中用户的配置信息。**下文的内容，在没有特殊说明的情况下，都假设你的用户名是 `me`**。
+你可以查看 `/etc/passwd` 文件，来得到系统中用户的配置信息。
 
 !!! example "`/etc/passwd` 示例"
 
@@ -37,18 +37,18 @@
     bin:x:2:2:bin:/bin:/usr/sbin/nologin
     （中间内容省略）
     sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
-    me:x:1000:1000:me:/home/me:/bin/bash
+    ustc:x:1000:1000:ustc:/home/ustc:/bin/bash
     lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
     mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
     ```
 
-    在此文件中，每一行都是一个用户，每行中用户信息由冒号 `:` 隔开。里面存储的包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 `man 5 passwd` 查阅。
+    在此文件中，每一行都代表一个用户，每行中用户信息由冒号 `:` 隔开，存储着包括用户名、用户编号 (UID, User ID)、家目录位置等信息。更多介绍，可以通过 `man 5 passwd` 查阅。
 
-可以关注到，除了你自己以外，还有一些特殊的用户：`root`，和一大堆你素未相识的名字。下面将会进行介绍。
+可以关注到，除了你自己以外，还有一个特殊的用户：`root`，和一大堆你素未相识的名字。下面将会进行介绍。
 
 ??? tip "小知识：`/etc/passwd` 作用的变化"
 
-    在 Unix 最初的时候，`passwd` 文件存储了用户密码的哈希[^1]。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 `/etc/shadow` 里面，只有下文提到的根用户可以访问与修改。
+    在 Unix 最初的时候，`passwd` 文件存储了用户密码的哈希[^1]。但是，这个文件是所有用户都可以读取的。为了不让用户的密码哈希被任意获取，进而导致用户的密码被暴力破解，现在一般把密码存在别的地方。对于 Linux 来说，密码哈希信息存储在 `/etc/shadow` 里面，只有下文提到的根用户可以访问与修改。
 
 #### 根用户 {#root-user}
 
@@ -56,11 +56,11 @@
 
 根用户 / `root` 用户在 Linux 操作系统中拥有最高的权限，可以对系统做任何操作（包括删除所有系统文件这一类**极端危险的操作**）。`root` 用户的用户数据存储在 `/root` 下。
 
-在我们使用 `sudo` 的时候，输入自己的密码后，在验证正确之后，`sudo` 就会以 `root` 用户的身份，执行后面我们希望执行的命令。而使用 `apt` 安装的软件存储在了系统的目录下，所以必须要以 `root` 用户的身份安装。这就是我们平时需要 `sudo` 来安装软件的原因。
+在我们使用 `sudo` 的时候，输入自己的密码并验证正确之后，`sudo` 就会以 `root` 用户的身份，执行后面我们希望执行的命令。而使用 `apt` 安装的软件存储在了系统的目录下，所以必须要以 `root` 用户的身份安装。这就是我们平时需要 `sudo` 来安装软件的原因。
 
 !!! danger "谨慎使用 `root` 用户权限执行命令！"
 
-    我们知道，`root` 用户可以对系统做及其危险的操作。当使用 `root` 权限执行命令时（如使用 `sudo`），一定要**小心、谨慎，理解命令的含义之后再按下回车**。**请不要复制网络上所谓的「Linux 优化命令」等**，以 `root` 权限执行，否则**可能会带来灾难性的后果**。
+    我们知道，`root` 用户可以对系统做极其危险的操作。当使用 `root` 权限执行命令时（如使用 `sudo`），一定要**小心、谨慎，理解命令的含义之后再按下回车**。**请不要复制网络上所谓的「Linux 优化命令」等**，以 `root` 权限执行，否则**可能会带来灾难性的后果**。
 
     以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 **<span class=red>再重复一遍，不要执行下面的命令！</span>**
 
@@ -77,13 +77,13 @@
 
     一般地，在 Linux 中，系统用户的 UID 有一个指定范围，而这段范围在各个发行版中可能不同。如 Debian 使用了 100-999, 60000-64999 等区间分配给系统用户[^3]。
 
-    此外，由于系统用户的特殊性，它们一般默认禁止登录。
+    此外，由于系统用户的特殊性，它们一般默认禁止使用密码登录。
 
 #### 普通用户 {#normal-user}
 
 普通用户可以登录系统，并对自己的家目录下的文件进行操作。所有普通用户的家目录都在 `/home/` 下，位于 `/home/username/` 的位置，其中 `username` 是用户名。
 
-普通用户无法直接进行修改系统配置，安装或卸载软件等操作。
+普通用户无法直接修改系统配置，也无法为系统环境安装或卸载软件。
 
 ### 切换用户：使用 `su` 和 `sudo` {#using-su-and-sudo}
 
@@ -93,7 +93,7 @@
 
 ??? tip "以 `root` 用户执行上一条命令"
 
-    是否常常很多次忘记敲 `sudo`，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：`sudo !!`，效果如下：
+    你是否常常忘记敲 `sudo`，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：`sudo !!`，效果如下：
 
     ```
     $ apt update
@@ -104,12 +104,12 @@
     W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
     $ sudo !!
     sudo apt update
-    [sudo] password for me:
+    [sudo] password for ustc:
     Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
     （以下内容省略）
     ```
 
-    其实，在 Shell 中，`!!` 即代表上一条命令，也可以和其他的命令结合使用。
+    其实，在 Shell 中，`!!` 即代表上一条命令，可以和其他的命令结合使用。
 
 那么，如何以 `root` 之外的用户的身份执行命令呢？加上 `-u 用户名` 的参数即可。
 
@@ -173,10 +173,10 @@ $
 
 ```
 $ groups
-me adm cdrom sudo dip plugdev lxd
+ustc adm cdrom sudo dip plugdev lxd
 ```
 
-可以看到，用户 `me` 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。
+可以看到，用户 `ustc` 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。
 
 对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 `docker` 用户组，从而不需要使用 `root` 权限，也可以访问它的接口。
 
@@ -218,17 +218,17 @@ $ sudo adduser 用户名 组名
 
     ```text
     $ sudo apt update
-    [sudo] password for me:
-    me is not in the sudoers file.  This incident will be reported.
+    [sudo] password for ustc:
+    ustc is not in the sudoers file.  This incident will be reported.
     ```
 
-    除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
+    除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，还可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
 
     ```shell
-    $ sudo adduser me sudo
+    $ sudo adduser ustc sudo
     ```
 
-    再此切换到新的用户即可看到使用 sudo 的提示：
+    再次切换到新的用户即可看到使用 sudo 的提示：
 
     ```text
     To run a command as administrator (user "root"), use "sudo <command>".
@@ -242,15 +242,15 @@ $ sudo adduser 用户名 组名
 ```
 $ ls -l
 total 8
--rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
+-rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
+drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 ```
 
-第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。如文件 `a_file` 为普通文件 (`-`)，所属用户权限为 `rwx`，所属用户组权限为 `rw-`，其他人的权限为 `r--`。
+第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。对于每个权限，第一位 `r` 代表读取 (**R**ead)，第二位 `w` 代表写入 (**W**rite)，第三位 `x` 代表执行 (E**x**ecute)，`-` 代表没有对应的权限。
 
 第三、四列为文件所属用户和用户组。
 
-对于每个权限，第一位 `r` 代表读取 (**R**ead)，第二位 `w` 代表写入 (**W**rite)，第三位 `x` 代表执行 (E**x**ecute)，`-` 代表没有对应的权限。
+例如，上面的文件 `a_file` 为普通文件 (`-`)，所属用户权限为 `rwx`，所属用户组权限为 `rw-`，其他人的权限为 `r--`，文件所属用户和用户组均为 `ustc`。
 
 ??? tip "执行权限意味着什么？"
 
@@ -261,8 +261,8 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     ```
     $ ls -l
     total 8
-    -rwxrw-r-- 1 me me   40 Feb  3 22:37 a_file
-    drw-rw-r-- 2 me me 4096 Feb  3 22:38 a_folder
+    -rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
+    drw-rw-r-- 2 ustc ustc 4096 Feb  3 22:38 a_folder
     $ （与上面不同，我们去掉了 a_folder 的执行权限）
     $ cd a_folder
     -bash: cd: a_folder/: Permission denied
@@ -281,10 +281,10 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
     touch: cannot touch 'a_folder/test2': Permission denied
     $ rm a_folder/test
     rm: cannot remove 'a_folder/test': Permission denied
-    $ （可以看到，即使我们有写入权限，向此目录添加、删除、重命名仍然是不行的）
+    $ （可以看到，即使我们有写入权限，在此目录中进行添加、删除、重命名的操作仍然是不行的）
     ```
 
-    而拥有读取权限，对应的是可以列出目录下面存在的文件。可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 `cd` 切换当前目录到此目录的权限。
+    为了更好地理解目录权限的含义，可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 `cd` 切换当前目录到此目录的权限。
 
     有关文件与目录权限的完整表格，可以查看 Arch Wiki 的 [File permissions and attributes](https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions) 一页。
 
@@ -309,13 +309,13 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 ## 文件系统层次结构 {#fhs}
 
-相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，以盘符的形式（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (`Program Files`)，系统运行需要的文件 (`Windows`)，用户文件 (`Users`) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。
+相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，分区以盘符的形式来标识（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (`Program Files`)，系统运行需要的文件 (`Windows`)，用户文件 (`Users`) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。
 
 而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 `/`（根目录）开始，像一棵树一样，类似于下图。
 
 ![Unix 下的文件系统结构简图](assets/unix_filesystem.png)
 
-其他的分区等以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 `/mnt/windows_disk/`。
+其他的分区以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 `/mnt/windows_disk/`。
 
 那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在[官网](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)查看标准的具体内容。
 
@@ -332,7 +332,15 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
     !!! tip "什么是设备文件？"
 
-        设备文件是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。
+        在 Linux 的哲学中，存在着「一切皆文件」这样的思想。设备文件就是计算机设备抽象成文件的形式，程序和用户可以以读写普通文件的方式向这些文件输入内容，或者从文件中获取内容。系统驱动程序会相应处理用户对对应设备文件的输入和输出。
+
+        有一些常用的设备文件如：
+
+        - `/dev/null`：总是返回空（EOF）数据。
+        - `/dev/zero`：总是返回零数据。
+        - `/dev/urandom`：输出随机数据。
+
+        配合[第六章中提到的重定向功能](../Ch06/index.md#redirect)，这些设备文件可以帮助我们做到丢弃程序输出等操作。
 
 `/etc`
 
@@ -390,10 +398,21 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
     - `/usr/include`: 存储系统通用的 C 头文件。当然，里面会有你非常熟悉的头文件，如 `stdio.h`。
     - `/usr/local`: 存储系统管理员自己安装的程序，这些文件不受系统的软件管理机制（如 `apt`）控制。`/usr/local` 里面的层次结构和 `/usr` 相似。
-    - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）
+    - `/usr/share`: 存储程序的数据文件（如 `man` 文档、GUI 程序使用的图片等）。
+
+    !!! tip "`usrmerge`"
+
+        近年来，部分发行版选择将 `/usr/bin`、`/usr/sbin`、`/usr/lib` 与根目录下的 `/bin`、`/sbin`、`/lib` 合并，根目录下的对应目录软链接到 `/usr` 下的目录，以简化文件结构。
+
+        Ubuntu 与 Debian 中可以安装 `usrmerge` 软件包来进行转换。
 
 `/var`
-: 存储会发生变化的程序相关文件。
+: 存储会发生变化的程序相关文件。例如下面的目录：
+
+    - `/var/log`：存储程序的日志文件。
+    - `/var/lib`：存储程序自身的状态信息（如 lock file）。
+    - `/var/run`：存储程序运行时的数据（部分发行版会将该目录符号链接到 `/run` 目录）。
+    - `/var/spool`：存储「等待进一步处理」的程序数据。
 
 ## 思考题 {#questions}
 
@@ -407,7 +426,7 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 !!! question "启用 root 用户"
 
-    在 Ubuntu 等 Linux 发行版中，`root` 用户是默认禁用（无法直接登录）的。如何启用此用户？
+    在 Ubuntu 等 Linux 发行版中，`root` 用户是默认禁用（无法直接使用密码登录）的。如何启用此用户？
 
 !!! question "文件的可执行权限"
 
@@ -419,9 +438,9 @@ drwxrwxr-x 2 me me 4096 Feb  3 22:38 a_folder
 
 ## 引用来源 {#references .no-underline}
 
-- [维基百科上的 Passwd 词条（英语）](https://en.wikipedia.org/wiki/Passwd)
-- [Simple explanation of `sudoers` file](https://askubuntu.com/questions/118204/5958455) - Ask Ubuntu
-- [Sudoers - Community Help Wiki](https://help.ubuntu.com/community/Sudoers) - Ubuntu Documentation
+-   [维基百科上的 Passwd 词条（英语）](https://en.wikipedia.org/wiki/Passwd)
+-   [Simple explanation of `sudoers` file](https://askubuntu.com/questions/118204/5958455) - Ask Ubuntu
+-   [Sudoers - Community Help Wiki](https://help.ubuntu.com/community/Sudoers) - Ubuntu Documentation
 
 [^1]: 这里的哈希，指经过了[密码哈希函数](https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8) ([Cryptographic hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function)) 的处理。密码哈希函数是一种特殊的单向函数，将任意大小的数据映射到一串长度固定的字符串，并且拥有一些优良的性质（如难以找到两个不同的数据，使得映射后的字符串相同），使其破解难度加大。
 [^3]: <https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes>

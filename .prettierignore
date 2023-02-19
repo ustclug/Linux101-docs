@@ -11,3 +11,5 @@ site/
 
 mkdocs.yml
 docs/css/
+
+package*.json

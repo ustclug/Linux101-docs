@@ -1,6 +1,6 @@
-# 八：Docker
+# Docker
 
-!!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
+!!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 
 !!! abstract "导言"
 
@@ -12,10 +12,10 @@
 
 Docker 能够利用 Linux 内核的容器特性，隔离出一个轻便的环境来运行程序。这有什么意义呢？试想以下这些情况：
 
-- 你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。
-- 你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
-- 你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
-- …………
+-   你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。
+-   你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
+-   你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
+-   …………
 
 Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 上使用 CentOS 的环境），部署应用。
 
@@ -29,7 +29,7 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 !!! info "Docker Desktop on Windows 的环境要求"
 
-    Docker Desktop on Windows 要求系统为 64 位的 Windows 10 专业版，硬件支持 Hyper-V 虚拟化且 Hyper-V 已经开启。如果使用 Windows 20H1 之前的版本且开启 Hyper-V 的情况下，如 VirtuaBox 和 VMware Workstation 等虚拟机软件无法正常使用；在 20H1 之后，虚拟机软件也需要升级到对应的版本才能与 Hyper-V 协同工作。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
+    Docker Desktop on Windows [对系统有一定的环境要求](https://docs.docker.com/desktop/windows/install/#system-requirements)，以便虚拟化运行 Linux。如果环境要求无法达到，可以安装[老版本的 Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)。
 
 !!! note "Windows 容器"
 
@@ -62,7 +62,9 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 在安装完成后，可以使用
 
-    adduser 用户名 docker
+```shell
+$ sudo adduser 用户名 docker
+```
 
 将需要使用 Docker 的用户[加入](../Ch05/index.md#adduser) `docker` 用户组。**注意：`docker` 用户组中的用户拥有与 root 等效的权限。**
 
@@ -139,9 +141,9 @@ For more examples and ideas, visit:
 
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
-- `docker run -it --rm ubuntu`
+-   `docker run -it --rm --name ubuntu-container ubuntu:20.04`
 
-这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除。
+这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除；`--name` 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
@@ -151,30 +153,35 @@ For more examples and ideas, visit:
 
 ```console
 $ sudo docker ps -a
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
-39d8ef1d4acf        ubuntu                "/bin/bash"              6 seconds ago       Exited (0) 3 seconds ago                           gracious_brahmagupta
+CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES
+39d8ef1d4acf   ubuntu:20.04   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
 ```
 
 之后使用 `docker start` 启动容器。
+
+```console
+$ sudo docker start -ai ubuntu-container
+root@39d8ef1d4acf:/#
+```
+
+`-a` 代表连接输出以及信号。最后的 `ubuntu-container` 代指我们刚刚创建的那个容器。也可以输入容器的 ID 来启动（不需要输入完整的 ID，只需要前几位即可）：
 
 ```console
 $ sudo docker start -ai 39d
 root@39d8ef1d4acf:/#
 ```
 
-`-a` 代表连接输出以及信号。这里不需要输入完整的 ID，只需要前几位即可。
-
 如果忘记加上了参数直接启动，也可以使用 `docker attach` 将容器的主进程的输入输出接上。
 
 ```console
-$ sudo docker attach 39d
+$ sudo docker attach ubuntu-container
 root@39d8ef1d4acf:/#
 ```
 
 `docker exec` 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。
 
 ```console
-$ sudo docker exec -it 39d bash
+$ sudo docker exec -it ubuntu-container bash
 root@39d8ef1d4acf:/#
 ```
 
@@ -183,30 +190,30 @@ root@39d8ef1d4acf:/#
 与 `docker start` 相对应，`docker stop` 可以关闭一个容器，`docker rm` 可以删除一个容器。
 
 ```console
-$ sudo docker stop 39d
+$ sudo docker stop ubuntu-container
 39d
-$ sudo docker rm 39d
+$ sudo docker rm ubuntu-container
 39d
 ```
 
 ### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
 
-- `docker run -it --name python3 python`
+-   `docker run -it --name python3 python`
 
-与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。之后的容器操作中我们就不需要查询容器 ID，直接使用 `python3` 代表这个容器即可。
+与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
-- 从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
-- `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
+-   从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
+-   `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
 
 在执行完成之后，可以使用浏览器访问本地的 8000 端口，以查看构建结果。
 
 这里多出了两个参数：
 
-- `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
-- `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
-- 另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
+-   `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
+-   `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
+-   另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
 
 ## 构建自己的 Docker 镜像 {#build-docker-image}
 
@@ -230,7 +237,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 <none>              <none>              fe0a84d81b86        54 seconds ago      116MB
 $ sudo docker save fe0a84d81b86 > example.tar
 $ ls -lh example.tar
--rw-r--r-- 1 tao tao 114M Feb 10 17:48 example.tar
+-rw-r--r-- 1 ustc ustc 114M Feb 10 17:48 example.tar
 ```
 
 得到的 example.tar 即为我们的 Docker 镜像。可以使用 `docker load < example.tar` 的方式在其他环境中加载。但是，从可维护性等方面考虑，我们更推荐以下使用 Dockerfile 的做法。
@@ -241,7 +248,7 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 
 #### 构建简单的交叉编译环境 {#cross-compile-example}
 
-这个例子尝试使用 Debian 仓库中的 RISC-V 交叉编译[^1]工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
+这个例子尝试使用 Debian 仓库中的 RISC-V [交叉编译](../Ch07/supplement.md#cross-compile-example)工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
 FROM debian:buster-slim
@@ -341,8 +348,46 @@ COPY ./app /app
 
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
 
-Docker Compose 是一个方便的小型容器编排工具。
+Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
 
-### 子项目？
+```shell
+$ sudo apt install docker-compose
+```
 
-[^1]: 交叉编译：指在某个平台上编译出另一个平台的程序。例如在 Linux 上使用 MinGW 工具链编译 Windows 程序即为一个交叉编译的例子。
+### 使用 Docker Compose 创建 WordPress 博客 {#use-docker-compose-build-wordpress-with-mysql}
+
+WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。
+
+新建一个文件夹，在其中放入一个名为 `docker-compose.yml` 的配置文件：
+
+```yaml
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    container_name: wordpress_db
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: linux101-test
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_HOST: "%"
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: linux101-test
+```
+
+在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。运行完成后，可以使用 `docker-compose down` 停止并删除容器。

@@ -1,6 +1,42 @@
 # man 文档的一些示例
 
-man 文档非常详细。当然，详细的后果，就是我们在阅读的时候很容易变得一头雾水。必须承认的是，尽管 man 文档有一些有中文翻译（安装 `manpages-zh`），但是阅读它们，仍然是一件非常痛苦的事情。况且中文翻译有一些也已经十分老旧（例如，`execve()` 文档的最新翻译在 2003 年 5 月，而现在已经过去 17 年了），且有一些错误（例如，`man` 的文档中介绍 `-a|-b` 的含义的时候，将 "cannot be used together" 翻译为了「可以一起使用」）。下面会给出一些 man 文档以及其内容结构的解释，以帮助你更好地理解，man 文档到底在做什么长篇大论。
+作为手册而非教程，man 文档面面俱到，非常详细。当然，详细的后果，就是我们在阅读的时候很容易变得一头雾水。
+
+必须承认的是，尽管 man 文档有一些有中文翻译（部分软件包的手册自带翻译，另一些上游不提供手册页翻译的则在 [manpages-zh 项目](https://github.com/man-pages-zh/manpages-zh)中翻译。对于后者，安装 `manpages-zh` 软件包即可），但是阅读它们，仍然是一件非常痛苦的事情。况且中文翻译有一些也已经十分老旧（例如，`execve()` 文档的最新翻译仍然在 2003 年 5 月），且可能有一些错误。所以建议有能力的同学尽可能阅读英文版本的 man 文档。
+
+!!! info "我希望改进开源软件与文档的中文翻译！"
+
+    2020 年初编写此文时，举的翻译错误的例子是：
+
+    > （例如，`man(1)` 的文档中介绍 `-a|-b` 的含义的时候，将 "cannot be used together" 翻译为了「可以一起使用」）
+
+    在 2022 年初修订时这个错误仍然存在，在向上游反馈后这个翻译问题[很快被修复](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1005139)，并且相关修复已进入到 Ubuntu 22.04 LTS 中。因此，向上游反馈翻译问题是解决这类翻译错误最有效的途径。
+
+    对于大部分项目来说，你都能找到对应翻译项目的位置。例如，`manpages-zh` 的每篇翻译手册最后就有：
+
+    ```
+    跋
+       本页面中文版由中文 man 手册页计划提供。
+       中文 man 手册页计划：https://github.com/man-pages-zh/manpages-zh
+    ```
+
+    有时候翻译的来源不太容易找到，此时可以去上游项目确认其翻译的流程，或者去一些流行的托管开源项目翻译的平台寻找，例如：
+
+    - [Translation Project](https://translationproject.org/team/zh_CN.html)，托管了一些常见软件的翻译。上文提到的 `man(1)` 的翻译就在这里（`man-db`）；
+    - [Transifex](https://www.transifex.com/)，例如 [Xfce 桌面环境的翻译](https://www.transifex.com/xfce/public/)即托管在其上；
+    - [Hosted Weblate](https://hosted.weblate.org/)
+    - [Launchpad](https://translations.launchpad.net/)
+    - [Crowdin](https://crowdin.com/)
+
+    此外，一些大型项目会选择自己托管翻译平台：
+
+    - [Fedora Weblate](https://translate.fedoraproject.org/)
+    - [GNOME l10n](https://l10n.gnome.org/teams/zh_CN/)
+    - [KDE Localization](https://l10n.kde.org/team-infos.php?teamcode=zh_CN)
+
+    如果对翻译（本地化）有进一步兴趣，可以阅读 [AOSC 版大陆简中自由软件本地化工作指南](https://repo.aosc.io/aosc-l10n/zh_CN_l10n.pdf)了解更多技术信息。
+
+下面会给出一些 man 文档以及其内容结构的解释，以帮助你更好地理解，man 文档到底在做什么长篇大论。
 
 ## 数字的含义 {#man-sections}
 

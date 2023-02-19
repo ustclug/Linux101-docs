@@ -1,19 +1,19 @@
-# 软件安装与文件操作 {#software-file}
+# 软件安装与文件操作
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "导言"
 
-    面对一个新的系统，如何将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：
+    面对一个新的系统，你要怎样将它尽快地投入使用？通过这一章节的学习，你将会掌握以下几个技能：
 
-    * 通过命令行的方式安装需要的软件
-    * 创建、移动、删除等对文件与目录的操作
-    * 压缩、解压一个压缩文件
-    * 面对一个没有使用过的软件，能够更快地了解使用方法
+    * 通过命令行安装需要的软件
+    * 对文件与目录进行创建、移动、删除等
+    * 压缩、解压文件
+    * 对没有使用过的软件能够更快地了解使用方法
 
 ## 软件安装 {#software-installation}
 
-软件安装的方法较多，这里将会提到几个比较有代表性的软件安装方法：
+软件安装的方法较多，这里将会提到几个比较常用的软件安装方法：
 
 ### 使用应用商店安装 {#use-app-store}
 
@@ -27,33 +27,33 @@
 
     本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。
 
-    在其他的发行版上，如果没有预装好的应用商店，可以通过安装 [snapcraft](https://snapcraft.io/) 获得应用商店。（Snap 商店在国内的访问速度较慢。）
+    在其他的发行版上，如果没有预装好的应用商店，可以安装 [Snapcraft](https://snapcraft.io/) 或 [Flatpak](https://flatpak.org/) 等在不同发行版上通用的应用商店。（注意：Snap 商店在国内的访问速度较慢。）
 
 ### 使用包管系统安装 {#use-package-management-system}
 
-软件包管理器是一系列工具的集合，他自动化地完成软件的安装、更新、配置和移除功能。
+软件包管理器是一系列工具的集合，它自动化地完成软件的安装、更新、配置和移除功能。
 
 在 Linux 下，相比起使用应用商店安装软件，包管理系统的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。
 
-软件包管理器一个十分重要的部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。[^1]
+软件包管理器的一个重要组成部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。[^1]
 
-有了软件仓库这个部分，使得我们不需要手动下载大量的软件包到本地再通过包管理器进行安装。通过软件仓库的方法，我们只需要知道软件再软件仓库中的包名，即可让包管理器从网络中抓取到相应的软件包到本地，自动地进行安装。
+有了软件仓库，我们不需要手动下载大量的软件包再通过包管理器安装。只需要知道软件在软件仓库中的名称，即可让包管理器从网络中抓取到相应的软件包到本地，自动进行安装。
 
-但是相比起使用应用商店的方法，使用这个软件仓库的方法需要预先知道所要的软件在软件仓库中的具体包名，没有应用商店帮助模糊搜索的功能。
+但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。
 
-包管理系统有很多，比如管理 `deb` 软件包的 `dpkg` 以及它的前端 `apt`（使用于 `Debian` 系的系统）；`rpm` 包管理器以及它的前端 `dnf`（用于 `Fedora`）、前端 `yum` （用于 RedHat 系）等等。
+包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。
 
 **为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
 apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。
 
-apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、处理软件包之间的依赖关系、升级软件包乃至可以升级发行版，自动处理升级发行版所需的依赖关系等等。
+apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、自动处理软件包之间的依赖关系、升级软件包以至升级发行版，自动处理升级发行版所需的依赖关系等等。
 
-此外，由于可以自定义软件源，因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。
+此外，由于可以自定义软件源（软件仓库），因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。
 
 #### 搜索 {#apt-search}
 
-在安装前，使用 `apt search` 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：`apt search 搜索内容`。
+安装前，可以在浏览器中搜索所需的软件，查找包名，也可以使用 `apt search` 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：`apt search 搜索内容`。
 
 下面是 `apt search firefox` 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：
 
@@ -146,7 +146,7 @@ Do you want to continue? [Y/n]
 
 #### 官方软件源镜像 {#software-sources}
 
-通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了相当数量的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
+通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了丰富的软件，apt 的软件源列表在 `/etc/apt/sources.list` 下。
 
 ??? example "查看本地的软件源列表"
 
@@ -176,7 +176,7 @@ Do you want to continue? [Y/n]
     deb-src http://site.example.com/ubuntu/ distribution component1 component2 component3
     ```
 
-    分别是 Archive type、Repository URL、Distribution 和 Component。
+    分别是 Archive type、Repository URL、Distribution 和 Components。
 
     在 Ubuntu 下，Component 可以为如下几个之一[^1]：
 
@@ -199,19 +199,19 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     一般情况下，`/etc/apt/sources.list` 下的官方源地址为 `http://archive.ubuntu.com/` ，我们只需要将其替换为 `http://mirrors.ustc.edu.cn` 即可。
 
-    如果你在安装时选择的语言不是英语，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/` ， 此时只需将上面的命令进行相应的替换即可，即 `sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list`。
+    如果你使用 Ubuntu 图形安装器安装，默认的源地址通常不是 `http://archive.ubuntu.com/` ， 而是 `http://<country-code>.archive.ubuntu.com/ubuntu/` ，如 `http://cn.archive.ubuntu.com/ubuntu/`，同样也将其替换为 `http://mirrors.ustc.edu.cn` 即可。
 
     可以使用如下命令：
 
     ```shell
-    sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+    $ sudo sed -i 's|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     ```
 
     当然也可以直接使用 vim、nano 等文本编辑器进行修改。
 
 #### 第三方软件源 {#third-party-software-sources}
 
-有时候，由于种种原因，官方软件源中并没有提供我们需要的软件，但是软件提供商可以提供自己的软件源，在将第三方软件源添加到 `/etc/apt/sources.list` 中之后，就可以从第三方的服务器上获取到新的软件列表，这时候，我们就可以通过 `apt install package-name` 安装我们需要的软件。
+有时候，由于种种原因，官方软件源中并没有我们需要的软件，但是第三方软件提供商可以提供自己的软件源。在将第三方软件源添加到 `/etc/apt/sources.list` 中之后，就可以获取到第三方提供的软件列表，再通过 `apt install package-name` 安装我们需要的第三方软件。你一般可以在需要的第三方软件官网找到这样的配置说明。
 
 ??? example "通过添加 Docker 软件源安装 Docker"
 
@@ -227,50 +227,44 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         $ sudo apt-get update
 
         $ sudo apt-get install \
-          apt-transport-https \
-          ca-certificates \
-          curl \
-          gnupg-agent \
-          software-properties-common
+            ca-certificates \
+            curl \
+            gnupg-agent \
+            software-properties-common
         ```
 
-    2. 添加 Docker 软件源的 GPG Key
+    2. 下载 Docker 软件源的 GPG Key
 
-        这一步，是为了将 Docker 软件源添加到信任的软件源中，与服务器进行通信、下载文件时，可以建立更加安全的连接。
+        这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。
 
         ```shell
-        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
 
-    3. 添加 Docker 软件源到 `/etc/apt/sources.list` 中
+    3. 添加 Docker 软件源到 `/etc/apt/sources.list.d/` 中
 
-        在这里，我么通过 `add-apt-repository` 作为代理，帮助我们编辑系统中的软件源列表。
+        为了方便维护，第三方的 APT 软件源一般都放在 `/etc/apt/sources.list.d/` 目录下（而非直接编辑 `/etc/apt/sources.list`）。
 
         ```shell
-        # 此为 Ubuntu amd64 的命令
-        $ sudo add-apt-repository \
-          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-          $(lsb_release -cs) \
-          stable"
+        $ echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         ```
 
-        当然直接编辑 `/etc/apt/sources.list` 文件也是可以的。对于 Ubuntu 18.04 amd64，在 `/etc/apt/sources.list` 最后添加：
-        
-        ```text
-        deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-        ```
+        这里通过 `dpkg --print-architecture` 命令获取系统当前的架构，`lsb_release -cs` 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 `/etc/apt/sources.list.d/docker.list` 文件中。
 
     4. 使用 apt 安装 Docker
 
         首先需要从第三方源更新软件列表。
 
         ```shell
-        apt update
+        $ sudo apt update
         ```
 
-        之后便是直接安装 docker-ce。
+        之后便可以直接安装 `docker-ce` 以及相关的软件包。
+
         ```shell
-        apt install docker-ce
+        $ sudo apt install docker-ce docker-ce-cli containerd.io
         ```
 
     5. 检查安装情况并确认启动
@@ -278,7 +272,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
         Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 
         ```shell
-        systemctl status docker
+        $ sudo systemctl status docker
         ```
 
         如果 Docker 已经在后台启动了，则会输出与下面相似的内容：
@@ -288,7 +282,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
           Active: active (running) since Fri 2020-04-10 20:55:27 CST; 18h ago
           Docs: https://docs.docker.com
-        Main PID: 1115 (dockerd)
+          Main PID: 1115 (dockerd)
           Tasks: 18
           CGroup: /system.slice/docker.service
               └─1115 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
@@ -302,13 +296,13 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
           Active: inactive (dead) since Sat 2020-04-11 15:43:02 CST; 4s ago
           Docs: https://docs.docker.com
           Process: 1115 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock (code=exited, status=0/
-        Main PID: 1115 (code=exited, status=0/SUCCESS)
+          Main PID: 1115 (code=exited, status=0/SUCCESS)
         ```
 
-        这时候，我们可以通过 `systemctl` 以启动 Docker：
+        这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
 
         ```shell
-        systemctl start docker
+        $ sudo systemctl start docker
         ```
 
         再次检查 Docker 运行情况，即应该可以得到期望的结果。关于服务相关的内容，将在本书[第四章](../Ch04/index.md)展开。
@@ -343,7 +337,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     每一行对应获取一个软件源。
 
-    在最后，`158 packages can be upgraded` 表示了可以被更新的软件包的数量。
+    在最后，`158 packages can be upgraded` 表示了系统中可以被更新的软件包的数量。
 
 #### 更新软件 {#apt-upgrade}
 
@@ -367,35 +361,39 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     Do you want to continue? [Y/n]
     ```
 
-    在里面，会提到将会升级的包、需要下载的大小以及升级这些包需要消耗的磁盘空间。
+    apt 会列出将要更新的软件包、需要下载的大小以及更新这些包需要消耗（或释放）的磁盘空间。
 
 ### 使用包管理器手动安装软件包 {#use-package-manager-manually}
 
-在一些情况下，软件仓库中并加入没有我们所需要的软件，解决这个问题的其中一种方法即使用包管理器安装软件提供商打包好的 `deb`、`rpm` 等二进制包。
+在一些情况下，软件仓库中并加入没有我们所需要的软件。除了添加第三方软件源，从源安装外，有时候还可以直接下载安装软件供应商打包好的 `deb`、`rpm` 等二进制包。
 
-!!! tips "什么是软件包"
+!!! tip "什么是软件包"
 
     软件包是将软件安装升级中需要地多个数据文件合并得到的一个单独文件，便于传输和减少存储空间。软件包中包括了所有需要的元数据，如软件的名称、软件的说明、版本号以及要运行这个软件所需要的依赖包等。
 
-安装软件包需要相应的软件包管理器。`deb` 对应的是 `dpkg`。
+安装软件包需要相应的软件包管理器，deb 格式的软件包对应的是 `dpkg`。
 
 相对于 `apt` 而言，`dpkg` 会更加底层，`apt` 是一个包管理器的前端，并不直接执行软件包的安装工作，相反的则是交由 `dpkg` 完成。`dpkg` 反馈的依赖信息则会告知 `apt` 还需要安装的其他软件包，并从软件仓库中获取到相应的软件包进行安装，从而完成依赖管理问题。
 
-直接通过 `dpkg` 安装 `deb` 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
+直接通过 `dpkg` 安装 deb 并不会安装需要的依赖，只会报告出相应的依赖缺失了。
 
-可以通过如下的方式调用 `apt` 帮助修复依赖管理：
+!!! warning "请避免直接使用 `dpkg -i` 安装 deb 包。"
 
-```shell
-sudo apt -f install
-```
+    在绝大多数情况下，都应该使用 `apt` 来安装 deb 文件。
+
+    如果不小心执行了 `dpkg -i` 导致系统出现依赖问题，可以尝试通过如下的方式调用 `apt` 帮助修复依赖管理：
+
+    ```shell
+    $ sudo apt -f install
+    ```
 
 !!! example "用 deb 文件安装 VSCode"
 
-    Visual Studio Code 并不在 `apt` 的官方源中，可以通过安装微软提供的 `deb` 文件的方式进行安装。
+    Visual Studio Code 并不在 Ubuntu 的官方源中，可以通过安装微软提供的 deb 文件的方式进行安装。
 
     首先，下载 [微软提供的 `deb` 文件](https://go.microsoft.com/fwlink/?LinkID=760868)。
 
-    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 `deb` 文件）。
+    然后运行 `apt install ./<file>.deb` （`<file>.deb` 为下载得到的 deb 文件）。
 
 ### 安装预编译可执行文件 {#install-precompiled}
 
@@ -410,16 +408,16 @@ sudo apt -f install
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
     ```shell
-    # 下载二进制的压缩文件存档
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+    $ # 下载二进制的压缩文件存档
+    $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
-    # 创建 clang 目录
-    mkdir clang
+    $ # 创建 clang 目录
+    $ mkdir clang
 
-    # 将下载得到的压缩文件解压到当前目录
-    tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
+    $ # 将下载得到的压缩文件解压到当前目录
+    $ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 
-    cd clang
+    $ cd clang
     ```
 
     在进入解压得到的目录后，可以查看当前的目录下有什么内容：
@@ -449,11 +447,11 @@ sudo apt -f install
     我们可以这样做：
 
     ```shell
-    # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
-    sudo cp -R * /usr/local/
+    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
+    $ sudo cp -R * /usr/local/
     ```
 
-    为什么是 `/usr/local` 呢？因为这个目录下的 `bin` 目录是处在 PATH 环境变量下的。当我们在终端输入命令时，终端会判断是否为终端的内置命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
+    为什么是 `/usr/local` 呢？因为 `/usr/local/bin` 处在 PATH 环境变量下。当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
 
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
@@ -462,7 +460,7 @@ sudo apt -f install
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
-    在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。
+    在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就倍复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 `/usr/local`  下的对应目录合并，将 clang 的库和文档加到系统当中。
 
 ### 更多用法 {#more-usage}
 
@@ -474,52 +472,119 @@ sudo apt -f install
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
-在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，很容易管理文件与目录，拖拽文件即可完成文件的移动，所见即所得；Linux 的命令行操作虽然繁琐一些，但是可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
+在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
+
+### 查看文件内容 {#view}
+
+#### cat {#cat}
+
+```shell
+$ # 输出 FILE 文件的全部内容
+$ cat [OPTION] FILE
+```
+
+!!! example "输出示例"
+
+    * 输出 file.txt 的全部内容
+
+        ```shell
+        $ cat file.txt
+        ```
+
+    * 查看 file1.txt 与 file2.txt 连接后的内容
+
+        ```shell
+        $ cat file1.txt file2.txt
+        ```
+
+!!! note "为什么名字叫 cat？"
+
+    当然和猫咪没有关系，cat 这里是 con**cat**enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
+
+#### less {#less}
+
+less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。
+
+```shell
+$ # 在可交互的窗口内输出 FILE 文件的内容
+$ less FILE
+```
+
+常用的快捷键:
+
+| 按键                                         | 效果                                      |
+| -------------------------------------------- | ----------------------------------------- |
+| `d` / `u`                                    | 向下/上滚动半页（**d**own/**u**p）        |
+| ++"Page Down"++ / ++"Page Up"++<br>`f` / `b` | 向下/上滚动一整页（**f**orward/**b**ack） |
+| `g` / `G`                                    | 跳转到文件开头/结尾                       |
+| `j` / ++"Down"++                             | 向下移动一行                              |
+| `k` / ++"Up"++                               | 向上移动一行                              |
+| `/PATTERN`                                   | 在文件中搜索 PATTERN                      |
+| `n` / `N`                                    | 跳转到下一个/上一个找到的 PATTERN         |
+| `q`                                          | 退出                                      |
+
+其中移动光标的快捷键还可以和数字组合，例如 `10 j` 会向下移动十行。此外，less 的不少快捷键是和 Vi/Vim 相同的，掌握了这些快捷键再上手 Vim 就会简单很多（Vim 的介绍位于本章[拓展阅读](supplement.md#vim)内）。
+
+??? tip "more? most?"
+
+    实际上 Linux 内还有 more 与 most 两个功能与 less 相似的指令，只是流行程度不如 less 高，你也可以尝试这些指令，比较它们之间的区别。
+
+### 编辑文件内容 {#nano}
+
+Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。
+
+```shell
+$ nano file.txt  # 使用 nano 编辑 file.txt 文件（如果没有则创建）
+```
+
+Nano 启动后，用户可以直接开始输入需要的内容，使用方向键移动光标。在终端最下方是 nano 的快捷键，`^` 代表需要按下 Ctrl 键（例如，`^X` 就是需要同时按下 Ctrl + X）。在编辑完成后，按下 Ctrl + X，确认是否保存后即可。
+
+本章的[拓展阅读](./supplement.md#vim)也简单介绍了 vim 的基础使用。
 
 ### 复制文件和目录 {#cp}
 
 ```shell
-# 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
-cp [OPTION] SOURCE DEST
+$ # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
+$ cp [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件目录到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
-cp [OPTION] SOURCE... DIRECTORY
+$ # 将 SOURCE 文件拷贝到 DIRECTORY 目录下，SOURCE 可以为不止一个文件
+$ cp [OPTION] SOURCE... DIRECTORY
 ```
 
 常用的选项:
 
-| 选项                  | 含义                             |
-| --------------------- | -------------------------------- |
-| `-r, -R, --recursive` | 递归复制，常用于复制目录         |
-| `-f, --force`         | 覆盖目标地址同名文件             |
-| `-u, --update`        | 仅当源文件比目标文件新才进行复制 |
-| `-l, --link`          | 创建硬链接                       |
-| `-s, --symbolic-link` | 创建软链接                       |
+| 选项                      | 含义                             |
+| ------------------------- | -------------------------------- |
+| `-r`, `-R`, `--recursive` | 递归复制，常用于复制目录         |
+| `-f`, `--force`           | 覆盖目标地址同名文件             |
+| `-u`, `--update`          | 仅当源文件比目标文件新才进行复制 |
+| `-l`, `--link`            | 创建硬链接                       |
+| `-s`, `--symbolic-link`   | 创建软链接                       |
 
 !!! example "复制示例"
 
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
     ```shell
-    cp file1.txt file2.txt
+    $ cp file1.txt file2.txt
     ```
 
     * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
     ```shell
-    cp file1.txt file2.txt ./file/
+    $ cp file1.txt file2.txt ./file/
     ```
 
     * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
     ```shell
-    cp -r dir1 ./test/
+    $ cp -r dir1 ./test/
     ```
 
-!!! tips "硬链接和软链接"
+??? tip "硬链接和软链接"
 
     cp 的 `-l` 和 `-s` 参数分布为创建硬链接和软链接（又称为“符号链接”）。
 
-    简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的行为。
+    简单而言，一个文件的硬链接和软链接都指向文件自身，但是在底层有不同的实现。
 
-    需要先了解一个概念：inode
+    需要先了解一个概念：inode。
 
     在许多“类 Unix 文件系统”中，inode 用来描述文件系统的对象，如文件和目录。inode 记录了文件系统对象的属性和磁盘块的位置。可以被视为保存在磁盘中的文件的索引（英文：index node）。
 
@@ -527,82 +592,214 @@ cp [OPTION] SOURCE... DIRECTORY
 
     ![硬链接与软链接图例](images/link.png)
 
+    硬链接与软链接图例
+    {: .caption }
+
     硬链接与源文件有着相同的 inode，都指向磁盘中的同一个位置。删除其中一个，并不影响另一个。
 
     软链接与源文件的 inode 不同。软链接保存了源文件的路径，在访问软链接的时候，访问的路径被替换为源文件的路径，因此访问软链接也等同于访问源文件。但是如果删除了源文件，软链接所保存的路径也就无效了，软链接因此也是无效的。
 
     `ln` 命令也可以用来创建硬链接和软链接。
 
+    ```shell
+    $ ln -s file symlink  # 创建指向文件 file 的软链接 symlink
+    $ ln file hardlink  # 创建指向文件 file 的硬链接 hardlink
+    ```
+
 ### 移动文件和目录 {#mv}
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
 ```shell
-# 将 SOURCE 文件移动到 DEST 文件
-mv [OPTION] SOURCE DEST
+$ # 将 SOURCE 文件移动到 DEST 文件
+$ mv [OPTION] SOURCE DEST
 
-# 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件
-mv [OPTION] SOURCE... DIRECTORY
+$ # 将 SOURCE 文件移动到 DIRECTORY 目录下，SOURCE 可以为多个文件
+$ mv [OPTION] SOURCE... DIRECTORY
 ```
 
 常用的选项：
 
-| 选项                  | 含义                             |
-| --------------------- | -------------------------------- |
-| `-r, -R, --recursive` | 递归移动，常用于移动目录         |
-| `-f, --force`         | 覆盖目标地址同名文件             |
-| `-u, --update`        | 仅当源文件比目标文件新才进行移动 |
+| 选项                      | 含义                             |
+| ------------------------- | -------------------------------- |
+| `-r`, `-R`, `--recursive` | 递归移动，常用于移动目录         |
+| `-f`, `--force`           | 覆盖目标地址同名文件             |
+| `-u`, `--update`          | 仅当源文件比目标文件新才进行移动 |
 
 ### 删除文件和目录 {#rm}
 
 ```shell
-# 删除 FILE 文件，FILE 可以为多个文件。
-# 如果需要删除目录，需要通过 -r 选项递归删除目录
-rm [OPTION] FILE...
+$ # 删除 FILE 文件，FILE 可以为多个文件。
+$ # 如果需要删除目录，需要通过 -r 选项递归删除目录
+$ rm [OPTION] FILE...
 ```
 
 常用的选项：
 
-| 选项                  | 含义                               |
-| --------------------- | ---------------------------------- |
-| `-f, --force`         | 无视不存在或者没有权限的文件和参数 |
-| `-r, -R, --recursive` | 递归删除目录及其子文件             |
-| `-d, --dir`           | 删除空目录                         |
+| 选项                      | 含义                               |
+| ------------------------- | ---------------------------------- |
+| `-f`, `--force`           | 无视不存在或者没有权限的文件和参数 |
+| `-r`, `-R`, `--recursive` | 递归删除目录及其子文件             |
+| `-d`, `--dir`             | 删除空目录                         |
 
 !!! example "删除示例"
 
-    删除 `file1.txt` 文件：
+    * 删除 `file1.txt` 文件：
 
-    ```
-    rm file1.txt
-    ```
+        ```
+        $ rm file1.txt
+        ```
 
-    删除 `test` 目录及其下的所有文件：
+    * 删除 `test` 目录及其下的所有文件：
 
-    ```
-    rm -r test/
-    ```
+        ```
+        $ rm -r test/
+        ```
 
-    删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
+    * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 
-    ```
-    rm -rf test1/ test2/ file1.txt
-    ```
+        ```
+        $ rm -rf test1/ test2/ file1.txt
+        ```
 
 ### 创建目录 {#mkdir}
 
 ```shell
-# 创建一个目录，名为 DIR_NAME
-mkdir DIR_NAME...
+$ # 创建一个目录，名为 DIR_NAME
+$ mkdir [OPTION] DIR_NAME...
 ```
+
+常用的选项：
+
+| 选项 | 含义                                                           |
+| ---- | -------------------------------------------------------------- |
+| `-p` | 如果中间目录不存在，则创建；如果要创建的目录已经存在，则不报错 |
 
 !!! example "创建目录示例"
 
-    创建名为 `test1`、`test2` 的目录：
+    * 创建两个目录，名字分别为 `test1`、`test2`：
+
+        ```shell
+        $ mkdir test1 test2
+        ```
+
+    * 创建路径 `test1/test2/test3/`：
+
+        ```shell
+        $ mkdir -p test1/test2/test3/
+        ```
+
+### 创建文件 {#touch}
+
+```shell
+$ # 创建一个文件，名为 FILE_NAME
+$ touch FILE_NAME...
+```
+
+!!! example "创建文件示例"
+
+    创建两个文件，名字分别为 `file1`、`file2`：
 
     ```
-    mkdir test1 test2
+    $ touch file1 file2
     ```
+
+!!! note "为什么名字叫 touch 而非 create（或者类似意思的单词）呢？"
+
+    touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。
+
+    `stat` 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：
+
+    ```shell
+    $ touch test  # 创建文件 test
+    $ stat test  # 查看信息
+    File: test
+    Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+    Device: 801h/2049d	Inode: 1310743     Links: 1
+    Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
+    Access: 2022-02-25 18:12:28.403981478 +0800
+    Modify: 2022-02-25 18:12:28.403981478 +0800
+    Change: 2022-02-25 18:12:28.403981478 +0800
+    Birth: 2022-02-25 18:12:28.403981478 +0800
+    $ # 等待一段时间
+    $ touch test  # 「摸」一下文件 test
+    $ stat test  # 查看 touch 之后的信息
+      File: test
+    Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+    Device: 801h/2049d	Inode: 1310743     Links: 1
+    Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)
+    Access: 2022-02-25 18:15:16.625288185 +0800
+    Modify: 2022-02-25 18:15:16.625288185 +0800
+    Change: 2022-02-25 18:15:16.625288185 +0800
+    Birth: 2022-02-25 18:12:28.403981478 +0800
+    $ # 可以看到 Access time 和 Modify time 变化了。
+    ```
+
+### 搜索文件和目录 {#find}
+
+```shell
+$ # 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件
+$ find [OPTION] PATH [EXPRESSION]
+```
+
+常用的表达式：
+
+| 选项            | 含义                                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| `-name '*.ext'` | 文件名后缀为 ext。其中 `*` 是任意匹配符                              |
+| `-type d`       | 文件类型为目录，其他的类型例如 `f`（普通文件）                       |
+| `-size +1M`     | 大于 1M 的文件，`+` 代表大于这个大小，对应地，`-` 代表小于之后的大小 |
+| `-or`           | 或运算符，代表它前后两个条件满足一个即可                             |
+
+!!! example "搜索示例"
+
+    * 在当前目录搜索名为 report.pdf 的文件：
+
+        ```shell
+        $ find . -name 'report.pdf'
+        ```
+
+    * 全盘搜索大于 1G 的文件：
+
+        ```shell
+        $ find / -size +1G
+        ```
+
+    * 在用户目录搜索所有名为 node_modules 的文件夹：
+
+        ```shell
+        $ find ~/ -name 'node_modules' -type d
+        ```
+
+### 模式匹配 {#pattern}
+
+许多现代的 shell 都支持一定程度的模式匹配。举个例子，bash 的匹配模式被称为 [glob](https://mywiki.wooledge.org/glob)，支持的操作如下：
+
+| 模式     | 匹配的字串                       |
+| -------- | -------------------------------- |
+| `*`      | 任意字串                         |
+| `foo*`   | 匹配 foo 开头的字串              |
+| `*x*`    | 匹配含 x 的字串                  |
+| `?`      | 一个字符                         |
+| `a?b`    | `acb`、`a0b` 等，但不包含 `a00b` |
+| `*.[ch]` | 以 .c 或 .h 结尾的文件           |
+
+和上面提到的命令结合，可以显著提高操作效率。例如：
+
+| 命令                 | 效果                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| `rm *.tar.gz`        | 删除所有以 `tar.gz` 结尾的压缩文件                           |
+| `mv -r *.[ch] /path` | 将当前及子目录下所有以 `.c` 或 `.h` 结尾的代码移动到 `/path` |
+
+!!! warning "高效的代价"
+
+    使用通配符前请再三确认输入无误，否则可能出现严重的后果（如 `rm -rf *` 会删掉当前目录的所有文件）。
+
+??? "更好，更大，更强的模式匹配"
+
+    除了上面提到的 glob，bash 还支持 [extglob](https://www.linuxjournal.com/content/bash-extended-globbing)，不过需要先用 `shopt -s extglob` 启用。
+
+    其他 shell 例如 zsh 还支持正则表达式（会在后续章节讲解）。
 
 ## 使用 tar 操作存档、压缩文件 {#tar}
 
@@ -611,70 +808,80 @@ mkdir DIR_NAME...
 通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
 ```shell
-# 命令格式如下，请参考下面的使用样例了解使用方法
-tar [OPTIONS] [FILE]...
+$ # 命令格式如下，请参考下面的使用样例了解使用方法
+$ tar [OPTIONS] FILE...
 ```
 
 常用选项：
 
-| 选项                   | 含义                                         |
-| ---------------------- | -------------------------------------------- |
-| `-A`                   | 将一个存档文件中的内容追加到另一个存档文件中 |
-| `-r, --append`         | 将一些文件追加到一个存档文件中               |
-| `-c, --create`         | 从一些文件创建存档文件                       |
-| `-t, --list`           | 列出一个存档文件的内容                       |
-| `-x, --extract, --get` | 从存档文件中提取出文件                       |
-| `-f, --file=ARCHIVE`   | 使用指定的存档文件                           |
-| `-C, --directory=DIR`  | 指定输出的目录                               |
+| 选项                     | 含义                                         |
+| ------------------------ | -------------------------------------------- |
+| `-A`                     | 将一个存档文件中的内容追加到另一个存档文件中 |
+| `-r`, `--append`         | 将一些文件追加到一个存档文件中               |
+| `-c`, `--create`         | 从一些文件创建存档文件                       |
+| `-t`, `--list`           | 列出一个存档文件的内容                       |
+| `-x`, `--extract, --get` | 从存档文件中提取出文件                       |
+| `-f`, `--file=ARCHIVE`   | 使用指定的存档文件                           |
+| `-C`, `--directory=DIR`  | 指定输出的目录                               |
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
-| 选项                             | 含义                        |
-| -------------------------------- | --------------------------- |
-| `-z, --gzip, --gunzip, --ungzip` | 使用 gzip 算法处理存档文件  |
-| `-j, --bzip2`                    | 使用 bzip2 算法处理存档文件 |
-| `-J, --xz`                       | 使用 xz 算法处理存档文件    |
+| 选项                                   | 含义                        |
+| -------------------------------------- | --------------------------- |
+| `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件  |
+| `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件 |
+| `-J`, `--xz`                           | 使用 xz 算法处理存档文件    |
 
 !!! example "tar 使用实例"
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
 
         ```shell
-        tar -c -f target.tar file1 file2 file3
+        $ tar -c -f target.tar file1 file2 file3
         ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
-  
+
         ```shell
-        tar -x -f target.tar -C test/
+        $ tar -x -f target.tar -C test/
         ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
 
         ```shell
-        tar -cz -f target.tar.gz file1 file2 file3
+        $ tar -cz -f target.tar.gz file1 file2 file3
         ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
 
         ```shell
-        tar -xz -f target.tar.gz -C test/
+        $ tar -xz -f target.tar.gz -C test/
         ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
 
         ```shell
-        tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+        $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
         ```
 
     * 列出 `target.tar` 存档文件中的内容
 
         ```shell
-        tar -t -f target.tar
+        $ tar -t -f target.tar
 
-        # 打印出文件的详细信息
-        tar -tv -f target.tar
+        $ # 打印出文件的详细信息
+        $ tar -tv -f target.tar
         ```
+
+!!! tip "组合 tar 的选项"
+
+    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
+
+    ```shell
+    $ tar -c -z -v -f target.tar test/
+    $ tar -czvf target.tar test/
+    $ tar -f target.tar -czv test/
+    ```
 
 !!! tip "存档文件的后缀名"
 
@@ -684,7 +891,7 @@ tar [OPTIONS] [FILE]...
 
     在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
 
-    同样的，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
+    同样地，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
 !!! tip "为什么使用 tar 创建压缩包需要“两次处理”"
 
@@ -705,14 +912,14 @@ tar [OPTIONS] [FILE]...
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
 ```shell
-# 调出 tar 命令和 ls 命令的文档
-man tar
-man ls
+$ # 调出 tar 命令和 ls 命令的文档
+$ man tar
+$ man ls
 ```
 
 文档中，往往会有命令的参数组合以及参数的详细含义，大而全能够很好地描述它，但是这对于我们希望能够快速上手一个命令是不利的，这就需要后面的另一个工具 `tldr`。
 
-```shell
+```console
 $ man tar
 TAR(1)                      GNU TAR Manual                     TAR(1)
 
@@ -756,7 +963,7 @@ DESCRIPTION
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
 ```shell
-apt install tldr
+$ sudo apt install tldr
 ```
 
 #### 使用 {#use-tldr}
@@ -797,13 +1004,13 @@ https://www.gnu.org/software/tar
 
 可以从输出中快速地了解到：
 
-- 创建存档文件；
-- 创建压缩的存档文件；
-- 解压一个存档文件；
-- 解压一个存档文件到指定目录；
-- 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
-- 给出一个存档文件中的文件列表；
-- 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
+-   创建存档文件；
+-   创建压缩的存档文件；
+-   解压一个存档文件；
+-   解压一个存档文件到指定目录；
+-   创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
+-   给出一个存档文件中的文件列表；
+-   解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
 
 ## 思考题 {#questions}
 
@@ -830,6 +1037,20 @@ https://www.gnu.org/software/tar
     ```
 
     这会导致什么后果？尝试解释原因。（提示：`*` 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）
+
+!!! question "为什么不建议使用 `apt-key`"
+
+    在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
+
+    ```shell
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    ```
+
+    但是如今可以注意到，Docker 官方的安装教程也不再使用此方式，转而先手动下载、经过 `gpg` 程序处理后放置在 `/usr/share/keyrings/` 下，然后在软件源配置文件中使用 `signed-by` 参数指定成这个文件。为什么要换成这么麻烦的步骤？
+
+    背景知识：GPG 签名是非对称密码体系的一个例子。这里，软件包发布者有两把密钥：公钥（供用户公开下载）和私钥（必须妥善保存，不能让别人知道）。发布者使用**私钥**对软件包签名后，用户可以用**公钥**验证软件包确实为该发布者发布，且未被篡改。
+
+    提示：私钥泄漏之后可能会发生什么？
 
 ## 引用来源 {#references .no-underline}
 

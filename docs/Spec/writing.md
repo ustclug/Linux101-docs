@@ -10,6 +10,12 @@
 
     使用形如 `!!! abstract "导言"` 的方式添加一个导言框，并在下面若干行通过缩进 1 个制表符或 4 个空格的方式填写导言里的内容，行与行之间请空 1 行。
 
+!!! info "Markdown 格式注意事项"
+
+    目前 CI (GitHub Actions) 在部署文档时，额外添加了使用 [Prettier](https://prettier.io) 检查 Markdown 风格的步骤，如果不符合要求，你的修改会被拒绝。请在编辑完成后使用 Prettier 检查并修复 Markdown 格式。
+
+    可以在仓库根目录使用 `npm install` 安装 Prettier，使用 `npm run check` 检查文件格式，使用 `npm run fix` 修复。
+
 ## 章节主体（主体内容请从 h2 等级以下按层次编写。） {#main-content}
 
 章节里的主要内容都应该写在主体里。主体包括标题和正文：标题都从 h2 等级以下按层次编写，而正文则直接使用普通文本即可。
@@ -48,18 +54,20 @@
 
     使用形如 `!!! tip "小知识"` 的方式添加一个小知识框。
 
+    **注意：请勿拼写为 tips，否则格式会被识别为提示（note）框。**
+
 !!! warning "请在提示框的标题行后面留一个空行"
 
-    由于 [Prettier](https://prettier.io) 的解析方式问题，请在所有提示框的起始行后面添加一个空行，**不要像 Material 主题官网那样没有空行直接开始提示框内容**。
+    由于 Prettier 的解析方式问题，请在所有提示框的起始行后面添加一个空行，**不要像 Material 主题官网那样没有空行直接开始提示框内容**。
 
-    **错误**格式：
+    :fontawesome-solid-circle-xmark:{: .orangered } **错误**格式：
 
     ```markdown
     !!! note
         提示框内容
     ```
 
-    **正确**格式：
+    :fontawesome-solid-circle-check:{: .limegreen } **正确**格式：
 
     ```markdown
     !!! note
@@ -67,17 +75,17 @@
         提示框内容
     ```
 
-更多种类的提示框请参考 [提示框一览](https://squidfunk.github.io/mkdocs-material/extensions/admonition/)。
+更多种类的提示框请参考 [提示框一览](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)。
 
 ### 为标题和小标题添加 ID {#heading-ids}
 
-由于文章篇目较长，使用时会经常遇到需要链接到文章某一段的情况。受限于 MkDocs 对于自动生成 ID 的功能（只支持英文字符），纯中文的标题会导致生成 `_1`, `_2` 这样的 ID。一方面这样的 ID 看起来不直观，另一方面每当标题发生增减时这些 ID 都会变，因此请为每个标题（最上方的 H1 不用）手动添加一个有意义的 ID，方法如下：
+由于文章篇目较长，使用时会经常遇到需要链接到文章某一段的情况。受限于 MkDocs 自动生成 Anchor ID 的功能（只支持英文字符），纯中文的标题会导致生成 `_1`, `_2` 这样的 ID。一方面这样的 ID 看起来不直观，另一方面每当标题发生增减时这些 ID 都会变，因此请为每个标题手动添加一个有意义的 ID（最开始的标题 H1 除外），方法如下：
 
 ```markdown
 ### 为标题和小标题添加 ID {#heading-ids}
 ```
 
-建议 ID 只包含小写字母、数字和横线 `-`（**没有**大写字母和点）
+建议 ID 只包含小写字母、数字和横线 `-`，必要时使用句点（不使用大写字母和其他标点符号）。
 
 !!! warning "注意"
 
@@ -91,6 +99,10 @@
     ✔ ### 为标题和小标题添加 ID {#heading-ids}
     ❌ ### 为标题和小标题添加 ID {# heading-ids}
     ```
+
+!!! warning "注意 2"
+
+    请不要在每页最开始的标题（唯一一个 H1）后添加 `{#id-tag}`，否则可能会出现一些意料之外的显示错误。
 
 ### 为图片添加配字 {#image-caption}
 

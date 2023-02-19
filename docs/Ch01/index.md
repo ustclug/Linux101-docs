@@ -1,10 +1,10 @@
-# 初识 Linux {#first-class}
+# 初识 Linux
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
 
 !!! abstract "导言"
 
-    21 世纪是计算机科学的世纪。在信息化程度日增月益的现代社会，与计算机和各类电子产品打交道已经成为我们，尤其是年轻人的日常生活中几乎不可避免的事情了。据统计，截至 2019 年 6 月，中国的网民规模已经高达 8.54 亿[^1]，即比例已经达到六成，而其中以中青年为主。在你的生活中，你认为计算机又占据了多大的席位呢？事实上，计算机在你生活中的比重可能远超出你的想象：不仅包括我们熟悉的在日常生活中频繁使用的个人计算机（俗称“电脑”），诸如智能手机操作系统、车载定位导航系统、校内一卡通服务系统以及如今风靡中国的电子支付网络等等都十分倚重各式各样的计算机。这些隐藏在各类用途迥异的设备中、甚至是无形的网络后面的计算机又会是什么模样？
+    21 世纪是计算机科学的世纪。在信息化程度日增月益的现代社会，与计算机和各类电子产品打交道已经成为我们，尤其是年轻人的日常生活中几乎不可避免的事情了。据统计，截至 2021 年 6 月，中国的网民规模已经高达 10.11 亿[^1]，即比例已经超过七成，而其中以中青年为主。在你的生活中，你认为计算机又占据了多大的席位呢？事实上，计算机在你生活中的比重可能远超出你的想象：不仅包括我们熟悉的在日常生活中频繁使用的个人计算机（俗称“电脑”），诸如智能手机操作系统、车载定位导航系统、校内一卡通服务系统以及如今风靡中国的电子支付网络等等都十分倚重各式各样的计算机。这些隐藏在各类用途迥异的设备中、甚至是无形的网络后面的计算机又会是什么模样？
 
     在本书的第一章，我们将带领你简单了解现代计算机和计算机系统的发展，并正式引入本书的核心介绍对象，即在个人计算机系统中虽然不甚流行，你可能也少有耳闻，但在科学研究、工业生产、计算机网络等各种专业场合中占据绝对主导的 Linux 操作系统。本章还会进一步引领你一步步了解我们身边的 Linux 系统，认识到其实它并不遥远缥缈也绝非高不可攀。最后，我们还会把它带到你的眼前，让你亲自上手感受它的魅力。
 
@@ -68,6 +68,18 @@ Linux 内核并不是一个完整的操作系统，因为它过于精简，单�
 
     如今智能手机上一个常见的系统是谷歌公司开发的 Android，它其实也是一个基于 Linux 内核开发的操作系统。不过它没有采用 GNU 组件作为工具，而是谷歌自行研发的另一套体系。基于这套体系构成的组合则被称为 Android/Linux，它和我们接下来讨论的 GNU/Linux 大相径庭，感兴趣的读者可以参考本章的拓展阅读：[Android/Linux](supplement.md#android-linux)。
 
+??? info "GNU 自由软件"
+
+    进入 GNU/Linux 世界，便意味着与 GNU 自由软件打交道。先看看一堆字母 g 开头的应用程序：
+
+    - gcc: GNU 的 C 和 C++ 编译器
+    - gdb: GNU 程序调试器
+    - gzip: gz 格式压缩与解压缩工具
+    - GNOME: 隶属于 GNU 项目的桌面环境
+    - gimp: GNU 图像编辑工具
+
+    它们的首字母 g 都是 GNU 的缩写（当然不是所有以 g 开头的都是 GNU 软件）。许多 Linux 上的系统管理命令虽然未必以 g 开头，但都属于自由软件；还有[更多优秀的软件](https://www.gnu.org/software/)，被自由软件爱好者维护、分享……选择 Linux，很大程度上是一种对极客精神与开源文化的认同。
+
 ### Linux 发行版 {#linux-distributions}
 
 一个典型的 Linux 发行版除了 Linux 内核以外，通常还会包括一系列 GNU 工具和库、一些附带的软件、说明文档、一个桌面系统、一个窗口管理器和一个桌面环境。不同的发行版之间除了 Linux 内核以外的其它部分都有可能不一样，因此有的时候我们对比某两种发行版的时候会觉得它们看起来像是完全不一样的操作系统，然而实质上它们却拥有着相同的核心，即 Linux 内核。
@@ -80,13 +92,15 @@ Debian 是一个完全由自由软件构成的类 UNIX 操作系统，第一个�
 
 ![](images/Debian-Logo.png)
 
-<p class="caption">Debian 图标</p>
+Debian 图标
+{: .caption }
 
 Debian GNU/Linux 也派生了很多发行版，其中最为著名的便是 Ubuntu（官方译名“友邦拓”）。Ubuntu 由英国的 Canonical 公司主导创立，是一个主打桌面应用的操作系统。其为一般用户提供了一个时新且稳定的由自由软件构成的操作系统，且拥有庞大的社群力量和资源，十分适合普通用户使用。
 
 ![](images/Ubuntu-Logo.png)
 
-<p class="caption">Ubuntu 图标</p>
+Ubuntu 图标
+{: .caption }
 
 #### Red Hat 分支 {#red-hat-branch}
 
@@ -94,19 +108,24 @@ Red Hat Linux 是美国的 Red Hat 公司发行的一个发行版，第一个版
 
 ![](images/Red-Hat-Logo.png)
 
-<p class="caption">Red Hat 公司商标，RHEL 是其旗下产品</p>
+Red Hat 公司商标，RHEL 是其旗下产品
+{: .caption }
 
 在 Red Hat Linux 在停止官方更新后，由社群启动的 Fedora 项目接管了其源代码并构筑了自己的更新，演变成了如今的 Fedora 发行版。Fedora 是一套功能完备且更新迅速的系统，且本身计划也受到了 Red Hat 公司的赞助，成为了公司测试新技术的平台。
 
 ![](images/Fedora-Logo.png)
 
-<p class="caption">Fedora 图标</p>
+Fedora 图标
+{: .caption }
 
-虽然 RHEL 是一个收费的、商业化的系统，但是其遵循 GNU 通用公共许可证，因此会开放源代码。编译这些源代码可以重新得到一个可以使用的操作系统，即一个新的发行版：CentOS（Community Enterprise Operating System，社区版企业操作系统）。因为 CentOS 几乎完全编译自 RHEL 的代码，所以其也像 RHEL 一样具有企业级别的稳定性，适合在要求高度稳定的服务器上运行。但在 2020 年 12 月，CentOS 社区在其博客中宣布未来的重点转向 CentOS Stream，这是一个全新的滚动发行版，和往日注重稳定性的 CentOS 形成鲜明对比。
+虽然 RHEL 是一个收费的、商业化的系统，但是其遵循 GNU 通用公共许可证，因此会开放源代码。编译这些源代码可以重新得到一个可以使用的操作系统，即一个新的发行版：CentOS（Community Enterprise Operating System，社区版企业操作系统）。因为 CentOS 几乎完全编译自 RHEL 的代码，所以其也像 RHEL 一样具有企业级别的稳定性，适合在要求高度稳定的服务器上运行。
+
+2020 年 12 月，CentOS 社区在其博客中[宣布未来的重点转向 CentOS Stream](https://www.redhat.com/en/blog/centos-stream-building-innovative-future-enterprise-linux)，这是一个全新的滚动发行版。在此之前，RHEL 的上游为 Fedora，而 CentOS 的上游为 RHEL；在推出 CentOS Stream 之后，它就成为了 RHEL 的上游发行版。与此同时，CentOS 8 的支持期限被缩短至 2021 年底，且不再推出新的非 Stream 的 CentOS 版本。不满于该决定的人们也组织了新的社区，推出了诸如 [AlmaLinux](https://almalinux.org/)、[Rocky Linux](https://rockylinux.org/) 等发行版。
 
 ![](images/CentOS-Logo.png)
 
-<p class="caption">CentOS 图标</p>
+CentOS 图标
+{: .caption }
 
 #### Arch Linux 分支 {#arch-linux-branch}
 
@@ -114,15 +133,19 @@ Arch Linux 是一个基于 x86-64 架构的 Linux 发行版，不过因为其内
 
 ![](images/Arch-Linux-Logo.png)
 
-<p class="caption">Arch Linux 图标</p>
+Arch Linux 图标
+{: .caption }
 
 Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使用。为了能让一般用户也能用上 Arch Linux 的强大功能，它的变种 Manjaro 发行版于 2011 年问世。Manjaro 发行版基于 Arch Linux，但更注重易用，因而更适合一般用户。
 
 ![](images/Manjaro-Logo.png)
 
-<p class="caption">Manjaro 图标</p>
+Manjaro 图标
+{: .caption }
 
-以上是若干个常见的 Linux 发行版系列，由上文可见，Linux 的发行版非常丰富，不同的发行版有其各自的特性，因而可以面向不同的用户满足独特的需求。对于新手来说，一个拥有丰富的图形界面的发行版更加适合初步探索和后续使用。**本书推荐初次接触 Linux 的读者优先采用 Ubuntu 发行版或者它的子发行版（Lubuntu, Xubuntu 等）** 作为自己接触和探索 Linux 的平台，在以后可以自行上手其它发行版。
+以上是若干个常见的 Linux 发行版系列，其他的常用发行版有 openSUSE、Gentoo 等，相关介绍可参考[附录中对应的资料](../Appendix/distribution.md)。
+
+由上文可见，Linux 的发行版非常丰富，不同的发行版有其各自的特性，因而可以面向不同的用户满足独特的需求。对于新手来说，一个拥有丰富的图形界面的发行版更加适合初步探索和后续使用。**本书推荐初次接触 Linux 的读者优先采用 Ubuntu 发行版或者它的子发行版（Lubuntu, Xubuntu 等）** 作为自己接触和探索 Linux 的平台，在以后可以自行上手其它发行版。
 
 ??? note "Linux 总结"
 
@@ -142,17 +165,21 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 ![](images/Android-10-Native.png)
 
-<p class="caption">Android 10 原生界面</p>
+Android 10 原生界面
+{: .caption }
 
 ### 服务器 {#servers}
 
-现代人的生活已经很难离开互联网了，在互联网上，我们可以访问各式各样的网站、利用在线社交平台分享自己的生活、或者是使用联机办公工具和同事协同工作。通常来说这些网站和软件的提供商都需要设立他们自己的计算机来完成计算、存储和通信的功能，这种计算机就被称为服务器。和个人计算机不同，服务器通常都不会使用 Windows 或者 macOS 这种个人计算机操作系统，事实上绝大部分的服务器维护人员都愿意选择一些 Linux 发行版作为它们的操作系统，因为许多 Linux 发行版界面简洁，功能强大，而且某些发行版也是受到专业计算机企业的服务支持的（如前文提到的 RHEL 和 CentOS）。
+现代人的生活已经很难离开互联网了，在互联网上，我们可以访问各式各样的网站、利用在线社交平台分享自己的生活、或者是使用联机办公工具和同事协同工作。通常来说这些网站和软件的提供商都需要设立他们自己的计算机来完成计算、存储和通信的功能，这种计算机就被称为服务器。和个人计算机不同，服务器通常都不会使用 Windows 或者 macOS 这种个人计算机操作系统，事实上绝大部分的服务器维护人员都愿意选择一些 Linux 发行版作为它们的操作系统，因为许多 Linux 发行版界面简洁，功能强大，而且某些发行版也是受到专业计算机企业的服务支持的（如前文提到的 RHEL）。
 
-另一类有名的服务器操作系统是微软公司的 Window Server 系列，不过其流行程度比不上各类 Linux 发行版。
+同时，受惠于互联网上丰富的教程，Debian 和 Ubuntu Server 也成为越来越多个人和团体用作服务器操作系统的 Linux 发行版，如下文提到的中科大开源社群 LUG@USTC 使用 Debian 发行版及其衍生产品 Proxmox VE 作为其所有服务器的操作系统。
+
+另一类有名的服务器操作系统是微软公司的 Windows Server 系列，不过其流行程度比不上各类 Linux 发行版。
 
 ![](images/Windows-Server.png)
 
-<p class="caption">Windows Server 图标</p>
+Windows Server 图标
+{: .caption }
 
 ### 电视机顶盒 {#digital-tv}
 
@@ -160,50 +187,46 @@ Arch Linux 拥有强大的功能，但因其特殊的理念使得用户不易使
 
 ![](images/Android-TV.png)
 
-<p class="caption">Android TV 图标</p>
+Android TV 图标
+{: .caption }
 
 ## 让自己的计算机用上 Linux {#use-linux}
 
 有很多尚未接触过 Linux 的读者看到这里可能已经在期待或者计划让自己尽快开始使用 Linux 了。事实上，如果把 Linux 看作一个领域，那它的确是一个重视实践的领域。而且出于学习目的，在阅读本书未来的章节时在手头准备一个随时可用的 Linux 发行版是十分关键和有益的。因此，本书**强烈建议各位读者在本机安装一个属于自己的 Linux 发行版**，以供随时实践。
 
-在本机上安装一个 Linux 发行版有很多种选择，如：安装方法可以选择实机安装或虚拟机安装；发行版则可以在诸多选项中任意抉择。然而，对于新手来说，本书**不建议直接采用实机安装 Linux**，因为这样做会有以下缺点：
+在本机上安装一个 Linux 发行版有很多种选择，如：安装方法可以选择实机安装或虚拟机安装；发行版则可以在诸多选项中任意抉择。然而，对于新手来说，本书**不建议直接采用实机安装 Linux**，因为这样做会面临以下问题：
 
-- 在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
-- 错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
-- 部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
-- 如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
+-   在安装过程中不理解关键的选项（如：磁盘分区、挂载、交换空间分配等）的意义，很容易做出错误的决定；
+-   错误的配置可能导致自己原先本机上的操作系统和数据遭到不可逆转的损坏；
+-   部分硬件可能对安装的发行版缺少兼容，从而导致意外安装失败。
+-   如果安装的过程中选择下载附加工具，可能会因为默认镜像在国外而导致下载十分缓慢，从而让安装流程变得很漫长。
 
-鉴于以上问题对于新手来说十分常见，本书的编写组为各位读者专门设计了另外一种更为安全高效的方法：在虚拟机上运行 Linux 发行版镜像。虚拟机简单来说可以视作一个安全可靠的沙盒，它受到虚拟机管理软件的管理，而管理软件是直接安装在自己目前常用的操作系统上的。本书**推荐使用虚拟机运行安装完毕的 Linux 镜像**，因为这样会有如下优点：
+鉴于以上问题对于新手来说十分常见，本书的编写组为各位读者专门提供了另外一种更为安全高效的方法：在虚拟机上运行 Linux 发行版镜像。虚拟机简单来说可以视作一个安全可靠的沙盒，它受到虚拟机管理软件的管理，而管理软件是直接安装在自己目前常用的操作系统上的。本书**推荐使用虚拟机运行安装完毕的 Linux 镜像**，因为这样会有如下优点：
 
-- 读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
-- 无需考虑底层硬件的兼容性问题，稳定性大幅提升。
-- 系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
-- 如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
+-   读者仍然可以安心地使用自己当前的操作系统，因为虚拟机不干涉当前电脑操作系统的配置。
+-   无需考虑底层硬件的兼容性问题，稳定性大幅提升。
+-   系统已经安装完毕，使用虚拟机打开时相当于直接开机，无需经历安装流程。
+-   如果在虚拟机中发生任何错误，可以通过重置、回溯虚拟机镜像的方法无痛修复，而不会伤害到读者计算机上的操作系统和数据。
 
-因此，本书讲主要讲解如何为自己搭建一个安全高效的 Linux 虚拟机。
+因此，本书将主要讲解如何为自己搭建一个安全高效的 Linux 虚拟机。如果你有一台远程的 Linux 服务器，可以参考[拓展阅读](./supplement.md#ssh)的内容配置 SSH 连接。
 
 ### 获取虚拟机管理软件 {#get-vm-softwares}
 
 现在在 Windows / macOS 上主流的虚拟机管理软件有：
 
-- [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上专业的虚拟机管理软件。
+-   [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上用于非商业用途的虚拟机管理软件。
+-   [VMware Fusion Player](https://customerconnect.vmware.com/web/vmware/evalcenter?p=fusion-player-personal) 是 VMware 公司为 macOS 平台推出的用于非商业用途的虚拟机管理软件。
+-   [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
 
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
-
-以上两款软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
+以上软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
 
 ### 获取 Xubuntu 虚拟机镜像 {#get-vm-images}
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
-
-[VMware Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-32bit.ova)
-
-[VMware Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VMware-XUbuntu-18.04-64bit.ova)
-
-[VirtualBox Xubuntu 18.04 32 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-32bit.ova)
-
-[VirtualBox Xubuntu 18.04 64 位](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-XUbuntu-18.04-64bit.ova)
+-   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
+-   Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
+-   Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
 
 推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
 
@@ -212,12 +235,22 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
     Xubuntu 的设计理念是创造一个易用且更轻量的 Ubuntu。与 Ubuntu 不同的是，它采用的是更轻量和兼容性更强的 Xfce 桌面系统，并基于 GTK 运行。Xubuntu 和 Ubuntu 使用完全一致的软件源，因此 Xubuntu 能运行绝大部分 Ubuntu 下的软件。
 
     ![](images/Xubuntu-Logo.png)
-    <p class="caption">Xubuntu 图标</p>
+
+    Xubuntu 图标
+    {: .caption }
+
+??? tip "Ubuntu 的支持周期"
+
+    不管从经济上还是技术上考虑，为一个固定版本的软件提供无限长时间的技术支持都是不现实的，对操作系统来说更是如此。因此，用户需要选择合适的操作系统版本，并且在支持周期结束前迁移或更新至新版本。在停止支持（End of Life，EOL）后，操作系统仍然可以继续运行，但是不再能够得到安全更新和功能更新。
+
+    对 Ubuntu 来说，其发行的版本主要分为两类：长期支持版本（Long Term Support，LTS）和中间版本（Interim releases）。Ubuntu 一般在每年四月和十月各发布一次新版本。其中 LTS 版本于每隔两年的四月份发布一次新版本，诸如 22.04、20.04、18.04；在其他时间发布的则是中间版本。
+
+    中间版本的支持周期为 9 个月，一般被需要使用最新特性的开发者使用；而 LTS 有五年[^3]的标准支持周期。根据 Ubuntu 官方的估算[^4]，在所有 Ubuntu 系统中有 95% 安装的都是 LTS 版本。
 
 如果读者想要自己安装 Ubuntu 操作系统的话，以下两篇博客也可以参考：
 
-- [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
-- [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
+-   [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
+-   [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
 ??? tip "Windows 下使用 VirtualBox"
 
@@ -227,7 +260,7 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
     <p class="caption">VirtualBox 新建界面</p>
 
 
-对于日常惯用 Windows 10 用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
+对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 
 ### 启动虚拟机 {#start-vm}
 
@@ -239,27 +272,30 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 
-<p class="caption">VMware Workstation 成功启动 Xubuntu 32 位虚拟机</p>
+VMware Workstation 启动 Xubuntu 18.04 虚拟机
+{: .caption }
 
-如果读者采用了上面列出的虚拟机之一，其默认登录密码为 `ustc`，输入密码即可登录虚拟机系统桌面。
+如果读者采用了上面列出的虚拟机之一，其默认登录用户名和密码均为 `ustc`，输入密码即可登录虚拟机系统桌面。
 
 ![](images/VWP-Xubuntu-32bit-Desktop.png)
 
-<p class="caption">Xubuntu 32 位虚拟机桌面</p>
+Xubuntu 18.04 虚拟机桌面
+{: .caption }
 
 ## 中科大开源社群：LUG@USTC {#lug-ustc}
 
-LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的技术性社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像之一 [USTC Mirrors](https://mirrors.ustc.edu.cn/)，其作为本土的软件源为国内许多开源软件用户提供了镜像服务，是本社群对社会作出的一项重要贡献。
+LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的学术科技类社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像站之一 [USTC Mirrors](https://mirrors.ustc.edu.cn/)，其作为本土的软件源为国内许多开源软件用户提供了镜像服务，是本社群对社会作出的一项重要贡献。
 
 ![](images/LUG@USTC-Logo.png)
 
-<p class="caption">LUG@USTC 图标</p>
+LUG@USTC 图标
+{: .caption }
 
 ### 了解与加入 LUG@USTC {#join-lug-ustc}
 
 你可以从 [LUG@USTC 官方网站](https://lug.ustc.edu.cn/wiki/)中了解我们。官方网站中包括了我们在校内开展的各类流行活动和面向校内外提供的诸多网络服务。
 
-LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 lug AT ustc.edu.cn 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
+LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 ![](https://lug.ustc.edu.cn/static/email.png){: .img-inline } 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
 
 ## 思考题 {#questions}
 
@@ -282,9 +318,19 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
     著作传（英文：copyleft）源于自由软件运动，是一种利用现有著作权的法律体制巧妙地保证用户自由使用软件的权利的许可方式。著作传一般包含哪些规则？它和常见的著作权有什么区别？它和完全放弃权利的“公有领域”又有什么不同？
 
     ![](images/Copyleft.png)
-    <p class="caption">著作传的标志，注意到它与常见的著作权标志左右颠倒</p>
 
-## 引用来源 {#references .no-underline}
+    著作传的标志，注意到它与常见的著作权标志左右颠倒
+    {: .caption }
 
-[^1]: 数据来自中国互联网信息中心[第 44 次 《中国互联网络发展状况统计报告》（全文）](http://www.cac.gov.cn/2019-08/30/c_1124938750.htm)。
+## 其他资料 {#extra-resources}
+
+[Red Hat 公司制作的录音节目 Command Line Heroes](https://www.redhat.com/en/command-line-heroes)
+
+: 纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。
+
+## 引用来源与备注 {#references .no-underline}
+
+[^1]: 数据来自中国互联网信息中心[第 48 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.cn/hlwfzyj/hlwxzbg/hlwtjbg/202109/P020210915523670981527.pdf)。
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。
+[^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要付费的 Ubuntu Advantage 订阅，或者最多 3 台设备的个人免费订阅。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
+[^4]: 数据来自 Ubuntu 介绍：[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)。
