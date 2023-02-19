@@ -75,17 +75,17 @@ Mode from config file:          permissive  # <- 或 disabled
 - MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
 - Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
 
-当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2019 上运行 ELF 格式的 Linux 程序（安装方法详见 WSL 的官方[安装指南](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10）。
+当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2019 上运行 ELF 格式的 Linux 程序（安装方法详见 WSL 的官方[安装指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)）。
 
 ??? tip "不要将 WSL 与 Windows Services for UNIX (SFU) 混淆"
 
     你可能会在老版本的 Windows 上注意到，在添加与删除 Windows 组件的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。
 
-### WSL1
+### 第一代 WSL {#wsl1}
 
 第一代的 WSL (WSL1) 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL1 处理（Linux 使用的）ELF 的可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL1 中可以访问到 Windows 下的文件，也与主机共享网络。
 
-### WSL2
+### 第二代的 WSL {#wsl2}
 
 第二代的 WSL (WSL2) 尝试解决一些 WSL1 的方式难以解决的问题：
 
