@@ -982,9 +982,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#anaconda" class="md-nav__link">
-    Python 环境的另一种管理方式：Anaconda
+  <a href="#conda" class="md-nav__link">
+    Python 环境的另一种管理方式：Conda
   </a>
+  
+    <nav class="md-nav" aria-label="Python 环境的另一种管理方式：Conda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anaconda-and-miniconda" class="md-nav__link">
+    Anaconda 与 Miniconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-miniconda" class="md-nav__link">
+    安装 Miniconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-as-package-management-system" class="md-nav__link">
+    Conda 作为包管理器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-as-environment-management-system" class="md-nav__link">
+    Conda 作为环境管理器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1278,9 +1312,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#anaconda" class="md-nav__link">
-    Python 环境的另一种管理方式：Anaconda
+  <a href="#conda" class="md-nav__link">
+    Python 环境的另一种管理方式：Conda
   </a>
+  
+    <nav class="md-nav" aria-label="Python 环境的另一种管理方式：Conda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anaconda-and-miniconda" class="md-nav__link">
+    Anaconda 与 Miniconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-miniconda" class="md-nav__link">
+    安装 Miniconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-as-package-management-system" class="md-nav__link">
+    Conda 作为包管理器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-as-environment-management-system" class="md-nav__link">
+    Conda 作为环境管理器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1350,7 +1418,38 @@
 
 
 <h1 id="supplement">拓展阅读<a class="headerlink" href="#supplement" title="Permanent link">&para;</a></h1>
-<h2 id="anaconda">Python 环境的另一种管理方式：Anaconda<a class="headerlink" href="#anaconda" title="Permanent link">&para;</a></h2>
+<h2 id="conda">Python 环境的另一种管理方式：Conda<a class="headerlink" href="#conda" title="Permanent link">&para;</a></h2>
+<p>Conda 是一个广泛使用的开源的包管理与环境管理系统。Miniconda 与 Anaconda 是两个广为人知的基于 Conda 的 Python 的发行版本。</p>
+<h3 id="anaconda-and-miniconda">Anaconda 与 Miniconda<a class="headerlink" href="#anaconda-and-miniconda" title="Permanent link">&para;</a></h3>
+<p>Miniconda 和 Anaconda 都是开源的 Python 的发行版本。</p>
+<p>Miniconda 是 Anaconda 的免费迷你版本，只包含了 Conda、Python 及其依赖，以及少量其他有用的包，例如 pip 和 zlib。而 Anaconda 则额外包含了 250 多个自动安装的科学软件包，例如 SciPy 和 NumPy，并且测试了这些软件包之间的兼容性。Anaconda 分为个人版、商业版、团队版、企业版，除了个人版以外，其余版本均为付费产品。</p>
+<h3 id="install-miniconda">安装 Miniconda<a class="headerlink" href="#install-miniconda" title="Permanent link">&para;</a></h3>
+<p>从官网下载安装 Miniconda，并进入虚拟环境。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-O<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="gp"># </span>前面的选项可以保持默认，也可以自行修改
+<span class="go">please answer &#39;yes&#39; or &#39;no&#39;:</span>
+<span class="go">&gt;&gt;&gt; yes</span>
+<span class="gp"># </span>选择<span class="w"> </span>Miniconda<span class="w"> </span>的安装路径
+<span class="go">Miniconda3 will now be installed into this location:</span>
+<span class="go">&gt;&gt;&gt; ~/.miniconda3</span>
+<span class="gp"># </span>添加配置信息到<span class="w"> </span>~/.bashrc<span class="w"> </span>文件，这样每次打开终端时会自动激活虚拟环境
+<span class="go">Do you wish the installer to initialize Miniconda3 by running conda init? [yes|no]</span>
+<span class="go">[no] &gt;&gt;&gt; yes</span>
+
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>~/.bashrc<span class="w"> </span><span class="c1"># 应用配置文件信息，激活虚拟环境</span>
+</code></pre></div>
+<h3 id="conda-as-package-management-system">Conda 作为包管理器<a class="headerlink" href="#conda-as-package-management-system" title="Permanent link">&para;</a></h3>
+<p>类似于 pip，可以使用 <code>conda install</code> 来安装软件包。部分软件包既可以使用 pip 安装，也可以使用 conda 安装。
+相比于 pip，conda 会执行更加严格的依赖检查，并且除了 python 软件包外，还可以安装一些 C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 python 软件包的数量远小于 PyPi。</p>
+<h3 id="conda-as-environment-management-system">Conda 作为环境管理器<a class="headerlink" href="#conda-as-environment-management-system" title="Permanent link">&para;</a></h3>
+<p>类似于 Virtualenv，可以使用 conda 来管理虚拟环境。</p>
+<p>常见的使用方式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>venv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11<span class="w"> </span><span class="c1"># 创建一个名为 venv，python 版本为 3.11 的虚拟环境</span>
+<span class="gp"># </span>请确认虚拟环境已经成功创建
+<span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>venv<span class="w"> </span><span class="c1"># 切换到名为 venv 的虚拟环境</span>
+<span class="gp">$ </span>conda<span class="w"> </span>deactivate<span class="w"> </span><span class="c1"># 退出当前虚拟环境</span>
+</code></pre></div>
 <h2 id="dynamic-or-static-link">动态链接与静态链接<a class="headerlink" href="#dynamic-or-static-link" title="Permanent link">&para;</a></h2>
 <p>在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 <code>ldd</code> 命令确认：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>hello.c
