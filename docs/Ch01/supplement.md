@@ -272,7 +272,7 @@ ustc@ustclug-linux101:~$
 
 第一代的 WSL (WSL1) 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL1 处理（Linux 使用的）ELF 可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL1 中可以访问到 Windows 下的文件，也与主机共享网络。
 
-### 第二代的 WSL {#wsl2}
+### 第二代 WSL {#wsl2}
 
 第二代的 WSL (WSL2) 尝试解决一些 WSL1 的方式难以解决的问题：
 
