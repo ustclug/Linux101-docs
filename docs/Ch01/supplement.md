@@ -255,7 +255,7 @@ ustc@ustclug-linux101:~$
 
     我们建议除非有特殊原因，否则所有正式生产环境服务器（例如实验室服务器）都应该关闭 SSH 密码验证。
 
-## 适用于 Linux 的 Windows 子系统 (Windows Subsystem for Linux，WSL) {#wsl}
+## 适用于 Linux 的 Windows 子系统（Windows Subsystem for Linux，WSL） {#wsl}
 
 如何将 Linux 下的软件与开发生态移植到 Windows 上？在 WSL 出现之前，开发者们进行了各种尝试。这也催生出了一些软件与方案，例如：
 
