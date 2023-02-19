@@ -262,22 +262,22 @@ ustc@ustclug-linux101:~$
 -   MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
 -   Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
 
-当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2016 及以上的版本上运行原生（ELF 格式）的 Linux 程序。
+当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2016 及以上的版本上运行原生（ELF 格式）的 Linux 程序（安装方法详见 WSL 的官方[安装指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)）。
 
 ??? tip "不要将 WSL 与 Windows Services for UNIX (SFU) 混淆"
 
     你可能会在老版本的 Windows 上注意到，在「添加与删除 Windows 组件」的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。
 
-### WSL1
+### WSL 1 {#wsl1}
 
-第一代的 WSL (WSL1) 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL1 处理（Linux 使用的）ELF 可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL1 中可以访问到 Windows 下的文件，也与主机共享网络。
+WSL 1 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL 1 处理（Linux 使用的）ELF 可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL 1 中可以访问到 Windows 下的文件，也与主机共享网络。
 
-### WSL2
+### WSL 2 {#wsl2}
 
-第二代的 WSL (WSL2) 尝试解决一些 WSL1 的方式难以解决的问题：
+WSL 2 尝试解决一些 WSL 1 的方式难以解决的问题：
 
--   由于其是以翻译系统调用的方式实现 Linux 兼容，WSL1 无法运行依赖于内核复杂特性的程序（如 Docker），无法运行硬件驱动程序。
--   没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL1 中实现。
--   受到各种因素的影响（如 Windows Defender），WSL1 的 I/O 性能远低于 Linux 内核的实现。
+-   由于其是以翻译系统调用的方式实现 Linux 兼容，WSL 1 无法运行依赖于复杂内核特性的程序（如 Docker），无法运行硬件驱动程序。
+-   没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL 1 中实现。
+-   受到各种因素的影响（如 Windows Defender），WSL 1 的 I/O 性能远低于 Linux 内核的实现。
 
-WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的 Linux 内核。
+WSL 2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的 Linux 内核。
