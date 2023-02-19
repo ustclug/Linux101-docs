@@ -33,7 +33,7 @@ $ source ~/.bashrc # 应用配置文件信息，激活虚拟环境
 ### Conda 作为包管理器 {#conda-as-package-management-system}
 
 类似于 pip，可以使用 `conda install` 来安装软件包。部分软件包既可以使用 pip 安装，也可以使用 conda 安装。
-相比于 pip，conda 会执行更加严格的依赖检查，并且除了 python 软件包外，还可以安装一些 C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 python 软件包的数量远小于 PyPi。
+相比于 pip，conda 会执行更加严格的依赖检查，并且除了 Python 软件包外，还可以安装一些 C/C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 Python 软件包的数量远少于 PyPI。
 
 ### Conda 作为环境管理器 {#conda-as-environment-management-system}
 
@@ -42,7 +42,7 @@ $ source ~/.bashrc # 应用配置文件信息，激活虚拟环境
 常见的使用方式如下：
 
 ```console
-$ conda create -n venv python=3.11 # 创建一个名为 venv，python 版本为 3.11 的虚拟环境
+$ conda create -n venv python=3.11 # 创建一个名为 venv，Python 版本为 3.11 的虚拟环境
 # 请确认虚拟环境已经成功创建
 $ conda activate venv # 切换到名为 venv 的虚拟环境
 $ conda deactivate # 退出当前虚拟环境
@@ -201,7 +201,7 @@ wine: configuration in L"/home/ubuntu/.wine" has been updated.
 Hello, world!
 ```
 
-Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
+MinGW 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
 
 ```c
 // winhello.c
