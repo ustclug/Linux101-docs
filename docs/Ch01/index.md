@@ -259,7 +259,6 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
     ![](images/VirtualBox-Create-VM.jpg)
     <p class="caption">VirtualBox 新建界面</p>
 
-
 对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 
 ### 启动虚拟机 {#start-vm}
