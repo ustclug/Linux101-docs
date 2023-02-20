@@ -324,6 +324,7 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 -   Ubuntu 20.04.5 LTS (Focal Fossa)：可以使用，需要经过改动才能修改图形界面的分辨率。
 -   Ubuntu 22.04.1 LTS (Jammy Jellyfish)：2022 年 9 月 20 日之后的 daily development builds 可以使用。官方常规 release 的版本无法运行。
+-   Ubuntu 22.04.2 LTS (Jammy Jellyfish)：即将发布
 
 本节选用 Ubuntu 20.04.5 (arm64, server) 作为接下来安装的系统。
 
