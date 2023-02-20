@@ -1219,10 +1219,10 @@
         
           <li class="md-nav__item">
   <a href="#use-package-management-system" class="md-nav__link">
-    使用包管系统安装
+    使用包管理系统安装
   </a>
   
-    <nav class="md-nav" aria-label="使用包管系统安装">
+    <nav class="md-nav" aria-label="使用包管理系统安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1538,13 +1538,13 @@
 <p>本节中提到的这种方法常见于自带应用商店的发行版，如 Ubuntu、Manjaro 等。</p>
 <p>在其他的发行版上，如果没有预装好的应用商店，可以安装 <a href="https://snapcraft.io/">Snapcraft</a> 或 <a href="https://flatpak.org/">Flatpak</a> 等在不同发行版上通用的应用商店。（注意：Snap 商店在国内的访问速度较慢。）</p>
 </div>
-<h3 id="use-package-management-system">使用包管系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
+<h3 id="use-package-management-system">使用包管理系统安装<a class="headerlink" href="#use-package-management-system" title="Permanent link">&para;</a></h3>
 <p>软件包管理器是一系列工具的集合，它自动化地完成软件的安装、更新、配置和移除功能。</p>
 <p>在 Linux 下，相比起使用应用商店安装软件，包管理系统的使用要更加广泛，许多软件均可以通过一行命令完成其安装，优雅而快速。</p>
 <p>软件包管理器的一个重要组成部分是软件仓库。软件仓库是收藏了互联网上可用软件包（应用程序）的图书馆，里面往往包含了数万个可供下载和安装的可用软件包。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p>有了软件仓库，我们不需要手动下载大量的软件包再通过包管理器安装。只需要知道软件在软件仓库中的名称，即可让包管理器从网络中抓取到相应的软件包到本地，自动进行安装。</p>
 <p>但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。</p>
-<p>包管理系统有很多，比如管理 Debian (.deb) 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（用于 Debian 系的发行版）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 <code>yum</code>（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。</p>
+<p>包管理系统有很多，比如管理 Debian (.deb) 软件包的 <code>dpkg</code> 以及它的前端 <code>apt</code>（用于 Debian 系的发行版）；<code>rpm</code> 包管理器以及它的前端 <code>dnf</code>（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 <code>yum</code>（用于 CentOS 7 和 RHEL 7 等）；<code>pacman</code> 包管理器（用于 Arch Linux 和 Manjaro）等等。</p>
 <p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
 <p>apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。</p>
 <p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、自动处理软件包之间的依赖关系、升级软件包以至升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
@@ -2490,6 +2490,8 @@ $<span class="w"> </span>man<span class="w"> </span>ls
 <h4 id="install-tldr">安装<a class="headerlink" href="#install-tldr" title="Permanent link">&para;</a></h4>
 <p>在 Debian 系下，可以直接通过 <code>apt</code> 进行安装：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tldr
+$<span class="w"> </span><span class="c1"># 更新 tldr pages</span>
+$<span class="w"> </span>tldr<span class="w"> </span>--update
 </code></pre></div>
 <h4 id="use-tldr">使用<a class="headerlink" href="#use-tldr" title="Permanent link">&para;</a></h4>
 <p>直接输入 <code>tldr 命令名</code> 即可。由于是由社区维护的，一些自行安装的软件可能不会有精简过的文档。</p>
