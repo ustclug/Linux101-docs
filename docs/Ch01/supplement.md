@@ -290,7 +290,7 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 !!! question "什么是 Apple Silicon？"
 
-    !!! quote "Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。 - Wikipedia"
+    Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。(from Wikipedia)
 
     若想查看你的 Mac 是否使用了 Apple Silicon，请参照[这个网页](https://support.apple.com/en-us/HT211814)。
 
@@ -312,26 +312,24 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 -   [Tips and Techniques for the Apple Silicon Tech Preview 22H2](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986)
 
--   [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986?attachment-id=110181)
+-   [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-13-for-Apple-Silicon-Companion-Guide/ta-p/2939907/jump-to/first-unread-message)
 
-#### 下载 VMWare Fusion 22H2 Tech Preview {#download-vmware-fusion}
+#### 下载 VMWare Fusion 13 Player {#download-vmware-fusion}
 
-在 [VMWare Customer Connect](https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-22H2) 上下载 VMware Fusion Public Tech Preview 22H2，需要注册。
+在 [Download VMWare Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html) 上下载 VMware Fusion 13 Player，需要注册。
 
-#### 下载 Ubuntu ARM on Server {#download-ubuntu-arm}
+#### 下载 Ubuntu Server for ARM {#download-ubuntu-arm}
 
 首先你需要选择 Ubuntu 发行版。截止到 2023 年 2 月，各个较新的发行版在 VMWare Fusion 上的支持情况为：
 
 -   Ubuntu 20.04.5 LTS (Focal Fossa)：可以使用，需要经过改动才能修改图形界面的分辨率。
 -   Ubuntu 22.04.1 LTS (Jammy Jellyfish)：2022 年 9 月 20 日之后的 daily development builds 可以使用。官方常规 release 的版本无法运行。
--   Ubuntu 22.10 (Kinetic Kudu)：需要进行修改才可以运行，详情请参见上面提到的 [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986?attachment-id=110181)。
--   Ubuntu 23.04 (Lunar Lobster) daily development builds：下载链接已失效，无法获取。
 
 本节选用 Ubuntu 20.04.5 (arm64, server) 作为接下来安装的系统。
 
 ![](images/applesilicon_vmware/1.png)
 
-你可以在 [mirrors.ustc.edu.cn](https://mirrors.ustc.edu.cn/) 上获取安装镜像。
+你可以在 [中国科学技术大学开源软件镜像](https://mirrors.ustc.edu.cn/) 获取安装镜像。
 {: .caption }
 
 #### 在 VMWare Fusion 上安装 Ubuntu on ARM {#install-ubuntu-arm-on-vmware}
@@ -379,9 +377,21 @@ $ sudo apt-get install ubuntu-desktop
 
 值得注意的是，在选择软件源时，你应该使用 [Ubuntu Ports 源](https://mirrors.ustc.edu.cn/help/ubuntu-ports.html) 而不是 [Ubuntu 源](https://mirrors.ustc.edu.cn/help/ubuntu.html#id3)。
 
-!!! bug "在 VMWare Fusion 22H2 Tech Preview 上安装的 Ubuntu 20.04.5 (arm64, server) 虚拟机并不原生支持修改分辨率"
+!!! bug "在 VMWare Fusion 13 Player 上安装的 Ubuntu 20.04.5 (arm64, server) 虚拟机并不原生支持修改分辨率"
 
     如果你通过上面的步骤安装好了带有图形界面的 Ubuntu 虚拟机，你可能会发现在设置中并不能调整图形界面的分辨率（它被限制在了 1024*768）。简而言之，这是因为 ARM64 版本的 Linux 内核从 5.14 版本开始才支持 VMWare 为 Linux 适配的图形驱动 `vmwgfx`。而 Ubuntu 20.04 原生 Linux 内核是 5.4 版本的，并不包含 VMWare 适配的驱动。所以如果你想修改 Ubuntu 虚拟机的分辨率的话，有两种选择：
 
     * 使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。
-    * 在 Ubuntu 20.04 上**禁用 Wayland 后**，自行升级 Ubuntu 20.04 的内核：你可能需要自行编译 5.14 版本的 kernel（可以参考[这篇问答](https://askubuntu.com/questions/1334633/mainline-kernel-now-depends-on-libc6-2-33-non-installable-in-focal)以及[这篇问答](https://askubuntu.com/questions/1389126/trying-to-update-kernel-to-5-14-on-20-04-for-arm64)）。
+    * 在 Ubuntu 20.04 上**禁用 Wayland**:
+    ```bash
+    $ sudo nano /etc/gdm3/custom.conf
+    ```
+    解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
+    ```bash
+    #WaylandEnable=false
+    ```
+    接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
+    ```bash
+    $ sudo apt install --install-recommends linux-generic-hwe-20.04
+    ```
+    重启虚拟机，在设置中进行分辨率的修改。
