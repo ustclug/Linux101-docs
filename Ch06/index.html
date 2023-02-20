@@ -1772,7 +1772,7 @@ $<span class="w"> </span>diff<span class="w"> </span>file1<span class="w"> </spa
 <h3 id="sed">文本替换：sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p><code>sed</code> 命令可以替换文本中的字符串：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>
-$<span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 中第一个出现的 hello 替换为 world 后输出</span>
+$<span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出</span>
 $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;helloworld&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w">  </span><span class="c1"># 管道也是可以的</span>
 $<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># -i 参数会直接写入文件，操作前记得备份哦！</span>
 $<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 当然，也可以让 sed 帮你备份到 file.bak</span>
