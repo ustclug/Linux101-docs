@@ -271,7 +271,7 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
 ```shell
 $ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
-$ sed 's/hello/world/' file  # 将文件 file 中第一个出现的 hello 替换为 world 后输出
+$ sed 's/hello/world/' file  # 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出
 $ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
 $ sed -i 's/hello/world/g' file  # -i 参数会直接写入文件，操作前记得备份哦！
 $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到 file.bak
