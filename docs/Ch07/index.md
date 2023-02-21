@@ -173,7 +173,7 @@ Hello World!
 !!! tip "gcc 的四个部分，编译的过程"
 
     gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
-    分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。
+    分别由 cpp、cc1、as、ld 这四个程序完成，gcc 是它们的封装。
 
     这四个过程分别完成：处理 `#` 开头的预编译指令、将源码编译为汇编代码、将汇编代码编译为二进制代码、组合众多二进制代码生成可执行文件，
     也可分别调用 `gcc -E`、`gcc -S`、`gcc -c`、`gcc` 来完成。
