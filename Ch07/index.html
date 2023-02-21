@@ -1540,7 +1540,7 @@
 <div class="admonition tip">
 <p class="admonition-title">gcc 的四个部分，编译的过程</p>
 <p>gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
-分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。</p>
+分别由 cpp、cc1、as、ld 这四个程序完成，gcc 是它们的封装。</p>
 <p>这四个过程分别完成：处理 <code>#</code> 开头的预编译指令、将源码编译为汇编代码、将汇编代码编译为二进制代码、组合众多二进制代码生成可执行文件，
 也可分别调用 <code>gcc -E</code>、<code>gcc -S</code>、<code>gcc -c</code>、<code>gcc</code> 来完成。</p>
 <p>在这一过程中，文件经历了如下变化：<code>main.c</code> 到 <code>main.i</code> 到 <code>main.s</code> 到 <code>main.o</code> 到 <code>main</code>。</p>
