@@ -393,17 +393,17 @@ $ sudo apt-get install ubuntu-desktop
     ```
 
     解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
-    
+
     ```bash
     #WaylandEnable=false
     ```
-    
+
     接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
-    
+
     ```bash
     $ sudo apt install --install-recommends linux-generic-hwe-20.04
     ```
-    
+
     重启虚拟机，在设置中进行分辨率的修改。
 
 ## 引用来源 {#references .no-underline}
