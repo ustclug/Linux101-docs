@@ -1762,10 +1762,12 @@ and check to make sure that only the key(s) you wanted were added.
 <p>如果你通过上面的步骤安装好了带有图形界面的 Ubuntu 虚拟机，你可能会发现在设置中并不能调整图形界面的分辨率（它被限制在了 1024*768）。简而言之，这是因为 ARM64 版本的 Linux 内核从 5.14 版本开始才支持 VMWare 为 Linux 适配的图形驱动 <code>vmwgfx</code>。而 Ubuntu 20.04 原生 Linux 内核是 5.4 版本的，并不包含 VMWare 适配的驱动。所以如果你想修改 Ubuntu 虚拟机的分辨率的话，有两种选择：</p>
 <ul>
 <li>使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。</li>
-<li>在 Ubuntu 20.04 上<strong>禁用 Wayland</strong>:</li>
-</ul>
+<li>
+<p>在 Ubuntu 20.04 上<strong>禁用 Wayland</strong>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/gdm3/custom.conf
 </code></pre></div>
+</li>
+</ul>
 <p>解除该行的注释（删除下面这行代码之前的<code>#</code>）后，保存退出：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#WaylandEnable=false</span>
 </code></pre></div>
