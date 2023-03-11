@@ -1,6 +1,52 @@
 # 拓展阅读 {#supplement}
 
-## Python 环境的另一种管理方式：Anaconda {#anaconda}
+## Python 环境的另一种管理方式：Conda {#conda}
+
+Conda 是一个广泛使用的开源的包管理与环境管理系统。Miniconda 与 Anaconda 是两个广为人知的基于 Conda 的 Python 的发行版本。
+
+### Anaconda 与 Miniconda {#anaconda-and-miniconda}
+
+Miniconda 和 Anaconda 都是开源的 Python 的发行版本。
+
+Miniconda 是 Anaconda 的免费迷你版本，只包含了 Conda、Python 及其依赖，以及少量其他有用的包，例如 pip 和 zlib。而 Anaconda 则额外包含了 250 多个自动安装的科学软件包，例如 SciPy 和 NumPy，并且测试了这些软件包之间的兼容性。Anaconda 分为个人版、商业版、团队版、企业版，除了个人版以外，其余版本均为付费产品。
+
+### 安装 Miniconda {#install-miniconda}
+
+从官网下载安装 Miniconda，并进入虚拟环境。
+
+```console
+$ sh -c "$(wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O -)"
+
+# 前面的选项可以保持默认，也可以自行修改
+please answer 'yes' or 'no':
+>>> yes
+# 选择 Miniconda 的安装路径
+Miniconda3 will now be installed into this location:
+>>> ~/.miniconda3
+# 添加配置信息到 ~/.bashrc 文件，这样每次打开终端时会自动激活虚拟环境
+Do you wish the installer to initialize Miniconda3 by running conda init? [yes|no]
+[no] >>> yes
+
+$ source ~/.bashrc # 应用配置文件信息，激活虚拟环境
+```
+
+### Conda 作为包管理器 {#conda-as-package-management-system}
+
+类似于 pip，可以使用 `conda install` 来安装软件包。部分软件包既可以使用 pip 安装，也可以使用 conda 安装。
+相比于 pip，conda 会执行更加严格的依赖检查，并且除了 Python 软件包外，还可以安装一些 C/C++ 软件包，例如 cudatoolkit、mkl 等。相对的，conda 支持的 Python 软件包的数量远少于 PyPI。
+
+### Conda 作为环境管理器 {#conda-as-environment-management-system}
+
+类似于 Virtualenv，可以使用 conda 来管理虚拟环境。
+
+常见的使用方式如下：
+
+```console
+$ conda create -n venv python=3.11 # 创建一个名为 venv，Python 版本为 3.11 的虚拟环境
+# 请确认虚拟环境已经成功创建
+$ conda activate venv # 切换到名为 venv 的虚拟环境
+$ conda deactivate # 退出当前虚拟环境
+```
 
 ## 动态链接与静态链接 {#dynamic-or-static-link}
 
@@ -155,7 +201,7 @@ wine: configuration in L"/home/ubuntu/.wine" has been updated.
 Hello, world!
 ```
 
-Mingw 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
+MinGW 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 [Windows Hello World Sample](https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample)（MIT License），稍作修改以符合 C 语言的语法。
 
 ```c
 // winhello.c

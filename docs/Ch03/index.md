@@ -29,7 +29,7 @@
 
     在其他的发行版上，如果没有预装好的应用商店，可以安装 [Snapcraft](https://snapcraft.io/) 或 [Flatpak](https://flatpak.org/) 等在不同发行版上通用的应用商店。（注意：Snap 商店在国内的访问速度较慢。）
 
-### 使用包管系统安装 {#use-package-management-system}
+### 使用包管理系统安装 {#use-package-management-system}
 
 软件包管理器是一系列工具的集合，它自动化地完成软件的安装、更新、配置和移除功能。
 
@@ -41,7 +41,7 @@
 
 但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。
 
-包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；Pacman 包管理器（用于 Arch Linux 和 Manjaro）等等。
+包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；`pacman` 包管理器（用于 Arch Linux 和 Manjaro）等等。
 
 **为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。**
 
@@ -365,7 +365,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 ### 使用包管理器手动安装软件包 {#use-package-manager-manually}
 
-在一些情况下，软件仓库中并加入没有我们所需要的软件。除了添加第三方软件源，从源安装外，有时候还可以直接下载安装软件供应商打包好的 `deb`、`rpm` 等二进制包。
+在一些情况下，软件仓库中并没有加入我们所需要的软件。除了添加第三方软件源，从源安装外，有时候还可以直接下载安装软件供应商打包好的 `deb`、`rpm` 等二进制包。
 
 !!! tip "什么是软件包"
 
@@ -964,6 +964,8 @@ DESCRIPTION
 
 ```shell
 $ sudo apt install tldr
+$ # 更新 tldr pages
+$ tldr --update
 ```
 
 #### 使用 {#use-tldr}

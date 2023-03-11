@@ -173,7 +173,7 @@ Hello World!
 !!! tip "gcc 的四个部分，编译的过程"
 
     gcc 的编译其实是四个过程的集合，分别是预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking），
-    分别由 cpp、cc1、ar、ld 这四个程序完成，gcc 是它们的封装。
+    分别由 cpp、cc1、as、ld 这四个程序完成，gcc 是它们的封装。
 
     这四个过程分别完成：处理 `#` 开头的预编译指令、将源码编译为汇编代码、将汇编代码编译为二进制代码、组合众多二进制代码生成可执行文件，
     也可分别调用 `gcc -E`、`gcc -S`、`gcc -c`、`gcc` 来完成。
@@ -438,7 +438,7 @@ $ python3 -m venv venv
 ### Python 的版本 {#py-versions}
 
 正如我们之前所讲，Python 不是一个新的编程语言。
-现在的 Python，最新的版本已到 3.8。
+现在的 Python，最新的版本已到 3.11（截至 2022 年末）。
 实际上还在使用中的 Python，主要在 2.7 以及 3.5 以上这个区间内。
 
 Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。

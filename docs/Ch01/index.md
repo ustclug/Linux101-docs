@@ -252,6 +252,15 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 -   [在 Windows 下使用 VMware Workstation 安装 Ubuntu](https://ibug.io/p/15-cn)（另有[英文版](https://ibug.io/p/15)）
 -   [在 macOS 下使用 VMware Fusion 和 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html)
 
+??? tip "Windows 下使用 VirtualBox"
+
+    安装过程基本与 macOS 下安装 VirtualBox 一致，也可以参考 Windows 安装 VMware，两者大致相当；共享文件夹等功能可参考 [macOS 下 VirtualBox 安装 Ubuntu](https://blog.taoky.moe/2019-02-23/installing-os-on-vm.html#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB-1)。
+
+    ![](images/VirtualBox-Create-VM.jpg)
+
+    VirtualBox 新建界面
+    {: .caption }
+
 对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 
 !!! warning
@@ -261,6 +270,11 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 ### 启动虚拟机 {#start-vm}
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
+
+![](images/VirtualBox-import.jpg)
+
+VirtualBox 导入设置（需要手动选择镜像）
+{: .caption }
 
 ![](images/VWP-Xubuntu-32bit-Login.png)
 
