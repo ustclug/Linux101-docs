@@ -290,7 +290,7 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 !!! question "什么是 Apple Silicon？"
 
-    Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。
+    Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。[^1]
 
     若想查看你的 Mac 是否使用了 Apple Silicon，请参照[这个网页](https://support.apple.com/en-us/HT211814)。
 
@@ -406,4 +406,4 @@ $ sudo apt-get install ubuntu-desktop
 
 ## 引用来源 {#references .no-underline}
 
--   [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
+[^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
