@@ -392,11 +392,11 @@ $ sudo apt-get install ubuntu-desktop
         $ sudo nano /etc/gdm3/custom.conf
         ```
 
-    解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
+        解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
 
-    ```bash
-    #WaylandEnable=false
-    ```
+        ```bash
+        #WaylandEnable=false
+        ```
 
     接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
 
