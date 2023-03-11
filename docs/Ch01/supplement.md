@@ -388,9 +388,9 @@ $ sudo apt-get install ubuntu-desktop
     * 使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。
     * 在 Ubuntu 20.04 上**禁用 Wayland**:
 
-    ```bash
-    $ sudo nano /etc/gdm3/custom.conf
-    ```
+        ```bash
+        $ sudo nano /etc/gdm3/custom.conf
+        ```
 
     解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
 
