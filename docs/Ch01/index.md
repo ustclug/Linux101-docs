@@ -263,6 +263,10 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 对于日常惯用 Windows 10 及以上版本的用户来说，还有另一种更为便捷的安装 Linux 的方法。自 1607 版本起，Windows 10 支持适用于 Linux 的 Windows 子系统，可以在该子系统下安装若干主流的 Linux 发行版。详情可以参考拓展阅读：[适用于 Linux 的 Windows 子系统](supplement.md#wsl)。
 
+!!! warning
+
+    请注意，本节中在 macOS 下安装虚拟机的步骤只适用于使用 Intel 处理器的 Mac。如果你使用的是基于 Apple Silicon 的 Mac，请参见[在使用 Apple Silicon 处理器的机型上配置 Linux 虚拟机](supplement.md#configure-vm-in-apple-silicon)。
+
 ### 启动虚拟机 {#start-vm}
 
 若已经安装了上述虚拟机管理软件，则可以直接双击打开虚拟机镜像，管理软件会打开并导入该镜像，导入完毕后可直接点击开始按钮启动。
