@@ -290,13 +290,13 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 !!! question "什么是 Apple Silicon？"
 
-    Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。(from Wikipedia)
+    Apple Silicon（苹果硅）是对苹果公司使用 ARM 架构设计的单芯片系统（SoC）和封装体系（SiP）处理器之总称。它广泛运用在 iPhone、iPad、Mac 和 Apple Watch 以及 HomePod 和 Apple TV 等苹果公司产品。[^1]
 
     若想查看你的 Mac 是否使用了 Apple Silicon，请参照[这个网页](https://support.apple.com/en-us/HT211814)。
 
 !!! question "x86-64 架构和 ARM64 两种架构都是什么？它们有什么区别？"
 
-    ARM64（也被称为 AArch64），是 ARM 公司推出的 64 位处理器架构。它被广泛用于移动设备、嵌入式系统和服务器领域。与之前的 32 位架构相比，它具有更高的性能和更好的功耗管理。
+    ARM64（也被称为 AArch64）是 ARM 公司推出的 64 位处理器架构。它被广泛用于移动设备、嵌入式系统和服务器领域。与之前的 32 位架构相比，它具有更高的性能和更好的功耗管理。
 
     x86-64 也被称为 x64 或者 AMD64。它广泛应用于 PC 和服务器领域，并且兼容大部分之前的 32 位 x86 应用程序。
 
@@ -383,15 +383,23 @@ $ sudo apt-get install ubuntu-desktop
 
     * 使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。
     * 在 Ubuntu 20.04 上**禁用 Wayland**:
+
     ```bash
     $ sudo nano /etc/gdm3/custom.conf
     ```
+
     解除该行的注释（删除下面这行代码之前的`#`）后，保存退出：
+    
     ```bash
     #WaylandEnable=false
     ```
+    
     接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
+    
     ```bash
     $ sudo apt install --install-recommends linux-generic-hwe-20.04
     ```
+    
     重启虚拟机，在设置中进行分辨率的修改。
+
+[^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
