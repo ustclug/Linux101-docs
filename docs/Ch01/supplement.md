@@ -308,11 +308,13 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 可供参考的内容：
 
+-   [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-13-for-Apple-Silicon-Companion-Guide/ta-p/2939907/jump-to/first-unread-message)
+
+如果遇到以上文档中无法解决的问题，可以继续参考下面的两个针对于 VMWare Fusion 22H2 Tech Preview 的文档：
+
 -   [Fusion 22H2 Tech Preview Testing Guide](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Fusion-22H2-Tech-Preview-Testing-Guide/ta-p/2867908)
 
 -   [Tips and Techniques for the Apple Silicon Tech Preview 22H2](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986)
-
--   [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-13-for-Apple-Silicon-Companion-Guide/ta-p/2939907/jump-to/first-unread-message)
 
 #### 下载 VMWare Fusion 13 Player {#download-vmware-fusion}
 
@@ -402,4 +404,6 @@ $ sudo apt-get install ubuntu-desktop
     
     重启虚拟机，在设置中进行分辨率的修改。
 
-[^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
+## 引用来源 {#references .no-underline}
+
+-   [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
