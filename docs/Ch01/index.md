@@ -224,11 +224,18 @@ Android TV 图标
 
 Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其体积更小，性能需求更少，因此十分适合各种不同性能的电脑安装使用。本书的编写组已经制作了 Xubuntu 的虚拟机镜像，供读者按需求下载使用。
 
+-   Xubuntu 22.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-22.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-22.04-amd64.ova)）
 -   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
 -   Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
 -   Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
 
 推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
+
+??? tip "有关虚拟机构建的信息"
+
+    自 Xubuntu 22.04 开始，我们提供的虚拟机镜像由程序自动构建，相关代码可参见 [101strap](https://github.com/ustclug/101strap)。在构建镜像时，我们对 Xubuntu 进行了一些定制与精简，以期在一般的硬件环境下也可流畅使用。
+
+    如果在使用自动构建的虚拟机镜像时遇到问题，欢迎在 [101strap 仓库的 issues](https://github.com/ustclug/101strap/issues) 中反馈。
 
 ??? tip "Xubuntu"
 
