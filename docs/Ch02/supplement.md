@@ -104,29 +104,27 @@ GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://
 $ sudo apt install gnome-shell-extensions
 ```
 
-接下来进入扩展插件的网站并选择其中一款扩展。
+接下来进入扩展插件的网站并选择其中一款扩展：
+
+Caffeine: 允许用户停用系统屏幕保护和自动休眠。
 
 ![](images/caffeine.png)
 
-Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。
-
-我们可以输入：
+先来查看我们正在使用的 GNOME 版本：
 
 ```shell
 $ gnome-shell --version
 ```
 
-查看版本。
-
-在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。
+在插件网页中下载对应版本的压缩包并解压到一个文件夹。
 
 这时我们打开文件夹里的 `metadata.json` 文件。
 
-将文件夹的名字改为 `metadata.json` 中的 UUID：
+然后将文件夹的名字改为 `metadata.json` 中的 UUID：
 
 ![](images/metadata.png)
 
-UUID 为 "caffeine@patapon.info"
+本例中，UUID 为 "caffeine@patapon.info"
 
 ![](images/caffeine-folder.png)
 
