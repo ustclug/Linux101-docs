@@ -154,7 +154,7 @@ Linux 的知识结构呈非线性，仅有单线的正文是不足的。请广�
 
 !!! quote "中文文案排版规范"
 
-    请参考 [该规范](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-CN.md) 来统一最基本的中英文排版格式。
+    请参考 [该规范](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md) 来统一最基本的中英文排版格式。
 
     使用形如 `!!! quote "小知识"` 的方式添加一个引用框。
 
