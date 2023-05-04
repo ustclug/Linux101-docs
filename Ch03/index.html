@@ -1556,9 +1556,9 @@
 <p><strong>为了方便讲述，本章下文中我们都将以 apt 作为典型实例进行讲解。</strong></p>
 <p>apt 的全称是 Advance Package Tool，是一个处理在 Debian、Ubuntu 或者其他衍生发行版的 Linux 上安装和移除软件的自由软件。</p>
 <p>apt 可以自动下载、配置和安装二进制或者源代码格式的软件包，简化了在这些发行版上管理软件的流程。因此，它常常用来安装软件、自动处理软件包之间的依赖关系、升级软件包以至升级发行版，自动处理升级发行版所需的依赖关系等等。</p>
-<p>此外，由于可以自定义软件源（软件仓库），因此自由地添加第三方源可以达到安装官方软件源中没有的软件或者安装特定版本的目的。</p>
+<p>此外用户可以自定义软件源（软件仓库），自由地添加第三方源来安装官方软件源中没有的软件或者安装特定版本的软件。</p>
 <h4 id="apt-search">搜索<a class="headerlink" href="#apt-search" title="Permanent link">&para;</a></h4>
-<p>安装前，可以在浏览器中搜索所需的软件，查找包名，也可以使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search 搜索内容</code>。</p>
+<p>安装前，可以在浏览器中搜索所需的软件，查找包名，也可以使用 <code>apt search</code> 命令搜索软件仓库，查看对应的包名是否在软件仓库中。使用方法：<code>apt search &lt;搜索内容&gt;</code>。</p>
 <p>下面是 <code>apt search firefox</code> 搜索火狐浏览器的输出结果示例，由于输出结果过多，去除了无用的其他软件包：</p>
 <div class="highlight"><pre><span></span><code>$ apt search firefox
 Sorting... Done
@@ -1602,7 +1602,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 </tbody>
 </table>
 <h4 id="installation">安装<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
-<p>在确定了软件包的包名后，可以通过 <code>apt install 包名</code> 进行安装。</p>
+<p>在确定了软件包的包名后，可以通过 <code>apt install &lt;包名&gt;</code> 进行安装。</p>
 <p>下面是 <code>apt install firefox</code> 安装火狐浏览器的输出结果示例。</p>
 <div class="highlight"><pre><span></span><code># apt install firefox
 Reading package lists... Done

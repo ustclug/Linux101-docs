@@ -1305,15 +1305,18 @@
 
 <h1 id="_1">记号约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="command-line">命令行环境<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
-<p>对于在终端（命令行）环境下执行的连续几条命令，用以下方式表示：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>某条命令
-<span class="go">命令的输出</span>
+<p>对于在终端（命令行）环境下执行的连续几条命令及其输出，用以下方式表示：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>普通权限执行的命令<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 注释 1</span>
+<span class="go">命令 1 的输出</span>
 
-<span class="gp">$ </span><span class="c1"># 注释</span>
-
-<span class="gp"># </span>需要使用<span class="w"> </span>root<span class="w"> </span>权限执行的命令
+<span class="gp"># </span>高级权限执行的命令<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="c1"># 注释 2</span>
+<span class="go">命令 2 的输出</span>
 </code></pre></div>
-<p>命令开头的 <code>$</code> 代表此命令使用普通用户权限运行；命令开头的 <code>#</code> 代表执行命令需要使用 root 权限（最高权限），一般等价于 <code>$ sudo 该命令</code>。命令末尾的 <code>#</code> 代表此符号与其后的内容都是注释。</p>
+<p>命令开头的 <code>$</code> 代表此命令使用普通用户权限运行；命令开头的 <code>#</code> 代表执行命令需要使用 root 权限（最高权限），一般等价于 <code>$ sudo 该命令</code>。命令行末尾的 <code>#</code> 代表此符号与其后的内容都是注释，不参与执行。</p>
+<p>命令行中的参数、占位符通常使用尖括号包裹，如：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>&lt;包名1&gt;
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>&lt;包名2&gt;
+</code></pre></div>
 <h2 id="users">用户<a class="headerlink" href="#users" title="Permanent link">&para;</a></h2>
 <p>在没有特殊说明的情况下，本书假设你的用户名为 <code>ustc</code>，这也是我们提供的虚拟机镜像中的默认用户名。</p>
 

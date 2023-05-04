@@ -1621,18 +1621,17 @@ $<span class="w"> </span>sudo<span class="w"> </span>reboot
 <p>要使用 GNOME 扩展，我们要先安装 <code>gnome-shell-extensions</code>。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnome-shell-extensions
 </code></pre></div>
-<p>接下来进入扩展插件的网站并选择其中一款扩展。</p>
+<p>接下来进入扩展插件的网站并选择其中一款扩展：</p>
+<p>Caffeine: 允许用户停用系统屏幕保护和自动休眠。</p>
 <p><img alt="" src="../images/caffeine.png" /></p>
-<p>Caffeine 是一款可以允许用户在开关时保持其计算机屏幕不会自动暂停的插件。</p>
-<p>我们可以输入：</p>
+<p>先来查看我们正在使用的 GNOME 版本：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>gnome-shell<span class="w"> </span>--version
 </code></pre></div>
-<p>查看版本。</p>
-<p>在插件网页中下载对应版本的压缩包。并解压到一个文件夹里。</p>
+<p>在插件网页中下载对应版本的压缩包并解压到一个文件夹。</p>
 <p>这时我们打开文件夹里的 <code>metadata.json</code> 文件。</p>
-<p>将文件夹的名字改为 <code>metadata.json</code> 中的 UUID：</p>
+<p>然后将文件夹的名字改为 <code>metadata.json</code> 中的 UUID：</p>
 <p><img alt="" src="../images/metadata.png" /></p>
-<p>UUID 为 "caffeine@patapon.info"</p>
+<p>本例中，UUID 为 "caffeine@patapon.info"</p>
 <p><img alt="" src="../images/caffeine-folder.png" /></p>
 <p>并将该文件夹放到 <code>~/.local/share/gnome-shell/extensions/</code> 中。</p>
 <p>打开 <code>gnome-tweaks</code>。</p>
