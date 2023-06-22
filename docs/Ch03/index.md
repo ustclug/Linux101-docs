@@ -1039,6 +1039,16 @@ https://www.gnu.org/software/tar
 
     这会导致什么后果？尝试解释原因。（提示：`*` 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）
 
+!!! question "为什么 `mv` 命令不需要 `-r` (recursive) 参数"
+
+    `mv` 命令可以直接移动目录：
+    
+    ```
+    mv source_dir target_dir
+    ```
+    
+    而 `cp` 命令在复制包含文件的目录时则需要使用 `-r` 参数。为什么 `mv` 命令不需要 `-r` 参数？
+
 !!! question "为什么不建议使用 `apt-key`"
 
     在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
