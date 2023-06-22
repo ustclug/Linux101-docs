@@ -710,6 +710,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-mv-does-not-need-recursive" class="md-nav__link">
+    为什么 mv 命令不需要 -r (recursive) 参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-not-use-apt-key" class="md-nav__link">
     为什么不建议使用 apt-key
   </a>
@@ -1308,6 +1315,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-mv-does-not-need-recursive" class="md-nav__link">
+    为什么 mv 命令不需要 -r (recursive) 参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-not-use-apt-key" class="md-nav__link">
     为什么不建议使用 apt-key
   </a>
@@ -1424,6 +1438,15 @@ Birth: -
 <div class="highlight"><pre><span></span><code>tar -cf file1 file2 ... target.tar
 </code></pre></div>
 <p>此时，<code>tar</code> 会把 <code>file2</code> 一直到 <code>target.tar</code> 打包的结果放在 <code>file1</code> 文件中，于是 <code>file1</code> 的内容就被覆盖了。</p>
+</details>
+<h2 id="why-mv-does-not-need-recursive">为什么 <code>mv</code> 命令不需要 <code>-r</code> (recursive) 参数<a class="headerlink" href="#why-mv-does-not-need-recursive" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>复制文件夹的过程需要创建新的文件和文件夹，而移动文件夹的操作可以看作是「重命名」。</p>
+</div>
+<details class="info">
+<summary>解答</summary>
+<p>在移动文件夹时，<code>mv</code> 事实上调用了 <code>rename</code> 系统调用，即重命名。由于目录是一个树状结构，那么移动文件夹只需要修改这个「文件夹节点」本身的位置与名称即可，不需要对文件夹内的文件（它的子树）做递归的操作。而假使在复制的时候只处理单个「文件夹节点」，那么复制得到的新文件夹中存储的文件和原文件夹存储的文件就会指向相同的文件（而不是再复制一份新的），而这是不符合「复制」这个操作的预期的，所以在复制时，需要递归地复制「文件夹节点」和它的子树，这就是 <code>mv</code> 不需要 <code>-r</code> 而 <code>cp</code>（以及其他类似的操作）需要 <code>-r</code> 的原因。</p>
 </details>
 <h2 id="why-not-use-apt-key">为什么不建议使用 <code>apt-key</code><a class="headerlink" href="#why-not-use-apt-key" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">

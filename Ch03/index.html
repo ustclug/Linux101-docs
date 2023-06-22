@@ -2560,6 +2560,13 @@ https://www.gnu.org/software/tar
 <p>这会导致什么后果？尝试解释原因。（提示：<code>*</code> 代表当前目录下的所有文件，这个符号在执行之前会被 Shell 展开。）</p>
 </div>
 <div class="admonition question">
+<p class="admonition-title">为什么 <code>mv</code> 命令不需要 <code>-r</code> (recursive) 参数</p>
+<p><code>mv</code> 命令可以直接移动目录：</p>
+<div class="highlight"><pre><span></span><code>mv source_dir target_dir
+</code></pre></div>
+<p>而 <code>cp</code> 命令在复制包含文件的目录时则需要使用 <code>-r</code> 参数。为什么 <code>mv</code> 命令不需要 <code>-r</code> 参数？</p>
+</div>
+<div class="admonition question">
 <p class="admonition-title">为什么不建议使用 <code>apt-key</code></p>
 <p>在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 <code>apt-key</code> 添加信任的 GPG Key，如下所示：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
