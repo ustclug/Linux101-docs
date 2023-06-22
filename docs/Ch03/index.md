@@ -1042,11 +1042,11 @@ https://www.gnu.org/software/tar
 !!! question "为什么 `mv` 命令不需要 `-r` (recursive) 参数"
 
     `mv` 命令可以直接移动目录：
-    
+
     ```
     mv source_dir target_dir
     ```
-    
+
     而 `cp` 命令在复制包含文件的目录时则需要使用 `-r` 参数。为什么 `mv` 命令不需要 `-r` 参数？
 
 !!! question "为什么不建议使用 `apt-key`"
