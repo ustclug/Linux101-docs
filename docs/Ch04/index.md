@@ -314,17 +314,16 @@ $ tmux
     set -g prefix C-a                                 # 设置前缀按键 Ctrl + A。
     unbind C-b                                        # 取消 Ctrl + B 快捷键。
     bind C-a send-prefix                              # 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。
-                                                        （Shell 中 Ctrl + A 表示光标移动到最前端）。
+                                                      # （Shell 中 Ctrl + A 表示光标移动到最前端）。
     set -g mouse on                                   # 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。
     unbind -n MouseDrag1Pane
     unbind -Tcopy-mode MouseDrag1Pane
 
     unbind '"'                                        # 使用 - 代表横向分割。
-    bind - splitw -v -c '#{pane_current_path}'
+    bind - splitw -v -c '#{pane_current_path}'        # -v 代表新建的面板使用全部的宽度，效果即为横向分割（或者说，切割得到的新的面板在竖直方向 (vertical) 排列）。
 
     unbind %                                          # 使用 \ 代表纵向分割（因为我不想按 Shift）。
-    bind \ splitw -h -c '#{pane_current_path}'
-
+    bind \\ splitw -h -c '#{pane_current_path}'       # -h 则代表新建的面板使用全部的高度，效果即为纵向分割（切割得到的新的面板在水平方向 (horizontal) 排列）。
     setw -g mode-keys vi                              # 设置 copy-mode 快捷键模式为 vi。
     ```
 
