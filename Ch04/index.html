@@ -21,7 +21,7 @@
         <link rel="next" href="supplement/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -1774,17 +1774,16 @@ $<span class="w"> </span>tmux
 <div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>prefix<span class="w"> </span>C-a<span class="w">                                 </span><span class="c1"># 设置前缀按键 Ctrl + A。</span>
 unbind<span class="w"> </span>C-b<span class="w">                                        </span><span class="c1"># 取消 Ctrl + B 快捷键。</span>
 <span class="nb">bind</span><span class="w"> </span>C-a<span class="w"> </span>send-prefix<span class="w">                              </span><span class="c1"># 第二次按下 Ctrl + A 为向 shell 发送 Ctrl + A。</span>
-<span class="w">                                                    </span>（Shell<span class="w"> </span>中<span class="w"> </span>Ctrl<span class="w"> </span>+<span class="w"> </span>A<span class="w"> </span>表示光标移动到最前端）。
+<span class="w">                                                  </span><span class="c1"># （Shell 中 Ctrl + A 表示光标移动到最前端）。</span>
 <span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>mouse<span class="w"> </span>on<span class="w">                                   </span><span class="c1"># 启动鼠标操作模式，随后可以鼠标拖动边界进行面板大小调整。</span>
 unbind<span class="w"> </span>-n<span class="w"> </span>MouseDrag1Pane
 unbind<span class="w"> </span>-Tcopy-mode<span class="w"> </span>MouseDrag1Pane
 
 unbind<span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w">                                        </span><span class="c1"># 使用 - 代表横向分割。</span>
-<span class="nb">bind</span><span class="w"> </span>-<span class="w"> </span>splitw<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span>
+<span class="nb">bind</span><span class="w"> </span>-<span class="w"> </span>splitw<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span><span class="w">        </span><span class="c1"># -v 代表新建的面板使用全部的宽度，效果即为横向分割（或者说，切割得到的新的面板在竖直方向 (vertical) 排列）。</span>
 
 unbind<span class="w"> </span>%<span class="w">                                          </span><span class="c1"># 使用 \ 代表纵向分割（因为我不想按 Shift）。</span>
-<span class="nb">bind</span><span class="w"> </span><span class="se">\ </span>splitw<span class="w"> </span>-h<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span>
-
+<span class="nb">bind</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span>splitw<span class="w"> </span>-h<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;#{pane_current_path}&#39;</span><span class="w">       </span><span class="c1"># -h 则代表新建的面板使用全部的高度，效果即为纵向分割（切割得到的新的面板在水平方向 (horizontal) 排列）。</span>
 setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> </span>vi<span class="w">                              </span><span class="c1"># 设置 copy-mode 快捷键模式为 vi。</span>
 </code></pre></div>
 <p>以 <code>.</code> 开头的文件为隐藏文件，需要使用 <code>ls -a</code> 查看。所以保存之后你可能不会直接在图形界面看到，不用担心。</p>
@@ -2178,7 +2177,7 @@ usage:  crontab [-u user] file
     <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>
