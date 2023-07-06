@@ -23,18 +23,18 @@ Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境�
 
 KDE Plasma
 
-:   KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
-    [Plasma 官方网站](https://www.kde.org/plasma-desktop)
+: KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
+[Plasma 官方网站](https://www.kde.org/plasma-desktop)
 
 GNOME
 
-:   GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
-    [GNOME 官网](https://www.gnome.org/)
+: GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
+[GNOME 官网](https://www.gnome.org/)
 
 Xfce
 
-:   Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
-    [Xfce 官网](https://www.xfce.org/)
+: Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
+[Xfce 官网](https://www.xfce.org/)
 
 !!! info "提示"
 
