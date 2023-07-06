@@ -556,8 +556,7 @@ $ jekyll serve
 
 打开浏览器，在浏览器中输入 `localhost:4000` 进入我们搭建的网站。
 
-![](images/jekyll-installation.png)
-{: .img-border }
+![](images/jekyll-installation.png){: .img-border }
 
 图 24. Jekyll 的默认网页
 {: .caption }
