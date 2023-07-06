@@ -21,22 +21,22 @@ Linux 中的桌面环境也是一个程序，它和内核不是绑定的，两�
 
 Linux 的桌面环境可不止一种，下面介绍几个流行的桌面环境。
 
-#### KDE Plasma
+KDE Plasma
 
-KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
-[Plasma 官方网站](https://www.kde.org/plasma-desktop)
+:   KDE 软件社区提供的 Plasma Linux 桌面环境是最可定制的图形桌面环境之一。此功能丰富且功能强大的桌面环境还拥有许多小部件。它允许用户自由地添加桌面的控制面板。
+    [Plasma 官方网站](https://www.kde.org/plasma-desktop)
 
-#### GNOME
+GNOME
 
-GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
-[GNOME 官网](https://www.gnome.org/)
+:   GNOME 的设计目标是为用户提供简单性，易于访问性和可靠性。正因为这些，GNOME 得到了普及。
+    [GNOME 官网](https://www.gnome.org/)
 
-#### Xfce
+Xfce
 
-Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
-[Xfce 官网](https://www.xfce.org/)
+:   Xfce 是一款快速、轻量，界面美观和对用户友好的桌面环境。
+    [Xfce 官网](https://www.xfce.org/)
 
-!!! info ""
+!!! info "提示"
 
     除了上面的桌面环境，常见的还有 Cinnamon, Unity 等，同学们可以自行了解。
 
@@ -484,7 +484,7 @@ WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和�
 
 !!! tip "虚拟机内存要求"
 
-    如果你正在使用我们提供的虚拟机，建议将虚拟机分配的内存从 1GB 添加至至少 2GB（2048 MB），以同时供桌面环境与 MySQL 数据库流畅使用。
+    如果你正在使用我们提供的虚拟机，建议将虚拟机分配的内存从 1 GB 添加至至少 2 GB（2048 MB），以同时供桌面环境与 MySQL 数据库流畅使用。
 
 下载脚本要使用 `curl` 命令，我们要先安装 curl。
 
@@ -533,6 +533,9 @@ $ sudo bash wordpress.sh
 
 ![](images/wordpress-installation.png)
 
+图 23. WordPress 的初始化配置界面
+{: .caption }
+
 ### Jekyll
 
 Jekyll 是一个将纯文本转化为静态博客和网站的工具。
@@ -554,6 +557,10 @@ $ jekyll serve
 打开浏览器，在浏览器中输入 `localhost:4000` 进入我们搭建的网站。
 
 ![](images/jekyll-installation.png)
+{: .img-border }
+
+图 24. Jekyll 的默认网页
+{: .caption }
 
 ## 思考题 {#questions}
 
