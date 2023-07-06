@@ -1755,7 +1755,7 @@
 <p>Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。</p>
 <p>使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 <span class="keys"><kbd>F1</kbd></span> 至 <span class="keys"><kbd>F10</kbd></span> 功能键可以选择这些功能，常用的功能例如搜索进程（<span class="keys"><kbd>F3</kbd></span>, Search）、过滤进程（<span class="keys"><kbd>F4</kbd></span>, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（<span class="keys"><kbd>F5</kbd></span>, Tree/List）等等。</p>
 <h4 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">&para;</a></h4>
-<p>ps (process status) 是常用的输出进程状态的工具。直接调用 <code>ps</code> 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 <code>ps aux</code>。</p>
+<p>ps（<strong>p</strong>rocess <strong>s</strong>tatus）是常用的输出进程状态的工具。直接调用 <code>ps</code> 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 <code>ps aux</code>。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>ps
 <span class="w">    </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
 <span class="w">   </span><span class="m">1720</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
@@ -1776,18 +1776,18 @@ root<span class="w">          </span><span class="m">14</span><span class="w">  
 （以下省略）
 </code></pre></div>
 <h3 id="pid">进程标识符<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
-<p>首先，有区分才有管理。<strong>进程标识符</strong> (PID, Process Identifier) 是一个数字，是进程的唯一标识。在 htop 中，最左侧一列即为 PID。当用户想挂起、继续或终止进程时可以使用 PID 作为索引。</p>
+<p>首先，有区分才有管理。<strong>进程标识符</strong>（PID，Process Identifier（是一个数字，是进程的唯一标识。在 htop 中，最左侧一列即为 PID。当用户想挂起、继续或终止进程时可以使用 PID 作为索引。</p>
 <p>在 htop 中，直接单击绿色条内的 PID 栏，可以将进程顺序按照 PID 升序排列，再次点击为降序排列，同理可应用于其他列。</p>
 <p><img alt="PID" src="images/PID.png" /></p>
 <details class="tip">
 <summary>Linux 进程启动顺序</summary>
 <p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。</p>
-<p>由于 kthreadd 运行于内核空间，故需按大写 K (Shift + K) 键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
+<p>由于 kthreadd 运行于内核空间，故需按大写 K（<span class="keys"><kbd>Shift</kbd></span> + <span class="keys"><kbd>k</kbd></span>）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
 </details>
 <h3 id="process-priority-and-stat">进程优先级与状态<a class="headerlink" href="#process-priority-and-stat" title="Permanent link">&para;</a></h3>
 <p>我们平时使用操作系统的时候，可能同时会开启浏览器、聊天软件、音乐播放器、文本编辑器……前面提到它们都是进程，但是单个 CPU 核心一次只能执行一个进程。为了让这些软件看起来「同时」在执行，操作系统需要用非常快的速度将计算资源在这些进程之间切换，这也就引入了进程优先级和进程状态的概念。</p>
 <h4 id="nice">优先级与 nice 值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h4>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：priority (PRI) 和 <strong>nice (NI)</strong>。以下主要介绍用户层使用的 nice 值。</p>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：Priority（PRI）和 <strong>nice（NI）</strong>。以下主要介绍用户层使用的 nice 值。</p>
 <p>Nice 值越高代表一个进程对其它进程越 "nice"（友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
 <p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>vim<span class="w"> </span><span class="c1"># 以 10 为 nice 值运行 vim</span>
@@ -1800,7 +1800,7 @@ $<span class="w"> </span>renice<span class="w"> </span>-n<span class="w"> </span
 </details>
 <h4 id="process-state">进程状态<a class="headerlink" href="#process-state" title="Permanent link">&para;</a></h4>
 <p>配合上面的进程调度策略，我们可以粗略地将进程分为三类：</p>
-<p>一类是正在运行的程序，即处于<strong>运行态</strong> (running)；一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong> (ready)；最后一类是正在等待其他资源（例如网络或者磁盘等）而无法立刻开始运行的程序，即处于<strong>阻塞态</strong> (blocked)。</p>
+<p>一类是正在运行的程序，即处于<strong>运行态</strong>（running）；一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong>（ready）；最后一类是正在等待其他资源（例如网络或者磁盘等）而无法立刻开始运行的程序，即处于<strong>阻塞态</strong>（blocked）。</p>
 <p>调度时操作系统轮流选择可以运行的程序运行，构成就绪态与运行态循环。运行中的程序如果需要其他资源，则进入阻塞态；阻塞态中的程序如果得到了相应的资源，则进入就绪态。</p>
 <p>在实际的 Linux 系统中，进程的状态分类要稍微复杂一些。在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
 <pre><code>Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
@@ -1896,7 +1896,7 @@ $<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matm
 <span class="m">58</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-6<span class="w">  </span><span class="m">59</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-5<span class="w">  </span><span class="m">60</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-4<span class="w">  </span><span class="m">61</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-3<span class="w">  </span><span class="m">62</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-2
 <span class="m">63</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-1<span class="w">  </span><span class="m">64</span><span class="o">)</span><span class="w"> </span>SIGRTMAX
 </code></pre></div>
-<p>如果不加任何参数，只有 PID，<code>kill</code> 命令将自动使用 15 (SIGTERM) 作为信号参数。</p>
+<p>如果不加任何参数，只有 PID，<code>kill</code> 命令将自动使用 15（SIGTERM）作为信号参数。</p>
 <div class="admonition tip">
 <p class="admonition-title">立刻结束进程</p>
 <p>在信号中，9 代表 SIGKILL，收到这个信号之后，程序会立刻退出。</p>
@@ -1929,7 +1929,7 @@ $<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matm
 </dd>
 </dl>
 <h3 id="background-task">脱离终端<a class="headerlink" href="#background-task" title="Permanent link">&para;</a></h3>
-<p>如果你使用过 SSH 连接到远程服务器执行任务，那么你会发现，你在 shell 中执行的程序在 SSH 断开之后会被关闭。这是因为终端一旦被关闭会向其中每个进程发送 SIGHUP (Signal hangup)，而 SIGHUP 的默认动作即退出程序运行。</p>
+<p>如果你使用过 SSH 连接到远程服务器执行任务，那么你会发现，你在 shell 中执行的程序在 SSH 断开之后会被关闭。这是因为终端一旦被关闭会向其中每个进程发送 SIGHUP（Signal hangup），而 SIGHUP 的默认动作即退出程序运行。</p>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>nohup<span class="w"> </span>ping<span class="w"> </span><span class="m">101</span>.ustclug.org<span class="w"> </span><span class="p">&amp;</span>
@@ -1945,7 +1945,7 @@ nohup:<span class="w"> </span>ignoring<span class="w"> </span>input<span class="
 <p>开启多个 SSH 连接似乎可以解决这个问题。但是如果程序既需要交互，又想保证不因意外断线而停止程序，就是 nohup 也帮不了。</p>
 <p>这时 tmux 的出现，解决了会话保持与窗口复用的问题。正如上图所示，tmux 是一个分屏的、运行在命令行的模拟终端，意味着只要有命令行可用，就可以将多个交互进程集成在在一个窗口上。该窗口不因断开连接或者暂时登出而消失，而是会保存在后台，下一次登录时可以立即还原。</p>
 </div>
-<p>tmux 由会话 (session)，窗口 (window)，面板 (pane) 组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
+<p>tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
 <p>下面先行讲解这一工具的用法：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
 $<span class="w"> </span>tmux
@@ -2111,7 +2111,7 @@ setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> 
 </div>
 <details class="info">
 <summary>传统的 service 管理程序</summary>
-<p>尽管 systemd 近年来已经占据了大半江山，但是有人很讨厌它，认为它违背了 KISS (Keep It Simple and Stupid) 原则，不符合 UNIX 哲学，因此有一些 Linux 发行版以不使用 systemd 为自身特色。并且，systemd 只能够用于 Linux，与其他的类 UNIX 操作系统（例如 FreeBSD）不兼容。因此，以下对传统的 <code>service</code> 命令作一个简单的介绍。</p>
+<p>尽管 systemd 近年来已经占据了大半江山，但是有人很讨厌它，认为它违背了 KISS（Keep It Simple and Stupid）原则，不符合 UNIX 哲学，因此有一些 Linux 发行版以不使用 systemd 为自身特色。并且，systemd 只能够用于 Linux，与其他的类 UNIX 操作系统（例如 FreeBSD）不兼容。因此，以下对传统的 <code>service</code> 命令作一个简单的介绍。</p>
 <p>可以通过 <code>service --status-all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>service<span class="w"> </span>--status-all
 <span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>atftpd
@@ -2205,11 +2205,11 @@ Service atd (or atrun) should be running for the actual executions.
 &gt;<span class="w"> </span>&lt;EOT&gt;<span class="w"> </span>（按下<span class="w"> </span>Ctrl<span class="w"> </span>+<span class="w"> </span>D）
 job<span class="w"> </span><span class="m">3</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Apr<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">16</span>:16:00<span class="w"> </span><span class="m">2020</span><span class="w">   </span><span class="c1"># 任务编号与任务开始时间</span>
 </code></pre></div>
-<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出 (stdout) 和标准错误 (stderr) 的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了（需要本地安装 mail 相关的服务）。</p>
+<p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出（stdout）和标准错误（stderr）的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了（需要本地安装 mail 相关的服务）。</p>
 <div class="admonition tip">
 <p class="admonition-title">标准输入，标准输出和标准错误</p>
-<p>如果你还没有学习「计算机程序设计」课程，或者已经忘光了程序设计课的内容，你可能会对这三个词感到迷惑。对于命令行程序来说，它可以从标准输入 (stdin) 获得用户输入的信息，向标准输出 (stdout) 输出文本，向标准错误 (stderr) 输出日志和错误信息。</p>
-<p>这个概念并非 Linux 所独有的。Windows 的命令行程序同样有这三类输入输出。它们被称为「标准流」(Standard streams)。</p>
+<p>如果你还没有学习「计算机程序设计」课程，或者已经忘光了程序设计课的内容，你可能会对这三个词感到迷惑。对于命令行程序来说，它可以从标准输入（stdin）获得用户输入的信息，向标准输出（stdout)输出文本，向标准错误（stderr）输出日志和错误信息。</p>
+<p>这个概念并非 Linux 所独有的。Windows 的命令行程序同样有这三类输入输出。它们被称为「标准流」（Standard streams）。</p>
 </div>
 <p>设置完任务之后，我们需要管理任务，我们可以用 <code>at -l</code> 列出任务，<code>at -r &lt;编号&gt;</code> 删除任务。它们分别是 atq 和 atrm 命令的别名。</p>
 <h4 id="crontab">crontab 命令<a class="headerlink" href="#crontab" title="Permanent link">&para;</a></h4>
@@ -2226,7 +2226,7 @@ usage:  crontab [-u user] file
         -r      (delete user&#39;s crontab)
         -i      (prompt before deleting user&#39;s crontab)
 </code></pre></div>
-<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入 (stdin) 读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
+<p>可以看到基本命令即对指定用户的例行任务进行显示、编辑、删除。如果任何参数都不添加运行 crontab，将从标准输入（stdin）读入设置内容，并覆盖之前的配置。所以如果想以后在现有配置基础上添加，应当在家目录中创建专用文件存储，或者使用 <code>crontab -e</code> 来对本用户任务进行编辑。</p>
 <div class="admonition warning">
 <p class="admonition-title"><code>crontab -e</code> 与 <code>crontab -r</code></p>
 <p>E 与 R 在键盘上距离很近，如果输入错误的话，你的 crontab 任务会被清空。</p>
