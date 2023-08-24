@@ -71,7 +71,6 @@ nav:
     - 负一：计划规格:
         - 章节编写指导: Spec/writing.md
         - 演示文稿规格: Spec/slide.md
-    - 序: preface.md
     - 零：欢迎:
         - index.md
         - 记号约定: notations.md
@@ -112,4 +111,3 @@ nav:
     - 附录:
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
-    - 跋: postface.md
