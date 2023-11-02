@@ -253,8 +253,8 @@ CMake 在默认情况下，可以通过 `cmake` 命令生成 Makefile，再进�
 
 对于 CMake 的讲解已经超出了本课程的讲解范围。
 CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留问题，也有新时代下的新思路。
-正如 C++ 和 Morden C++，CMake 也有 Morden CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
-如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Morden CMake 的博客，以及官方的最新文档。
+正如 C++ 和 Modern C++，CMake 也有 Modern CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
+如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Modern CMake 的博客，以及官方的最新文档。
 
 另一个值得一提的是 ninja。ninja 和 Makefile、autoconf 较类似，是构建工具，所属抽象层次低于 CMake。
 ninja 的特点的是相较与 Makefile 更快，对于多线程编译的支持更好。
