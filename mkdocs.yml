@@ -32,6 +32,7 @@ theme:
     - content.action.edit
     - content.action.view
     - content.code.copy
+    - content.tooltips
     - navigation.footer
     - navigation.indexes
     - navigation.top
