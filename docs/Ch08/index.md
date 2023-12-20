@@ -254,11 +254,11 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 FROM debian:buster-slim
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    apt update && apt install -y gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
-                                 binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
-                                 qemu-system-misc qemu-user-static qemu-user binfmt-support \
-                                 fish vim --no-install-recommends
-RUN mkdir /workspace/
+    apt update && apt install -y --no-install-recommends \
+        gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
+        binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
+        qemu-system-misc qemu-user-static qemu-user binfmt-support \
+        fish vim
 
 WORKDIR /workspace/
 ENV QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/
