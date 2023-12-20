@@ -1861,11 +1861,11 @@ For more examples and ideas, visit:
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:buster-slim</span>
 
 <span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>gcc-riscv64-linux-gnu<span class="w"> </span>g++-riscv64-linux-gnu<span class="w"> </span>libc6-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
-<span class="w">                                 </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
-<span class="w">                                 </span>qemu-system-misc<span class="w"> </span>qemu-user-static<span class="w"> </span>qemu-user<span class="w"> </span>binfmt-support<span class="w"> </span><span class="se">\</span>
-<span class="w">                                 </span>fish<span class="w"> </span>vim<span class="w"> </span>--no-install-recommends
-<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/workspace/
+<span class="w">    </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>gcc-riscv64-linux-gnu<span class="w"> </span>g++-riscv64-linux-gnu<span class="w"> </span>libc6-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>qemu-system-misc<span class="w"> </span>qemu-user-static<span class="w"> </span>qemu-user<span class="w"> </span>binfmt-support<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>fish<span class="w"> </span>vim
 
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace/</span>
 <span class="k">ENV</span><span class="w"> </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/riscv64-linux-gnu/
