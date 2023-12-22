@@ -2160,17 +2160,20 @@ drwxr-xr-x<span class="w">  </span><span class="m">2</span><span class="w"> </sp
 </code></pre></div>
 </li>
 <li>
-<p>使用 <code>.</code> 命令执行脚本。与其他命令一样，<code>.</code> 也是一条命令，其后要有空格：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>.<span class="w"> </span>./show.sh<span class="w"> </span><span class="o">[</span>option<span class="o">]</span>
-</code></pre></div>
-</li>
-<li>
 <p>将脚本设置为可执行，然后像外部命令一样执行：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>a+x<span class="w"> </span>show.sh
 $<span class="w"> </span>./show.sh<span class="w"> </span><span class="o">[</span>option<span class="o">]</span>
 </code></pre></div>
 </li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">关于 <code>.</code> 命令</p>
+<p>与直接执行脚本，或者指定 shell 执行脚本不同，使用 <code>.</code> 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量定义、函数定义等都会在当前 shell 中生效。</p>
+<p>在 bash 中，<code>source</code> 命令与 <code>.</code> 命令等价。有些情况下，使用 <code>.</code> 执行脚本是有必要的，例如在激活 Python 的虚拟环境时：</p>
+<div class="highlight"><pre><span></span><code>.<span class="w"> </span>venv/bin/activate
+</code></pre></div>
+<p>但是绝大多数时候，如果不清楚 <code>.</code> 或 <code>source</code> 命令的行为，不建议使用这种方式执行脚本。</p>
+</div>
 <p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang（也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
 <p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
