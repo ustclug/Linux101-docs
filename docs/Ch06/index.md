@@ -324,6 +324,12 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 （以下省略）
 ```
 
+!!! tip "其他 shell 的 alias"
+
+    除了 bash 以外，其他的 shell 也有 alias 的支持。例如在 zsh 中也可以使用 `alias` 命令查看所有的 alias 列表。
+
+    部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
+
 ### Bash 脚本的运行 {#run-bash-script}
 
 可以使用几种方法运行 Bash 脚本：
