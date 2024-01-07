@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -1552,15 +1552,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-distro-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      在 GitHub 上有打包好的发行版
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#install-lxrunoffline" class="md-nav__link">
     <span class="md-ellipsis">
       使用 LxRunOffline 进行安装
@@ -1746,7 +1737,6 @@ Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRes
 <p>在微软商店中直接搜索对应的发行版进行安装即可，这种方法可以安装的发行版并不多，如 Arch Linux 和 Fedora 就无法通过这种方法进行安装。</p>
 <p><img alt="Microsoft Store Search Result" src="images/ms-store-search-linux.png" /></p>
 <h3 id="install-distro-appx">使用 Appx 文件进行安装<a class="headerlink" href="#install-distro-appx" title="Permanent link">&para;</a></h3>
-<h3 id="install-distro-github">在 GitHub 上有打包好的发行版<a class="headerlink" href="#install-distro-github" title="Permanent link">&para;</a></h3>
 <p>有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式</p>
 <ul>
 <li>ArchLinux: <a href="https://github.com/yuk7/ArchWSL">ArchWSL</a></li>
@@ -1797,7 +1787,7 @@ Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRes
 Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCharm 可以正确识别安装的包，但是在打开
 终端的时候，不会自动地 <code>source</code> 虚拟环境。</p>
 <h3 id="open-folder-in-wsl">在 WSL 中使用资源管理器打开文件夹<a class="headerlink" href="#open-folder-in-wsl" title="Permanent link">&para;</a></h3>
-<p>在 WSL 的终端中，直接输入 <code>explorer.exe .</code>，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件</p>
+<p>在 WSL 的终端中，直接输入 <code>explorer.exe .</code>，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件。</p>
 <h2 id="known-issues">已知的问题<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <h3 id="32-bit-exe">运行 32 位应用程序<a class="headerlink" href="#32-bit-exe" title="Permanent link">&para;</a></h3>
 <p>由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，可以在安装了对应的
