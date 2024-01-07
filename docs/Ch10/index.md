@@ -66,8 +66,6 @@ wsl --set-default-version 2
 
 ### 使用 Appx 文件进行安装 {#install-distro-appx}
 
-### 在 GitHub 上有打包好的发行版 {#install-distro-github}
-
 有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式
 
 -   ArchLinux: [ArchWSL](https://github.com/yuk7/ArchWSL)
@@ -140,7 +138,7 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
 
 ### 在 WSL 中使用资源管理器打开文件夹 {#open-folder-in-wsl}
 
-在 WSL 的终端中，直接输入 `explorer.exe .`，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件
+在 WSL 的终端中，直接输入 `explorer.exe .`，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件。
 
 ## 已知的问题 {#known-issues}
 
