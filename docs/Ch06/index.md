@@ -501,15 +501,11 @@ $ # B=1 的环境变量定义仅对该命令有效
 
     ```console
     $ set one two three
-    $ echo $1 $2 $3
-    one two three
+    $ echo $1,$2,$3
+    one,two,three
     $ shift 2
-    $ echo $1
-    three
-    $ echo $2
-
-    $ echo $3
-
+    $ echo $1,$2,$3
+    three,,
     $ # 此时 $2 和 $3 已不存在
     ```
 
