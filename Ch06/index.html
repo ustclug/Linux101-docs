@@ -2318,8 +2318,12 @@ $<span class="w"> </span><span class="c1"># B=1 的环境变量定义仅对该�
 <span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="nv">$3</span>
 <span class="go">one two three</span>
 <span class="gp">$ </span><span class="nb">shift</span><span class="w"> </span><span class="m">2</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="nv">$3</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$1</span>
 <span class="go">three</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$2</span>
+
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$3</span>
+
 <span class="gp">$ </span><span class="c1"># 此时 $2 和 $3 已不存在</span>
 </code></pre></div>
 </details>
