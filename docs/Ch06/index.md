@@ -504,8 +504,12 @@ $ # B=1 的环境变量定义仅对该命令有效
     $ echo $1 $2 $3
     one two three
     $ shift 2
-    $ echo $1 $2 $3
+    $ echo $1
     three
+    $ echo $2
+
+    $ echo $3
+
     $ # 此时 $2 和 $3 已不存在
     ```
 
