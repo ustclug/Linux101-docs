@@ -1,3 +1,7 @@
+---
+icon: material/console
+---
+
 # Shell 高级文本处理与正则表达式
 
 !!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"

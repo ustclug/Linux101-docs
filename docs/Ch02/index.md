@@ -1,3 +1,7 @@
+---
+icon: fontawesome/solid/circle-user
+---
+
 # 个性化配置与建站体验
 
 !!! success "本文已完稿并通过审阅，是正式版本。"

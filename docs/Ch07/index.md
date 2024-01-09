@@ -1,3 +1,7 @@
+---
+icon: material/xml
+---
+
 # Linux 上的编程
 
 !!! success "本文已完稿并通过审阅，是正式版本。"
