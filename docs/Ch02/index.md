@@ -52,7 +52,7 @@ Xfce
 
 ### 常用外观个性化 {#appearance-settings}
 
-跟 Windows 系统一样，大部分 Linux 桌面环境个性化功能并不比 Windows 差。
+大部分 Linux 桌面环境个性化功能并不比 Windows 差。
 
 我们直接打开 Xfce 中的设置管理器，如图所示。
 
