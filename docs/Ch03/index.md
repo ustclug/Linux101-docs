@@ -468,7 +468,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 ### 更多用法 {#more-usage}
 
-关于软件包管理器的更多用法可查看 [Pacman/Rosetta](https://wiki.archlinux.org/index.php/Pacman/Rosetta) 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。
+关于软件包管理器的更多用法可查看 [Pacman/Rosetta](https://wiki.archlinuxcn.org/wiki/Pacman/Rosetta) 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。
 
 ### 使用源代码编译安装 {#compiling-installation}
 
