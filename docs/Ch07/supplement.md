@@ -48,6 +48,31 @@ $ conda activate venv # 切换到名为 venv 的虚拟环境
 $ conda deactivate # 退出当前虚拟环境
 ```
 
+### 导出导入环境 {#export-import-env}
+
+在一些 Python 项目中，你能找到一个 `environment.yml` 文件。
+此文件类似于 `requirements.txt`，是 Conda 用以描述环境配置的文件。
+你可以利用此文件来分享或复制环境，从而运行其他人的项目。
+
+`environment.yml` 文件不会自动生成。
+为了获取当前环境所对应的 `environment.yml` 文件，你需要使用以下命令：
+
+```console
+$ conda env export > environment.yml
+```
+
+此文件会包含当前环境下所有已装包的版本信息以便复现。
+如果你只需要导出明确由用户自己安装的包、而不包含这些包的依赖，可以使用 `--from-history` 选项。
+
+通过 `environment.yml` 文件，你可以使用以下命令来复现环境：
+
+```console
+$ conda env create -f environment.yml
+```
+
+复现出的环境的名字与原环境相同、由 `environment.yml` 文件的 `name` 字段传递。
+相似的，环境的存放位置由 `prefix` 字段传递。
+
 ## 动态链接与静态链接 {#dynamic-or-static-link}
 
 在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 `ldd` 命令确认：
