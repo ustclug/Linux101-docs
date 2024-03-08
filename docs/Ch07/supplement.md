@@ -73,6 +73,11 @@ $ conda env create -f environment.yml
 复现出的环境的名字与原环境相同、由 `environment.yml` 文件的 `name` 字段传递。
 相似的，环境的存放位置由 `prefix` 字段传递。
 
+??? info "由 pip 安装的包"
+
+    使用 `--from-history` 选项时，由 pip 安装的包不会被包含在 `environment.yml` 文件中。
+    而在不使用此选项的一般情况下，由 pip 安装的包会被记录在 `environment.yml` 文件中的 `pip` 列表内，因而可以被复现。
+
 ## 动态链接与静态链接 {#dynamic-or-static-link}
 
 在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 `ldd` 命令确认：
