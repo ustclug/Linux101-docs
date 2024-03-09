@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -1247,6 +1247,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#export-import-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      导出导入环境
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1638,6 +1647,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#export-import-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      导出导入环境
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1749,6 +1767,26 @@
 <span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>venv<span class="w"> </span><span class="c1"># 切换到名为 venv 的虚拟环境</span>
 <span class="gp">$ </span>conda<span class="w"> </span>deactivate<span class="w"> </span><span class="c1"># 退出当前虚拟环境</span>
 </code></pre></div>
+<h3 id="export-import-env">导出导入环境<a class="headerlink" href="#export-import-env" title="Permanent link">&para;</a></h3>
+<p>在一些 Python 项目中，你能找到一个 <code>environment.yml</code> 文件。
+此文件类似于 <code>requirements.txt</code>，是 Conda 用以描述环境配置的文件。
+你可以利用此文件来分享或复制环境，从而运行其他人的项目。</p>
+<p><code>environment.yml</code> 文件不会自动生成。
+为了获取当前环境所对应的 <code>environment.yml</code> 文件，你需要使用以下命令：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>conda<span class="w"> </span>env<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>environment.yml
+</code></pre></div>
+<p>此文件会包含当前环境下所有已装包的版本信息以便复现。
+如果你只需要导出明确由用户自己安装的包、而不包含这些包的依赖，可以使用 <code>--from-history</code> 选项。</p>
+<p>通过 <code>environment.yml</code> 文件，你可以使用以下命令来复现环境：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</code></pre></div>
+<p>复现出的环境的名字与原环境相同、由 <code>environment.yml</code> 文件的 <code>name</code> 字段传递。
+相似的，环境的存放位置由 <code>prefix</code> 字段传递。</p>
+<details class="info">
+<summary>由 pip 安装的包</summary>
+<p>使用 <code>--from-history</code> 选项时，由 pip 安装的包不会被包含在 <code>environment.yml</code> 文件中。
+而在不使用此选项的一般情况下，由 pip 安装的包会被记录在 <code>environment.yml</code> 文件中的 <code>pip</code> 列表内，因而可以被复现。</p>
+</details>
 <h2 id="dynamic-or-static-link">动态链接与静态链接<a class="headerlink" href="#dynamic-or-static-link" title="Permanent link">&para;</a></h2>
 <p>在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 <code>ldd</code> 命令确认：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>hello.c
@@ -2085,7 +2123,7 @@ $<span class="w"> </span><span class="c1"># musl libc 的 getaddrinfo() 实现�
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
     
   </body>
