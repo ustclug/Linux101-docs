@@ -230,10 +230,8 @@ Xubuntu 是 Ubuntu 的一个子发行版，它与 Ubuntu 非常类似，但其�
 
 -   Xubuntu 22.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-22.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-22.04-amd64.ova)）
 -   Xubuntu 20.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-20.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-20.04-amd64.ova)）
--   Xubuntu 18.04 64 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-amd64.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-amd64.ova)）
--   Xubuntu 18.04 32 位（[VMware](https://ftp.lug.ustc.edu.cn/101/vm/VMware-Xubuntu-18.04-i386.ova)，[VirtualBox](https://ftp.lug.ustc.edu.cn/101/vm/VirtualBox-Xubuntu-18.04-i386.ova)）
 
-推荐选用和自己系统字长相匹配的镜像。如果不确定自己的电脑是 32 位还是 64 位，可选择 32 位版。
+目前 Ubuntu 已经不再提供 32 位字长的镜像支持，64 位的镜像可以在绝大部分计算机上运行，并且仍然支持运行 32 位的应用。
 
 ??? tip "有关虚拟机构建的信息"
 
