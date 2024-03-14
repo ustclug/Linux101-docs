@@ -1784,7 +1784,7 @@ For more examples and ideas, visit:
 <p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除；<code>--name</code> 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。</p>
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
 <p>在执行以上命令之后，你会获得一个 Ubuntu 20.04 的容器环境，退出 Shell 之后容器就会被销毁。</p>
-<p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 或者 <code>docker container ls</code> 查看系统中所有的容器。</p>
+<p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
 <span class="go">CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
 <span class="go">39d8ef1d4acf   ubuntu:20.04   &quot;bash&quot;    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
