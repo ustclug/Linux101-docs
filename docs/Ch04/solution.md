@@ -86,29 +86,37 @@
 
     1. 某个服务的日志
 
-    `journalctl` 的 `-u` 参数可以指定 unit，例子如下：
+        `journalctl` 的 `-u` 参数可以指定 unit，例子如下：
 
-    ```shell
-    $ sudo journalctl -u ssh  # 查看 ssh 服务的日志
-    ```
+        ```shell
+        $ sudo journalctl -u ssh  # 查看 ssh 服务的日志
+        ```
 
     2. 某个**正在运行**的服务**正在**输出的日志
 
-    在第一条的基础上，可以指定 `-f` 参数，以获取正在输出的日志：
+        在第一条的基础上，可以指定 `-f` 参数，以获取正在输出的日志：
 
-    ```shell
-    $ sudo journalctl -u ssh -f
-    ```
+        ```shell
+        $ sudo journalctl -u ssh -f
+        ```
 
-    按下 Ctrl + C 退出输出即可。
+        按下 Ctrl + C 退出输出即可。
 
     3. 系统**正在**输出的日志
 
-    ```shell
-    $ sudo journalctl -f
-    ```
+        ```shell
+        $ sudo journalctl -f
+        ```
 
-    系统日志对于调试系统状态来说是非常有用的信息。
+        系统日志对于调试系统状态来说是非常有用的信息。
+    
+    4. 上一次启动到关机的所有日志
+
+        ```shell
+        $ sudo journalctl -b -1
+        ```
+
+        `-b` 参数表示 boot（启动），`-1` 表示上一次启动。如果不添加 `-1` 参数，则默认为当前启动的日志。
 
 ## 耗时的定时任务 {#time-consuming-crontab}
 
