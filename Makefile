@@ -6,4 +6,4 @@ all:
 css: docs/css/extra.css
 
 docs/css/extra.css: docs/css/extra.scss
-	scss -t compact $^ > $@
+	sassc -t compact $^ > $@
