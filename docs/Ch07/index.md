@@ -365,7 +365,7 @@ $ pip3 install -r requirements.txt
 
 此方案简单明了，易于使用，但对于依赖的处理能力不足。
 
-#### setuptools：setup.py {#py-setup}
+#### setuptools: setup.py {#py-setup}
 
 在 PyPI，即 pip 获取 Python 包的来源中，使用 setuptools 是主流选择。
 setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。
@@ -456,8 +456,15 @@ Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本�
 实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。
 
-而在 Python 3.x 版本中，截至 2021 年末，3.6 亦已经 EOL（end of life），
-因此实际上选用 Python 3.7 及以上者更稳妥。
+而在 Python 3.x 版本中，截至 2023 年末，3.7 亦已经 EOL（end of life）。
+
+!!! tip "我应该选择哪个版本的 Python？"
+
+    Python 3.x 已经迭代到一个相对稳定的阶段，如果你没有特殊需求，请使用 Python 3.x 的最新版本。
+
+    截止到 2024 年 5 月，我们推荐 Python 3.11。(或者使用系统自带的版本)
+
+    你可以在 [Status of Python versions](https://devguide.python.org/versions/) 查看 Python 各个版本的状态。
 
 ### Python 的其他实现 {#py-implementations}
 
