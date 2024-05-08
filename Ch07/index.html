@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
     
     
       
@@ -1593,7 +1593,7 @@
           <li class="md-nav__item">
   <a href="#py-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      setuptools：setup.py
+      setuptools: setup.py
     </span>
   </a>
   
@@ -1965,7 +1965,7 @@ pytest-cov==1.0.0
 </code></pre></div>
 <p>这将从 <code>requirements.txt</code> 文件中逐行读取包名和版本限制，并由 pip 完成安装。</p>
 <p>此方案简单明了，易于使用，但对于依赖的处理能力不足。</p>
-<h4 id="py-setup">setuptools：setup.py<a class="headerlink" href="#py-setup" title="Permanent link">&para;</a></h4>
+<h4 id="py-setup">setuptools: setup.py<a class="headerlink" href="#py-setup" title="Permanent link">&para;</a></h4>
 <p>在 PyPI，即 pip 获取 Python 包的来源中，使用 setuptools 是主流选择。
 setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。</p>
 <p>常见状况是目录下会有一个名为 <code>setup.py</code> 的文件。
@@ -2028,8 +2028,13 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 显式地指定一个版本是更明智的选择。</p>
 <p>实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。</p>
-<p>而在 Python 3.x 版本中，截至 2021 年末，3.6 亦已经 EOL（end of life），
-因此实际上选用 Python 3.7 及以上者更稳妥。</p>
+<p>而在 Python 3.x 版本中，截至 2023 年末，3.7 亦已经 EOL（end of life）。</p>
+<div class="admonition tip">
+<p class="admonition-title">我应该选择哪个版本的 Python？</p>
+<p>Python 3.x 已经迭代到一个相对稳定的阶段，如果你没有特殊需求，请使用 Python 3.x 的最新版本。</p>
+<p>截止到 2024 年 5 月，我们推荐 Python 3.11。(或者使用系统自带的版本)</p>
+<p>你可以在 <a href="https://devguide.python.org/versions/">Status of Python versions</a> 查看 Python 各个版本的状态。</p>
+</div>
 <h3 id="py-implementations">Python 的其他实现<a class="headerlink" href="#py-implementations" title="Permanent link">&para;</a></h3>
 <p>Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
 CPython 中的 C 是指此解释器是用 C 实现。</p>
@@ -2192,7 +2197,7 @@ CPython 中的 C 是指此解释器是用 C 实现。</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
     
   </body>
