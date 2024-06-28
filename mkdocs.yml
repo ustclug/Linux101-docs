@@ -61,7 +61,7 @@ extra:
       link: https://github.com/ustclug
   analytics:
     provider: google
-    property: UA-160637954-1
+    property: G-Q8WSZQS8E1
 
 extra_css:
   - 'css/extra.css'
