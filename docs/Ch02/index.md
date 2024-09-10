@@ -512,7 +512,7 @@ $ sudo apt install curl
 打开终端并运行：
 
 ```shell
-$ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh > wordpress.sh
+$ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh > wordpress.sh
 $ # 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：
 $ sudo bash wordpress.sh
 ```
@@ -528,7 +528,7 @@ $ sudo bash wordpress.sh
     在本节之前的版本中，以上的命令是：
 
     ```shell
-    $ curl -fsSL https://101.ustclug.org/Ch02/wordpress.sh | sudo bash
+    $ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh | sudo bash
     ```
 
     它的功能是从对应的 URL 获取脚本内容后，直接用 `sudo bash` 去执行。但是从安全性的角度这是不恰当的，因为网络上的脚本有可能包含恶意内容，直接执行可能会对系统带来安全风险。因此相关命令修改为了首先下载脚本到文件中（`wordpress.sh` 文件），然后再执行。如果对脚本内容有疑虑，则可以阅读脚本内容，检查其是否和你的预期相一致。

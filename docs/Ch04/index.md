@@ -257,7 +257,7 @@ $ kill -l # 显示所有信号名称
 nohup，字面含义，就是「不要被 SIGHUP 影响」。
 
 ```shell
-$ nohup ping 101.ustclug.org &
+$ nohup ping 101.lug.ustc.edu.cn &
 [1] 19258
 nohup: ignoring input and appending output to '/home/ustc/nohup.out'
 ```
