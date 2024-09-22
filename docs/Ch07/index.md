@@ -127,6 +127,8 @@ Hello World!
 
 ```c
 // main.c
+#include "print.h"
+
 int main() {
   print();
   return 0;
@@ -246,6 +248,24 @@ Makefile 的亮点在于引入了文件间的依赖关系。
 在使用它进行构建时，Makefile 可以根据文件间的依赖关系和文件更新时间，找出需要重新编译的文件。
 在项目较大时这能明显节省构建所需的时间，同时也能解决一些由于编译链接顺序造成的问题。
 相较与输入一大串指令，单个的 `make [target]` 甚至是仅仅 `make`，也更加优雅和方便。
+
+!!! tip "小知识"
+
+    在 Makefile 中有一些隐含规则。即使我们的 Makefile 中没有显式书写这样的规则，make 也会按照这些隐含规则来运行。
+    例如，上文提到的自动将 `.c` 文件编译成 `.o` 就是一种隐含规则。
+
+    除此之外，Makefile 中还有如下隐含规则：
+
+    - `filename.o` 的依赖会自动推导为 `filename.c`
+    - `filename` 的依赖会自动推导为 `filename.o`
+
+    利用这两条隐含规则，我们的 Makefile 还可进一步化简成：
+
+    ```make
+    main.o: print.h
+    print.o: print.h
+    main: print.o
+    ```
 
 #### 其他的构建工具：CMake，ninja…… {#c-build-tools-other}
 
