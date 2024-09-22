@@ -10,6 +10,9 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 
 ![](images/Android-Stack.png)
 
+Android 软件堆栈
+{: .caption }
+
 ??? tip "GPL 感染，以及开源许可证的区别"
 
     简单而不太严谨地来说，如果你的程序使用了 GPL 许可证的代码，那么你的程序就必须以 GPL 许可证开源，这被称为「GPL 感染」。由于许多公司不希望自己的代码被感染开源，因而 Android 经过设计规避了相关的法律问题，只需要厂商将对 Linux 内核的修改开源即可。
