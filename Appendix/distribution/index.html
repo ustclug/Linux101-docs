@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.06209087.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1950,7 +1950,7 @@
 <p>简单使用：</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 安装 audacity</span>
 $<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 卸载 firefox</span>
-$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>search<span class="w"> </span>thunderbird<span class="w">  </span><span class="c1"># 搜索 thunderbird</span>
+$<span class="w"> </span>dnf<span class="w"> </span>search<span class="w"> </span>thunderbird<span class="w">  </span><span class="c1"># 搜索 thunderbird</span>
 $<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade<span class="w">  </span><span class="c1"># 更新系统</span>
 </code></pre></div>
 <p>此外，<code>dnf</code> 和 <code>yum</code> 还可以回滚到以前的软件安装状态，具体可以自行搜索了解。</p>
@@ -1972,13 +1972,13 @@ $<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
 $<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
 $<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Rs<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Ss<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
+$<span class="w"> </span>pacman<span class="w"> </span>-Ss<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h4 id="arch-manual-intervention">手动介入 (manual intervention)：更新失败时的处理方式<a class="headerlink" href="#arch-manual-intervention" title="Permanent link">&para;</a></h4>
 <p>由于其滚动发行的特性，在更新时可能会出现安装错误的情况。一般来说，你需要关注 Arch 的主页新闻 (<a href="https://www.archlinux.org/">https://www.archlinux.org/</a>)，当有软件包需要手动介入更新时，可以看到错误提示和解决方法。</p>
 <h4 id="aur">AUR<a class="headerlink" href="#aur" title="Permanent link">&para;</a></h4>
-<p>AUR (Arch User Repository) 由 Arch 用户维护，是 Arch Linux 的一大特色。其上包含了大量的程序可供安装。用户可以对软件包评论、投票，与各自的维护者交流。</p>
-<p>有很多的程序（统称为 AUR Helper）可以帮助从 AUR 上下载安装包，例如 <code>yay</code>。</p>
+<p><a href="https://aur.archlinux.org">AUR (Arch User Repository)</a> 由 Arch 用户维护，是 Arch Linux 的一大特色。其上包含了大量的程序可供安装。用户可以对软件包评论、投票，与各自的维护者交流。</p>
+<p>有很多的程序（统称为 AUR Helper）可以帮助从 AUR 上下载安装包，例如 <code>yay</code> 和 <code>paru</code>。</p>
 <h2 id="opensuse">openSUSE<a class="headerlink" href="#opensuse" title="Permanent link">&para;</a></h2>
 <p>提示：关于 openSUSE 有一份不错的手册 <a href="https://opensuse-guide.org/">opensuse-guide.org</a>（<a href="https://opensuse-guide.ustclug.org">中文翻译</a>）。</p>
 <h3 id="opensuse-release">发行版本<a class="headerlink" href="#opensuse-release" title="Permanent link">&para;</a></h3>
@@ -1993,7 +1993,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </sp
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>update<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
 $<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
 $<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>remove<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
+$<span class="w"> </span>zypper<span class="w"> </span>search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h3 id="yast">系统管理工具 YaST<a class="headerlink" href="#yast" title="Permanent link">&para;</a></h3>
 <p>YaST 工具是 openSUSE 的一大特色。它提供了图形化的界面，可以帮助系统管理员完成各种常见操作。</p>
@@ -2011,7 +2011,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </sp
 $<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--update<span class="w"> </span>--ask<span class="w"> </span>@world<span class="w">  </span><span class="c1"># 更新已安装的程序（不包含依赖）</span>
 $<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>-a<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
 $<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--unmerge<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索名字中含 audacity 的包</span>
+$<span class="w"> </span>emerge<span class="w"> </span>--search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索名字中含 audacity 的包</span>
 </code></pre></div>
 <p>由于 Gentoo 以编译安装为主，和其他 Linux 发行版不同，用户可以指定在安装时需要软件的哪些特性。例如，服务器需要的软件特性肯定与桌面不同，一些桌面上必须的功能在服务器上并不需要，反之亦然。用户可以通过修改 USE 标志来为软件包添加或删除特性。</p>
 <p>关于 USE 标志的使用可以参考 <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/USE/zh-cn">Gentoo 官方手册中的简要介绍</a>。</p>
@@ -2133,7 +2133,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </sp
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
