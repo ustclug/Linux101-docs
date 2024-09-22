@@ -21,7 +21,7 @@ Ubuntu 基于 Debian，并且相比 Debian 而言更加新手友好。而 Debian
 ```shell
 $ sudo dnf install audacity  # 安装 audacity
 $ sudo dnf remove firefox  # 卸载 firefox
-$ sudo dnf search thunderbird  # 搜索 thunderbird
+$ dnf search thunderbird  # 搜索 thunderbird
 $ sudo dnf upgrade  # 更新系统
 ```
 
@@ -55,7 +55,7 @@ Arch 使用的默认软件包管理器是 `pacman`。以下是一些常用的命
 $ sudo pacman -Syu  # 更新系统所有软件包
 $ sudo pacman -S firefox  # 安装 Firefox
 $ sudo pacman -Rs chromium  # 卸载 Chromium 和它的所有依赖
-$ sudo pacman -Ss audacity  # 搜索 Audacity
+$ pacman -Ss audacity  # 搜索 Audacity
 ```
 
 #### 手动介入 (manual intervention)：更新失败时的处理方式 {#arch-manual-intervention}
@@ -64,9 +64,9 @@ $ sudo pacman -Ss audacity  # 搜索 Audacity
 
 #### AUR {#aur}
 
-AUR (Arch User Repository) 由 Arch 用户维护，是 Arch Linux 的一大特色。其上包含了大量的程序可供安装。用户可以对软件包评论、投票，与各自的维护者交流。
+[AUR (Arch User Repository)](https://aur.archlinux.org) 由 Arch 用户维护，是 Arch Linux 的一大特色。其上包含了大量的程序可供安装。用户可以对软件包评论、投票，与各自的维护者交流。
 
-有很多的程序（统称为 AUR Helper）可以帮助从 AUR 上下载安装包，例如 `yay`。
+有很多的程序（统称为 AUR Helper）可以帮助从 AUR 上下载安装包，例如 `yay` 和 `paru`。
 
 ## openSUSE {#opensuse}
 
@@ -90,7 +90,7 @@ openSUSE 使用 RPM 作为其软件包格式，但是与 Fedora、CentOS 等不�
 $ sudo zypper update  # 更新系统所有软件包
 $ sudo zypper install firefox  # 安装 Firefox
 $ sudo zypper remove chromium  # 卸载 Chromium 和它的所有依赖
-$ sudo zypper search audacity  # 搜索 Audacity
+$ zypper search audacity  # 搜索 Audacity
 ```
 
 ### 系统管理工具 YaST {#yast}
@@ -123,7 +123,7 @@ $ sudo emerge --sync  # 更新软件包索引
 $ sudo emerge --update --ask @world  # 更新已安装的程序（不包含依赖）
 $ sudo emerge -a firefox  # 安装 Firefox
 $ sudo emerge --unmerge chromium  # 卸载 Chromium 和它的所有依赖
-$ sudo emerge --search audacity  # 搜索名字中含 audacity 的包
+$ emerge --search audacity  # 搜索名字中含 audacity 的包
 ```
 
 由于 Gentoo 以编译安装为主，和其他 Linux 发行版不同，用户可以指定在安装时需要软件的哪些特性。例如，服务器需要的软件特性肯定与桌面不同，一些桌面上必须的功能在服务器上并不需要，反之亦然。用户可以通过修改 USE 标志来为软件包添加或删除特性。
