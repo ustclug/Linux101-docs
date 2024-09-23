@@ -1824,6 +1824,8 @@
 </div>
 <p>假设我们有以下三个文件：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;print.h&quot;</span>
+
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">print</span><span class="p">();</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -1910,6 +1912,21 @@
 在使用它进行构建时，Makefile 可以根据文件间的依赖关系和文件更新时间，找出需要重新编译的文件。
 在项目较大时这能明显节省构建所需的时间，同时也能解决一些由于编译链接顺序造成的问题。
 相较与输入一大串指令，单个的 <code>make [target]</code> 甚至是仅仅 <code>make</code>，也更加优雅和方便。</p>
+<div class="admonition tip">
+<p class="admonition-title">小知识</p>
+<p>在 Makefile 中有一些隐含规则。即使我们的 Makefile 中没有显式书写这样的规则，make 也会按照这些隐含规则来运行。
+例如，上文提到的自动将 <code>.c</code> 文件编译成 <code>.o</code> 就是一种隐含规则。</p>
+<p>除此之外，Makefile 中还有如下隐含规则：</p>
+<ul>
+<li><code>filename.o</code> 的依赖会自动推导为 <code>filename.c</code></li>
+<li><code>filename</code> 的依赖会自动推导为 <code>filename.o</code></li>
+</ul>
+<p>利用这两条隐含规则，我们的 Makefile 还可进一步化简成：</p>
+<div class="highlight"><pre><span></span><code><span class="nf">main.o</span><span class="o">:</span><span class="w"> </span><span class="n">print</span>.<span class="n">h</span>
+<span class="nf">print.o</span><span class="o">:</span><span class="w"> </span><span class="n">print</span>.<span class="n">h</span>
+<span class="nf">main</span><span class="o">:</span><span class="w"> </span><span class="n">print</span>.<span class="n">o</span>
+</code></pre></div>
+</div>
 <h4 id="c-build-tools-other">其他的构建工具：CMake，ninja……<a class="headerlink" href="#c-build-tools-other" title="Permanent link">&para;</a></h4>
 <p>一个更大的工程可能有上万、上十万份源文件，如果一一写进 Makefile，那依然会异常痛苦，且几乎不可能维护。</p>
 <p>为了更好的构建程序，大家想出了“套娃”的办法：用一个程序来生成构建所需的配置，CMake 则在这一想法下诞生。</p>
