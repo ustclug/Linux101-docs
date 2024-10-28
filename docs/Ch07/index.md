@@ -476,7 +476,7 @@ Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本�
 实际上，Python 2 已在 2020 年初正式宣告停止维护，
 现在如果我们要使用 Python，最好使用 3 版本。
 
-而在 Python 3.x 版本中，截至 2023 年末，3.7 亦已经 EOL（end of life）。
+而在 Python 3.x 版本中，截至 2024 年下半年，3.8 亦已经 EOL（end of life）。
 
 !!! tip "我应该选择哪个版本的 Python？"
 

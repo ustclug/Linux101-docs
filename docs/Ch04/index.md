@@ -262,7 +262,7 @@ $ nohup ping 101.lug.ustc.edu.cn &
 nohup: ignoring input and appending output to '/home/ustc/nohup.out'
 ```
 
-在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被[重定向](../Ch06/index.md#redirect)到 nohup.out，也可以通过重定向手段自定义输出的文件。
+在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被[重定向](../Ch06/index.md#redirection)到 nohup.out，也可以通过重定向手段自定义输出的文件。
 
 ### 命令行多终端方案——tmux {#tmux}
 

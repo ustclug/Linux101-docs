@@ -344,7 +344,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
         - `/dev/zero`：总是返回零数据。
         - `/dev/urandom`：输出随机数据。
 
-        配合[第六章中提到的重定向功能](../Ch06/index.md#redirect)，这些设备文件可以帮助我们做到丢弃程序输出等操作。
+        配合[第六章中提到的重定向功能](../Ch06/index.md#redirection)，这些设备文件可以帮助我们做到丢弃程序输出等操作。
 
 `/etc`
 
