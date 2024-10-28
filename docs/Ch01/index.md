@@ -349,7 +349,7 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 [Wonderview Productions 公司制作的纪录片电影 REVOLUTION OS](http://revolution-os.com/)
 
-: 讲述了黑客们反抗专有软件模式并创建GNU/Linux和开源运动的内幕故事。
+: 讲述了黑客们反抗专有软件模式并创建 GNU/Linux 和开源运动的内幕故事。
 
 ## 引用来源与备注 {#references .no-underline}
 
