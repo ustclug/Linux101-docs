@@ -349,7 +349,7 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 ## 引用来源与备注 {#references .no-underline}
 
-[^1]: 数据来自中国互联网信息中心[第 54 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.net/NMediaFile/2024/0911/MAIN1726017626560DHICKVFSM6.pdf)。
+[^1]: 数据来自中国互联网信息中心[第 54 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.cn/NMediaFile/2024/0911/MAIN1726017626560DHICKVFSM6.pdf)。
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。
 [^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要付费的 Ubuntu Advantage 订阅，或者最多 3 台设备的个人免费订阅。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
 [^4]: 数据来自 Ubuntu 介绍：[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)。
