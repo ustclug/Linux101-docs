@@ -83,7 +83,7 @@ DESCRIPTION
 
     strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。
 
-    注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看[第六章](../Ch06/index.md#redirect-and-pipe)。
+    注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看[第六章](../Ch06/index.md#redirection-and-pipe)。
 
 ```shell
 $ strace ps

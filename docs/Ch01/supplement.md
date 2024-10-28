@@ -164,7 +164,7 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
 ```
 
 这里可以看到，`/dev/sda2` 这个**分区**被自动扩大了。
-如果没有，那么可以输入以下命令（请勿输入 `$ `，详见[记号约定](../notations.md#命令行环境-command-line)）：
+如果没有，那么可以输入以下命令（请勿输入 `$ `，详见[记号约定](../notations.md#command-line)）：
 
 ```console
 $ LANGUAGE=C sudo growpart /dev/sda 2
