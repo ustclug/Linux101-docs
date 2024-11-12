@@ -218,8 +218,8 @@ Android TV 图标
 
 现在在 Windows / macOS 上主流的虚拟机管理软件有：
 
--   [VMware Workstation Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html) 是 VMware 公司推出的一款 Windows 上用于非商业用途的虚拟机管理软件。
--   [VMware Fusion Player](https://customerconnect.vmware.com/web/vmware/evalcenter?p=fusion-player-personal) 是 VMware 公司为 macOS 平台推出的用于非商业用途的虚拟机管理软件。
+-   [VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro) 是 VMware 公司（现已被博通收购）推出的一款 Windows 上的虚拟机管理软件，现已免费。
+-   [VMware Fusion Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion) 是 VMware 公司为 macOS 平台推出的虚拟机管理软件，现已免费。
 -   [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 是甲骨文公司发行的通用虚拟机管理系统，支持 Windows 和 macOS，且遵循 GPLv2 开源。
 
 以上软件都是免费的，且支持中文。点击上面对应的链接进入官方下载页面获取安装包，获取完毕后，直接双击打开安装程序，根据安装步骤完成安装即可。
