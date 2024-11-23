@@ -1,4 +1,8 @@
-# 拓展阅读
+---
+icon: material/puzzle
+---
+
+# 拓展阅读 {#supplement}
 
 !!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
 

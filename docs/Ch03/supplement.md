@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 !!! success "本文已完稿并通过审阅，是正式版本。"

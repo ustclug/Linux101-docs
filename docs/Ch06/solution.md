@@ -1,3 +1,7 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 ## I/O 重定向的小细节

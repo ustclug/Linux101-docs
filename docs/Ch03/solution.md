@@ -1,3 +1,7 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 ## Матрёшка {#meta}

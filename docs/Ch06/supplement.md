@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 ## 类 C 语言的 for 循环 {#c-style-for}
