@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 ## 查看容器镜像的工具：Dive {#dive}

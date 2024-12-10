@@ -1,3 +1,7 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 ## 桌面环境的选择 {#choice-of-desktop-environment}

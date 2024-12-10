@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 ## Python 环境的另一种管理方式：Conda {#conda}

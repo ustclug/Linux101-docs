@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 ## 文件系统的特殊权限位 {#special-permission-bit}

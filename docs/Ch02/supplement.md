@@ -1,4 +1,8 @@
-# 拓展阅读
+---
+icon: material/puzzle
+---
+
+# 拓展阅读 {#supplement}
 
 !!! Failure "本文目前尚未完稿，存在诸多未尽章节且未经审阅，不是正式版本。"
 

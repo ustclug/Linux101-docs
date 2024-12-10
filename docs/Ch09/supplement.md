@@ -1,3 +1,7 @@
+---
+icon: material/puzzle
+---
+
 # 拓展阅读 {#supplement}
 
 ## 正则 {#regex}

@@ -1,3 +1,7 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 ## 计算机性能的增长 {#performance-increase}

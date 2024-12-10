@@ -1,3 +1,7 @@
+---
+icon: material/tooltip-question
+---
+
 # 思考题解答 {#solution}
 
 <!-- ## 阻止 ping 命令的输出 {#stop-ping-output}
