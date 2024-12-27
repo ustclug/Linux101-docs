@@ -69,6 +69,21 @@ $ sort -n numbers
 15
 ```
 
+!!! warning "sort 的结果会受到本地化配置的影响"
+
+    在使用 sort 时，一个比如容易忽视的问题是当前的本地化配置对结果的影响。
+
+    ```shell
+    $ echo -e 'a b\naa' | LC_ALL=C sort
+    a b
+    aa
+    $ echo -e 'a b\naa' | LC_ALL=en_US.UTF-8 sort
+    aa
+    a b
+    ```
+
+    为了获得传统意义上逐字节比较的结果，可以指定环境变量 `LC_ALL=C`。
+
 !!! tip "小知识"
 
     为什么有必要存在 `-o` 参数？试试重定向输出到原文件会发生什么吧。
