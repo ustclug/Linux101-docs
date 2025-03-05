@@ -289,14 +289,14 @@ Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态
 
 使用命令行操作可以减少鼠标操作，我们经常可以使用一条命令来代替好几次的鼠标单击。例如如果我们想要移动某一个文件，我们要执行下面步骤：
 
--   打开文件所在的文件夹 `../source/`
--   打开目标文件夹 `../dest/`
--   从 `../source/` 文件夹拖拽文件 `file.txt` 到 `../dest/` 文件夹中
+-   打开文件所在的文件夹 `/path/to/source/`
+-   打开目标文件夹 `/path/to/dest/`
+-   从 `source` 文件夹拖拽文件 `file.txt` 到 `dest` 文件夹中
 
 然而使用命令行，我们只需要执行一条指令。
 
 ```shell
-$ mv ../source/file.txt ../dest/
+$ mv /path/to/source/file.txt /path/to/dest/
 ```
 
 可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。
@@ -322,12 +322,31 @@ $ mv ../source/file.txt ../dest/
     另外，以上的路径都是绝对路径，还有一种「相对路径」：
 
     ```shell
-    ./file.txt  # 当前目录下的 file.txt 文件
-    ../file.txt # 上一级目录（父目录）下的 file.txt 文件
-    ../abc/file.txt # 上一级目录（父目录）下的 abc 文件夹下的 file.txt 文件
+    file1.txt    # 当前目录下的 file1.txt 文件
+    ./file1.txt  # 当前目录下的 file1.txt 文件
+    ./file2.txt  # 当前目录下的 file2.txt 文件
+    ../file3.txt # 上一级目录（父目录）下的 file3.txt 文件
+    ../abc/file4.txt # 上一级目录（父目录）下的 abc 文件夹下的 file4.txt 文件
+    ../../file5.txt # 上上级目录下的 file5.txt
+    ```
+
+    它们的关系是这样的：
+
+    ```plain
+    上上级目录/
+    |___ file5.txt
+    |___ 上一级目录/
+         |___ file3.txt
+         |___ 当前目录/
+         |    |___ file1.txt
+         |    |___ file2.txt
+         |___ abc/
+              |___ file4.txt
     ```
 
     每个正在运行中的进程（包括 Shell）都有自己的「当前工作目录」（当前所在的目录），进程可以切换自己的当前工作目录，以上的相对路径都是相对于当前工作目录的。可以发现，不管当前工作目录在哪里，绝对路径对应的文件都是一致的，而相对路径对应的文件就会随着当前工作目录的变化而变化。
+
+    特别地，用户的主目录（一般是 `/home/<用户名>`）可以被简写为 `~`。
 
 #### 自动化脚本 {#shell-automation}
 
@@ -357,6 +376,8 @@ gcc main.c -o main.out
 rm main.out
 ```
 
+和其他地方不一样，在 Shell 中运行程序时，程序名（`main.out`）前面必须有 `./`。这是因为因为我们的工作目录不包含在环境变量（`$PATH`）中，故如果不加 `./` 则系统会找不到程序。系统中安装的程序（例如 `gcc`）一般会放在 `$PATH` 环境变量中包含了的路径下，故运行它们不需要使用 `./`。
+
 之后我们直接输入
 
 ```shell
@@ -375,7 +396,7 @@ $ sh run.sh
 
 #### 进行高级的系统维护工作 {#shell-system-maintenance}
 
-一些高级的系统维护任务只能通过命令行来完成，因为相关的程序并没有提供图形界面的控制面板，或者需要手工编写复杂的配置文件。
+一些高级的系统维护任务只能通过命令行来完成，或者需要手工编写复杂的配置文件，因为相关的程序并没有提供图形界面的控制面板。
 
 #### 使用命令行看上去很酷 {#shell-duang}
 
@@ -454,7 +475,7 @@ Desktop Documents Music Pictures Public Templates Videos
 #### 示例 3 {#shell-commands-example-3}
 
 ```shell
-$ cd Desktop
+$ cd Desktop # 这里的 Desktop 是相对路径，指的就是当前目录下的 Desktop 文件夹
 $ ls
 ```
 

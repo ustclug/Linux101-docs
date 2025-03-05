@@ -43,7 +43,7 @@ icon: material/folder-open
 
 有了软件仓库，我们不需要手动下载大量的软件包再通过包管理器安装。只需要知道软件在软件仓库中的名称，即可让包管理器从网络中抓取到相应的软件包到本地，自动进行安装。
 
-但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网上进行查找包名，再通过包管理器安装）。
+但是与应用商店相比，使用包管理器安装需要预先知道所需软件在软件仓库中的对应包名，和应用商店相比无法进行模糊搜索（不过你也可以在包管理器官网或者通过包管理器的命令行前端查找包名，再通过包管理器安装）。
 
 包管理系统有很多，比如管理 Debian (.deb) 软件包的 `dpkg` 以及它的前端 `apt`（用于 Debian 系的发行版）；`rpm` 包管理器以及它的前端 `dnf`（用于 Fedora 和新版的 CentOS 和 RHEL）、前端 `yum`（用于 CentOS 7 和 RHEL 7 等）；`pacman` 包管理器（用于 Arch Linux 和 Manjaro）等等。
 
@@ -85,7 +85,7 @@ firefox/bionic-updates,bionic-security,now 72.0.2+build1-0ubuntu0.18.04.1 amd64
 
 #### 安装 {#installation}
 
-在确定了软件包的包名后，可以通过 `apt install <包名>` 进行安装。
+在确定了软件包的包名后，可以通过 `apt install <包名>` 安装软件包。如果需要一次性安装多个包，可以用 `apt install <包名1> <包名2> ...` 的写法。
 
 下面是 `apt install firefox` 安装火狐浏览器的输出结果示例。
 
@@ -147,6 +147,13 @@ Do you want to continue? [Y/n]
     ```
 
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
+
+!!! tip "不确认安装"
+    如果不希望 `apt` 询问是否安装，可以使用
+
+    ```bash
+    apt install -y <软件包>
+    ```
 
 #### 官方软件源镜像 {#software-sources}
 
@@ -211,7 +218,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     $ sudo sed -i 's|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     ```
 
-    当然也可以直接使用 vim、nano 等文本编辑器进行修改。
+    当然也可以直接使用 `vim`、`nano` 等文本编辑器进行修改。
 
 #### 第三方软件源 {#third-party-software-sources}
 
@@ -228,7 +235,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     1. 安装需要的的软件包
 
         ```shell
-        $ sudo apt-get update
+        $ sudo apt-get update # 更新本地的包列表
 
         $ sudo apt-get install \
             ca-certificates \
@@ -444,14 +451,10 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     (Output omitted)
     ```
 
-    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。
-
-    当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。
-
-    我们可以这样做：
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。我们可以这样做：
 
     ```shell
-    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下
+    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下。
     $ sudo cp -R * /usr/local/
     ```
 
@@ -466,13 +469,16 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就被复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 `/usr/local`  下的对应目录合并，将 clang 的库和文档加到系统当中。
 
+!!! warning "有关手工获取的软件"
+    对于手工从 Internet 或者其他来源获取到的软件，在使用前务必注意检查其完整性（例如检查压缩文件的 hash 和官方网站上提供的是否一致）和安全性。运行有问题的程序，或者特别是安装有问题的程序（例如上面那样安装到 `/usr/local`），会导致系统安全受到损害。如非必要，请尽可能使用包管理器从官方软件源中安装软件。
+
 ### 更多用法 {#more-usage}
 
 关于软件包管理器的更多用法可查看 [Pacman/Rosetta](https://wiki.archlinuxcn.org/wiki/Pacman/Rosetta) 页面，该页展示了一些流行的 Linux 发行版包管理器命令以及命令操作内容的对应关系。
 
 ### 使用源代码编译安装 {#compiling-installation}
 
-此部分内容请见拓展阅读：[编译安装](supplement.md)。
+此部分内容请见拓展阅读：[编译安装](supplement.md#compiling-installation)。
 
 ## 操作文件与目录 {#operate-files-and-dirs}
 
@@ -535,7 +541,7 @@ $ less FILE
 
 ### 编辑文件内容 {#nano}
 
-Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。
+Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。如果 Nano 没有被默认安装，则可以通过 `apt` 来安装。
 
 ```shell
 $ nano file.txt  # 使用 nano 编辑 file.txt 文件（如果没有则创建）
@@ -629,6 +635,9 @@ $ mv [OPTION] SOURCE... DIRECTORY
 | `-f`, `--force`  | 覆盖目标地址同名文件             |
 | `-u`, `--update` | 仅当源文件比目标文件新才进行移动 |
 
+!!! tip "重命名"
+    `mv` 命令可以作为对文件或目录重命名的方式。例如，`mv oldname newname` 可以将 `oldname` 的文件或目录重命名为 `newname`。
+
 ### 删除文件和目录 {#rm}
 
 ```shell
@@ -664,6 +673,14 @@ $ rm [OPTION] FILE...
         ```
         $ rm -rf test1/ test2/ file1.txt
         ```
+
+!!! warning "注意目录拼写"
+    使用 `rm` 删除时，请务必注意目录拼写。例如：
+    
+    ```shell
+    $ rm -rf /home/ustc/folder # 删除 folder
+    $ rm -rf / home/ustc/folder # 删除根目录下的所有文件和 home/ustc/folder 及其中的文件：这很危险！
+    ```
 
 ### 创建目录 {#mkdir}
 

@@ -398,6 +398,10 @@ ustc@ustclug-linux101:~$
 
     你可能会在老版本的 Windows 上注意到，在「添加与删除 Windows 组件」的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。
 
+!!! warning
+
+    请注意，**WSL 可能将主机的文件系统挂载在子系统的某个位置**。这在通常情况下会使得文件共享更加方便，但也可能导致在子系统中执行文件操作（例如文件删除）时错误地操作了主机上的文件。
+
 ### WSL 1 {#wsl1}
 
 WSL 1 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL 1 处理（Linux 使用的）ELF 可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL 1 中可以访问到 Windows 下的文件，也与主机共享网络。
@@ -534,6 +538,11 @@ $ sudo apt-get install ubuntu-desktop
 
     重启虚拟机，在设置中进行分辨率的修改。
 
+## 使用 Ventoy {#using-ventoy}
+
+使用 Ventoy 可以简单方便地从 U 盘或者其他移动介质安装各类操作系统（且支持在一个介质中存放多个系统镜像），当然也包括 GNU/Linux。有关如何使用 Ventoy，请参考其网站[^2]。
+
 ## 引用来源 {#references .no-underline}
 
 [^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
+[^2]: [Ventoy 中文网站](https://www.ventoy.net/cn/index.html)
