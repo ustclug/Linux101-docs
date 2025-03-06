@@ -148,13 +148,15 @@ Do you want to continue? [Y/n]
 
     具体有关权限的知识点将在[第五章](../Ch05/index.md)展开。
 
-!!! tip "不确认安装"
+!!! tip "跳过安装确认"
 
-    如果不希望 `apt` 询问是否安装，可以使用
+    如果不希望 `apt` 询问是否安装，可以使用：
 
     ```bash
     apt install -y <软件包>
     ```
+
+    这在编写无交互的**自动化脚本**时特别好用（例如那些能自动安装一系列依赖包的安装脚本）。但是，在这些脚本中，建议使用 `apt-get`，因为相对古老的 `apt-get` 的命令行参数比较稳定，而 `apt` 则有可能会变化，这对脚本的向后兼容性是不利的。
 
 #### 官方软件源镜像 {#software-sources}
 
@@ -661,19 +663,19 @@ $ rm [OPTION] FILE...
 
     * 删除 `file1.txt` 文件：
 
-        ```
+        ```shell
         $ rm file1.txt
         ```
 
     * 删除 `test` 目录及其下的所有文件：
 
-        ```
+        ```shell
         $ rm -r test/
         ```
 
     * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 
-        ```
+        ```shell
         $ rm -rf test1/ test2/ file1.txt
         ```
 
