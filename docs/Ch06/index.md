@@ -166,6 +166,10 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
     $ curl -I "http://cn.bing.com"
     ```
 
+!!! warning "关于从 Internet 获取的脚本"
+
+    直接通过 `curl` 或者 `wget` 等工具从 Internet 获取脚本然后通过管道传给 `sh` 执行是非常危险的操作。运行脚本前，请确保脚本是从正确的地址下载的，并仔细检查要执行的脚本内容。
+
 ### 其他 {#download-others}
 
 除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。
@@ -333,6 +337,10 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
     除了 bash 以外，其他的 shell 也有 alias 的支持。例如在 zsh 中也可以使用 `alias` 命令查看所有的 alias 列表。
 
     部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
+
+!!! warning "alias 可能带来的问题"
+
+    如果将常见命令（例如 `cat`）通过 alias 映射到包含恶意代码的可执行文件上，则可能导致这些恶意代码被意外地执行。
 
 ### Bash 脚本的运行 {#run-bash-script}
 

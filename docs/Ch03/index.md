@@ -441,7 +441,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     bin  include  lib  libexec  share
     ```
 
-    一般而言，软件的可执行文件都位于 bin 目录下：
+    一般而言，软件的可执行文件都位于 `bin` 目录下：
 
     ```shell
     $ cd bin

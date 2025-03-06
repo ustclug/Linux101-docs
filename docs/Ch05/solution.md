@@ -22,7 +22,7 @@ icon: material/tooltip-question
 
 ??? info "解答"
 
-    ```
+    ```shell
     $ /usr/sbin/nologin
     This account is currently not available.
     $ /bin/false
@@ -62,7 +62,7 @@ icon: material/tooltip-question
 
     如果你真的去执行 `sudo cd`，那么会看到:
 
-    ```
+    ```shell
     $ sudo cd a
     sudo: cd: command not found
     ```
@@ -70,3 +70,28 @@ icon: material/tooltip-question
     这是因为，`cd` 是 shell 的**内建命令**，而不是某个具体的程序，而 `sudo` 的功能，是以其他用户 (一般是 root) 的身份执行程序。
 
     那么 `cd` 可以实现成（外置的）程序吗？答案是不能：因为切换工作目录的系统调用 (`chdir()`) 只能切换当前的程序的工作目录。如果实现成了外置的程序，那么切换完退出之后，shell 的工作目录仍然不会变化。
+
+## 普通用户运行 `reboot`
+
+??? info "解答"
+
+    这里可不止权限不足的问题。事实上，用普通用户执行 `reboot`，你会看到：
+
+    ```shell
+    $ reboot
+    -bash: reboot: command not found
+    ```
+
+    这是为什么呢？这是因为，`reboot` 存在于 `/sbin` 下，而这个目录并不在普通用户登录后默认的 `PATH` 环境变量中。也就是说，Shell 并不会去 `/sbin` 中查找 `reboot`，自然就会提示 `command not found`。如果执行
+
+    ```shell
+    $ /sbin/reboot
+    ```
+
+    或者
+
+     ```shell
+     $ systemctl reboot -i  # 另一种重启的方法
+     ```
+
+    就会因为有其他用户已登录，或者权限不足而失败。其他的命令也是类似的原因，只能由 `root` 执行。
