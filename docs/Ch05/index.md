@@ -135,7 +135,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
     %sudo	ALL=(ALL:ALL) ALL
     ```
 
-    将配置行修改成以下即可。
+    将配置行修改成以下即可。注意，`%sudo` 的后面是一个制表符（TAB），不是一系列空格。
 
     ```
     %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
@@ -311,7 +311,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
     （可以执行了）
     ```
 
-    再次强调，**在运行任何来自网络的程序或脚本前，请先检查其内容**，特别是使用高权限的用户执行时。
+    <!-- 再次强调，**在运行任何来自网络的程序或脚本前，请先检查其内容**，特别是使用高权限的用户执行时。 -->
 
 ## 文件系统层次结构 {#fhs}
 
@@ -444,7 +444,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
 !!! question "普通用户运行 `reboot`"
 
-    前面说过，`reboot` 这类程序只能由 `root` 用户运行。为何普通用户在 Shell 中直接输入 `reboot` 不行？
+    前面说过，`reboot` 这类程序只能由 `root` 用户运行。为何普通用户在 Shell 中直接输入 `reboot` 不能重启系统？
 
 ## 引用来源 {#references .no-underline}
 
