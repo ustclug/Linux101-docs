@@ -3,20 +3,19 @@
     "version": "0.0.1",
     "description": "Prettier package.json for ustclug Linux 101 website",
     "scripts": {
-      "check": "prettier . --check",
-      "fix": "prettier . --write"
+        "check": "prettier . --check",
+        "fix": "prettier . --write"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/ustclug/Linux101-docs.git"
+        "type": "git",
+        "url": "git+https://github.com/ustclug/Linux101-docs.git"
     },
     "license": "CC BY-SA 4.0",
     "bugs": {
-      "url": "https://github.com/ustclug/Linux101-docs/issues"
+        "url": "https://github.com/ustclug/Linux101-docs/issues"
     },
     "homepage": "https://101.lug.ustc.edu.cn",
     "devDependencies": {
-      "prettier": "^2.5.1"
+        "prettier": "^2.8.8"
     }
-  }
-  
+}
