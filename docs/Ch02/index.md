@@ -412,7 +412,7 @@ $ sh run.sh
 
     使用以下命令安装（软件的安装将在[第三章](../Ch03/index.md)详细介绍）：
 
-    ```shell
+    ```console
     $ sudo apt install cmatrix
     ```
 
@@ -552,7 +552,7 @@ $ sudo bash wordpress.sh
 
     在本节之前的版本中，以上的命令是：
 
-    ```shell
+    ```console
     $ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh | sudo bash
     ```
 

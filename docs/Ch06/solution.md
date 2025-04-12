@@ -8,7 +8,7 @@ icon: material/tooltip-question
 
 ??? info "解答"
 
-    ```shell
+    ```console
     $ wc -l file
     427 file
     $ wc -l < file

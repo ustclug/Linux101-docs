@@ -217,7 +217,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     可以使用如下命令：
 
-    ```shell
+    ```console
     $ sudo sed -i 's|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     ```
 
@@ -237,7 +237,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     1. 安装需要的的软件包
 
-        ```shell
+        ```console
         $ sudo apt-get update # 更新本地的包列表
 
         $ sudo apt-get install \
@@ -251,7 +251,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         这一步将 GPG Key 添加到系统目录中。GPG Key 用于验证软件源的完整性，如果下载的文件被篡改，GPG 签名验证会失败，从而系统不会继续进行安装操作，防止有问题的软件包进入系统。
 
-        ```shell
+        ```console
         $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
 
@@ -259,7 +259,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         为了方便维护，第三方的 APT 软件源一般都放在 `/etc/apt/sources.list.d/` 目录下（而非直接编辑 `/etc/apt/sources.list`）。
 
-        ```shell
+        ```console
         $ echo \
         "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -271,13 +271,13 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         首先需要从第三方源更新软件列表。
 
-        ```shell
+        ```console
         $ sudo apt update
         ```
 
         之后便可以直接安装 `docker-ce` 以及相关的软件包。
 
-        ```shell
+        ```console
         $ sudo apt install docker-ce docker-ce-cli containerd.io
         ```
 
@@ -285,7 +285,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         Docker 是作为一个服务运行在系统的后台的，要查看 Docker 是否安装完成并确定 Docker 已经启动，可以通过如下方式：
 
-        ```shell
+        ```console
         $ sudo systemctl status docker
         ```
 
@@ -315,7 +315,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
         这时候，我们可以通过 `systemctl` 命令启动 Docker 服务：
 
-        ```shell
+        ```console
         $ sudo systemctl start docker
         ```
 
@@ -397,7 +397,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     如果不小心执行了 `dpkg -i` 导致系统出现依赖问题，可以尝试通过如下的方式调用 `apt` 帮助修复依赖管理：
 
-    ```shell
+    ```console
     $ sudo apt -f install
     ```
 
@@ -421,7 +421,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
 
-    ```shell
+    ```console
     $ # 下载二进制的压缩文件存档
     $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
@@ -436,14 +436,14 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     在进入解压得到的目录后，可以查看当前的目录下有什么内容：
 
-    ```shell
+    ```console
     $ ls
     bin  include  lib  libexec  share
     ```
 
     一般而言，软件的可执行文件都位于 `bin` 目录下：
 
-    ```shell
+    ```console
     $ cd bin
     $ ls
     (Output omitted)
@@ -456,7 +456,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。我们可以这样做：
 
-    ```shell
+    ```console
     $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下。
     $ sudo cp -R * /usr/local/
     ```
@@ -465,7 +465,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
-    ```shell
+    ```console
     $ echo $PATH
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
@@ -501,13 +501,13 @@ $ cat [OPTION] FILE
 
     * 输出 file.txt 的全部内容
 
-        ```shell
+        ```console
         $ cat file.txt
         ```
 
     * 查看 file1.txt 与 file2.txt 连接后的内容
 
-        ```shell
+        ```console
         $ cat file1.txt file2.txt
         ```
 
@@ -578,17 +578,17 @@ $ cp [OPTION] SOURCE... DIRECTORY
 !!! example "复制示例"
 
     * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
-    ```shell
+    ```console
     $ cp file1.txt file2.txt
     ```
 
     * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
-    ```shell
+    ```console
     $ cp file1.txt file2.txt ./file/
     ```
 
     * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
-    ```shell
+    ```console
     $ cp -r dir1 ./test/
     ```
 
@@ -615,7 +615,7 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
     `ln` 命令也可以用来创建硬链接和软链接。
 
-    ```shell
+    ```console
     $ ln -s file symlink  # 创建指向文件 file 的软链接 symlink
     $ ln file hardlink  # 创建指向文件 file 的硬链接 hardlink
     ```
@@ -663,19 +663,19 @@ $ rm [OPTION] FILE...
 
     * 删除 `file1.txt` 文件：
 
-        ```shell
+        ```console
         $ rm file1.txt
         ```
 
     * 删除 `test` 目录及其下的所有文件：
 
-        ```shell
+        ```console
         $ rm -r test/
         ```
 
     * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
 
-        ```shell
+        ```console
         $ rm -rf test1/ test2/ file1.txt
         ```
 
@@ -683,7 +683,7 @@ $ rm [OPTION] FILE...
 
     使用 `rm` 删除时，请务必注意目录拼写。例如：
 
-    ```shell
+    ```console
     $ rm -rf /home/ustc/folder # 删除 folder
     $ rm -rf / home/ustc/folder # 删除根目录下的所有文件和 home/ustc/folder 及其中的文件：这很危险！
     ```
@@ -705,13 +705,13 @@ $ mkdir [OPTION] DIR_NAME...
 
     * 创建两个目录，名字分别为 `test1`、`test2`：
 
-        ```shell
+        ```console
         $ mkdir test1 test2
         ```
 
     * 创建路径 `test1/test2/test3/`：
 
-        ```shell
+        ```console
         $ mkdir -p test1/test2/test3/
         ```
 
@@ -736,7 +736,7 @@ $ touch FILE_NAME...
 
     `stat` 命令可以显示文件的属性信息，可以来看看 touch 对已有文件的操作：
 
-    ```shell
+    ```console
     $ touch test  # 创建文件 test
     $ stat test  # 查看信息
     File: test
@@ -781,19 +781,19 @@ $ find [OPTION] PATH [EXPRESSION]
 
     * 在当前目录搜索名为 report.pdf 的文件：
 
-        ```shell
+        ```console
         $ find . -name 'report.pdf'
         ```
 
     * 全盘搜索大于 1G 的文件：
 
-        ```shell
+        ```console
         $ find / -size +1G
         ```
 
     * 在用户目录搜索所有名为 node_modules 的文件夹：
 
-        ```shell
+        ```console
         $ find ~/ -name 'node_modules' -type d
         ```
 
@@ -862,37 +862,37 @@ $ tar [OPTIONS] FILE...
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
 
-        ```shell
+        ```console
         $ tar -c -f target.tar file1 file2 file3
         ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
 
-        ```shell
+        ```console
         $ tar -x -f target.tar -C test/
         ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
 
-        ```shell
+        ```console
         $ tar -cz -f target.tar.gz file1 file2 file3
         ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
 
-        ```shell
+        ```console
         $ tar -xz -f target.tar.gz -C test/
         ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
 
-        ```shell
+        ```console
         $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
         ```
 
     * 列出 `target.tar` 存档文件中的内容
 
-        ```shell
+        ```console
         $ tar -t -f target.tar
 
         $ # 打印出文件的详细信息
@@ -903,7 +903,7 @@ $ tar [OPTIONS] FILE...
 
     与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
 
-    ```shell
+    ```console
     $ tar -c -z -v -f target.tar test/
     $ tar -czvf target.tar test/
     $ tar -f target.tar -czv test/
@@ -1080,7 +1080,7 @@ https://www.gnu.org/software/tar
 
     在 2020 年初撰写本章时，“第三方软件源”中安装 Docker 的示例中使用了 `apt-key` 添加信任的 GPG Key，如下所示：
 
-    ```shell
+    ```console
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
 

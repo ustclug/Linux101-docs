@@ -73,7 +73,7 @@ $ sort -n numbers
 
     在使用 sort 时，一个比如容易忽视的问题是当前的本地化配置对结果的影响。
 
-    ```shell
+    ```console
     $ echo -e 'a b\naa' | LC_ALL=C sort
     a b
     aa

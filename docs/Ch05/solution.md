@@ -22,7 +22,7 @@ icon: material/tooltip-question
 
 ??? info "解答"
 
-    ```shell
+    ```console
     $ /usr/sbin/nologin
     This account is currently not available.
     $ /bin/false
@@ -62,7 +62,7 @@ icon: material/tooltip-question
 
     如果你真的去执行 `sudo cd`，那么会看到:
 
-    ```shell
+    ```console
     $ sudo cd a
     sudo: cd: command not found
     ```
@@ -77,20 +77,20 @@ icon: material/tooltip-question
 
     这里可能不止权限不足的问题。事实上，在 Debian 系统上，用普通用户执行 `reboot`，你会看到：
 
-    ```shell
+    ```console
     $ reboot
     -bash: reboot: command not found
     ```
 
     这是为什么呢？这是因为，`reboot` 存在于 `/sbin` 下，而这个目录并不在普通用户登录后默认的 `PATH` 环境变量中（但 Ubuntu 下则不一样：`/sbin` 也在普通用户的 `PATH` 环境变量中）。也就是说，Shell 并不会去 `/sbin` 中查找 `reboot`，自然就会提示 `command not found`。如果执行
 
-    ```shell
+    ```console
     $ /sbin/reboot
     ```
 
     或者
 
-     ```shell
+     ```console
      $ systemctl reboot -i  # 另一种重启的方法
      ```
 

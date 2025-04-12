@@ -42,7 +42,7 @@ $ sudo reboot
 
     同理，如果你喜欢 KDE plasma 桌面，只需要执行
 
-    ```shell
+    ```console
     $ sudo apt install kde-plasma-desktop
     $ sudo reboot
     ```
@@ -156,7 +156,7 @@ $ gnome-tweaks
 
     再安装本地连接器：
 
-    ```shell
+    ```console
     $ sudo apt install chrome-gnome-shell
     ```
 
@@ -202,7 +202,7 @@ $ gnome-tweaks
 
     命令行进入下载好的安装包所在文件夹，输入以下命令。注意替换「下载的包」为你的安装包名，例如如果下载的安装包名为 `ocs-url_3.1.0-0ubuntu1_amd64.deb`，则 `install` 后面的参数为 `./ocs-url_3.1.0-0ubuntu1_amd64.deb`。
 
-    ```shell
+    ```console
     $ sudo apt install ./下载的包.deb
     ```
 
@@ -258,7 +258,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     如果遇到了网络连通性问题，可以使用以下替换命令：
 
-    ```shell
+    ```console
     $ REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git sh -c "$(curl -fsSL https://mirrors.ustc.edu.cn/misc/ohmyzsh-install.sh)"
     ```
 
@@ -299,7 +299,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     当我们登录用户成功时：
 
-    ```shell
+    ```console
     $ sudo login
     ```
 
@@ -340,7 +340,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     然后：
 
-    ```shell
+    ```console
     $ sudo chmod +x /etc/update-motd.d/99-test
     ```
 

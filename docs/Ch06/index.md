@@ -108,13 +108,13 @@ sbin
 
     批量下载 filelist.txt 中给出的链接：
 
-    ```shell
+    ```console
     $ wget -i filelist.txt
     ```
 
     安装 oh-my-zsh：
 
-    ```shell
+    ```console
     $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
     ```
 
@@ -138,31 +138,31 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
     输出必应主页的代码：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com"
     ```
 
     使用重定向把必应页面保存至 `bing.html` 本地：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com" > bing.html
     ```
 
     也可以使用 `-o` 选项指定输出文件：
 
-    ```shell
+    ```console
     $ curl -o bing.html "http://cn.bing.com"
     ```
 
     下载 USTCLUG 的 logo：
 
-    ```shell
+    ```console
     $ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"
     ```
 
     只展示 HTTP 响应头内容：
 
-    ```shell
+    ```console
     $ curl -I "http://cn.bing.com"
     ```
 
@@ -199,7 +199,7 @@ $ wc file
 
     `wc` 在统计中文文本时，会出现一些问题，比如：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc
     1       1      13
     ```
@@ -208,7 +208,7 @@ $ wc file
 
     对于字符数统计结果，可以使用 `wc -m` 命令要求 `wc` 考虑宽字符：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc -m
     5
     ```
@@ -348,13 +348,13 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 
 -   在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：
 
-    ```shell
+    ```console
     $ bash show.sh [option]
     ```
 
 -   将脚本设置为可执行，然后像外部命令一样执行：
 
-    ```shell
+    ```console
     $ chmod a+x show.sh
     $ ./show.sh [option]
     ```
@@ -392,7 +392,7 @@ Bash 也支持在同一个行中安排多个命令：
 
 ??? example "组命令示例"
 
-    ```shell
+    ```console
     $ pwd  # 当前在家目录
     /home/ustc
     $ (cd /tmp; pwd;)
@@ -551,7 +551,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 !!! example "特殊字符示例"
 
-    ```shell
+    ```console
     $ ls /mnt/c/Program Files/
     ls: cannot access /mnt/c/Program: No such file or directory
     ls: cannot access Files/: No such file or directory
@@ -634,7 +634,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`(( 表达式 ))` 的返回值"
 
-    ```shell
+    ```console
     $ (( 1 + 1 ))
     $ echo $?  # 结果为 2，所以返回值为 0
     0
@@ -647,7 +647,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`expr` 和 `let` 使用示例"
 
-    ```shell
+    ```console
     $ expr length "ustclug"
     7
     $ let a=0

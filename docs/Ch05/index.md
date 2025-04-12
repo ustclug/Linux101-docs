@@ -228,7 +228,7 @@ $ sudo adduser 用户名 组名
 
     除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，还可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
 
-    ```shell
+    ```console
     $ sudo adduser ustc sudo
     ```
 

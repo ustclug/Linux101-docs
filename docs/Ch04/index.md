@@ -449,7 +449,7 @@ Control the systemd system and service manager.
 
     可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
-    ```shell
+    ```console
     $ service --status-all
     [ - ]  atftpd
     [ - ]  avahi-daemon
@@ -516,7 +516,7 @@ Control the systemd system and service manager.
 
     将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
 
-    ```shell
+    ```console
     $ systemctl start jupyter
     $ systemctl stop jupyter
     $ systemctl enable jupyter  # enable 表示标记服务的开机自动启动

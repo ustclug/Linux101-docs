@@ -68,13 +68,13 @@ icon: material/tooltip-question
 
     在启动 tmux 时，可以为启动的会话命名：
 
-    ```shell
+    ```console
     $ tmux new -s session-a  # 启动名为 session-a 的 tmux 会话
     ```
 
     脱离 tmux 之后如果还需要再进入这个会话，使用以下命令即可：
 
-    ```shell
+    ```console
     $ tmux a -t session-a
     ```
 
@@ -92,7 +92,7 @@ icon: material/tooltip-question
 
         `journalctl` 的 `-u` 参数可以指定 unit，例子如下：
 
-        ```shell
+        ```console
         $ sudo journalctl -u ssh  # 查看 ssh 服务的日志
         ```
 
@@ -100,7 +100,7 @@ icon: material/tooltip-question
 
         在第一条的基础上，可以指定 `-f` 参数，以获取正在输出的日志：
 
-        ```shell
+        ```console
         $ sudo journalctl -u ssh -f
         ```
 
@@ -108,7 +108,7 @@ icon: material/tooltip-question
 
     3. 系统**正在**输出的日志
 
-        ```shell
+        ```console
         $ sudo journalctl -f
         ```
 
@@ -116,7 +116,7 @@ icon: material/tooltip-question
 
     4. 上一次启动到关机的所有日志
 
-        ```shell
+        ```console
         $ sudo journalctl -b -1
         ```
 

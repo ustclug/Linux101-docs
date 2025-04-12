@@ -520,7 +520,7 @@ $ sudo apt-get install ubuntu-desktop
     * 使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。
     * 在 Ubuntu 20.04 上**禁用 Wayland**:
 
-        ```bash
+        ```console
         $ sudo nano /etc/gdm3/custom.conf
         ```
 
@@ -532,7 +532,7 @@ $ sudo apt-get install ubuntu-desktop
 
     接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
 
-    ```bash
+    ```console
     $ sudo apt install --install-recommends linux-generic-hwe-20.04
     ```
 

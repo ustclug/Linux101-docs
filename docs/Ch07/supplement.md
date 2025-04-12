@@ -173,7 +173,7 @@ getaddrinfo.c:(.text+0xd2): warning: Using 'getaddrinfo' in statically linked ap
 
     近年来，musl libc 开始流行，并且它也是 Alpine Linux 的 C 运行时库。它的特点是轻量、快速、对静态链接友好。我们也可以来试一下：
 
-    ```shell
+    ```console
     $ sudo apt install musl-tools  # musl-tools 提供了 musl-gcc 等方便的编译工具
     $ musl-gcc -o hello-static-musl hello.c -static  # 静态链接 musl libc
     $ ls -lha hello hello-static hello-static-musl
