@@ -849,6 +849,7 @@ $ tar [OPTIONS] FILE...
 | `-x`, `--extract, --get` | 从存档文件中提取出文件                       |
 | `-f`, `--file=ARCHIVE`   | 使用指定的存档文件                           |
 | `-C`, `--directory=DIR`  | 指定输出的目录                               |
+| `-v`, `--verbose`        | 详细列出处理的文件                           |
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
@@ -857,6 +858,8 @@ $ tar [OPTIONS] FILE...
 | `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件  |
 | `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件 |
 | `-J`, `--xz`                           | 使用 xz 算法处理存档文件    |
+| `--zstd`                               | 使用 zstd 算法处理存档文件  |
+| `-a`, `--auto-compress`                | 通过后缀自动选择压缩算法    |
 
 !!! example "tar 使用实例"
 
@@ -904,18 +907,18 @@ $ tar [OPTIONS] FILE...
     与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
 
     ```console
-    $ tar -c -z -v -f target.tar test/
-    $ tar -czvf target.tar test/
-    $ tar -f target.tar -czv test/
+    $ tar -c -z -v -f target.tar.gz test/
+    $ tar -czvf target.tar.gz test/
+    $ tar -f target.tar.gz -czv test/
     ```
 
 !!! tip "存档文件的后缀名"
 
     后缀名并不能决定文件类型，但后缀名通常用于帮助人们辨认这个文件的可能文件类型，从而选择合适的打开方法。
 
-    在第一个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
+    在 `tar -c -f target.tar file1 file2 file3` 这个例子中，创建得到的文件名为 `target.tar`，后缀名为 `tar`，表示这是一个没有进行压缩的存档文件。
 
-    在第二个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
+    在 `tar -cz -f target.tar.gz file1 file2 file3` 这个例子中，创建得到的文件名为 `target.tar.gz`。将 `tar.gz` 整体视为后缀名，可以判断出，为经过 gzip 算法压缩（`gz`）的存档文件（`tar`）。可知在提取文件时，需要添加 `-z` 选项使其经过 gzip 算法处理后再进行正常 tar 文件的提取。
 
     同样地，通过不同压缩算法得到的文件应该有不同的后缀名，以便于选择正确的参数。如经过 `xz` 算法处理得到的存档文件，其后缀名最好选择 `tar.xz`，这样可以知道为了提取其中的文件，应该添加 `--xz` 选项。
 
