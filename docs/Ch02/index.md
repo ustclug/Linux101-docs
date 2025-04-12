@@ -289,14 +289,14 @@ Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态
 
 使用命令行操作可以减少鼠标操作，我们经常可以使用一条命令来代替好几次的鼠标单击。例如如果我们想要移动某一个文件，我们要执行下面步骤：
 
--   打开文件所在的文件夹 `../source/`
--   打开目标文件夹 `../dest/`
--   从 `../source/` 文件夹拖拽文件 `file.txt` 到 `../dest/` 文件夹中
+-   打开文件所在的文件夹 `/path/to/source/`
+-   打开目标文件夹 `/path/to/dest/`
+-   从 `source` 文件夹拖拽文件 `file.txt` 到 `dest` 文件夹中
 
 然而使用命令行，我们只需要执行一条指令。
 
-```shell
-$ mv ../source/file.txt ../dest/
+```console
+$ mv /path/to/source/file.txt /path/to/dest/
 ```
 
 可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。
@@ -305,7 +305,7 @@ $ mv ../source/file.txt ../dest/
 
     对于不太熟悉命令行的用户来说，路径的概念可能会在最开始带来一些困惑。这里做一些简单的介绍。
 
-    在 Windows 系统下，路径是以反斜杠 `\` 分隔的，例如：
+    在 Windows 系统下，路径是以反斜杠 `\` 分隔的（Windows 系统也可以使用 `/` 分隔路径），例如：
 
     ```
     C:\Windows\explorer.exe
@@ -322,12 +322,31 @@ $ mv ../source/file.txt ../dest/
     另外，以上的路径都是绝对路径，还有一种「相对路径」：
 
     ```shell
-    ./file.txt  # 当前目录下的 file.txt 文件
-    ../file.txt # 上一级目录（父目录）下的 file.txt 文件
-    ../abc/file.txt # 上一级目录（父目录）下的 abc 文件夹下的 file.txt 文件
+    file1.txt    # 当前目录下的 file1.txt 文件
+    ./file1.txt  # 当前目录下的 file1.txt 文件
+    ./file2.txt  # 当前目录下的 file2.txt 文件
+    ../file3.txt # 上一级目录（父目录）下的 file3.txt 文件
+    ../abc/file4.txt # 上一级目录（父目录）下的 abc 文件夹下的 file4.txt 文件
+    ../../file5.txt # 上上级目录下的 file5.txt
+    ```
+
+    它们的关系是这样的：
+
+    ```plain
+    上上级目录/
+    |___ file5.txt
+    |___ 上一级目录/
+         |___ file3.txt
+         |___ 当前目录/
+         |    |___ file1.txt
+         |    |___ file2.txt
+         |___ abc/
+              |___ file4.txt
     ```
 
     每个正在运行中的进程（包括 Shell）都有自己的「当前工作目录」（当前所在的目录），进程可以切换自己的当前工作目录，以上的相对路径都是相对于当前工作目录的。可以发现，不管当前工作目录在哪里，绝对路径对应的文件都是一致的，而相对路径对应的文件就会随着当前工作目录的变化而变化。
+
+    特别地，用户的主目录（一般是 `/home/<用户名>`）可以被简写为 `~`。例如，`~/work/test.c` 可能是 `/home/ustc/work/test.c` 的缩写。
 
 #### 自动化脚本 {#shell-automation}
 
@@ -357,9 +376,15 @@ gcc main.c -o main.out
 rm main.out
 ```
 
+和其他地方不一样，在 Shell 中运行程序时，程序名（`main.out`）前面必须有 `./`。这是因为因为我们的工作目录不包含在环境变量（`$PATH`）中，故如果不加 `./` 则系统会找不到程序。系统中安装的程序（例如 `gcc`）一般会放在 `$PATH` 环境变量中包含了的路径下，故运行它们不需要使用 `./`。
+
+!!! tip "为何需要加上 `./`"
+
+    一个简单的原因是，如果像 Windows 那样直接输入可执行文件的名称就能运行程序的话，攻击者可能将恶意代码写入到用户工作目录下以一些常见的命令（例如 `ls` 和 `cat`）为名称的文件中，并加入执行（`x`）权限。不知情的用户执行这些命令就会导致恶意代码的运行。而 Linux 系统下不加 `./` 运行的是 `PATH` 环境变量中列出的目录下的可执行文件，这些位置一般只有 `root` 用户能写入，避免了上面的问题。此外另一个原因是，这还避免了用户的程序和系统中安装的程序因为重名而冲突。
+
 之后我们直接输入
 
-```shell
+```console
 $ sh run.sh
 ```
 
@@ -375,7 +400,7 @@ $ sh run.sh
 
 #### 进行高级的系统维护工作 {#shell-system-maintenance}
 
-一些高级的系统维护任务只能通过命令行来完成，因为相关的程序并没有提供图形界面的控制面板，或者需要手工编写复杂的配置文件。
+一些高级的系统维护任务只能通过命令行来完成，或者需要手工编写复杂的配置文件，因为相关的程序并没有提供图形界面的控制面板。
 
 #### 使用命令行看上去很酷 {#shell-duang}
 
@@ -387,7 +412,7 @@ $ sh run.sh
 
     使用以下命令安装（软件的安装将在[第三章](../Ch03/index.md)详细介绍）：
 
-    ```shell
+    ```console
     $ sudo apt install cmatrix
     ```
 
@@ -429,7 +454,7 @@ $ sh run.sh
 
 #### 示例 1 {#shell-commands-example-1}
 
-```shell
+```console
 $ pwd
 ```
 
@@ -441,7 +466,7 @@ $ pwd
 
 #### 示例 2 {#shell-commands-example-2}
 
-```shell
+```console
 $ ls
 ```
 
@@ -453,8 +478,8 @@ Desktop Documents Music Pictures Public Templates Videos
 
 #### 示例 3 {#shell-commands-example-3}
 
-```shell
-$ cd Desktop
+```console
+$ cd Desktop # 这里的 Desktop 是相对路径，指的就是当前目录下的 Desktop 文件夹
 $ ls
 ```
 
@@ -492,7 +517,7 @@ WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和�
 
 下载脚本要使用 `curl` 命令，我们要先安装 curl。
 
-```shell
+```console
 $ sudo apt install curl
 ```
 
@@ -511,7 +536,7 @@ $ sudo apt install curl
 
 打开终端并运行：
 
-```shell
+```console
 $ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh > wordpress.sh
 $ # 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：
 $ sudo bash wordpress.sh
@@ -527,7 +552,7 @@ $ sudo bash wordpress.sh
 
     在本节之前的版本中，以上的命令是：
 
-    ```shell
+    ```console
     $ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh | sudo bash
     ```
 
@@ -546,13 +571,13 @@ Jekyll 是一个将纯文本转化为静态博客和网站的工具。
 
 我们只需要通过命令行安装它。
 
-```shell
+```console
 $ sudo apt install jekyll
 ```
 
 再输入几行命令用于创建网站：
 
-```shell
+```console
 $ jekyll new my-awesome-site
 $ cd my-awesome-site
 $ jekyll serve

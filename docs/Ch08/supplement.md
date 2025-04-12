@@ -10,14 +10,14 @@ icon: material/puzzle
 
 对于 Debian/Ubuntu 用户，由于其不在官方软件源中，需要手动下载 deb 包安装：
 
-```shell
+```console
 $ wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
 $ sudo apt install ./dive_0.9.2_linux_amd64.deb
 ```
 
 之后直接使用即可：
 
-```shell
+```console
 $ dive ubuntu:20.04  # 查看 Ubuntu 20.04 镜像中的内容
 ```
 

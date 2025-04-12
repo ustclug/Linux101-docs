@@ -53,7 +53,7 @@ SELinux 有 3 种工作模式：
 
 使用 `sestatus` 命令查看 SELinux 状态：
 
-```
+```console
 $ sestatus
 SELinux status:                 enabled
 SELinuxfs mount:                /sys/fs/selinux
@@ -220,13 +220,13 @@ $ sudo resize2fs /dev/sda2
 
 在服务器上首先安装 `openssh-server` 软件包，它提供了 SSH 服务器的功能。
 
-```
+```console
 $ sudo apt install openssh-server
 ```
 
 启动并检查 SSH 服务状态：
 
-```
+```console
 $ sudo systemctl start ssh
 $ sudo systemctl status ssh
 ● ssh.service - OpenBSD Secure Shell server
@@ -248,7 +248,7 @@ $ sudo systemctl status ssh
 
 我们可以使用 `ssh` 命令直接连接到本地（localhost）的 SSH 服务器。其中 `@` 符号前的是登录的用户名，后面的是服务器的域名或 IP 地址。
 
-```
+```console
 $ ssh ustc@localhost
 The authenticity of host 'localhost (127.0.0.1)' can't be established.
 ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
@@ -321,7 +321,7 @@ ustc@ustclug-linux101:~$
 
     首先在自己的机器上使用 `ssh-keygen` 生成密钥：
 
-    ```
+    ```console
     $ ssh-keygen
     Generating public/private rsa key pair.
     Enter file in which to save the key (/home/ustc/.ssh/id_rsa):
@@ -349,7 +349,7 @@ ustc@ustclug-linux101:~$
 
     在本地使用 `ssh-copy-id` 命令将公钥拷贝到服务器上：
 
-    ```
+    ```console
     $ ssh-copy-id ustc@localhost
     /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
     /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -377,7 +377,7 @@ ustc@ustclug-linux101:~$
 
     然后让 SSH 服务器重新加载配置：
 
-    ```
+    ```console
     $ sudo systemctl reload ssh
     ```
 
@@ -397,6 +397,10 @@ ustc@ustclug-linux101:~$
 ??? tip "不要将 WSL 与 Windows Services for UNIX (SFU) 混淆"
 
     你可能会在老版本的 Windows 上注意到，在「添加与删除 Windows 组件」的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。
+
+!!! warning "WSL 对宿主机文件系统的挂载"
+
+    请注意，**WSL 可能将主机的文件系统挂载在子系统的某个位置（例如将主机的 `C:\` 挂载在 `/mnt/c/`）**。这在通常情况下会使得主机和 WSL 之间的文件共享更加方便，但也可能导致在子系统中执行文件操作（例如文件删除）时错误地操作了主机上的文件。
 
 ### WSL 1 {#wsl1}
 
@@ -496,7 +500,7 @@ Featured Server Snaps 一样可以选择不安装，可以之后自行配置。
 
 如果你需要带图形界面的虚拟机，只需要安装 `ubuntu-desktop` 即可。
 
-```bash
+```console
 $ sudo apt-get install ubuntu-desktop
 ```
 
@@ -516,7 +520,7 @@ $ sudo apt-get install ubuntu-desktop
     * 使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。
     * 在 Ubuntu 20.04 上**禁用 Wayland**:
 
-        ```bash
+        ```console
         $ sudo nano /etc/gdm3/custom.conf
         ```
 
@@ -528,12 +532,17 @@ $ sudo apt-get install ubuntu-desktop
 
     接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:
 
-    ```bash
+    ```console
     $ sudo apt install --install-recommends linux-generic-hwe-20.04
     ```
 
     重启虚拟机，在设置中进行分辨率的修改。
 
+## 使用 Ventoy {#using-ventoy}
+
+使用 Ventoy 可以简单方便地从 U 盘或者其他移动介质安装各类操作系统（且支持在一个介质中存放多个系统镜像），当然也包括 GNU/Linux。有关如何使用 Ventoy，请参考其网站[^2]。
+
 ## 引用来源 {#references .no-underline}
 
 [^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
+[^2]: [Ventoy 中文网站](https://www.ventoy.net/cn/index.html)

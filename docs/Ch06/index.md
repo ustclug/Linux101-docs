@@ -108,13 +108,13 @@ sbin
 
     批量下载 filelist.txt 中给出的链接：
 
-    ```shell
+    ```console
     $ wget -i filelist.txt
     ```
 
     安装 oh-my-zsh：
 
-    ```shell
+    ```console
     $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
     ```
 
@@ -138,33 +138,37 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
     输出必应主页的代码：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com"
     ```
 
     使用重定向把必应页面保存至 `bing.html` 本地：
 
-    ```shell
+    ```console
     $ curl "http://cn.bing.com" > bing.html
     ```
 
     也可以使用 `-o` 选项指定输出文件：
 
-    ```shell
+    ```console
     $ curl -o bing.html "http://cn.bing.com"
     ```
 
     下载 USTCLUG 的 logo：
 
-    ```shell
+    ```console
     $ curl -O "https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"
     ```
 
     只展示 HTTP 响应头内容：
 
-    ```shell
+    ```console
     $ curl -I "http://cn.bing.com"
     ```
+
+!!! warning "关于从 Internet 获取的脚本"
+
+    直接通过 `curl` 或者 `wget` 等工具从 Internet 获取脚本然后通过管道传给 `sh` 等 Shell 执行是非常危险的操作。运行脚本前，请确保脚本是从正确的地址下载的，并仔细检查要执行的脚本内容。
 
 ### 其他 {#download-others}
 
@@ -186,7 +190,7 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
 `wc` 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。
 
-```shell
+```console
 $ wc file
      427    2768   20131 file
 ```
@@ -195,7 +199,7 @@ $ wc file
 
     `wc` 在统计中文文本时，会出现一些问题，比如：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc
     1       1      13
     ```
@@ -204,7 +208,7 @@ $ wc file
 
     对于字符数统计结果，可以使用 `wc -m` 命令要求 `wc` 考虑宽字符：
 
-    ```shell
+    ```console
     $ echo '中文测试' | wc -m
     5
     ```
@@ -217,7 +221,7 @@ $ wc file
 
 diff 工具用于比较两个文件的不同，并列出差异。
 
-```shell
+```console
 $ echo hello > file1
 $ echo hallo > file2
 $ diff file1 file1
@@ -273,7 +277,7 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
 `sed` 命令可以替换文本中的字符串：
 
-```shell
+```console
 $ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
 $ sed 's/hello/world/' file  # 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出
 $ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
@@ -283,7 +287,7 @@ $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到
 
 对于大多数用户来说，最常用 `sed` 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：
 
-```shell
+```console
 $ sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
@@ -309,7 +313,7 @@ Bash 允许用户定制环境以满足自己需要。通过修改环境文件 `.
 
 此外，bash 也支持使用 `alias` 别名代替命令关键字（`alias name='命令'`）。输入 `alias`，可以查看目前存在的别名：
 
-```shell
+```console
 $ alias
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias egrep='egrep --color=auto'
@@ -334,19 +338,28 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 
     部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
 
+!!! tip "检查命令是否被 alias"
+
+    如果发现某些命令的行为不符合预期，可以使用 `type` 命令检查该命令是否被 alias 了：
+
+    ```console
+    $ type ls
+    ls is aliased to `ls --color=auto'
+    ```
+
 ### Bash 脚本的运行 {#run-bash-script}
 
 可以使用几种方法运行 Bash 脚本：
 
 -   在指定的 Shell 下执行，将脚本程序名作为 Shell 的第一个参数：
 
-    ```shell
+    ```console
     $ bash show.sh [option]
     ```
 
 -   将脚本设置为可执行，然后像外部命令一样执行：
 
-    ```shell
+    ```console
     $ chmod a+x show.sh
     $ ./show.sh [option]
     ```
@@ -384,7 +397,7 @@ Bash 也支持在同一个行中安排多个命令：
 
 ??? example "组命令示例"
 
-    ```shell
+    ```console
     $ pwd  # 当前在家目录
     /home/ustc
     $ (cd /tmp; pwd;)
@@ -478,7 +491,7 @@ Bash 也支持在同一个行中安排多个命令：
 
 可以使用 `export` 命令来定义环境变量。在同一个 shell 中使用 `export` 定义之后，这个环境变量会一直保留，直到这个 shell 退出。
 
-```shell
+```console
 $ export A=1
 $ env | grep A=
 A=1
@@ -486,7 +499,7 @@ A=1
 
 此外，也可以在命令前加上环境变量的定义。此时只有这一条命令的环境变量出现变化。
 
-```shell
+```console
 $ B=1 env | grep B=
 B=1
 $ env | grep B=
@@ -543,7 +556,7 @@ Shell 中还有一组有 shell 定义和设置的特殊变量，用户只能引�
 
 !!! example "特殊字符示例"
 
-    ```shell
+    ```console
     $ ls /mnt/c/Program Files/
     ls: cannot access /mnt/c/Program: No such file or directory
     ls: cannot access Files/: No such file or directory
@@ -626,7 +639,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`(( 表达式 ))` 的返回值"
 
-    ```shell
+    ```console
     $ (( 1 + 1 ))
     $ echo $?  # 结果为 2，所以返回值为 0
     0
@@ -639,7 +652,7 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
 ??? example "`expr` 和 `let` 使用示例"
 
-    ```shell
+    ```console
     $ expr length "ustclug"
     7
     $ let a=0

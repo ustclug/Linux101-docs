@@ -1,0 +1,25 @@
+{
+    "MD007": {
+        // Unordered list indentation
+        "indent": 4
+    },
+    "MD013": false, // Line length
+    "MD033": {
+        // Inline HTML
+        "allowed_elements": [
+            "br", // Useful in tables
+            "figure",
+            "figcaption",
+            "s",
+            "del" // Python-Markdown parsing issue with CJK
+        ]
+    },
+    "MD046": false, // Use fenced code block style, too many false positives
+    "MD051": false, // Link fragments should be valid, false positives
+    "MD052": false, // Reference link should be defined and used, false positives with includes/man.md
+    "MD010": false, // Some command output contains hard tabs
+    "MD024": {
+        // Allow multiple headers with the same content, if they are not siblings
+        "siblings_only": true
+    }
+}

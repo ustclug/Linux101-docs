@@ -30,7 +30,7 @@ icon: material/chip
 
 ## 进程 {#process}
 
-在导言中提到的「桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务」，它们都是进程。简单而不太严谨地来说，进程就是正在运行的程序：当我们启动一个程序的时候，操作系统会从硬盘中读取程序文件，将程序内容加载入内存中，之后 CPU 就会执行这个程序。
+在导言中提到的「桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务」，它们都是进程。简单而不太严谨地来说，进程就是已被载入的程序：当我们启动一个程序的时候，操作系统会从硬盘中读取程序文件，将程序内容加载入内存中，之后 CPU 就会执行这个程序，也就能看到一个「进程」。
 
 进程是现代操作系统中必不可少的概念。在 Windows 中，我们可以使用「任务管理器」查看系统运行中的进程；Linux 中同样也有进程的概念。下面我们简单介绍 Linux 中的进程。
 
@@ -38,7 +38,7 @@ icon: material/chip
 
 #### htop {#htop}
 
-Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。
+htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。
 
 使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 ++"F1"++ 至 ++"F10"++ 功能键可以选择这些功能，常用的功能例如搜索进程（++"F3"++, Search）、过滤进程（++"F4"++, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（++"F5"++, Tree/List）等等。
 
@@ -46,7 +46,7 @@ Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、�
 
 ps（**p**rocess **s**tatus）是常用的输出进程状态的工具。直接调用 `ps` 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 `ps aux`。
 
-```shell
+```console
 $ ps
     PID TTY          TIME CMD
    1720 pts/0    00:00:00 bash
@@ -79,7 +79,7 @@ root          14  0.0  0.0      0     0 ?        S    02:33   0:00 [migration/0]
 
     按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 **init\_task**，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。
 
-    由于 kthreadd 运行于内核空间，故需按大写 K（++"Shift"++ + ++"k"++）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。
+    由于 kthreadd 运行于内核空间，故需按大写 K（++"Shift"++ + ++"k"++）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID (Parent PID) 是 0。
 
 ### 进程优先级与状态 {#process-priority-and-stat}
 
@@ -87,13 +87,13 @@ root          14  0.0  0.0      0     0 ?        S    02:33   0:00 [migration/0]
 
 #### 优先级与 nice 值 {#nice}
 
-有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么**优先级**则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：Priority（PRI）和 **nice（NI）**。以下主要介绍用户层使用的 nice 值。
+有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么**优先级**则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：**Priority（PRI）** 和 **nice（NI）**。以下主要介绍用户层使用的 nice 值。
 
 Nice 值越高代表一个进程对其它进程越 "nice"（友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。
 
 用户可以使用 `nice` 命令在运行程序时指定优先级，而 `renice` 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 `sudo`（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。
 
-```shell
+```console
 $ nice -n 10 vim # 以 10 为 nice 值运行 vim
 $ renice -n 10 -p 12345 # 设置 PID 为 12345 的进程的 nice 值为 10
 ```
@@ -114,7 +114,9 @@ $ renice -n 10 -p 12345 # 设置 PID 为 12345 的进程的 nice 值为 10
 
 在实际的 Linux 系统中，进程的状态分类要稍微复杂一些。在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：
 
-    Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
+```
+Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
+```
 
 其中 R 状态对应上文的运行和就绪态（即表明该程序可以运行），S 和 D 状态对应上文阻塞态。
 
@@ -154,7 +156,7 @@ Zombie 是僵尸进程，该状态下进程已经结束，只是仍然占用一�
 
 默认情况下，在 shell 中运行的命令都在前台运行，如果需要在后台运行程序，需要在最后加上 `&`：
 
-```shell
+```console
 $ ./matmul &  # 例子：运行耗时的计算同时进行其他操作
 $ ps
     PID TTY          TIME CMD
@@ -195,7 +197,7 @@ htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏
 
 如前所述，Linux 上最常用的发送信号的程序就是 kill。
 
-```shell
+```console
 $ kill -l # 显示所有信号名称
  1) SIGHUP	     2) SIGINT	     3) SIGQUIT	     4) SIGILL	     5) SIGTRAP
  6) SIGABRT	     7) SIGBUS	     8) SIGFPE	     9) SIGKILL 	10) SIGUSR1
@@ -256,7 +258,7 @@ $ kill -l # 显示所有信号名称
 
 nohup，字面含义，就是「不要被 SIGHUP 影响」。
 
-```shell
+```console
 $ nohup ping 101.lug.ustc.edu.cn &
 [1] 19258
 nohup: ignoring input and appending output to '/home/ustc/nohup.out'
@@ -280,7 +282,7 @@ tmux 由会话（session），窗口（window），面板（pane）组织起每�
 
 下面先行讲解这一工具的用法：
 
-```shell
+```console
 $ sudo apt install tmux
 $ tmux
 ```
@@ -345,7 +347,7 @@ $ tmux
 
     在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。
 
-    tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的会话中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。
+    tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的会话中，与当前终端脱离。并且每一个 shell 有不同的 pty (pseudoterminal)。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。
 
 ## 服务 {#service}
 
@@ -361,7 +363,7 @@ $ tmux
 
 要管理服务，首先我们要清楚系统内有哪些服务。可以通过 `systemctl status` 命令一览系统服务运行情况。
 
-```shell
+```console
 $ systemctl status
 ● ustclug-linux101
     State: running
@@ -401,7 +403,7 @@ $ systemctl status
 
 !!! tip "Less 翻页器"
 
-    当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 less 作为翻页器（Pager），方便我们阅读。
+    当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 `less` 作为翻页器（Pager），方便我们阅读。
 
 上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 `systemctl list-units` 来查看。该命令将显示所有 systemd 管理的单元，同时右面还会附上一句注释来表明该服务的任务。
 
@@ -447,7 +449,7 @@ Control the systemd system and service manager.
 
     可以通过 `service --status-all` 查看目录 `/etc/init.d` 下的服务。
 
-    ```shell
+    ```console
     $ service --status-all
     [ - ]  atftpd
     [ - ]  avahi-daemon
@@ -465,7 +467,7 @@ Control the systemd system and service manager.
 
     以下是 tldr 给出的 `service` 常见命令的列表：
 
-    ```
+    ```console
     $ tldr service
     service
     Manage services by running init scripts.
@@ -514,7 +516,7 @@ Control the systemd system and service manager.
 
     将写好的配置文件保存为 `/etc/systemd/system/jupyter.service`，然后运行 `systemctl daemon-reload`，就可以使用 `systemctl` 命令来管理这个服务了，例如：
 
-    ```shell
+    ```console
     $ systemctl start jupyter
     $ systemctl stop jupyter
     $ systemctl enable jupyter  # enable 表示标记服务的开机自动启动
@@ -558,7 +560,7 @@ at 命令负责单次计划任务，当前许多发行版中，并没有预装�
 
 所以该命令的基本用法示例如下：
 
-```shell
+```console
 $ at now + 1min
 > echo "hello"
 > <EOT> （按下 Ctrl + D）
@@ -614,7 +616,7 @@ crontab 的配置格式很简单，对于配置文件的每一行，前半段为
 # 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （假设半夜 3 点重新拨号）
 ```
 
-如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。
+如果这里解释得尚不清楚，可以访问 <https://crontab.guru/>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。此外，还可以查看 crontab 的 man 文档（`man 5 crontab`）。
 
 ![crontab](images/crontab.gif)
 

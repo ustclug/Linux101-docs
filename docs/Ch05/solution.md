@@ -22,7 +22,7 @@ icon: material/tooltip-question
 
 ??? info "解答"
 
-    ```
+    ```console
     $ /usr/sbin/nologin
     This account is currently not available.
     $ /bin/false
@@ -62,7 +62,7 @@ icon: material/tooltip-question
 
     如果你真的去执行 `sudo cd`，那么会看到:
 
-    ```
+    ```console
     $ sudo cd a
     sudo: cd: command not found
     ```
@@ -70,3 +70,9 @@ icon: material/tooltip-question
     这是因为，`cd` 是 shell 的**内建命令**，而不是某个具体的程序，而 `sudo` 的功能，是以其他用户 (一般是 root) 的身份执行程序。
 
     那么 `cd` 可以实现成（外置的）程序吗？答案是不能：因为切换工作目录的系统调用 (`chdir()`) 只能切换当前的程序的工作目录。如果实现成了外置的程序，那么切换完退出之后，shell 的工作目录仍然不会变化。
+
+## Debian 与 Ubuntu 的区别之一：普通用户运行 `useradd` 等命令
+
+??? info "解答"
+
+    这里可能不止权限不足的问题。这是因为，`useradd` 存在于 `/sbin` 下，而在 Debian 中，这个目录并不在普通用户登录后默认的 `PATH` 环境变量中（但 Ubuntu 下则不一样：`/sbin` 也在普通用户的 `PATH` 环境变量中）。也就是说，Shell 并不会去 `/sbin` 中查找 `useradd`，自然就会提示 `command not found`。如果改成完整路径（`/sbin/useradd`）就可以了。

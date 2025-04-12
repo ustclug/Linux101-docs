@@ -89,7 +89,7 @@ DESCRIPTION
 
     注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看[第六章](../Ch06/index.md#redirection-and-pipe)。
 
-```shell
+```console
 $ strace ps
 ...
 openat(AT_FDCWD, "/proc/1/stat", O_RDONLY) = 6
@@ -106,7 +106,7 @@ close(6)
 
 可以大致猜测，ps 通过打开 `/proc/1` 文件夹下的 `stat` 和 `status` 文件，获得 1 号进程的信息。我们也可以试着打开它：
 
-```shell
+```console
 $ cat /proc/1/stat          # 由于用户权限不同，是否添加 sudo 会导致读取出不同内容
 1 (systemd) S 0 1 1 0 -1 4194560 113722 4652720 87 2258 79 670 19018 28647 \
 20 0 1 0 4 231030784 2252 18446744073709551615 1 1 0 0 0 0 671173123 4096 1260 \

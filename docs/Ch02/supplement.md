@@ -16,7 +16,7 @@ icon: material/puzzle
 
 安装 `ubuntu-gnome-desktop` 软件：
 
-```shell
+```console
 $ sudo apt install ubuntu-gnome-desktop
 ```
 
@@ -28,7 +28,7 @@ $ sudo apt install ubuntu-gnome-desktop
 
 安装完成后输入：
 
-```shell
+```console
 $ sudo reboot
 ```
 
@@ -42,7 +42,7 @@ $ sudo reboot
 
     同理，如果你喜欢 KDE plasma 桌面，只需要执行
 
-    ```shell
+    ```console
     $ sudo apt install kde-plasma-desktop
     $ sudo reboot
     ```
@@ -56,7 +56,7 @@ $ sudo reboot
 在 GNOME 桌面下用户可以轻松更换主题。
 首先安装 `gnome-tweaks` 软件：
 
-```shell
+```console
 $ sudo apt install gnome-tweaks
 ```
 
@@ -72,7 +72,7 @@ $ sudo apt install gnome-tweaks
 
 解压后放到 `~/.themes` 文件夹，若不存在该文件夹则创建一个。
 
-```shell
+```console
 $ mkdir ~/.themes
 ```
 
@@ -84,7 +84,7 @@ $ mkdir ~/.themes
 
 输入：
 
-```shell
+```console
 $ gnome-tweaks
 ```
 
@@ -104,7 +104,7 @@ GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://
 
 要使用 GNOME 扩展，我们要先安装 `gnome-shell-extensions`。
 
-```shell
+```console
 $ sudo apt install gnome-shell-extensions
 ```
 
@@ -116,7 +116,7 @@ Caffeine: 允许用户停用系统屏幕保护和自动休眠。
 
 先来查看我们正在使用的 GNOME 版本：
 
-```shell
+```console
 $ gnome-shell --version
 ```
 
@@ -136,7 +136,7 @@ $ gnome-shell --version
 
 打开 `gnome-tweaks`。
 
-```shell
+```console
 $ gnome-tweaks
 ```
 
@@ -156,7 +156,7 @@ $ gnome-tweaks
 
     再安装本地连接器：
 
-    ```shell
+    ```console
     $ sudo apt install chrome-gnome-shell
     ```
 
@@ -202,7 +202,7 @@ $ gnome-tweaks
 
     命令行进入下载好的安装包所在文件夹，输入以下命令。注意替换「下载的包」为你的安装包名，例如如果下载的安装包名为 `ocs-url_3.1.0-0ubuntu1_amd64.deb`，则 `install` 后面的参数为 `./ocs-url_3.1.0-0ubuntu1_amd64.deb`。
 
-    ```shell
+    ```console
     $ sudo apt install ./下载的包.deb
     ```
 
@@ -218,7 +218,7 @@ $ gnome-tweaks
 
 在此之前我们可以通过：
 
-```shell
+```console
 $ echo $SHELL
 ```
 
@@ -228,13 +228,13 @@ $ echo $SHELL
 
 首先通过 apt 安装 `zsh`：
 
-```shell
+```console
 $ sudo apt install zsh
 ```
 
 将 zsh 设定为默认 shell：
 
-```shell
+```console
 $ chsh -s /bin/zsh
 ```
 
@@ -250,7 +250,7 @@ $ chsh -s /bin/zsh
 
 oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
 
-```shell
+```console
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -258,7 +258,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     如果遇到了网络连通性问题，可以使用以下替换命令：
 
-    ```shell
+    ```console
     $ REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git sh -c "$(curl -fsSL https://mirrors.ustc.edu.cn/misc/ohmyzsh-install.sh)"
     ```
 
@@ -299,7 +299,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     当我们登录用户成功时：
 
-    ```shell
+    ```console
     $ sudo login
     ```
 
@@ -340,7 +340,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     然后：
 
-    ```shell
+    ```console
     $ sudo chmod +x /etc/update-motd.d/99-test
     ```
 
@@ -352,7 +352,7 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
 ### WordPress 的手动配置
 
-```shell
+```console
 $ sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
 ```
 
@@ -378,7 +378,7 @@ Alias /blog /usr/share/wordpress
 
 保存后输入命令来重启 `apache2`：
 
-```shell
+```console
 $ sudo a2ensite wordpress
 $ sudo a2enmod rewrite
 $ sudo service apache2 reload
@@ -386,7 +386,7 @@ $ sudo service apache2 reload
 
 再配置数据库相关内容：
 
-```shell
+```console
 $ sudo mysql -u root
 ```
 
@@ -452,7 +452,7 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 
 然后输入：
 
-```shell
+```console
 $ sudo service mysql start
 ```
 

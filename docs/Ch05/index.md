@@ -64,7 +64,7 @@ icon: material/account-group
 
 !!! danger "谨慎使用 `root` 用户权限执行命令！"
 
-    我们知道，`root` 用户可以对系统做极其危险的操作。当使用 `root` 权限执行命令时（如使用 `sudo`），一定要**小心、谨慎，理解命令的含义之后再按下回车**。**请不要复制网络上所谓的「Linux 优化命令」等**，以 `root` 权限执行，否则**可能会带来灾难性的后果**。
+    我们知道，`root` 用户可以对系统做极其危险的操作。当使用 `root` 权限执行命令时（如使用 `sudo`），一定要**小心、谨慎，理解命令的含义之后再按下回车**。**请不要复制网络上所谓的「Linux 优化命令」等**，以 `root` 权限执行，否则**可能会带来灾难性的后果**。除了复制外，直接通过 `curl` 等工具获取脚本然后通过管道传给 `sh` 执行也是非常危险的操作。运行脚本前，请务必先仔细检查要执行的脚本内容。
 
     以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 **<span class=red>再重复一遍，不要执行下面的命令！</span>**
 
@@ -99,7 +99,7 @@ icon: material/account-group
 
     你是否常常忘记敲 `sudo`，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：`sudo !!`，效果如下：
 
-    ```
+    ```console
     $ apt update
     Reading package lists... Done
     E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
@@ -117,7 +117,7 @@ icon: material/account-group
 
 那么，如何以 `root` 之外的用户的身份执行命令呢？加上 `-u 用户名` 的参数即可。
 
-```
+```console
 $ sudo -u nobody id
 uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 ```
@@ -126,7 +126,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 
 ??? example "修改 `sudo` 配置的例子：无密码执行 `sudo` (\*)"
 
-    `sudo` 的配置存储在 `/etc/sudoers` 文件中，仅 `root` 用户有权查看和修改。**不要直接修改此文件。**对这个文件的任何修改，都应该使用 `visudo` 这个命令去做。
+    `sudo` 的配置存储在 `/etc/sudoers` 文件中，仅 `root` 用户有权查看和修改。**不要直接修改此文件：对这个文件的任何修改，都应该使用 `visudo` 这个命令完成**。
 
     默认的 Ubuntu 配置中，安装时创建的用户在 `sudo` 用户组（下文会提到这个概念）中。在 `sudoers` 文件中，它的配置像这样：
 
@@ -135,7 +135,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
     %sudo	ALL=(ALL:ALL) ALL
     ```
 
-    将配置行修改成以下即可。
+    将配置行修改成以下即可。注意，`%sudo` 的后面是一个制表符（TAB），不是一系列空格。
 
     ```
     %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
@@ -149,7 +149,7 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 
 在读完上面这句话之后，你可能会尝试切换到 `root`，但是却失败了：
 
-```
+```console
 $ su
 Password:
 （密码？什么密码？输我自己的密码试试？）
@@ -159,7 +159,7 @@ $
 
 这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 `root` 用户的密码登录，只允许通过 `sudo` 提高权限。但是，我们可以用 `sudo` 运行 `su`，来得到一个为 `root` 用户权限的 shell。
 
-```
+```console
 $ sudo su
 Password:
 （没错，是我自己的密码）
@@ -175,7 +175,7 @@ $
 
 用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 `groups` 命令，查看自己所属的用户组。
 
-```
+```console
 $ groups
 ustc adm cdrom sudo dip plugdev lxd
 ```
@@ -200,19 +200,19 @@ ustc adm cdrom sudo dip plugdev lxd
 
 `adduser` 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：
 
-```shell
+```console
 $ sudo adduser 用户名
 ```
 
 即可添加此用户。而输入
 
-```shell
+```console
 $ sudo adduser --group 组名
 ```
 
 即可添加此用户组。将用户加入指定用户组也非常简单：
 
-```
+```console
 $ sudo adduser 用户名 组名
 ```
 
@@ -228,7 +228,7 @@ $ sudo adduser 用户名 组名
 
     除了可以通过 `visudo` 命令编辑 `sudoers` 文件外，还可以直接通过将新的用户加入到 `sudo` 用户组，以能够使用 `sudo` 命令。
 
-    ```shell
+    ```console
     $ sudo adduser ustc sudo
     ```
 
@@ -243,7 +243,7 @@ $ sudo adduser 用户名 组名
 
 在 Linux 中，每个文件和目录都有自己的权限。可以使用 `ls -l` 查看当前目录中文件的详细信息。
 
-```
+```console
 $ ls -l
 total 8
 -rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
@@ -262,7 +262,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
     而对于目录来说，拥有执行权限，你就可以访问这个目录下的文件的内容。以下是一个例子：
 
-    ```
+    ```console
     $ ls -l
     total 8
     -rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
@@ -298,14 +298,14 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
     有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：
 
-    ```
+    ```console
     $ ./program
     -bash: ./program: Permission denied
     ```
 
     大多数情况下，这说明这个文件缺少执行 (`x`) 权限。可以使用 `chmod +x` 命令添加执行权限。
 
-    ```
+    ```console
     $ chmod +x program
     $ ./program
     （可以执行了）
@@ -382,7 +382,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
 `/sbin`
 
-: 存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）等。
+: 存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）、`useradd`（添加用户）等。
 
 `/srv`
 
@@ -414,7 +414,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 : 存储会发生变化的程序相关文件。例如下面的目录：
 
     - `/var/log`：存储程序的日志文件。
-    - `/var/lib`：存储程序自身的状态信息（如 lock file）。
+    - `/var/lib`：存储程序自身的状态信息（如 lock file）。这个目录和 `library` 的关系并不大。
     - `/var/run`：存储程序运行时的数据（部分发行版会将该目录符号链接到 `/run` 目录）。
     - `/var/spool`：存储「等待进一步处理」的程序数据。
 
@@ -439,6 +439,34 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 !!! question "`sudo cd`?"
 
     当需要浏览仅 `root` 用户可查看的目录时，很多人的第一反应是 `sudo cd xxx`，但最终失败了。尝试解释这样做不可行的原因。
+
+!!! question "Debian 与 Ubuntu 的区别之一：普通用户运行 `useradd` 等命令"
+
+    提示：可以在按照[第八章](../Ch08/index.md)配置 Docker 后使用如下命令体验 Debian：
+
+    ```console
+    $ sudo docker run -it --rm debian:bookworm
+    ```
+
+    在进入容器后，使用 `useradd`（`adduser` 也可以）创建一个新用户并进入：
+
+    ```console
+    # useradd -m test
+    # su - test
+    $ useradd
+    -sh: 1: useradd: not found
+    ```
+
+    而相同的操作在 Ubuntu 容器（`ubuntu:noble`）中可以找到 `useradd` 这个命令：
+
+    ```console
+    $ useradd
+    Usage: useradd [options] LOGIN
+       useradd -D
+       useradd -D [options]
+    ```
+
+    虽然说 `useradd` 这种程序只能 root 运行，但是以上差异是为什么呢？
 
 ## 引用来源 {#references .no-underline}
 
