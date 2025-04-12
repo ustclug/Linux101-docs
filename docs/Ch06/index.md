@@ -338,9 +338,14 @@ drwxr-xr-x  2 ustc ustc 4096 11月 17 20:45 模板/
 
     部分 shell 会自带一些 alias，例如 [fish 中的 `ll` 就是 `ls -lh` 的别名](https://github.com/fish-shell/fish-shell/blob/daf96a35b57f52eea19302f615283e7c1486ab8c/share/functions/ll.fish#L5)。特别地，Windows 自带的 PowerShell 中的 alias 存在一些争议，例如其对 `curl` 的 alias 实际上是 `Invoke-WebRequest`，而这个命令和上文介绍的 curl 的行为完全不同，给用户带来了困惑。
 
-!!! warning "alias 可能带来的问题"
+!!! tip "检查命令是否被 alias"
 
-    如果将常见命令（例如 `cat`）通过 alias 映射到包含恶意代码的可执行文件上，则可能导致这些恶意代码被意外地执行。
+    如果发现某些命令的行为不符合预期，可以使用 `type` 命令检查该命令是否被 alias 了：
+
+    ```console
+    $ type ls
+    ls is aliased to `ls --color=auto'
+    ```
 
 ### Bash 脚本的运行 {#run-bash-script}
 
