@@ -463,7 +463,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
     $ useradd
     Usage: useradd [options] LOGIN
        useradd -D
-       useradd -D [options]    
+       useradd -D [options]
     ```
 
     虽然说 `useradd` 这种程序只能 root 运行，但是以上差异是为什么呢？
