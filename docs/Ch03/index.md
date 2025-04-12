@@ -492,7 +492,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 #### cat {#cat}
 
-```shell
+```console
 $ # 输出 FILE 文件的全部内容
 $ cat [OPTION] FILE
 ```
@@ -519,7 +519,7 @@ $ cat [OPTION] FILE
 
 less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。
 
-```shell
+```console
 $ # 在可交互的窗口内输出 FILE 文件的内容
 $ less FILE
 ```
@@ -547,7 +547,7 @@ $ less FILE
 
 Nano 是在很多机器上自带的命令行文本编辑器，相比于 vim 和 emacs 来说，对新手更加友好，不需要提前记忆复杂的键位。如果 Nano 没有被默认安装，则可以通过 `apt` 来安装。
 
-```shell
+```console
 $ nano file.txt  # 使用 nano 编辑 file.txt 文件（如果没有则创建）
 ```
 
@@ -557,7 +557,7 @@ Nano 启动后，用户可以直接开始输入需要的内容，使用方向键
 
 ### 复制文件和目录 {#cp}
 
-```shell
+```console
 $ # 将 SOURCE 文件拷贝到 DEST 文件，拷贝得到的文件即为 DEST
 $ cp [OPTION] SOURCE DEST
 
@@ -624,7 +624,7 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
 `mv` 与 `cp` 的使用方式相似，效果类似于 Windows 下的剪切。
 
-```shell
+```console
 $ # 将 SOURCE 文件移动到 DEST 文件
 $ mv [OPTION] SOURCE DEST
 
@@ -645,7 +645,7 @@ $ mv [OPTION] SOURCE... DIRECTORY
 
 ### 删除文件和目录 {#rm}
 
-```shell
+```console
 $ # 删除 FILE 文件，FILE 可以为多个文件。
 $ # 如果需要删除目录，需要通过 -r 选项递归删除目录
 $ rm [OPTION] FILE...
@@ -690,7 +690,7 @@ $ rm [OPTION] FILE...
 
 ### 创建目录 {#mkdir}
 
-```shell
+```console
 $ # 创建一个目录，名为 DIR_NAME
 $ mkdir [OPTION] DIR_NAME...
 ```
@@ -717,7 +717,7 @@ $ mkdir [OPTION] DIR_NAME...
 
 ### 创建文件 {#touch}
 
-```shell
+```console
 $ # 创建一个文件，名为 FILE_NAME
 $ touch FILE_NAME...
 ```
@@ -726,7 +726,7 @@ $ touch FILE_NAME...
 
     创建两个文件，名字分别为 `file1`、`file2`：
 
-    ```
+    ```console
     $ touch file1 file2
     ```
 
@@ -763,7 +763,7 @@ $ touch FILE_NAME...
 
 ### 搜索文件和目录 {#find}
 
-```shell
+```console
 $ # 在 PATH（路径）中根据 EXPRESSION（表达式）搜索文件
 $ find [OPTION] PATH [EXPRESSION]
 ```
@@ -833,7 +833,7 @@ $ find [OPTION] PATH [EXPRESSION]
 
 通常，可以使用其自带的 gzip 或 bzip2 算法进行压缩，生成压缩文件：
 
-```shell
+```console
 $ # 命令格式如下，请参考下面的使用样例了解使用方法
 $ tar [OPTIONS] FILE...
 ```
@@ -940,7 +940,7 @@ $ tar [OPTIONS] FILE...
 
 大部分软件在安装时会将它的软件手册安装在系统的特定目录， `man` 命令就是读取并展示这些手册的命令。在软件手册中，会带有软件的每一个参数的含义、退出值含义、作者等内容，大而全。但一般较少带有使用样例，需要根据自身需要拼接软件参数。
 
-```shell
+```console
 $ # 调出 tar 命令和 ls 命令的文档
 $ man tar
 $ man ls
@@ -991,7 +991,7 @@ DESCRIPTION
 
 在 Debian 系下，可以直接通过 `apt` 进行安装：
 
-```shell
+```console
 $ sudo apt install tldr
 $ # 更新 tldr pages
 $ tldr --update

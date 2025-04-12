@@ -295,7 +295,7 @@ Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态
 
 然而使用命令行，我们只需要执行一条指令。
 
-```shell
+```console
 $ mv /path/to/source/file.txt /path/to/dest/
 ```
 
@@ -384,7 +384,7 @@ rm main.out
 
 之后我们直接输入
 
-```shell
+```console
 $ sh run.sh
 ```
 
@@ -454,7 +454,7 @@ $ sh run.sh
 
 #### 示例 1 {#shell-commands-example-1}
 
-```shell
+```console
 $ pwd
 ```
 
@@ -466,7 +466,7 @@ $ pwd
 
 #### 示例 2 {#shell-commands-example-2}
 
-```shell
+```console
 $ ls
 ```
 
@@ -478,7 +478,7 @@ Desktop Documents Music Pictures Public Templates Videos
 
 #### 示例 3 {#shell-commands-example-3}
 
-```shell
+```console
 $ cd Desktop # 这里的 Desktop 是相对路径，指的就是当前目录下的 Desktop 文件夹
 $ ls
 ```
@@ -517,7 +517,7 @@ WordPress 是一个以 PHP 和 MySQL 为平台的自由开源的博客软件和�
 
 下载脚本要使用 `curl` 命令，我们要先安装 curl。
 
-```shell
+```console
 $ sudo apt install curl
 ```
 
@@ -536,7 +536,7 @@ $ sudo apt install curl
 
 打开终端并运行：
 
-```shell
+```console
 $ curl -fsSL https://101.lug.ustc.edu.cn/Ch02/wordpress.sh > wordpress.sh
 $ # 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：
 $ sudo bash wordpress.sh
@@ -571,13 +571,13 @@ Jekyll 是一个将纯文本转化为静态博客和网站的工具。
 
 我们只需要通过命令行安装它。
 
-```shell
+```console
 $ sudo apt install jekyll
 ```
 
 再输入几行命令用于创建网站：
 
-```shell
+```console
 $ jekyll new my-awesome-site
 $ cd my-awesome-site
 $ jekyll serve

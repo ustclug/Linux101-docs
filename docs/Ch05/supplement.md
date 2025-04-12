@@ -22,7 +22,7 @@ icon: material/puzzle
 
 我们可以看一下，`/usr/bin/passwd` 的文件权限设置：
 
-```shell
+```console
 $ ls -l /usr/bin/passwd
 -rwsr-xr-x 1 root root 67992 Aug 29  2019 /usr/bin/passwd
 ```
@@ -31,7 +31,7 @@ $ ls -l /usr/bin/passwd
 
 同样，`su` 和 `sudo` 也有 `setuid` 权限位：
 
-```
+```console
 $ ls -l /usr/bin/su
 -rwsr-xr-x 1 root root 67816 Jan  9 02:59 /usr/bin/su
 $ ls -l /usr/bin/sudo
@@ -69,7 +69,7 @@ $ ls -l /usr/bin/sudo
 
 一般地，「登录 Shell」会额外加载 `profile` 文件（文件名根据你使用的 Shell 的不同而有区别），且它的 `argv[0][0] == '-'`（相信你已经学过 C 语言了）。可以用以下方法验证：
 
-```shell
+```console
 $ echo $0  # 查看当前 Shell 的 argv[0] 的值
 -bash
 $ # 是 Login shell

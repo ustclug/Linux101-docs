@@ -53,7 +53,7 @@ SELinux 有 3 种工作模式：
 
 使用 `sestatus` 命令查看 SELinux 状态：
 
-```
+```console
 $ sestatus
 SELinux status:                 enabled
 SELinuxfs mount:                /sys/fs/selinux
@@ -220,13 +220,13 @@ $ sudo resize2fs /dev/sda2
 
 在服务器上首先安装 `openssh-server` 软件包，它提供了 SSH 服务器的功能。
 
-```
+```console
 $ sudo apt install openssh-server
 ```
 
 启动并检查 SSH 服务状态：
 
-```
+```console
 $ sudo systemctl start ssh
 $ sudo systemctl status ssh
 ● ssh.service - OpenBSD Secure Shell server
@@ -248,7 +248,7 @@ $ sudo systemctl status ssh
 
 我们可以使用 `ssh` 命令直接连接到本地（localhost）的 SSH 服务器。其中 `@` 符号前的是登录的用户名，后面的是服务器的域名或 IP 地址。
 
-```
+```console
 $ ssh ustc@localhost
 The authenticity of host 'localhost (127.0.0.1)' can't be established.
 ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
@@ -321,7 +321,7 @@ ustc@ustclug-linux101:~$
 
     首先在自己的机器上使用 `ssh-keygen` 生成密钥：
 
-    ```
+    ```console
     $ ssh-keygen
     Generating public/private rsa key pair.
     Enter file in which to save the key (/home/ustc/.ssh/id_rsa):
@@ -349,7 +349,7 @@ ustc@ustclug-linux101:~$
 
     在本地使用 `ssh-copy-id` 命令将公钥拷贝到服务器上：
 
-    ```
+    ```console
     $ ssh-copy-id ustc@localhost
     /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
     /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -377,7 +377,7 @@ ustc@ustclug-linux101:~$
 
     然后让 SSH 服务器重新加载配置：
 
-    ```
+    ```console
     $ sudo systemctl reload ssh
     ```
 
@@ -500,7 +500,7 @@ Featured Server Snaps 一样可以选择不安装，可以之后自行配置。
 
 如果你需要带图形界面的虚拟机，只需要安装 `ubuntu-desktop` 即可。
 
-```bash
+```console
 $ sudo apt-get install ubuntu-desktop
 ```
 

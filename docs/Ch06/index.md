@@ -190,7 +190,7 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
 `wc` 是文本统计的常用工具，它可以输出文本的行数、单词数与字符（字节）数。
 
-```shell
+```console
 $ wc file
      427    2768   20131 file
 ```
@@ -221,7 +221,7 @@ $ wc file
 
 diff 工具用于比较两个文件的不同，并列出差异。
 
-```shell
+```console
 $ echo hello > file1
 $ echo hallo > file2
 $ diff file1 file1
@@ -277,7 +277,7 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
 `sed` 命令可以替换文本中的字符串：
 
-```shell
+```console
 $ sed 's/hello/world/g' file  # 将文件 file 中的 hello 全局（global）替换为 world 后输出
 $ sed 's/hello/world/' file  # 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出
 $ echo 'helloworld' | sed 's/hello/world/g'  # 管道也是可以的
@@ -287,7 +287,7 @@ $ sed -i.bak 's/hello/world/g' file  # 当然，也可以让 sed 帮你备份到
 
 对于大多数用户来说，最常用 `sed` 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：
 
-```shell
+```console
 $ sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 $ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
@@ -313,7 +313,7 @@ Bash 允许用户定制环境以满足自己需要。通过修改环境文件 `.
 
 此外，bash 也支持使用 `alias` 别名代替命令关键字（`alias name='命令'`）。输入 `alias`，可以查看目前存在的别名：
 
-```shell
+```console
 $ alias
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias egrep='egrep --color=auto'
@@ -491,7 +491,7 @@ Bash 也支持在同一个行中安排多个命令：
 
 可以使用 `export` 命令来定义环境变量。在同一个 shell 中使用 `export` 定义之后，这个环境变量会一直保留，直到这个 shell 退出。
 
-```shell
+```console
 $ export A=1
 $ env | grep A=
 A=1
@@ -499,7 +499,7 @@ A=1
 
 此外，也可以在命令前加上环境变量的定义。此时只有这一条命令的环境变量出现变化。
 
-```shell
+```console
 $ B=1 env | grep B=
 B=1
 $ env | grep B=

@@ -86,7 +86,7 @@ $ conda env create -f environment.yml
 
 在大部分情况下，我们编译的程序都是动态链接的。动态链接在这里指程序文件还依赖其他库文件，可以使用 `ldd` 命令确认：
 
-```shell
+```console
 $ cat hello.c
 #include <stdio.h>
 
@@ -113,7 +113,7 @@ $ ldd ./hello
 
 我们在编写程序时，有时需要使用到第三方的库，此时需要加上 `-l` 参数指定在**链接**时链接到的库。
 
-```shell
+```console
 $ gcc -o thread thread.c -lpthread  # 编译一个依赖于 pthread 线程库的应用
 $ ldd ./thread  # 可以看到多出了 libpthread.so.0 的动态链接依赖
 	linux-vdso.so.1 (0x00007ffe6ad93000)
@@ -141,7 +141,7 @@ $ ./MegaCli64  # 缺少 libncurses.so.5，从而无法执行
 
 而静态链接则将依赖的库全部打包到程序文件中。
 
-```shell
+```console
 $ gcc -o hello-static hello.c -static  # 编译一个静态链接的应用
 $ ldd ./hello-static  # 没有动态链接库的依赖
 	not a dynamic executable
@@ -151,7 +151,7 @@ $ ldd ./hello-static  # 没有动态链接库的依赖
 
 但是静态链接也存在一些问题。首先是程序大小，比较一下前面编译的 hello-static 和 hello 的大小吧：
 
-```shell
+```console
 $ ls -l hello hello-static
 -rwxrwxr-x 1 ustc ustc  17K Feb 28 14:43 hello
 -rwxrwxr-x 1 ustc ustc 852K Feb 28 14:39 hello-static

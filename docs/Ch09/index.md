@@ -25,7 +25,7 @@ sort 用于文本的行排序。默认排序方式是升序，按每行的字典
 -   `-o [file]` 指定输出文件
 -   `-n` 用于数值排序，否则“15”会排在“2”前
 
-```shell
+```console
 $ echo -e "snake\nfox\nfish\ncat\nfish\ndog" > animals
 $ sort animals
 cat
@@ -94,7 +94,7 @@ uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。
 
 通常会和 sort 一起使用：
 
-```shell
+```console
 $ sort animals | uniq
 ```
 
@@ -102,13 +102,13 @@ $ sort animals | uniq
 
 `uniq -d` 可以用于仅输出重复行：
 
-```shell
+```console
 $ sort animals | uniq -d
 ```
 
 `uniq -c` 可以用于统计各行重复次数：
 
-```shell
+```console
 $ sort animals | uniq -c
 ```
 
@@ -192,7 +192,7 @@ grep 默认使用 BRE，要使用 ERE 可以使用 `grep -E` 或 egrep。
 -   `-v`：显示不被匹配到的行
 -   `-i`：忽略字符大小写
 
-```shell
+```console
 $ ls /bin | grep -n "^man$"  # 搜索内容仅含 man 的行，并且显示行号
 $ ls /bin | grep -v "[a-z]\|[0-9]"  # 搜索不含小写字母和数字的行
 $ ls /bin | grep -iv "[A-Z]\|[0-9]"  # 搜索不含字母和数字的行
@@ -206,7 +206,7 @@ sed 默认使用 BRE，要使用 ERE 可以 sed -E。
 
 命令格式：
 
-```shell
+```console
 $ sed [OPTIONS] 'command' file(s)
 $ sed [OPTIONS] -f scriptfile file(s)
 ```
@@ -221,7 +221,7 @@ $ sed [OPTIONS] -f scriptfile file(s)
 -   a 当前行下插入文本
 -   i 当前行上插入文本
 
-```shell
+```console
 $ echo -e "seD\nIS\ngOod" > sed_demo
 $ cat sed_demo
 seD
@@ -252,7 +252,7 @@ awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的�
 
 一些示例：
 
-```shell
+```console
 $ cat awk_demo
 Beth    4.00    0
 Dan     3.75    0
@@ -272,7 +272,7 @@ Susie 76.5
 
 awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：
 
-```shell
+```console
 $ awk 'BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }' awk_demo
 337.5
 ```

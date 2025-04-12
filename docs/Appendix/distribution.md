@@ -18,7 +18,7 @@ Ubuntu 基于 Debian，并且相比 Debian 而言更加新手友好。而 Debian
 
 简单使用：
 
-```shell
+```console
 $ sudo dnf install audacity  # 安装 audacity
 $ sudo dnf remove firefox  # 卸载 firefox
 $ dnf search thunderbird  # 搜索 thunderbird
@@ -51,7 +51,7 @@ SELinux 添加了额外的「强制访问控制」安全措施：系统中所有
 
 Arch 使用的默认软件包管理器是 `pacman`。以下是一些常用的命令。
 
-```shell
+```console
 $ sudo pacman -Syu  # 更新系统所有软件包
 $ sudo pacman -S firefox  # 安装 Firefox
 $ sudo pacman -Rs chromium  # 卸载 Chromium 和它的所有依赖
@@ -86,7 +86,7 @@ openSUSE 使用 RPM 作为其软件包格式，但是与 Fedora、CentOS 等不�
 
 以下是一些常用的命令：
 
-```shell
+```console
 $ sudo zypper update  # 更新系统所有软件包
 $ sudo zypper install firefox  # 安装 Firefox
 $ sudo zypper remove chromium  # 卸载 Chromium 和它的所有依赖
@@ -118,7 +118,7 @@ Gentoo 的软件包管理器是 Portage。其对应最常用的 CLI 工具是 `e
 
 以下是一些常用的命令：
 
-```shell
+```console
 $ sudo emerge --sync  # 更新软件包索引
 $ sudo emerge --update --ask @world  # 更新已安装的程序（不包含依赖）
 $ sudo emerge -a firefox  # 安装 Firefox

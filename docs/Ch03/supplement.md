@@ -26,7 +26,7 @@ icon: material/puzzle
 
 -   PCRE2 - 用于支持正则表达式。
 
-```shell
+```console
 $ wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
 $ tar -zxf pcre2-10.42.tar.gz
 $ cd pcre2-10.42
@@ -41,7 +41,7 @@ $ sudo make install
 
 -   zlib - 用于支持 HTTP 头部压缩。
 
-```shell
+```console
 $ wget https://zlib.net/zlib-1.2.13.tar.gz
 $ tar -zxf zlib-1.2.13.tar.gz
 $ cd zlib-1.2.13
@@ -52,7 +52,7 @@ $ sudo make install
 
 -   OpenSSL - 用于支持 HTTPS 协议。
 
-```shell
+```console
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 $ tar -zxf openssl-1.1.1c.tar.gz
 $ cd openssl-1.1.1c
@@ -67,7 +67,7 @@ $ sudo make install
 
 ### 下载 Nginx 源代码 {#download-source}
 
-```shell
+```console
 $ wget https://nginx.org/download/nginx-1.23.3.tar.gz
 $ tar -zxf nginx-1.23.3.tar.gz
 $ cd nginx-1.23.3
@@ -77,7 +77,7 @@ $ cd nginx-1.23.3
 
 #### 配置编译选项 {#configure}
 
-```shell
+```console
 $ ./configure \
 --sbin-path=/usr/local/nginx/nginx \
 --conf-path=/usr/local/nginx/nginx.conf \
@@ -95,7 +95,7 @@ $ ./configure \
 
 #### 编译并安装 {#make-install}
 
-```shell
+```console
 $ make
 $ sudo make install
 ```
@@ -146,7 +146,7 @@ Vim 被誉为「编辑器之神」，但是其陡峭的学习曲线也让人望�
 
 使用 `stat` 工具可以看到一个文件有四个时间戳，分别为 Access，Modify，Change 和 Birth：
 
-```shell
+```console
 $ stat test
 File: test
 Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
@@ -178,7 +178,7 @@ Birth: 2022-02-25 18:12:28.403981478 +0800
 
 访问时间（atime）和创建（Birth, btime）时间很好理解，但是 Modify（mtime）和 Change（ctime）有什么区别呢？可以来试一下：
 
-```shell
+```console
 $ stat test
 File: test
 Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
@@ -228,7 +228,7 @@ unar 是 macOS 上的软件 [The Unarchiver](https://theunarchiver.com/) 的命�
 
 Ubuntu 上直接使用 apt 安装即可：
 
-```shell
+```console
 $ sudo apt install unar
 ```
 
@@ -236,7 +236,7 @@ $ sudo apt install unar
 
 安装之后会得到两个命令：`unar` 和 `lsar`，分别用来解压存档文件以及浏览存档文件内容：
 
-```shell
+```console
 $ unar archive.zip -o output # 将存档文件提取到 output 文件夹中
 $ lsar archive.zip # 浏览存档文件内容
 $ lsar -l archive.zip # 查看详细信息
@@ -247,13 +247,13 @@ $ lsar -L archive.zip # 查看特别详细的信息
 
 `zip` 和 `unzip` 工具分别负责 ZIP 压缩包的压缩与解压缩，使用以下命令安装：
 
-```shell
+```console
 $ sudo apt install zip unzip
 ```
 
 以下提供一些命令例子，更多的功能需要查看对应的文档：
 
-```shell
+```console
 $ zip -r archive.zip path/file1 path/dir1  # （递归地）压缩文件和目录
 $ zip archive.zip path/file2 # 添加文件到已有的压缩包
 $ unzip archive.zip # 解压缩
@@ -265,7 +265,7 @@ $ unzip -l archive.zip # 浏览压缩包内容
 
 `rar` 和 `unrar` 工具分别负责 RAR 压缩包的压缩与解压缩，使用以下命令安装：
 
-```shell
+```console
 $ sudo apt install rar unrar
 ```
 
@@ -275,7 +275,7 @@ $ sudo apt install rar unrar
 
 例子如下：
 
-```shell
+```console
 $ rar a archive.rar path/file1 path/dir1 # 压缩文件和目录/添加文件和目录到压缩包
 $ unrar x archive.rar # 解压缩
 $ unrar x archive.rar path/ # 解压缩到指定目录
@@ -288,7 +288,7 @@ RARLAB 仅提供了 Linux 下命令行界面的 RAR 压缩包处理工具。但�
 
 Ubuntu 下 `p7zip-full` 包提供了 `7z` 等工具处理 7z 包（以及其他各种压缩格式）：
 
-```
+```console
 $ sudo apt install p7zip-full
 ```
 
@@ -304,7 +304,7 @@ $ sudo apt install p7zip-full
 
 以下给出 `7z` 命令行工具的一些例子：
 
-```shell
+```console
 $ 7z a archive.7z path/file1 path/dir1 # 压缩文件和目录/添加文件和目录到压缩包
 $ 7z x archive.7z # 解压缩
 $ 7z x archive.7z -opath/ # 解压缩到 path/ 目录下

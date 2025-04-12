@@ -26,7 +26,7 @@ icon: material/tooltip-question
 
     一个例子：
 
-    ```
+    ```console
     $ apt-file search libc++.so
     libc++-7-dev: /usr/lib/llvm-7/lib/libc++.so
     libc++-7-dev: /usr/lib/x86_64-linux-gnu/libc++.so
@@ -52,14 +52,14 @@ icon: material/tooltip-question
 
     软链接的判断非常简单。如果是软链接的话，`ls -l` 对应的文件会明确写出其指向的文件。
 
-    ```
+    ```console
     $ ls -l /usr/bin/vim
     lrwxrwxrwx 1 root root 21 Jul 21  2019 /usr/bin/vim -> /etc/alternatives/vim
     ```
 
     那么如何判断硬链接呢？我们可以试一下。
 
-    ```
+    ```console
     $ touch file
     $ ln file hardfile
     $ touch other  # 无硬链接的文件
@@ -74,7 +74,7 @@ icon: material/tooltip-question
 
     也可以使用 `stat` 来查看。
 
-    ```
+    ```console
     $ stat hardfile
     File: hardfile
     Size: 0         	Blocks: 0          IO Block: 4096   regular empty file

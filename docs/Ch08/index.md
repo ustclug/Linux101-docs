@@ -66,7 +66,7 @@ Docker 可以在 Windows, Linux 和 macOS 上安装。下面我们讨论内容�
 
 在安装完成后，可以使用
 
-```shell
+```console
 $ sudo adduser 用户名 docker
 ```
 
@@ -324,7 +324,7 @@ COPY ./app /app
 
 Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
 
-```shell
+```console
 $ sudo apt install docker-compose
 ```
 
