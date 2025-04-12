@@ -311,8 +311,6 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
     （可以执行了）
     ```
 
-    <!-- 再次强调，**在运行任何来自网络的程序或脚本前，请先检查其内容**，特别是使用高权限的用户执行时。 -->
-
 ## 文件系统层次结构 {#fhs}
 
 相信到现在你应该已经发现了：Linux 下文件系统的结构和 Windows 的很不一样。在 Windows 中，分区以盘符的形式来标识（如「C 盘」、「D 盘」），各个分区的分界线是很明确的。在系统所在的分区（一般为 C 盘）中，存储着程序文件 (`Program Files`)，系统运行需要的文件 (`Windows`)，用户文件 (`Users`) 等。这种组织形式源于 DOS 和早期的 Windows，并一直传承下来。
@@ -384,7 +382,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
 `/sbin`
 
-: 存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）等。
+: 存储用于系统管理，以及仅允许 `root` 用户使用的程序。如 `fsck`（文件系统修复程序）、`reboot`（重启系统）、`useradd`（添加用户）等。
 
 `/srv`
 
@@ -442,9 +440,33 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
     当需要浏览仅 `root` 用户可查看的目录时，很多人的第一反应是 `sudo cd xxx`，但最终失败了。尝试解释这样做不可行的原因。
 
-!!! question "普通用户运行 `reboot`"
+!!! question "Debian 与 Ubuntu 的区别之一：普通用户运行 `useradd` 等命令"
 
-    前面说过，`reboot` 这类程序只能由 `root` 用户运行。为何普通用户在 Shell 中直接输入 `reboot` 不能重启系统？
+    提示：可以在按照[第八章](../Ch08/index.md)配置 Docker 后使用如下命令体验 Debian：
+
+    ```console
+    $ sudo docker run -it --rm debian:bookworm
+    ```
+
+    在进入容器后，使用 `useradd`（`adduser` 也可以）创建一个新用户并进入：
+
+    ```console
+    # useradd -m test
+    # su - test
+    $ useradd
+    -sh: 1: useradd: not found
+    ```
+
+    而相同的操作在 Ubuntu 容器（`ubuntu:noble`）中可以找到 `useradd` 这个命令：
+
+    ```console
+    $ useradd
+    Usage: useradd [options] LOGIN
+       useradd -D
+       useradd -D [options]    
+    ```
+
+    虽然说 `useradd` 这种程序只能 root 运行，但是以上差异是为什么呢？
 
 ## 引用来源 {#references .no-underline}
 

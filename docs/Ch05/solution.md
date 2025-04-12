@@ -71,27 +71,8 @@ icon: material/tooltip-question
 
     那么 `cd` 可以实现成（外置的）程序吗？答案是不能：因为切换工作目录的系统调用 (`chdir()`) 只能切换当前的程序的工作目录。如果实现成了外置的程序，那么切换完退出之后，shell 的工作目录仍然不会变化。
 
-## 普通用户运行 `reboot`
+## Debian 与 Ubuntu 的区别之一：普通用户运行 `useradd` 等命令
 
 ??? info "解答"
 
-    这里可能不止权限不足的问题。事实上，在 Debian 系统上，用普通用户执行 `reboot`，你会看到：
-
-    ```console
-    $ reboot
-    -bash: reboot: command not found
-    ```
-
-    这是为什么呢？这是因为，`reboot` 存在于 `/sbin` 下，而这个目录并不在普通用户登录后默认的 `PATH` 环境变量中（但 Ubuntu 下则不一样：`/sbin` 也在普通用户的 `PATH` 环境变量中）。也就是说，Shell 并不会去 `/sbin` 中查找 `reboot`，自然就会提示 `command not found`。如果执行
-
-    ```console
-    $ /sbin/reboot
-    ```
-
-    或者
-
-     ```console
-     $ systemctl reboot -i  # 另一种重启的方法
-     ```
-
-    就会因为有其他用户已登录，或者权限不足而失败。其他的命令也是类似的原因，只能由 `root` 执行。
+    这里可能不止权限不足的问题。这是因为，`useradd` 存在于 `/sbin` 下，而在 Debian 中，这个目录并不在普通用户登录后默认的 `PATH` 环境变量中（但 Ubuntu 下则不一样：`/sbin` 也在普通用户的 `PATH` 环境变量中）。也就是说，Shell 并不会去 `/sbin` 中查找 `useradd`，自然就会提示 `command not found`。如果改成完整路径（`/sbin/useradd`）就可以了。
