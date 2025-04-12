@@ -2246,18 +2246,18 @@
 <h4 id="shell-efficiency">效率<a class="headerlink" href="#shell-efficiency" title="Permanent link">&para;</a></h4>
 <p>使用命令行操作可以减少鼠标操作，我们经常可以使用一条命令来代替好几次的鼠标单击。例如如果我们想要移动某一个文件，我们要执行下面步骤：</p>
 <ul>
-<li>打开文件所在的文件夹 <code>../source/</code></li>
-<li>打开目标文件夹 <code>../dest/</code></li>
-<li>从 <code>../source/</code> 文件夹拖拽文件 <code>file.txt</code> 到 <code>../dest/</code> 文件夹中</li>
+<li>打开文件所在的文件夹 <code>/path/to/source/</code></li>
+<li>打开目标文件夹 <code>/path/to/dest/</code></li>
+<li>从 <code>source</code> 文件夹拖拽文件 <code>file.txt</code> 到 <code>dest</code> 文件夹中</li>
 </ul>
 <p>然而使用命令行，我们只需要执行一条指令。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mv<span class="w"> </span>../source/file.txt<span class="w"> </span>../dest/
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>mv<span class="w"> </span>/path/to/source/file.txt<span class="w"> </span>/path/to/dest/
 </code></pre></div>
 <p>可能在初学者看来，熟记这条指令并不容易，但是从长远上看，熟悉了命令行之后再加上有自动补全的 shell 程序，使用命令行可以节省大量时间。</p>
 <div class="admonition tip">
 <p class="admonition-title">路径的概念</p>
 <p>对于不太熟悉命令行的用户来说，路径的概念可能会在最开始带来一些困惑。这里做一些简单的介绍。</p>
-<p>在 Windows 系统下，路径是以反斜杠 <code>\</code> 分隔的，例如：</p>
+<p>在 Windows 系统下，路径是以反斜杠 <code>\</code> 分隔的（Windows 系统也可以使用 <code>/</code> 分隔路径），例如：</p>
 <div class="highlight"><pre><span></span><code>C:\Windows\explorer.exe
 </code></pre></div>
 <p>代表 C 盘下 Windows 目录下的 <code>explorer.exe</code> 文件。而在类 UNIX 系统中，路径是以正斜杠 <code>/</code> 分隔的，例如：</p>
@@ -2265,11 +2265,26 @@
 </code></pre></div>
 <p>代表根目录下的 <code>bin</code> 文件夹下的 <code>ls</code> 文件。可以发现除了分隔符不同以外，类 UNIX 系统也不采用 Windows 下的盘符机制，而是采用统一的根目录。Linux 的文件系统层次结构会在<a href="../Ch05/#fhs">第五章</a>介绍。</p>
 <p>另外，以上的路径都是绝对路径，还有一种「相对路径」：</p>
-<div class="highlight"><pre><span></span><code>./file.txt<span class="w">  </span><span class="c1"># 当前目录下的 file.txt 文件</span>
-../file.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 file.txt 文件</span>
-../abc/file.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 abc 文件夹下的 file.txt 文件</span>
+<div class="highlight"><pre><span></span><code>file1.txt<span class="w">    </span><span class="c1"># 当前目录下的 file1.txt 文件</span>
+./file1.txt<span class="w">  </span><span class="c1"># 当前目录下的 file1.txt 文件</span>
+./file2.txt<span class="w">  </span><span class="c1"># 当前目录下的 file2.txt 文件</span>
+../file3.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 file3.txt 文件</span>
+../abc/file4.txt<span class="w"> </span><span class="c1"># 上一级目录（父目录）下的 abc 文件夹下的 file4.txt 文件</span>
+../../file5.txt<span class="w"> </span><span class="c1"># 上上级目录下的 file5.txt</span>
+</code></pre></div>
+<p>它们的关系是这样的：</p>
+<div class="highlight"><pre><span></span><code>上上级目录/
+|___ file5.txt
+|___ 上一级目录/
+     |___ file3.txt
+     |___ 当前目录/
+     |    |___ file1.txt
+     |    |___ file2.txt
+     |___ abc/
+          |___ file4.txt
 </code></pre></div>
 <p>每个正在运行中的进程（包括 Shell）都有自己的「当前工作目录」（当前所在的目录），进程可以切换自己的当前工作目录，以上的相对路径都是相对于当前工作目录的。可以发现，不管当前工作目录在哪里，绝对路径对应的文件都是一致的，而相对路径对应的文件就会随着当前工作目录的变化而变化。</p>
+<p>特别地，用户的主目录（一般是 <code>/home/&lt;用户名&gt;</code>）可以被简写为 <code>~</code>。例如，<code>~/work/test.c</code> 可能是 <code>/home/ustc/work/test.c</code> 的缩写。</p>
 </div>
 <h4 id="shell-automation">自动化脚本<a class="headerlink" href="#shell-automation" title="Permanent link">&para;</a></h4>
 <div class="admonition tip">
@@ -2292,8 +2307,13 @@ gcc<span class="w"> </span>main.c<span class="w"> </span>-o<span class="w"> </sp
 ./main.out
 rm<span class="w"> </span>main.out
 </code></pre></div>
+<p>和其他地方不一样，在 Shell 中运行程序时，程序名（<code>main.out</code>）前面必须有 <code>./</code>。这是因为因为我们的工作目录不包含在环境变量（<code>$PATH</code>）中，故如果不加 <code>./</code> 则系统会找不到程序。系统中安装的程序（例如 <code>gcc</code>）一般会放在 <code>$PATH</code> 环境变量中包含了的路径下，故运行它们不需要使用 <code>./</code>。</p>
+<div class="admonition tip">
+<p class="admonition-title">为何需要加上 <code>./</code></p>
+<p>一个简单的原因是，如果像 Windows 那样直接输入可执行文件的名称就能运行程序的话，攻击者可能将恶意代码写入到用户工作目录下以一些常见的命令（例如 <code>ls</code> 和 <code>cat</code>）为名称的文件中，并加入执行（<code>x</code>）权限。不知情的用户执行这些命令就会导致恶意代码的运行。而 Linux 系统下不加 <code>./</code> 运行的是 <code>PATH</code> 环境变量中列出的目录下的可执行文件，这些位置一般只有 <code>root</code> 用户能写入，避免了上面的问题。此外另一个原因是，这还避免了用户的程序和系统中安装的程序因为重名而冲突。</p>
+</div>
 <p>之后我们直接输入</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sh<span class="w"> </span>run.sh
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>run.sh
 </code></pre></div>
 <p>即可看到程序输出结果。</p>
 <div class="admonition tip">
@@ -2303,14 +2323,14 @@ rm<span class="w"> </span>main.out
 <h4 id="shell-resource-conservation">节省资源<a class="headerlink" href="#shell-resource-conservation" title="Permanent link">&para;</a></h4>
 <p>图形界面对资源的消耗是不可忽略的，在绝大部分的服务器中都没有使用图形界面，节约资源。</p>
 <h4 id="shell-system-maintenance">进行高级的系统维护工作<a class="headerlink" href="#shell-system-maintenance" title="Permanent link">&para;</a></h4>
-<p>一些高级的系统维护任务只能通过命令行来完成，因为相关的程序并没有提供图形界面的控制面板，或者需要手工编写复杂的配置文件。</p>
+<p>一些高级的系统维护任务只能通过命令行来完成，或者需要手工编写复杂的配置文件，因为相关的程序并没有提供图形界面的控制面板。</p>
 <h4 id="shell-duang">使用命令行看上去很酷<a class="headerlink" href="#shell-duang" title="Permanent link">&para;</a></h4>
 <p>影视作品中，操作命令行的总是技术高超的黑客。现在轮到你来操作命令行了，难道不是很酷的一件事情吗？</p>
 <div class="admonition tip">
 <p class="admonition-title"><code>cmatrix</code>：命令行界面模拟《黑客帝国》特效显示</p>
 <p>Linux 的命令行界面有一些显示效果很有意思的程序，<code>cmatrix</code> 是其中之一。</p>
 <p>使用以下命令安装（软件的安装将在<a href="../Ch03/">第三章</a>详细介绍）：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmatrix
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmatrix
 </code></pre></div>
 <p>之后就可以使用 <code>cmatrix</code> 命令来查看特效效果了。按下 <code>q</code> 键或者 Ctrl + C 组合键退出。</p>
 </div>
@@ -2336,20 +2356,20 @@ rm<span class="w"> </span>main.out
 </ul>
 <p>更多的命令行操作我们将在<a href="../Ch03/">第三章</a>和<a href="../Ch06/">第六章</a>详细介绍。</p>
 <h4 id="shell-commands-example-1">示例 1<a class="headerlink" href="#shell-commands-example-1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">pwd</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">pwd</span>
 </code></pre></div>
 <p>会打印出当前所在的目录：</p>
 <div class="highlight"><pre><span></span><code>/home/ustc
 </code></pre></div>
 <h4 id="shell-commands-example-2">示例 2<a class="headerlink" href="#shell-commands-example-2" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls
 </code></pre></div>
 <p>会打印出当前目录的内容：</p>
 <div class="highlight"><pre><span></span><code>Desktop Documents Music Pictures Public Templates Videos
 </code></pre></div>
 <h4 id="shell-commands-example-3">示例 3<a class="headerlink" href="#shell-commands-example-3" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Desktop
-$<span class="w"> </span>ls
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>Desktop<span class="w"> </span><span class="c1"># 这里的 Desktop 是相对路径，指的就是当前目录下的 Desktop 文件夹</span>
+<span class="gp">$ </span>ls
 </code></pre></div>
 <p>进入桌面，并打印出桌面的内容。</p>
 <div class="highlight"><pre><span></span><code>hi.txt
@@ -2376,7 +2396,7 @@ $<span class="w"> </span>ls
 <p>如果你正在使用我们提供的虚拟机，建议将虚拟机分配的内存从 1 GB 添加至至少 2 GB（2048 MB），以同时供桌面环境与 MySQL 数据库流畅使用。</p>
 </div>
 <p>下载脚本要使用 <code>curl</code> 命令，我们要先安装 curl。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">关于记号约定</p>
@@ -2388,9 +2408,9 @@ $：未找到命令
 <p>可以阅读<a href="../notations/">记号约定</a>了解有关信息。</p>
 </div>
 <p>打开终端并运行：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.lug.ustc.edu.cn/Ch02/wordpress.sh<span class="w"> </span>&gt;<span class="w"> </span>wordpress.sh
-$<span class="w"> </span><span class="c1"># 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：</span>
-$<span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span>wordpress.sh
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.lug.ustc.edu.cn/Ch02/wordpress.sh<span class="w"> </span>&gt;<span class="w"> </span>wordpress.sh
+<span class="gp">$ </span><span class="c1"># 可以阅读 wordpress.sh 了解其运行的命令，检查代码无误后执行：</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>bash<span class="w"> </span>wordpress.sh
 </code></pre></div>
 <p>等待片刻即可完成安装。</p>
 <div class="admonition warning">
@@ -2400,7 +2420,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span
 <div class="admonition warning">
 <p class="admonition-title">避免执行类似于 curl | sh 的命令</p>
 <p>在本节之前的版本中，以上的命令是：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.lug.ustc.edu.cn/Ch02/wordpress.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://101.lug.ustc.edu.cn/Ch02/wordpress.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
 </code></pre></div>
 <p>它的功能是从对应的 URL 获取脚本内容后，直接用 <code>sudo bash</code> 去执行。但是从安全性的角度这是不恰当的，因为网络上的脚本有可能包含恶意内容，直接执行可能会对系统带来安全风险。因此相关命令修改为了首先下载脚本到文件中（<code>wordpress.sh</code> 文件），然后再执行。如果对脚本内容有疑虑，则可以阅读脚本内容，检查其是否和你的预期相一致。</p>
 </div>
@@ -2410,12 +2430,12 @@ $<span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span
 <h3 id="jekyll">Jekyll<a class="headerlink" href="#jekyll" title="Permanent link">&para;</a></h3>
 <p>Jekyll 是一个将纯文本转化为静态博客和网站的工具。</p>
 <p>我们只需要通过命令行安装它。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jekyll
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jekyll
 </code></pre></div>
 <p>再输入几行命令用于创建网站：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jekyll<span class="w"> </span>new<span class="w"> </span>my-awesome-site
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-awesome-site
-$<span class="w"> </span>jekyll<span class="w"> </span>serve
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>jekyll<span class="w"> </span>new<span class="w"> </span>my-awesome-site
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>my-awesome-site
+<span class="gp">$ </span>jekyll<span class="w"> </span>serve
 </code></pre></div>
 <p>打开浏览器，在浏览器中输入 <code>localhost:4000</code> 进入我们搭建的网站。</p>
 <p><img alt="" class="img-border" src="images/jekyll-installation.png" /></p>

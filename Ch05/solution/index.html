@@ -1127,6 +1127,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#debian-ubuntu-useradd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian 与 Ubuntu 的区别之一：普通用户运行 useradd 等命令
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1719,6 +1728,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#debian-ubuntu-useradd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian 与 Ubuntu 的区别之一：普通用户运行 useradd 等命令
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1768,11 +1786,11 @@
 </div>
 <details class="info">
 <summary>解答</summary>
-<div class="highlight"><pre><span></span><code>$ /usr/sbin/nologin
-This account is currently not available.
-$ /bin/false
-$ echo $?
-1
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>/usr/sbin/nologin
+<span class="go">This account is currently not available.</span>
+<span class="gp">$ </span>/bin/false
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
+<span class="go">1</span>
 </code></pre></div>
 <p>以它们作为系统用户的默认 Shell，也就实现了「无法登录」的效果，提高了系统用户的安全性。以下是一个能够说明其「安全性」的例子：</p>
 <p>假设某个（运行在某系统用户上的）服务被攻击者发现可以任意以某系统用户的权限写入文件。假设 SSH 开启，攻击者可以把自己的公钥写入 <code>~/.ssh/authorized_keys</code>，然后使用自己的私钥登录此用户，得到 shell。</p>
@@ -1798,11 +1816,16 @@ $ echo $?
 <details class="info">
 <summary>解答</summary>
 <p>如果你真的去执行 <code>sudo cd</code>，那么会看到:</p>
-<div class="highlight"><pre><span></span><code>$ sudo cd a
-sudo: cd: command not found
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>a
+<span class="go">sudo: cd: command not found</span>
 </code></pre></div>
 <p>这是因为，<code>cd</code> 是 shell 的<strong>内建命令</strong>，而不是某个具体的程序，而 <code>sudo</code> 的功能，是以其他用户 (一般是 root) 的身份执行程序。</p>
 <p>那么 <code>cd</code> 可以实现成（外置的）程序吗？答案是不能：因为切换工作目录的系统调用 (<code>chdir()</code>) 只能切换当前的程序的工作目录。如果实现成了外置的程序，那么切换完退出之后，shell 的工作目录仍然不会变化。</p>
+</details>
+<h2 id="debian-ubuntu-useradd">Debian 与 Ubuntu 的区别之一：普通用户运行 <code>useradd</code> 等命令<a class="headerlink" href="#debian-ubuntu-useradd" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>解答</summary>
+<p>这里可能不止权限不足的问题。这是因为，<code>useradd</code> 存在于 <code>/sbin</code> 下，而在 Debian 中，这个目录并不在普通用户登录后默认的 <code>PATH</code> 环境变量中（但 Ubuntu 下则不一样：<code>/sbin</code> 也在普通用户的 <code>PATH</code> 环境变量中）。也就是说，Shell 并不会去 <code>/sbin</code> 中查找 <code>useradd</code>，自然就会提示 <code>command not found</code>。如果改成完整路径（<code>/sbin/useradd</code>）就可以了。</p>
 </details>
 
 

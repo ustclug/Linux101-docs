@@ -1985,12 +1985,12 @@
 <ul>
 <li>PCRE2 - 用于支持正则表达式。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>pcre2-10.42.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pcre2-10.42
-$<span class="w"> </span>./configure
-$<span class="w"> </span>make
-$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-zxf<span class="w"> </span>pcre2-10.42.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>pcre2-10.42
+<span class="gp">$ </span>./configure
+<span class="gp">$ </span>make
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <details class="tip">
 <summary>PCRE 的版本</summary>
@@ -1999,35 +1999,35 @@ $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span
 <ul>
 <li>zlib - 用于支持 HTTP 头部压缩。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://zlib.net/zlib-1.2.13.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>zlib-1.2.13.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>zlib-1.2.13
-$<span class="w"> </span>./configure
-$<span class="w"> </span>make
-$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://zlib.net/zlib-1.2.13.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-zxf<span class="w"> </span>zlib-1.2.13.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>zlib-1.2.13
+<span class="gp">$ </span>./configure
+<span class="gp">$ </span>make
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <ul>
 <li>OpenSSL - 用于支持 HTTPS 协议。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://www.openssl.org/source/openssl-1.1.1c.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>openssl-1.1.1c.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>openssl-1.1.1c
-$<span class="w"> </span>./config
-$<span class="w"> </span>make
-$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-zxf<span class="w"> </span>openssl-1.1.1c.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>openssl-1.1.1c
+<span class="gp">$ </span>./config
+<span class="gp">$ </span>make
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <details class="tip">
 <summary>关于 OpenSSL 编译</summary>
 <p>OpenSSL 的编译的有关细节可以参考其<a href="https://wiki.openssl.org/index.php/Compilation_and_Installation">官方 wiki 中的说明</a>。如果你点击阅读了开头提到的编译文档，可以注意到它使用了 <code>./Configure darwin64-x86_64-cc --prefix=/usr</code>，但该指令仅适用于 macOS 操作系统（darwin 为 macOS 操作系统内核名）。</p>
 </details>
 <h3 id="download-source">下载 Nginx 源代码<a class="headerlink" href="#download-source" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://nginx.org/download/nginx-1.23.3.tar.gz
-$<span class="w"> </span>tar<span class="w"> </span>-zxf<span class="w"> </span>nginx-1.23.3.tar.gz
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nginx-1.23.3
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://nginx.org/download/nginx-1.23.3.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-zxf<span class="w"> </span>nginx-1.23.3.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>nginx-1.23.3
 </code></pre></div>
 <h3 id="install-from-source">使用源代码安装<a class="headerlink" href="#install-from-source" title="Permanent link">&para;</a></h3>
 <h4 id="configure">配置编译选项<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./configure<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>./configure<span class="w"> </span><span class="se">\</span>
 --sbin-path<span class="o">=</span>/usr/local/nginx/nginx<span class="w"> </span><span class="se">\</span>
 --conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf<span class="w"> </span><span class="se">\</span>
 --pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid<span class="w"> </span><span class="se">\</span>
@@ -2042,8 +2042,8 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nginx
 <p>使用 <code>\</code> 符号将一行长命令分解为多行书写，便于阅读。</p>
 </div>
 <h4 id="make-install">编译并安装<a class="headerlink" href="#make-install" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make
-$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>make
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <h3 id="summary">总结<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>从 Nginx 的源代码编译安装可以看出，无论是它的依赖还是主程序，主要过程均经历如下几个步骤：</p>
@@ -2083,15 +2083,15 @@ $<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span
 <p>以上的简单教学已经可以帮助你正常操作 vim 了，vim 也自带 <code>vimtutor</code> 教学程序，可以帮助你快速掌握 vim 的基本操作。熟练使用 vim 有助于提高编辑文本时的工作效率。</p>
 <h2 id="timestamp">文件的时间戳<a class="headerlink" href="#timestamp" title="Permanent link">&para;</a></h2>
 <p>使用 <code>stat</code> 工具可以看到一个文件有四个时间戳，分别为 Access，Modify，Change 和 Birth：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span>
-File:<span class="w"> </span><span class="nb">test</span>
-Size:<span class="w"> </span><span class="m">0</span><span class="w">             </span>Blocks:<span class="w"> </span><span class="m">0</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>empty<span class="w"> </span>file
-Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
-Access:<span class="w"> </span><span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
-Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>stat<span class="w"> </span><span class="nb">test</span>
+<span class="go">File: test</span>
+<span class="go">Size: 0             Blocks: 0          IO Block: 4096   regular empty file</span>
+<span class="go">Device: 801h/2049d  Inode: 1310743     Links: 1</span>
+<span class="go">Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)</span>
+<span class="go">Access: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="go">Modify: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="go">Change: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="go">Birth: 2022-02-25 18:12:28.403981478 +0800</span>
 </code></pre></div>
 <details class="info">
 <summary>如何编程获得文件的这四个时间戳？</summary>
@@ -2110,37 +2110,37 @@ Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> 
 </code></pre></div>
 </details>
 <p>访问时间（atime）和创建（Birth, btime）时间很好理解，但是 Modify（mtime）和 Change（ctime）有什么区别呢？可以来试一下：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span>
-File:<span class="w"> </span><span class="nb">test</span>
-Size:<span class="w"> </span><span class="m">0</span><span class="w">             </span>Blocks:<span class="w"> </span><span class="m">0</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>empty<span class="w"> </span>file
-Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
-Access:<span class="w"> </span><span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
-Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
-Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
-Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:15:16.625288185<span class="w"> </span>+0800
-Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-$<span class="w"> </span>vim<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 使用 vim 编辑文件</span>
-$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span>
-<span class="w">  </span>File:<span class="w"> </span><span class="nb">test</span>
-<span class="w">  </span>Size:<span class="w"> </span><span class="m">4</span><span class="w">           </span>Blocks:<span class="w"> </span><span class="m">8</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>file
-Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
-Access:<span class="w"> </span><span class="o">(</span><span class="m">0644</span>/-rw-r--r--<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
-Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:24:29.674464348<span class="w"> </span>+0800
-Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:24:32.230343236<span class="w"> </span>+0800
-Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:24:32.230343236<span class="w"> </span>+0800
-<span class="w"> </span>Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-$<span class="w"> </span><span class="c1"># mtime 和 ctime（以及 atime）都变化了。</span>
-$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 修改文件权限</span>
-$<span class="w"> </span>stat<span class="w"> </span><span class="nb">test</span>
-<span class="w">  </span>File:<span class="w"> </span><span class="nb">test</span>
-<span class="w">  </span>Size:<span class="w"> </span><span class="m">4</span><span class="w">           </span>Blocks:<span class="w"> </span><span class="m">8</span><span class="w">          </span>IO<span class="w"> </span>Block:<span class="w"> </span><span class="m">4096</span><span class="w">   </span>regular<span class="w"> </span>file
-Device:<span class="w"> </span>801h/2049d<span class="w">  </span>Inode:<span class="w"> </span><span class="m">1310743</span><span class="w">     </span>Links:<span class="w"> </span><span class="m">1</span>
-Access:<span class="w"> </span><span class="o">(</span><span class="m">0755</span>/-rwxr-xr-x<span class="o">)</span><span class="w">  </span>Uid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span><span class="w">   </span>Gid:<span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">1000</span>/<span class="w">     </span>ustc<span class="o">)</span>
-Access:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:24:29.674464348<span class="w"> </span>+0800
-Modify:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:24:32.230343236<span class="w"> </span>+0800
-Change:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">23</span>:26:45.242321559<span class="w"> </span>+0800
-<span class="w"> </span>Birth:<span class="w"> </span><span class="m">2022</span>-02-25<span class="w"> </span><span class="m">18</span>:12:28.403981478<span class="w"> </span>+0800
-$<span class="w"> </span><span class="c1"># 只有 ctime 发生了变化。</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>stat<span class="w"> </span><span class="nb">test</span>
+<span class="go">File: test</span>
+<span class="go">Size: 0             Blocks: 0          IO Block: 4096   regular empty file</span>
+<span class="go">Device: 801h/2049d  Inode: 1310743     Links: 1</span>
+<span class="go">Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)</span>
+<span class="go">Access: 2022-02-25 18:15:16.625288185 +0800</span>
+<span class="go">Modify: 2022-02-25 18:15:16.625288185 +0800</span>
+<span class="go">Change: 2022-02-25 18:15:16.625288185 +0800</span>
+<span class="go">Birth: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="gp">$ </span>vim<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 使用 vim 编辑文件</span>
+<span class="gp">$ </span>stat<span class="w"> </span><span class="nb">test</span>
+<span class="go">  File: test</span>
+<span class="go">  Size: 4           Blocks: 8          IO Block: 4096   regular file</span>
+<span class="go">Device: 801h/2049d  Inode: 1310743     Links: 1</span>
+<span class="go">Access: (0644/-rw-r--r--)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)</span>
+<span class="go">Access: 2022-02-25 23:24:29.674464348 +0800</span>
+<span class="go">Modify: 2022-02-25 23:24:32.230343236 +0800</span>
+<span class="go">Change: 2022-02-25 23:24:32.230343236 +0800</span>
+<span class="go"> Birth: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="gp">$ </span><span class="c1"># mtime 和 ctime（以及 atime）都变化了。</span>
+<span class="gp">$ </span>chmod<span class="w"> </span>+x<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 修改文件权限</span>
+<span class="gp">$ </span>stat<span class="w"> </span><span class="nb">test</span>
+<span class="go">  File: test</span>
+<span class="go">  Size: 4           Blocks: 8          IO Block: 4096   regular file</span>
+<span class="go">Device: 801h/2049d  Inode: 1310743     Links: 1</span>
+<span class="go">Access: (0755/-rwxr-xr-x)  Uid: ( 1000/     ustc)   Gid: ( 1000/     ustc)</span>
+<span class="go">Access: 2022-02-25 23:24:29.674464348 +0800</span>
+<span class="go">Modify: 2022-02-25 23:24:32.230343236 +0800</span>
+<span class="go">Change: 2022-02-25 23:26:45.242321559 +0800</span>
+<span class="go"> Birth: 2022-02-25 18:12:28.403981478 +0800</span>
+<span class="gp">$ </span><span class="c1"># 只有 ctime 发生了变化。</span>
 </code></pre></div>
 <p>可以观察到，mtime 仅会在文件数据变化时更新，而 ctime 会在文件数据以及文件元信息（例如权限、所有权）变化时更新。</p>
 <p>此外，由于 atime 的实际用途不大，有许多用户会在挂载磁盘时添加 <code>noatime</code> 参数，让操作系统在访问文件时不去更新 atime，以提高磁盘性能。</p>
@@ -2150,44 +2150,44 @@ $<span class="w"> </span><span class="c1"># 只有 ctime 发生了变化。</spa
 <p>unar 是 macOS 上的软件 <a href="https://theunarchiver.com/">The Unarchiver</a> 的命令行工具，能够同样用于 Windows 和 Linux。</p>
 <p>软件介绍：<a href="https://theunarchiver.com/command-line">Unar and Lsar | Command Line Tools for The Unarchiver</a>。</p>
 <p>Ubuntu 上直接使用 apt 安装即可：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>unar
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>unar
 </code></pre></div>
 <p>对于其他 Linux 发行版，请参照网站的介绍，安装合适的依赖以进行编译安装。</p>
 <p>安装之后会得到两个命令：<code>unar</code> 和 <code>lsar</code>，分别用来解压存档文件以及浏览存档文件内容：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>unar<span class="w"> </span>archive.zip<span class="w"> </span>-o<span class="w"> </span>output<span class="w"> </span><span class="c1"># 将存档文件提取到 output 文件夹中</span>
-$<span class="w"> </span>lsar<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 浏览存档文件内容</span>
-$<span class="w"> </span>lsar<span class="w"> </span>-l<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 查看详细信息</span>
-$<span class="w"> </span>lsar<span class="w"> </span>-L<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 查看特别详细的信息</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>unar<span class="w"> </span>archive.zip<span class="w"> </span>-o<span class="w"> </span>output<span class="w"> </span><span class="c1"># 将存档文件提取到 output 文件夹中</span>
+<span class="gp">$ </span>lsar<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 浏览存档文件内容</span>
+<span class="gp">$ </span>lsar<span class="w"> </span>-l<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 查看详细信息</span>
+<span class="gp">$ </span>lsar<span class="w"> </span>-L<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 查看特别详细的信息</span>
 </code></pre></div>
 <h3 id="zip">处理 ZIP 压缩包：<code>zip</code> 与 <code>unzip</code><a class="headerlink" href="#zip" title="Permanent link">&para;</a></h3>
 <p><code>zip</code> 和 <code>unzip</code> 工具分别负责 ZIP 压缩包的压缩与解压缩，使用以下命令安装：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zip<span class="w"> </span>unzip
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zip<span class="w"> </span>unzip
 </code></pre></div>
 <p>以下提供一些命令例子，更多的功能需要查看对应的文档：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>zip<span class="w"> </span>-r<span class="w"> </span>archive.zip<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w">  </span><span class="c1"># （递归地）压缩文件和目录</span>
-$<span class="w"> </span>zip<span class="w"> </span>archive.zip<span class="w"> </span>path/file2<span class="w"> </span><span class="c1"># 添加文件到已有的压缩包</span>
-$<span class="w"> </span>unzip<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 解压缩</span>
-$<span class="w"> </span>unzip<span class="w"> </span>archive.zip<span class="w"> </span>-d<span class="w"> </span>path/<span class="w"> </span><span class="c1"># 解压缩到指定目录</span>
-$<span class="w"> </span>unzip<span class="w"> </span>-l<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>zip<span class="w"> </span>-r<span class="w"> </span>archive.zip<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w">  </span><span class="c1"># （递归地）压缩文件和目录</span>
+<span class="gp">$ </span>zip<span class="w"> </span>archive.zip<span class="w"> </span>path/file2<span class="w"> </span><span class="c1"># 添加文件到已有的压缩包</span>
+<span class="gp">$ </span>unzip<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 解压缩</span>
+<span class="gp">$ </span>unzip<span class="w"> </span>archive.zip<span class="w"> </span>-d<span class="w"> </span>path/<span class="w"> </span><span class="c1"># 解压缩到指定目录</span>
+<span class="gp">$ </span>unzip<span class="w"> </span>-l<span class="w"> </span>archive.zip<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
 </code></pre></div>
 <h3 id="rar">处理 RAR 压缩包：<code>rar</code> 与 <code>unrar</code><a class="headerlink" href="#rar" title="Permanent link">&para;</a></h3>
 <p><code>rar</code> 和 <code>unrar</code> 工具分别负责 RAR 压缩包的压缩与解压缩，使用以下命令安装：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rar<span class="w"> </span>unrar
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rar<span class="w"> </span>unrar
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">RAR 压缩程序的版权问题</p>
 <p>RAR 的解压缩程序是免费的（源代码也是公开的<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>），但是压缩程序并不是。Windows 下的 WinRAR，以及上面安装的 Linux 的 <code>rar</code> 程序都是 <a href="https://www.rarlab.com/">RARLAB</a> 的商业共享软件。尽管软件层面没有功能限制，但是根据 RARLAB 的要求，在经过 <code>rar</code> 的 40 天试用期后，需要购买授权。具体要求可在安装后查看 <code>/usr/share/doc/rar/order.htm</code> 文件。</p>
 </div>
 <p>例子如下：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>rar<span class="w"> </span>a<span class="w"> </span>archive.rar<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w"> </span><span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
-$<span class="w"> </span>unrar<span class="w"> </span>x<span class="w"> </span>archive.rar<span class="w"> </span><span class="c1"># 解压缩</span>
-$<span class="w"> </span>unrar<span class="w"> </span>x<span class="w"> </span>archive.rar<span class="w"> </span>path/<span class="w"> </span><span class="c1"># 解压缩到指定目录</span>
-$<span class="w"> </span>unrar<span class="w"> </span>l<span class="w"> </span>archive.rar<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>rar<span class="w"> </span>a<span class="w"> </span>archive.rar<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w"> </span><span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
+<span class="gp">$ </span>unrar<span class="w"> </span>x<span class="w"> </span>archive.rar<span class="w"> </span><span class="c1"># 解压缩</span>
+<span class="gp">$ </span>unrar<span class="w"> </span>x<span class="w"> </span>archive.rar<span class="w"> </span>path/<span class="w"> </span><span class="c1"># 解压缩到指定目录</span>
+<span class="gp">$ </span>unrar<span class="w"> </span>l<span class="w"> </span>archive.rar<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
 </code></pre></div>
 <p>RARLAB 仅提供了 Linux 下命令行界面的 RAR 压缩包处理工具。但在安装以上软件包后，Linux 下桌面环境中的压缩工具应当都能够支持 RAR 格式的处理。如有特殊需要，可以使用 Wine（Windows 兼容层）运行 WinRAR。</p>
 <h3 id="7z">处理 7zip 等压缩包：<code>p7zip</code><a class="headerlink" href="#7z" title="Permanent link">&para;</a></h3>
 <p>Ubuntu 下 <code>p7zip-full</code> 包提供了 <code>7z</code> 等工具处理 7z 包（以及其他各种压缩格式）：</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install p7zip-full
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>p7zip-full
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title"><code>7z</code>、<code>7za</code>、<code>7zr</code> 与 <code>p7zip</code> 的区别</p>
@@ -2200,10 +2200,10 @@ $<span class="w"> </span>unrar<span class="w"> </span>l<span class="w"> </span>a
 <p>而 <code>p7zip</code> 基于 <code>7za</code> 或 <code>7zr</code>，提供类似于 <code>gzip</code> 的接口。</p>
 </div>
 <p>以下给出 <code>7z</code> 命令行工具的一些例子：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>7z<span class="w"> </span>a<span class="w"> </span>archive.7z<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w"> </span><span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
-$<span class="w"> </span>7z<span class="w"> </span>x<span class="w"> </span>archive.7z<span class="w"> </span><span class="c1"># 解压缩</span>
-$<span class="w"> </span>7z<span class="w"> </span>x<span class="w"> </span>archive.7z<span class="w"> </span>-opath/<span class="w"> </span><span class="c1"># 解压缩到 path/ 目录下</span>
-$<span class="w"> </span>7z<span class="w"> </span>l<span class="w"> </span>archive.7z<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>7z<span class="w"> </span>a<span class="w"> </span>archive.7z<span class="w"> </span>path/file1<span class="w"> </span>path/dir1<span class="w"> </span><span class="c1"># 压缩文件和目录/添加文件和目录到压缩包</span>
+<span class="gp">$ </span>7z<span class="w"> </span>x<span class="w"> </span>archive.7z<span class="w"> </span><span class="c1"># 解压缩</span>
+<span class="gp">$ </span>7z<span class="w"> </span>x<span class="w"> </span>archive.7z<span class="w"> </span>-opath/<span class="w"> </span><span class="c1"># 解压缩到 path/ 目录下</span>
+<span class="gp">$ </span>7z<span class="w"> </span>l<span class="w"> </span>archive.7z<span class="w"> </span><span class="c1"># 浏览压缩包内容</span>
 </code></pre></div>
 <p>与 <code>rar</code> 类似，7z 未提供 GUI 工具。如有特殊需要，可以使用 Wine 运行 Windows 版的 7-Zip。</p>
 <h2 class="no-underline" id="references">引用来源与备注<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>

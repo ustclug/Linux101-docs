@@ -1730,15 +1730,15 @@
 <p>在很早的时候（1974 年 Unix 第五版），sticky bit 是为可执行文件设计的，它告诉操作系统在程序运行结束后将程序的代码段（text 段）保留在内存或交换区中，以便下一次更快地启动这个程序，因此这个位被称作 sticky（粘滞位）。由于现代计算机存储容量的增加和操作系统缓存功能的完善，已经没有系统再将 sticky bit 解释为这个最初的含义了。在 Linux 系统中，文件上的 sticky bit 从未有过任何功能，仅有目录的 sticky bit 功能如上所述。</p>
 </details>
 <p>我们可以看一下，<code>/usr/bin/passwd</code> 的文件权限设置：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/passwd
--rwsr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">67992</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">29</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>/usr/bin/passwd
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/passwd
+<span class="go">-rwsr-xr-x 1 root root 67992 Aug 29  2019 /usr/bin/passwd</span>
 </code></pre></div>
 <p>可以看到，本来是执行权限位的地方变成了 <code>s</code>。这代表此文件有 <code>setuid</code> 特殊权限位。在你执行 <code>passwd</code> 的时候，它的实际权限和 <code>root</code> 一样，只是它知道，执行它的人是你（而非 <code>root</code>），所以只提供修改你自己的密码的功能。</p>
 <p>同样，<code>su</code> 和 <code>sudo</code> 也有 <code>setuid</code> 权限位：</p>
-<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/su
--rwsr-xr-x 1 root root 67816 Jan  9 02:59 /usr/bin/su
-$ ls -l /usr/bin/sudo
--rwsr-xr-x 1 root root 161448 Feb  1 01:07 /usr/bin/sudo
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/su
+<span class="go">-rwsr-xr-x 1 root root 67816 Jan  9 02:59 /usr/bin/su</span>
+<span class="gp">$ </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/sudo
+<span class="go">-rwsr-xr-x 1 root root 161448 Feb  1 01:07 /usr/bin/sudo</span>
 </code></pre></div>
 <p>所以它们可以帮你切换用户、提升权限。</p>
 <p>拥有 <code>setuid</code> 位、所有者为 <code>root</code> 的程序是非常危险的，因为稍不谨慎，它们的漏洞就会直接让普通的无权限用户获得 <code>root</code> 权限的大门，这在服务器上是极其致命的。<code>sudo</code> 曾经爆出一个安全漏洞（CVE-2019-18634），对于 1.8.31 之前的版本，<code>sudo</code> 在开启了 <code>pwfeedback</code> 选项（将输入的密码显示为 * 号，而非不显示）之后，有一个缓冲区溢出漏洞可以被利用来以 <code>root</code> 的身份执行任意命令；而在 2022 年初，另一个用于验证用户身份、提升权限的工具 <code>pkexec</code> 也被爆出安全漏洞（CVE-2021-4034）：由于编写 C 语言程序时未考虑到 <code>main()</code> 函数参数 <code>argc</code> 可以为 0 的情况，攻击者可以编写程序引发其逻辑问题，从而提升自己的权限。</p>
@@ -1761,13 +1761,13 @@ $ ls -l /usr/bin/sudo
 <li>在桌面环境中打开的终端（模拟器），启动的也是「非登录 Shell」</li>
 </ul>
 <p>一般地，「登录 Shell」会额外加载 <code>profile</code> 文件（文件名根据你使用的 Shell 的不同而有区别），且它的 <code>argv[0][0] == '-'</code>（相信你已经学过 C 语言了）。可以用以下方法验证：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$0</span><span class="w">  </span><span class="c1"># 查看当前 Shell 的 argv[0] 的值</span>
--bash
-$<span class="w"> </span><span class="c1"># 是 Login shell</span>
-$<span class="w"> </span>sudo<span class="w"> </span>su<span class="w"> </span><span class="c1"># 进入 root</span>
-<span class="c1"># echo $0</span>
-bash
-<span class="c1"># # 是 Non-login shell</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$0</span><span class="w">  </span><span class="c1"># 查看当前 Shell 的 argv[0] 的值</span>
+<span class="go">-bash</span>
+<span class="gp">$ </span><span class="c1"># 是 Login shell</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>su<span class="w"> </span><span class="c1"># 进入 root</span>
+<span class="gp"># </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$0</span>
+<span class="go">bash</span>
+<span class="gp"># </span><span class="c1"># 是 Non-login shell</span>
 </code></pre></div>
 
 

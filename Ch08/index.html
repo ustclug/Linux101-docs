@@ -1848,33 +1848,13 @@
 <p>如果你正在使用 WSL2，可以安装 Docker，并且使用 Windows 下的 Docker Desktop 进行管理，详细信息可阅读 <a href="https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2">Using Docker in WSL 2</a>。</p>
 </div>
 <p>在安装完成后，可以使用</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名<span class="w"> </span>docker
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名<span class="w"> </span>docker
 </code></pre></div>
 <p>将需要使用 Docker 的用户<a href="../Ch05/#adduser">加入</a> <code>docker</code> 用户组。<strong>注意：<code>docker</code> 用户组中的用户拥有与 root 等效的权限。</strong></p>
 <h3 id="setup-registry-mirror">配置 Registry Mirror（可选，推荐）<a class="headerlink" href="#setup-registry-mirror" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">本节内容可能随时过时</p>
-<p>维护公共使用的 Docker Hub pull-through cache (registry mirror) 需要<strong>非常高的运维成本</strong>，因而有很多服务在之前可以使用，但是之后被迫关闭或转为非公开。你可以参考 <a href="https://yeasy.gitbook.io/docker_practice/install/mirror#bu-zai-ti-gong-fu-wu-de-jing-xiang">https://yeasy.gitbook.io/docker_practice/install/mirror#bu-zai-ti-gong-fu-wu-de-jing-xiang</a> 获取目前可能可以使用的 registry mirror（镜像加速器）。</p>
-</div>
-<p>Docker 默认从 Docker Hub 上拖取所需要的镜像。但由于网络原因，拖取的过程可能会比较慢。一些服务在中国提供了 Docker Hub 的镜像（反代缓存）。以下内容以网易云与百度云为例。</p>
-<p>为了使用这些 Docker Hub 镜像，在 Debian/Ubuntu 上，可以编辑 <code>/etc/docker/daemon.json</code> 文件（如果文件不存在，请新建一个），写入以下内容。</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;https://hub-mirror.c.163.com&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;https://mirror.baidubce.com&quot;</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>使用 <code>sudo systemctl restart docker</code> 命令重启 Docker 服务后，再次运行 <code>docker info</code> 命令，可以看到如下输出：</p>
-<div class="highlight"><pre><span></span><code> Registry Mirrors:
-  https://hub-mirror.c.163.com/
-  https://mirror.baidubce.com/
-</code></pre></div>
-<p>如果你看到了上面的输出，说明你的 Docker Registry Mirror 已经配置好了。</p>
-<div class="admonition info">
-<p class="admonition-title">如果你是科大校园网用户</p>
-<p>科大镜像站的 Docker Hub registry mirror 目前仅对校园网开放，地址为 <code>https://docker.mirrors.ustc.edu.cn/</code>。如果在使用以上获取的 registry mirror 时遇到问题，可以切换。需要注意由于 2020 年 11 月之后 Docker Hub 的访问速率限制，使用时可能会出现间歇性的问题。</p>
-<p>详细信息见科大镜像站 <a href="https://mirrors.ustc.edu.cn/help/dockerhub.html">Docker Hub 源使用帮助</a>。</p>
+<div class="admonition tip">
+<p class="admonition-title">本节操作请参考其他文档</p>
+<p>你可以参考 <a href="https://yeasy.gitbook.io/docker_practice/install/mirror">https://yeasy.gitbook.io/docker_practice/install/mirror</a> 获取目前可能可以使用的 registry mirror。</p>
 </div>
 <h3 id="verify-docker-setup">使用 Hello World 测试 Docker 安装<a class="headerlink" href="#verify-docker-setup" title="Permanent link">&para;</a></h3>
 <p>Docker 官方提供了最精简的 <code>hello-world</code> 镜像，可以用来验证 Docker 安装是否正确、是否正常工作。尝试运行 <code>docker run --rm hello-world</code> 看看吧。</p>
@@ -2062,7 +2042,7 @@ For more examples and ideas, visit:
 <p>这里使用了 <code>COPY</code> 指令，将本地的 <code>app</code> 目录复制进容器镜像的 <code>/app</code> 中。</p>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
 <p>Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 <code>docker.io</code> 软件包，那么系统中可能未安装 <code>docker-compose</code>，使用以下命令安装：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose
 </code></pre></div>
 <h3 id="use-docker-compose-build-wordpress-with-mysql">使用 Docker Compose 创建 WordPress 博客<a class="headerlink" href="#use-docker-compose-build-wordpress-with-mysql" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。</p>

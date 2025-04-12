@@ -2054,10 +2054,10 @@
 <h3 id="rh-software-management">软件包管理<a class="headerlink" href="#rh-software-management" title="Permanent link">&para;</a></h3>
 <p>「红帽系」的 Linux 发行版与 Ubuntu 等 Debian 系列的发行版最直观的区别就在于它们使用的软件包管理方式不一样。一般使用 <code>dnf</code>（推荐）或者 <code>yum</code> 来进行软件包管理。<code>dnf</code> 和 <code>yum</code> 都是使用 Python 编写的程序，谨慎变动系统 Python 环境，以免出现问题。</p>
 <p>简单使用：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 安装 audacity</span>
-$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 卸载 firefox</span>
-$<span class="w"> </span>dnf<span class="w"> </span>search<span class="w"> </span>thunderbird<span class="w">  </span><span class="c1"># 搜索 thunderbird</span>
-$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade<span class="w">  </span><span class="c1"># 更新系统</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 安装 audacity</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 卸载 firefox</span>
+<span class="gp">$ </span>dnf<span class="w"> </span>search<span class="w"> </span>thunderbird<span class="w">  </span><span class="c1"># 搜索 thunderbird</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade<span class="w">  </span><span class="c1"># 更新系统</span>
 </code></pre></div>
 <p>此外，<code>dnf</code> 和 <code>yum</code> 还可以回滚到以前的软件安装状态，具体可以自行搜索了解。</p>
 <h3 id="selinux">关于 SELinux<a class="headerlink" href="#selinux" title="Permanent link">&para;</a></h3>
@@ -2075,10 +2075,10 @@ $<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>
 <p><a href="https://wiki.archlinux.org/">Arch Wiki</a> 是安装和使用 Arch Linux 必读的资料，内容非常详细。即使不是 Arch Linux 的使用者，Wiki 的内容也非常有参考价值。</p>
 <h3 id="arch-software-management">软件包管理<a class="headerlink" href="#arch-software-management" title="Permanent link">&para;</a></h3>
 <p>Arch 使用的默认软件包管理器是 <code>pacman</code>。以下是一些常用的命令。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
-$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
-$<span class="w"> </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Rs<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>pacman<span class="w"> </span>-Ss<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>pacman<span class="w"> </span>-Rs<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+<span class="gp">$ </span>pacman<span class="w"> </span>-Ss<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h4 id="arch-manual-intervention">手动介入 (manual intervention)：更新失败时的处理方式<a class="headerlink" href="#arch-manual-intervention" title="Permanent link">&para;</a></h4>
 <p>由于其滚动发行的特性，在更新时可能会出现安装错误的情况。一般来说，你需要关注 Arch 的主页新闻 (<a href="https://www.archlinux.org/">https://www.archlinux.org/</a>)，当有软件包需要手动介入更新时，可以看到错误提示和解决方法。</p>
@@ -2096,10 +2096,10 @@ $<span class="w"> </span>pacman<span class="w"> </span>-Ss<span class="w"> </spa
 <h3 id="suse-software-management">软件包管理<a class="headerlink" href="#suse-software-management" title="Permanent link">&para;</a></h3>
 <p>openSUSE 使用 RPM 作为其软件包格式，但是与 Fedora、CentOS 等不同的是，其软件包管理器为 ZYpp（Zen / YaST Packages Patches Patterns Products）。用户可以在命令行中使用 <code>zypper</code> 进行安装、卸载、升级软件等操作。</p>
 <p>以下是一些常用的命令：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>update<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
-$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
-$<span class="w"> </span>sudo<span class="w"> </span>zypper<span class="w"> </span>remove<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>zypper<span class="w"> </span>search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>zypper<span class="w"> </span>update<span class="w">  </span><span class="c1"># 更新系统所有软件包</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>zypper<span class="w"> </span>remove<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+<span class="gp">$ </span>zypper<span class="w"> </span>search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索 Audacity</span>
 </code></pre></div>
 <h3 id="yast">系统管理工具 YaST<a class="headerlink" href="#yast" title="Permanent link">&para;</a></h3>
 <p>YaST 工具是 openSUSE 的一大特色。它提供了图形化的界面，可以帮助系统管理员完成各种常见操作。</p>
@@ -2113,11 +2113,11 @@ $<span class="w"> </span>zypper<span class="w"> </span>search<span class="w"> </
 <h3 id="gentoo-software-management">软件包管理<a class="headerlink" href="#gentoo-software-management" title="Permanent link">&para;</a></h3>
 <p>Gentoo 的软件包管理器是 Portage。其对应最常用的 CLI 工具是 <code>emerge</code>。</p>
 <p>以下是一些常用的命令：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--sync<span class="w">  </span><span class="c1"># 更新软件包索引</span>
-$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--update<span class="w"> </span>--ask<span class="w"> </span>@world<span class="w">  </span><span class="c1"># 更新已安装的程序（不包含依赖）</span>
-$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>-a<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
-$<span class="w"> </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--unmerge<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
-$<span class="w"> </span>emerge<span class="w"> </span>--search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索名字中含 audacity 的包</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--sync<span class="w">  </span><span class="c1"># 更新软件包索引</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--update<span class="w"> </span>--ask<span class="w"> </span>@world<span class="w">  </span><span class="c1"># 更新已安装的程序（不包含依赖）</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>emerge<span class="w"> </span>-a<span class="w"> </span>firefox<span class="w">  </span><span class="c1"># 安装 Firefox</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>emerge<span class="w"> </span>--unmerge<span class="w"> </span>chromium<span class="w">  </span><span class="c1"># 卸载 Chromium 和它的所有依赖</span>
+<span class="gp">$ </span>emerge<span class="w"> </span>--search<span class="w"> </span>audacity<span class="w">  </span><span class="c1"># 搜索名字中含 audacity 的包</span>
 </code></pre></div>
 <p>由于 Gentoo 以编译安装为主，和其他 Linux 发行版不同，用户可以指定在安装时需要软件的哪些特性。例如，服务器需要的软件特性肯定与桌面不同，一些桌面上必须的功能在服务器上并不需要，反之亦然。用户可以通过修改 USE 标志来为软件包添加或删除特性。</p>
 <p>关于 USE 标志的使用可以参考 <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/USE/zh-cn">Gentoo 官方手册中的简要介绍</a>。</p>

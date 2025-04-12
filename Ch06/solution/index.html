@@ -1791,13 +1791,13 @@
 <h2 id="io">I/O 重定向的小细节<a class="headerlink" href="#io" title="Permanent link">&para;</a></h2>
 <details class="info">
 <summary>解答</summary>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span>file
-<span class="m">427</span><span class="w"> </span>file
-$<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span>file
-<span class="m">427</span>
-$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&lt;<span class="w"> </span>file
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wc<span class="w"> </span>-l<span class="w"> </span>file
+<span class="go">427 file</span>
+<span class="gp">$ </span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span>file
+<span class="go">427</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>&lt;<span class="w"> </span>file
 
-$
+<span class="gp">$</span>
 </code></pre></div>
 <p>可以看到，两种情况下 <code>wc</code> 都正确输出了文件的行数，因为 <code>wc</code> 既可以从标准输入读取内容，也可以从文件读取内容。当然，从标准输入读取内容的时候，<code>wc</code> 不知道文件名，所以没有显示出来。</p>
 <p>而 <code>echo</code> 只输出了空行，因为 <code>echo</code> 不从标准输入读取内容（它的输入从参数读取）。</p>

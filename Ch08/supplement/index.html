@@ -1785,11 +1785,11 @@
 <h2 id="dive">查看容器镜像的工具：Dive<a class="headerlink" href="#dive" title="Permanent link">&para;</a></h2>
 <p>在调试容器时，我们可能想看一下使用的容器镜像里有哪些文件。<a href="https://github.com/wagoodman/dive">Dive</a> 是一个很方便的小工具。</p>
 <p>对于 Debian/Ubuntu 用户，由于其不在官方软件源中，需要手动下载 deb 包安装：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
-$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>./dive_0.9.2_linux_amd64.deb
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>./dive_0.9.2_linux_amd64.deb
 </code></pre></div>
 <p>之后直接使用即可：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>dive<span class="w"> </span>ubuntu:20.04<span class="w">  </span><span class="c1"># 查看 Ubuntu 20.04 镜像中的内容</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>dive<span class="w"> </span>ubuntu:20.04<span class="w">  </span><span class="c1"># 查看 Ubuntu 20.04 镜像中的内容</span>
 </code></pre></div>
 <h2 id="other-container-tools">Docker 以外的容器工具<a class="headerlink" href="#other-container-tools" title="Permanent link">&para;</a></h2>
 <p>Docker 目前已几乎是容器的代名词了，但是实际上，用户还可以选择其他的程序来运行容器。其中一些代表性的方案有 Podman、LXC 等。</p>

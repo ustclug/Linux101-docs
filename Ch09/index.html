@@ -1762,57 +1762,57 @@
 <li><code>-o [file]</code> 指定输出文件</li>
 <li><code>-n</code> 用于数值排序，否则“15”会排在“2”前</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>animals
-$<span class="w"> </span>sort<span class="w"> </span>animals
-cat
-dog
-fish
-fish
-fox
-snake
-$<span class="w"> </span>sort<span class="w"> </span>-r<span class="w"> </span>animals
-snake
-fox
-fish
-fish
-dog
-cat
-$<span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>animals
-cat
-dog
-fish
-fox
-snake
-$<span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>animals<span class="w"> </span>-o<span class="w"> </span>animals
-$<span class="w"> </span>cat<span class="w"> </span>animals
-cat
-dog
-fish
-fox
-snake
-$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;1\n2\n15\n3\n4&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>numbers
-$<span class="w"> </span>sort<span class="w"> </span>numbers
-<span class="m">1</span>
-<span class="m">15</span>
-<span class="m">2</span>
-<span class="m">3</span>
-<span class="m">4</span>
-$<span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>numbers
-<span class="m">1</span>
-<span class="m">2</span>
-<span class="m">3</span>
-<span class="m">4</span>
-<span class="m">15</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>animals
+<span class="gp">$ </span>sort<span class="w"> </span>animals
+<span class="go">cat</span>
+<span class="go">dog</span>
+<span class="go">fish</span>
+<span class="go">fish</span>
+<span class="go">fox</span>
+<span class="go">snake</span>
+<span class="gp">$ </span>sort<span class="w"> </span>-r<span class="w"> </span>animals
+<span class="go">snake</span>
+<span class="go">fox</span>
+<span class="go">fish</span>
+<span class="go">fish</span>
+<span class="go">dog</span>
+<span class="go">cat</span>
+<span class="gp">$ </span>sort<span class="w"> </span>-u<span class="w"> </span>animals
+<span class="go">cat</span>
+<span class="go">dog</span>
+<span class="go">fish</span>
+<span class="go">fox</span>
+<span class="go">snake</span>
+<span class="gp">$ </span>sort<span class="w"> </span>-u<span class="w"> </span>animals<span class="w"> </span>-o<span class="w"> </span>animals
+<span class="gp">$ </span>cat<span class="w"> </span>animals
+<span class="go">cat</span>
+<span class="go">dog</span>
+<span class="go">fish</span>
+<span class="go">fox</span>
+<span class="go">snake</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;1\n2\n15\n3\n4&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>numbers
+<span class="gp">$ </span>sort<span class="w"> </span>numbers
+<span class="go">1</span>
+<span class="go">15</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+<span class="gp">$ </span>sort<span class="w"> </span>-n<span class="w"> </span>numbers
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+<span class="go">15</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">sort 的结果会受到本地化配置的影响</p>
 <p>在使用 sort 时，一个比如容易忽视的问题是当前的本地化配置对结果的影响。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>sort
-a<span class="w"> </span>b
-aa
-$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span>sort
-aa
-a<span class="w"> </span>b
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>sort
+<span class="go">a b</span>
+<span class="go">aa</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span>sort
+<span class="go">aa</span>
+<span class="go">a b</span>
 </code></pre></div>
 <p>为了获得传统意义上逐字节比较的结果，可以指定环境变量 <code>LC_ALL=C</code>。</p>
 </div>
@@ -1823,14 +1823,14 @@ a<span class="w"> </span>b
 <h3 id="uniq">uniq<a class="headerlink" href="#uniq" title="Permanent link">&para;</a></h3>
 <p>uniq 也可以用来排除重复的行，但是仅对连续的重复行生效。</p>
 <p>通常会和 sort 一起使用：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </code></pre></div>
 <p>只是去重排序明明可以用 <code>sort -u</code> ，uniq 工具是否多余了呢？实际上 uniq 还有其他用途。</p>
 <p><code>uniq -d</code> 可以用于仅输出重复行：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-d
 </code></pre></div>
 <p><code>uniq -c</code> 可以用于统计各行重复次数：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sort<span class="w"> </span>animals<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
 </code></pre></div>
 <h2 id="regular-expression">正则表达式<a class="headerlink" href="#regular-expression" title="Permanent link">&para;</a></h2>
 <p>正则表达式（regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
@@ -1924,16 +1924,16 @@ a<span class="w"> </span>b
 <li><code>-v</code>：显示不被匹配到的行</li>
 <li><code>-i</code>：忽略字符大小写</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^man</span>$<span class="s2">&quot;</span><span class="w">  </span><span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
-$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;[a-z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含小写字母和数字的行</span>
-$<span class="w"> </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">&quot;[A-Z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含字母和数字的行</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^man</span>$<span class="s2">&quot;</span><span class="w">  </span><span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
+<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;[a-z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含小写字母和数字的行</span>
+<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">&quot;[A-Z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含字母和数字的行</span>
 </code></pre></div>
 <h3 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
 <p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
 <p>命令格式：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="s1">&#39;command&#39;</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
-$<span class="w"> </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>scriptfile<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="s1">&#39;command&#39;</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>scriptfile<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 </code></pre></div>
 <p>此处的 command 和 scriptfile 中的命令均指的是 sed 命令。</p>
 <p>常见 sed 命令：</p>
@@ -1944,22 +1944,22 @@ $<span class="w"> </span>sed<span class="w"> </span><span class="o">[</span>OPTI
 <li>a 当前行下插入文本</li>
 <li>i 当前行上插入文本</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;seD\nIS\ngOod&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>sed_demo
-$<span class="w"> </span>cat<span class="w"> </span>sed_demo
-seD
-IS
-gOod
-$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 删除第二行</span>
-seD
-gOod
-$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;s/[a-z]/~/g&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 替换所有小写字母为 ~</span>
-~~D
-IS
-~O~~
-$<span class="w"> </span>sed<span class="w"> </span><span class="s2">&quot;3cpErfeCt&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 选定第三行，改成 pErfeCt</span>
-seD
-IS
-pErfeCt
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;seD\nIS\ngOod&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>sed_demo
+<span class="gp">$ </span>cat<span class="w"> </span>sed_demo
+<span class="go">seD</span>
+<span class="go">IS</span>
+<span class="go">gOod</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 删除第二行</span>
+<span class="go">seD</span>
+<span class="go">gOod</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;s/[a-z]/~/g&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 替换所有小写字母为 ~</span>
+<span class="go">~~D</span>
+<span class="go">IS</span>
+<span class="go">~O~~</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;3cpErfeCt&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 选定第三行，改成 pErfeCt</span>
+<span class="go">seD</span>
+<span class="go">IS</span>
+<span class="go">pErfeCt</span>
 </code></pre></div>
 <h3 id="awk">awk<a class="headerlink" href="#awk" title="Permanent link">&para;</a></h3>
 <p>awk 是一种用于处理文本的编程语言工具，名字来源于三个作者的首字母。相比 sed，awk 可以在逐行处理的基础上，针对列进行处理。默认的列分隔符号是空格，其他分隔符可以自行指定。</p>
@@ -1967,24 +1967,24 @@ pErfeCt
 <p>命令格式：<code>awk [options] 'pattern {action}' [file]</code></p>
 <p>awk 逐行处理文本，对符合的 patthern 执行 action。需要注意的是，awk 使用单引号时可以直接用 <code>$</code>，使用双引号则要用 <code>\$</code>。</p>
 <p>一些示例：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>awk_demo
-Beth<span class="w">    </span><span class="m">4</span>.00<span class="w">    </span><span class="m">0</span>
-Dan<span class="w">     </span><span class="m">3</span>.75<span class="w">    </span><span class="m">0</span>
-kathy<span class="w">   </span><span class="m">4</span>.00<span class="w">    </span><span class="m">10</span>
-Mark<span class="w">    </span><span class="m">5</span>.00<span class="w">    </span><span class="m">20</span>
-Mary<span class="w">    </span><span class="m">5</span>.50<span class="w">    </span><span class="m">22</span>
-Susie<span class="w">   </span><span class="m">4</span>.25<span class="w">    </span><span class="m">18</span>
-$<span class="w"> </span><span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
-$<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span><span class="w"> </span>awk_demo
-kathy<span class="w"> </span><span class="m">40</span>
-Mark<span class="w"> </span><span class="m">100</span>
-Mary<span class="w"> </span><span class="m">121</span>
-Susie<span class="w"> </span><span class="m">76</span>.5
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>awk_demo
+<span class="go">Beth    4.00    0</span>
+<span class="go">Dan     3.75    0</span>
+<span class="go">kathy   4.00    10</span>
+<span class="go">Mark    5.00    20</span>
+<span class="go">Mary    5.50    22</span>
+<span class="go">Susie   4.25    18</span>
+<span class="gp">$ </span><span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
+<span class="gp">$ </span>awk<span class="w"> </span><span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span><span class="w"> </span>awk_demo
+<span class="go">kathy 40</span>
+<span class="go">Mark 100</span>
+<span class="go">Mary 121</span>
+<span class="go">Susie 76.5</span>
 </code></pre></div>
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
 <p>awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span><span class="w"> </span>awk_demo
-<span class="m">337</span>.5
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span><span class="w"> </span>awk_demo
+<span class="go">337.5</span>
 </code></pre></div>
 <p>关于 awk，有一本知名的书籍《The AWK Programming Language》（<a href="https://github.com/wuzhouhui/awk">中文翻译</a>），感兴趣的读者可以考虑阅读。</p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>

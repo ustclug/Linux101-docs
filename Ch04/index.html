@@ -1947,32 +1947,32 @@
 <p class="caption">htop 示例 | <a href="https://hisham.hm/htop/">htop 主页</a></p>
 </div>
 <h2 id="process">进程<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
-<p>在导言中提到的「桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务」，它们都是进程。简单而不太严谨地来说，进程就是正在运行的程序：当我们启动一个程序的时候，操作系统会从硬盘中读取程序文件，将程序内容加载入内存中，之后 CPU 就会执行这个程序。</p>
+<p>在导言中提到的「桌面环境、浏览器、聊天软件、办公软件、游戏、终端，以及后台运行着的系统服务」，它们都是进程。简单而不太严谨地来说，进程就是已被载入的程序：当我们启动一个程序的时候，操作系统会从硬盘中读取程序文件，将程序内容加载入内存中，之后 CPU 就会执行这个程序，也就能看到一个「进程」。</p>
 <p>进程是现代操作系统中必不可少的概念。在 Windows 中，我们可以使用「任务管理器」查看系统运行中的进程；Linux 中同样也有进程的概念。下面我们简单介绍 Linux 中的进程。</p>
 <h3 id="view-process">查看当前运行的进程<a class="headerlink" href="#view-process" title="Permanent link">&para;</a></h3>
 <h4 id="htop">htop<a class="headerlink" href="#htop" title="Permanent link">&para;</a></h4>
-<p>Htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。</p>
+<p>htop 可以简单方便查看当前运行的所有进程，以及系统 CPU、内存占用情况与系统负载等信息。</p>
 <p>使用鼠标与键盘都可以操作 htop。Htop 界面的最下方是一些选项，使用鼠标点击或按键盘的 <span class="keys"><kbd>F1</kbd></span> 至 <span class="keys"><kbd>F10</kbd></span> 功能键可以选择这些功能，常用的功能例如搜索进程（<span class="keys"><kbd>F3</kbd></span>, Search）、过滤进程（<span class="keys"><kbd>F4</kbd></span>, Filter，使得界面中只有满足条件的进程）、切换树形结构/列表显示（<span class="keys"><kbd>F5</kbd></span>, Tree/List）等等。</p>
 <h4 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">&para;</a></h4>
 <p>ps（<strong>p</strong>rocess <strong>s</strong>tatus）是常用的输出进程状态的工具。直接调用 <code>ps</code> 仅会显示本终端中运行的相关进程。如果需要显示所有进程，对应的命令为 <code>ps aux</code>。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ps
-<span class="w">    </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
-<span class="w">   </span><span class="m">1720</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
-<span class="w">   </span><span class="m">1858</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
-$<span class="w"> </span>ps<span class="w"> </span>aux
-USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
-root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.2<span class="w">  </span><span class="m">0</span>.5<span class="w"> </span><span class="m">167312</span><span class="w"> </span><span class="m">11156</span><span class="w"> </span>?<span class="w">        </span>Ss<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:04<span class="w"> </span>/sbin/init<span class="w"> </span>splash
-root<span class="w">           </span><span class="m">2</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>kthreadd<span class="o">]</span>
-root<span class="w">           </span><span class="m">3</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_gp<span class="o">]</span>
-root<span class="w">           </span><span class="m">4</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_par_gp<span class="o">]</span>
-root<span class="w">           </span><span class="m">6</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
-root<span class="w">           </span><span class="m">9</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I&lt;<span class="w">   </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>mm_percpu_wq<span class="o">]</span>
-root<span class="w">          </span><span class="m">10</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_tasks_rude_<span class="o">]</span>
-root<span class="w">          </span><span class="m">11</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_tasks_trace<span class="o">]</span>
-root<span class="w">          </span><span class="m">12</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>ksoftirqd/0<span class="o">]</span>
-root<span class="w">          </span><span class="m">13</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>I<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>rcu_sched<span class="o">]</span>
-root<span class="w">          </span><span class="m">14</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w"> </span>?<span class="w">        </span>S<span class="w">    </span><span class="m">02</span>:33<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span><span class="o">[</span>migration/0<span class="o">]</span>
-（以下省略）
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ps
+<span class="go">    PID TTY          TIME CMD</span>
+<span class="go">   1720 pts/0    00:00:00 bash</span>
+<span class="go">   1858 pts/0    00:00:00 ps</span>
+<span class="gp">$ </span>ps<span class="w"> </span>aux
+<span class="go">USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span class="go">root           1  0.2  0.5 167312 11156 ?        Ss   02:33   0:04 /sbin/init splash</span>
+<span class="go">root           2  0.0  0.0      0     0 ?        S    02:33   0:00 [kthreadd]</span>
+<span class="go">root           3  0.0  0.0      0     0 ?        I&lt;   02:33   0:00 [rcu_gp]</span>
+<span class="go">root           4  0.0  0.0      0     0 ?        I&lt;   02:33   0:00 [rcu_par_gp]</span>
+<span class="go">root           6  0.0  0.0      0     0 ?        I&lt;   02:33   0:00 [kworker/0:0H-events_highpri]</span>
+<span class="go">root           9  0.0  0.0      0     0 ?        I&lt;   02:33   0:00 [mm_percpu_wq]</span>
+<span class="go">root          10  0.0  0.0      0     0 ?        S    02:33   0:00 [rcu_tasks_rude_]</span>
+<span class="go">root          11  0.0  0.0      0     0 ?        S    02:33   0:00 [rcu_tasks_trace]</span>
+<span class="go">root          12  0.0  0.0      0     0 ?        S    02:33   0:00 [ksoftirqd/0]</span>
+<span class="go">root          13  0.0  0.0      0     0 ?        I    02:33   0:00 [rcu_sched]</span>
+<span class="go">root          14  0.0  0.0      0     0 ?        S    02:33   0:00 [migration/0]</span>
+<span class="go">（以下省略）</span>
 </code></pre></div>
 <h3 id="pid">进程标识符<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
 <p>首先，有区分才有管理。<strong>进程标识符</strong>（PID，Process Identifier（是一个数字，是进程的唯一标识。在 htop 中，最左侧一列即为 PID。当用户想挂起、继续或终止进程时可以使用 PID 作为索引。</p>
@@ -1981,16 +1981,16 @@ root<span class="w">          </span><span class="m">14</span><span class="w">  
 <details class="tip">
 <summary>Linux 进程启动顺序</summary>
 <p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。</p>
-<p>由于 kthreadd 运行于内核空间，故需按大写 K（<span class="keys"><kbd>Shift</kbd></span> + <span class="keys"><kbd>k</kbd></span>）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID 是 0。</p>
+<p>由于 kthreadd 运行于内核空间，故需按大写 K（<span class="keys"><kbd>Shift</kbd></span> + <span class="keys"><kbd>k</kbd></span>）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID (Parent PID) 是 0。</p>
 </details>
 <h3 id="process-priority-and-stat">进程优先级与状态<a class="headerlink" href="#process-priority-and-stat" title="Permanent link">&para;</a></h3>
 <p>我们平时使用操作系统的时候，可能同时会开启浏览器、聊天软件、音乐播放器、文本编辑器……前面提到它们都是进程，但是单个 CPU 核心一次只能执行一个进程。为了让这些软件看起来「同时」在执行，操作系统需要用非常快的速度将计算资源在这些进程之间切换，这也就引入了进程优先级和进程状态的概念。</p>
 <h4 id="nice">优先级与 nice 值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h4>
-<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：Priority（PRI）和 <strong>nice（NI）</strong>。以下主要介绍用户层使用的 nice 值。</p>
+<p>有了进程，谁先运行？谁给一点时间就够了，谁要占用大部分 CPU 时间？这又是如何决定的？这些问题之中体现着优先权的概念。如果说上面所介绍的的那些进程属性描述了进程的控制信息，那么<strong>优先级</strong>则反映操作系统调度进程的手段。在 htop 的显示中有两个与优先级有关的值：<strong>Priority（PRI）</strong> 和 <strong>nice（NI）</strong>。以下主要介绍用户层使用的 nice 值。</p>
 <p>Nice 值越高代表一个进程对其它进程越 "nice"（友好），对应的优先级也就更低。Nice 值最高为 19，最低为 -20。通常，我们运行的程序的 nice 值为 0。我们可以打开 htop 观察与调整每个进程的 nice 值。</p>
 <p>用户可以使用 <code>nice</code> 命令在运行程序时指定优先级，而 <code>renice</code> 命令则可以重新指定优先级。当然，若想调低 nice 值，还需要 <code>sudo</code>（毕竟不能随便就把自己的优先级设置得更高，不然对其他的用户不公平）。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>vim<span class="w"> </span><span class="c1"># 以 10 为 nice 值运行 vim</span>
-$<span class="w"> </span>renice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">12345</span><span class="w"> </span><span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>vim<span class="w"> </span><span class="c1"># 以 10 为 nice 值运行 vim</span>
+<span class="gp">$ </span>renice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">12345</span><span class="w"> </span><span class="c1"># 设置 PID 为 12345 的进程的 nice 值为 10</span>
 </code></pre></div>
 <details class="tip">
 <summary>那 PRI 呢？</summary>
@@ -2002,8 +2002,8 @@ $<span class="w"> </span>renice<span class="w"> </span>-n<span class="w"> </span
 <p>一类是正在运行的程序，即处于<strong>运行态</strong>（running）；一类是可以运行但正在排队等待的程序，即处于<strong>就绪态</strong>（ready）；最后一类是正在等待其他资源（例如网络或者磁盘等）而无法立刻开始运行的程序，即处于<strong>阻塞态</strong>（blocked）。</p>
 <p>调度时操作系统轮流选择可以运行的程序运行，构成就绪态与运行态循环。运行中的程序如果需要其他资源，则进入阻塞态；阻塞态中的程序如果得到了相应的资源，则进入就绪态。</p>
 <p>在实际的 Linux 系统中，进程的状态分类要稍微复杂一些。在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：</p>
-<pre><code>Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
-</code></pre>
+<div class="highlight"><pre><span></span><code>Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
+</code></pre></div>
 <p>其中 R 状态对应上文的运行和就绪态（即表明该程序可以运行），S 和 D 状态对应上文阻塞态。</p>
 <p>需要注意的是，S 对应的 sleeping 又称 interruptible sleep，字面意思是「可以被中断」；而 D 对应的 disk sleep 又称 uninterruptible sleep，不可被中断，一般是因为阻塞在磁盘读写操作上。</p>
 <p>Zombie 是僵尸进程，该状态下进程已经结束，只是仍然占用一个 PID，保存一个返回值。而 traced/stopped 状态正是下文使用 Ctrl + Z 导致的挂起状态（大写 T），或者是在使用 gdb 等调试（Debug）工具进行跟踪时的状态（小写 t）。</p>
@@ -2054,13 +2054,13 @@ $<span class="w"> </span>renice<span class="w"> </span>-n<span class="w"> </span
 <h3 id="bg-fg">前后台切换<a class="headerlink" href="#bg-fg" title="Permanent link">&para;</a></h3>
 <p>上面的图片中，出现了 <code>fg</code>, <code>bg</code> 和 Ctrl + Z，涉及到的正是 shell 中前后台的概念。在 shell 中直接运行命令，将挂到前台，而如果不希望无力地看着屏幕输出不能做其他事情，那么便需要将程序切换到后台了。</p>
 <p>默认情况下，在 shell 中运行的命令都在前台运行，如果需要在后台运行程序，需要在最后加上 <code>&amp;</code>：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./matmul<span class="w"> </span><span class="p">&amp;</span><span class="w">  </span><span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
-$<span class="w"> </span>ps
-<span class="w">    </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
-<span class="w">   </span><span class="m">1720</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
-<span class="w">   </span><span class="m">1861</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:06<span class="w"> </span>matmul
-<span class="w">   </span><span class="m">1862</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
-$<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>./matmul<span class="w"> </span><span class="p">&amp;</span><span class="w">  </span><span class="c1"># 例子：运行耗时的计算同时进行其他操作</span>
+<span class="gp">$ </span>ps
+<span class="go">    PID TTY          TIME CMD</span>
+<span class="go">   1720 pts/0    00:00:00 bash</span>
+<span class="go">   1861 pts/0    00:00:06 matmul</span>
+<span class="go">   1862 pts/0    00:00:00 ps</span>
+<span class="gp">$ </span><span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
 </code></pre></div>
 <p>而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
 <p><img alt="" id="bg" src="images/bg.gif" width="80%" /></p>
@@ -2080,20 +2080,20 @@ $<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matm
 <p>htop 中自带向进程发送信号的功能。按下 K 键，在左侧提示栏中选择需要的信号，按下回车发送。同时可以使用空格对进程进行标记，被标记的进程将改变显示颜色。此时重复上述过程，可对被标记进程批量发送信号。</p>
 <h4 id="kill-command">kill<a class="headerlink" href="#kill-command" title="Permanent link">&para;</a></h4>
 <p>如前所述，Linux 上最常用的发送信号的程序就是 kill。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-l<span class="w"> </span><span class="c1"># 显示所有信号名称</span>
-<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SIGHUP<span class="w">       </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>SIGINT<span class="w">       </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>SIGQUIT<span class="w">      </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>SIGILL<span class="w">       </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>SIGTRAP
-<span class="w"> </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>SIGABRT<span class="w">      </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>SIGBUS<span class="w">       </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>SIGFPE<span class="w">       </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>SIGKILL<span class="w">     </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SIGUSR1
-<span class="m">11</span><span class="o">)</span><span class="w"> </span>SIGSEGV<span class="w">     </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>SIGUSR2<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>SIGPIPE<span class="w">     </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>SIGALRM<span class="w">     </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>SIGTERM
-<span class="m">16</span><span class="o">)</span><span class="w"> </span>SIGSTKFLT<span class="w">   </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>SIGCHLD<span class="w">     </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>SIGCONT<span class="w">     </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>SIGSTOP<span class="w">     </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>SIGTSTP
-<span class="m">21</span><span class="o">)</span><span class="w"> </span>SIGTTIN<span class="w">     </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>SIGTTOU<span class="w">     </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>SIGURG<span class="w">      </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>SIGXCPU<span class="w">     </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>SIGXFSZ
-<span class="m">26</span><span class="o">)</span><span class="w"> </span>SIGVTALRM<span class="w">   </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>SIGPROF<span class="w">     </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>SIGWINCH<span class="w">    </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>SIGIO<span class="w">       </span><span class="m">30</span><span class="o">)</span><span class="w"> </span>SIGPWR
-<span class="m">31</span><span class="o">)</span><span class="w"> </span>SIGSYS<span class="w">      </span><span class="m">34</span><span class="o">)</span><span class="w"> </span>SIGRTMIN<span class="w">    </span><span class="m">35</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+1<span class="w">  </span><span class="m">36</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+2<span class="w">  </span><span class="m">37</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+3
-<span class="m">38</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+4<span class="w">  </span><span class="m">39</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+5<span class="w">  </span><span class="m">40</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+6<span class="w">  </span><span class="m">41</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+7<span class="w">  </span><span class="m">42</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+8
-<span class="m">43</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+9<span class="w">  </span><span class="m">44</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+10<span class="w"> </span><span class="m">45</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+11<span class="w"> </span><span class="m">46</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+12<span class="w"> </span><span class="m">47</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+13
-<span class="m">48</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+14<span class="w"> </span><span class="m">49</span><span class="o">)</span><span class="w"> </span>SIGRTMIN+15<span class="w"> </span><span class="m">50</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-14<span class="w"> </span><span class="m">51</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-13<span class="w"> </span><span class="m">52</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-12
-<span class="m">53</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-11<span class="w"> </span><span class="m">54</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-10<span class="w"> </span><span class="m">55</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-9<span class="w">  </span><span class="m">56</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-8<span class="w">  </span><span class="m">57</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-7
-<span class="m">58</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-6<span class="w">  </span><span class="m">59</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-5<span class="w">  </span><span class="m">60</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-4<span class="w">  </span><span class="m">61</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-3<span class="w">  </span><span class="m">62</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-2
-<span class="m">63</span><span class="o">)</span><span class="w"> </span>SIGRTMAX-1<span class="w">  </span><span class="m">64</span><span class="o">)</span><span class="w"> </span>SIGRTMAX
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">kill</span><span class="w"> </span>-l<span class="w"> </span><span class="c1"># 显示所有信号名称</span>
+<span class="go"> 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP</span>
+<span class="go"> 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1</span>
+<span class="go">11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM</span>
+<span class="go">16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP</span>
+<span class="go">21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ</span>
+<span class="go">26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR</span>
+<span class="go">31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3</span>
+<span class="go">38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8</span>
+<span class="go">43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13</span>
+<span class="go">48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12</span>
+<span class="go">53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7</span>
+<span class="go">58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2</span>
+<span class="go">63) SIGRTMAX-1  64) SIGRTMAX</span>
 </code></pre></div>
 <p>如果不加任何参数，只有 PID，<code>kill</code> 命令将自动使用 15（SIGTERM）作为信号参数。</p>
 <div class="admonition tip">
@@ -2131,9 +2131,9 @@ $<span class="w"> </span><span class="c1"># 使用 ps 命令，可以发现 matm
 <p>如果你使用过 SSH 连接到远程服务器执行任务，那么你会发现，你在 shell 中执行的程序在 SSH 断开之后会被关闭。这是因为终端一旦被关闭会向其中每个进程发送 SIGHUP（Signal hangup），而 SIGHUP 的默认动作即退出程序运行。</p>
 <h4 id="nohup">nohup<a class="headerlink" href="#nohup" title="Permanent link">&para;</a></h4>
 <p>nohup，字面含义，就是「不要被 SIGHUP 影响」。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nohup<span class="w"> </span>ping<span class="w"> </span><span class="m">101</span>.lug.ustc.edu.cn<span class="w"> </span><span class="p">&amp;</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">19258</span>
-nohup:<span class="w"> </span>ignoring<span class="w"> </span>input<span class="w"> </span>and<span class="w"> </span>appending<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;/home/ustc/nohup.out&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>nohup<span class="w"> </span>ping<span class="w"> </span><span class="m">101</span>.lug.ustc.edu.cn<span class="w"> </span><span class="p">&amp;</span>
+<span class="go">[1] 19258</span>
+<span class="go">nohup: ignoring input and appending output to &#39;/home/ustc/nohup.out&#39;</span>
 </code></pre></div>
 <p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch06/#redirection">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
 <h3 id="tmux">命令行多终端方案——tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
@@ -2146,8 +2146,8 @@ nohup:<span class="w"> </span>ignoring<span class="w"> </span>input<span class="
 </div>
 <p>tmux 由会话（session），窗口（window），面板（pane）组织起每个 shell 的输入框。会话用于区分不同的工作；窗口是会话中以显示屏为单位的不同的页；而面板则是一个窗口上被白线分割的不同区域。熟练掌握会话，窗口，面板之间的切换，可以极大提高使用效率。</p>
 <p>下面先行讲解这一工具的用法：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
-$<span class="w"> </span>tmux
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
+<span class="gp">$ </span>tmux
 </code></pre></div>
 <p>我们便打开了第一个 tmux 窗口：</p>
 <p>首先，Ctrl + B 是 tmux 的全局前缀命令，按下该快捷键表示让 tmux 接收命令。</p>
@@ -2227,7 +2227,7 @@ setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> 
 <details class="note">
 <summary>Tmux 的工作原理</summary>
 <p>在没有使用 tmux 时，我们无法将命令行界面状态保留下一次登录。这其中最关键的矛盾在于，只要终端关闭，当前 session 下所有进程默认结束（当然也可以像上面实验那样不响应 SIGHUP）。解决这个问题的思路之一便是在 SSH 断开时保证终端的存在。而 tmux 即可做到这一点。</p>
-<p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的会话中，与当前终端脱离。并且每一个 shell 有不同的 pty。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
+<p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的会话中，与当前终端脱离。并且每一个 shell 有不同的 pty (pseudoterminal)。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
 </details>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
 <p>说到<strong>「服务」</strong>，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」；Linux 也有服务的概念，下面将作介绍。</p>
@@ -2236,45 +2236,45 @@ setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> 
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
 <p>目前绝大多数 Linux 发行版的 init 方案都是 systemd，其管理系统服务的命令是 <code>systemctl</code>。</p>
 <p>要管理服务，首先我们要清楚系统内有哪些服务。可以通过 <code>systemctl status</code> 命令一览系统服务运行情况。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>systemctl<span class="w"> </span>status
-●<span class="w"> </span>ustclug-linux101
-<span class="w">    </span>State:<span class="w"> </span>running
-<span class="w">     </span>Jobs:<span class="w"> </span><span class="m">0</span><span class="w"> </span>queued
-<span class="w">   </span>Failed:<span class="w"> </span><span class="m">0</span><span class="w"> </span>units
-<span class="w">    </span>Since:<span class="w"> </span>Thu<span class="w"> </span><span class="m">2022</span>-02-24<span class="w"> </span><span class="m">22</span>:57:43<span class="w"> </span>CST<span class="p">;</span><span class="w"> </span>43s<span class="w"> </span>ago
-<span class="w">   </span>CGroup:<span class="w"> </span>/
-<span class="w">           </span>├─user.slice
-<span class="w">           </span>│<span class="w"> </span>└─user-1000.slice
-<span class="w">           </span>│<span class="w">   </span>├─user@1000.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-goa-volume-monitor.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1179<span class="w"> </span>/usr/libexec/gvfs-goa-volume-monitor
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─pulseaudio.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─908<span class="w"> </span>/usr/bin/pulseaudio<span class="w"> </span>--daemonize<span class="o">=</span>no<span class="w"> </span>--log-target<span class="o">=</span>journal
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-daemon.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1011<span class="w"> </span>/usr/libexec/gvfsd
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1016<span class="w"> </span>/usr/libexec/gvfsd-fuse<span class="w"> </span>/run/user/1000/gvfs<span class="w"> </span>-f<span class="w"> </span>-o<span class="w"> </span>big_writes
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1216<span class="w"> </span>/usr/libexec/gvfsd-trash<span class="w"> </span>--spawner<span class="w"> </span>:1.8<span class="w"> </span>/org/gtk/gvfs/exec_spaw/0
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-udisks2-volume-monitor.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1168<span class="w"> </span>/usr/libexec/gvfs-udisks2-volume-monitor
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─xfce4-notifyd.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1142<span class="w"> </span>/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─init.scope
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─900<span class="w"> </span>/lib/systemd/systemd<span class="w"> </span>--user
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─901<span class="w"> </span><span class="o">(</span>sd-pam<span class="o">)</span>
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─gvfs-gphoto2-volume-monitor.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1183<span class="w"> </span>/usr/libexec/gvfs-gphoto2-volume-monitor
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─obex.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1270<span class="w"> </span>/usr/lib/bluetooth/obexd
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─at-spi-dbus-bus.service
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1008<span class="w"> </span>/usr/libexec/at-spi-bus-launcher
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>├─1020<span class="w"> </span>/usr/bin/dbus-daemon<span class="w"> </span>--config-file<span class="o">=</span>/usr/share/defaults/at-spi2/accessibility.conf<span class="w"> </span>--&gt;
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>│<span class="w"> </span>└─1034<span class="w"> </span>/usr/libexec/at-spi2-registryd<span class="w"> </span>--use-gnome-session
-<span class="w">           </span>│<span class="w">   </span>│<span class="w"> </span>├─indicator-messages.service
-（以下省略）
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>systemctl<span class="w"> </span>status
+<span class="go">● ustclug-linux101</span>
+<span class="go">    State: running</span>
+<span class="go">     Jobs: 0 queued</span>
+<span class="go">   Failed: 0 units</span>
+<span class="go">    Since: Thu 2022-02-24 22:57:43 CST; 43s ago</span>
+<span class="go">   CGroup: /</span>
+<span class="go">           ├─user.slice</span>
+<span class="go">           │ └─user-1000.slice</span>
+<span class="go">           │   ├─user@1000.service</span>
+<span class="go">           │   │ ├─gvfs-goa-volume-monitor.service</span>
+<span class="go">           │   │ │ └─1179 /usr/libexec/gvfs-goa-volume-monitor</span>
+<span class="go">           │   │ ├─pulseaudio.service</span>
+<span class="go">           │   │ │ └─908 /usr/bin/pulseaudio --daemonize=no --log-target=journal</span>
+<span class="go">           │   │ ├─gvfs-daemon.service</span>
+<span class="go">           │   │ │ ├─1011 /usr/libexec/gvfsd</span>
+<span class="go">           │   │ │ ├─1016 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes</span>
+<span class="go">           │   │ │ └─1216 /usr/libexec/gvfsd-trash --spawner :1.8 /org/gtk/gvfs/exec_spaw/0</span>
+<span class="go">           │   │ ├─gvfs-udisks2-volume-monitor.service</span>
+<span class="go">           │   │ │ └─1168 /usr/libexec/gvfs-udisks2-volume-monitor</span>
+<span class="go">           │   │ ├─xfce4-notifyd.service</span>
+<span class="go">           │   │ │ └─1142 /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd</span>
+<span class="go">           │   │ ├─init.scope</span>
+<span class="go">           │   │ │ ├─900 /lib/systemd/systemd --user</span>
+<span class="go">           │   │ │ └─901 (sd-pam)</span>
+<span class="go">           │   │ ├─gvfs-gphoto2-volume-monitor.service</span>
+<span class="go">           │   │ │ └─1183 /usr/libexec/gvfs-gphoto2-volume-monitor</span>
+<span class="go">           │   │ ├─obex.service</span>
+<span class="go">           │   │ │ └─1270 /usr/lib/bluetooth/obexd</span>
+<span class="go">           │   │ ├─at-spi-dbus-bus.service</span>
+<span class="go">           │   │ │ ├─1008 /usr/libexec/at-spi-bus-launcher</span>
+<span class="go">           │   │ │ ├─1020 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --&gt;</span>
+<span class="go">           │   │ │ └─1034 /usr/libexec/at-spi2-registryd --use-gnome-session</span>
+<span class="go">           │   │ ├─indicator-messages.service</span>
+<span class="go">（以下省略）</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Less 翻页器</p>
-<p>当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 less 作为翻页器（Pager），方便我们阅读。</p>
+<p>当我们在终端中使用 systemd 组件时，如果输出内容较多，systemd 会使用 <code>less</code> 作为翻页器（Pager），方便我们阅读。</p>
 </div>
 <p>上面命令所列出的是系统中正在运行的服务，若想了解全部服务内容，可以运行 <code>systemctl list-units</code> 来查看。该命令将显示所有 systemd 管理的单元，同时右面还会附上一句注释来表明该服务的任务。</p>
 <div class="admonition example">
@@ -2312,36 +2312,36 @@ setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> 
 <summary>传统的 service 管理程序</summary>
 <p>尽管 systemd 近年来已经占据了大半江山，但是有人很讨厌它，认为它违背了 KISS（Keep It Simple and Stupid）原则，不符合 UNIX 哲学，因此有一些 Linux 发行版以不使用 systemd 为自身特色。并且，systemd 只能够用于 Linux，与其他的类 UNIX 操作系统（例如 FreeBSD）不兼容。因此，以下对传统的 <code>service</code> 命令作一个简单的介绍。</p>
 <p>可以通过 <code>service --status-all</code> 查看目录 <code>/etc/init.d</code> 下的服务。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>service<span class="w"> </span>--status-all
-<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>atftpd
-<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>avahi-daemon
-<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>bind9
-<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>bluetooth
-<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>console-setup.sh
-<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>cron
-<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>cups
-<span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="o">]</span><span class="w">  </span>cups-browsed
-<span class="o">[</span><span class="w"> </span>+<span class="w"> </span><span class="o">]</span><span class="w">  </span>dbus
-……
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>service<span class="w"> </span>--status-all
+<span class="go">[ - ]  atftpd</span>
+<span class="go">[ - ]  avahi-daemon</span>
+<span class="go">[ + ]  bind9</span>
+<span class="go">[ - ]  bluetooth</span>
+<span class="go">[ - ]  console-setup.sh</span>
+<span class="go">[ + ]  cron</span>
+<span class="go">[ + ]  cups</span>
+<span class="go">[ - ]  cups-browsed</span>
+<span class="go">[ + ]  dbus</span>
+<span class="go">……</span>
 </code></pre></div>
 <p>/etc/init.d 是在 systemd 作为 init 系统前放置服务的目录。出于向后兼容性的考虑，systemd 也支持从此目录中加载服务。</p>
 <p>以下是 tldr 给出的 <code>service</code> 常见命令的列表：</p>
-<div class="highlight"><pre><span></span><code>$ tldr service
-service
-Manage services by running init scripts.
-The full script path should be omitted (/etc/init.d/ is assumed).
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tldr<span class="w"> </span>service
+<span class="go">service</span>
+<span class="go">Manage services by running init scripts.</span>
+<span class="go">The full script path should be omitted (/etc/init.d/ is assumed).</span>
 
- - Start/Stop/Restart/Reload service (start/stop should always be available):
-   service {{init_script}} {{start|stop|restart|reload}}
+<span class="go"> - Start/Stop/Restart/Reload service (start/stop should always be available):</span>
+<span class="go">   service {{init_script}} {{start|stop|restart|reload}}</span>
 
- - Do a full restart (runs script twice with start and stop):
-   service {{init_script}} --full-restart
+<span class="go"> - Do a full restart (runs script twice with start and stop):</span>
+<span class="go">   service {{init_script}} --full-restart</span>
 
- - Show the current status of a service:
-   service {{init_script}} status
+<span class="go"> - Show the current status of a service:</span>
+<span class="go">   service {{init_script}} status</span>
 
- - List the status of all services:
-   service --status-all
+<span class="go"> - List the status of all services:</span>
+<span class="go">   service --status-all</span>
 </code></pre></div>
 </details>
 <h3 id="customizing-service">自定义服务<a class="headerlink" href="#customizing-service" title="Permanent link">&para;</a></h3>
@@ -2366,10 +2366,10 @@ The full script path should be omitted (/etc/init.d/ is assumed).
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w">      </span><span class="c1"># 依赖目标，这里指进入多用户模式后再启动该服务</span>
 </code></pre></div>
 <p>将写好的配置文件保存为 <code>/etc/systemd/system/jupyter.service</code>，然后运行 <code>systemctl daemon-reload</code>，就可以使用 <code>systemctl</code> 命令来管理这个服务了，例如：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>jupyter
-$<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>jupyter
-$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>jupyter<span class="w">  </span><span class="c1"># enable 表示标记服务的开机自动启动</span>
-$<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>jupyter<span class="w"> </span><span class="c1"># 取消自启</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>systemctl<span class="w"> </span>start<span class="w"> </span>jupyter
+<span class="gp">$ </span>systemctl<span class="w"> </span>stop<span class="w"> </span>jupyter
+<span class="gp">$ </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>jupyter<span class="w">  </span><span class="c1"># enable 表示标记服务的开机自动启动</span>
+<span class="gp">$ </span>systemctl<span class="w"> </span>disable<span class="w"> </span>jupyter<span class="w"> </span><span class="c1"># 取消自启</span>
 </code></pre></div>
 </div>
 <p>可以参考系统中其他 service 文件，以及 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service(5)</a> 手册页编写配置文件。</p>
@@ -2399,10 +2399,10 @@ Service atd (or atrun) should be running for the actual executions.
 </code></pre></div>
 </details>
 <p>所以该命令的基本用法示例如下：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>at<span class="w"> </span>now<span class="w"> </span>+<span class="w"> </span>1min
-&gt;<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
-&gt;<span class="w"> </span>&lt;EOT&gt;<span class="w"> </span>（按下<span class="w"> </span>Ctrl<span class="w"> </span>+<span class="w"> </span>D）
-job<span class="w"> </span><span class="m">3</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Apr<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">16</span>:16:00<span class="w"> </span><span class="m">2020</span><span class="w">   </span><span class="c1"># 任务编号与任务开始时间</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>at<span class="w"> </span>now<span class="w"> </span>+<span class="w"> </span>1min
+<span class="go">&gt; echo &quot;hello&quot;</span>
+<span class="go">&gt; &lt;EOT&gt; （按下 Ctrl + D）</span>
+<span class="go">job 3 at Sat Apr 18 16:16:00 2020   # 任务编号与任务开始时间</span>
 </code></pre></div>
 <p>等了一分钟后……为什么没有打印出字符串呢？其实是因为 at 默认将标准输出（stdout）和标准错误（stderr）的内容以邮件形式发送给用户。使用编辑器查看 <code>/var/mail/$USER</code> 就可以看到输出了（需要本地安装 mail 相关的服务）。</p>
 <div class="admonition tip">
@@ -2441,7 +2441,7 @@ usage:  crontab [-u user] file
 <span class="na">5  3  *  *  * curl &#39;http</span><span class="o">:</span><span class="s">//ip.42.pl/raw&#39; | mail -s &quot;ip today&quot; xxx@xxx.com</span>
 <span class="c1"># 每天凌晨 3 点 05 分将查询到的公网 ip 发送到自己的邮箱 （假设半夜 3 点重新拨号）</span>
 </code></pre></div>
-<p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。</p>
+<p>如果这里解释得尚不清楚，可以访问 <a href="https://crontab.guru/">https://crontab.guru/</a>，该网站可以将配置文件中的时间字段翻译为日常所能理解的时间表示。此外，还可以查看 crontab 的 man 文档（<code>man 5 crontab</code>）。</p>
 <p><img alt="crontab" src="images/crontab.gif" /></p>
 <p>另外，systemd 的 timer 单元也可以实现定时任务，配置文件的格式与上面的 service 文件一致，具体可以参考 <a href="https://www.ruanyifeng.com/blog/2018/03/systemd-timer.html">Systemd 定时器教程</a>进行配置。</p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>

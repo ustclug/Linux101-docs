@@ -1935,41 +1935,41 @@
 <p>strace 开头字母为 s 是由于该命令为 Sun™ 系统移植而来的调用追踪程序。</p>
 <p>注意 strace 会输出到标准错误 (stderr)，需要将输出重定向到标准输出之后通过管道后才能使用 grep 等工具。关于重定向、管道等内容，可以查看<a href="../../Ch06/#redirection-and-pipe">第六章</a>。</p>
 </div>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>strace<span class="w"> </span>ps
-...
-openat<span class="o">(</span>AT_FDCWD,<span class="w"> </span><span class="s2">&quot;/proc/1/stat&quot;</span>,<span class="w"> </span>O_RDONLY<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
-read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;1 (systemd) S 0 1 1 0 -1 4194560&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">193</span>
-close<span class="o">(</span><span class="m">6</span><span class="o">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
-openat<span class="o">(</span>AT_FDCWD,<span class="w"> </span><span class="s2">&quot;/proc/1/status&quot;</span>,<span class="w"> </span>O_RDONLY<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
-read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;Name:\tsystemd\nUmask:\t0000\nState:&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1024</span>
-read<span class="o">(</span><span class="m">6</span>,<span class="w"> </span><span class="s2">&quot;00,00000000,00000000,00000000,00&quot;</span>...,<span class="w"> </span><span class="m">1024</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">295</span>
-close<span class="o">(</span><span class="m">6</span><span class="o">)</span>
-...
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>strace<span class="w"> </span>ps
+<span class="go">...</span>
+<span class="go">openat(AT_FDCWD, &quot;/proc/1/stat&quot;, O_RDONLY) = 6</span>
+<span class="go">read(6, &quot;1 (systemd) S 0 1 1 0 -1 4194560&quot;..., 1024) = 193</span>
+<span class="go">close(6)                                = 0</span>
+<span class="go">openat(AT_FDCWD, &quot;/proc/1/status&quot;, O_RDONLY) = 6</span>
+<span class="go">read(6, &quot;Name:\tsystemd\nUmask:\t0000\nState:&quot;..., 1024) = 1024</span>
+<span class="go">read(6, &quot;00,00000000,00000000,00000000,00&quot;..., 1024) = 295</span>
+<span class="go">close(6)</span>
+<span class="go">...</span>
 </code></pre></div>
 <p><code>strace</code> 会输出很多内容，上面是其中的典型案例。</p>
 <p>可以大致猜测，ps 通过打开 <code>/proc/1</code> 文件夹下的 <code>stat</code> 和 <code>status</code> 文件，获得 1 号进程的信息。我们也可以试着打开它：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/proc/1/stat<span class="w">          </span><span class="c1"># 由于用户权限不同，是否添加 sudo 会导致读取出不同内容</span>
-<span class="m">1</span><span class="w"> </span><span class="o">(</span>systemd<span class="o">)</span><span class="w"> </span>S<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>-1<span class="w"> </span><span class="m">4194560</span><span class="w"> </span><span class="m">113722</span><span class="w"> </span><span class="m">4652720</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">2258</span><span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">670</span><span class="w"> </span><span class="m">19018</span><span class="w"> </span><span class="m">28647</span><span class="w"> </span><span class="se">\</span>
-<span class="m">20</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">231030784</span><span class="w"> </span><span class="m">2252</span><span class="w"> </span><span class="m">18446744073709551615</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">671173123</span><span class="w"> </span><span class="m">4096</span><span class="w"> </span><span class="m">1260</span><span class="w"> </span><span class="se">\</span>
-<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>/proc/1/stat<span class="w">          </span><span class="c1"># 由于用户权限不同，是否添加 sudo 会导致读取出不同内容</span>
+<span class="go">1 (systemd) S 0 1 1 0 -1 4194560 113722 4652720 87 2258 79 670 19018 28647 \</span>
+<span class="go">20 0 1 0 4 231030784 2252 18446744073709551615 1 1 0 0 0 0 671173123 4096 1260 \</span>
+<span class="go">0 0 0 17 0 0 0 135 0 0 0 0 0 0 0 0 0 0</span>
 
-$<span class="w"> </span>cat<span class="w"> </span>/proc/1/status
-Name:<span class="w">   </span>systemd
-Umask:<span class="w">  </span><span class="m">0000</span>
-State:<span class="w">  </span>S<span class="w"> </span><span class="o">(</span>sleeping<span class="o">)</span>
-Tgid:<span class="w">   </span><span class="m">1</span>
-Ngid:<span class="w">   </span><span class="m">0</span>
-Pid:<span class="w">    </span><span class="m">1</span>
-PPid:<span class="w">   </span><span class="m">0</span>
-TracerPid:<span class="w">  </span><span class="m">0</span>
-Uid:<span class="w">    </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>
-Gid:<span class="w">    </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>
-FDSize:<span class="w"> </span><span class="m">256</span>
-Groups:
-NStgid:<span class="w"> </span><span class="m">1</span>
-NSpid:<span class="w">  </span><span class="m">1</span>
-NSpgid:<span class="w"> </span><span class="m">1</span>
-（以下内容省略）
+<span class="gp">$ </span>cat<span class="w"> </span>/proc/1/status
+<span class="go">Name:   systemd</span>
+<span class="go">Umask:  0000</span>
+<span class="go">State:  S (sleeping)</span>
+<span class="go">Tgid:   1</span>
+<span class="go">Ngid:   0</span>
+<span class="go">Pid:    1</span>
+<span class="go">PPid:   0</span>
+<span class="go">TracerPid:  0</span>
+<span class="go">Uid:    0   0   0   0</span>
+<span class="go">Gid:    0   0   0   0</span>
+<span class="go">FDSize: 256</span>
+<span class="go">Groups:</span>
+<span class="go">NStgid: 1</span>
+<span class="go">NSpid:  1</span>
+<span class="go">NSpgid: 1</span>
+<span class="go">（以下内容省略）</span>
 </code></pre></div>
 <p>也许第一个文件不是那么好看，但第二个文件就很直白了。至此可以得出结论，根目录下 <code>/proc</code> 文件夹储存进程信息，而 htop 等命令通过对该文件夹下的文件进行自动读取来监视进程。实际上，<code>/proc</code> 是一个虚拟的文件系统，存在于内存中，反映着系统的运行状态。</p>
 <h2 id="sysrq">SysRq: 进行紧急的系统维护操作<a class="headerlink" href="#sysrq" title="Permanent link">&para;</a></h2>

@@ -1841,7 +1841,7 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 <p>在我们使用 <code>sudo</code> 的时候，输入自己的密码并验证正确之后，<code>sudo</code> 就会以 <code>root</code> 用户的身份，执行后面我们希望执行的命令。而使用 <code>apt</code> 安装的软件存储在了系统的目录下，所以必须要以 <code>root</code> 用户的身份安装。这就是我们平时需要 <code>sudo</code> 来安装软件的原因。</p>
 <div class="admonition danger">
 <p class="admonition-title">谨慎使用 <code>root</code> 用户权限执行命令！</p>
-<p>我们知道，<code>root</code> 用户可以对系统做极其危险的操作。当使用 <code>root</code> 权限执行命令时（如使用 <code>sudo</code>），一定要<strong>小心、谨慎，理解命令的含义之后再按下回车</strong>。<strong>请不要复制网络上所谓的「Linux 优化命令」等</strong>，以 <code>root</code> 权限执行，否则<strong>可能会带来灾难性的后果</strong>。</p>
+<p>我们知道，<code>root</code> 用户可以对系统做极其危险的操作。当使用 <code>root</code> 权限执行命令时（如使用 <code>sudo</code>），一定要<strong>小心、谨慎，理解命令的含义之后再按下回车</strong>。<strong>请不要复制网络上所谓的「Linux 优化命令」等</strong>，以 <code>root</code> 权限执行，否则<strong>可能会带来灾难性的后果</strong>。除了复制外，直接通过 <code>curl</code> 等工具获取脚本然后通过管道传给 <code>sh</code> 执行也是非常危险的操作。运行脚本前，请务必先仔细检查要执行的脚本内容。</p>
 <p>以下是一些会对系统带来<span class=red>毁灭性破坏</span>的例子。 <strong><span class=red>再重复一遍，不要执行下面的命令！</span></strong></p>
 <ul>
 <li><code>rm -rf /</code>（删除系统中的所有可以删除的文件，<strong>包括被挂载的其他分区</strong>。<strong>即使不以 <code>root</code> 权限执行，也可以删掉自己的所有文件。</strong>）</li>
@@ -1866,33 +1866,33 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 <details class="tip">
 <summary>以 <code>root</code> 用户执行上一条命令</summary>
 <p>你是否常常忘记敲 <code>sudo</code>，结果还要把后面的整条命令重新敲一遍？在发现权限不足之后有一个方便的「补救方案」：<code>sudo !!</code>，效果如下：</p>
-<div class="highlight"><pre><span></span><code>$ apt update
-Reading package lists... Done
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
-E: Unable to lock directory /var/lib/apt/lists/
-W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
-W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
-$ sudo !!
-sudo apt update
-[sudo] password for ustc:
-Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease
-（以下内容省略）
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>apt<span class="w"> </span>update
+<span class="go">Reading package lists... Done</span>
+<span class="go">E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)</span>
+<span class="go">E: Unable to lock directory /var/lib/apt/lists/</span>
+<span class="go">W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)</span>
+<span class="go">W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>!!
+<span class="go">sudo apt update</span>
+<span class="go">[sudo] password for ustc:</span>
+<span class="go">Hit:1 http://mirrors.ustc.edu.cn/ubuntu bionic InRelease</span>
+<span class="go">（以下内容省略）</span>
 </code></pre></div>
 <p>其实，在 Shell 中，<code>!!</code> 即代表上一条命令，可以和其他的命令结合使用。</p>
 </details>
 <p>那么，如何以 <code>root</code> 之外的用户的身份执行命令呢？加上 <code>-u 用户名</code> 的参数即可。</p>
-<div class="highlight"><pre><span></span><code>$ sudo -u nobody id
-uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>-u<span class="w"> </span>nobody<span class="w"> </span>id
+<span class="go">uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)</span>
 </code></pre></div>
 <p>这里，我们就用 <code>nobody</code> 这个用户的身份，执行了 <code>id</code>，得到了 <code>nobody</code> 的 UID 等信息。</p>
 <details class="example">
 <summary>修改 <code>sudo</code> 配置的例子：无密码执行 <code>sudo</code> (*)</summary>
-<p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件。</strong>对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令去做。</p>
+<p><code>sudo</code> 的配置存储在 <code>/etc/sudoers</code> 文件中，仅 <code>root</code> 用户有权查看和修改。<strong>不要直接修改此文件：对这个文件的任何修改，都应该使用 <code>visudo</code> 这个命令完成</strong>。</p>
 <p>默认的 Ubuntu 配置中，安装时创建的用户在 <code>sudo</code> 用户组（下文会提到这个概念）中。在 <code>sudoers</code> 文件中，它的配置像这样：</p>
 <div class="highlight"><pre><span></span><code># Allow members of group sudo to execute any command
 %sudo   ALL=(ALL:ALL) ALL
 </code></pre></div>
-<p>将配置行修改成以下即可。</p>
+<p>将配置行修改成以下即可。注意，<code>%sudo</code> 的后面是一个制表符（TAB），不是一系列空格。</p>
 <div class="highlight"><pre><span></span><code>%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 </code></pre></div>
 <p><code>sudoers</code> 的配置比较复杂。可以使用 <code>man sudoers</code>，或在网络上搜索资料以得到更详细的说明。</p>
@@ -1900,26 +1900,26 @@ uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 <h4 id="su"><code>su</code><a class="headerlink" href="#su" title="Permanent link">&para;</a></h4>
 <p><code>su</code> 命令用于直接切换用户，格式是 <code>su 用户名</code>。如果没有用户名这个参数，则切换到 <code>root</code> 用户。</p>
 <p>在读完上面这句话之后，你可能会尝试切换到 <code>root</code>，但是却失败了：</p>
-<div class="highlight"><pre><span></span><code>$ su
-Password:
-（密码？什么密码？输我自己的密码试试？）
-su: Authentication failure
-$
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>su
+<span class="go">Password:</span>
+<span class="go">（密码？什么密码？输我自己的密码试试？）</span>
+<span class="go">su: Authentication failure</span>
+<span class="gp">$</span>
 </code></pre></div>
 <p>这是因为，如 Ubuntu 等 Linux 发行版默认禁止了 <code>root</code> 用户的密码登录，只允许通过 <code>sudo</code> 提高权限。但是，我们可以用 <code>sudo</code> 运行 <code>su</code>，来得到一个为 <code>root</code> 用户权限的 shell。</p>
-<div class="highlight"><pre><span></span><code>$ sudo su
-Password:
-（没错，是我自己的密码）
-# id
-uid=0(root) gid=0(root) groups=0(root)
-# exit
-$
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>su
+<span class="go">Password:</span>
+<span class="go">（没错，是我自己的密码）</span>
+<span class="gp"># </span>id
+<span class="go">uid=0(root) gid=0(root) groups=0(root)</span>
+<span class="gp"># </span><span class="nb">exit</span>
+<span class="gp">$</span>
 </code></pre></div>
 <p><code>sudo su</code>, <code>sudo su -</code> 等命令有一些细微的区别，可以阅读本章的补充材料。另外，也可以使用 <code>sudo -i</code>（与 <code>sudo su -</code> 等价），获得一个 <code>root</code> 权限 shell。</p>
 <h3 id="intro-user-group">用户组简介<a class="headerlink" href="#intro-user-group" title="Permanent link">&para;</a></h3>
 <p>用户组是用户的集合。通过用户组机制，可以为一批用户设置权限。可以使用 <code>groups</code> 命令，查看自己所属的用户组。</p>
-<div class="highlight"><pre><span></span><code>$ groups
-ustc adm cdrom sudo dip plugdev lxd
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>groups
+<span class="go">ustc adm cdrom sudo dip plugdev lxd</span>
 </code></pre></div>
 <p>可以看到，用户 <code>ustc</code> 从属于多个用户组，包括一个与其名字相同的用户组。一般在用户创建的时候，都会创建与它名字相同的用户组。</p>
 <p>对于普通用户来说，用户组机制会在配置部分软件时使用到。如在使用第八章的 Docker 时，可以把自己加入 <code>docker</code> 用户组，从而不需要使用 <code>root</code> 权限，也可以访问它的接口。</p>
@@ -1933,13 +1933,13 @@ ustc adm cdrom sudo dip plugdev lxd
 <p>如果你正在使用其他发行版（如 Fedora, CentOS 等），或者有更多的需求，则需要使用 <code>usermod</code>, <code>useradd</code>, <code>groupadd</code> 等替代。具体信息详询各自的 <code>man</code> 文档。</p>
 </div>
 <p><code>adduser</code> 是 Debian 及其衍生发行版中附带的一个方便的用户管理脚本。它可以用来向系统添加用户、添加组，以及将用户加入组。输入：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名
 </code></pre></div>
 <p>即可添加此用户。而输入</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>adduser<span class="w"> </span>--group<span class="w"> </span>组名
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>--group<span class="w"> </span>组名
 </code></pre></div>
 <p>即可添加此用户组。将用户加入指定用户组也非常简单：</p>
-<div class="highlight"><pre><span></span><code>$ sudo adduser 用户名 组名
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>用户名<span class="w"> </span>组名
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">添加用户至 sudo 用户组</p>
@@ -1949,7 +1949,7 @@ ustc adm cdrom sudo dip plugdev lxd
 ustc is not in the sudoers file.  This incident will be reported.
 </code></pre></div>
 <p>除了可以通过 <code>visudo</code> 命令编辑 <code>sudoers</code> 文件外，还可以直接通过将新的用户加入到 <code>sudo</code> 用户组，以能够使用 <code>sudo</code> 命令。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>adduser<span class="w"> </span>ustc<span class="w"> </span>sudo
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>ustc<span class="w"> </span>sudo
 </code></pre></div>
 <p>再次切换到新的用户即可看到使用 sudo 的提示：</p>
 <div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
@@ -1958,10 +1958,10 @@ See &quot;man sudo_root&quot; for details.
 </div>
 <h2 id="file-permission">文件权限<a class="headerlink" href="#file-permission" title="Permanent link">&para;</a></h2>
 <p>在 Linux 中，每个文件和目录都有自己的权限。可以使用 <code>ls -l</code> 查看当前目录中文件的详细信息。</p>
-<div class="highlight"><pre><span></span><code>$ ls -l
-total 8
--rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
-drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-l
+<span class="go">total 8</span>
+<span class="go">-rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file</span>
+<span class="go">drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder</span>
 </code></pre></div>
 <p>第一列的字符串从左到右意义分别是：文件类型（一位）、文件所属用户的权限（三位）、文件所属用户组的权限（三位）、其他人的权限（三位）。对于每个权限，第一位 <code>r</code> 代表读取 (<strong>R</strong>ead)，第二位 <code>w</code> 代表写入 (<strong>W</strong>rite)，第三位 <code>x</code> 代表执行 (E<strong>x</strong>ecute)，<code>-</code> 代表没有对应的权限。</p>
 <p>第三、四列为文件所属用户和用户组。</p>
@@ -1970,29 +1970,29 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 <summary>执行权限意味着什么？</summary>
 <p>读取和写入权限是很容易理解的。但是执行权限是什么意思？对于一个文件来说，拥有执行权限，它就可以被操作系统作为程序代码执行。如果某个程序文件没有执行权限，你仍然可以查看这个程序文件本身，修改它的内容，但是无法执行它。</p>
 <p>而对于目录来说，拥有执行权限，你就可以访问这个目录下的文件的内容。以下是一个例子：</p>
-<div class="highlight"><pre><span></span><code>$ ls -l
-total 8
--rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file
-drw-rw-r-- 2 ustc ustc 4096 Feb  3 22:38 a_folder
-$ （与上面不同，我们去掉了 a_folder 的执行权限）
-$ cd a_folder
--bash: cd: a_folder/: Permission denied
-$ （失败了，这说明，如果没有执行权限，我们无法进入这个目录）
-$ ls a_folder
-ls: cannot access &#39;a_folder/test&#39;: Permission denied
-test
-$ （列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件 test）
-$ cat a_folder/test
-cat: a_folder/test: Permission denied
-$ cp a_folder/test test
-cp: cannot stat &#39;a_folder/test&#39;: Permission denied
-$ mv a_folder/test a_folder/test2
-mv: failed to access &#39;a_folder/test2&#39;: Permission denied
-$ touch a_folder/test2
-touch: cannot touch &#39;a_folder/test2&#39;: Permission denied
-$ rm a_folder/test
-rm: cannot remove &#39;a_folder/test&#39;: Permission denied
-$ （可以看到，即使我们有写入权限，在此目录中进行添加、删除、重命名的操作仍然是不行的）
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-l
+<span class="go">total 8</span>
+<span class="go">-rwxrw-r-- 1 ustc ustc   40 Feb  3 22:37 a_file</span>
+<span class="go">drw-rw-r-- 2 ustc ustc 4096 Feb  3 22:38 a_folder</span>
+<span class="gp">$ </span>（与上面不同，我们去掉了<span class="w"> </span>a_folder<span class="w"> </span>的执行权限）
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>a_folder
+<span class="go">-bash: cd: a_folder/: Permission denied</span>
+<span class="gp">$ </span>（失败了，这说明，如果没有执行权限，我们无法进入这个目录）
+<span class="gp">$ </span>ls<span class="w"> </span>a_folder
+<span class="go">ls: cannot access &#39;a_folder/test&#39;: Permission denied</span>
+<span class="go">test</span>
+<span class="gp">$ </span>（列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件<span class="w"> </span>test）
+<span class="gp">$ </span>cat<span class="w"> </span>a_folder/test
+<span class="go">cat: a_folder/test: Permission denied</span>
+<span class="gp">$ </span>cp<span class="w"> </span>a_folder/test<span class="w"> </span><span class="nb">test</span>
+<span class="go">cp: cannot stat &#39;a_folder/test&#39;: Permission denied</span>
+<span class="gp">$ </span>mv<span class="w"> </span>a_folder/test<span class="w"> </span>a_folder/test2
+<span class="go">mv: failed to access &#39;a_folder/test2&#39;: Permission denied</span>
+<span class="gp">$ </span>touch<span class="w"> </span>a_folder/test2
+<span class="go">touch: cannot touch &#39;a_folder/test2&#39;: Permission denied</span>
+<span class="gp">$ </span>rm<span class="w"> </span>a_folder/test
+<span class="go">rm: cannot remove &#39;a_folder/test&#39;: Permission denied</span>
+<span class="gp">$ </span>（可以看到，即使我们有写入权限，在此目录中进行添加、删除、重命名的操作仍然是不行的）
 </code></pre></div>
 <p>为了更好地理解目录权限的含义，可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 <code>cd</code> 切换当前目录到此目录的权限。</p>
 <p>有关文件与目录权限的完整表格，可以查看 Arch Wiki 的 <a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions">File permissions and attributes</a> 一页。</p>
@@ -2001,13 +2001,13 @@ $ （可以看到，即使我们有写入权限，在此目录中进行添加、
 <div class="admonition example">
 <p class="admonition-title">例子：如何执行从网络上下载的程序或脚本</p>
 <p>有时候，我们会从网上下载一些二进制的程序，或者根据网络的教程编写脚本程序，但当你想执行的时候却发现：</p>
-<div class="highlight"><pre><span></span><code>$ ./program
--bash: ./program: Permission denied
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>./program
+<span class="go">-bash: ./program: Permission denied</span>
 </code></pre></div>
 <p>大多数情况下，这说明这个文件缺少执行 (<code>x</code>) 权限。可以使用 <code>chmod +x</code> 命令添加执行权限。</p>
-<div class="highlight"><pre><span></span><code>$ chmod +x program
-$ ./program
-（可以执行了）
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>chmod<span class="w"> </span>+x<span class="w"> </span>program
+<span class="gp">$ </span>./program
+<span class="go">（可以执行了）</span>
 </code></pre></div>
 </div>
 <h2 id="fhs">文件系统层次结构<a class="headerlink" href="#fhs" title="Permanent link">&para;</a></h2>
@@ -2072,7 +2072,7 @@ $ ./program
 </dd>
 <dt><code>/sbin</code></dt>
 <dd>
-<p>存储用于系统管理，以及仅允许 <code>root</code> 用户使用的程序。如 <code>fsck</code>（文件系统修复程序）、<code>reboot</code>（重启系统）等。</p>
+<p>存储用于系统管理，以及仅允许 <code>root</code> 用户使用的程序。如 <code>fsck</code>（文件系统修复程序）、<code>reboot</code>（重启系统）、<code>useradd</code>（添加用户）等。</p>
 </dd>
 <dt><code>/srv</code></dt>
 <dd>
@@ -2105,7 +2105,7 @@ $ ./program
 <p>存储会发生变化的程序相关文件。例如下面的目录：</p>
 <ul>
 <li><code>/var/log</code>：存储程序的日志文件。</li>
-<li><code>/var/lib</code>：存储程序自身的状态信息（如 lock file）。</li>
+<li><code>/var/lib</code>：存储程序自身的状态信息（如 lock file）。这个目录和 <code>library</code> 的关系并不大。</li>
 <li><code>/var/run</code>：存储程序运行时的数据（部分发行版会将该目录符号链接到 <code>/run</code> 目录）。</li>
 <li><code>/var/spool</code>：存储「等待进一步处理」的程序数据。</li>
 </ul>
@@ -2131,6 +2131,25 @@ $ ./program
 <div class="admonition question">
 <p class="admonition-title"><code>sudo cd</code>?</p>
 <p>当需要浏览仅 <code>root</code> 用户可查看的目录时，很多人的第一反应是 <code>sudo cd xxx</code>，但最终失败了。尝试解释这样做不可行的原因。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Debian 与 Ubuntu 的区别之一：普通用户运行 <code>useradd</code> 等命令</p>
+<p>提示：可以在按照<a href="../Ch08/">第八章</a>配置 Docker 后使用如下命令体验 Debian：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>debian:bookworm
+</code></pre></div>
+<p>在进入容器后，使用 <code>useradd</code>（<code>adduser</code> 也可以）创建一个新用户并进入：</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>useradd<span class="w"> </span>-m<span class="w"> </span><span class="nb">test</span>
+<span class="gp"># </span>su<span class="w"> </span>-<span class="w"> </span><span class="nb">test</span>
+<span class="gp">$ </span>useradd
+<span class="go">-sh: 1: useradd: not found</span>
+</code></pre></div>
+<p>而相同的操作在 Ubuntu 容器（<code>ubuntu:noble</code>）中可以找到 <code>useradd</code> 这个命令：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>useradd
+<span class="go">Usage: useradd [options] LOGIN</span>
+<span class="go">   useradd -D</span>
+<span class="go">   useradd -D [options]</span>
+</code></pre></div>
+<p>虽然说 <code>useradd</code> 这种程序只能 root 运行，但是以上差异是为什么呢？</p>
 </div>
 <h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>

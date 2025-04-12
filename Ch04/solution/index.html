@@ -1826,10 +1826,10 @@
 <details class="info">
 <summary>解答</summary>
 <p>在启动 tmux 时，可以为启动的会话命名：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>session-a<span class="w">  </span><span class="c1"># 启动名为 session-a 的 tmux 会话</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>session-a<span class="w">  </span><span class="c1"># 启动名为 session-a 的 tmux 会话</span>
 </code></pre></div>
 <p>脱离 tmux 之后如果还需要再进入这个会话，使用以下命令即可：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tmux<span class="w"> </span>a<span class="w"> </span>-t<span class="w"> </span>session-a
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tmux<span class="w"> </span>a<span class="w"> </span>-t<span class="w"> </span>session-a
 </code></pre></div>
 <p>对于实验室这个场景，要防止不同用户的操作互相影响，与其他同学提前约定好使用不同的会话名即可。</p>
 </details>
@@ -1844,25 +1844,25 @@
 <li>
 <p>某个服务的日志</p>
 <p><code>journalctl</code> 的 <code>-u</code> 参数可以指定 unit，例子如下：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w">  </span><span class="c1"># 查看 ssh 服务的日志</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w">  </span><span class="c1"># 查看 ssh 服务的日志</span>
 </code></pre></div>
 </li>
 <li>
 <p>某个<strong>正在运行</strong>的服务<strong>正在</strong>输出的日志</p>
 <p>在第一条的基础上，可以指定 <code>-f</code> 参数，以获取正在输出的日志：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w"> </span>-f
 </code></pre></div>
 <p>按下 Ctrl + C 退出输出即可。</p>
 </li>
 <li>
 <p>系统<strong>正在</strong>输出的日志</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-f
 </code></pre></div>
 <p>系统日志对于调试系统状态来说是非常有用的信息。</p>
 </li>
 <li>
 <p>上一次启动到关机的所有日志</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-b<span class="w"> </span>-1
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-b<span class="w"> </span>-1
 </code></pre></div>
 <p><code>-b</code> 参数表示 boot（启动），<code>-1</code> 表示上一次启动。如果不添加 <code>-1</code> 参数，则默认为当前启动的日志。</p>
 </li>

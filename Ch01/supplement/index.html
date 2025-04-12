@@ -801,6 +801,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-ventoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 Ventoy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       引用来源
@@ -2053,6 +2062,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-ventoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 Ventoy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       引用来源
@@ -2129,17 +2147,17 @@
 </ol>
 <p>因此，只需将 SELinux 置于 <code>permissive</code> 或 <code>disabled</code> 状态即可。</p>
 <p>使用 <code>sestatus</code> 命令查看 SELinux 状态：</p>
-<div class="highlight"><pre><span></span><code>$ sestatus
-SELinux status:                 enabled
-SELinuxfs mount:                /sys/fs/selinux
-SELinux root directory:         /etc/selinux
-Loaded policy name:             targeted
-Current mode:                   enforcing
-Mode from config file:          enforcing
-Policy MLS status:              enabled
-Policy deny_unknown status:     allowed
-Memory protection checking:     actual (secure)
-Max kernel policy version:      31
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sestatus
+<span class="go">SELinux status:                 enabled</span>
+<span class="go">SELinuxfs mount:                /sys/fs/selinux</span>
+<span class="go">SELinux root directory:         /etc/selinux</span>
+<span class="go">Loaded policy name:             targeted</span>
+<span class="go">Current mode:                   enforcing</span>
+<span class="go">Mode from config file:          enforcing</span>
+<span class="go">Policy MLS status:              enabled</span>
+<span class="go">Policy deny_unknown status:     allowed</span>
+<span class="go">Memory protection checking:     actual (secure)</span>
+<span class="go">Max kernel policy version:      31</span>
 </code></pre></div>
 <p>使用 <code>setenforce 0</code> <strong>临时</strong> 改变 SELinux 状态到 <code>permissive</code>，这个状态在重启后将恢复为配置文件指定的默认值。</p>
 <div class="highlight"><pre><span></span><code># setenforce 0
@@ -2254,52 +2272,52 @@ VMware 与 VirtualBox 的扩容操作可能都不会自动扩大文件系统，�
 <p>由于 SSH 服务器默认不关闭密码验证，在安装前请务必使用 <code>passwd</code> 命令修改弱密码！</p>
 </div>
 <p>在服务器上首先安装 <code>openssh-server</code> 软件包，它提供了 SSH 服务器的功能。</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt install openssh-server
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
 </code></pre></div>
 <p>启动并检查 SSH 服务状态：</p>
-<div class="highlight"><pre><span></span><code>$ sudo systemctl start ssh
-$ sudo systemctl status ssh
-● ssh.service - OpenBSD Secure Shell server
-     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
-     Active: active (running) since Thu 2022-02-24 16:47:39 CST; 1min 15s ago
-       Docs: man:sshd(8)
-             man:sshd_config(5)
-   Main PID: 1689 (sshd)
-      Tasks: 1 (limit: 2250)
-     Memory: 2.0M
-     CGroup: /system.slice/ssh.service
-             └─1689 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+<span class="go">● ssh.service - OpenBSD Secure Shell server</span>
+<span class="go">     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)</span>
+<span class="go">     Active: active (running) since Thu 2022-02-24 16:47:39 CST; 1min 15s ago</span>
+<span class="go">       Docs: man:sshd(8)</span>
+<span class="go">             man:sshd_config(5)</span>
+<span class="go">   Main PID: 1689 (sshd)</span>
+<span class="go">      Tasks: 1 (limit: 2250)</span>
+<span class="go">     Memory: 2.0M</span>
+<span class="go">     CGroup: /system.slice/ssh.service</span>
+<span class="go">             └─1689 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups</span>
 
-2月 24 16:47:39 ustclug-linux101 systemd[1]: Starting OpenBSD Secure Shell server...
-2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on 0.0.0.0 port 22.
-2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on :: port 22.
-2月 24 16:47:39 ustclug-linux101 systemd[1]: Started OpenBSD Secure Shell server.
+<span class="go">2月 24 16:47:39 ustclug-linux101 systemd[1]: Starting OpenBSD Secure Shell server...</span>
+<span class="go">2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on 0.0.0.0 port 22.</span>
+<span class="go">2月 24 16:47:39 ustclug-linux101 sshd[1689]: Server listening on :: port 22.</span>
+<span class="go">2月 24 16:47:39 ustclug-linux101 systemd[1]: Started OpenBSD Secure Shell server.</span>
 </code></pre></div>
 <p>我们可以使用 <code>ssh</code> 命令直接连接到本地（localhost）的 SSH 服务器。其中 <code>@</code> 符号前的是登录的用户名，后面的是服务器的域名或 IP 地址。</p>
-<div class="highlight"><pre><span></span><code>$ ssh ustc@localhost
-The authenticity of host &#39;localhost (127.0.0.1)&#39; can&#39;t be established.
-ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added &#39;localhost&#39; (ECDSA) to the list of known hosts.
-ustc@localhost&#39;s password:
-Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.13.0-28-generic x86_64)
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ssh<span class="w"> </span>ustc@localhost
+<span class="go">The authenticity of host &#39;localhost (127.0.0.1)&#39; can&#39;t be established.</span>
+<span class="go">ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.</span>
+<span class="go">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<span class="go">Warning: Permanently added &#39;localhost&#39; (ECDSA) to the list of known hosts.</span>
+<span class="go">ustc@localhost&#39;s password:</span>
+<span class="go">Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.13.0-28-generic x86_64)</span>
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+<span class="go"> * Documentation:  https://help.ubuntu.com</span>
+<span class="go"> * Management:     https://landscape.canonical.com</span>
+<span class="go"> * Support:        https://ubuntu.com/advantage</span>
 
-0 updates can be applied immediately.
+<span class="go">0 updates can be applied immediately.</span>
 
-Your Hardware Enablement Stack (HWE) is supported until April 2025.
+<span class="go">Your Hardware Enablement Stack (HWE) is supported until April 2025.</span>
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
+<span class="go">The programs included with the Ubuntu system are free software;</span>
+<span class="go">the exact distribution terms for each program are described in the</span>
+<span class="go">individual files in /usr/share/doc/*/copyright.</span>
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
+<span class="go">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span>
+<span class="go">applicable law.</span>
 
-ustc@ustclug-linux101:~$
+<span class="gp">ustc@ustclug-linux101:~$</span>
 </code></pre></div>
 <details class="note">
 <summary>第一次连接时的提示</summary>
@@ -2336,39 +2354,39 @@ Host key verification failed.
 <p class="admonition-title">配置密钥登录</p>
 <p>上面我们提到，弱密码会导致黑客能够轻而易举从 SSH 入侵服务器，但是每次登录输入复杂密码会很烦，怎么办呢？其实，SSH 提供了一种相当方便、简单、安全的连接方式：密钥认证。它的原理是，用户生成一对密钥，将公钥放在服务器上，登录时 SSH 自动使用私钥认证，两者相符则允许用户登录。</p>
 <p>首先在自己的机器上使用 <code>ssh-keygen</code> 生成密钥：</p>
-<div class="highlight"><pre><span></span><code>$ ssh-keygen
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/ustc/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/ustc/.ssh/id_rsa
-Your public key has been saved in /home/ustc/.ssh/id_rsa.pub
-The key fingerprint is:
-SHA256:/+4tXnjnilyLQvwa+qEKx0IK2jOzHRj0Nbarr3Vot1E ustc@ustclug-linux101
-The key&#39;s randomart image is:
-+---[RSA 3072]----+
-|                 |
-|                 |
-|  .   +          |
-| . . o o         |
-|. . o . S.E      |
-|.o = . o oo  .   |
-|. B + B +.+.. + .|
-|   * O o =.=oB + |
-|  . +oo.+.o*O.+..|
-+----[SHA256]-----+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ssh-keygen
+<span class="go">Generating public/private rsa key pair.</span>
+<span class="go">Enter file in which to save the key (/home/ustc/.ssh/id_rsa):</span>
+<span class="go">Enter passphrase (empty for no passphrase):</span>
+<span class="go">Enter same passphrase again:</span>
+<span class="go">Your identification has been saved in /home/ustc/.ssh/id_rsa</span>
+<span class="go">Your public key has been saved in /home/ustc/.ssh/id_rsa.pub</span>
+<span class="go">The key fingerprint is:</span>
+<span class="go">SHA256:/+4tXnjnilyLQvwa+qEKx0IK2jOzHRj0Nbarr3Vot1E ustc@ustclug-linux101</span>
+<span class="go">The key&#39;s randomart image is:</span>
+<span class="go">+---[RSA 3072]----+</span>
+<span class="go">|                 |</span>
+<span class="go">|                 |</span>
+<span class="go">|  .   +          |</span>
+<span class="go">| . . o o         |</span>
+<span class="go">|. . o . S.E      |</span>
+<span class="go">|.o = . o oo  .   |</span>
+<span class="go">|. B + B +.+.. + .|</span>
+<span class="go">|   * O o =.=oB + |</span>
+<span class="go">|  . +oo.+.o*O.+..|</span>
+<span class="go">+----[SHA256]-----+</span>
 </code></pre></div>
 <p>这里的 passphrase 是密钥的密码，设置之后即使私钥被别人拿到也无法使用，可以不输入。最终得到的 <code>id_rsa</code> 是私钥（<strong>千万不要分享给别人！</strong>），<code>id_rsa.pub</code> 是公钥（可以公开）。</p>
 <p>在本地使用 <code>ssh-copy-id</code> 命令将公钥拷贝到服务器上：</p>
-<div class="highlight"><pre><span></span><code>$ ssh-copy-id ustc@localhost
-/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
-/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-ustc@localhost&#39;s password:
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ssh-copy-id<span class="w"> </span>ustc@localhost
+<span class="go">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
+<span class="go">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
+<span class="go">ustc@localhost&#39;s password:</span>
 
-Number of key(s) added: 1
+<span class="go">Number of key(s) added: 1</span>
 
-Now try logging into the machine, with:   &quot;ssh &#39;ustc@localhost&#39;&quot;
-and check to make sure that only the key(s) you wanted were added.
+<span class="go">Now try logging into the machine, with:   &quot;ssh &#39;ustc@localhost&#39;&quot;</span>
+<span class="go">and check to make sure that only the key(s) you wanted were added.</span>
 </code></pre></div>
 <p>如果服务器不允许使用密码登录，可以将用户目录下 <code>.ssh/id_rsa.pub</code> 文件的内容复制到机器对应用户的 <code>.ssh/authorized_keys</code> 文件中。</p>
 <p>配置完成后，可以考虑关闭 SSH 服务器的密码验证。做法是编辑 <code>/etc/ssh/sshd_config</code> 文件，将其中</p>
@@ -2378,7 +2396,7 @@ and check to make sure that only the key(s) you wanted were added.
 <div class="highlight"><pre><span></span><code>PasswordAuthentication no
 </code></pre></div>
 <p>然后让 SSH 服务器重新加载配置：</p>
-<div class="highlight"><pre><span></span><code>$ sudo systemctl reload ssh
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
 </code></pre></div>
 <p>我们建议除非有特殊原因，否则所有正式生产环境服务器（例如实验室服务器）都应该关闭 SSH 密码验证。</p>
 </div>
@@ -2395,6 +2413,10 @@ and check to make sure that only the key(s) you wanted were added.
 <summary>不要将 WSL 与 Windows Services for UNIX (SFU) 混淆</summary>
 <p>你可能会在老版本的 Windows 上注意到，在「添加与删除 Windows 组件」的地方，有一个「基于 UNIX 的应用程序子系统」。需要注意的是，这个选项和 WSL 没有任何关系。它也无法直接运行 Linux 或者其他 UNIX 的程序。并且，这个子系统目前也已经停止了开发。</p>
 </details>
+<div class="admonition warning">
+<p class="admonition-title">WSL 对宿主机文件系统的挂载</p>
+<p>请注意，<strong>WSL 可能将主机的文件系统挂载在子系统的某个位置（例如将主机的 <code>C:\</code> 挂载在 <code>/mnt/c/</code>）</strong>。这在通常情况下会使得主机和 WSL 之间的文件共享更加方便，但也可能导致在子系统中执行文件操作（例如文件删除）时错误地操作了主机上的文件。</p>
+</div>
 <h3 id="wsl1">WSL 1<a class="headerlink" href="#wsl1" title="Permanent link">&para;</a></h3>
 <p>WSL 1 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 程序运行的时候，WSL 1 处理（Linux 使用的）ELF 可执行文件格式，将 Linux 的系统调用翻译为 Windows 的系统调用，从而运行 Linux 程序。WSL 1 中可以访问到 Windows 下的文件，也与主机共享网络。</p>
 <h3 id="wsl2">WSL 2<a class="headerlink" href="#wsl2" title="Permanent link">&para;</a></h3>
@@ -2463,7 +2485,7 @@ and check to make sure that only the key(s) you wanted were added.
 <p>Featured Server Snaps 一样可以选择不安装，可以之后自行配置。</p>
 <p>安装完成之后会重启，之后你会进入命令行界面。这就是一个没有图形界面的虚拟机，你可以对它进行任何你想做的尝试了！</p>
 <p>如果你需要带图形界面的虚拟机，只需要安装 <code>ubuntu-desktop</code> 即可。</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ubuntu-desktop
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ubuntu-desktop
 </code></pre></div>
 <p>安装好之后需要重新启动虚拟机，这时你应该可以看到你的登陆界面了：</p>
 <p><img alt="" src="../images/applesilicon_vmware/7.png" /></p>
@@ -2476,7 +2498,7 @@ and check to make sure that only the key(s) you wanted were added.
 <li>使用 Ubuntu 22.04 或 22.10：目前只有部分 daily build 版本可用。</li>
 <li>
 <p>在 Ubuntu 20.04 上<strong>禁用 Wayland</strong>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/gdm3/custom.conf
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/gdm3/custom.conf
 </code></pre></div>
 <p>解除该行的注释（删除下面这行代码之前的<code>#</code>）后，保存退出：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#WaylandEnable=false</span>
@@ -2484,16 +2506,21 @@ and check to make sure that only the key(s) you wanted were added.
 </li>
 </ul>
 <p>接下来自行通过 HWE 升级 Ubuntu 20.04 的内核至 5.15:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--install-recommends<span class="w"> </span>linux-generic-hwe-20.04
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--install-recommends<span class="w"> </span>linux-generic-hwe-20.04
 </code></pre></div>
 <p>重启虚拟机，在设置中进行分辨率的修改。</p>
 </div>
+<h2 id="using-ventoy">使用 Ventoy<a class="headerlink" href="#using-ventoy" title="Permanent link">&para;</a></h2>
+<p>使用 Ventoy 可以简单方便地从 U 盘或者其他移动介质安装各类操作系统（且支持在一个介质中存放多个系统镜像），当然也包括 GNU/Linux。有关如何使用 Ventoy，请参考其网站<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
 <h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p><a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple silicon - Wikipedia</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.ventoy.net/cn/index.html">Ventoy 中文网站</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
