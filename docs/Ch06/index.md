@@ -786,26 +786,26 @@ $ # 所以为了正常显示，需要在结尾补上 \n
 
     clear
 
-    for (( i=1; i<=MAX_NO; i++ ))
+    for i in `seq $MAX_NO`
     do
-      for (( s=MAX_NO; s>=i; s-- ))
+      for s in `seq $MAX_NO -1 $i`
       do
         echo -n " "
       done
-      for (( j=1; j<=i;  j++ ))
+      for j in `seq $i`
       do
         echo -n " ."
       done
       echo ""
     done
 
-    for (( i=MAX_NO; i>=1; i-- ))
+    for i in `seq $MAX_NO -1 1`
     do
-      for (( s=i; s<=MAX_NO; s++ ))
+      for s in `seq $i $MAX_NO`
       do
         echo -n " "
       done
-      for (( j=1; j<=i;  j++ ))
+      for j in `seq $i`
       do
         echo -n " ."
       done
@@ -836,6 +836,33 @@ $ # 所以为了正常显示，需要在结尾补上 \n
            . . .
             . .
              .
+    ```
+
+!!! tip "seq 命令"
+
+    seq 命令用于生成数列，命令格式如下：
+
+    ```shell
+    seq [OPTION]... LAST
+    seq [OPTION]... FIRST LAST
+    seq [OPTION]... FIRST INCREMENT LAST
+    ```
+
+    首项 `FIRST` 和公差 `INCREMENT` 默认值为 1。
+
+    例如，执行指令 `seq 10`，将得到如下数列：
+
+    ```
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
     ```
 
 除此之外，用于流程控制的还有在 C 语言中同样常见的 `break` 和 `continue`。与 C 语言不同的是，它们还接受一个数字作为参数，即 `break n` 和 `continue n`，其中参数 `n` 均表示跳出或跳过 n 层循环。
