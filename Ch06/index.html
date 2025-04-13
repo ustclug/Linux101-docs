@@ -2818,26 +2818,26 @@ value3<span class="o">)</span>
 
 clear
 
-<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i&lt;<span class="o">=</span>MAX_NO<span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$MAX_NO</span><span class="sb">`</span>
 <span class="k">do</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">s</span><span class="o">=</span>MAX_NO<span class="p">;</span><span class="w"> </span>s&gt;<span class="o">=</span>i<span class="p">;</span><span class="w"> </span>s--<span class="w"> </span><span class="o">))</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$MAX_NO</span><span class="w"> </span>-1<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; &quot;</span>
 <span class="w">  </span><span class="k">done</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>j&lt;<span class="o">=</span>i<span class="p">;</span><span class="w">  </span>j++<span class="w"> </span><span class="o">))</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>j<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; .&quot;</span>
 <span class="w">  </span><span class="k">done</span>
 <span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 <span class="k">done</span>
 
-<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span>MAX_NO<span class="p">;</span><span class="w"> </span>i&gt;<span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i--<span class="w"> </span><span class="o">))</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$MAX_NO</span><span class="w"> </span>-1<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
 <span class="k">do</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">s</span><span class="o">=</span>i<span class="p">;</span><span class="w"> </span>s&lt;<span class="o">=</span>MAX_NO<span class="p">;</span><span class="w"> </span>s++<span class="w"> </span><span class="o">))</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="nv">$MAX_NO</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; &quot;</span>
 <span class="w">  </span><span class="k">done</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>j&lt;<span class="o">=</span>i<span class="p">;</span><span class="w">  </span>j++<span class="w"> </span><span class="o">))</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>j<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; .&quot;</span>
 <span class="w">  </span><span class="k">done</span>
@@ -2867,6 +2867,27 @@ clear
 <span class="w">         </span>.
 </code></pre></div>
 </details>
+<div class="admonition tip">
+<p class="admonition-title">seq 命令</p>
+<p>seq 命令用于生成数列，命令格式如下：</p>
+<div class="highlight"><pre><span></span><code>seq<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span>...<span class="w"> </span>LAST
+seq<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span>...<span class="w"> </span>FIRST<span class="w"> </span>LAST
+seq<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span>...<span class="w"> </span>FIRST<span class="w"> </span>INCREMENT<span class="w"> </span>LAST
+</code></pre></div>
+<p>首项 <code>FIRST</code> 和公差 <code>INCREMENT</code> 默认值为 1。</p>
+<p>例如，执行指令 <code>seq 10</code>，将得到如下数列：</p>
+<div class="highlight"><pre><span></span><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre></div>
+</div>
 <p>除此之外，用于流程控制的还有在 C 语言中同样常见的 <code>break</code> 和 <code>continue</code>。与 C 语言不同的是，它们还接受一个数字作为参数，即 <code>break n</code> 和 <code>continue n</code>，其中参数 <code>n</code> 均表示跳出或跳过 n 层循环。</p>
 <h3 id="functions">函数<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
 <p>与其他编程语言类似，shell 也可以定义函数。其定义格式为：</p>
