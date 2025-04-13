@@ -2310,6 +2310,19 @@
 </div>
 <p>许多 Bash 脚本会在文件首行加上 <code>#!/bin/bash</code> 。这里 <code>#!</code> 符号的名称是 shebang（也叫 sha-bang，即 sharp <code>#</code> 与 bang <code>!</code>）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。</p>
 <p>例如，某个 <code>foo.sh</code> 首行为 <code>#!/bin/bash</code>，则执行 <code>./foo.sh</code> 就等于执行 <code>/bin/bash ./foo.sh</code>。</p>
+<details class="question">
+<summary>没有 shebang 的脚本呢？</summary>
+<p>你可能会注意到，有些脚本并没有 shebang，但是仍然可以在命令行中正常执行。这是因为尽管 Linux 操作系统无法识别这个脚本的解释器（Linux 要求合法的脚本文件前两个字节必须是 <code>#!</code>，否则返回 <code>ENOEXEC</code>），应用程序仍然可以自行采用不同的处理方式，例如：</p>
+<ol>
+<li>如果你当前使用的 shell 是 Bash，它会尝试启动一个新的 Bash 进程来执行该脚本。</li>
+<li>对于一些其他应用程序，如果它们使用的是 <code>execlp</code>, <code>execvp</code> 或 <code>execvpe</code> 等 C 语言库函数来运行其他程序的话，含有 <code>p</code> 后缀的 exec 系列函数会尝试调用 <code>/bin/sh</code> 来执行脚本。</li>
+<li>
+<p>如果以上情况都不符合，那么程序可能会直接输出错误信息，例如：</p>
+<div class="highlight"><pre><span></span><code>./foo.sh: Exec format error
+</code></pre></div>
+</li>
+</ol>
+</details>
 <p>Bash 也支持在同一个行中安排多个命令：</p>
 <table>
 <thead>
