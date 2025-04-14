@@ -2302,7 +2302,7 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">关于 <code>.</code> 命令</p>
-<p>与直接执行脚本，或者指定 shell 执行脚本不同，使用 <code>.</code> 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量定义、函数定义等都会在当前 shell 中生效。</p>
+<p>与直接执行脚本，或者指定 shell 执行脚本不同，使用 <code>.</code> 命令执行脚本会在当前 shell 中执行脚本，而不是新建一个 shell 去执行脚本。这意味着，脚本中的变量赋值、函数定义以及切换目录（<code>cd</code> 命令）等变化都会在当前 shell 中生效。</p>
 <p>在 bash 中，<code>source</code> 命令与 <code>.</code> 命令等价。有些情况下，使用 <code>.</code> 执行脚本是有必要的，例如在激活 Python 的虚拟环境时：</p>
 <div class="highlight"><pre><span></span><code>.<span class="w"> </span>venv/bin/activate
 </code></pre></div>
