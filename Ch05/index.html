@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1994,7 +1994,7 @@ See &quot;man sudo_root&quot; for details.
 <span class="go">rm: cannot remove &#39;a_folder/test&#39;: Permission denied</span>
 <span class="gp">$ </span>（可以看到，即使我们有写入权限，在此目录中进行添加、删除、重命名的操作仍然是不行的）
 </code></pre></div>
-<p>为了更好地理解目录权限的含义，可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 <code>cd</code> 切换当前目录到此目录的权限。</p>
+<p>为了更好地理解目录权限的含义，可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 <code>cd</code> 切换当前目录到此目录的权限。特别地，父目录（<code>..</code>）也在这个列表中，因此将目录移动到其他目录下时，不仅需要该目录所在目录和目标目录的写权限，还需要该目录本身的写权限。例如，将目录 <code>/opt/example/1/</code> 移动为 <code>/opt/1/</code> 时，用户不仅需要对 <code>/opt/example/</code> 和 <code>/opt/</code> 目录有写入权限，被移动的 <code>1</code> 目录也需要有写入权限。</p>
 <p>有关文件与目录权限的完整表格，可以查看 Arch Wiki 的 <a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions">File permissions and attributes</a> 一页。</p>
 </details>
 <p>可以使用 <code>chmod</code> (<strong>ch</strong>ange file <strong>mod</strong>e bits) 修改权限，<code>chown</code> (<strong>ch</strong>ange file <strong>own</strong>er) 修改文件所有者。具体的使用方法，请查阅相关的文档，这里不再列出。</p>
