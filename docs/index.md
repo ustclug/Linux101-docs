@@ -56,8 +56,6 @@ icon: material/hand-wave-outline
 
 -   [记号约定](notations.md)中约定了本书中常用的符号与注记形式。在研读本书的过程中可随时参考。
 -   [功劳簿](credits.md)列出了所有为编写本书做出贡献的朋友们。
--   本书的[序](preface.md)记录了 Linux 101 计划的历史和编写本书的缘由。
--   本书的[跋](postface.md)为已经完成本书研读的读者们提供了推荐进一步钻研的方向和领域。
 -   Linux 101 活动于 2020 年的直播记录视频可以在 [LUG FTP](https://ftp.lug.ustc.edu.cn/101/videos) 找到，也可以在 [YouTube](https://www.youtube.com/playlist?list=PLkqsPhn1XtD2h_o5-lY3exDRXtKBiKwkk) 上在线观看。
 -   对于服务器运维等较为深入的应用场景，我们另外启动了《[Linux 201](https://201.ustclug.org/)》项目，作为本书的进阶版，可供感兴趣的读者参考。
 
