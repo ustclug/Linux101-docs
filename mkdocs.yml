@@ -69,10 +69,6 @@ extra:
     provider: google
     property: G-Q8WSZQS8E1
 
-plugins:
-  - mermaid2:
-      javascript: https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs 
-
 extra_css:
   - 'css/extra.css'
   - 'https://101.lug.ustc.edu.cn/_extra/roboto.css'
