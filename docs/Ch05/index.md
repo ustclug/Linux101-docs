@@ -318,7 +318,7 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 `/`（根目录）开始，像一棵树一样，类似于下图。
 
 ```mermaid
-graph TD
+graph LR
     / --> bin
     / --> boot
     / --> dev
@@ -348,7 +348,7 @@ graph TD
     lisi --> docs
 
     mnt --> windows_disk
-    subgraph
+    subgraph mount
     windows_disk --> Windows
     windows_disk --> Users
     end
