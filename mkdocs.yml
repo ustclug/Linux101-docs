@@ -48,9 +48,9 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:mermaid2.fence_mermaid_custom
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.superfences
