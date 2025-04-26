@@ -353,7 +353,7 @@ graph LR
     windows_disk --> Users
     end
 
-    usr --> usr/bin
+    usr --> usrbin[bin]
 ```
 
 其他的分区以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 `/mnt/windows_disk/`。
