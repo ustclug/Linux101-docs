@@ -317,7 +317,44 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
 而 UNIX 系列采用了一种不一样的思路组织文件：整个系统的文件都从 `/`（根目录）开始，像一棵树一样，类似于下图。
 
-![Unix 下的文件系统结构简图](assets/unix_filesystem.png)
+```mermaid
+graph TD
+    / --> bin
+    / --> boot
+    / --> dev
+    / --> etc
+    / --> home
+    / --> mnt
+    / --> opt
+    / --> proc
+    / --> root
+    / --> usr
+    / --> var
+    / --> tmp
+
+    bin --> ls
+    bin --> cp
+
+    dev --> zero
+    dev --> null
+
+    home --> zhangsan
+    home --> lisi
+
+    zhangsan --> code
+    zhangsan --> tools
+
+    lisi --> music
+    lisi --> docs
+
+    mnt --> windows_disk
+    subgraph
+    windows_disk --> Windows
+    windows_disk --> Users
+    end
+
+    usr --> usr/bin
+```
 
 其他的分区以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 `/mnt/windows_disk/`。
 
