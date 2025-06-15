@@ -455,6 +455,95 @@ graph LR
     - `/var/run`：存储程序运行时的数据（部分发行版会将该目录符号链接到 `/run` 目录）。
     - `/var/spool`：存储「等待进一步处理」的程序数据。
 
+## 列出文件系统项目 {#list-objects}
+
+经常我们需要在 Shell 中列出某个目录下的项目（子目录和文件）。`ls` 命令是最常见的用来列出文件系统项目的命令，`ls -la` 则可以显示隐藏文件（`-a`）和更详细的信息（`-l`）。但是，`ls` 只能显示某个目录下的文件和子目录，并不会深入子目录内部继续检查。下面介绍几个命令，常用于获取这些信息。
+
+### `find` 命令 {#cmd-find}
+
+`find` 命令可以列出某个目录下所有的目录和文件，并**递归地**进入子目录。基本用法是
+
+```shell
+$ find /etc
+/etc
+/etc/analog.cfg
+/etc/hosts.deny
+/etc/initramfs-tools
+/etc/initramfs-tools/initramfs.conf
+/etc/initramfs-tools/hooks
+/etc/initramfs-tools/conf.d
+/etc/initramfs-tools/conf.d/resume
+/etc/initramfs-tools/modules
+/etc/initramfs-tools/update-initramfs.conf
+... (省略)
+```
+
+可以看到，`find` 命令将列出指定的目录下的文件和子目录名称，在遇到子目录时立即进入目录并递归地执行上面的操作。
+
+该命令的一个很有用的用法是对每一个文件都执行某个命令（例如 `md5sum`）：
+
+```shell
+find . -type f -exec md5sum {} \;
+```
+
+这里，`find .` 是指对当前目录（`.`）进行 `find`，并只列出文件（`-type f`）。`-exec` 后面的内容是要执行的命令，其中 `{}` 会被替换成找到的对象（文件、目录）的路径，`\;` 表示对每个对象都执行一次给定的命令，即实际运行的是
+
+```shell
+md5sum file1
+md5sum file2
+md5sum file3
+...
+```
+
+如果将 `\;` 换成 `+`，那么就是将文件名称收集起来一并交给要执行的命令，即
+
+```shell
+md5sum file1 file2 file3 ...
+```
+
+### `du` 命令 {#cmd-du}
+
+`du` 命令可以统计文件和目录的大小。目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。`du` 命令的输出类似这样：
+
+```shell
+$ du -h /etc/
+4.0K	/etc/initramfs-tools/hooks
+8.0K	/etc/initramfs-tools/conf.d
+4.0K	/etc/initramfs-tools/scripts/local-premount
+4.0K	/etc/initramfs-tools/scripts/nfs-premount
+... (省略)
+4.0K	/etc/initramfs-tools/scripts/panic
+4.0K	/etc/initramfs-tools/scripts/local-top
+44K	/etc/initramfs-tools/scripts
+72K	/etc/initramfs-tools
+12K	/etc/udisks2
+16K	/etc/fonts/conf.d
+60K	/etc/fonts/conf.avail
+84K	/etc/fonts
+```
+
+由于前面说到的原因，`du` 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。类似 `ls -h`，这里的 `-h` 表示以人类可读的方式进行显示，`-b` 则可以显示字节数，`-a` 可以使得输出包含文件的大小（默认只显示各层级目录的大小）。
+
+### `ncdu` 命令 {#cmd-ncdu}
+
+`ncdu` 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。
+
+```plain
+ncdu 1.18 ~ Use the arrow keys to navigate, press ? for help
+--- /home/xxxxxx(略去) -----------------
+                         /..
+   53.1 MiB [##########] /main
+   45.4 MiB [########  ]  Contents-riscv64.gz
+   40.6 MiB [#######   ] /universe
+  580.0 KiB [          ] /multiverse
+   44.0 KiB [          ] /restricted
+    8.0 KiB [          ]  InRelease
+    8.0 KiB [          ]  Release
+    4.0 KiB [          ]  Release.gpg
+
+ Total disk usage: 139.7 MiB  Apparent size: 139.6 MiB  Items: 29
+```
+
 ## 思考题 {#questions}
 
 !!! question "nobody 用户"
