@@ -551,7 +551,7 @@ $ sudo apt-get install ubuntu-desktop
 ```mermaid
 flowchart TD
     HSP[主机上的程序] --> HS
-    HS[主机] -->|虚拟网卡 10.1.2.3| IN[外部网络]
+    HS[主机] -->|物理网卡 10.1.2.3| IN[外部网络]
 ```
 
 ### 桥接模式 {#bridge-mode}
