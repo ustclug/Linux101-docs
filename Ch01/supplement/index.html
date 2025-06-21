@@ -664,6 +664,48 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vm-nic-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机网卡的“模式”
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机网卡的“模式”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bridge-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      桥接模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络地址转换模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostonly-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      仅主机模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vm-known-issues" class="md-nav__link">
     <span class="md-ellipsis">
       已知问题
@@ -806,48 +848,6 @@
       使用 Ventoy
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vm-nic-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      虚拟机网卡的“模式”
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="虚拟机网卡的“模式”">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bridge-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      桥接模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nat-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      网络地址转换模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hostonly-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      仅主机模式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1967,6 +1967,48 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vm-nic-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机网卡的“模式”
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机网卡的“模式”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bridge-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      桥接模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络地址转换模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostonly-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      仅主机模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vm-known-issues" class="md-nav__link">
     <span class="md-ellipsis">
       已知问题
@@ -2109,48 +2151,6 @@
       使用 Ventoy
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vm-nic-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      虚拟机网卡的“模式”
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="虚拟机网卡的“模式”">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bridge-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      桥接模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nat-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      网络地址转换模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hostonly-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      仅主机模式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2335,6 +2335,41 @@ VMware 与 VirtualBox 的扩容操作可能都不会自动扩大文件系统，�
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/sda2
 </code></pre></div>
 <p>如果有过分区经验，也可以安装图形化的 GParted 工具进行操作。</p>
+<h3 id="vm-nic-modes">虚拟机网卡的“模式”<a class="headerlink" href="#vm-nic-modes" title="Permanent link">&para;</a></h3>
+<p>在虚拟机中使用网络设备时，会发现虚拟机一般有三种网卡模式，分别叫做 <code>Bridged</code>（桥接）、<code>NAT</code>（网络地址转换）、<code>Host only</code>（仅主机）。虚拟机中的网络设备，是虚拟网卡（Virtual NIC），其背后需要与某个网络连接，才能实现通信功能。</p>
+<p>在安装虚拟机前，设备上的网络通常是这样的：</p>
+<pre class="mermaid"><code>flowchart TD
+    HSP[主机上的程序] --&gt; HS
+    HS[主机] --&gt;|物理网卡 10.1.2.3| IN[外部网络]</code></pre>
+<h4 id="bridge-mode">桥接模式<a class="headerlink" href="#bridge-mode" title="Permanent link">&para;</a></h4>
+<p>在这种模式下，虚拟机程序（例如 VMWare）会在主机上创建一个虚拟交换机。虚拟交换机上，接入了原来的物理网卡（例如有线网卡或者 Wi-Fi 适配器等）、虚拟机中安装的虚拟网卡、主机上的虚拟网卡。在这种配置下，虚拟机和主机都暴露在外部网络下，分别使用<strong>不同的 IP</strong>。</p>
+<pre class="mermaid"><code>flowchart TD
+    VMP1[虚拟机上的程序] --&gt; VM1
+    VMP2[虚拟机上的程序] --&gt; VM2
+    HSP[主机上的程序] --&gt; HS
+    VM1[虚拟机] --&gt;|虚拟网卡 10.1.2.4| SW[虚拟交换机]
+    VM2[虚拟机] --&gt;|虚拟网卡 10.1.2.5| SW[虚拟交换机]
+    HS[主机] --&gt;|虚拟网卡 10.1.2.3| SW[虚拟交换机]
+    SW --&gt;|物理网卡 10.1.2.3/4/5| IN[外部网络]</code></pre>
+<h4 id="nat-mode">网络地址转换模式<a class="headerlink" href="#nat-mode" title="Permanent link">&para;</a></h4>
+<p>与桥接模式不同，网络地址转换下，虚拟机和主机<strong>共用一个 IP</strong>，虚拟机之间用虚拟交换机连接。从外部网络看来，虚拟机上的程序和主机上的程序发出的请求是一样的。</p>
+<pre class="mermaid"><code>flowchart TD
+    VM1[虚拟机] --&gt;|虚拟网卡 192.168.100.100| SW[虚拟交换机 192.168.1.x]
+    VM2[虚拟机] --&gt;|虚拟网卡 192.168.100.101| SW
+    SW --&gt;|192.168.1.x| NAT[NAT 网络地址转换]
+    NAT --&gt;|10.1.2.3| HS
+    HSP[主机上的程序] --&gt;|10.1.2.3| HS
+    HSP --&gt;|虚拟网卡 192.168.100.1| SW
+    HS[主机] --&gt;|物理网卡 10.1.2.3| IN[外部网络 10.x.x.x]</code></pre>
+<h4 id="hostonly-mode">仅主机模式<a class="headerlink" href="#hostonly-mode" title="Permanent link">&para;</a></h4>
+<p>仅主机模式类似 NAT，但是虚拟机不能与外部网络通信。</p>
+<pre class="mermaid"><code>flowchart TD
+    VM1[虚拟机] --&gt;|虚拟网卡 192.168.100.100| SW[虚拟交换机 192.168.1.x]
+    VM2[虚拟机] --&gt;|虚拟网卡 192.168.100.101| SW
+    SW
+    HSP[主机上的程序] --&gt;|10.1.2.3| HS
+    HSP --&gt;|虚拟网卡 192.168.100.1| SW
+    HS[主机] --&gt;|物理网卡 10.1.2.3| IN[外部网络 10.x.x.x]</code></pre>
 <h3 id="vm-known-issues">已知问题<a class="headerlink" href="#vm-known-issues" title="Permanent link">&para;</a></h3>
 <h4 id="virtualbox-flicker">在 macOS VirtualBox 下闪屏<a class="headerlink" href="#virtualbox-flicker" title="Permanent link">&para;</a></h4>
 <p>我们发现 VirtualBox 在导入镜像后会为虚拟机设置有问题的显卡控制器，导致在 macOS 下出现闪屏问题。
@@ -2596,41 +2631,6 @@ Host key verification failed.
 </div>
 <h2 id="using-ventoy">使用 Ventoy<a class="headerlink" href="#using-ventoy" title="Permanent link">&para;</a></h2>
 <p>使用 Ventoy 可以简单方便地从 U 盘或者其他移动介质安装各类操作系统（且支持在一个介质中存放多个系统镜像），当然也包括 GNU/Linux。有关如何使用 Ventoy，请参考其网站<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
-<h2 id="vm-nic-modes">虚拟机网卡的“模式”<a class="headerlink" href="#vm-nic-modes" title="Permanent link">&para;</a></h2>
-<p>在虚拟机中使用网络设备时，会发现虚拟机一般有三种网卡模式，分别叫做 <code>Bridged</code>（桥接）、<code>NAT</code>（网络地址转换）、<code>Host only</code>（仅主机）。虚拟机中的网络设备，是虚拟网卡（Virtual NIC），其背后需要与某个网络连接，才能实现通信功能。</p>
-<p>在安装虚拟机前，设备上的网络通常是这样的：</p>
-<pre class="mermaid"><code>flowchart TD
-    HSP[主机上的程序] --&gt; HS
-    HS[主机] --&gt;|虚拟网卡 10.1.2.3| IN[外部网络]</code></pre>
-<h3 id="bridge-mode">桥接模式<a class="headerlink" href="#bridge-mode" title="Permanent link">&para;</a></h3>
-<p>在这种模式下，虚拟机程序（例如 VMWare）会在主机上创建一个虚拟交换机。虚拟交换机上，接入了原来的物理网卡（例如有线网卡或者 Wi-Fi 适配器等）、虚拟机中安装的虚拟网卡、主机上的虚拟网卡。在这种配置下，虚拟机和主机都暴露在外部网络下，分别使用<strong>不同的 IP</strong>。</p>
-<pre class="mermaid"><code>flowchart TD
-    VMP1[虚拟机上的程序] --&gt; VM1
-    VMP2[虚拟机上的程序] --&gt; VM2
-    HSP[主机上的程序] --&gt; HS
-    VM1[虚拟机] --&gt;|虚拟网卡 10.1.2.4| SW[虚拟交换机]
-    VM2[虚拟机] --&gt;|虚拟网卡 10.1.2.5| SW[虚拟交换机]
-    HS[主机] --&gt;|虚拟网卡 10.1.2.3| SW[虚拟交换机]
-    SW --&gt;|物理网卡| IN[外部网络]</code></pre>
-<h3 id="nat-mode">网络地址转换模式<a class="headerlink" href="#nat-mode" title="Permanent link">&para;</a></h3>
-<p>与桥接模式不同，网络地址转换下，虚拟机和主机<strong>共用一个 IP</strong>，虚拟机之间用虚拟交换机连接。从外部网络看来，虚拟机上的程序和主机上的程序发出的请求是一样的。</p>
-<pre class="mermaid"><code>flowchart TD
-    VM1[虚拟机] --&gt;|虚拟网卡 192.168.100.100| SW[虚拟交换机 192.168.1.x]
-    VM2[虚拟机] --&gt;|虚拟网卡 192.168.100.101| SW
-    SW --&gt; NAT[NAT 网络地址转换]
-    NAT --&gt;|192.168.1.101| HS
-    HSP[主机上的程序] --&gt;|10.1.2.3| HS
-    HSP --&gt;|虚拟网卡 192.168.100.1| SW
-    HS[主机] --&gt;|物理网卡 10.1.2.3| IN[外部网络 10.x.x.x]</code></pre>
-<h3 id="hostonly-mode">仅主机模式<a class="headerlink" href="#hostonly-mode" title="Permanent link">&para;</a></h3>
-<p>仅主机模式类似 NAT，但是虚拟机不能与外部网络通信。</p>
-<pre class="mermaid"><code>flowchart TD
-    VM1[虚拟机] --&gt;|虚拟网卡 192.168.100.100| SW[虚拟交换机 192.168.1.x]
-    VM2[虚拟机] --&gt;|虚拟网卡 192.168.100.101| SW
-    SW
-    HSP[主机上的程序] --&gt;|10.1.2.3| HS
-    HSP --&gt;|虚拟网卡 192.168.100.1| SW
-    HS[主机] --&gt;|物理网卡 10.1.2.3| IN[外部网络 10.x.x.x]</code></pre>
 <h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
