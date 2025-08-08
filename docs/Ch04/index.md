@@ -341,7 +341,7 @@ $ tmux
 
 更多功能，可以到这张 [cheatsheet](https://cheatography.com/bechtold/cheat-sheets/tmux-the-terminal-multiplexer/pdf/) 中查询。
 
-关于 tmux 的更多介绍，可以参见[这篇博客](http://louiszhai.github.io/2017/09/30/tmux/)。
+关于 tmux 的更多介绍，可以参见[这篇博客](http://louiszhai.github.io/2017/09/30/tmux/)和[这篇 LUG Planet 文章](https://lug.ustc.edu.cn/planet/2025/07/how-to-use-tmux/)。
 
 ??? note "Tmux 的工作原理"
 
