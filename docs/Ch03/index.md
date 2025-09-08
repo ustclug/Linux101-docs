@@ -999,13 +999,9 @@ $ tldr --update
 
 !!! tip "Debian 13 中关于 tldr 包更新的说明"
 
-    需要指出的是，在 Debian 13 (Trixie) 发行版中，原有的 `tldr` 包（使用 Haskell 实现）已经被移除。[^3]
+    需要指出的是，在 Debian 13 (Trixie) 发行版中，原有的 `tldr` 包（使用 Haskell 实现）已经被移除。[^3]取而代之的是 `tldr-py` 包（使用 Python 实现）和 `tealdeer` 包（使用 Rust 实现），它们仍然提供 `tldr` 命令，因此使用方式不变。
 
-    取而代之的是 `tldr-py` 包（使用 Python 实现）和 `tealdeer` 包（使用 Rust 实现），它们仍然提供 `tldr` 命令，因此使用方式不变。
-
-    考虑到 Linux 101 是基于 Ubuntu LTS 的，我们目前在正文中保留原有的安装命令。
-
-    读者可以使用 `apt search tldr` 来查询自己版本所支持的相关包，具体用法参见前文。
+    考虑到 Linux 101 是基于 Ubuntu LTS 的，我们目前在正文中保留原有的安装命令。读者可以使用 `apt search tldr` 来查询自己版本所支持的相关包，具体用法参见前文。
 
 #### 使用 {#use-tldr}
 
