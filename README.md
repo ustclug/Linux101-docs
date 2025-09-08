@@ -16,7 +16,7 @@
 
 ## 友情链接
 
-- [Linux 201](https://github.com/ustclug/Linux201-docs)
+-   [Linux 201](https://github.com/ustclug/Linux201-docs)
 
 ## Star History
 
