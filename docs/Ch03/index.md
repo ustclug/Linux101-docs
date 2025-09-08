@@ -1005,7 +1005,7 @@ $ tldr --update
 
     考虑到 Linux 101 是基于 Ubuntu LTS 的，我们目前在正文中保留原有的安装命令。
 
-    读者可以使用 `sudo apt search tldr` 来查询自己版本所支持的相关包，具体用法参见前文。
+    读者可以使用 `apt search tldr` 来查询自己版本所支持的相关包，具体用法参见前文。
 
 #### 使用 {#use-tldr}
 
