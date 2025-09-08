@@ -13,3 +13,11 @@
 ## 许可
 
 本文档以 Creative Commons BY-SA 4.0 协议发布。详情请见 [LICENSE](LICENSE)。
+
+## 友情链接
+
+- [Linux 201](https://github.com/ustclug/Linux201-docs)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ustclug/Linux101-docs&type=Date)](https://star-history.com/#ustclug/Linux101-docs&Date)
