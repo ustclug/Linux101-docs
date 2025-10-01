@@ -24,7 +24,7 @@ icon: material/puzzle
 
 在从源代码安装 Nginx 前，需要为它的库安装依赖：
 
--   PCRE2 - 用于支持正则表达式。
+- PCRE2 - 用于支持正则表达式。
 
 ```console
 $ wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
@@ -39,7 +39,7 @@ $ sudo make install
 
     PCRE 有两个大版本，其中最新的 PCRE2 正在持续维护，而发布于 1997 年的旧版的 PCRE 已经停止维护。PCRE2 的源代码包目前托管于 GitHub 上。相关信息可阅读 [PCRE 官网](https://pcre.org/)。
 
--   zlib - 用于支持 HTTP 头部压缩。
+- zlib - 用于支持 HTTP 头部压缩。
 
 ```console
 $ wget https://zlib.net/zlib-1.2.13.tar.gz
@@ -50,7 +50,7 @@ $ make
 $ sudo make install
 ```
 
--   OpenSSL - 用于支持 HTTPS 协议。
+- OpenSSL - 用于支持 HTTPS 协议。
 
 ```console
 $ wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
@@ -316,6 +316,9 @@ $ 7z l archive.7z # 浏览压缩包内容
 ## 引用来源与备注 {#references .no-underline }
 
 [^1]: 本节使用的示例参考自 Nginx 官方说明 [Compiling and Installing from Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)。
+
 [^2]: 信息来自维基百科条目：[Nginx](https://zh.wikipedia.org/wiki/Nginx)。
+
 [^3]: 但是 `unrar` 不是开源软件，因为它的[协议](https://github.com/debian-calibre/unrar-nonfree/blob/master/license.txt)不允许使用其代码制作压缩 RAR 包的工具，这违背了开源软件的定义。
+
 [^4]: 参考了 <https://wiki.archlinux.org/title/p7zip#Differences_between_7z,_7za_and_7zr_binaries> 与相关 man 文档编写。

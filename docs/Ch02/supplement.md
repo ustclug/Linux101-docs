@@ -290,10 +290,10 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
 下面介绍几个常用的配置文件：
 
--   `/etc/fstab` 系统磁盘挂载相关配置；
--   `/etc/bash.bashrc` 启动 Bash 时读取的配置脚本；
--   `/etc/sudoers` sudo 权限的配置；
--   `/etc/hosts` 主机名与 IP 映射关系的配置。
+- `/etc/fstab` 系统磁盘挂载相关配置；
+- `/etc/bash.bashrc` 启动 Bash 时读取的配置脚本；
+- `/etc/sudoers` sudo 权限的配置；
+- `/etc/hosts` 主机名与 IP 映射关系的配置。
 
 ??? example "示例"
 
@@ -462,4 +462,4 @@ $ sudo service mysql start
 
 ## 引用来源 {#references .no-underline}
 
--   [How to install themes with GNOME tweak tool? - Ask Ubuntu](https://askubuntu.com/a/1128098/612877)
+- [How to install themes with GNOME tweak tool? - Ask Ubuntu](https://askubuntu.com/a/1128098/612877)

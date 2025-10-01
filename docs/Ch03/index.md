@@ -1041,13 +1041,13 @@ https://www.gnu.org/software/tar
 
 可以从输出中快速地了解到：
 
--   创建存档文件；
--   创建压缩的存档文件；
--   解压一个存档文件；
--   解压一个存档文件到指定目录；
--   创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
--   给出一个存档文件中的文件列表；
--   解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
+- 创建存档文件；
+- 创建压缩的存档文件；
+- 解压一个存档文件；
+- 解压一个存档文件到指定目录；
+- 创建一个存档文件，并通过给定的目标存档文件的后缀名判断希望的压缩算法。在例子中，目标存档文件的后缀名是 `tar.gz` ，即希望创建由 gzip 压缩的存档文件；
+- 给出一个存档文件中的文件列表；
+- 解压一个存档文件，但是只有特定的文件名的文件才会被解压（在例子中，使用了通配符 `*.html` ，即只有以 `.html` 结尾的文件才会被解压）。
 
 ## 思考题 {#questions}
 
@@ -1102,5 +1102,7 @@ https://www.gnu.org/software/tar
 ## 引用来源 {#references .no-underline}
 
 [^1]: [软件仓库](http://people.ubuntu.com/~happyaron/udc-cn/lucid-html/ch06s09.html)
+
 [^2]: [Ubuntu 源使用帮助](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+
 [^3]: [Debian 13 发布说明：已废弃软件包](https://www.debian.org/releases/trixie/release-notes/issues.zh_CN.html#noteworthy-obsolete-packages)
