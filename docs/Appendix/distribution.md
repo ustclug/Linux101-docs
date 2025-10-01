@@ -267,7 +267,7 @@ $ nix-shell # 使用 shell.nix 文件定义开发环境
 
 -   [NixOS 官方手册](https://nixos.org/manual/nixos/stable/)
 -   [NixOS Wiki](https://nixos.wiki/)
--   [Nix Pills - 深入学习 Nix 概念 ](https://nixos.org/guides/nix-pills/)
+-   [Nix Pills - 深入学习 Nix 概念](https://nixos.org/guides/nix-pills/)
 -   [Awesome Nix - Nix 生态系统资源](https://github.com/nix-community/awesome-nix)
 -   [NixOS 中文](https://nixos-cn.org/)
 -   [NixOS 与 Flakes 一份非官方的新手指南](https://nixos-and-flakes.thiscute.world/zh/)
