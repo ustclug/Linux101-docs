@@ -225,16 +225,16 @@ $ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/syste
 
 ### 通道 (Channels) {#nixos-channels}
 
-NixOS 使用通道来管理软件包集合：
+NixOS 使用频道来管理软件包集合：
 
 ```console
-# 查看当前通道
+# 查看当前频道
 $ nix-channel --list
 
-# 更新通道
+# 更新频道
 $ sudo nix-channel --update
 
-# 切换到不稳定通道
+# 切换到不稳定频道
 $ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 ```
 
