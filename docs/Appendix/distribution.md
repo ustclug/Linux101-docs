@@ -135,3 +135,158 @@ $ emerge --search audacity  # 搜索名字中含 audacity 的包
 尽管 Systemd 已经成为了 Linux 发行版主流选择的 init，OpenRC 仍然是 Gentoo 默认的 init（关于 init 的简介，可参考[第四章](../Ch04/index.md)）。
 
 [^1]: <https://wiki.centos.org/zh/HowTos/SELinux>
+
+## NixOS {#nixos}
+
+[NixOS](https://nixos.org/) 是一个基于 Nix 包管理器的 Linux 发行版，其最大的特点是**声明式配置**和**原子性更新**。与传统发行版不同，NixOS 的整个系统配置都通过一个配置文件来管理，这使得系统配置可以版本控制、可重现，并且可以轻松回滚。
+
+### 核心概念 {#nixos-concepts}
+
+#### 声明式配置 {#nixos-declarative}
+
+NixOS 的整个系统配置都写在 `/etc/nixos/configuration.nix` 文件中。这个文件描述了系统应该是什么样子，而不是如何一步步构建系统。例如：
+
+```nix
+{ config, pkgs, ... }:
+
+{
+  # 启用 SSH 服务
+  services.openssh.enable = true;
+  
+  # 安装软件包
+  environment.systemPackages = with pkgs; [
+    firefox
+    vim
+    git
+  ];
+  
+  # 用户配置
+  users.users.alice = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+}
+```
+
+#### 不可变包存储 {#nixos-immutable}
+
+NixOS 使用哈希值来标识每个包，相同内容的包总是有相同的哈希值。这意味着：
+- 不同版本的软件可以同时存在而不会冲突
+- 系统更新是原子性的，要么完全成功，要么完全失败
+- 可以轻松回滚到任何之前的配置
+
+### 软件包管理 {#nixos-package-management}
+
+NixOS 使用 `nix` 命令进行软件包管理：
+
+```console
+# 搜索软件包
+$ nix search nixpkgs firefox
+
+# 安装软件包（临时，重启后消失）
+$ nix-env -iA nixpkgs.firefox
+
+# 在配置文件中添加软件包（推荐方式）
+# 编辑 /etc/nixos/configuration.nix，然后运行：
+$ sudo nixos-rebuild switch
+```
+
+#### 配置文件管理 {#nixos-config-management}
+
+```console
+# 应用配置更改
+$ sudo nixos-rebuild switch
+
+# 测试配置（不应用）
+$ sudo nixos-rebuild test
+
+# 启动到新配置
+$ sudo nixos-rebuild boot
+
+# 回滚到上一个配置
+$ sudo nixos-rebuild switch --rollback
+```
+
+### 系统回滚 {#nixos-rollback}
+
+NixOS 的回滚功能是其最强大的特性之一：
+
+```console
+# 查看可用的系统配置
+$ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+
+# 回滚到上一个配置
+$ sudo nixos-rebuild switch --rollback
+
+# 回滚到特定配置
+$ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/system-123-link
+```
+
+### 通道 (Channels) {#nixos-channels}
+
+NixOS 使用通道来管理软件包集合：
+
+```console
+# 查看当前通道
+$ nix-channel --list
+
+# 更新通道
+$ sudo nix-channel --update
+
+# 切换到不稳定通道
+$ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+```
+
+### Nix Flakes {#nixos-flakes}
+
+Nix Flakes 是 Nix 的新特性，提供了更好的可重现性和依赖管理：
+
+```nix
+# flake.nix 示例
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+  
+  outputs = { self, nixpkgs }: {
+    nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ ./configuration.nix ];
+    };
+  };
+}
+```
+
+### 开发环境 {#nixos-development}
+
+NixOS 提供了强大的开发环境管理：
+
+```console
+# 进入包含特定软件包的 shell
+$ nix-shell -p python3 nodejs
+
+# 使用 shell.nix 文件定义开发环境
+$ nix-shell
+```
+
+### 与其他发行版的主要区别 {#nixos-differences}
+
+1. **配置方式**：传统发行版通过修改各种配置文件，NixOS 通过一个主配置文件
+2. **包管理**：传统发行版使用包管理器安装软件，NixOS 通过配置文件声明需要的软件
+3. **系统更新**：传统发行版更新可能失败并留下不一致状态，NixOS 更新是原子性的
+4. **回滚能力**：传统发行版回滚困难，NixOS 可以轻松回滚到任何之前的配置
+5. **可重现性**：NixOS 配置可以完全重现相同的系统环境
+
+### 学习资源 {#nixos-resources}
+
+- [NixOS 官方手册](https://nixos.org/manual/nixos/stable/)
+- [NixOS Wiki](https://nixos.wiki/)
+- [Nix Pills - 深入学习 Nix 概念 ](https://nixos.org/guides/nix-pills/) 
+- [Awesome Nix - Nix 生态系统资源](https://github.com/nix-community/awesome-nix) 
+- [NixOS 中文](https://nixos-cn.org/)
+- [NixOS 与 Flakes 一份非官方的新手指南](https://nixos-and-flakes.thiscute.world/zh/)
+- [nix_resources](https://linktr.ee/nix_resources)
+- [wrapper-manager](https://viperml.github.io/wrapper-manager/)
+
+NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。
+
