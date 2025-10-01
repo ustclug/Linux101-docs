@@ -223,7 +223,7 @@ $ sudo nixos-rebuild switch --rollback
 $ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/system-123-link
 ```
 
-### 通道 (Channels) {#nixos-channels}
+### 频道 (Channels) {#nixos-channels}
 
 NixOS 使用频道来管理软件包集合：
 
