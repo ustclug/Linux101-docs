@@ -182,7 +182,7 @@ NixOS 使用 `nix` 命令进行软件包管理：
 
 #### 使用 `nix-shell` {#nixos-nix-shell}
 
-`nix-shell` 将暂时修改您的`$`路径环境变量。这可以用于在决定永久安装之前尝试一项软件。 也就是说它是临时的，重启后会消失。
+`nix-shell` 会启动一个新的 shell，在其中 `PATH` 等环境变量会被临时修改，指向由 Nix 构建的工具所在路径。借助这个环境，你可以方便地尝试新程序或依赖。需要注意，这些修改仅在该 `nix-shell` 会话中有效；一旦退出或重启，环境就会恢复原状。  
 
 ```console
 $ nix search nixos firefox # 搜索软件包
