@@ -180,12 +180,39 @@ NixOS 使用哈希值来标识每个包，相同内容的包总是有相同的�
 
 NixOS 使用 `nix` 命令进行软件包管理：
 
+#### 使用 `nix-shell` {#nixos-nix-shell}
+
+`nix-shell` 将暂时修改您的`$`路径环境变量。这可以用于在决定永久安装之前尝试一项软件。 也就是说它是临时的，重启后会消失。
+
 ```console
-$ nix search nixpkgs firefox # 搜索软件包
+$ nix search nixos firefox # 搜索软件包
 
+$ nix-shell -p firefox # 安装软件包
+```
 
-$ nix-env -iA nixpkgs.firefox # 安装软件包（临时，重启后消失）
+#### 使用 `nix-env` {#nixos-nix-env}
 
+!!! warning "注意"
+
+    使用 `nix-env` 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 `nix-shell` 或 NixOS 配置文件。
+
+```console
+$ nix search nixos firefox # 搜索软件包
+
+$ nix-env -iA nixos.firefox # 安装软件包
+```
+
+#### 使用配置文件 {#nixos-config}
+
+将以下 Nix 代码添加到你的 NixOS 配置文件中，该文件通常位于 `/etc/nixos/configuration.nix`。
+
+```nix
+environment.systemPackages = [
+  pkgs.firefox
+];
+```
+
+```
 $ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行
 ```
 
