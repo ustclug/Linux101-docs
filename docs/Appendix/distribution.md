@@ -76,7 +76,7 @@ $ pacman -Ss audacity  # 搜索 Audacity
 
 openSUSE 最主要使用的发行版本为 Leap 和 Tumbleweed。
 
-openSUSE Leap 是定期发布的常规版本，截至 2022 年初，最新的版本为 15.3。而 openSUSE Tumbleweed（又名「风滚草」）是滚动更新的，类似于 Arch Linux。
+openSUSE Leap 是定期发布的常规版本，截至 2025 年 9 月，最新的版本为 15.6。而 openSUSE Tumbleweed（又名「风滚草」）是滚动更新的，类似于 Arch Linux。
 
 !!! warning "openSUSE Leap 15.x 比 openSUSE Leap 42.x 更新。"
 
