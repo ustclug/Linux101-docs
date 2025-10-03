@@ -52,7 +52,7 @@ Fork 是类 UNIX 中创建进程的基本方法：将当前的进程完整复制
 
 许多守护进程直接由命令行的 shell 经 fork 产生，这样的进程首先要脱离当前会话，否则父进程退出时子进程也会退出。创建会话的系统调用是 `setsid()`。然而从 shell 中 fork 出来的进程为进程组组长，不能调用 setsid 另开会话：
 
-```
+```text
 DESCRIPTION
        setsid() creates a new session if the calling process is not a process group leader.  The calling
        process is the leader of the new session (i.e., its session ID is made the same  as  its  process
@@ -183,7 +183,7 @@ int main() {
 
 ![forking](images/forking.png)
 
-按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PID 等于父进程的 PPID。
+按下 T 键，界面显示的进程将转化为树状结构，直观描述了父子进程之间的关系。此处可以明显观察到树梢子进程的 PPID 等于父进程的 PID。
 
 同时由 shell 进程创立的 forking 进程的进程组号 (PGRP) 为自己的 PID，剩余进程的 PGRP 则继承自最开始的 forking 进程，PGRP 可以通过系统调用修改为自身，从原进程组中独立出去另起门户。
 
