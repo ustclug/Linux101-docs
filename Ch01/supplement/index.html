@@ -2202,7 +2202,7 @@
 <h2 id="android-linux">Android/Linux<a class="headerlink" href="#android-linux" title="Permanent link">&para;</a></h2>
 <p>Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的一系列工具和库。Android 还大幅度修改了 Linux 内核以精简运行时开销、适应移动设备。</p>
 <p><a href="https://source.android.google.cn/">AOSP (Android Open Source Project)</a> 只使用了 GPL 许可证的 Linux Kernel，而在 Kernel 之上的 <a href="https://source.android.google.cn/docs/core/runtime">ART (Android Runtime)</a>、Bionic C 库、驱动透明化的 <a href="https://source.android.google.cn/docs/core/architecture/hal">HAL (Hardware Abstraction Layer)</a> 则作为用户态存在，避免 Android 系统框架、Google 移动应用服务框架（GMS）和各厂商的驱动程序被 GPL 感染而开源。</p>
-<p><img alt="" src="../images/Android-Stack.png" /></p>
+<p><img alt="Android Stack" src="../images/Android-Stack.png" /></p>
 <p class="caption">Android 软件堆栈</p>
 <details class="tip">
 <summary>GPL 感染，以及开源许可证的区别</summary>
@@ -2244,7 +2244,7 @@
 <span class="go">Max kernel policy version:      31</span>
 </code></pre></div>
 <p>使用 <code>setenforce 0</code> <strong>临时</strong> 改变 SELinux 状态到 <code>permissive</code>，这个状态在重启后将恢复为配置文件指定的默认值。</p>
-<div class="highlight"><pre><span></span><code># setenforce 0
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>setenforce<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <p>修改 SELinux 的配置文件可以永久改变 SELinux 的工作状态。</p>
 <ol>
@@ -2252,10 +2252,10 @@
 <li>将 <code>SELINUX=enforcing</code> 中的 <code>enforcing</code> 改为 <code>disabled</code> 或 <code>permissive</code>。</li>
 </ol>
 <p>编辑完成后，使用 <code>sestatus</code> 可以看到修改效果：</p>
-<div class="highlight"><pre><span></span><code>[...]
-Current mode:                   permissive  # &lt;-
-Mode from config file:          permissive  # &lt;- 或 disabled
-[...]
+<div class="highlight"><pre><span></span><code><span class="go">[...]</span>
+<span class="go">Current mode:                   permissive  # &lt;-</span>
+<span class="go">Mode from config file:          permissive  # &lt;- 或 disabled</span>
+<span class="go">[...]</span>
 </code></pre></div>
 <h2 id="vm-faq">虚拟机镜像常见问题<a class="headerlink" href="#vm-faq" title="Permanent link">&para;</a></h2>
 <p>本部分提供有关我们提供的 XUbuntu 虚拟机镜像的常见问题以及解答。</p>
@@ -2588,17 +2588,17 @@ Host key verification failed.
 <li>Ubuntu 22.04 LTS (Jammy Jellyfish)：从 Ubuntu 22.04.2 LTS 开始可以直接使用。</li>
 </ul>
 <p>本节选用 Ubuntu 20.04.5 (arm64, server) 作为接下来安装的系统。</p>
-<p><img alt="" src="../images/applesilicon_vmware/1.png" /></p>
+<p><img alt="Choose arm64 image" src="../images/applesilicon_vmware/1.png" /></p>
 <p class="caption">你可以在 <a href="https://mirrors.ustc.edu.cn/">中国科学技术大学开源软件镜像</a> 获取安装镜像。</p>
 <h4 id="install-ubuntu-arm-on-vmware">在 VMWare Fusion 上安装 Ubuntu on ARM<a class="headerlink" href="#install-ubuntu-arm-on-vmware" title="Permanent link">&para;</a></h4>
 <p>下载好安装镜像后，打开 VMWare Fusion，导入你下载的镜像：</p>
-<p><img alt="" src="../images/applesilicon_vmware/2.png" /></p>
+<p><img alt="VMware Fusion" src="../images/applesilicon_vmware/2.png" /></p>
 <p class="caption">点击左上角的加号创建新的虚拟机</p>
-<p><img alt="" src="../images/applesilicon_vmware/3.png" /></p>
+<p><img alt="VMware Fusion new VM" src="../images/applesilicon_vmware/3.png" /></p>
 <p class="caption">将你下载好的镜像拖入框中</p>
-<p><img alt="" src="../images/applesilicon_vmware/4.png" /></p>
+<p><img alt="VMware Fusion choose image" src="../images/applesilicon_vmware/4.png" /></p>
 <p class="caption">导入完成之后使用默认配置即可，你也可以按照自己的需求对 configuration 进行对应的改动。</p>
-<p><img alt="" src="../images/applesilicon_vmware/6.png" /></p>
+<p><img alt="VMware Fusion Ubuntu server install" src="../images/applesilicon_vmware/6.png" /></p>
 <p class="caption">用键盘对命令行界面进行操作，在配置用户名前的配置一般可以选择默认配置。本页面中你需要配置你的用户名，服务器名称和密码。</p>
 <p>如果你不需要远程连接你的虚拟机，你可以不安装 <code>openssh-server</code> （当然，你可以在之后自行安装）。</p>
 <p>Featured Server Snaps 一样可以选择不安装，可以之后自行配置。</p>
@@ -2607,7 +2607,7 @@ Host key verification failed.
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ubuntu-desktop
 </code></pre></div>
 <p>安装好之后需要重新启动虚拟机，这时你应该可以看到你的登陆界面了：</p>
-<p><img alt="" src="../images/applesilicon_vmware/7.png" /></p>
+<p><img alt="VMware Fusion GDM" src="../images/applesilicon_vmware/7.png" /></p>
 <p class="caption">虚拟机的图形界面</p>
 <p>值得注意的是，在选择软件源时，你应该使用 <a href="https://mirrors.ustc.edu.cn/help/ubuntu-ports.html">Ubuntu Ports 源</a> 而不是 <a href="https://mirrors.ustc.edu.cn/help/ubuntu.html#id3">Ubuntu 源</a>。</p>
 <div class="admonition bug">

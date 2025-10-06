@@ -2017,7 +2017,7 @@
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>reboot
 </code></pre></div>
 <p>重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。</p>
-<p><img alt="" src="../images/gnome-desktop.png" /></p>
+<p><img alt="GNOME Desktop" src="../images/gnome-desktop.png" /></p>
 <p>可以看到，通过简单几步，我们的桌面环境就安装成功了。</p>
 <details class="example">
 <summary>安装 Plasma 桌面</summary>
@@ -2039,7 +2039,7 @@
 <p>不同类型的主题有不同的安装方法，一般在主题介绍页面有显示。</p>
 </div>
 <p>点击 Download 下载一个压缩包：</p>
-<p><img alt="" src="../images/themes-download-icon.png" /></p>
+<p><img alt="Download theme" src="../images/themes-download-icon.png" /></p>
 <p>解压后放到 <code>~/.themes</code> 文件夹，若不存在该文件夹则创建一个。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>mkdir<span class="w"> </span>~/.themes
 </code></pre></div>
@@ -2059,28 +2059,28 @@
 </div>
 <p>如果你觉得商店中的主题不符合你的审美，你也可以自己制作一款独一无二的主题，或者直接修改现有的主题。</p>
 <h4 id="gnome-extensions">GNOME 的 Shell 扩展<a class="headerlink" href="#gnome-extensions" title="Permanent link">&para;</a></h4>
-<p>GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://extensions.gnome.org/</p>
+<p>GNOME 支持很多扩展，并且有一个专门用于扩展的网站：<a href="https://extensions.gnome.org/">https://extensions.gnome.org/</a>。</p>
 <p>要使用 GNOME 扩展，我们要先安装 <code>gnome-shell-extensions</code>。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnome-shell-extensions
 </code></pre></div>
 <p>接下来进入扩展插件的网站并选择其中一款扩展：</p>
 <p>Caffeine: 允许用户停用系统屏幕保护和自动休眠。</p>
-<p><img alt="" src="../images/caffeine.png" /></p>
+<p><img alt="Caffeine extension" src="../images/caffeine.png" /></p>
 <p>先来查看我们正在使用的 GNOME 版本：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>gnome-shell<span class="w"> </span>--version
 </code></pre></div>
 <p>在插件网页中下载对应版本的压缩包并解压到一个文件夹。</p>
 <p>这时我们打开文件夹里的 <code>metadata.json</code> 文件。</p>
 <p>然后将文件夹的名字改为 <code>metadata.json</code> 中的 UUID：</p>
-<p><img alt="" src="../images/metadata.png" /></p>
-<p>本例中，UUID 为 "caffeine@patapon.info"</p>
-<p><img alt="" src="../images/caffeine-folder.png" /></p>
+<p><img alt="Extension metadata" src="../images/metadata.png" /></p>
+<p>本例中，UUID 为 <code>caffeine@patapon.info</code></p>
+<p><img alt="Extension folder" src="../images/caffeine-folder.png" /></p>
 <p>并将该文件夹放到 <code>~/.local/share/gnome-shell/extensions/</code> 中。</p>
 <p>打开 <code>gnome-tweaks</code>。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>gnome-tweaks
 </code></pre></div>
 <p>在扩展一栏即可启用我们刚刚装的 caffeine。</p>
-<p><img alt="" src="../images/gnome-extensions.png" /></p>
+<p><img alt="Enable GNOME extensions" src="../images/gnome-extensions.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>手动安装显然过于复杂，我们完全可以只使用浏览器来完成扩展插件的管理和安装。</p>
@@ -2095,13 +2095,13 @@
 </div>
 <h2 id="xfce-themes">Xfce 联网下载安装更多主题<a class="headerlink" href="#xfce-themes" title="Permanent link">&para;</a></h2>
 <p>除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 <a href="https://www.xfce-look.org/">Xfce-look</a> 上，就有上万个不同类型的主题。安装方法也十分简单。</p>
-<p><img alt="" src="../images/xfce-look-mainpage.png" /></p>
+<p><img alt="Xfce-look main page" src="../images/xfce-look-mainpage.png" /></p>
 <p>我们可以选中任意一款主题。我们以下面这个为例。</p>
-<p><img alt="" src="../images/xfce-look-theme.png" /></p>
+<p><img alt="Xfce-look themes" src="../images/xfce-look-theme.png" /></p>
 <p>点击 Download 按钮下载它，一般会得到压缩包格式的文件。我们打开设置管理器中的「外观」首选项，把下载好的压缩包文件直接拖拽到样式列表中。</p>
-<p><img alt="" src="../images/Xfce-style-installation.png" /></p>
+<p><img alt="Xfce install style" src="../images/Xfce-style-installation.png" /></p>
 <p>选中刚刚拖拽进去的主题即可更换。</p>
-<p><img alt="" src="../images/Xfce-style-installation_2.png" /></p>
+<p><img alt="Xfce select style" src="../images/Xfce-style-installation_2.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>有些主题包是很多样式（包括窗口、图标和外观样式）成套出现的，如果安装的主题包括了 Xfwm4 窗口管理器主题的话，我们会发现在「窗口管理器」首选项中，该主题也会出现：</p>

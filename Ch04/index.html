@@ -2063,7 +2063,7 @@
 <span class="gp">$ </span><span class="c1"># 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们仍然可以操作 shell</span>
 </code></pre></div>
 <p>而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 <code>ping localhost</code>。</p>
-<p><img alt="" id="bg" src="images/bg.gif" width="80%" /></p>
+<p><img alt="Use bg" id="bg" src="images/bg.gif" width="80%" /></p>
 <p>我们可以使用 <code>jobs</code> 命令，看到当前 shell 上所有相关的进程了。这里，后台已经有一个进程在运行，所以 <code>ping localhost</code> 得到的代号是 2。</p>
 <p>任务前的代号在 fg，bg，乃至 kill 命令中发挥作用。使用时需要在前面加 <code>%</code>，如将 2 号进程放入后台，则使用 <code>bg %2</code>，效果如图所示。</p>
 <details class="info">
@@ -2137,7 +2137,7 @@
 </code></pre></div>
 <p>在需要屏蔽 SIGHUP 的程序前添加 nohup，则运行时的输出将被<a href="../Ch06/#redirection">重定向</a>到 nohup.out，也可以通过重定向手段自定义输出的文件。</p>
 <h3 id="tmux">命令行多终端方案——tmux<a class="headerlink" href="#tmux" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="images/tmux.gif" width="70%" /></p>
+<p><img alt="Tmux" src="images/tmux.gif" width="70%" /></p>
 <div class="admonition info">
 <p class="admonition-title">问题产生了！</p>
 <p>一个终端（硬件概念）只有一套鼠标键盘，只能有一个 shell 主持一个 session，那如果我在 SSH 连接的时候有几个程序需要同时交互的话，只有一个前台进程很不方便。而且上面说过如果 SSH 网络断开，视为终端被关闭，也就意味着前后台一起收到 SIGHUP 一起退出，好不容易设置好的临时变量什么的还得重设。</p>
