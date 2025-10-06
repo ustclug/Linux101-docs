@@ -8,7 +8,7 @@ icon: simple/docker
 
 !!! abstract "导言"
 
-    「容器」，是近年来非常热门的一个概念。它通过操作系统内核提供的隔离技术，实现轻量级的虚拟化环境。目前，它在软件的开发、部署等方面有着非常广泛的应用。
+    「容器」，是近年来非常热门的一个概念。它通过操作系统内核提供的隔离技术，实现轻量级、用户层虚拟化为主的虚拟化环境。目前，它在软件的开发、部署等方面有着非常广泛的应用。
 
     而 Docker，是 Linux 容器技术中的代表性软件，它为用户提供了方便的接口来创建、使用 Linux 容器。下面，就让我们简单地入门一下 Docker。
 
@@ -16,12 +16,12 @@ icon: simple/docker
 
 Docker 能够利用 Linux 内核的容器特性，隔离出一个轻便的环境来运行程序。这有什么意义呢？试想以下这些情况：
 
--   你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序（但注意：它们都是 Linux）。
+-   你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序（但注意：由于 Docker 的特性，它们都共用同一个 Linux 内核）。
 -   你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
 -   你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
 -   …………
 
-Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 上使用 CentOS 的环境），部署应用。
+Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 发行版上使用 CentOS 发行版的环境），部署应用。
 
 ## 安装 Docker {#install-docker}
 
@@ -121,7 +121,7 @@ For more examples and ideas, visit:
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
-在执行以上命令之后，你会获得一个 Ubuntu（版本为 Latest 的；如果需要指定版本，可以使用类似 `20.04` 的版本号替换 `latest`，这在生产环境中是非常建议的，因为 `latest` 指定最新版本而可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。
+在执行以上命令之后，你会获得一个 Ubuntu（版本为 `latest` 即最新的 LTS；如果需要指定版本，可以使用类似 `20.04` 的版本号替换 `latest`，这在生产环境中是非常建议的，因为 `latest` 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。
 
 如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
@@ -196,7 +196,8 @@ $ sudo docker rm ubuntu-container
 在继续之前，我们来梳理一下 Docker 中的几个关键概念：**容器（container）**、**镜像（image）**、**镜像源（registry）**。
 
 -   **镜像源**是存储镜像的地方
--   **镜像**是 Docker 容器内文件系统的一份快照，下面讲到的 Dockerfile 是生成镜像的指令序列
+-   **镜像**是 Docker 容器内文件系统的一份快照
+-   **Dockerfile** 包含生成镜像的指令序列，可以理解为构建镜像的脚本
 -   **容器**是一个（隔离）的运行环境
 
 它们之间的关系可以用下图表示，其中括号中的命令是查看相应对象列表的命令。
@@ -266,7 +267,7 @@ CMD ["fish"]
 sudo docker build -t riscv-cross:example .
 ```
 
-`-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签，`.` 表示从当前目录下寻找 Docker 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 `docker run` 执行即可：
+`-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签，`.` 表示从当前目录下寻找 Dockerfile 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 `docker run` 执行即可：
 
 ```console
 $ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
