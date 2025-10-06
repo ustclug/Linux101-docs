@@ -46,7 +46,7 @@
 
 ## 命令行工具：以 `su` 为例
 
-```
+```text
 SU(1)                            User Commands                           SU(1)
 （第一行的标题是 User Commands，两边的 SU(1) 代表这篇文档是关于 `su` 的，在文档第一卷。
 第一卷与 Shell 命令和程序有关。更多信息可以查看 man man 中 DESCRIPTION 一节的内容。）
@@ -262,7 +262,7 @@ util-linux                         July 2014                             SU(1)
 
 文档第三卷是程序库函数的信息，包括了 C 语言的标准库函数。
 
-```
+```text
 STRCMP(3)                  Linux Programmer's Manual                 STRCMP(3)
 
 NAME
@@ -320,7 +320,7 @@ COLOPHON（作者信息、文档来源等信息）
 
 文档第二卷是关于系统调用的信息。当然，很多系统调用都由 C 运行时库包装了一层，否则用起来很麻烦。一个目前还没有被包装的系统调用的例子是 `copy_file_range()`，你需要在你的代码里面使用 `syscall()` 去手动包装它，才能方便地使用。
 
-```
+```text
 KILL(2)                    Linux Programmer's Manual                   KILL(2)
 
 NAME

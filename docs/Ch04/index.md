@@ -114,7 +114,7 @@ $ renice -n 10 -p 12345 # 设置 PID 为 12345 的进程的 nice 值为 10
 
 在实际的 Linux 系统中，进程的状态分类要稍微复杂一些。在 htop 中，按下 H 键到帮助页，可以看到对进程状态的如下描述：
 
-```
+```text
 Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep
 ```
 
@@ -168,7 +168,7 @@ $ # 使用 ps 命令，可以发现 matmul 程序在后台运行，同时我们�
 
 而如果需要将前台程序切换到后台，则需要按下 Ctrl + Z 发送 SIGTSTP 使进程挂起，控制权还给 shell，此时屏幕输出如下所示，即（刚才挂起的进程）代号为 2，状态为 stopped，命令为 `ping localhost`。
 
-![](images/bg.gif){: id=bg width=80% }
+![Use bg](images/bg.gif){: id=bg width=80% }
 
 我们可以使用 `jobs` 命令，看到当前 shell 上所有相关的进程了。这里，后台已经有一个进程在运行，所以 `ping localhost` 得到的代号是 2。
 
@@ -268,7 +268,7 @@ nohup: ignoring input and appending output to '/home/ustc/nohup.out'
 
 ### 命令行多终端方案——tmux {#tmux}
 
-![](images/tmux.gif){: width=70% }
+![Tmux](images/tmux.gif){: width=70% }
 
 !!! info "问题产生了！"
 

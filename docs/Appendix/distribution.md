@@ -6,9 +6,9 @@
 
 Ubuntu 基于 Debian，并且相比 Debian 而言更加新手友好。而 Debian 的开发周期更慢，它的 Stable 分支也更加稳定。在很多方面来说，它们的区别不大，但是仍然需要注意一些事情：
 
--   不同的发行版、不同的分支的软件源不能混用。向 Debian 添加 Ubuntu 或 Ubuntu PPAs 的源可能会导致软件依赖的混乱。
--   Debian 不会预置一些 Ubuntu 特有的特性。从 Snapcraft 商店、Livepatch（在不停机的情况下修复内核漏洞的服务）到 ZSys（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。
--   在日常使用中，Debian 也有一些小的区别，例如默认情况下，`/sbin` 不在普通用户的 PATH 中。
+- 不同的发行版、不同的分支的软件源不能混用。向 Debian 添加 Ubuntu 或 Ubuntu PPAs 的源可能会导致软件依赖的混乱。
+- Debian 不会预置一些 Ubuntu 特有的特性。从 Snapcraft 商店、Livepatch（在不停机的情况下修复内核漏洞的服务）到 ZSys（由 Ubuntu 开发的 ZFS 管理工具）都不会预置在 Debian 中。
+- 在日常使用中，Debian 也有一些小的区别，例如默认情况下，`/sbin` 不在普通用户的 PATH 中。
 
 ## CentOS 与 Fedora {#centos-and-fedora}
 
@@ -31,9 +31,9 @@ $ sudo dnf upgrade  # 更新系统
 
 SELinux 是由 NSA 编写的开源的 Linux 安全模块，在 CentOS 和 Fedora 上都默认开启。SELinux 解决的问题是，传统的 DAC（自主访问控制, Discretionary Access Control）安全模型（我们在第五章中看到的 `rwx` 就是传统的模型）无法有效应对一些安全风险，如[^1]：
 
--   用户可能会把「任何人都可读取」的权限赋予在敏感文件（如 SSH 密钥）上。
--   用户的进程可以修改文件的安全性属性。例如，邮件程序可以（尽管不应该）将邮件文件设置为「任何人都可读取」。
--   用户的进程继承用户的权限，如果进程本身有问题或是不安全，那么攻击者可以以该用户的权限作任何事情。例如，如果浏览器被攻击，它可以读取到用户的 SSH 密钥，但浏览器显然不应该做这种事情。
+- 用户可能会把「任何人都可读取」的权限赋予在敏感文件（如 SSH 密钥）上。
+- 用户的进程可以修改文件的安全性属性。例如，邮件程序可以（尽管不应该）将邮件文件设置为「任何人都可读取」。
+- 用户的进程继承用户的权限，如果进程本身有问题或是不安全，那么攻击者可以以该用户的权限作任何事情。例如，如果浏览器被攻击，它可以读取到用户的 SSH 密钥，但浏览器显然不应该做这种事情。
 
 SELinux 添加了额外的「强制访问控制」安全措施：系统中所有的文件、进程和端口等都被贴上了 SELinux 标签，如果访问者（Subject）和被访问对象（Object）的标签不符合规则，访问则会被拒绝。
 
@@ -135,3 +135,143 @@ $ emerge --search audacity  # 搜索名字中含 audacity 的包
 尽管 Systemd 已经成为了 Linux 发行版主流选择的 init，OpenRC 仍然是 Gentoo 默认的 init（关于 init 的简介，可参考[第四章](../Ch04/index.md)）。
 
 [^1]: <https://wiki.centos.org/zh/HowTos/SELinux>
+
+## NixOS {#nixos}
+
+[NixOS](https://nixos.org/) 是一个基于 Nix 包管理器的 Linux 发行版，其最大的特点是**声明式配置**和**原子性更新**。与传统发行版不同，NixOS 的整个系统配置都通过一个配置文件来管理，这使得系统配置可以版本控制、可重现，并且可以轻松回滚。
+
+### 核心概念 {#nixos-concepts}
+
+#### 声明式配置 {#nixos-declarative}
+
+NixOS 的整个系统配置都写在 `/etc/nixos/configuration.nix` 文件中。这个文件描述了系统应该是什么样子，而不是如何一步步构建系统。例如：
+
+```nix
+{ config, pkgs, ... }:
+
+{
+  # 启用 SSH 服务
+  services.openssh.enable = true;
+
+  # 安装软件包
+  environment.systemPackages = with pkgs; [
+    firefox
+    vim
+    git
+  ];
+
+  # 用户配置
+  users.users.alice = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+}
+```
+
+#### 不可变包存储 {#nixos-immutable}
+
+NixOS 使用哈希值来标识每个包，相同内容的包总是有相同的哈希值。这意味着：
+
+- 不同版本的软件可以同时存在而不会冲突
+- 系统更新是原子性的，要么完全成功，要么完全失败
+- 可以轻松回滚到任何之前的配置
+
+### 软件包管理 {#nixos-package-management}
+
+NixOS 使用 `nix` 命令进行软件包管理：
+
+```console
+$ nix search nixpkgs firefox # 搜索软件包
+
+
+$ nix-env -iA nixpkgs.firefox # 安装软件包（临时，重启后消失）
+
+$ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行
+```
+
+#### 配置文件管理 {#nixos-config-management}
+
+```console
+$ sudo nixos-rebuild switch # 应用配置更改
+
+$ sudo nixos-rebuild test # 测试配置（不应用）
+
+$ sudo nixos-rebuild boot # 启动到新配置
+
+$ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
+```
+
+### 系统回滚 {#nixos-rollback}
+
+NixOS 的回滚功能是其最强大的特性之一：
+
+```console
+$ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system # 查看可用的系统配置
+
+$ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
+
+$ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/system-123-link # 回滚到特定配置
+```
+
+### 频道 (Channels) {#nixos-channels}
+
+NixOS 使用频道来管理软件包集合：
+
+```console
+$ nix-channel --list # 查看当前频道
+
+$ sudo nix-channel --update # 更新频道
+
+$ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos # 切换到不稳定频道
+```
+
+### Nix Flakes {#nixos-flakes}
+
+Nix Flakes 是 Nix 的新特性，提供了更好的可重现性和依赖管理：
+
+```nix
+# flake.nix 示例
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs }: {
+    nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ ./configuration.nix ];
+    };
+  };
+}
+```
+
+### 开发环境 {#nixos-development}
+
+NixOS 提供了强大的开发环境管理：
+
+```console
+$ nix-shell -p python3 nodejs # 进入包含特定软件包的 shell
+
+$ nix-shell # 使用 shell.nix 文件定义开发环境
+```
+
+### 与其他发行版的主要区别 {#nixos-differences}
+
+1. **配置方式**：传统发行版通过修改各种配置文件，NixOS 通过一个主配置文件
+2. **包管理**：传统发行版使用包管理器安装软件，NixOS 通过配置文件声明需要的软件
+3. **系统更新**：传统发行版更新可能失败并留下不一致状态，NixOS 更新是原子性的
+4. **回滚能力**：传统发行版回滚困难，NixOS 可以轻松回滚到任何之前的配置
+5. **可重现性**：NixOS 配置可以完全重现相同的系统环境
+
+### 学习资源 {#nixos-resources}
+
+- [NixOS 官方手册](https://nixos.org/manual/nixos/stable/)
+- [NixOS Wiki](https://nixos.wiki/)
+- [Nix Pills - 深入学习 Nix 概念](https://nixos.org/guides/nix-pills/)
+- [Awesome Nix - Nix 生态系统资源](https://github.com/nix-community/awesome-nix)
+- [NixOS 中文](https://nixos-cn.org/)
+- [NixOS 与 Flakes 一份非官方的新手指南](https://nixos-and-flakes.thiscute.world/zh/)
+- [nix_resources](https://linktr.ee/nix_resources)
+- [wrapper-manager](https://viperml.github.io/wrapper-manager/)
+
+NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。

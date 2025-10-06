@@ -3,7 +3,7 @@
 env/
 venv/
 venv-mkdocs/
-site/
 .env/
 
 node_modules/
+/site
