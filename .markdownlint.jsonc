@@ -1,4 +1,4 @@
 {
     "MD046": false,
-    "extends": "node_modules/markdownlint/style/prettier.json"
+    "extends": "node_modules/markdownlint/style/prettier.json",
 }
