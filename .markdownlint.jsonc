@@ -1,5 +1,7 @@
 {
-    "MD046": false,  // Always use code blocks for commands and outputs.
-    "MD014": false,  // Linux 101 always prepend '$' or '#' to command lines.
+    "MD046": false, // Always use code blocks for commands and outputs.
+    "MD014": false, // Linux 101 always prepend '$' or '#' to command lines.
+    "MD033": false, // Allow inline HTML, required by some special cases.
+    "MD053": false, // False postive for footnotes.
     "extends": "node_modules/markdownlint/style/prettier.json",
 }

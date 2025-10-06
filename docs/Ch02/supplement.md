@@ -34,7 +34,7 @@ $ sudo reboot
 
 重启后可以看到，GNOME 桌面已经安装完成。我们拥有了图形界面。
 
-![](images/gnome-desktop.png)
+![GNOME Desktop](images/gnome-desktop.png)
 
 可以看到，通过简单几步，我们的桌面环境就安装成功了。
 
@@ -68,7 +68,7 @@ $ sudo apt install gnome-tweaks
 
 点击 Download 下载一个压缩包：
 
-![](images/themes-download-icon.png)
+![Download theme](images/themes-download-icon.png)
 
 解压后放到 `~/.themes` 文件夹，若不存在该文件夹则创建一个。
 
@@ -100,7 +100,7 @@ $ gnome-tweaks
 
 #### GNOME 的 Shell 扩展 {#gnome-extensions}
 
-GNOME 支持很多扩展，并且有一个专门用于扩展的网站。https://extensions.gnome.org/
+GNOME 支持很多扩展，并且有一个专门用于扩展的网站：<https://extensions.gnome.org/>。
 
 要使用 GNOME 扩展，我们要先安装 `gnome-shell-extensions`。
 
@@ -112,7 +112,7 @@ $ sudo apt install gnome-shell-extensions
 
 Caffeine: 允许用户停用系统屏幕保护和自动休眠。
 
-![](images/caffeine.png)
+![Caffeine extension](images/caffeine.png)
 
 先来查看我们正在使用的 GNOME 版本：
 
@@ -126,11 +126,11 @@ $ gnome-shell --version
 
 然后将文件夹的名字改为 `metadata.json` 中的 UUID：
 
-![](images/metadata.png)
+![Extension metadata](images/metadata.png)
 
-本例中，UUID 为 "caffeine@patapon.info"
+本例中，UUID 为 `caffeine@patapon.info`
 
-![](images/caffeine-folder.png)
+![Extension folder](images/caffeine-folder.png)
 
 并将该文件夹放到 `~/.local/share/gnome-shell/extensions/` 中。
 
@@ -142,7 +142,7 @@ $ gnome-tweaks
 
 在扩展一栏即可启用我们刚刚装的 caffeine。
 
-![](images/gnome-extensions.png)
+![Enable GNOME extensions](images/gnome-extensions.png)
 
 !!! tip "提示"
 
@@ -168,19 +168,19 @@ $ gnome-tweaks
 
 除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 [Xfce-look](https://www.xfce-look.org/) 上，就有上万个不同类型的主题。安装方法也十分简单。
 
-![](images/xfce-look-mainpage.png)
+![Xfce-look main page](images/xfce-look-mainpage.png)
 
 我们可以选中任意一款主题。我们以下面这个为例。
 
-![](images/xfce-look-theme.png)
+![Xfce-look themes](images/xfce-look-theme.png)
 
 点击 Download 按钮下载它，一般会得到压缩包格式的文件。我们打开设置管理器中的「外观」首选项，把下载好的压缩包文件直接拖拽到样式列表中。
 
-![](images/Xfce-style-installation.png)
+![Xfce install style](images/Xfce-style-installation.png)
 
 选中刚刚拖拽进去的主题即可更换。
 
-![](images/Xfce-style-installation_2.png)
+![Xfce select style](images/Xfce-style-installation_2.png)
 
 !!! tip "提示"
 

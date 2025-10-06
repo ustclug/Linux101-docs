@@ -56,14 +56,14 @@ Xfce
 
 我们直接打开 Xfce 中的设置管理器，如图所示。
 
-![](images/Xfce-settings-position.png)
+![Xfce Settings in menu](images/Xfce-settings-position.png)
 
 图 1. 设置管理器的位置
 {: .caption }
 
 这里最常见的设置，都可以找得到。
 
-![](images/Xfce-settings.png)
+![Xfce Settings](images/Xfce-settings.png)
 
 图 2. 设置管理器
 {: .caption }
@@ -74,7 +74,7 @@ xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面�
 
 ##### 背景 {#desktop-background}
 
-![](images/Xfce-settings-background.png)
+![Xfce settings background](images/Xfce-settings-background.png)
 
 图 3. 桌面背景首选项
 {: .caption }
@@ -92,7 +92,7 @@ xfdesktop 桌面管理器是 Xfce 中的一个主要模块，它负责在桌面�
 
 ##### 菜单 {#desktop-menus}
 
-![](images/Xfce-settings-menu.png)
+![Xfce settings menu](images/Xfce-settings-menu.png)
 
 图 4. 桌面菜单首选项
 {: .caption }
@@ -101,21 +101,21 @@ Xfce 允许用户自定义右键菜单和中键菜单的行为。这里可以对
 
 若「在桌面上右击时包含应用程序菜单」选项被选中，则在桌面右键时会显示下面的菜单，用于快速打开应用程序。
 
-![](images/Xfce-menu-applocations.png)
+![Xfce menu app locations](images/Xfce-menu-applocations.png)
 
 图 5. 桌面应用程序菜单
 {: .caption }
 
 若「在桌面上中击时显示窗口列表菜单」选项被选中时，中击桌面可以弹出工作区的菜单，可以显示所有工作区正在运行的应用程序。
 
-![](images/Xfce-menu-workspaces.png)
+![Xfce menu workspaces](images/Xfce-menu-workspaces.png)
 
 图 6. 桌面工作区菜单
 {: .caption }
 
 ##### 图标 {#desktop-icons}
 
-![](images/Xfce-settings-icons.png)
+![Xfce settings icons](images/Xfce-settings-icons.png)
 
 图 7. 桌面图标首选项
 {: .caption }
@@ -128,7 +128,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 ##### 样式 {#appearance-styles}
 
-![](images/Xfce-settings-appearance.png)
+![Xfce settings appearance](images/Xfce-settings-appearance.png)
 
 图 8. 外观样式首选项
 {: .caption }
@@ -141,7 +141,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 ##### 图标 {#appearance-icons}
 
-![](images/Xfce-appearance-icons.png)
+![Xfce appearance icons](images/Xfce-appearance-icons.png)
 
 图 9. 外观图标首选项
 {: .caption }
@@ -154,7 +154,7 @@ Xfce 允许用户绘制桌面图标并且设置其外观。
 
 ##### 字体 {#appearance-fonts}
 
-![](images/Xfce-appearance-fonts.png)
+![Xfce appearance fonts](images/Xfce-appearance-fonts.png)
 
 图 10. 外观字体首选项
 {: .caption }
@@ -171,7 +171,7 @@ xfwm4 窗口管理器也是 Xfce 桌面环境的核心模块。窗口管理器�
 
 ##### 样式 {#wm-styles}
 
-![](images/Xfce-WM-style.png)
+![Xfce WM style](images/Xfce-WM-style.png)
 
 图 11. 窗口管理器样式首选项
 {: .caption }
@@ -180,7 +180,7 @@ Xfce 允许用户自定义窗口的样式，「样式」对话框是用来控制
 
 ##### 键盘 {#wm-keyboard}
 
-![](images/Xfce-WM-keyboard.png)
+![Xfce WM keyboard](images/Xfce-WM-keyboard.png)
 
 图 12. 窗口管理器键盘首选项
 {: .caption }
@@ -191,14 +191,14 @@ Xfce 允许用户自定义窗口的样式，「样式」对话框是用来控制
 
 Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜单，工作区切换器等功能。
 
-![](images/Xfce-top-panel.png)
+![Xfce top panel](images/Xfce-top-panel.png)
 
 图 13. 默认的顶部面板
 {: .caption }
 
 ##### 显示 {#panels-display}
 
-![](images/Xfce-panel-display.png)
+![Xfce panel display](images/Xfce-panel-display.png)
 
 图 14. 面板显示首选项
 {: .caption }
@@ -215,7 +215,7 @@ Xfce-panel 也是 Xfce 的核心模块，具有应用程序启动器，面板菜
 
 ##### 项目 {#panels-items}
 
-![](images/Xfce-panel-items.png)
+![Xfce panel items](images/Xfce-panel-items.png)
 
 图 15. 面板项目首选项
 {: .caption }
@@ -232,7 +232,7 @@ Thunar 是 Xfce 桌面环境的现代文件管理器。Thunar 从一开始就被
 
 ##### 布局 {#file-manager-layout}
 
-![](images/Xfce-FM.png)
+![Xfce FM](images/Xfce-FM.png)
 
 图 16. 文件管理器
 {: .caption }
@@ -243,14 +243,14 @@ Thunar 是 Xfce 桌面环境的现代文件管理器。Thunar 从一开始就被
 
 如果不喜欢主界面的图标显示，我们还可以选择「视图」→ 「以详细列表查看来以列表显示」。在列表显示的时候，我们可以通过「视图」→「配置栏」管理列表显示的属性。
 
-![](images/Xfce-FM-list.png)
+![Xfce FM list](images/Xfce-FM-list.png)
 
 图 17. 文件管理器列表显示
 {: .caption }
 
 还有更多可以配置的选项，可以在「编辑」→ 「首选项」中配置。
 
-![](images/Xfce-settings-FM.png)
+![Xfce settings FM](images/Xfce-settings-FM.png)
 
 图 18. 文件管理器首选项
 {: .caption }
@@ -265,14 +265,14 @@ Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态
 
 在「设置管理器」的「会话和启动」中可以配置它。
 
-![](images/Xfce-sessions.png)
+![Xfce sessions](images/Xfce-sessions.png)
 
 图 19. 会话与启动
 {: .caption }
 
 ##### 应用程序自启动 {#autostart}
 
-![](images/Xfce-Autostart.png)
+![Xfce autostart](images/Xfce-Autostart.png)
 
 图 20. 自启动首选项
 {: .caption }
@@ -432,14 +432,14 @@ $ sh run.sh
 
 在图形界面中，我们需要另一个和 shell 交互的程序，叫做终端模拟器，通常它的名称为「终端（Terminal）」。我们可以在「所有程序」找到它。
 
-![](images/Xfce-terminal-pos.png)
+![Xfce terminal in menu](images/Xfce-terminal-pos.png)
 
 图 21. 终端在菜单的位置
 {: .caption }
 
 打开后如下图。
 
-![](images/Xfce-terminal.png)
+![Xfce terminal](images/Xfce-terminal.png)
 
 图 22. 终端界面
 {: .caption }
@@ -560,7 +560,7 @@ $ sudo bash wordpress.sh
 
 最后我们打开浏览器并进入 `http://localhost/blog` 来完成最后的配置。
 
-![](images/wordpress-installation.png)
+![Wordpress installation](images/wordpress-installation.png)
 
 图 23. WordPress 的初始化配置界面
 {: .caption }
@@ -585,7 +585,7 @@ $ jekyll serve
 
 打开浏览器，在浏览器中输入 `localhost:4000` 进入我们搭建的网站。
 
-![](images/jekyll-installation.png){: .img-border }
+![Jekyll installation](images/jekyll-installation.png){: .img-border }
 
 图 24. Jekyll 的默认网页
 {: .caption }

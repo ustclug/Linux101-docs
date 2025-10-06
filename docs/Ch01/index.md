@@ -295,7 +295,7 @@ VMware Workstation 启动 Xubuntu 18.04 虚拟机
 
 如果读者采用了上面列出的虚拟机之一，其默认登录用户名和密码均为 `ustc`，输入密码即可登录虚拟机系统桌面。
 
-![](images/VWP-Xubuntu-32bit-Desktop.png)
+![VMware Xubuntu Desktop](images/VWP-Xubuntu-32bit-Desktop.png)
 
 Xubuntu 18.04 虚拟机桌面
 {: .caption }
@@ -304,7 +304,7 @@ Xubuntu 18.04 虚拟机桌面
 
 LUG@USTC 是中国科学技术大学主流的开源社群，也是校内最大的学术科技类社团。其现今拥有数百名热爱开源文化的成员，并受益于他们而正在蓬勃发展。LUG@USTC 维护了中国最大的开源镜像站之一 [USTC Mirrors](https://mirrors.ustc.edu.cn/)，其作为本土的软件源为国内许多开源软件用户提供了镜像服务，是本社群对社会作出的一项重要贡献。
 
-![](images/LUG@USTC-Logo.png)
+![LUG@USTC](images/LUG@USTC-Logo.png)
 
 LUG@USTC 图标
 {: .caption }
@@ -313,7 +313,7 @@ LUG@USTC 图标
 
 你可以从 [LUG@USTC 官方网站](https://lug.ustc.edu.cn/wiki/)中了解我们。官方网站中包括了我们在校内开展的各类流行活动和面向校内外提供的诸多网络服务。
 
-LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 ![](https://lug.ustc.edu.cn/static/email.png){: .img-inline } 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
+LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学技术大学在读学生，你可以通过致邮 ![email](https://lug.ustc.edu.cn/static/email.png){: .img-inline } 附上姓名与学号申请加入本社群；如果你是校外人士，也可以致邮获取进一步的沟通交流方式。
 
 ## 思考题 {#questions}
 

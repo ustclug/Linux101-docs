@@ -12,7 +12,7 @@ Android 是 Linux 发行版，但它不是 GNU/Linux，Android 不使用 GNU 的
 
 [AOSP (Android Open Source Project)](https://source.android.google.cn/) 只使用了 GPL 许可证的 Linux Kernel，而在 Kernel 之上的 [ART (Android Runtime)](https://source.android.google.cn/docs/core/runtime)、Bionic C 库、驱动透明化的 [HAL (Hardware Abstraction Layer)](https://source.android.google.cn/docs/core/architecture/hal) 则作为用户态存在，避免 Android 系统框架、Google 移动应用服务框架（GMS）和各厂商的驱动程序被 GPL 感染而开源。
 
-![](images/Android-Stack.png)
+![Android Stack](images/Android-Stack.png)
 
 Android 软件堆栈
 {: .caption }
@@ -69,7 +69,7 @@ Max kernel policy version:      31
 
 使用 `setenforce 0` **临时** 改变 SELinux 状态到 `permissive`，这个状态在重启后将恢复为配置文件指定的默认值。
 
-```
+```console
 # setenforce 0
 ```
 
@@ -80,7 +80,7 @@ Max kernel policy version:      31
 
 编辑完成后，使用 `sestatus` 可以看到修改效果：
 
-```
+```console
 [...]
 Current mode:                   permissive  # <-
 Mode from config file:          permissive  # <- 或 disabled
@@ -168,7 +168,7 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
 ```
 
 这里可以看到，`/dev/sda2` 这个**分区**被自动扩大了。
-如果没有，那么可以输入以下命令（请勿输入 `$ `，详见[记号约定](../notations.md#command-line)）：
+如果没有，那么可以输入以下命令（请勿输入 `$`，详见[记号约定](../notations.md#command-line)）：
 
 ```console
 $ LANGUAGE=C sudo growpart /dev/sda 2
@@ -519,7 +519,7 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 本节选用 Ubuntu 20.04.5 (arm64, server) 作为接下来安装的系统。
 
-![](images/applesilicon_vmware/1.png)
+![Choose arm64 image](images/applesilicon_vmware/1.png)
 
 你可以在 [中国科学技术大学开源软件镜像](https://mirrors.ustc.edu.cn/) 获取安装镜像。
 {: .caption }
@@ -528,22 +528,22 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 下载好安装镜像后，打开 VMWare Fusion，导入你下载的镜像：
 
-![](images/applesilicon_vmware/2.png)
+![VMware Fusion](images/applesilicon_vmware/2.png)
 
 点击左上角的加号创建新的虚拟机
 {: .caption }
 
-![](images/applesilicon_vmware/3.png)
+![VMware Fusion new VM](images/applesilicon_vmware/3.png)
 
 将你下载好的镜像拖入框中
 {: .caption }
 
-![](images/applesilicon_vmware/4.png)
+![VMware Fusion choose image](images/applesilicon_vmware/4.png)
 
 导入完成之后使用默认配置即可，你也可以按照自己的需求对 configuration 进行对应的改动。
 {: .caption }
 
-![](images/applesilicon_vmware/6.png)
+![VMware Fusion Ubuntu server install](images/applesilicon_vmware/6.png)
 
 用键盘对命令行界面进行操作，在配置用户名前的配置一般可以选择默认配置。本页面中你需要配置你的用户名，服务器名称和密码。
 {: .caption }
@@ -562,7 +562,7 @@ $ sudo apt-get install ubuntu-desktop
 
 安装好之后需要重新启动虚拟机，这时你应该可以看到你的登陆界面了：
 
-![](images/applesilicon_vmware/7.png)
+![VMware Fusion GDM](images/applesilicon_vmware/7.png)
 
 虚拟机的图形界面
 {: .caption }
