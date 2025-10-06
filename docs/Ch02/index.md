@@ -289,9 +289,9 @@ Xfce4-session 是 Xfce 的会话管理器。它的任务是保存桌面的状态
 
 使用命令行操作可以减少鼠标操作，我们经常可以使用一条命令来代替好几次的鼠标单击。例如如果我们想要移动某一个文件，我们要执行下面步骤：
 
--   打开文件所在的文件夹 `/path/to/source/`
--   打开目标文件夹 `/path/to/dest/`
--   从 `source` 文件夹拖拽文件 `file.txt` 到 `dest` 文件夹中
+- 打开文件所在的文件夹 `/path/to/source/`
+- 打开目标文件夹 `/path/to/dest/`
+- 从 `source` 文件夹拖拽文件 `file.txt` 到 `dest` 文件夹中
 
 然而使用命令行，我们只需要执行一条指令。
 
@@ -446,9 +446,9 @@ $ sh run.sh
 
 ### 几条简单的命令 {#shell-commands}
 
--   `ls`: 列出（**l**i**s**t）目录的内容
--   `cd`: 更改目录（**c**hange **d**irectory）
--   `pwd`: 查看当前所在的目录（**p**rint **w**orking **d**irectory）
+- `ls`: 列出（**l**i**s**t）目录的内容
+- `cd`: 更改目录（**c**hange **d**irectory）
+- `pwd`: 查看当前所在的目录（**p**rint **w**orking **d**irectory）
 
 更多的命令行操作我们将在[第三章](../Ch03/index.md)和[第六章](../Ch06/index.md)详细介绍。
 
@@ -602,5 +602,5 @@ $ jekyll serve
 
 ## 引用来源 {#references .no-underline}
 
--   [Xfce 文档](https://docs.xfce.org/xfce/start)
--   [Ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)
+- [Xfce 文档](https://docs.xfce.org/xfce/start)
+- [Ubuntu 下安装 WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress)

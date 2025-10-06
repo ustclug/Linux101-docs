@@ -31,7 +31,7 @@ Android 软件堆栈
 
 读者在使用 Fedora、CentOS、Scientific Linux、RHEL 等系统时，可能会遇到这样的错误：
 
--   SELinux is preventing XXXX from read access on the file YYYY.
+- SELinux is preventing XXXX from read access on the file YYYY.
 
 这是因为有一个叫做 SELinux 的安全增强组件阻止了一些有潜在风险的操作。
 
@@ -95,13 +95,13 @@ Mode from config file:          permissive  # <- 或 disabled
 
 如果在高分屏（HiDPI）上安装系统，可能会遇到屏幕缩放的问题。可以通过以下方法确认自己是否正在使用高分屏：
 
--   Windows: 桌面右键，点击「显示设置」，在「缩放与布局」中查看其中的百分比，如果大于 100%，则是高分屏。
--   Mac: 如果你的 Mac 是 Retina 屏幕，那么它就是高分屏。也可以对比「关于本机」->「更多信息」中显示器的分辨率规格与「显示器设置」中实际的分辨率。
+- Windows: 桌面右键，点击「显示设置」，在「缩放与布局」中查看其中的百分比，如果大于 100%，则是高分屏。
+- Mac: 如果你的 Mac 是 Retina 屏幕，那么它就是高分屏。也可以对比「关于本机」->「更多信息」中显示器的分辨率规格与「显示器设置」中实际的分辨率。
 
 因此，虚拟化软件有两种策略。以物理分辨率为 2560x1600，逻辑分辨率为 1440x900，全屏显示为例（缩放比大约为 178%）：
 
--   向虚拟机汇报实际的物理像素（2560x1600），这样默认情况（不缩放）下虚拟机中的文字和图标会变得非常小。
--   向虚拟机汇报缩放后的像素（1440x900），这样默认情况下虚拟机中的文字和图标大小是正常的，但是会模糊一些。
+- 向虚拟机汇报实际的物理像素（2560x1600），这样默认情况（不缩放）下虚拟机中的文字和图标会变得非常小。
+- 向虚拟机汇报缩放后的像素（1440x900），这样默认情况下虚拟机中的文字和图标大小是正常的，但是会模糊一些。
 
 如果对显示效果不满意，可以采取以下任一方式调整。
 
@@ -109,8 +109,8 @@ Mode from config file:          permissive  # <- 或 disabled
 
 VirtualBox 可以在启动后调整缩放策略。点击菜单栏的「查看」（或「视图」）->「虚拟显示屏 1」（或「虚拟显示器 1」），可以看到缩放比例选项，并且有两种包含了备注的比例：
 
--   100%（输出未缩放/unscaled output）：代表向虚拟机汇报实际的物理像素。
--   输出自动缩放/autoscaled output：代表向虚拟机汇报缩放后的像素。
+- 100%（输出未缩放/unscaled output）：代表向虚拟机汇报实际的物理像素。
+- 输出自动缩放/autoscaled output：代表向虚拟机汇报缩放后的像素。
 
 默认选择的是 100% 选项，因此可能首次开机会发现界面过小。如果可以接受界面略显模糊，可以选择「输出自动缩放」。
 
@@ -122,8 +122,8 @@ VMware Workstation (Windows) 中其默认会向虚拟机汇报实际的物理像
 
 Xfce 下有多处与缩放调整有关的设置。调整 Xfce 的缩放有两种方式：
 
--   调整显示器缩放设置
--   调整元素 DPI
+- 调整显示器缩放设置
+- 调整元素 DPI
 
 点击左上角，选择设置管理。在「硬件」->「显示」中可以调整显示器缩放。
 
@@ -138,9 +138,9 @@ Xfce 下有多处与缩放调整有关的设置。调整 Xfce 的缩放有两种
 在「外观」->「字体」中可以调整元素 DPI。默认情况下，Xfce 的 DPI 是 96，将其乘以预期的缩放比并输入。
 此时可能会发现 UI 不太协调，以下提供了一些可能需要调整的设置，按类似方式相乘即可：
 
--   桌面图标：右键桌面 -> 桌面设置 -> 图标 -> 图标大小
--   托盘大小：右键面板 -> 面板 -> 面板首选项 -> 「尺寸」下面的「行大小」
--   鼠标光标：设置 -> 硬件 -> 鼠标和触摸板 -> 主题 -> 光标大小
+- 桌面图标：右键桌面 -> 桌面设置 -> 图标 -> 图标大小
+- 托盘大小：右键面板 -> 面板 -> 面板首选项 -> 「尺寸」下面的「行大小」
+- 鼠标光标：设置 -> 硬件 -> 鼠标和触摸板 -> 主题 -> 光标大小
 
 ### 扩大磁盘大小 {#vm-disk-resize}
 
@@ -443,10 +443,10 @@ ustc@ustclug-linux101:~$
 
 如何将 Linux 下的软件与开发生态移植到 Windows 上？在 WSL 出现之前，开发者们进行了各种尝试。这也催生出了一些软件与方案，例如：
 
--   Cygwin。它包含了一大批 Linux 上的 GNU 和其他的开源工具。它的核心是一个程序库 (`cygwin1.dll`)，这个程序库在 Windows 环境下实现了 POSIX API 的功能。Linux 上的软件，可以通过**重新编译**，链接 Cygwin 的方式，在 Windows 上运行。
--   MinGW。它包含了 GCC 和 GNU Binutils 等工具的 Windows 移植。它不支持类似于 `fork()` 这样无法简单用 Windows API 实现的 POSIX API，但是相比于 Cygwin 来说更加轻量，甚至可以在 Linux 上使用 MinGW 交叉编译 Windows 程序。
--   MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
--   Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
+- Cygwin。它包含了一大批 Linux 上的 GNU 和其他的开源工具。它的核心是一个程序库 (`cygwin1.dll`)，这个程序库在 Windows 环境下实现了 POSIX API 的功能。Linux 上的软件，可以通过**重新编译**，链接 Cygwin 的方式，在 Windows 上运行。
+- MinGW。它包含了 GCC 和 GNU Binutils 等工具的 Windows 移植。它不支持类似于 `fork()` 这样无法简单用 Windows API 实现的 POSIX API，但是相比于 Cygwin 来说更加轻量，甚至可以在 Linux 上使用 MinGW 交叉编译 Windows 程序。
+- MSYS2。使用 Cygwin 和 MinGW 组建的开发环境，并且使用 Pacman 作为包管理器。
+- Cooperative Linux。这个项目尝试让 Linux 内核和 Windows 内核同时运行在相同的硬件上。Linux 内核经过修改，以能够与 Windows 内核共享硬件资源。这个项目已经长期未活跃了。
 
 当然，我们可以看到，没有一个稳定的方案可以不加修改地直接运行 Linux 程序，直到 WSL 出现。WSL 由微软开发，可以在 64 位的 Windows 10 和 Windows Server 2016 及以上的版本上运行原生（ELF 格式）的 Linux 程序（安装方法详见 WSL 的官方[安装指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)）。
 
@@ -466,9 +466,9 @@ WSL 1 面向 Linux 应用程序提供了一套兼容的内核接口，在 Linux 
 
 WSL 2 尝试解决一些 WSL 1 的方式难以解决的问题：
 
--   由于其是以翻译系统调用的方式实现 Linux 兼容，WSL 1 无法运行依赖于复杂内核特性的程序（如 Docker），无法运行硬件驱动程序。
--   没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL 1 中实现。
--   受到各种因素的影响（如 Windows Defender），WSL 1 的 I/O 性能远低于 Linux 内核的实现。
+- 由于其是以翻译系统调用的方式实现 Linux 兼容，WSL 1 无法运行依赖于复杂内核特性的程序（如 Docker），无法运行硬件驱动程序。
+- 没有硬件加速，图形性能差。OpenCL 与 CUDA 也尚未在 WSL 1 中实现。
+- 受到各种因素的影响（如 Windows Defender），WSL 1 的 I/O 性能远低于 Linux 内核的实现。
 
 WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的 Linux 内核。
 
@@ -498,13 +498,13 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 可供参考的内容：
 
--   [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-13-for-Apple-Silicon-Companion-Guide/ta-p/2939907/jump-to/first-unread-message)
+- [The Unofficial Fusion 13 for Apple Silicon Companion Guide](https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-13-for-Apple-Silicon-Companion-Guide/ta-p/2939907/jump-to/first-unread-message)
 
 如果遇到以上文档中无法解决的问题，可以继续参考下面的两个针对于 VMWare Fusion 22H2 Tech Preview 的文档：
 
--   [Fusion 22H2 Tech Preview Testing Guide](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Fusion-22H2-Tech-Preview-Testing-Guide/ta-p/2867908)
+- [Fusion 22H2 Tech Preview Testing Guide](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Fusion-22H2-Tech-Preview-Testing-Guide/ta-p/2867908)
 
--   [Tips and Techniques for the Apple Silicon Tech Preview 22H2](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986)
+- [Tips and Techniques for the Apple Silicon Tech Preview 22H2](https://communities.vmware.com/t5/Fusion-22H2-Tech-Preview/Tips-and-Techniques-for-the-Apple-Silicon-Tech-Preview-22H2/ta-p/2893986)
 
 #### 下载 VMWare Fusion 13 Player {#download-vmware-fusion}
 
@@ -514,8 +514,8 @@ WSL2 使用微软的 Hyper-V 虚拟化技术，运行一个轻量的、完整的
 
 首先你需要选择 Ubuntu 发行版。截止到 2023 年 2 月，各个较新的发行版在 VMWare Fusion 上的支持情况为：
 
--   Ubuntu 20.04.5 LTS (Focal Fossa)：可以使用，需要经过改动才能修改图形界面的分辨率。
--   Ubuntu 22.04 LTS (Jammy Jellyfish)：从 Ubuntu 22.04.2 LTS 开始可以直接使用。
+- Ubuntu 20.04.5 LTS (Focal Fossa)：可以使用，需要经过改动才能修改图形界面的分辨率。
+- Ubuntu 22.04 LTS (Jammy Jellyfish)：从 Ubuntu 22.04.2 LTS 开始可以直接使用。
 
 本节选用 Ubuntu 20.04.5 (arm64, server) 作为接下来安装的系统。
 
@@ -601,4 +601,5 @@ $ sudo apt-get install ubuntu-desktop
 ## 引用来源 {#references .no-underline}
 
 [^1]: [Apple silicon - Wikipedia](https://en.wikipedia.org/wiki/Apple_silicon)
+
 [^2]: [Ventoy 中文网站](https://www.ventoy.net/cn/index.html)
