@@ -16,6 +16,7 @@
     },
     "homepage": "https://101.lug.ustc.edu.cn",
     "devDependencies": {
+        "markdownlint": "^0.38.0",
         "prettier": "^3.6.2"
     }
 }
