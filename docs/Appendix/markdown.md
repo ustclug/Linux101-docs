@@ -194,14 +194,14 @@ Markdown 使用一种和链接很相似的语法来标记图片，看起来像�
 
 我们推荐使用 [Typora](https://typoraio.cn/) 进行 Markdown 的编写，也可以使用 VSCode 配置 Markdown 插件进行编写。下面是一些推荐的 VSCode 插件：
 
--   [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)（`yzhang.markdown-all-in-one`）
--   [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)（`shd101wyy.markdown-preview-enhanced`）
--   [Markdown Preview GitHub Styling](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)（`bierner.markdown-preview-github-styles`）
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)（`yzhang.markdown-all-in-one`）
+- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)（`shd101wyy.markdown-preview-enhanced`）
+- [Markdown Preview GitHub Styling](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)（`bierner.markdown-preview-github-styles`）
 
 你可以根据需要进行安装。
 
 ## 参考资料
 
--   [Markdown 官方教程](https://markdown.com.cn/)
--   [知乎：使用 vscode 开始 Markdown 写作之旅](https://zhuanlan.zhihu.com/p/56943330/)
--   [USTC OSH-2023 课程主页](https://osh-2023.github.io/lab0/markdown/)
+- [Markdown 官方教程](https://markdown.com.cn/)
+- [知乎：使用 vscode 开始 Markdown 写作之旅](https://zhuanlan.zhihu.com/p/56943330/)
+- [USTC OSH-2023 课程主页](https://osh-2023.github.io/lab0/markdown/)

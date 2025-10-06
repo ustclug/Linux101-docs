@@ -16,10 +16,10 @@ icon: simple/docker
 
 Docker 能够利用 Linux 内核的容器特性，隔离出一个轻便的环境来运行程序。这有什么意义呢？试想以下这些情况：
 
--   你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。基于 Docker 的实现方式，与虚拟机（VM）不同，它们都共用同一个 Linux 内核（虚拟机是完全的虚拟化，包括内核和用户空间）。
--   你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
--   你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
--   …………
+- 你运行的 Linux 发行版很老，而你需要运行一个更新版本的 Linux 发行版，或者完全不同的 Linux 发行版设计的程序。基于 Docker 的实现方式，与虚拟机（VM）不同，它们都共用同一个 Linux 内核（虚拟机是完全的虚拟化，包括内核和用户空间）。
+- 你和朋友在设计一个大型的程序，而因为你们配置的环境不同，有时候在某个人的机器上正常运行的程序，在另一台机器上没法正常运行。
+- 你希望在多台服务器上部署一个项目，但是项目需要非常复杂的配置，一个一个配置服务器的成本非常大。
+- …………
 
 Docker 就可以帮助解决这些问题。它可以快速配置不同的环境（比如说，通过 Docker，你可以在 Ubuntu 发行版上使用 CentOS 发行版的环境），部署应用。
 
@@ -115,7 +115,7 @@ For more examples and ideas, visit:
 
 ### 在 Ubuntu 容器中使用 shell {#use-ubuntu-bash}
 
--   `docker run -it --rm --name ubuntu-container ubuntu:latest`
+- `docker run -it --rm --name ubuntu-container ubuntu:latest`
 
 这里，`--rm` 代表容器停止运行（退出）之后，会被立刻删除；`--name` 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。
 
@@ -172,22 +172,22 @@ $ sudo docker rm ubuntu-container
 
 ### 在 Python 容器中使用 Python 命令行 {#use-python-repl}
 
--   `docker run -it --name python3 python`
+- `docker run -it --name python3 python`
 
 与上面的例子类似，执行之后会获得一个 Python 3 最新版本的环境。这里我们通过 `--name` 将创建的容器命名为 `python3`。
 
 ### 在 MkDocs 容器中构建本书 {#use-mkdocs-material-build}
 
--   从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
--   `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
+- 从 GitHub 上获取本书源码：`git clone https://github.com/ustclug/Linux101-docs.git`
+- `docker run --rm -v ${PWD}/Linux101-docs:/docs -p 8000:8000 squidfunk/mkdocs-material`
 
 在执行完成之后，可以使用浏览器访问本地的 8000 端口，以查看构建结果。
 
 这里多出了两个参数：
 
--   `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
--   `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
--   另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
+- `-v`: 代表将本地的文件（夹）「挂载」（实际是 bind mount）到容器的对应目录中（这里是 `/docs`）。注意这个参数只接受绝对路径，所以这里读取了 `PWD` 这个变量，通过拼接的方式拼出绝对路径。
+- `-p 8000:8000`: 代表将容器的 8000 端口暴露在主机的 8000 端口上，否则容器外部访问不了 8000 端口。
+- 另外，我们不需要在终端中与容器中的进程进行交互，所以没有设置 `-it` 参数。
 
 ## 构建自己的 Docker 镜像 {#build-docker-image}
 
@@ -195,10 +195,10 @@ $ sudo docker rm ubuntu-container
 
 在继续之前，我们来梳理一下 Docker 中的几个关键概念：**容器（container）**、**镜像（image）**、**镜像仓库（registry）**。
 
--   **镜像仓库**是存储镜像的地方
--   **镜像**是 Docker 容器内文件系统的一份快照
--   **Dockerfile** 包含生成镜像的指令序列，可以理解为构建镜像的脚本
--   **容器**是一个（隔离）的运行环境
+- **镜像仓库**是存储镜像的地方
+- **镜像**是 Docker 容器内文件系统的一份快照
+- **Dockerfile** 包含生成镜像的指令序列，可以理解为构建镜像的脚本
+- **容器**是一个（隔离）的运行环境
 
 它们之间的关系可以用下图表示，其中括号中的命令是查看相应对象列表的命令。
 
