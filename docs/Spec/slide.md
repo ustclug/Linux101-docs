@@ -1,5 +1,8 @@
 # 演示文稿规格
 
+<!-- markdownlint-disable MD026 -->
+<!-- markdownlint-disable MD001 -->
+
 !!! warning "本文面向编写组提供指导和规范，不面向读者阅读，不属于本书正文。"
 
 ## 1. 文件格式

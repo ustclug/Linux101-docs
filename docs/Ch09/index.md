@@ -140,25 +140,25 @@ $ sort animals | uniq -c
 
 匹配正整数：
 
-```
+```text
 [1-9][0-9]*
 ```
 
 匹配仅由 26 个英文字母组成的字符串：
 
-```
+```text
 ^[A-Za-z]+$
 ```
 
 匹配 Chapter 1-99 或 Section 1-99
 
-```
+```text
 ^(Chapter|Section) [1-9][0-9]{0,1}$
 ```
 
 匹配“ter”结尾的单词：
 
-```
+```text
 ter\b
 ```
 
