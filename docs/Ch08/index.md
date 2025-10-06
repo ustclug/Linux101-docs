@@ -324,7 +324,7 @@ Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每�
     RUN yum clean all
     ```
 
-    当然，这不等于说必须要把所有命令都写在一条 `RUN` 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 `RUN` 运行，因为 Docker 在构建镜像时，*可以重复使用之前构建好的层*。这么做可以节约构建与调试 Dockerfile 的时间。
+    当然，这不等于说必须要把所有命令都写在一条 `RUN` 里面。对于执行时间很长的命令，可以考虑放在 Dockerfile 的开头，并且使用单独的 `RUN` 运行，因为 Docker 在构建镜像时，**可以重复使用之前构建好的层**。这么做可以节约构建与调试 Dockerfile 的时间。
 
 #### 在生产环境中运行使用 Flask 编写的简单网站 {#flask-production-example}
 
