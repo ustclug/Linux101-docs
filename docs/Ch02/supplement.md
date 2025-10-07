@@ -12,19 +12,29 @@ icon: material/puzzle
 
 下面就来介绍如何手动安装桌面环境。
 
-以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：
+以在 Ubuntu Server 24.04（未包含图形环境）上安装桌面环境为例。只需要执行以下步骤：
 
-安装 `ubuntu-gnome-desktop` 软件：
+安装 `ubuntu-desktop` 软件：
 
 ```console
-$ sudo apt install ubuntu-gnome-desktop
+$ sudo apt install ubuntu-desktop
 ```
 
 接下来的提示中按输入 Y 回车即安装。
 
 !!! tip "注意"
 
-    若安装非常缓慢，可以尝试更换国内的软件源。[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+    若安装非常缓慢，可以尝试更换国内的软件源，参考[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)。
+
+!!! tip "减小安装大小"
+
+    如果你觉得 `ubuntu-desktop` 安装的包过大，可以选择安装 `ubuntu-desktop-minimal`，它只包含最基本的 GNOME 桌面环境，安装包更小。
+
+    如果你很熟悉桌面环境与软件包的关系，还可以添加 `--no-install-recommends` 选项来进一步减小安装大小，例如：
+
+    ```console
+    $ sudo apt install --no-install-recommends ubuntu-desktop-minimal
+    ```
 
 安装完成后输入：
 
@@ -102,15 +112,13 @@ $ gnome-tweaks
 
 GNOME 支持很多扩展，并且有一个专门用于扩展的网站：<https://extensions.gnome.org/>。
 
-要使用 GNOME 扩展，我们要先安装 `gnome-shell-extensions`。
+要使用 GNOME 扩展，我们要先安装下面的软件包：
 
 ```console
-$ sudo apt install gnome-shell-extensions
+$ sudo apt install gnome-shell-extensions gnome-shell-extension-prefs
 ```
 
-接下来进入扩展插件的网站并选择其中一款扩展：
-
-Caffeine: 允许用户停用系统屏幕保护和自动休眠。
+接下来进入扩展插件的网站并选择其中一款扩展：[Caffeine: 允许用户停用系统屏幕保护和自动休眠。](https://extensions.gnome.org/extension/517/caffeine/)
 
 ![Caffeine extension](images/caffeine.png)
 
@@ -120,31 +128,26 @@ Caffeine: 允许用户停用系统屏幕保护和自动休眠。
 $ gnome-shell --version
 ```
 
-在插件网页中下载对应版本的压缩包并解压到一个文件夹。
-
-这时我们打开文件夹里的 `metadata.json` 文件。
-
-然后将文件夹的名字改为 `metadata.json` 中的 UUID：
-
-![Extension metadata](images/metadata.png)
-
-本例中，UUID 为 `caffeine@patapon.info`
-
-![Extension folder](images/caffeine-folder.png)
-
-并将该文件夹放到 `~/.local/share/gnome-shell/extensions/` 中。
-
-打开 `gnome-tweaks`。
+在插件网页中下载对应版本的压缩包，然后：
 
 ```console
-$ gnome-tweaks
+$ # 假设下载的文件名为 caffeinepatapon.info.v58.shell-extension.zip
+$ gnome-extensions install ./caffeinepatapon.info.v58.shell-extension.zip
 ```
 
-在扩展一栏即可启用我们刚刚装的 caffeine。
+扩展会被安装到 `~/.local/share/gnome-shell/extensions/` 目录下。这样安装的扩展只会在注销再登录之后才会展示，同时会被自动激活。
+
+也有图形界面可以管理扩展。打开 `gnome-extensions-app`：
+
+```console
+$ gnome-extensions-app
+```
+
+这里可以看到已经安装的扩展，点击开关即可启用或禁用扩展。
 
 ![Enable GNOME extensions](images/gnome-extensions.png)
 
-!!! tip "提示"
+!!! tip "其他安装方法"
 
     手动安装显然过于复杂，我们完全可以只使用浏览器来完成扩展插件的管理和安装。
 
@@ -163,6 +166,14 @@ $ gnome-tweaks
     即可在 https://extensions.gnome.org/ 网页中管理、安装插件。
 
     ![](images/extensions-management.png)
+
+    同时也可以使用 `gnome-shell-extension-manager` 软件来管理扩展：
+
+    ```console
+    $ sudo apt install gnome-shell-extension-manager
+    ```
+
+    这是一款[第三方开发](https://github.com/mjakeman/extension-manager)的 GNOME 扩展管理工具，功能更强大。
 
 ## Xfce 联网下载安装更多主题 {#xfce-themes}
 
