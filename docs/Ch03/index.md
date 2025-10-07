@@ -861,6 +861,16 @@ $ tar [OPTIONS] FILE...
 | `--zstd`                               | 使用 zstd 算法处理存档文件           |
 | `-a`, `--auto-compress`                | 通过后缀自动选择压缩算法（**推荐**） |
 
+!!! tip "组合 tar 的选项"
+
+    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
+
+    ```console
+    $ tar -c -z -v -f target.tar.gz test/
+    $ tar -czvf target.tar.gz test/
+    $ tar -f target.tar.gz -czv test/
+    ```
+
 !!! example "tar 使用实例"
 
     * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
@@ -911,16 +921,6 @@ $ tar [OPTIONS] FILE...
         $ tar -tv -f target.tar
         $ tar tvf target.tar
         ```
-
-!!! tip "组合 tar 的选项"
-
-    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
-
-    ```console
-    $ tar -c -z -v -f target.tar.gz test/
-    $ tar -czvf target.tar.gz test/
-    $ tar -f target.tar.gz -czv test/
-    ```
 
 !!! tip "存档文件的后缀名"
 
