@@ -330,7 +330,7 @@ eval "$(starship init bash)"
 $ echo 'eval "$(starship init bash)"' >> ~/.bashrc
 ```
 
-重新打开一个终端就可以看到效果了。更进一步的修改请参考[starship 的配置文档](https://starship.rs/config/)。
+重新打开一个终端就可以看到效果了。更进一步的修改请参考 [starship 的配置文档](https://starship.rs/config/)。
 
 之后我们配置按下 Ctrl + R 时搜索历史命令的功能。尽管 bash 已经内置了该功能，但是它的交互性非常差，难以使用，因此我们使用 [fzf](https://junegunn.github.io/fzf/) 来增强该功能。
 
