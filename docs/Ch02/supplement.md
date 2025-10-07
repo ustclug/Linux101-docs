@@ -57,9 +57,11 @@ $ sudo reboot
     $ sudo reboot
     ```
 
-## GNOME 相关
+## 桌面环境个性化 {#desktop-personalization}
 
-### GNOME 桌面环境的个性化 {#gnome-personalization}
+### GNOME
+
+#### GNOME 主题 {#gnome-themes}
 
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
 
@@ -175,7 +177,7 @@ $ gnome-extensions-app
 
     这是一款[第三方开发](https://github.com/mjakeman/extension-manager)的 GNOME 扩展管理工具，功能更强大。
 
-## Xfce 联网下载安装更多主题 {#xfce-themes}
+### Xfce
 
 除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 [Xfce-look](https://www.xfce-look.org/) 上，就有上万个不同类型的主题。安装方法也十分简单。
 
@@ -233,11 +235,22 @@ $ gnome-extensions-app
 $ echo $SHELL
 ```
 
-检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具——Z shell（Zsh）。
+检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，但是可以使用 `chsh` 命令来更换 Shell。
 
-#### Zsh
+```console
+$ # 列出系统中可用的 shell
+$ chsh -l
+$ # 更换到 zsh
+$ chsh -s /bin/zsh
+$ # 更换到 fish
+$ chsh -s /bin/fish
+$ # 更换回 bash
+$ chsh -s /bin/bash
+```
 
-首先通过 apt 安装 `zsh`：
+### Zsh 与 oh-my-zsh {#zsh-ohmyzsh}
+
+Z shell（Zsh）是一个功能强大的 shell。首先通过 apt 安装 `zsh`：
 
 ```console
 $ sudo apt install zsh
@@ -249,15 +262,7 @@ $ sudo apt install zsh
 $ chsh -s /bin/zsh
 ```
 
-重启后打开终端就会发现 shell 已经变成了 zsh。
-
-第一次打开 zsh 会有首次使用提示，这里我们按 0 跳过。
-
-接下来的提示中按 Y 回车即安装。
-
-然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。
-
-##### oh-my-zsh
+重启后打开终端就会发现 shell 已经变成了 zsh。然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。
 
 oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
 
@@ -286,6 +291,66 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 来临时试用某主题。
 具体主题可以在 [oh-my-zsh 的项目 Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 中找到。
 当然你也可以尝试自己做一个主题。
+
+### Fish {#fish}
+
+Fish 是一个用户友好的命令行 shell，安装也非常简单：
+
+```console
+$ sudo apt install fish
+```
+
+将 fish 设定为默认 shell：
+
+```console
+$ chsh -s /bin/fish
+```
+
+Fish 基本不需要配置，开箱即用。需要注意的是，**Fish 不兼容 POSIX 标准**，因此 Bash 等 POSIX shell 下的脚本在 Fish 下是无法运行的。
+
+### Bash 的个性化 {#bash-personalization}
+
+即使不想更换 shell，我们也可以对 Bash 进行个性化配置。以下提供一种配置的选择，以供参考。
+
+首先使用 [starship](https://starship.rs/) 来美化 Bash 的提示符：
+
+```console
+$ curl -sS https://starship.rs/install.sh | sh
+```
+
+然后在 `~/.bashrc` 文件的末尾添加以下内容：
+
+```shell
+eval "$(starship init bash)"
+```
+
+可以使用以下命令添加（注意，`>>` 是追加到文件末尾，因此这条命令只要执行一次即可）：
+
+```console
+$ echo 'eval "$(starship init bash)"' >> ~/.bashrc
+```
+
+重新打开一个终端就可以看到效果了。更进一步的修改请参考[starship 的配置文档](https://starship.rs/config/)。
+
+之后我们配置按下 Ctrl + R 时搜索历史命令的功能。尽管 bash 已经内置了该功能，但是它的交互性非常差，难以使用，因此我们使用 [fzf](https://junegunn.github.io/fzf/) 来增强该功能。
+
+```console
+$ sudo apt install fzf
+```
+
+之后同样在 `~/.bashrc` 文件的末尾添加以下内容：
+
+```shell
+eval "$(fzf --bash)"
+```
+
+同样可以使用以下命令添加：
+
+```console
+$ echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+```
+
+重新打开一个终端，按下 Ctrl + R 即可使用该功能。
 
 ## 其它的个性化 {#other-personalizations}
 
