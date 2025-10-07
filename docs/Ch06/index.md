@@ -174,6 +174,12 @@ cURL (`curl`) 是一个利用 URL 语法在命令行下工作的文件传输工�
 
 除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。
 
+!!! warning "在 Windows 的 PowerShell 下使用 wget/curl"
+
+    Windows 自带的 PowerShell 出于一些奇怪的考虑，将 `wget` 和 `curl` 都 alias 成了 PowerShell 自己的 `Invoke-WebRequest`，而这个命令和上文介绍的 wget、curl 的行为完全不同，给用户带来了困惑。
+
+    如果你在 Windows 下安装了 `wget` 或 `curl`，可能需要使用 `wget.exe` 或 `curl.exe` 来调用它们。
+
 ## 文本处理 {#text-utils}
 
 在进行文本处理时，我们有一些常见的需求：
