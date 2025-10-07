@@ -356,7 +356,7 @@ $ echo 'eval "$(fzf --bash)"' >> ~/.bashrc
 
 上面内容都是外观上的个性化，更多地，Linux 系统的可客制化还体现在一些配置文件上。
 
-### etc 目录
+### MOTD 的配置 {#motd}
 
 `/etc` 目录是包含几乎所有 Linux 系统配置的一个文件夹。
 
@@ -364,65 +364,58 @@ $ echo 'eval "$(fzf --bash)"' >> ~/.bashrc
 
     etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 `etc` 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 `/etc` 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。
 
-下面介绍几个常用的配置文件：
+MOTD（Message Of The Day）是 Linux 系统登录时显示的一些信息。其配置就在 `/etc` 目录下。
 
-- `/etc/fstab` 系统磁盘挂载相关配置；
-- `/etc/bash.bashrc` 启动 Bash 时读取的配置脚本；
-- `/etc/sudoers` sudo 权限的配置；
-- `/etc/hosts` 主机名与 IP 映射关系的配置。
+当我们登录用户成功时：
 
-??? example "示例"
+```console
+$ sudo login
+```
 
-    当我们登录用户成功时：
+会提示以下信息：
 
-    ```console
-    $ sudo login
-    ```
+```text
+Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+    * Documentation:  https://help.ubuntu.com
+    * Management:     https://landscape.canonical.com
+    * Support:        https://ubuntu.com/advantage
+    * Canonical Livepatch is available for installation.
+    - Reduce system reboots and improve kernel security. Activate at:
+        https://ubuntu.com/livepatch
+125 个可升级软件包。
+0 个安全更新。
+Your Hardware Enablement Stack (HWE) is supported until April 2023.
+*** 需要重启系统 ***
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
-    会提示以下信息：
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+```
 
-    ```text
-    Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
-     * Documentation:  https://help.ubuntu.com
-     * Management:     https://landscape.canonical.com
-     * Support:        https://ubuntu.com/advantage
-     * Canonical Livepatch is available for installation.
-       - Reduce system reboots and improve kernel security. Activate at:
-         https://ubuntu.com/livepatch
-    125 个可升级软件包。
-    0 个安全更新。
-    Your Hardware Enablement Stack (HWE) is supported until April 2023.
-    *** 需要重启系统 ***
-    The programs included with the Ubuntu system are free software;
-    the exact distribution terms for each program are described in the
-    individual files in /usr/share/doc/*/copyright.
+Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
 
-    Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-    applicable law.
-    ```
+!!! info "提示"
 
-    Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
+    有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`。
 
-    !!! info "提示"
+我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容：
 
-    	有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
+```shell
+#!/bin/sh
+echo helloworld
+```
 
-    我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容：
+然后：
 
-    ```shell
-    #!/bin/sh
-    echo helloworld
-    ```
+```console
+$ sudo chmod +x /etc/update-motd.d/99-test
+```
 
-    然后：
+设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
 
-    ```console
-    $ sudo chmod +x /etc/update-motd.d/99-test
-    ```
-
-    设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
-
-    当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
+当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
 ## 搭建简易的网站 {#website}
 
