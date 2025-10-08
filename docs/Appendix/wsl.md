@@ -1,6 +1,6 @@
 # Windows Subsystem for Linux
 
-!!! Warning "本文仍在编辑中，尚未校对、审阅和和修订"
+!!! Warning "本文仍在编辑中，尚未校对、审阅和修订"
 
 !!! abstract "导言"
 
@@ -29,11 +29,11 @@ wsl --install
 
 ### 手动安装 {#install-manual}
 
-如果系统版本在 Windows 10 Build 19041 以下，如 Windows 10 LTSC 2019 ，需要手动配置系统。
+如果系统版本在 Windows 10 Build 19041 以下，如 Windows 10 LTSC 2019，需要手动配置系统。
 
 #### 启用 WSL 和虚拟化平台 {#enable-windows-features}
 
-使用管理员身份在 Powershell 中运行
+使用管理员身份在 Powershell 中运行：
 
 ```batch
 Dism.exe /Online /Enable-feature /Featurename:Microsoft-Windows-Subsystem-Linux /All /NoRestart
@@ -42,11 +42,10 @@ Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRes
 
 #### 安装 Linux 内核 {#install-linux-kernel}
 
-从微软下载 Linux 内核用于 Windows 的更新，并安装
+从微软下载 Linux 内核用于 Windows 的更新，并根据机器架构选择安装：
 
-[x64 内核](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
-
-[ARM64 内核](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi)
+- [x64 内核](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)（绝大部分电脑）
+- [ARM64 内核](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi)（使用高通等品牌 CPU 的电脑）
 
 #### 设置 WSL 2 为默认的 WSL 版本 {#set-default-wsl-version}
 
@@ -66,7 +65,7 @@ wsl --set-default-version 2
 
 ### 使用 Appx 文件进行安装 {#install-distro-appx}
 
-有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式
+有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式：
 
 - Manjaro: [ManjaroWSL2](https://github.com/sileshn/ManjaroWSL2)
 - Gentoo: [GentooWSL2](https://github.com/imaandrew/GentooWSL2)
