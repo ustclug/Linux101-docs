@@ -63,12 +63,17 @@ wsl --set-default-version 2
 
 ![Microsoft Store Search Result](./images/ms-store-search-linux.png)
 
-### 使用 Appx 文件进行安装 {#install-distro-appx}
+图 1. Microsoft Store 搜素结果
+{: .caption }
 
-有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式：
+### 手动安装 {#install-distro-manual}
+
+有些发行版并未上架微软商店，但也有办法安装，比如可以参考下面这两个项目：
 
 - Manjaro: [ManjaroWSL2](https://github.com/sileshn/ManjaroWSL2)
-- Gentoo: [GentooWSL2](https://github.com/imaandrew/GentooWSL2)
+- Gentoo: [GentooWSL2](https://github.com/VPraharsha03/GentooWSL2)
+
+但需要注意，这种安装方式并非发行版官方支持。
 
 ## 使用 {#usage}
 
@@ -77,6 +82,9 @@ wsl --set-default-version 2
 在 VS Code 中安装插件 "WSL" 后，可以像 "Remote - SSH" 一样使用 WSL，或者也可以直接安装 "Remote Development" 插件，里面包含了 "WSL" 插件。
 
 ![VS Code Store "WSL"](./images/vscode-store-remote-wsl.png)
+
+图 2. Visual Studio Code 搜索 "WSL"
+{: .caption }
 
 ### JetBrains {#jetbrains-remote-wsl}
 
