@@ -1829,6 +1829,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#nixos-nix-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 nix-shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos-nix-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 nix-env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用配置文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nixos-config-management" class="md-nav__link">
     <span class="md-ellipsis">
       配置文件管理
@@ -2189,6 +2216,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#nixos-nix-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 nix-shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos-nix-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 nix-env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用配置文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nixos-config-management" class="md-nav__link">
     <span class="md-ellipsis">
       配置文件管理
@@ -2409,36 +2463,41 @@
 </ul>
 <h3 id="nixos-package-management">软件包管理<a class="headerlink" href="#nixos-package-management" title="Permanent link">&para;</a></h3>
 <p>NixOS 使用 <code>nix</code> 命令进行软件包管理：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>nix<span class="w"> </span>search<span class="w"> </span>nixpkgs<span class="w"> </span>firefox<span class="w"> </span><span class="c1"># 搜索软件包</span>
-
-
-<span class="gp">$ </span>nix-env<span class="w"> </span>-iA<span class="w"> </span>nixpkgs.firefox<span class="w"> </span><span class="c1"># 安装软件包（临时，重启后消失）</span>
-
-<span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span><span class="c1"># 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行</span>
+<h4 id="nixos-nix-shell">使用 <code>nix-shell</code><a class="headerlink" href="#nixos-nix-shell" title="Permanent link">&para;</a></h4>
+<p><code>nix-shell</code> 会启动一个新的 shell，在其中 <code>PATH</code> 等环境变量会被临时修改，指向由 Nix 构建的工具所在路径。借助这个环境，你可以方便地尝试新程序或依赖。需要注意，这些修改仅在该 <code>nix-shell</code> 会话中有效；一旦退出或重启，环境就会恢复原状。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>nix-shell<span class="w"> </span>-p<span class="w"> </span>firefox<span class="w"> </span><span class="c1"># 安装软件包</span>
+</code></pre></div>
+<h4 id="nixos-nix-env">使用 <code>nix-env</code><a class="headerlink" href="#nixos-nix-env" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>使用 <code>nix-env</code> 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 <code>nix-shell</code> 或 NixOS 配置文件。</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>nix-env<span class="w"> </span>-iA<span class="w"> </span>nixos.firefox<span class="w"> </span><span class="c1"># 安装软件包</span>
+</code></pre></div>
+<h4 id="nixos-config">使用配置文件<a class="headerlink" href="#nixos-config" title="Permanent link">&para;</a></h4>
+<p>将以下 Nix 代码添加到你的 NixOS 配置文件中，该文件通常位于 <code>/etc/nixos/configuration.nix</code>。</p>
+<div class="highlight"><pre><span></span><code>environment<span class="o">.</span><span class="ss">systemPackages</span> <span class="o">=</span> <span class="p">[</span>
+  pkgs<span class="o">.</span>firefox
+<span class="p">];</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span><span class="c1"># 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行</span>
 </code></pre></div>
 <h4 id="nixos-config-management">配置文件管理<a class="headerlink" href="#nixos-config-management" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span><span class="c1"># 应用配置更改</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="c1"># 测试配置（不应用）</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>boot<span class="w"> </span><span class="c1"># 启动到新配置</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span>--rollback<span class="w"> </span><span class="c1"># 回滚到上一个配置</span>
 </code></pre></div>
 <h3 id="nixos-rollback">系统回滚<a class="headerlink" href="#nixos-rollback" title="Permanent link">&para;</a></h3>
 <p>NixOS 的回滚功能是其最强大的特性之一：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>nix-env<span class="w"> </span>--list-generations<span class="w"> </span>--profile<span class="w"> </span>/nix/var/nix/profiles/system<span class="w"> </span><span class="c1"># 查看可用的系统配置</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span>--rollback<span class="w"> </span><span class="c1"># 回滚到上一个配置</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span>--option<span class="w"> </span>system-profiles<span class="w"> </span>/nix/var/nix/profiles/system-123-link<span class="w"> </span><span class="c1"># 回滚到特定配置</span>
 </code></pre></div>
 <h3 id="nixos-channels">频道 (Channels)<a class="headerlink" href="#nixos-channels" title="Permanent link">&para;</a></h3>
 <p>NixOS 使用频道来管理软件包集合：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>nix-channel<span class="w"> </span>--list<span class="w"> </span><span class="c1"># 查看当前频道</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nix-channel<span class="w"> </span>--update<span class="w"> </span><span class="c1"># 更新频道</span>
-
 <span class="gp">$ </span>sudo<span class="w"> </span>nix-channel<span class="w"> </span>--add<span class="w"> </span>https://nixos.org/channels/nixos-unstable<span class="w"> </span>nixos<span class="w"> </span><span class="c1"># 切换到不稳定频道</span>
 </code></pre></div>
 <h3 id="nixos-flakes">Nix Flakes<a class="headerlink" href="#nixos-flakes" title="Permanent link">&para;</a></h3>
@@ -2458,9 +2517,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="nixos-development">开发环境<a class="headerlink" href="#nixos-development" title="Permanent link">&para;</a></h3>
-<p>NixOS 提供了强大的开发环境管理：</p>
+<p>NixOS 提供了强大的开发环境管理[^2]：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>nix-shell<span class="w"> </span>-p<span class="w"> </span>python3<span class="w"> </span>nodejs<span class="w"> </span><span class="c1"># 进入包含特定软件包的 shell</span>
-
 <span class="gp">$ </span>nix-shell<span class="w"> </span><span class="c1"># 使用 shell.nix 文件定义开发环境</span>
 </code></pre></div>
 <h3 id="nixos-differences">与其他发行版的主要区别<a class="headerlink" href="#nixos-differences" title="Permanent link">&para;</a></h3>
@@ -2483,6 +2541,7 @@
 <li><a href="https://viperml.github.io/wrapper-manager/">wrapper-manager</a></li>
 </ul>
 <p>NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。</p>
+<p><a href="https://nixos.wiki/wiki/Development_environment_with_nix-shell">^2</a></p>
 <div class="footnote">
 <hr />
 <ol>
