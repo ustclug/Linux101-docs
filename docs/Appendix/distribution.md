@@ -180,12 +180,35 @@ NixOS 使用哈希值来标识每个包，相同内容的包总是有相同的�
 
 NixOS 使用 `nix` 命令进行软件包管理：
 
+#### 使用 `nix-shell` {#nixos-nix-shell}
+
+`nix-shell` 会启动一个新的 shell，在其中 `PATH` 等环境变量会被临时修改，指向由 Nix 构建的工具所在路径。借助这个环境，你可以方便地尝试新程序或依赖。需要注意，这些修改仅在该 `nix-shell` 会话中有效；一旦退出或重启，环境就会恢复原状。
+
 ```console
-$ nix search nixpkgs firefox # 搜索软件包
+$ nix-shell -p firefox # 安装软件包
+```
 
+#### 使用 `nix-env` {#nixos-nix-env}
 
-$ nix-env -iA nixpkgs.firefox # 安装软件包（临时，重启后消失）
+!!! warning "注意"
 
+    使用 `nix-env` 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 `nix-shell` 或 NixOS 配置文件。
+
+```console
+$ nix-env -iA nixos.firefox # 安装软件包
+```
+
+#### 使用配置文件 {#nixos-config}
+
+将以下 Nix 代码添加到你的 NixOS 配置文件中，该文件通常位于 `/etc/nixos/configuration.nix`。
+
+```nix
+environment.systemPackages = [
+  pkgs.firefox
+];
+```
+
+```console
 $ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行
 ```
 
@@ -193,11 +216,8 @@ $ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式�
 
 ```console
 $ sudo nixos-rebuild switch # 应用配置更改
-
 $ sudo nixos-rebuild test # 测试配置（不应用）
-
 $ sudo nixos-rebuild boot # 启动到新配置
-
 $ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
 ```
 
@@ -207,9 +227,7 @@ NixOS 的回滚功能是其最强大的特性之一：
 
 ```console
 $ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system # 查看可用的系统配置
-
 $ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
-
 $ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/system-123-link # 回滚到特定配置
 ```
 
@@ -219,9 +237,7 @@ NixOS 使用频道来管理软件包集合：
 
 ```console
 $ nix-channel --list # 查看当前频道
-
 $ sudo nix-channel --update # 更新频道
-
 $ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos # 切换到不稳定频道
 ```
 
@@ -247,11 +263,10 @@ Nix Flakes 是 Nix 的新特性，提供了更好的可重现性和依赖管理�
 
 ### 开发环境 {#nixos-development}
 
-NixOS 提供了强大的开发环境管理：
+NixOS 提供了强大的开发环境管理[^2]：
 
 ```console
 $ nix-shell -p python3 nodejs # 进入包含特定软件包的 shell
-
 $ nix-shell # 使用 shell.nix 文件定义开发环境
 ```
 
@@ -275,3 +290,5 @@ $ nix-shell # 使用 shell.nix 文件定义开发环境
 - [wrapper-manager](https://viperml.github.io/wrapper-manager/)
 
 NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。
+
+[^2](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
