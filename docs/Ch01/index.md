@@ -215,7 +215,7 @@ Android TV 图标
 
 !!! info "WSL"
 
-    如今，对于 Windows 用户来说，使用 WSL 安装 Linux 或许会是更加便捷的方法，详情可以参考[附录](../Appendix/wsl.md)
+    如今，对于 Windows 用户来说，使用 WSL 安装 Linux 或许会是更加便捷的方法，详情可以参考[附录](../Appendix/wsl.md)。
 
 ### 获取虚拟机管理软件 {#get-vm-softwares}
 
