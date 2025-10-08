@@ -195,6 +195,7 @@ $ nix-shell -p firefox # 安装软件包
 
     使用 `nix-env` 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 `nix-shell` 或 NixOS 配置文件。
 
+
 !!! tips "小知识"
 
     因为在 NixOS 中，命令行搜索默认使用的是 **NixOS 频道（nixos channel）**，而不是纯粹的 **nixpkgs 仓库**，所以要从 nixos 搜索才能匹配系统当前使用的包集合。
