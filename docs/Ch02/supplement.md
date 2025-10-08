@@ -12,19 +12,29 @@ icon: material/puzzle
 
 下面就来介绍如何手动安装桌面环境。
 
-以在 Ubuntu Server 18.04.3 (未包含图形环境的系统) 上安装桌面环境为例。只需要执行以下步骤：
+以在 Ubuntu Server 24.04（未包含图形环境）上安装桌面环境为例。只需要执行以下步骤：
 
-安装 `ubuntu-gnome-desktop` 软件：
+安装 `ubuntu-desktop` 软件：
 
 ```console
-$ sudo apt install ubuntu-gnome-desktop
+$ sudo apt install ubuntu-desktop
 ```
 
 接下来的提示中按输入 Y 回车即安装。
 
 !!! tip "注意"
 
-    若安装非常缓慢，可以尝试更换国内的软件源。[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)
+    若安装非常缓慢，可以尝试更换国内的软件源，参考[科大源更换教程](https://mirrors.ustc.edu.cn/help/ubuntu.html)。
+
+!!! tip "减小安装大小"
+
+    如果你觉得 `ubuntu-desktop` 安装的包过大，可以选择安装 `ubuntu-desktop-minimal`，它只包含最基本的 GNOME 桌面环境，安装包更小。
+
+    如果你很熟悉桌面环境与软件包的关系，还可以添加 `--no-install-recommends` 选项来进一步减小安装大小，例如：
+
+    ```console
+    $ sudo apt install --no-install-recommends ubuntu-desktop-minimal
+    ```
 
 安装完成后输入：
 
@@ -47,9 +57,11 @@ $ sudo reboot
     $ sudo reboot
     ```
 
-## GNOME 相关
+## 桌面环境个性化 {#desktop-personalization}
 
-### GNOME 桌面环境的个性化 {#gnome-personalization}
+### GNOME
+
+#### GNOME 主题 {#gnome-themes}
 
 大部分桌面环境都支持主题的个性化。例如：窗口样式，按钮样式，Dock 样式，指针样式等等。
 
@@ -102,15 +114,13 @@ $ gnome-tweaks
 
 GNOME 支持很多扩展，并且有一个专门用于扩展的网站：<https://extensions.gnome.org/>。
 
-要使用 GNOME 扩展，我们要先安装 `gnome-shell-extensions`。
+要使用 GNOME 扩展，我们要先安装下面的软件包：
 
 ```console
-$ sudo apt install gnome-shell-extensions
+$ sudo apt install gnome-shell-extensions gnome-shell-extension-prefs
 ```
 
-接下来进入扩展插件的网站并选择其中一款扩展：
-
-Caffeine: 允许用户停用系统屏幕保护和自动休眠。
+接下来进入扩展插件的网站并选择其中一款扩展：[Caffeine: 允许用户停用系统屏幕保护和自动休眠。](https://extensions.gnome.org/extension/517/caffeine/)
 
 ![Caffeine extension](images/caffeine.png)
 
@@ -120,31 +130,26 @@ Caffeine: 允许用户停用系统屏幕保护和自动休眠。
 $ gnome-shell --version
 ```
 
-在插件网页中下载对应版本的压缩包并解压到一个文件夹。
-
-这时我们打开文件夹里的 `metadata.json` 文件。
-
-然后将文件夹的名字改为 `metadata.json` 中的 UUID：
-
-![Extension metadata](images/metadata.png)
-
-本例中，UUID 为 `caffeine@patapon.info`
-
-![Extension folder](images/caffeine-folder.png)
-
-并将该文件夹放到 `~/.local/share/gnome-shell/extensions/` 中。
-
-打开 `gnome-tweaks`。
+在插件网页中下载对应版本的压缩包，然后：
 
 ```console
-$ gnome-tweaks
+$ # 假设下载的文件名为 caffeinepatapon.info.v58.shell-extension.zip
+$ gnome-extensions install ./caffeinepatapon.info.v58.shell-extension.zip
 ```
 
-在扩展一栏即可启用我们刚刚装的 caffeine。
+扩展会被安装到 `~/.local/share/gnome-shell/extensions/` 目录下。这样安装的扩展只会在注销再登录之后才会展示，同时会被自动激活。
+
+也有图形界面可以管理扩展。打开 `gnome-extensions-app`：
+
+```console
+$ gnome-extensions-app
+```
+
+这里可以看到已经安装的扩展，点击开关即可启用或禁用扩展。
 
 ![Enable GNOME extensions](images/gnome-extensions.png)
 
-!!! tip "提示"
+!!! tip "其他安装方法"
 
     手动安装显然过于复杂，我们完全可以只使用浏览器来完成扩展插件的管理和安装。
 
@@ -164,7 +169,15 @@ $ gnome-tweaks
 
     ![](images/extensions-management.png)
 
-## Xfce 联网下载安装更多主题 {#xfce-themes}
+    同时也可以使用 `gnome-shell-extension-manager` 软件来管理扩展：
+
+    ```console
+    $ sudo apt install gnome-shell-extension-manager
+    ```
+
+    这是一款[第三方开发](https://github.com/mjakeman/extension-manager)的 GNOME 扩展管理工具，功能更强大。
+
+### Xfce
 
 除了系统自带的外观样式和图标外，网络上有更多的主题提供下载。例如在 [Xfce-look](https://www.xfce-look.org/) 上，就有上万个不同类型的主题。安装方法也十分简单。
 
@@ -222,11 +235,22 @@ $ gnome-tweaks
 $ echo $SHELL
 ```
 
-检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，在这里推荐一个更加强大的 Shell 工具——Z shell（Zsh）。
+检查目前我们正在用的是什么 Shell。Ubuntu 默认使用 Bash，但是可以使用 `chsh` 命令来更换 Shell。
 
-#### Zsh
+```console
+$ # 列出系统中可用的 shell
+$ chsh -l
+$ # 更换到 zsh
+$ chsh -s /bin/zsh
+$ # 更换到 fish
+$ chsh -s /bin/fish
+$ # 更换回 bash
+$ chsh -s /bin/bash
+```
 
-首先通过 apt 安装 `zsh`：
+### Zsh 与 oh-my-zsh {#zsh-ohmyzsh}
+
+Z shell（Zsh）是一个功能强大的 shell。首先通过 apt 安装 `zsh`：
 
 ```console
 $ sudo apt install zsh
@@ -238,15 +262,7 @@ $ sudo apt install zsh
 $ chsh -s /bin/zsh
 ```
 
-重启后打开终端就会发现 shell 已经变成了 zsh。
-
-第一次打开 zsh 会有首次使用提示，这里我们按 0 跳过。
-
-接下来的提示中按 Y 回车即安装。
-
-然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。
-
-##### oh-my-zsh
+重启后打开终端就会发现 shell 已经变成了 zsh。然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。
 
 oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。
 
@@ -276,11 +292,71 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 具体主题可以在 [oh-my-zsh 的项目 Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 中找到。
 当然你也可以尝试自己做一个主题。
 
+### Fish {#fish}
+
+Fish 是一个用户友好的命令行 shell，安装也非常简单：
+
+```console
+$ sudo apt install fish
+```
+
+将 fish 设定为默认 shell：
+
+```console
+$ chsh -s /bin/fish
+```
+
+Fish 基本不需要配置，开箱即用。需要注意的是，**Fish 不兼容 POSIX 标准**，因此 Bash 等 POSIX shell 下的脚本在 Fish 下是无法运行的。
+
+### Bash 的个性化 {#bash-personalization}
+
+即使不想更换 shell，我们也可以对 Bash 进行个性化配置。以下提供一种配置的选择，以供参考。
+
+首先使用 [starship](https://starship.rs/) 来美化 Bash 的提示符：
+
+```console
+$ curl -sS https://starship.rs/install.sh | sh
+```
+
+然后在 `~/.bashrc` 文件的末尾添加以下内容：
+
+```shell
+eval "$(starship init bash)"
+```
+
+可以使用以下命令添加（注意，`>>` 是追加到文件末尾，因此这条命令只要执行一次即可）：
+
+```console
+$ echo 'eval "$(starship init bash)"' >> ~/.bashrc
+```
+
+重新打开一个终端就可以看到效果了。更进一步的修改请参考 [starship 的配置文档](https://starship.rs/config/)。
+
+之后我们配置按下 Ctrl + R 时搜索历史命令的功能。尽管 bash 已经内置了该功能，但是它的交互性非常差，难以使用，因此我们使用 [fzf](https://junegunn.github.io/fzf/) 来增强该功能。
+
+```console
+$ sudo apt install fzf
+```
+
+之后同样在 `~/.bashrc` 文件的末尾添加以下内容：
+
+```shell
+eval "$(fzf --bash)"
+```
+
+同样可以使用以下命令添加：
+
+```console
+$ echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+```
+
+重新打开一个终端，按下 Ctrl + R 即可使用该功能。
+
 ## 其它的个性化 {#other-personalizations}
 
 上面内容都是外观上的个性化，更多地，Linux 系统的可客制化还体现在一些配置文件上。
 
-### etc 目录
+### MOTD 的配置 {#motd}
 
 `/etc` 目录是包含几乎所有 Linux 系统配置的一个文件夹。
 
@@ -288,65 +364,58 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
     etc 是 "et cetera" 的简称，意思是 "and so on"，在 Unix 初期人们实现 `etc` 文件夹就是为了保留配置文件，数据文件，套接字文件或其他文件用的。随着时间流逝，文件夹的含义已经更改，但是名字 etc 没有更改。现在 `/etc` 目录是所有配置文件的集中地，可以看作 Linux 系统的神经中枢。
 
-下面介绍几个常用的配置文件：
+MOTD（Message Of The Day）是 Linux 系统登录时显示的一些信息。其配置就在 `/etc` 目录下。
 
-- `/etc/fstab` 系统磁盘挂载相关配置；
-- `/etc/bash.bashrc` 启动 Bash 时读取的配置脚本；
-- `/etc/sudoers` sudo 权限的配置；
-- `/etc/hosts` 主机名与 IP 映射关系的配置。
+当我们登录用户成功时：
 
-??? example "示例"
+```console
+$ sudo login
+```
 
-    当我们登录用户成功时：
+会提示以下信息：
 
-    ```console
-    $ sudo login
-    ```
+```text
+Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+    * Documentation:  https://help.ubuntu.com
+    * Management:     https://landscape.canonical.com
+    * Support:        https://ubuntu.com/advantage
+    * Canonical Livepatch is available for installation.
+    - Reduce system reboots and improve kernel security. Activate at:
+        https://ubuntu.com/livepatch
+125 个可升级软件包。
+0 个安全更新。
+Your Hardware Enablement Stack (HWE) is supported until April 2023.
+*** 需要重启系统 ***
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
-    会提示以下信息：
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+```
 
-    ```text
-    Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 5.3.0-28-generic x86_64)
-     * Documentation:  https://help.ubuntu.com
-     * Management:     https://landscape.canonical.com
-     * Support:        https://ubuntu.com/advantage
-     * Canonical Livepatch is available for installation.
-       - Reduce system reboots and improve kernel security. Activate at:
-         https://ubuntu.com/livepatch
-    125 个可升级软件包。
-    0 个安全更新。
-    Your Hardware Enablement Stack (HWE) is supported until April 2023.
-    *** 需要重启系统 ***
-    The programs included with the Ubuntu system are free software;
-    the exact distribution terms for each program are described in the
-    individual files in /usr/share/doc/*/copyright.
+Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
 
-    Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-    applicable law.
-    ```
+!!! info "提示"
 
-    Ubuntu 下这些提示信息都可以在 `/etc/update-motd.d/` 目录下修改, 登录后，将会在该目录依数字递增顺序执行该目录下的脚本。
+    有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`。
 
-    !!! info "提示"
+我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容：
 
-    	有的 Linux 发行版的 MOTD (Message Of The Day) 配置在 `/etc/motd`
+```shell
+#!/bin/sh
+echo helloworld
+```
 
-    我们在 `/etc/update-motd.d/` 目录下新建一个文件 `99-test`，写入下面内容：
+然后：
 
-    ```shell
-    #!/bin/sh
-    echo helloworld
-    ```
+```console
+$ sudo chmod +x /etc/update-motd.d/99-test
+```
 
-    然后：
+设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
 
-    ```console
-    $ sudo chmod +x /etc/update-motd.d/99-test
-    ```
-
-    设置好权限，登录后就可以看到在末尾加上了我们在 `99-test` 文件中 echo 的内容。
-
-    当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
+当然如果你不希望显示上面的更新提示内容，也可以直接找到对应的文件删除或修改。
 
 ## 搭建简易的网站 {#website}
 

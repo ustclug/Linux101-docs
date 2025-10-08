@@ -853,13 +853,23 @@ $ tar [OPTIONS] FILE...
 
 添加压缩选项可以使用压缩算法进行创建压缩文件或者解压压缩文件：
 
-| 选项                                   | 含义                        |
-| -------------------------------------- | --------------------------- |
-| `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件  |
-| `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件 |
-| `-J`, `--xz`                           | 使用 xz 算法处理存档文件    |
-| `--zstd`                               | 使用 zstd 算法处理存档文件  |
-| `-a`, `--auto-compress`                | 通过后缀自动选择压缩算法    |
+| 选项                                   | 含义                                 |
+| -------------------------------------- | ------------------------------------ |
+| `-z`, `--gzip`, `--gunzip`, `--ungzip` | 使用 gzip 算法处理存档文件           |
+| `-j`, `--bzip2`                        | 使用 bzip2 算法处理存档文件          |
+| `-J`, `--xz`                           | 使用 xz 算法处理存档文件             |
+| `--zstd`                               | 使用 zstd 算法处理存档文件           |
+| `-a`, `--auto-compress`                | 通过后缀自动选择压缩算法（**推荐**） |
+
+!!! tip "组合 tar 的选项"
+
+    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
+
+    ```console
+    $ tar -c -z -v -f target.tar.gz test/
+    $ tar -czvf target.tar.gz test/
+    $ tar -f target.tar.gz -czv test/
+    ```
 
 !!! example "tar 使用实例"
 
@@ -867,24 +877,32 @@ $ tar [OPTIONS] FILE...
 
         ```console
         $ tar -c -f target.tar file1 file2 file3
+        $ # 省略 - 符号也是可以的
+        $ tar cf target.tar file1 file2 file3
         ```
 
     * 将 `target.tar` 中的文件提取到 `test` 目录中：
 
         ```console
         $ tar -x -f target.tar -C test/
+        $ # 或者：
+        $ tar xf target.tar -C test/
         ```
 
     * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
 
         ```console
         $ tar -cz -f target.tar.gz file1 file2 file3
+        $ # 可以总是使用 -a 选项，避免记忆的麻烦
+        $ tar caf target.tar.gz file1 file2 file3
         ```
 
     * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
 
         ```console
         $ tar -xz -f target.tar.gz -C test/
+        $ # 或者这样：
+        $ tar xaf target.tar.gz -C test
         ```
 
     * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
@@ -897,20 +915,12 @@ $ tar [OPTIONS] FILE...
 
         ```console
         $ tar -t -f target.tar
+        $ tar tf target.tar
 
         $ # 打印出文件的详细信息
         $ tar -tv -f target.tar
+        $ tar tvf target.tar
         ```
-
-!!! tip "组合 tar 的选项"
-
-    与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 `-` 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：
-
-    ```console
-    $ tar -c -z -v -f target.tar.gz test/
-    $ tar -czvf target.tar.gz test/
-    $ tar -f target.tar.gz -czv test/
-    ```
 
 !!! tip "存档文件的后缀名"
 

@@ -333,7 +333,7 @@ Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flas
 ```dockerfile
 FROM tiangolo/uwsgi-nginx-flask:python3.8
 
-RUN pip3 config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+RUN pip3 config set global.index-url https://mirrors.ustc.edu.cn/pypi/simple
 RUN pip3 install pyopenssl
 
 COPY ./app /app
