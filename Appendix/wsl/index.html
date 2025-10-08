@@ -12,24 +12,26 @@
         <meta name="author" content="LUG@USTC">
       
       
-        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Ch10/">
+        <link rel="canonical" href="https://101.lug.ustc.edu.cn/Appendix/wsl/">
+      
+      
+        <link rel="prev" href="../distribution/">
       
       
       
-      
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>Windows Subsystem for Linux - Linux 101</title>
+        <title>使用 WSL 安装 Linux - Linux 101</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,13 +44,13 @@
       
     
     
-      <link rel="stylesheet" href="../css/extra.css">
+      <link rel="stylesheet" href="../../css/extra.css">
     
       <link rel="stylesheet" href="https://101.lug.ustc.edu.cn/_extra/roboto.css">
     
       <link rel="stylesheet" href="https://101.lug.ustc.edu.cn/_extra/roboto-mono/stylesheet.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -100,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="Linux 101" class="md-header__button md-logo" aria-label="Linux 101" data-md-component="logo">
+    <a href="../.." title="Linux 101" class="md-header__button md-logo" aria-label="Linux 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M220.9 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7M199 125c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4m221 278.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7M223.8 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8m-40.7-11.5c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1m-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3q-2.1-7.35 4.2-12.3m3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9m-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2m257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6M173.4 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Windows Subsystem for Linux
+              使用 WSL 安装 Linux
             
           </span>
         </div>
@@ -236,7 +238,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101" data-md-component="logo">
+    <a href="../.." title="Linux 101" class="md-nav__button md-logo" aria-label="Linux 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M220.9 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7M199 125c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4m221 278.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7M223.8 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8m-40.7-11.5c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1m-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3q-2.1-7.35 4.2-12.3m3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9m-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2m257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6M173.4 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5"/></svg>
@@ -310,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Spec/writing/" class="md-nav__link">
+      <a href="../../Spec/writing/" class="md-nav__link">
         
   
   
@@ -333,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Spec/slide/" class="md-nav__link">
+      <a href="../../Spec/slide/" class="md-nav__link">
         
   
   
@@ -385,7 +387,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href=".." class="md-nav__link ">
+            <a href="../.." class="md-nav__link ">
               
   
   
@@ -422,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../notations/" class="md-nav__link">
+      <a href="../../notations/" class="md-nav__link">
         
   
   
@@ -445,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../credits/" class="md-nav__link">
+      <a href="../../credits/" class="md-nav__link">
         
   
   
@@ -497,7 +499,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch01/" class="md-nav__link ">
+            <a href="../../Ch01/" class="md-nav__link ">
               
   
   
@@ -534,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch01/supplement/" class="md-nav__link">
+      <a href="../../Ch01/supplement/" class="md-nav__link">
         
   
   
@@ -559,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch01/solution/" class="md-nav__link">
+      <a href="../../Ch01/solution/" class="md-nav__link">
         
   
   
@@ -613,7 +615,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch02/" class="md-nav__link ">
+            <a href="../../Ch02/" class="md-nav__link ">
               
   
   
@@ -650,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch02/supplement/" class="md-nav__link">
+      <a href="../../Ch02/supplement/" class="md-nav__link">
         
   
   
@@ -675,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch02/solution/" class="md-nav__link">
+      <a href="../../Ch02/solution/" class="md-nav__link">
         
   
   
@@ -729,7 +731,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch03/" class="md-nav__link ">
+            <a href="../../Ch03/" class="md-nav__link ">
               
   
   
@@ -766,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch03/supplement/" class="md-nav__link">
+      <a href="../../Ch03/supplement/" class="md-nav__link">
         
   
   
@@ -791,7 +793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch03/solution/" class="md-nav__link">
+      <a href="../../Ch03/solution/" class="md-nav__link">
         
   
   
@@ -845,7 +847,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch04/" class="md-nav__link ">
+            <a href="../../Ch04/" class="md-nav__link ">
               
   
   
@@ -882,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch04/supplement/" class="md-nav__link">
+      <a href="../../Ch04/supplement/" class="md-nav__link">
         
   
   
@@ -907,7 +909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch04/solution/" class="md-nav__link">
+      <a href="../../Ch04/solution/" class="md-nav__link">
         
   
   
@@ -961,7 +963,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch05/" class="md-nav__link ">
+            <a href="../../Ch05/" class="md-nav__link ">
               
   
   
@@ -998,7 +1000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch05/supplement/" class="md-nav__link">
+      <a href="../../Ch05/supplement/" class="md-nav__link">
         
   
   
@@ -1023,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch05/solution/" class="md-nav__link">
+      <a href="../../Ch05/solution/" class="md-nav__link">
         
   
   
@@ -1077,7 +1079,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch06/" class="md-nav__link ">
+            <a href="../../Ch06/" class="md-nav__link ">
               
   
   
@@ -1114,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch06/supplement/" class="md-nav__link">
+      <a href="../../Ch06/supplement/" class="md-nav__link">
         
   
   
@@ -1139,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch06/solution/" class="md-nav__link">
+      <a href="../../Ch06/solution/" class="md-nav__link">
         
   
   
@@ -1191,7 +1193,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch07/" class="md-nav__link ">
+            <a href="../../Ch07/" class="md-nav__link ">
               
   
   
@@ -1228,7 +1230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch07/supplement/" class="md-nav__link">
+      <a href="../../Ch07/supplement/" class="md-nav__link">
         
   
   
@@ -1280,7 +1282,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch08/" class="md-nav__link ">
+            <a href="../../Ch08/" class="md-nav__link ">
               
   
   
@@ -1317,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch08/supplement/" class="md-nav__link">
+      <a href="../../Ch08/supplement/" class="md-nav__link">
         
   
   
@@ -1369,7 +1371,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Ch09/" class="md-nav__link ">
+            <a href="../../Ch09/" class="md-nav__link ">
               
   
   
@@ -1406,7 +1408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ch09/supplement/" class="md-nav__link">
+      <a href="../../Ch09/supplement/" class="md-nav__link">
         
   
   
@@ -1435,8 +1437,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1446,15 +1450,17 @@
       
         
       
+        
+      
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -1470,7 +1476,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             附录
@@ -1484,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/markdown/" class="md-nav__link">
+      <a href="../markdown/" class="md-nav__link">
         
   
   
@@ -1507,7 +1513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/man/" class="md-nav__link">
+      <a href="../man/" class="md-nav__link">
         
   
   
@@ -1530,7 +1536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Appendix/distribution/" class="md-nav__link">
+      <a href="../distribution/" class="md-nav__link">
         
   
   
@@ -1541,6 +1547,245 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    使用 WSL 安装 Linux
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    使用 WSL 安装 Linux
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动安装方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      手动安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="手动安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-windows-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      启用 WSL 和虚拟化平台
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-linux-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Linux 内核
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-default-wsl-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置 WSL 2 为默认的 WSL 版本
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-distro" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装发行版
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装发行版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-msstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      从微软商店下载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-distro-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      手动安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vscode-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      VS Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetbrains-remote-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      JetBrains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-folder-in-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 WSL 中使用资源管理器打开文件夹
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      已知的问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="已知的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-exe" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行 32 位应用程序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL 下 /mnt/ 性能问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1665,35 +1910,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-distro-appx" class="md-nav__link">
+  <a href="#install-distro-manual" class="md-nav__link">
     <span class="md-ellipsis">
-      使用 Appx 文件进行安装
+      手动安装
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-lxrunoffline" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用 LxRunOffline 进行安装
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用 LxRunOffline 进行安装">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-lxrunoffline-archlinux" class="md-nav__link">
-    <span class="md-ellipsis">
-      例：安装 Arch Linux
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1772,15 +1993,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#systemd" class="md-nav__link">
-    <span class="md-ellipsis">
-      systemd
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1802,7 +2014,7 @@
 
 
   
-    <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Ch10/index.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ustclug/Linux101-docs/edit/master/docs/Appendix/wsl.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1811,7 +2023,7 @@
     
       
     
-    <a href="https://github.com/ustclug/Linux101-docs/raw/master/docs/Ch10/index.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/ustclug/Linux101-docs/raw/master/docs/Appendix/wsl.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -1820,7 +2032,7 @@
 
 <h1 id="windows-subsystem-for-linux">Windows Subsystem for Linux<a class="headerlink" href="#windows-subsystem-for-linux" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
-<p class="admonition-title">本文仍在编辑中，尚未校对、审阅和和修订</p>
+<p class="admonition-title">本文仍在编辑中，尚未校对、审阅和修订</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
@@ -1841,86 +2053,51 @@
 </ul>
 <p>安装完毕之后可以直接通过 <code>ubuntu</code> 命令启动。</p>
 <h3 id="install-manual">手动安装<a class="headerlink" href="#install-manual" title="Permanent link">&para;</a></h3>
-<p>如果系统版本在 Windows 10 Build 19041 以下，如 Windows 10 LTSC 2019 ，需要手动配置系统。</p>
+<p>如果系统版本在 Windows 10 Build 19041 以下，如 Windows 10 LTSC 2019，需要手动配置系统。</p>
 <h4 id="enable-windows-features">启用 WSL 和虚拟化平台<a class="headerlink" href="#enable-windows-features" title="Permanent link">&para;</a></h4>
-<p>使用管理员身份在 Powershell 中运行</p>
+<p>使用管理员身份在 Powershell 中运行：</p>
 <div class="highlight"><pre><span></span><code>Dism.exe /Online /Enable-feature /Featurename:Microsoft-Windows-Subsystem-Linux /All /NoRestart
 Dism.exe /Online /Enable-feature /Featurename:VirtualMachinePlatform /All /NoRestart
 </code></pre></div>
 <h4 id="install-linux-kernel">安装 Linux 内核<a class="headerlink" href="#install-linux-kernel" title="Permanent link">&para;</a></h4>
-<p>从微软下载 Linux 内核用于 Windows 的更新，并安装</p>
-<p><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x64 内核</a></p>
-<p><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ARM64 内核</a></p>
+<p>从微软下载 Linux 内核用于 Windows 的更新，并根据机器架构选择安装：</p>
+<ul>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x64 内核</a>（绝大部分电脑）</li>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ARM64 内核</a>（使用高通等品牌 CPU 的电脑）</li>
+</ul>
 <h4 id="set-default-wsl-version">设置 WSL 2 为默认的 WSL 版本<a class="headerlink" href="#set-default-wsl-version" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
 </code></pre></div>
 <h2 id="install-distro">安装发行版<a class="headerlink" href="#install-distro" title="Permanent link">&para;</a></h2>
 <p>有许多的方法安装一个新的发行版。</p>
 <h3 id="install-distro-msstore">从微软商店下载<a class="headerlink" href="#install-distro-msstore" title="Permanent link">&para;</a></h3>
-<p>在微软商店中直接搜索对应的发行版进行安装即可，这种方法可以安装的发行版并不多，如 Arch Linux 和 Fedora 就无法通过这种方法进行安装。</p>
-<p><img alt="Microsoft Store Search Result" src="images/ms-store-search-linux.png" /></p>
-<h3 id="install-distro-appx">使用 Appx 文件进行安装<a class="headerlink" href="#install-distro-appx" title="Permanent link">&para;</a></h3>
-<p>有的打包为 Appx 的分发方式，也有提供了可执行应用程序来进行安装，在仓库里面提供了安装方式</p>
+<p>在微软商店中直接搜索对应的发行版进行安装即可。这种方法仅支持一部分发行版，如 Ubuntu 和 Debian 等。</p>
+<p><img alt="Microsoft Store Search Result" src="../images/ms-store-search-linux.png" /></p>
+<p class="caption">图 1. Microsoft Store 搜素结果</p>
+<h3 id="install-distro-manual">手动安装<a class="headerlink" href="#install-distro-manual" title="Permanent link">&para;</a></h3>
+<p>有些发行版并未上架微软商店，但也有办法安装，比如可以参考下面这两个项目：</p>
 <ul>
-<li>ArchLinux: <a href="https://github.com/yuk7/ArchWSL">ArchWSL</a></li>
-<li>Fedora: <a href="https://github.com/yosukes-dev/FedoraWSL">FedoraWSL</a></li>
-<li>Manjaro: <a href="https://github.com/sileshn/ManjaroWSL">ManjaroWSL</a></li>
-<li>Gentoo: <a href="https://github.com/imaandrew/GentooWSL">GentooWSL</a></li>
+<li>Manjaro: <a href="https://github.com/sileshn/ManjaroWSL2">ManjaroWSL2</a></li>
+<li>Gentoo: <a href="https://github.com/VPraharsha03/GentooWSL2">GentooWSL2</a></li>
 </ul>
-<h3 id="install-lxrunoffline">使用 LxRunOffline 进行安装<a class="headerlink" href="#install-lxrunoffline" title="Permanent link">&para;</a></h3>
-<p>LxRunOffline 是进行 WSL 管理的一个应用程序，可以帮助管理 WSL 的安装与配置</p>
-<p>LxRunOffline 仓库：<a href="https://github.com/DDoSolitary/LxRunOffline">LxRunOffline</a></p>
-<p>LxRunOffline 是通过 Windows 提供的 API 来进行管理 WSL 的一个命令行工具</p>
-<h4 id="install-lxrunoffline-archlinux">例：安装 Arch Linux<a class="headerlink" href="#install-lxrunoffline-archlinux" title="Permanent link">&para;</a></h4>
-<p>可以从 <a href="https://github.com/DDoSolitary/LxRunOffline/wiki">LxRunOffline/wiki</a> 里面下载需要的发行版的 rootfs</p>
-<p>对于 ArchLinux，可以从<a href="https://lxrunoffline.apphb.com/download/ArchLinux">这个链接</a>，下载 ArchLinux 的 rootfs 得到 <code>archlinux-bootstrap-*.tar.gz</code></p>
-<p>使用 LxRunOffline 进行安装</p>
-<div class="highlight"><pre><span></span><code>./LxRunOffline<span class="w"> </span>i<span class="w"> </span>-n<span class="w"> </span>ArchLinux<span class="w"> </span>-d<span class="w"> </span>D:/wsl/ArchLinux<span class="w"> </span>-f<span class="w"> </span>./archlinux-bootstrap-*.tar.gz
-</code></pre></div>
-<ul>
-<li>
-<p><code>-n</code> WSL 的名称</p>
-</li>
-<li>
-<p><code>-d</code> 希望安装的位置，通过这种方法可以不需要将 wsl 安装在 C 盘</p>
-</li>
-</ul>
-<p>需要注意的是，这个安装方法不会在开始菜单中添加启动快捷方式，只能够通过命令行的方式启动：</p>
-<div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="n">-d</span> <span class="n">ArchLinux</span>
-</code></pre></div>
-<p>在安装完成后打开，默认是以 root 的身份执行，如果需要默认以其他的用户的身份运行，可以在添加了用户后，使用 LxRunOffline 运行：</p>
-<div class="highlight"><pre><span></span><code>./LxRunOffline<span class="w"> </span>su<span class="w"> </span>-n<span class="w"> </span>ArchLinux<span class="w"> </span>-v<span class="w"> </span><span class="m">1000</span>
-</code></pre></div>
-<p>其中：</p>
-<ul>
-<li><code>ArchLinux</code> 是 WSL 的名</li>
-<li><code>-v 1000</code> 是设置登录的用户的 UID</li>
-</ul>
+<p>但需要注意，这种安装方式并非发行版官方支持。</p>
 <h2 id="usage">使用<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <h3 id="vscode-remote-wsl">VS Code<a class="headerlink" href="#vscode-remote-wsl" title="Permanent link">&para;</a></h3>
-<p>在 VS Code 中安装插件 "Remote - WSL" 后，可以像 "Remote - SSH" 一样使用 WSL</p>
-<p><img alt="VS Code Store &quot;Remote - WSL&quot;" src="./images/vscode-store-remote-wsl.png" /></p>
+<p>在 VS Code 中安装插件 "WSL" 后，可以像 "Remote - SSH" 一样使用 WSL，或者也可以直接安装 "Remote Development" 插件，里面包含了 "WSL" 插件。</p>
+<p><img alt="VS Code Store &quot;WSL&quot;" src="../images/vscode-store-remote-wsl.png" /></p>
+<p class="caption">图 2. Visual Studio Code 搜索 "WSL"</p>
 <h3 id="jetbrains-remote-wsl">JetBrains<a class="headerlink" href="#jetbrains-remote-wsl" title="Permanent link">&para;</a></h3>
 <p>包括 IntelliJ IDEA、PyCharm、WebStorm 等，都有对 WSL 的支持。在打开了 WSL 下的目录后，
 会自动地选择 WSL 下的工具链，Git 会使用 WSL 中安装的 Git 而不是 Window 下的 Git。</p>
-<p>但是还有一些问题仍待解决，如 PyCharm 并不支持 WSL 中的虚拟环境，在添加 Python Inpterpreter 时，
-无法检测并使用现有的如 <code>virtualenv</code>、<code>conda</code> 等创建的虚拟环境，也无法创建。</p>
-<p>对应的的 Issue：<a href="https://youtrack.jetbrains.com/issue/PY-32853">PY-32853</a></p>
-<p>可以 workaround 来解决：在添加 Python Inpterpreter 时，添加 System Python Inpterpreter 而不是
-Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCharm 可以正确识别安装的包，但是在打开
-终端的时候，不会自动地 <code>source</code> 虚拟环境。</p>
 <h3 id="open-folder-in-wsl">在 WSL 中使用资源管理器打开文件夹<a class="headerlink" href="#open-folder-in-wsl" title="Permanent link">&para;</a></h3>
 <p>在 WSL 的终端中，直接输入 <code>explorer.exe .</code>，会在当前目录下打开资源管理器，也可以使用 Windows 上的应用程序打开相应的文件。</p>
 <h2 id="known-issues">已知的问题<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <h3 id="32-bit-exe">运行 32 位应用程序<a class="headerlink" href="#32-bit-exe" title="Permanent link">&para;</a></h3>
-<p>由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，可以在安装了对应的
-运行时后可以运行 32 位应用程序。</p>
+<p>由于实现原理，WSL 1 并不支持运行 32 位应用程序。WSL 2 由于是完整的 Linux 内核，在安装了对应的运行时后可以运行 32 位应用程序。</p>
 <h3 id="mnt-performance">WSL 下 <code>/mnt/</code> 性能问题<a class="headerlink" href="#mnt-performance" title="Permanent link">&para;</a></h3>
 <p>WSL 2 由于相当于是通过网络的方式访问 <code>/mnt/</code> 下的文件，导致性能相对于 WSL 1 有明显的下降。</p>
 <p>可以通过将文件放在 <code>/</code> 下（不包括 <code>/mnt/</code>），来提高性能。</p>
 <p>相关的 Issue 和评论：<a href="https://github.com/microsoft/WSL/issues/4197#issuecomment-604592340">microsoft/WSL#4197</a></p>
-<h3 id="systemd">systemd<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h3>
-<p>无论是 WSL 1 还是 WSL 2，都不原生支持 systemd，如果需要 systemd，可以通过 <a href="https://github.com/arkane-systems/genie">systemd-genie</a> 来实现。</p>
 
 
 
@@ -1953,6 +2130,28 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../distribution/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 其他的 Linux 发行版：技术差异简介">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                其他的 Linux 发行版：技术差异简介
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -2010,10 +2209,10 @@ Virtual Environment，在路径中填写虚拟环境下的 Python 路径，PyCha
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
