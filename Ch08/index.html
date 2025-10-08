@@ -2084,7 +2084,7 @@ For more examples and ideas, visit:
 <p>Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">tiangolo/uwsgi-nginx-flask:python3.8</span>
 
-<span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>global.index-url<span class="w"> </span>https://mirrors.bfsu.edu.cn/pypi/web/simple
+<span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>global.index-url<span class="w"> </span>https://mirrors.ustc.edu.cn/pypi/simple
 <span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>pyopenssl
 
 <span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/app

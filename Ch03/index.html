@@ -2885,31 +2885,47 @@ Do you want to continue? [Y/n]
 </tr>
 <tr>
 <td><code>-a</code>, <code>--auto-compress</code></td>
-<td>通过后缀自动选择压缩算法</td>
+<td>通过后缀自动选择压缩算法（<strong>推荐</strong>）</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">组合 tar 的选项</p>
+<p>与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 <code>-</code> 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-c<span class="w"> </span>-z<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>test/
+<span class="gp">$ </span>tar<span class="w"> </span>-czvf<span class="w"> </span>target.tar.gz<span class="w"> </span>test/
+<span class="gp">$ </span>tar<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-czv<span class="w"> </span>test/
+</code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">tar 使用实例</p>
 <ul>
 <li>
 <p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
+<span class="gp">$ </span><span class="c1"># 省略 - 符号也是可以的</span>
+<span class="gp">$ </span>tar<span class="w"> </span>cf<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
 </li>
 <li>
 <p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 目录中：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
+<span class="gp">$ </span><span class="c1"># 或者：</span>
+<span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
 </code></pre></div>
 </li>
 <li>
 <p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> ：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-cz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
+<span class="gp">$ </span><span class="c1"># 可以总是使用 -a 选项，避免记忆的麻烦</span>
+<span class="gp">$ </span>tar<span class="w"> </span>caf<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
 </li>
 <li>
 <p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 目录中：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-xz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span>test/
+<span class="gp">$ </span><span class="c1"># 或者这样：</span>
+<span class="gp">$ </span>tar<span class="w"> </span>xaf<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
 </li>
 <li>
@@ -2920,20 +2936,14 @@ Do you want to continue? [Y/n]
 <li>
 <p>列出 <code>target.tar</code> 存档文件中的内容</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>target.tar
+<span class="gp">$ </span>tar<span class="w"> </span>tf<span class="w"> </span>target.tar
 
 <span class="gp">$ </span><span class="c1"># 打印出文件的详细信息</span>
 <span class="gp">$ </span>tar<span class="w"> </span>-tv<span class="w"> </span>-f<span class="w"> </span>target.tar
+<span class="gp">$ </span>tar<span class="w"> </span>tvf<span class="w"> </span>target.tar
 </code></pre></div>
 </li>
 </ul>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">组合 tar 的选项</p>
-<p>与大部分 Linux 命令相同，tar 命令允许将多个单字母（使用单个 <code>-</code> 符号的）选项组合为一个参数，便于用户输入。例如，以下命令是等价的：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-c<span class="w"> </span>-z<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>test/
-<span class="gp">$ </span>tar<span class="w"> </span>-czvf<span class="w"> </span>target.tar.gz<span class="w"> </span>test/
-<span class="gp">$ </span>tar<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-czv<span class="w"> </span>test/
-</code></pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">存档文件的后缀名</p>

@@ -2185,6 +2185,11 @@
 </div>
 <h3 id="download-others">其他<a class="headerlink" href="#download-others" title="Permanent link">&para;</a></h3>
 <p>除了 Wget、cURL，还有 mwget（多线程版本 wget）、Axel、Aria2（支持 BT 协议、支持 JSON-RPC 和 XML-RPC 接口远程调用）之类下载工具，其中 Aria2 在 Windows 下使用也很广泛。</p>
+<div class="admonition warning">
+<p class="admonition-title">在 Windows 的 PowerShell 下使用 wget/curl</p>
+<p>Windows 自带的 PowerShell 出于一些奇怪的考虑，将 <code>wget</code> 和 <code>curl</code> 都 alias 成了 PowerShell 自己的 <code>Invoke-WebRequest</code>，而这个命令和上文介绍的 wget、curl 的行为完全不同，给用户带来了困惑。</p>
+<p>如果你在 Windows 下安装了 <code>wget</code> 或 <code>curl</code>，可能需要使用 <code>wget.exe</code> 或 <code>curl.exe</code> 来调用它们。</p>
+</div>
 <h2 id="text-utils">文本处理<a class="headerlink" href="#text-utils" title="Permanent link">&para;</a></h2>
 <p>在进行文本处理时，我们有一些常见的需求：</p>
 <ul>
