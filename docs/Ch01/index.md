@@ -213,6 +213,10 @@ Android TV 图标
 
 因此，本书将主要讲解如何为自己搭建一个安全高效的 Linux 虚拟机。如果你有一台远程的 Linux 服务器，可以参考[拓展阅读](./supplement.md#ssh)的内容配置 SSH 连接。
 
+!!! info "WSL"
+
+    如今，对于 Windows 用户来说，使用 WSL 安装 Linux 或许会是更加便捷的方法，详情可以参考[附录](../Appendix/wsl.md)
+
 ### 获取虚拟机管理软件 {#get-vm-softwares}
 
 现在在 Windows / macOS 上主流的虚拟机管理软件有：

@@ -118,3 +118,4 @@ nav:
         - Markdown 教程: Appendix/markdown.md
         - man 文档的一些示例: Appendix/man.md
         - 其他的 Linux 发行版：技术差异简介: Appendix/distribution.md
+        - 使用 WSL 安装 Linux: Appendix/wsl.md
