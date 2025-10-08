@@ -60,7 +60,7 @@ wsl --set-default-version 2
 
 ### 从微软商店下载 {#install-distro-msstore}
 
-在微软商店中直接搜索对应的发行版进行安装即可。这种方法仅支持一部分发型版，如 Ubuntu 和 Debian 等。
+在微软商店中直接搜索对应的发行版进行安装即可。这种方法仅支持一部分发行版，如 Ubuntu 和 Debian 等。
 
 ![Microsoft Store Search Result](./images/ms-store-search-linux.png)
 
