@@ -2,11 +2,11 @@
 
 ## 主要贡献者 {#team}
 
-项目主策划：[RiessarSadyx](https://github.com/RiessarSadyx)
+项目主策划：[Riessarius](https://github.com/Riessarius)
 
 各章主要作者:
 
-- 第一章：[RiessarSadyx](https://github.com/RiessarSadyx)
+- 第一章：[Riessarius](https://github.com/Riessarius)
 - 第二章：[LamWS](https://github.com/LamWS)
 - 第三章：[zeyugao](https://github.com/zeyugao)
 - 第四章：[psi-cmd](https://github.com/psi-cmd)
