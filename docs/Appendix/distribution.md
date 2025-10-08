@@ -186,7 +186,6 @@ NixOS 使用 `nix` 命令进行软件包管理：
 
 ```console
 $ nix search nixos firefox # 搜索软件包
-
 $ nix-shell -p firefox # 安装软件包
 ```
 
@@ -196,9 +195,12 @@ $ nix-shell -p firefox # 安装软件包
 
     使用 `nix-env` 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 `nix-shell` 或 NixOS 配置文件。
 
+!!! tips "小知识"
+
+    因为在 NixOS 中，命令行搜索默认使用的是 **NixOS 频道（nixos channel）**，而不是纯粹的 **nixpkgs 仓库**，所以要从 nixos 搜索才能匹配系统当前使用的包集合。
+
 ```console
 $ nix search nixos firefox # 搜索软件包
-
 $ nix-env -iA nixos.firefox # 安装软件包
 ```
 
@@ -212,7 +214,7 @@ environment.systemPackages = [
 ];
 ```
 
-```
+```console
 $ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式），编辑 /etc/nixos/configuration.nix，然后运行
 ```
 
@@ -220,11 +222,8 @@ $ sudo nixos-rebuild switch # 在配置文件中添加软件包（推荐方式�
 
 ```console
 $ sudo nixos-rebuild switch # 应用配置更改
-
 $ sudo nixos-rebuild test # 测试配置（不应用）
-
 $ sudo nixos-rebuild boot # 启动到新配置
-
 $ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
 ```
 
@@ -234,9 +233,7 @@ NixOS 的回滚功能是其最强大的特性之一：
 
 ```console
 $ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system # 查看可用的系统配置
-
 $ sudo nixos-rebuild switch --rollback # 回滚到上一个配置
-
 $ sudo nixos-rebuild switch --option system-profiles /nix/var/nix/profiles/system-123-link # 回滚到特定配置
 ```
 
@@ -246,9 +243,7 @@ NixOS 使用频道来管理软件包集合：
 
 ```console
 $ nix-channel --list # 查看当前频道
-
 $ sudo nix-channel --update # 更新频道
-
 $ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos # 切换到不稳定频道
 ```
 
@@ -278,7 +273,6 @@ NixOS 提供了强大的开发环境管理：
 
 ```console
 $ nix-shell -p python3 nodejs # 进入包含特定软件包的 shell
-
 $ nix-shell # 使用 shell.nix 文件定义开发环境
 ```
 
