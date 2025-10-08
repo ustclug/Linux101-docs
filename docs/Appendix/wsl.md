@@ -75,9 +75,7 @@ wsl --set-default-version 2
 
 ### VS Code {#vscode-remote-wsl}
 
-在 VS Code 中安装插件 "WSL" 后，可以像 "Remote - SSH" 一样使用 WSL
-
-（或者也可以直接安装 "Remote Development" 插件，里面包含了 "WSL" 插件）
+在 VS Code 中安装插件 "WSL" 后，可以像 "Remote - SSH" 一样使用 WSL，或者也可以直接安装 "Remote Development" 插件，里面包含了 "WSL" 插件。
 
 ![VS Code Store "WSL"](./images/vscode-store-remote-wsl.png)
 
