@@ -185,7 +185,6 @@ NixOS 使用 `nix` 命令进行软件包管理：
 `nix-shell` 会启动一个新的 shell，在其中 `PATH` 等环境变量会被临时修改，指向由 Nix 构建的工具所在路径。借助这个环境，你可以方便地尝试新程序或依赖。需要注意，这些修改仅在该 `nix-shell` 会话中有效；一旦退出或重启，环境就会恢复原状。
 
 ```console
-$ nix search nixos firefox # 搜索软件包
 $ nix-shell -p firefox # 安装软件包
 ```
 
@@ -195,12 +194,7 @@ $ nix-shell -p firefox # 安装软件包
 
     使用 `nix-env` 会永久修改本地安装包配置文件。用户必须像使用传统包管理器那样更新和维护该配置文件，这将放弃许多使 Nix 具有独特强大功能的优势。建议改用 `nix-shell` 或 NixOS 配置文件。
 
-!!! tips "小知识"
-
-    因为在 NixOS 中，命令行搜索默认使用的是 **NixOS 频道（nixos channel）**，而不是纯粹的 **nixpkgs 仓库**，所以要从 nixos 搜索才能匹配系统当前使用的包集合。
-
 ```console
-$ nix search nixos firefox # 搜索软件包
 $ nix-env -iA nixos.firefox # 安装软件包
 ```
 
