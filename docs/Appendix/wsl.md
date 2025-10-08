@@ -104,4 +104,3 @@ WSL 2 由于相当于是通过网络的方式访问 `/mnt/` 下的文件，导�
 可以通过将文件放在 `/` 下（不包括 `/mnt/`），来提高性能。
 
 相关的 Issue 和评论：[microsoft/WSL#4197](https://github.com/microsoft/WSL/issues/4197#issuecomment-604592340)
-
