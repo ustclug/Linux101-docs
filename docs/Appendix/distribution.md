@@ -263,7 +263,7 @@ Nix Flakes 是 Nix 的新特性，提供了更好的可重现性和依赖管理�
 
 ### 开发环境 {#nixos-development}
 
-NixOS 提供了强大的开发环境管理：
+NixOS 提供了强大的开发环境管理[^2]：
 
 ```console
 $ nix-shell -p python3 nodejs # 进入包含特定软件包的 shell
@@ -290,3 +290,5 @@ $ nix-shell # 使用 shell.nix 文件定义开发环境
 -   [wrapper-manager](https://viperml.github.io/wrapper-manager/)
 
 NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。
+
+[^2](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
