@@ -457,48 +457,35 @@ graph LR
 
 ## 列出文件系统项目 {#list-objects}
 
-经常我们需要在 Shell 中列出某个目录下的项目（子目录和文件）。`ls` 命令是最常见的用来列出文件系统项目的命令，`ls -la` 则可以显示隐藏文件（`-a`）和更详细的信息（`-l`）。但是，`ls` 只能显示某个目录下的文件和子目录，并不会深入子目录内部继续检查。下面介绍几个命令，常用于获取这些信息。
+经常我们需要在 Shell 中列出某个目录下的项目（子目录和文件）。`ls` 命令是最常见的用来列出文件系统项目的命令，`ls -la` 则可以显示隐藏文件（`-a`）和更详细的信息（`-l`）。但是，除非添加 `-R` 参数，`ls` 只能显示某个目录下的文件和子目录，并不会深入子目录内部继续检查。下面介绍几个命令，常用于获取这些信息。
 
-### `find` 命令 {#cmd-find}
+### `tree` 命令 {#cmd-tree}
 
-`find` 命令可以列出某个目录下所有的目录和文件，并**递归地**进入子目录。基本用法是
+`tree` 命令可以以树状图的形式显示目录的内容。它会递归进入子目录，显示所有的文件和目录：
 
-```shell
-$ find /etc
-/etc
-/etc/analog.cfg
-/etc/hosts.deny
-/etc/initramfs-tools
-/etc/initramfs-tools/initramfs.conf
-/etc/initramfs-tools/hooks
-/etc/initramfs-tools/conf.d
-/etc/initramfs-tools/conf.d/resume
-/etc/initramfs-tools/modules
-/etc/initramfs-tools/update-initramfs.conf
-... (省略)
-```
-
-可以看到，`find` 命令将列出指定的目录下的文件和子目录名称，在遇到子目录时立即进入目录并递归地执行上面的操作。
-
-该命令的一个很有用的用法是对每一个文件都执行某个命令（例如 `md5sum`）：
-
-```shell
-find . -type f -exec md5sum {} \;
-```
-
-这里，`find .` 是指对当前目录（`.`）进行 `find`，并只列出文件（`-type f`）。`-exec` 后面的内容是要执行的命令，其中 `{}` 会被替换成找到的对象（文件、目录）的路径，`\;` 表示对每个对象都执行一次给定的命令，即实际运行的是
-
-```shell
-md5sum file1
-md5sum file2
-md5sum file3
-...
-```
-
-如果将 `\;` 换成 `+`，那么就是将文件名称收集起来一并交给要执行的命令，即
-
-```shell
-md5sum file1 file2 file3 ...
+```text
+$ tree /etc/
+/etc/
+├── NetworkManager
+│   ├── NetworkManager.conf
+│   ├── conf.d
+│   ├── dispatcher.d
+│   │   ├── no-wait.d
+│   │   ├── pre-down.d
+│   │   └── pre-up.d
+│   ├── dnsmasq-shared.d
+│   ├── dnsmasq.d
+│   └── system-connections  [error opening dir]
+├── UPower
+│   └── UPower.conf
+├── X11
+│   ├── tigervnc
+│   │   └── Xsession
+│   └── xinit
+│       ├── xinitrc
+│       ├── xinitrc.d
+│       │   ├── 40-libcanberra-gtk-module.sh
+（以下省略）
 ```
 
 ### `du` 命令 {#cmd-du}
@@ -511,7 +498,7 @@ $ du -h /etc/
 8.0K	/etc/initramfs-tools/conf.d
 4.0K	/etc/initramfs-tools/scripts/local-premount
 4.0K	/etc/initramfs-tools/scripts/nfs-premount
-... (省略)
+（中间内容省略）
 4.0K	/etc/initramfs-tools/scripts/panic
 4.0K	/etc/initramfs-tools/scripts/local-top
 44K	/etc/initramfs-tools/scripts

@@ -777,6 +777,8 @@ $ find [OPTION] PATH [EXPRESSION]
 | `-size +1M`     | 大于 1M 的文件，`+` 代表大于这个大小，对应地，`-` 代表小于之后的大小 |
 | `-or`           | 或运算符，代表它前后两个条件满足一个即可                             |
 
+如果不添加任何其他选项，find 会递归地输出提供的 PATH 下的所有文件。
+
 !!! example "搜索示例"
 
     * 在当前目录搜索名为 report.pdf 的文件：
@@ -796,6 +798,29 @@ $ find [OPTION] PATH [EXPRESSION]
         ```console
         $ find ~/ -name 'node_modules' -type d
         ```
+
+!!! tip "对搜索到的文件批量执行命令"
+
+    find 的一个很有用的用法是对每一个文件都执行某个命令（例如 `md5sum`）：
+
+    ```shell
+    find . -type f -exec md5sum {} \;
+    ```
+
+    这里，`find .` 是指对当前目录（`.`）进行 `find`，并只列出文件（`-type f`）。`-exec` 后面的内容是要执行的命令，其中 `{}` 会被替换成找到的对象（文件、目录）的路径，`\;` 表示对每个对象都执行一次给定的命令，即实际运行的是
+
+    ```shell
+    md5sum file1
+    md5sum file2
+    md5sum file3
+    ...
+    ```
+
+    如果将 `\;` 换成 `+`，那么就是将文件名称收集起来一并交给要执行的命令，即
+
+    ```shell
+    md5sum file1 file2 file3 ...
+    ```
 
 ### 模式匹配 {#pattern}
 
