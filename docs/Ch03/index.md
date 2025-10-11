@@ -822,6 +822,20 @@ $ find [OPTION] PATH [EXPRESSION]
     md5sum file1 file2 file3 ...
     ```
 
+!!! tip "fd"
+
+    [fd](https://github.com/sharkdp/fd) 是 find 的更现代、好用的替代。在 Ubuntu 下需要安装 `fd-find` 包，并且命令名为 **`fdfind`**（而非 `fd`）。
+
+    其默认接受正则表达式（见[第九章](../Ch09/index.md)）作为搜索条件，例如搜索结尾为 `.conf` 的文件：
+
+    ```console
+    $ fdfind '\.conf$' /etc/
+    /etc/debconf.conf
+    /etc/gai.conf
+    /etc/host.conf
+    （以下省略）
+    ```
+
 ### 模式匹配 {#pattern}
 
 许多现代的 shell 都支持一定程度的模式匹配。举个例子，bash 的匹配模式被称为 [glob](https://mywiki.wooledge.org/glob)，支持的操作如下：
