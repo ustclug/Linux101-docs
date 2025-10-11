@@ -279,6 +279,23 @@ $ grep -R 'hello' .  # 递归查找当前目录下内容包含 hello 的文件
 
     grep 事实上是非常强大的查找工具，[第九章](../Ch09/index.md)将在介绍正则表达式语法之后进一步介绍 grep。
 
+!!! tip "ripgrep"
+
+    除了 grep 以外，还有一个更快更强大的工具 [ripgrep](https://github.com/BurntSushi/ripgrep)。其会默认递归查找当前目录下的文件。安装 `ripgrep` 包后使用 `rg` 命令，即可作为 `grep -R` 的替代：
+
+    ```console
+    $ # 在 /etc/ 下搜索包含 localhost 的文件
+    $ rg localhost /etc/
+    /etc/hosts
+    1:127.0.0.1	localhost
+    2:::1	localhost
+
+    /etc/security/pam_env.conf
+    52:# to "localhost" rather than not being set at all
+    53:#REMOTEHOST	DEFAULT=localhost OVERRIDE=@{PAM_RHOST}
+    64:#NNTPSERVER	DEFAULT=localhost
+    ```
+
 ### 文本替换：sed {#sed}
 
 `sed` 命令可以替换文本中的字符串：
