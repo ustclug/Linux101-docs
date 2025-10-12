@@ -488,6 +488,47 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
 在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。
 
+### 查看文件夹内容 {#ls}
+
+[第二章](../Ch02/index.md)已经介绍过 `ls` 的基本用法，这里再补充一些常用的选项。
+
+```console
+$ # -l 参数会以列表的形式输出文件的详细信息
+$ ls -l [DIRECTORY]
+$ # -a 参数会显示所有文件，包括隐藏文件（以 . 开头的文件）
+$ ls -a [DIRECTORY]
+$ # -h 参数会以人类可读的方式显示文件大小，例如 1K、234M、2G 等
+$ ls -h [DIRECTORY]
+```
+
+!!! example "ls 示例"
+
+    * 以列表的形式显示当前目录下的所有文件（包括隐藏文件）
+
+        ```console
+        $ ls -la
+        ```
+
+    * 以人类可读的方式显示当前目录下的所有文件（包括隐藏文件）的详细信息
+
+        ```console
+        $ ls -lha
+        ```
+
+!!! tip "tree"
+
+    `tree` 命令可以以树状图的形式显示目录结构，使用前需要先安装：
+
+    ```console
+    $ sudo apt install tree
+    ```
+
+    使用方法：
+
+    ```console
+    $ tree [DIRECTORY]
+    ```
+
 ### 查看文件内容 {#view}
 
 #### cat {#cat}
@@ -835,6 +876,46 @@ $ find [OPTION] PATH [EXPRESSION]
     /etc/host.conf
     （以下省略）
     ```
+
+### 统计文件或文件夹大小 {#du}
+
+`du` 命令可以统计文件和目录的大小。目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。`du` 命令的输出类似这样：
+
+```console
+$ du -h /etc/
+4.0K	/etc/initramfs-tools/hooks
+8.0K	/etc/initramfs-tools/conf.d
+4.0K	/etc/initramfs-tools/scripts/local-premount
+4.0K	/etc/initramfs-tools/scripts/nfs-premount
+（中间内容省略）
+4.0K	/etc/initramfs-tools/scripts/panic
+4.0K	/etc/initramfs-tools/scripts/local-top
+44K	/etc/initramfs-tools/scripts
+72K	/etc/initramfs-tools
+12K	/etc/udisks2
+16K	/etc/fonts/conf.d
+60K	/etc/fonts/conf.avail
+84K	/etc/fonts
+```
+
+由于前面说到的原因，`du` 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。
+
+此外，`ncdu` 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。按 `d` 可以删除当前选中的文件或目录，按 `q` 退出。
+
+```plain
+ncdu 1.18 ~ Use the arrow keys to navigate, press ? for help
+--- /home/example/path -------------------------------------
+   53.1 MiB [##########] /main
+   45.4 MiB [########  ]  Contents-riscv64.gz
+   40.6 MiB [#######   ] /universe
+  580.0 KiB [          ] /multiverse
+   44.0 KiB [          ] /restricted
+    8.0 KiB [          ]  InRelease
+    8.0 KiB [          ]  Release
+    4.0 KiB [          ]  Release.gpg
+
+ Total disk usage: 139.7 MiB  Apparent size: 139.6 MiB  Items: 29
+```
 
 ### 模式匹配 {#pattern}
 
