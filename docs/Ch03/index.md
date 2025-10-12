@@ -503,17 +503,13 @@ $ ls -h [DIRECTORY]
 
 !!! example "ls 示例"
 
-    * 以列表的形式显示当前目录下的所有文件（包括隐藏文件）
+    ```console title="以列表的形式显示当前目录下的所有文件（包括隐藏文件）"
+    $ ls -la
+    ```
 
-        ```console
-        $ ls -la
-        ```
-
-    * 以人类可读的方式显示当前目录下的所有文件（包括隐藏文件）的详细信息
-
-        ```console
-        $ ls -lha
-        ```
+    ```console title="以人类可读的方式显示当前目录下的所有文件（包括隐藏文件）的详细信息"
+    $ ls -lha
+    ```
 
 !!! tip "tree"
 
@@ -550,17 +546,13 @@ $ cat [OPTION] FILE
 
 !!! example "输出示例"
 
-    * 输出 file.txt 的全部内容
+    ```console title="输出 file.txt 的全部内容"
+    $ cat file.txt
+    ```
 
-        ```console
-        $ cat file.txt
-        ```
-
-    * 查看 file1.txt 与 file2.txt 连接后的内容
-
-        ```console
-        $ cat file1.txt file2.txt
-        ```
+    ```console title="查看 file1.txt 与 file2.txt 连接后的内容"
+    $ cat file1.txt file2.txt
+    ```
 
 !!! note "为什么名字叫 cat？"
 
@@ -642,18 +634,15 @@ $ cp [OPTION] SOURCE... DIRECTORY
 
 !!! example "复制示例"
 
-    * 将 `file1.txt` 复制一份到同目录，命名为 `file2.txt`
-    ```console
+    ```console title="将 file1.txt 复制一份到同目录，命名为 file2.txt"
     $ cp file1.txt file2.txt
     ```
 
-    * 将 `file1.txt`、`file2.txt` 文件复制到同目录下的 `file` 目录中
-    ```console
+    ```console title="将 file1.txt、file2.txt 文件复制到同目录下的 file 目录中"
     $ cp file1.txt file2.txt ./file/
     ```
 
-    * 将 `dir1` 文件夹及其所有子文件复制到同目录下的 `test` 文件夹中
-    ```console
+    ```console title="将 dir1 文件夹及其所有子文件复制到同目录下的 test 文件夹中"
     $ cp -r dir1 ./test/
     ```
 
@@ -718,31 +707,25 @@ $ rm [OPTION] FILE...
 
 常用的选项：
 
-| 选项                      | 含义                               |
-| ------------------------- | ---------------------------------- |
-| `-f`, `--force`           | 无视不存在或者没有权限的文件和参数 |
-| `-r`, `-R`, `--recursive` | 递归删除目录及其子文件             |
-| `-d`, `--dir`             | 删除空目录                         |
+| 选项                      | 含义                                                                 |
+| ------------------------- | -------------------------------------------------------------------- |
+| `-f`, `--force`           | 无视不存在或者有写保护的文件，只要对包含它的文件夹本身有权限即可删除 |
+| `-r`, `-R`, `--recursive` | 递归删除目录及其子文件                                               |
+| `-d`, `--dir`             | 删除空目录                                                           |
 
 !!! example "删除示例"
 
-    * 删除 `file1.txt` 文件：
+    ```console title="删除 file1.txt 文件"
+    $ rm file1.txt
+    ```
 
-        ```console
-        $ rm file1.txt
-        ```
+    ```console title="删除 test 目录及其下的所有文件"
+    $ rm -r test/
+    ```
 
-    * 删除 `test` 目录及其下的所有文件：
-
-        ```console
-        $ rm -r test/
-        ```
-
-    * 删除 `test1/`、`test2/`、`file1.txt` 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：
-
-        ```console
-        $ rm -rf test1/ test2/ file1.txt
-        ```
+    ```console title="尝试强制删除 test1/、test2/、file1.txt 文件和目录。这些文件或者目录可能不存在、有写保护或者没有权限读写"
+    $ rm -rf test1/ test2/ file1.txt
+    ```
 
 !!! warning "注意目录拼写"
 
@@ -768,17 +751,13 @@ $ mkdir [OPTION] DIR_NAME...
 
 !!! example "创建目录示例"
 
-    * 创建两个目录，名字分别为 `test1`、`test2`：
+    ```console title="创建两个目录，名字分别为 test1、test2"
+    $ mkdir test1 test2
+    ```
 
-        ```console
-        $ mkdir test1 test2
-        ```
-
-    * 创建路径 `test1/test2/test3/`：
-
-        ```console
-        $ mkdir -p test1/test2/test3/
-        ```
+    ```console title="创建路径 test1/test2/test3/"
+    $ mkdir -p test1/test2/test3/
+    ```
 
 ### 创建文件 {#touch}
 
@@ -789,9 +768,7 @@ $ touch FILE_NAME...
 
 !!! example "创建文件示例"
 
-    创建两个文件，名字分别为 `file1`、`file2`：
-
-    ```console
+    ```console title="创建两个文件，名字分别为 file1、file2"
     $ touch file1 file2
     ```
 
@@ -846,23 +823,17 @@ $ find [OPTION] PATH [EXPRESSION]
 
 !!! example "搜索示例"
 
-    * 在当前目录搜索名为 report.pdf 的文件：
+    ```console title="在当前目录搜索名为 report.pdf 的文件"
+    $ find . -name 'report.pdf'
+    ```
 
-        ```console
-        $ find . -name 'report.pdf'
-        ```
+    ```console title="全盘搜索大于 1G 的文件"
+    $ find / -size +1G
+    ```
 
-    * 全盘搜索大于 1G 的文件：
-
-        ```console
-        $ find / -size +1G
-        ```
-
-    * 在用户目录搜索所有名为 node_modules 的文件夹：
-
-        ```console
-        $ find ~/ -name 'node_modules' -type d
-        ```
+    ```console title="在用户目录搜索所有名为 node_modules 的文件夹"
+    $ find ~/ -name 'node_modules' -type d
+    ```
 
 !!! tip "对搜索到的文件批量执行命令"
 
@@ -1017,54 +988,42 @@ $ tar [OPTIONS] FILE...
 
 !!! example "tar 使用实例"
 
-    * 将 `file1`、`file2`、`file3` 打包为 `target.tar`：
+    ```console title="将 file1、file2、file3 打包为 target.tar"
+    $ tar -c -f target.tar file1 file2 file3
+    $ # 省略 - 符号也是可以的
+    $ tar cf target.tar file1 file2 file3
+    ```
 
-        ```console
-        $ tar -c -f target.tar file1 file2 file3
-        $ # 省略 - 符号也是可以的
-        $ tar cf target.tar file1 file2 file3
-        ```
+    ```console title="将 target.tar 中的文件提取到 test 目录中"
+    $ tar -x -f target.tar -C test/
+    $ # 或者：
+    $ tar xf target.tar -C test/
+    ```
 
-    * 将 `target.tar` 中的文件提取到 `test` 目录中：
+    ```console title="将 file1、file2、file3 打包，并使用 gzip 算法压缩，得到压缩文件 target.tar.gz"
+    $ tar -cz -f target.tar.gz file1 file2 file3
+    $ # 可以总是使用 -a 选项，避免记忆的麻烦
+    $ tar caf target.tar.gz file1 file2 file3
+    ```
 
-        ```console
-        $ tar -x -f target.tar -C test/
-        $ # 或者：
-        $ tar xf target.tar -C test/
-        ```
+    ```console title="将压缩文件 target.tar.gz 解压到 test 目录中"
+    $ tar -xz -f target.tar.gz -C test/
+    $ # 或者这样：
+    $ tar xaf target.tar.gz -C test
+    ```
 
-    * 将 `file1`、`file2`、`file3` 打包，并使用 gzip 算法压缩，得到压缩文件 `target.tar.gz` ：
+    ```console title="将 archive1.tar、archive2.tar、archive3.tar 三个存档文件中的文件追加到 archive.tar 中"
+    $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
+    ```
 
-        ```console
-        $ tar -cz -f target.tar.gz file1 file2 file3
-        $ # 可以总是使用 -a 选项，避免记忆的麻烦
-        $ tar caf target.tar.gz file1 file2 file3
-        ```
+    ```console title="列出 target.tar 存档文件中的内容"
+    $ tar -t -f target.tar
+    $ tar tf target.tar
 
-    * 将压缩文件 `target.tar.gz` 解压到 `test` 目录中：
-
-        ```console
-        $ tar -xz -f target.tar.gz -C test/
-        $ # 或者这样：
-        $ tar xaf target.tar.gz -C test
-        ```
-
-    * 将 `archive1.tar`、`archive2.tar`、`archive3.tar` 三个存档文件中的文件追加到 `archive.tar` 中
-
-        ```console
-        $ tar -Af archive.tar archive1.tar archive2.tar archive3.tar
-        ```
-
-    * 列出 `target.tar` 存档文件中的内容
-
-        ```console
-        $ tar -t -f target.tar
-        $ tar tf target.tar
-
-        $ # 打印出文件的详细信息
-        $ tar -tv -f target.tar
-        $ tar tvf target.tar
-        ```
+    $ # 打印出文件的详细信息
+    $ tar -tv -f target.tar
+    $ tar tvf target.tar
+    ```
 
 !!! tip "存档文件的后缀名"
 
