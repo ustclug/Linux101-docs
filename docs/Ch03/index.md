@@ -874,26 +874,59 @@ $ find [OPTION] PATH [EXPRESSION]
 
 ### 统计文件或文件夹大小 {#du}
 
-`du` 命令可以统计文件和目录的大小。目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。`du` 命令的输出类似这样：
+`du` 命令可以统计文件和目录的大小，因为目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。
 
 ```console
-$ du -h /etc/
-4.0K	/etc/initramfs-tools/hooks
-8.0K	/etc/initramfs-tools/conf.d
-4.0K	/etc/initramfs-tools/scripts/local-premount
-4.0K	/etc/initramfs-tools/scripts/nfs-premount
-（中间内容省略）
-4.0K	/etc/initramfs-tools/scripts/panic
-4.0K	/etc/initramfs-tools/scripts/local-top
-44K	/etc/initramfs-tools/scripts
-72K	/etc/initramfs-tools
-12K	/etc/udisks2
-16K	/etc/fonts/conf.d
-60K	/etc/fonts/conf.avail
-84K	/etc/fonts
+$ du [OPTION] [FILE or DIRECTORY]
 ```
 
-由于前面说到的原因，`du` 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。
+常用的选项：
+
+| 选项                     | 含义                               |
+| ------------------------ | ---------------------------------- |
+| `-h`, `--human-readable` | 以人类可读的方式显示大小           |
+| `-s`, `--summarize`      | 仅显示总大小                       |
+| `-a`, `--all`            | 显示所有文件和目录的大小           |
+| `--max-depth N`, `-d N`  | 仅显示到指定的目录深度（N 为数字） |
+
+`du` 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。
+
+!!! example "du 示例"
+
+    ```console title="显示当前目录下所有文件和目录的大小"
+    $ du -h
+    3.8M	./share/iana-etc
+    4.0K	./share/licenses/iana-etc
+    4.0K	./share/licenses/tzdata
+    4.0K	./share/licenses/gcc-libs
+    4.0K	./share/licenses/ncurses
+    4.0K	./share/licenses/zlib
+    4.0K	./share/licenses/sqlite
+    20K	./share/licenses/util-linux-libs
+    4.0K	./share/licenses/e2fsprogs
+    12K	./share/licenses/openssl
+    （中间内容省略）
+    9.5G	.
+    ```
+
+    ```console title="显示当前目录下所有文件和目录的大小，并且仅显示一层目录"
+    $ du -h -d 1
+    3.0G	./share
+    1.1G	./bin
+    337M	./include
+    4.7G	./lib
+    4.0K	./local
+    5.0M	./src
+    473M	./lib32
+    340K	./libexec
+    4.0K	./man
+    9.5G	.
+    ```
+
+    ```console title="显示当前目录下所有文件和目录的总大小"
+    $ du -sh
+    9.5G	.
+    ```
 
 此外，`ncdu` 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。按 `d` 可以删除当前选中的文件或目录，按 `q` 退出。
 
