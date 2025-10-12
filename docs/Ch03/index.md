@@ -574,10 +574,10 @@ $ cat [OPTION] FILE
     $ sudo apt install bat
     ```
 
-    例如，输出 sol1.c 文件的内容（支持 C 语言语法高亮）：
+    在 Debian/Ubuntu 下，该命令需要使用 `batcat` 调用。例如，输出 sol1.c 文件的内容（支持 C 语言语法高亮）：
 
     ```console
-    $ bat sol1.c
+    $ batcat sol1.c
     ```
 
 #### less {#less}
