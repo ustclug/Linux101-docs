@@ -529,6 +529,16 @@ $ ls -h [DIRECTORY]
     $ tree [DIRECTORY]
     ```
 
+!!! tip "eza"
+
+    [eza](https://github.com/eza-community/eza) 是一个 `ls` 的替代品，输出更加好看。可以使用如下命令安装：
+
+    ```console
+    $ sudo apt install eza
+    ```
+
+    其使用方法和 `ls` 基本相同，例如显示详细信息则使用 `eza -l`。
+
 ### 查看文件内容 {#view}
 
 #### cat {#cat}
@@ -555,6 +565,20 @@ $ cat [OPTION] FILE
 !!! note "为什么名字叫 cat？"
 
     当然和猫咪没有关系，cat 这里是 con**cat**enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
+
+!!! tip "bat"
+
+    [bat](https://github.com/sharkdp/bat) 是一个 `cat` 的替代品，输出支持语法高亮和分页。可以使用如下命令安装：
+
+    ```console
+    $ sudo apt install bat
+    ```
+
+    例如，输出 sol1.c 文件的内容（支持 C 语言语法高亮）：
+
+    ```console
+    $ bat sol1.c
+    ```
 
 #### less {#less}
 
