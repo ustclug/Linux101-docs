@@ -1765,6 +1765,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看文件夹内容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#view" class="md-nav__link">
     <span class="md-ellipsis">
       查看文件内容
@@ -1855,6 +1864,15 @@
   <a href="#find" class="md-nav__link">
     <span class="md-ellipsis">
       搜索文件和目录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#du" class="md-nav__link">
+    <span class="md-ellipsis">
+      统计文件或文件夹大小
     </span>
   </a>
   
@@ -2379,6 +2397,38 @@ Do you want to continue? [Y/n]
 <p>此部分内容请见拓展阅读：<a href="supplement/#compiling-installation">编译安装</a>。</p>
 <h2 id="operate-files-and-dirs">操作文件与目录<a class="headerlink" href="#operate-files-and-dirs" title="Permanent link">&para;</a></h2>
 <p>在 Linux 在进行操作文件与目录是使用 Linux 最基础的一个技能。不像在 Windows 和 macOS 下有图形化界面，拖拽文件即可完成文件的移动，很容易管理文件与目录，Linux 的命令行操作虽然繁琐一些，但一旦上手，就可以通过命令与参数的组合完成通过图形化界面难以实现或者无法实现的功能。</p>
+<h3 id="ls">查看文件夹内容<a class="headerlink" href="#ls" title="Permanent link">&para;</a></h3>
+<p><a href="../Ch02/">第二章</a>已经介绍过 <code>ls</code> 的基本用法，这里再补充一些常用的选项。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># -l 参数会以列表的形式输出文件的详细信息</span>
+<span class="gp">$ </span>ls<span class="w"> </span>-l<span class="w"> </span><span class="o">[</span>DIRECTORY<span class="o">]</span>
+<span class="gp">$ </span><span class="c1"># -a 参数会显示所有文件，包括隐藏文件（以 . 开头的文件）</span>
+<span class="gp">$ </span>ls<span class="w"> </span>-a<span class="w"> </span><span class="o">[</span>DIRECTORY<span class="o">]</span>
+<span class="gp">$ </span><span class="c1"># -h 参数会以人类可读的方式显示文件大小，例如 1K、234M、2G 等</span>
+<span class="gp">$ </span>ls<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>DIRECTORY<span class="o">]</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">ls 示例</p>
+<div class="highlight"><span class="filename">以列表的形式显示当前目录下的所有文件（包括隐藏文件）</span><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-la
+</code></pre></div>
+<div class="highlight"><span class="filename">以人类可读的方式显示当前目录下的所有文件（包括隐藏文件）的详细信息</span><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>-lha
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">tree</p>
+<p><code>tree</code> 命令可以以树状图的形式显示目录结构，使用前需要先安装：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tree
+</code></pre></div>
+<p>使用方法：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tree<span class="w"> </span><span class="o">[</span>DIRECTORY<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">eza</p>
+<p><a href="https://github.com/eza-community/eza">eza</a> 是一个 <code>ls</code> 的替代品，输出更加好看。可以使用如下命令安装：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>eza
+</code></pre></div>
+<p>其使用方法和 <code>ls</code> 基本相同，例如显示详细信息则使用 <code>eza -l</code>。</p>
+</div>
 <h3 id="view">查看文件内容<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
 <h4 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 输出 FILE 文件的全部内容</span>
@@ -2386,22 +2436,23 @@ Do you want to continue? [Y/n]
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">输出示例</p>
-<ul>
-<li>
-<p>输出 file.txt 的全部内容</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>file.txt
+<div class="highlight"><span class="filename">输出 file.txt 的全部内容</span><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>file.txt
 </code></pre></div>
-</li>
-<li>
-<p>查看 file1.txt 与 file2.txt 连接后的内容</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
+<div class="highlight"><span class="filename">查看 file1.txt 与 file2.txt 连接后的内容</span><pre><span></span><code><span class="gp">$ </span>cat<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
 </code></pre></div>
-</li>
-</ul>
 </div>
 <div class="admonition note">
 <p class="admonition-title">为什么名字叫 cat？</p>
 <p>当然和猫咪没有关系，cat 这里是 con<strong>cat</strong>enate（连接）的缩写，因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">bat</p>
+<p><a href="https://github.com/sharkdp/bat">bat</a> 是一个 <code>cat</code> 的替代品，输出支持语法高亮和分页。可以使用如下命令安装：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bat
+</code></pre></div>
+<p>在 Debian/Ubuntu 下，该命令需要使用 <code>batcat</code> 调用。例如，输出 sol1.c 文件的内容（支持 C 语言语法高亮）：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>batcat<span class="w"> </span>sol1.c
+</code></pre></div>
 </div>
 <h4 id="less">less<a class="headerlink" href="#less" title="Permanent link">&para;</a></h4>
 <p>less 和 cat 的区别在于，cat 会一次性打印全部内容到终端中并退出，而 less 一次只显示一页，且支持向前/后滚动、搜索等功能。如果要在一个大文件中（例如 man page）查找一部分内容，less 通常要比 cat 方便得多。</p>
@@ -2502,23 +2553,12 @@ Do you want to continue? [Y/n]
 </table>
 <div class="admonition example">
 <p class="admonition-title">复制示例</p>
-<ul>
-<li>
-<p>将 <code>file1.txt</code> 复制一份到同目录，命名为 <code>file2.txt</code>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
-</code></pre></div></p>
-</li>
-<li>
-<p>将 <code>file1.txt</code>、<code>file2.txt</code> 文件复制到同目录下的 <code>file</code> 目录中
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w"> </span>./file/
-</code></pre></div></p>
-</li>
-<li>
-<p>将 <code>dir1</code> 文件夹及其所有子文件复制到同目录下的 <code>test</code> 文件夹中
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>./test/
-</code></pre></div></p>
-</li>
-</ul>
+<div class="highlight"><span class="filename">将 file1.txt 复制一份到同目录，命名为 file2.txt</span><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
+</code></pre></div>
+<div class="highlight"><span class="filename">将 file1.txt、file2.txt 文件复制到同目录下的 file 目录中</span><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w"> </span>./file/
+</code></pre></div>
+<div class="highlight"><span class="filename">将 dir1 文件夹及其所有子文件复制到同目录下的 test 文件夹中</span><pre><span></span><code><span class="gp">$ </span>cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>./test/
+</code></pre></div>
 </div>
 <details class="tip">
 <summary>硬链接和软链接</summary>
@@ -2583,7 +2623,7 @@ Do you want to continue? [Y/n]
 <tbody>
 <tr>
 <td><code>-f</code>, <code>--force</code></td>
-<td>无视不存在或者没有权限的文件和参数</td>
+<td>无视不存在或者有写保护的文件，只要对包含它的文件夹本身有权限即可删除</td>
 </tr>
 <tr>
 <td><code>-r</code>, <code>-R</code>, <code>--recursive</code></td>
@@ -2597,23 +2637,12 @@ Do you want to continue? [Y/n]
 </table>
 <div class="admonition example">
 <p class="admonition-title">删除示例</p>
-<ul>
-<li>
-<p>删除 <code>file1.txt</code> 文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>file1.txt
+<div class="highlight"><span class="filename">删除 file1.txt 文件</span><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>file1.txt
 </code></pre></div>
-</li>
-<li>
-<p>删除 <code>test</code> 目录及其下的所有文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span>test/
+<div class="highlight"><span class="filename">删除 test 目录及其下的所有文件</span><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span>test/
 </code></pre></div>
-</li>
-<li>
-<p>删除 <code>test1/</code>、<code>test2/</code>、<code>file1.txt</code> 这些文件、目录。其中，这些文件或者目录可能不存在、写保护或者没有权限读写：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>-rf<span class="w"> </span>test1/<span class="w"> </span>test2/<span class="w"> </span>file1.txt
+<div class="highlight"><span class="filename">尝试强制删除 test1/、test2/、file1.txt 文件和目录。这些文件或者目录可能不存在、有写保护或者没有权限读写</span><pre><span></span><code><span class="gp">$ </span>rm<span class="w"> </span>-rf<span class="w"> </span>test1/<span class="w"> </span>test2/<span class="w"> </span>file1.txt
 </code></pre></div>
-</li>
-</ul>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意目录拼写</p>
@@ -2643,18 +2672,10 @@ Do you want to continue? [Y/n]
 </table>
 <div class="admonition example">
 <p class="admonition-title">创建目录示例</p>
-<ul>
-<li>
-<p>创建两个目录，名字分别为 <code>test1</code>、<code>test2</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>mkdir<span class="w"> </span>test1<span class="w"> </span>test2
+<div class="highlight"><span class="filename">创建两个目录，名字分别为 test1、test2</span><pre><span></span><code><span class="gp">$ </span>mkdir<span class="w"> </span>test1<span class="w"> </span>test2
 </code></pre></div>
-</li>
-<li>
-<p>创建路径 <code>test1/test2/test3/</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>mkdir<span class="w"> </span>-p<span class="w"> </span>test1/test2/test3/
+<div class="highlight"><span class="filename">创建路径 test1/test2/test3/</span><pre><span></span><code><span class="gp">$ </span>mkdir<span class="w"> </span>-p<span class="w"> </span>test1/test2/test3/
 </code></pre></div>
-</li>
-</ul>
 </div>
 <h3 id="touch">创建文件<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 创建一个文件，名为 FILE_NAME</span>
@@ -2662,8 +2683,7 @@ Do you want to continue? [Y/n]
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">创建文件示例</p>
-<p>创建两个文件，名字分别为 <code>file1</code>、<code>file2</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>touch<span class="w"> </span>file1<span class="w"> </span>file2
+<div class="highlight"><span class="filename">创建两个文件，名字分别为 file1、file2</span><pre><span></span><code><span class="gp">$ </span>touch<span class="w"> </span>file1<span class="w"> </span>file2
 </code></pre></div>
 </div>
 <div class="admonition note">
@@ -2725,26 +2745,120 @@ Do you want to continue? [Y/n]
 </tr>
 </tbody>
 </table>
+<p>如果不添加任何其他选项，find 会递归地输出提供的 PATH 下的所有文件。</p>
 <div class="admonition example">
 <p class="admonition-title">搜索示例</p>
-<ul>
-<li>
-<p>在当前目录搜索名为 report.pdf 的文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;report.pdf&#39;</span>
+<div class="highlight"><span class="filename">在当前目录搜索名为 report.pdf 的文件</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;report.pdf&#39;</span>
 </code></pre></div>
-</li>
-<li>
-<p>全盘搜索大于 1G 的文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>/<span class="w"> </span>-size<span class="w"> </span>+1G
+<div class="highlight"><span class="filename">全盘搜索大于 1G 的文件</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>/<span class="w"> </span>-size<span class="w"> </span>+1G
 </code></pre></div>
-</li>
-<li>
-<p>在用户目录搜索所有名为 node_modules 的文件夹：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>~/<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;node_modules&#39;</span><span class="w"> </span>-type<span class="w"> </span>d
+<div class="highlight"><span class="filename">在用户目录搜索所有名为 node_modules 的文件夹</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>~/<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;node_modules&#39;</span><span class="w"> </span>-type<span class="w"> </span>d
 </code></pre></div>
-</li>
-</ul>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">对搜索到的文件批量执行命令</p>
+<p>find 的一个很有用的用法是对每一个文件都执行某个命令（例如 <code>md5sum</code>）：</p>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>md5sum<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+<p>这里，<code>find .</code> 是指对当前目录（<code>.</code>）进行 <code>find</code>，并只列出文件（<code>-type f</code>）。<code>-exec</code> 后面的内容是要执行的命令，其中 <code>{}</code> 会被替换成找到的对象（文件、目录）的路径，<code>\;</code> 表示对每个对象都执行一次给定的命令，即实际运行的是：</p>
+<div class="highlight"><pre><span></span><code>md5sum<span class="w"> </span>file1
+md5sum<span class="w"> </span>file2
+md5sum<span class="w"> </span>file3
+...
+</code></pre></div>
+<p>如果将 <code>\;</code> 换成 <code>+</code>，那么就是将文件名称收集起来一并交给要执行的命令，即：</p>
+<div class="highlight"><pre><span></span><code>md5sum<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3<span class="w"> </span>...
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">fd</p>
+<p><a href="https://github.com/sharkdp/fd">fd</a> 是 find 的更现代、好用的替代。在 Ubuntu 下需要安装 <code>fd-find</code> 包，并且命令名为 <strong><code>fdfind</code></strong>（而非 <code>fd</code>）。</p>
+<p>其默认接受正则表达式（见<a href="../Ch09/">第九章</a>）作为搜索条件，例如搜索结尾为 <code>.conf</code> 的文件：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>fdfind<span class="w"> </span><span class="s1">&#39;\.conf$&#39;</span><span class="w"> </span>/etc/
+<span class="go">/etc/debconf.conf</span>
+<span class="go">/etc/gai.conf</span>
+<span class="go">/etc/host.conf</span>
+<span class="go">（以下省略）</span>
+</code></pre></div>
+</div>
+<h3 id="du">统计文件或文件夹大小<a class="headerlink" href="#du" title="Permanent link">&para;</a></h3>
+<p><code>du</code> 命令可以统计文件和目录的大小，因为目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>du<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>FILE<span class="w"> </span>or<span class="w"> </span>DIRECTORY<span class="o">]</span>
+</code></pre></div>
+<p>常用的选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-h</code>, <code>--human-readable</code></td>
+<td>以人类可读的方式显示大小</td>
+</tr>
+<tr>
+<td><code>-s</code>, <code>--summarize</code></td>
+<td>仅显示总大小</td>
+</tr>
+<tr>
+<td><code>-a</code>, <code>--all</code></td>
+<td>显示所有文件和目录的大小</td>
+</tr>
+<tr>
+<td><code>--max-depth N</code>, <code>-d N</code></td>
+<td>仅显示到指定的目录深度（N 为数字）</td>
+</tr>
+</tbody>
+</table>
+<p><code>du</code> 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。</p>
+<div class="admonition example">
+<p class="admonition-title">du 示例</p>
+<div class="highlight"><span class="filename">显示当前目录下所有文件和目录的大小</span><pre><span></span><code><span class="gp">$ </span>du<span class="w"> </span>-h
+<span class="go">3.8M    ./share/iana-etc</span>
+<span class="go">4.0K    ./share/licenses/iana-etc</span>
+<span class="go">4.0K    ./share/licenses/tzdata</span>
+<span class="go">4.0K    ./share/licenses/gcc-libs</span>
+<span class="go">4.0K    ./share/licenses/ncurses</span>
+<span class="go">4.0K    ./share/licenses/zlib</span>
+<span class="go">4.0K    ./share/licenses/sqlite</span>
+<span class="go">20K ./share/licenses/util-linux-libs</span>
+<span class="go">4.0K    ./share/licenses/e2fsprogs</span>
+<span class="go">12K ./share/licenses/openssl</span>
+<span class="go">（中间内容省略）</span>
+<span class="go">9.5G    .</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">显示当前目录下所有文件和目录的大小，并且仅显示一层目录</span><pre><span></span><code><span class="gp">$ </span>du<span class="w"> </span>-h<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
+<span class="go">3.0G    ./share</span>
+<span class="go">1.1G    ./bin</span>
+<span class="go">337M    ./include</span>
+<span class="go">4.7G    ./lib</span>
+<span class="go">4.0K    ./local</span>
+<span class="go">5.0M    ./src</span>
+<span class="go">473M    ./lib32</span>
+<span class="go">340K    ./libexec</span>
+<span class="go">4.0K    ./man</span>
+<span class="go">9.5G    .</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">显示当前目录下所有文件和目录的总大小</span><pre><span></span><code><span class="gp">$ </span>du<span class="w"> </span>-sh
+<span class="go">9.5G    .</span>
+</code></pre></div>
+</div>
+<p>此外，<code>ncdu</code> 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。按 <code>d</code> 可以删除当前选中的文件或目录，按 <code>q</code> 退出。</p>
+<div class="highlight"><pre><span></span><code>ncdu 1.18 ~ Use the arrow keys to navigate, press ? for help
+--- /home/example/path -------------------------------------
+   53.1 MiB [##########] /main
+   45.4 MiB [########  ]  Contents-riscv64.gz
+   40.6 MiB [#######   ] /universe
+  580.0 KiB [          ] /multiverse
+   44.0 KiB [          ] /restricted
+    8.0 KiB [          ]  InRelease
+    8.0 KiB [          ]  Release
+    4.0 KiB [          ]  Release.gpg
+
+ Total disk usage: 139.7 MiB  Apparent size: 139.6 MiB  Items: 29
+</code></pre></div>
 <h3 id="pattern">模式匹配<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
 <p>许多现代的 shell 都支持一定程度的模式匹配。举个例子，bash 的匹配模式被称为 <a href="https://mywiki.wooledge.org/glob">glob</a>，支持的操作如下：</p>
 <table>
@@ -2899,51 +3013,31 @@ Do you want to continue? [Y/n]
 </div>
 <div class="admonition example">
 <p class="admonition-title">tar 使用实例</p>
-<ul>
-<li>
-<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包为 <code>target.tar</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
+<div class="highlight"><span class="filename">将 file1、file2、file3 打包为 target.tar</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 <span class="gp">$ </span><span class="c1"># 省略 - 符号也是可以的</span>
 <span class="gp">$ </span>tar<span class="w"> </span>cf<span class="w"> </span>target.tar<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
-</li>
-<li>
-<p>将 <code>target.tar</code> 中的文件提取到 <code>test</code> 目录中：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
+<div class="highlight"><span class="filename">将 target.tar 中的文件提取到 test 目录中</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
 <span class="gp">$ </span><span class="c1"># 或者：</span>
 <span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>target.tar<span class="w"> </span>-C<span class="w"> </span>test/
 </code></pre></div>
-</li>
-<li>
-<p>将 <code>file1</code>、<code>file2</code>、<code>file3</code> 打包，并使用 gzip 算法压缩，得到压缩文件 <code>target.tar.gz</code> ：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-cz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
+<div class="highlight"><span class="filename">将 file1、file2、file3 打包，并使用 gzip 算法压缩，得到压缩文件 target.tar.gz</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-cz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 <span class="gp">$ </span><span class="c1"># 可以总是使用 -a 选项，避免记忆的麻烦</span>
 <span class="gp">$ </span>tar<span class="w"> </span>caf<span class="w"> </span>target.tar.gz<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3
 </code></pre></div>
-</li>
-<li>
-<p>将压缩文件 <code>target.tar.gz</code> 解压到 <code>test</code> 目录中：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-xz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span>test/
+<div class="highlight"><span class="filename">将压缩文件 target.tar.gz 解压到 test 目录中</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-xz<span class="w"> </span>-f<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span>test/
 <span class="gp">$ </span><span class="c1"># 或者这样：</span>
 <span class="gp">$ </span>tar<span class="w"> </span>xaf<span class="w"> </span>target.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
-</li>
-<li>
-<p>将 <code>archive1.tar</code>、<code>archive2.tar</code>、<code>archive3.tar</code> 三个存档文件中的文件追加到 <code>archive.tar</code> 中</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-Af<span class="w"> </span>archive.tar<span class="w"> </span>archive1.tar<span class="w"> </span>archive2.tar<span class="w"> </span>archive3.tar
+<div class="highlight"><span class="filename">将 archive1.tar、archive2.tar、archive3.tar 三个存档文件中的文件追加到 archive.tar 中</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-Af<span class="w"> </span>archive.tar<span class="w"> </span>archive1.tar<span class="w"> </span>archive2.tar<span class="w"> </span>archive3.tar
 </code></pre></div>
-</li>
-<li>
-<p>列出 <code>target.tar</code> 存档文件中的内容</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>target.tar
+<div class="highlight"><span class="filename">列出 target.tar 存档文件中的内容</span><pre><span></span><code><span class="gp">$ </span>tar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>target.tar
 <span class="gp">$ </span>tar<span class="w"> </span>tf<span class="w"> </span>target.tar
 
 <span class="gp">$ </span><span class="c1"># 打印出文件的详细信息</span>
 <span class="gp">$ </span>tar<span class="w"> </span>-tv<span class="w"> </span>-f<span class="w"> </span>target.tar
 <span class="gp">$ </span>tar<span class="w"> </span>tvf<span class="w"> </span>target.tar
 </code></pre></div>
-</li>
-</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">存档文件的后缀名</p>

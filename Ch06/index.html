@@ -2261,6 +2261,21 @@
 <p class="admonition-title">不止如此！</p>
 <p>grep 事实上是非常强大的查找工具，<a href="../Ch09/">第九章</a>将在介绍正则表达式语法之后进一步介绍 grep。</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">ripgrep</p>
+<p>除了 grep 以外，还有一个更快更强大的工具 <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>。其会默认递归查找当前目录下的文件。安装 <code>ripgrep</code> 包后使用 <code>rg</code> 命令，即可作为 <code>grep -R</code> 的替代：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 在 /etc/ 下搜索包含 localhost 的文件</span>
+<span class="gp">$ </span>rg<span class="w"> </span>localhost<span class="w"> </span>/etc/
+<span class="go">/etc/hosts</span>
+<span class="go">1:127.0.0.1 localhost</span>
+<span class="go">2:::1   localhost</span>
+
+<span class="go">/etc/security/pam_env.conf</span>
+<span class="go">52:# to &quot;localhost&quot; rather than not being set at all</span>
+<span class="go">53:#REMOTEHOST  DEFAULT=localhost OVERRIDE=@{PAM_RHOST}</span>
+<span class="go">64:#NNTPSERVER  DEFAULT=localhost</span>
+</code></pre></div>
+</div>
 <h3 id="sed">文本替换：sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p><code>sed</code> 命令可以替换文本中的字符串：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>

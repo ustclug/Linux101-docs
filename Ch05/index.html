@@ -1770,48 +1770,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      列出文件系统项目
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="列出文件系统项目">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cmd-find" class="md-nav__link">
-    <span class="md-ellipsis">
-      find 命令
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cmd-du" class="md-nav__link">
-    <span class="md-ellipsis">
-      du 命令
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cmd-ncdu" class="md-nav__link">
-    <span class="md-ellipsis">
-      ncdu 命令
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#questions" class="md-nav__link">
     <span class="md-ellipsis">
       思考题
@@ -2119,6 +2077,10 @@ See &quot;man sudo_root&quot; for details.
 <p>其他的分区以挂载 (mount) 的形式「挂」在了这棵树上，如图中的 <code>/mnt/windows_disk/</code>。</p>
 <p>那么在根目录下的这些目录各自有什么含义呢？这就由文件系统层次结构标准 (FHS, Filesystem Hierarchy Standard) 来定义了。这个标准定义了 Linux 发行版的标准目录结构。大部分的 Linux 发行版遵循此标准，或由此标准做了细小的调整。以下进行一个简要的介绍。也可以在<a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html">官网</a>查看标准的具体内容。</p>
 <p>当然，实际情况不一定会和以下介绍的内容完全一致。可以使用 <code>man hier</code> 和 <code>man file-hierarchy</code> 查看你的系统中关于文件系统层次结构的文档。</p>
+<details class="note">
+<summary>Systemd 的文件系统层次结构</summary>
+<p>如果你阅读了 <code>man hier</code> 和 <code>man file-hierarchy</code>，你会发现它们之间有一些差异。例如后者有 <code>/efi</code> 目录，前者未提及。这是因为后者是 Systemd 使用的文件系统层次结构，在 FHS 的基础上做了一些扩展。但是总体来说，两者是类似的。</p>
+</details>
 <dl>
 <dt><code>/bin</code></dt>
 <dd>存储必须的程序文件，对所有用户都可用。</dd>
@@ -2213,70 +2175,6 @@ See &quot;man sudo_root&quot; for details.
 </ul>
 </dd>
 </dl>
-<h2 id="list-objects">列出文件系统项目<a class="headerlink" href="#list-objects" title="Permanent link">&para;</a></h2>
-<p>经常我们需要在 Shell 中列出某个目录下的项目（子目录和文件）。<code>ls</code> 命令是最常见的用来列出文件系统项目的命令，<code>ls -la</code> 则可以显示隐藏文件（<code>-a</code>）和更详细的信息（<code>-l</code>）。但是，<code>ls</code> 只能显示某个目录下的文件和子目录，并不会深入子目录内部继续检查。下面介绍几个命令，常用于获取这些信息。</p>
-<h3 id="cmd-find"><code>find</code> 命令<a class="headerlink" href="#cmd-find" title="Permanent link">&para;</a></h3>
-<p><code>find</code> 命令可以列出某个目录下所有的目录和文件，并<strong>递归地</strong>进入子目录。基本用法是</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/etc
-/etc
-/etc/analog.cfg
-/etc/hosts.deny
-/etc/initramfs-tools
-/etc/initramfs-tools/initramfs.conf
-/etc/initramfs-tools/hooks
-/etc/initramfs-tools/conf.d
-/etc/initramfs-tools/conf.d/resume
-/etc/initramfs-tools/modules
-/etc/initramfs-tools/update-initramfs.conf
-...<span class="w"> </span><span class="o">(</span>省略<span class="o">)</span>
-</code></pre></div>
-<p>可以看到，<code>find</code> 命令将列出指定的目录下的文件和子目录名称，在遇到子目录时立即进入目录并递归地执行上面的操作。</p>
-<p>该命令的一个很有用的用法是对每一个文件都执行某个命令（例如 <code>md5sum</code>）：</p>
-<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>md5sum<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
-</code></pre></div>
-<p>这里，<code>find .</code> 是指对当前目录（<code>.</code>）进行 <code>find</code>，并只列出文件（<code>-type f</code>）。<code>-exec</code> 后面的内容是要执行的命令，其中 <code>{}</code> 会被替换成找到的对象（文件、目录）的路径，<code>\;</code> 表示对每个对象都执行一次给定的命令，即实际运行的是</p>
-<div class="highlight"><pre><span></span><code>md5sum<span class="w"> </span>file1
-md5sum<span class="w"> </span>file2
-md5sum<span class="w"> </span>file3
-...
-</code></pre></div>
-<p>如果将 <code>\;</code> 换成 <code>+</code>，那么就是将文件名称收集起来一并交给要执行的命令，即</p>
-<div class="highlight"><pre><span></span><code>md5sum<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>file3<span class="w"> </span>...
-</code></pre></div>
-<h3 id="cmd-du"><code>du</code> 命令<a class="headerlink" href="#cmd-du" title="Permanent link">&para;</a></h3>
-<p><code>du</code> 命令可以统计文件和目录的大小。目录的大小是无法直接获取的，需要统计里面所有的文件和子目录的大小之后加和才能得到。<code>du</code> 命令的输出类似这样：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>du<span class="w"> </span>-h<span class="w"> </span>/etc/
-<span class="m">4</span>.0K<span class="w">    </span>/etc/initramfs-tools/hooks
-<span class="m">8</span>.0K<span class="w">    </span>/etc/initramfs-tools/conf.d
-<span class="m">4</span>.0K<span class="w">    </span>/etc/initramfs-tools/scripts/local-premount
-<span class="m">4</span>.0K<span class="w">    </span>/etc/initramfs-tools/scripts/nfs-premount
-...<span class="w"> </span><span class="o">(</span>省略<span class="o">)</span>
-<span class="m">4</span>.0K<span class="w">    </span>/etc/initramfs-tools/scripts/panic
-<span class="m">4</span>.0K<span class="w">    </span>/etc/initramfs-tools/scripts/local-top
-44K<span class="w"> </span>/etc/initramfs-tools/scripts
-72K<span class="w"> </span>/etc/initramfs-tools
-12K<span class="w"> </span>/etc/udisks2
-16K<span class="w"> </span>/etc/fonts/conf.d
-60K<span class="w"> </span>/etc/fonts/conf.avail
-84K<span class="w"> </span>/etc/fonts
-</code></pre></div>
-<p>由于前面说到的原因，<code>du</code> 需要先递归进入子目录，处理完其中所有的项目之后，才能回到上层目录并显示上层目录的总大小。类似 <code>ls -h</code>，这里的 <code>-h</code> 表示以人类可读的方式进行显示，<code>-b</code> 则可以显示字节数，<code>-a</code> 可以使得输出包含文件的大小（默认只显示各层级目录的大小）。</p>
-<h3 id="cmd-ncdu"><code>ncdu</code> 命令<a class="headerlink" href="#cmd-ncdu" title="Permanent link">&para;</a></h3>
-<p><code>ncdu</code> 命令可以以图形化和交互式的方式显示目录的内容和大小，并可以用左右方向键浏览目录，类似 Windows 的文件资源管理器。这非常便于观察哪个目录占用了较大的磁盘空间。</p>
-<div class="highlight"><pre><span></span><code>ncdu 1.18 ~ Use the arrow keys to navigate, press ? for help
---- /home/xxxxxx(略去) -----------------
-                         /..
-   53.1 MiB [##########] /main
-   45.4 MiB [########  ]  Contents-riscv64.gz
-   40.6 MiB [#######   ] /universe
-  580.0 KiB [          ] /multiverse
-   44.0 KiB [          ] /restricted
-    8.0 KiB [          ]  InRelease
-    8.0 KiB [          ]  Release
-    4.0 KiB [          ]  Release.gpg
-
- Total disk usage: 139.7 MiB  Apparent size: 139.6 MiB  Items: 29
-</code></pre></div>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">nobody 用户</p>
