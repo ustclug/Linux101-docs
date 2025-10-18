@@ -142,6 +142,18 @@ Xfce 下有多处与缩放调整有关的设置。调整 Xfce 的缩放有两种
 - 托盘大小：右键面板 -> 面板 -> 面板首选项 -> 「尺寸」下面的「行大小」
 - 鼠标光标：设置 -> 硬件 -> 鼠标和触摸板 -> 主题 -> 光标大小
 
+如果你觉得上面的做法太麻烦了，我们也提供了一个脚本 `toggle-hidpi` 来帮助你快速切换。该脚本基于 [Kali Linux 的 kali-hidpi-mode 包修改](https://gitlab.com/kalilinux/packages/kali-hidpi-mode/-/blob/kali/master/kali-hidpi-mode?ref_type=heads)。使用方法如下：
+
+```console
+$ # 如果没有使用我们最新的虚拟机镜像，可以先下载脚本：
+$ sudo wget -O /usr/local/bin/toggle-hidpi https://github.com/ustclug/101strap/raw/refs/heads/master/assets/toggle-hidpi
+$ sudo chmod +x /usr/local/bin/toggle-hidpi
+
+$ # 使用方法：
+$ toggle-hidpi 2  # 2x 缩放
+$ toggle-hidpi 1.5  # 1.5x 缩放
+```
+
 ### 扩大磁盘大小 {#vm-disk-resize}
 
 为了在可用磁盘空间较小的情况下也能快速体验，我们提供的虚拟机镜像磁盘仅设置了 5G，有可能会遇到空间不足的问题。
