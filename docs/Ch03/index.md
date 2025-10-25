@@ -527,7 +527,7 @@ $ ls -h [DIRECTORY]
 
 !!! tip "eza"
 
-    [eza](https://github.com/eza-community/eza) 是一个 `ls` 的替代品，输出更加好看。可以使用如下命令安装：
+    [eza](https://github.com/eza-community/eza) 是一个 `ls` 的替代品，输出更加好看。在 Ubuntu 24.04 及以上版本中可以使用如下命令安装：
 
     ```console
     $ sudo apt install eza
