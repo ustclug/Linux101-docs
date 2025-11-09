@@ -1129,7 +1129,7 @@ DESCRIPTION
 
 !!! tip "提示"
 
-    对于单行的命令，可以使用 [Explain Shell](https://explainshell.com/) 解释命令和参数的含义、作用。
+    对于单行的命令，可以使用 [Explain Shell](https://explainshell.com/) 解释命令和参数的含义、作用。Explain Shell 通过预先解析 Ubuntu 的 man 文档实现了相关功能。
 
 ### tldr 软件 {#tldr}
 
