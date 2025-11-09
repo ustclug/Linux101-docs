@@ -969,6 +969,8 @@ Bash shell 本身提供了调试方法：
 
 除了 Bash shell 内置的选项，还有 [BASH Debugger](http://bashdb.sourceforge.net/)、[shellcheck](https://github.com/koalaman/shellcheck) 等第三方脚本分析工具。
 
+对于单行的命令，可以使用 [Explain Shell](https://explainshell.com/) 解释命令和参数的含义、作用。
+
 ## 思考题 {#thinking-questions}
 
 !!! question "I/O 重定向的小细节"
