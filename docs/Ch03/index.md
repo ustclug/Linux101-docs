@@ -474,7 +474,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     $ echo 'export PATH=/usr/local/clang-10.0.0/bin:$PATH' >> ~/.bashrc
     $ source ~/.bashrc
     ```
-    
+
     这两条命令将当前 `clang-10.0.0` 目录添加到 PATH 环境变量中。
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
