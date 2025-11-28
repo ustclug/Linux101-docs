@@ -454,23 +454,36 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     (Output omitted)
     ```
 
-    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 那样在任何地方都可以直接运行。我们可以这样做：
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 命令那样在任何地方都可以直接运行。我们可以这样做：
 
     ```console
-    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下。
-    $ sudo cp -R * /usr/local/
+    $ # 在 /usr/loacl/ 目录下新建 clang-10.0.0 目录。
+    $ sudo mkdir /usr/local/clang-10.0.0
+    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 整个目录复制到新建的 /usr/local/clang-10.0.0 下。
+    $ sudo cp -R * /usr/local/clang-10.0.0
+    $ echo 'export PATH=/usr/local/clang-10.0.0/bin:$PATH' >> ~/.bashrc
+    $ source ~/.bashrc
     ```
 
-    为什么是 `/usr/local` 呢？因为 `/usr/local/bin` 处在 PATH 环境变量下。当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
+    在这里我们需要知道什么是 `PATH` 变量，当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 `$PATH` 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 `$PATH` 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
+    那为什么是不直接将 `clang` 目录下的内容直接复制到 `/usr/local` 下呢？这么做虽然能让 `clang/bin` 目录下的二进制文件与 `/usr/local/bin/` 合并，从而实现“到处可调用”，但同时也会把解压的 `clang` 目录下的 `lib`、`include`、`share` 等目录混入系统已有的 `/usr/local/lib`、`/usr/local/include` 等目录中。
+    这种方法虽然是最简单最省事的，但是这种方法却忽略了 `linux` 系统最重要的系统管理问题，这种直接将外部编译的 `clang` 的二进制文件和依赖库文件加入到系统的执行目录和依赖中，针对于软件的版本管理和后续的维护卸载几乎成为了不可能，你会根本无法区分哪些文件属于外部编译的 `clang` 哪些属于原系统，后续的版本管理会非常困难，也几乎无法干净卸载，所以这种操作完全是不可逆的，这种方式在系统管理角度是不可取的，既不安全也不便于维护，因此在实际工作中并不推荐使用。
+    官方推荐的做法是单独在 `/usr/local/` 下单独创建一个属于 `clang` 的部署目录，并且标注好版本号，这样也更方便后续的版本管理与维护工作。之后使用：
 
+    ```console
+    $ echo 'export PATH=/usr/local/clang-10.0.0/bin:$PATH' >> ~/.bashrc
+    $ source ~/.bashrc
+    ```
+    
+    这两条命令将当前 `clang-10.0.0` 目录添加到 PATH 环境变量中。
     通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
     ```console
     $ echo $PATH
-    /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    /usr/local/clang-10.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
-    在上面的复制过程中，源目录和目标目录的两个 `bin` 目录会相互合并，`clang` 和 `clang++` 两个可执行文件也就被复制到了 `/usr/local/bin/` 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 `/usr/local`  下的对应目录合并，将 clang 的库和文档加到系统当中。
+    这里我们可以注意到，我们新创建的  `/usr/local/clang-10.0.0` 目录已经添加到了 `PATH` 环境变量中，我们现在就可以像调用 `apt` 等命令一样，在任意地方调用我们下载的二进制编译的程序。
 
 !!! warning "有关手工获取的软件"
 
