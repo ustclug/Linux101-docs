@@ -457,7 +457,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 命令那样在任何地方都可以直接运行。我们可以这样做：
 
     ```console
-    $ # 在 /usr/loacl/ 目录下新建 clang-10.0.0 目录。
+    $ # 在 /usr/local/ 目录下新建 clang-10.0.0 目录。
     $ sudo mkdir /usr/local/clang-10.0.0
     $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 整个目录复制到新建的 /usr/local/clang-10.0.0 下。
     $ sudo cp -R * /usr/local/clang-10.0.0
