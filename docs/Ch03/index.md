@@ -423,13 +423,13 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     ```console
     $ # 下载二进制的压缩文件存档
-    $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+    $ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
     $ # 创建 clang 目录
     $ mkdir clang
 
     $ # 将下载得到的压缩文件解压到当前目录
-    $ tar xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
+    $ tar xf clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C clang
 
     $ cd clang
     ```
@@ -454,36 +454,30 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     (Output omitted)
     ```
 
-    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 命令那样在任何地方都可以直接运行。我们可以这样做：
+    这个目录下的 `clang` 和 `clang++` 就类似于我们比较熟悉的 `gcc` 和 `g++`。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 `clang` 和 `clang++`，而更希望的是能够像 `apt` 命令下载的程序那样在任何地方都可以直接运行。我们可以这样做：
 
     ```console
-    $ # 在 /usr/local/ 目录下新建 clang-10.0.0 目录。
-    $ sudo mkdir /usr/local/clang-10.0.0
-    $ # 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 整个目录复制到新建的 /usr/local/clang-10.0.0 下。
-    $ sudo cp -R * /usr/local/clang-10.0.0
-    $ echo 'export PATH=/usr/local/clang-10.0.0/bin:$PATH' >> ~/.bashrc
+    $ # 在 /usr/local/ 目录下新建 clang-16.0.0 目录。
+    $ sudo mkdir /usr/local/clang-16.0.0
+    $ # 将 clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04 整个目录复制到新建的 /usr/local/clang-16.0.0 下。
+    $ sudo cp -R * /usr/local/clang-16.0.0
+    ```
+
+    在这里我们需要知道什么是 `PATH` 变量，当我们在终端输入命令时，终端会优先判断是否为终端的内建命令，如果不是，则会在 `$PATH` 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 `$PATH` 中的目录下面，我们就可以在任意地方调用我们的程序。那为什么是不直接将 `clang` 目录下的内容直接复制到 `/usr/local` 下呢？这么做虽然能让 `clang/bin` 目录下的二进制文件与 `/usr/local/bin/` 合并，从而实现“到处可调用”，但同时也会把解压的 `clang` 目录下的 `lib`、`include`、`share` 等目录混入系统已有的 `/usr/local/lib`、`/usr/local/include` 等目录中。这种方法针对那些只有单一的二进制编译执行程序来说是简单省事的，但由于 `clang` 有很多版本，并且 `clang` 软件规模较大、较复杂，有很多文件，这么做会带来麻烦：安装的 `clang` 无法进行有效的版本管理，后续卸载也很困难，因此像 `clang` 这样的复杂软件，并不推荐直接安装到 `/usr/local`。更推荐的做法是单独在 `/usr/local/` 下单独创建一个属于 `clang` 的部署目录，并且标注好版本号，这样也更方便后续的版本管理与维护工作：
+
+    ```console
+    $ echo 'export PATH=/usr/local/clang-16.0.0/bin:$PATH' >> ~/.bashrc
     $ source ~/.bashrc
     ```
 
-    在这里我们需要知道什么是 `PATH` 变量，当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 `$PATH` 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 `$PATH` 中的目录下面，我们就可以像 `apt` 一样，在任意地方调用我们的程序。
-    那为什么是不直接将 `clang` 目录下的内容直接复制到 `/usr/local` 下呢？这么做虽然能让 `clang/bin` 目录下的二进制文件与 `/usr/local/bin/` 合并，从而实现“到处可调用”，但同时也会把解压的 `clang` 目录下的 `lib`、`include`、`share` 等目录混入系统已有的 `/usr/local/lib`、`/usr/local/include` 等目录中。
-    这种方法虽然是简单省事的，但由于 clang 有很多版本，并且 clang 软件规模较大、较复杂，有很多文件，这么做会带来麻烦：之前安装的 clang 无法进行有效的版本管理，后续卸载也很困难，因此对复杂软件，并不推荐直接安装到 `/usr/local`。
-    官方推荐的做法是单独在 `/usr/local/` 下单独创建一个属于 `clang` 的部署目录，并且标注好版本号，这样也更方便后续的版本管理与维护工作。之后使用：
-
-    ```console
-    $ echo 'export PATH=/usr/local/clang-10.0.0/bin:$PATH' >> ~/.bashrc
-    $ source ~/.bashrc
-    ```
-
-    这两条命令将当前 `clang-10.0.0` 目录添加到 PATH 环境变量中。
-    通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
+    这两条命令将当前 `clang-16.0.0` 目录添加到 PATH 环境变量中。通过这个命令可以看到当前的 PATH 环境变量有哪些目录。
 
     ```console
     $ echo $PATH
-    /usr/local/clang-10.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    /usr/local/clang-16.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
-    这里我们可以注意到，我们新创建的 `/usr/local/clang-10.0.0` 目录已经添加到了 `PATH` 环境变量中，我们现在就可以像调用 `apt` 等命令一样，在任意地方调用我们下载的二进制编译的程序。
+    这里我们可以注意到，新创建的 `/usr/local/clang-16.0.0` 目录已经添加到了 `PATH` 环境变量中，现在就可以在任意地方调用我们下载的二进制编译的程序。
 
 !!! warning "有关手工获取的软件"
 
