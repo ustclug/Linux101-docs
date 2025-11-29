@@ -483,7 +483,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
     /usr/local/clang-10.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     ```
 
-    这里我们可以注意到，我们新创建的  `/usr/local/clang-10.0.0` 目录已经添加到了 `PATH` 环境变量中，我们现在就可以像调用 `apt` 等命令一样，在任意地方调用我们下载的二进制编译的程序。
+    这里我们可以注意到，我们新创建的 `/usr/local/clang-10.0.0` 目录已经添加到了 `PATH` 环境变量中，我们现在就可以像调用 `apt` 等命令一样，在任意地方调用我们下载的二进制编译的程序。
 
 !!! warning "有关手工获取的软件"
 
