@@ -419,7 +419,7 @@ Ubuntu 官方源位于国外，往往会有速度与延迟上的限制，可以�
 
     注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 `apt install clang` （或对应版本的 clang 包名）命令安装即可。
 
-    在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。
+    在 LLVM 的 [Prebuilt 下载页面](https://releases.llvm.org/download.html) 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 16.0.0” 栏目下跳转到对应的 GitHub Release 页面，可以获取到最低兼容 Ubuntu 18.04 的预编译二进制文件。
 
     ```console
     $ # 下载二进制的压缩文件存档
