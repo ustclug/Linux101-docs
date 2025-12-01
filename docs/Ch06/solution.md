@@ -22,6 +22,20 @@ icon: material/tooltip-question
 
     而 `echo` 只输出了空行，因为 `echo` 不从标准输入读取内容（它的输入从参数读取）。
 
+## 使用 sudo 重定向输出
+
+??? info "解答"
+
+    如果尝试用 `sudo` 将输出重定向到仅 root 用户可写入的文件，会看到 Permission denied 的错误。
+
+    这是因为重定向符号 `>` 仍由当前 shell 处理，当前 shell 以普通用户权限运行，没有写入权限。
+
+    正确做法是使用 sudo 执行 `tee` 命令，配合管道进行重定向：
+
+    ```shell
+    command | sudo tee output_file
+    ```
+
 ## 设定 HTTP 请求头
 
 ??? info "解答"

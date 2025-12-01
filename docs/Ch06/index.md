@@ -977,6 +977,16 @@ Bash shell 本身提供了调试方法：
 
     `echo < file` 会输出什么？
 
+!!! question "使用 sudo 重定向输出"
+
+    当需要将输出重定向到仅 root 用户可写入的文件时，很多人的第一反应是：
+
+    ```shell
+    sudo command > output_file
+    ```
+
+    但最终失败了。尝试解释这样做不可行的原因。
+
 !!! question "设定 HTTP 请求头"
 
     尝试查询 `curl` 和 `wget` 的文档，给出设定 HTTP 请求头的方法。
