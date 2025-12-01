@@ -2648,15 +2648,15 @@ Do you want to continue? [Y/n]
 <p class="admonition-title">安装预编译的 LLVM</p>
 <p>下面我们以 LLVM 为例作介绍。LLVM 是一个编译器组件工具集，可以帮助开发者开发编译器以及周边工具。</p>
 <p>注：使用 LLVM 需要其前端 Clang。Clang 在 apt 上有提供，使用 <code>apt install clang</code> （或对应版本的 clang 包名）命令安装即可。</p>
-<p>在 LLVM 的 <a href="https://releases.llvm.org/download.html">Prebuilt 下载页面</a> 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 10.0.0” 栏目下找到 “Pre-Built Binaries:”，对于 Ubuntu 和 Xubuntu 只有 Ubuntu 18.04 的预编译二进制文件。</p>
+<p>在 LLVM 的 <a href="https://releases.llvm.org/download.html">Prebuilt 下载页面</a> 中下载需要的版本以及自己的发行版所对应的二进制文件（Pre-Built Binaries）。在 “LLVM 16.0.0” 栏目下跳转到对应的 GitHub Release 页面，可以获取到最低兼容 Ubuntu 18.04 的预编译二进制文件。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 下载二进制的压缩文件存档</span>
-<span class="gp">$ </span>wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+<span class="gp">$ </span>wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
 <span class="gp">$ </span><span class="c1"># 创建 clang 目录</span>
 <span class="gp">$ </span>mkdir<span class="w"> </span>clang
 
 <span class="gp">$ </span><span class="c1"># 将下载得到的压缩文件解压到当前目录</span>
-<span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz<span class="w"> </span>-C<span class="w"> </span>clang
+<span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz<span class="w"> </span>-C<span class="w"> </span>clang
 
 <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>clang
 </code></pre></div>
@@ -2674,16 +2674,21 @@ Do you want to continue? [Y/n]
 <span class="go">clang-apply-replacements  dsymutil              llvm-cxxfilt</span>
 <span class="gp gp-VirtualEnv">(Output omitted)</span>
 </code></pre></div>
-<p>这个目录下的 <code>clang</code> 和 <code>clang++</code> 就类似于我们比较熟悉的 <code>gcc</code> 和 <code>g++</code>。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 <code>clang</code> 和 <code>clang++</code>，而更希望的是能够像 <code>apt</code> 那样在任何地方都可以直接运行。我们可以这样做：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 将 clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04 目录下的所有内容复制到 /usr/local/ 下。</span>
-<span class="gp">$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>*<span class="w"> </span>/usr/local/
+<p>这个目录下的 <code>clang</code> 和 <code>clang++</code> 就类似于我们比较熟悉的 <code>gcc</code> 和 <code>g++</code>。这两个是可以直接运行进行编译源代码的可执行文件。当然，我们不能每次在需要编译程序的时候输入如此长的路径找到 <code>clang</code> 和 <code>clang++</code>，而更希望的是能够像 <code>apt</code> 命令下载的程序那样在任何地方都可以直接运行。我们可以这样做：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="c1"># 在 /usr/local/ 目录下新建 clang-16.0.0 目录。</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/usr/local/clang-16.0.0
+<span class="gp">$ </span><span class="c1"># 将 clang+llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04 整个目录复制到新建的 /usr/local/clang-16.0.0 下。</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>*<span class="w"> </span>/usr/local/clang-16.0.0
 </code></pre></div>
-<p>为什么是 <code>/usr/local</code> 呢？因为 <code>/usr/local/bin</code> 处在 PATH 环境变量下。当我们在终端输入命令时，终端会先判断是否为终端的内建命令，如果不是，则会在 $PATH 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 $PATH 中的目录下面，我们就可以像 <code>apt</code> 一样，在任意地方调用我们的程序。</p>
-<p>通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
+<p>在这里我们需要知道什么是 <code>PATH</code> 变量，当我们在终端输入命令时，终端会优先判断是否为终端的内建命令，如果不是，则会在 <code>$PATH</code> 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 <code>$PATH</code> 中的目录下面，我们就可以在任意地方调用我们的程序。那为什么是不直接将 <code>clang</code> 目录下的内容直接复制到 <code>/usr/local</code> 下呢？这么做虽然能让 <code>clang/bin</code> 目录下的二进制文件与 <code>/usr/local/bin/</code> 合并，从而实现“到处可调用”，但同时也会把解压的 <code>clang</code> 目录下的 <code>lib</code>、<code>include</code>、<code>share</code> 等目录混入系统已有的 <code>/usr/local/lib</code>、<code>/usr/local/include</code> 等目录中。这种方法针对那些只有单一的二进制编译执行程序来说是简单省事的，但由于 <code>clang</code> 有很多版本，并且 <code>clang</code> 软件规模较大、较复杂，有很多文件，这么做会带来麻烦：安装的 <code>clang</code> 无法进行有效的版本管理，后续卸载也很困难，因此像 <code>clang</code> 这样的复杂软件，并不推荐直接安装到 <code>/usr/local</code>。更推荐的做法是单独在 <code>/usr/local/</code> 下单独创建一个属于 <code>clang</code> 的部署目录，并且标注好版本号，这样也更方便后续的版本管理与维护工作：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=/usr/local/clang-16.0.0/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<p>这两条命令将当前 <code>clang-16.0.0</code> 目录添加到 PATH 环境变量中。通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
-<span class="go">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+<span class="go">/usr/local/clang-16.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
 </code></pre></div>
-<p>在上面的复制过程中，源目录和目标目录的两个 <code>bin</code> 目录会相互合并，<code>clang</code> 和 <code>clang++</code> 两个可执行文件也就被复制到了 <code>/usr/local/bin/</code> 目录中。这样子也就达到了我们希望能够在任意地方调用我们的可执行文件的目的。此外，在复制的时候 lib、doc 等文件夹也会和 <code>/usr/local</code>  下的对应目录合并，将 clang 的库和文档加到系统当中。</p>
+<p>这里我们可以注意到，新创建的 <code>/usr/local/clang-16.0.0</code> 目录已经添加到了 <code>PATH</code> 环境变量中，现在就可以在任意地方调用我们下载的二进制编译的程序。</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">有关手工获取的软件</p>
