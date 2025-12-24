@@ -312,6 +312,24 @@ Python 作为一门年长但恰逢新春的解释型语言，亦被业界广泛�
 
 由于使用过于广泛，几乎每一份 Linux 都带有 Python 解释器，以命令 `python3` 调用。
 
+!!! note
+
+    部分更早的发行版中会包含 Python 2，且默认将 `python` 命令指向 Python 2。
+
+    对于现代的 Linux 发行版，我们建议安装 `python-is-python3` 包，使得 `python` 命令指向 `python3`。
+
+    ```console
+    $ sudo apt install python-is-python3
+    ```
+
+    但我们仍建议在脚本和 shebang (`#!` 开头的行) 中显式使用 `python3`，以避免上述歧义。
+
+    ```python
+    #!/usr/bin/env python3
+
+    # rest of the code
+    ```
+
 ### 包管理器 pip {#py-pip}
 
 为使用外部的第三方包，Python 提供了一个包管理器：pip。
@@ -390,7 +408,7 @@ $ pip3 install -r requirements.txt
 
 #### 其他的：pip-tools、pipenv、uv…… {#py-dep-other}
 
-Python 有非常多的依赖管理方案。其中 **uv** 是近年来备受瞩目的新工具，它用 Rust 编写，集成了包管理、虚拟环境管理和 Python 版本管理，速度极快，被认为是 Python 工具链的未来。
+Python 有非常多的依赖管理方案。其中 [uv](https://github.com/astral-sh/uv) 是近年来备受瞩目的新工具，它用 Rust 编写，集成了包管理、虚拟环境管理和 Python 版本管理，速度极快，被认为是 Python 工具链的未来。
 
 ### Virtualenv 与 venv {#py-venv}
 
@@ -428,7 +446,8 @@ $ python3 -m venv venv
 
 ### Python 的版本 {#py-versions}
 
-Python 2 已在 2020 年初正式宣告停止维护。
+Python 2 已在 2020 年初正式宣告停止维护，由于已淘汰多年，所以本教程不再做更多介绍。
+
 现在的 Python，最新的版本已到 3.14（截至 2025 年 9 月）。实际上还在使用中的 Python 版本，主要在 3.9 以上。
 
 !!! tip "我应该选择哪个版本的 Python？"
