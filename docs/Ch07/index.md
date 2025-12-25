@@ -9,7 +9,7 @@ icon: material/xml
 !!! abstract "导言"
 
     作为一个成熟而实用的系统，我们该如何在 Linux 上进行日常的编程开发呢？
-    这一章将解答一下几个问题：
+    这一章将解答以下几个问题：
 
     - Linux 上的 C/C++ 开发
     - Linux 上的 Python 开发
@@ -37,7 +37,7 @@ int main() {
 
 这是一个简单的 Hello World 程序。我们如何使它变为一份二进制可执行文件呢？
 
-在 Windows 或 Mac OS X 这样带 GUI 的系统上，通过安装 IDE，我们可以使用 IDE 中的编译功能来编译出目标。
+在 Windows 或 macOS 这样带 GUI 的系统上，通过安装 IDE，我们可以使用 IDE 中的编译功能来编译出目标。
 实际上，这些带有图形界面的 IDE 的编译往往是封装了各种提供命令行接口的编译器。
 自然，在众多无 GUI 的 Linux 上，我们同样可以调用这些提供命令行接口的编译器进行编译。
 
@@ -48,8 +48,8 @@ int main() {
 
     Windows 上常见的编译器则是 cl.exe，由微软维护。著名的 Visual C++ (MSVC) 即使用了 cl.exe。
 
-    Mac OS X 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
-    值得一提的是，Mac OS X 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 `gcc -v` 即可发现。
+    macOS 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
+    值得一提的是，macOS 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 `gcc -v` 即可发现。
 
 这里我们使用 gcc 对这个文件进行编译，生成二进制文件：
 
@@ -78,7 +78,7 @@ Hello World!
 
     如果你不会，别急，这里将做一个简单的介绍：
 
-    假设你拥有一下两个文件：
+    假设你拥有以下两个文件：
 
     ```c
     // main.c
@@ -281,8 +281,7 @@ CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留�
 如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Modern CMake 的博客，以及官方的最新文档。
 
 另一个值得一提的是 ninja。ninja 和 Makefile、autoconf 较类似，是构建工具，所属抽象层次低于 CMake。
-ninja 的特点的是相较与 Makefile 更快，对于多线程编译的支持更好。
-详细信息可以到 ninja 的官方网站查看。
+此外，**Meson** 也是近年来非常流行的现代构建系统，它通常配合 ninja 使用，语法比 CMake 更加简洁。
 
 ### 至于 C++ {#c-for-cpp}
 
@@ -311,7 +310,25 @@ Python 作为一门年长但恰逢新春的解释型语言，亦被业界广泛�
 在 Python 解释器中，Python 代码首先被处理成一种字节码（Bytecode，与 JVM 运行的字节码不是一个东西，但有相似之处），
 然后再交由 PVM（Python virtual machine）进行执行，从而实现跨平台和动态等特性。
 
-由于使用过于广泛，几乎每一份 Linux 都带有 Python 解释器，以命令 `python2` 或 `python3` 调用，分别对应两个版本的 Python。
+由于使用过于广泛，几乎每一份 Linux 都带有 Python 解释器，以命令 `python3` 调用。
+
+!!! note
+
+    部分更早的发行版中会包含 Python 2，且默认将 `python` 命令指向 Python 2。
+
+    对于现代的 Linux 发行版，我们建议安装 `python-is-python3` 包，使得 `python` 命令指向 `python3`。
+
+    ```console
+    $ sudo apt install python-is-python3
+    ```
+
+    但我们仍建议在脚本和 shebang (`#!` 开头的行) 中显式使用 `python3`，以避免上述歧义。
+
+    ```python
+    #!/usr/bin/env python3
+
+    # rest of the code
+    ```
 
 ### 包管理器 pip {#py-pip}
 
@@ -321,11 +338,10 @@ pip 和 apt 之类的包管理器有相似之处：完成包的安装和管理�
 不过 pip 管理的是 Python 包，可以在 Python 代码中使用这些包。让我们看下面的例子：
 
 ```console
-# 安装 Python 3 和 Python 3 的 pip。对于 Python 2 和 3 间的纠纠缠缠，我们将在之后讲解。
+# 安装 Python 3 和 Python 3 的 pip。
 $ sudo apt install python3 python3-pip
 
 # 测试一下看看，是否能够正常使用它们。
-# 请保证在 `python` 和 `pip` 后有 3 这个数字。这也是历史遗留问题。
 $ python3 -V
 $ pip3 -V
 
@@ -366,7 +382,7 @@ print(a)
 
 #### requirements.txt {#py-requirements}
 
-在一些项目下，你可能会发现一个名为 `requirement.txt` 的文件，里面是一行行的 Python 包名和一些对于软件版本的限制，例如：
+在一些项目下，你可能会发现一个名为 `requirements.txt` 的文件，里面是一行行的 Python 包名和一些对于软件版本的限制。
 
 ```txt
 # requirements.txt
@@ -388,31 +404,13 @@ $ pip3 install -r requirements.txt
 #### setuptools: setup.py {#py-setup}
 
 在 PyPI，即 pip 获取 Python 包的来源中，使用 setuptools 是主流选择。
-setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。
+常见状况是目录下会有一个名为 `setup.py` 的文件。要安装依赖，只需执行 `pip3 install .`。
 
-常见状况是目录下会有一个名为 `setup.py` 的文件。
-要安装依赖，只需：
+#### 其他的：pip-tools、pipenv、uv…… {#py-dep-other}
 
-```console
-$ ls
-setup.py
-$ pip3 install .
-```
+Python 有非常多的依赖管理方案。其中 [uv](https://github.com/astral-sh/uv) 是近年来备受瞩目的新工具，它用 Rust 编写，集成了包管理、虚拟环境管理和 Python 版本管理，速度极快，被认为是 Python 工具链的未来。
 
-这种方案特点是使用广泛，易于对接，能提供的信息和配置较全，但配置起来也较复杂。
-
-#### 其他的：pip-tools、pipenv…… {#py-dep-other}
-
-pip-tools 可以看作对 requirements.txt 的增强。
-它额外提供了 `requirements.dev` 文件，从而完成了对于依赖进行版本锁定的支持。
-
-pipenv 则是一个更加全面的解决方案，它提供了类似于 npm 的配置文件和 lock 文件，对于依赖有非常强的管理功能。
-但其完成度和工业中的稳定性尚有待证明。
-
-Python 有非常多的依赖管理方案，某种意义上讲是自带的 pip 管理功能不足所造成的。
-一般而言，只需熟悉常用的 requirements.txt 和 setuptools 方案即可。
-
-### Virtualenv {#py-venv}
+### Virtualenv 与 venv {#py-venv}
 
 让我们考虑以下情况：
 
@@ -433,11 +431,10 @@ Python 通过包管理器如 apt 安装的包，默认安装在系统目录 `/us
     在一些 Shell（如 zsh）中，`>=` 有特殊含义。
     此时上述命令应用引号包裹 `>=` 部分，如 `pip3 install 'a>=2.0.0'`
 
-为了解决这一问题，允许不同软件使用不同版本的包，Python 提供了 Virtualenv 这个工具。
-其使用方法如下：
+为了解决这一问题，允许不同软件使用不同版本的包，Python 有下面的虚拟环境工具：
 
-一般 Virtualenv 会带在默认安装的 Python 中。
-如果没有，可以用 `sudo apt install python3-venv` 来安装。
+- **venv**：这是 Python 3.3 之后内置的标准模块，通过 `python3 -m venv venv` 即可创建，是目前的官方推荐方案。
+- **virtualenv**：一个历史更悠久的第三方工具，在 venv 成为标准之前它是事实上的选择，目前在一些复杂场景或旧版本支持中仍在使用。
 
 常见的做法是使用 Python 的模块运行来完成在 Shell 中的执行：
 
@@ -445,38 +442,13 @@ Python 通过包管理器如 apt 安装的包，默认安装在系统目录 `/us
 $ python3 -m venv venv
 ```
 
-以上指令中，`-m` 表示运行一个指定的模块，前一个 `venv` 指运行 venv 这个包的主模块 `__main__`，
-后一个 `venv` 是参数，为生成目录的路径。
-这将使 venv 在当前目录下生成一个名为 `venv` 的目录。
-
-在一般的 shell 环境下，我们将使用 `source venv/bin/activate` 来启用这个 venv。
-
-完成以上操作后，你就进入了当前目录下 venv 文件夹所对应的 Virtualenv。
-此时，你使用 `pip3 install` 安装的 Python 包将会被安装在 venv 这个文件夹中，
-这些包也只有在你 `source venv/bin/activate` 之后才可见，外部无法找到这些包。
-通过 `deactivate` 可以退出 Virtualenv，回到之前的环境中。
-
-实际上，由于 Python 是借助一些环境变量来完成包搜索的步骤的，`source venv/bin/activate`
-其实是配置了一些环境变量，从而达到目的。这样，就实现了程序间依赖的隔离。
+在一般的 shell 环境下，我们将使用 `source venv/bin/activate` 来启用这个 venv。启用后，你使用 `pip3 install` 安装的包将被隔离在当前文件夹中。通过 `deactivate` 可以退出虚拟环境。
 
 ### Python 的版本 {#py-versions}
 
-正如我们之前所讲，Python 不是一个新的编程语言。
-现在的 Python，最新的版本已到 3.14（截至 2025 年 9 月）。
-实际上还在使用中的 Python 版本，主要在 3.9 以上。
+Python 2 已在 2020 年初正式宣告停止维护，由于已淘汰多年，所以本教程不再做更多介绍。
 
-Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
-在从 2 到 3 的升级中，一方面众多底层语法都发生了改变，使得迁移异常麻烦。
-另一方面，由于 Python 2 的盛行，程序 `python` 普遍指向 `python2`。
-因此当 Python 3 出现时，为了有效区分两者，调用解释器时我们需要特地使用 `python3` 这一指令。
-尽管在某些平台（例如 Arch 系 Linux）上，`python` 己经变为指向 `python3`，
-但考虑到 Ubuntu、CentOS、Debian 等发行版上 `python` 有可能仍指向 `python2`，
-显式地指定一个版本是更明智的选择。
-
-实际上，Python 2 已在 2020 年初正式宣告停止维护，
-现在如果我们要使用 Python，最好使用 3 版本。
-
-而在 Python 3.x 版本中，截至 2025 年下半年，3.9 亦已经 EOL（end of life）。
+现在的 Python，最新的版本已到 3.14（截至 2025 年 9 月）。实际上还在使用中的 Python 版本，主要在 3.9 以上。
 
 !!! tip "我应该选择哪个版本的 Python？"
 
@@ -509,32 +481,23 @@ Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本�
 
 ### Python 的其他实现 {#py-implementations}
 
-Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
-CPython 中的 C 是指此解释器是用 C 实现。
+除了官方的 **CPython**，Python 还有其他实现：
 
-相应的，Python 还有其他的一些实现：
-
-- JPython：将 Python 编译到 Java 字节码，由 JVM 来运行；
-- PyPy：相较于 CPython，实现了 JIT（just in time）编译器，性能有极大地提升；
-- Cython：引入了额外的语法和严密的类型系统，性能也有很大提升；
-- Numba：将 Python 编译到机器码，从而直接运行，性能也不错。
-
-视情况使用不同的 Python 实现能够很大程度地提升性能。
-但如果你不确定自己的意向，且性能需求不大，使用官方的 CPython 也是明智之选。
+- **PyPy**：实现了 JIT（just in time）编译器，性能有极大提升；
+- **Cython**：引入了额外的语法和严密的类型系统；
+- **Numba**：将 Python 编译到机器码，适合科学计算。
 
 ### 总结 {#py-conclusion}
 
-外部包引用和依赖管理是程序开发中必不可少的部分。
-如果官方有成熟的方案，跟随他们是明智的选择。
-否则则需根据实际情况，按需选用。
+外部包引用和依赖管理是程序开发中必不可少的部分。如果官方有成熟的方案，跟随他们是明智的选择。
 
 ## 思考题 {#questions}
 
 !!! question "试试 Rust"
 
     Rust 是一门新兴编译型编程语言。
-    尝试查询 Rust 的文档，指出 Rust 的编译器、依赖管理程序，
-    介绍一下如何将 Rust 源码变为可执行程序，如何在 Rust 中引用外部包。
+    尝试查询 Rust 的文档，了解 Rust 的编译器（rustc）、依赖管理程序（cargo），
+    介绍一下如何将 Rust 源码变为可执行程序，并思考为什么 Rust 的包管理体验通常被认为优于 C++？
 
 ## 引用来源 {#references .no-underline}
 
