@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2007,7 +2007,7 @@
   <a href="#py-dep-other" class="md-nav__link">
     <span class="md-ellipsis">
       
-        其他的：pip-tools、pipenv……
+        其他的：pip-tools、pipenv、uv……
       
     </span>
   </a>
@@ -2023,7 +2023,7 @@
   <a href="#py-venv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Virtualenv
+        Virtualenv 与 venv
       
     </span>
   </a>
@@ -2130,7 +2130,7 @@
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
 <p>作为一个成熟而实用的系统，我们该如何在 Linux 上进行日常的编程开发呢？
-这一章将解答一下几个问题：</p>
+这一章将解答以下几个问题：</p>
 <ul>
 <li>Linux 上的 C/C++ 开发</li>
 <li>Linux 上的 Python 开发</li>
@@ -2152,7 +2152,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>这是一个简单的 Hello World 程序。我们如何使它变为一份二进制可执行文件呢？</p>
-<p>在 Windows 或 Mac OS X 这样带 GUI 的系统上，通过安装 IDE，我们可以使用 IDE 中的编译功能来编译出目标。
+<p>在 Windows 或 macOS 这样带 GUI 的系统上，通过安装 IDE，我们可以使用 IDE 中的编译功能来编译出目标。
 实际上，这些带有图形界面的 IDE 的编译往往是封装了各种提供命令行接口的编译器。
 自然，在众多无 GUI 的 Linux 上，我们同样可以调用这些提供命令行接口的编译器进行编译。</p>
 <div class="admonition tip">
@@ -2160,8 +2160,8 @@
 <p>Linux 上常用的编译器是 gcc 和 clang。
 其中 gcc 是由 GNU 组织维护的，而 clang 是由 LLVM 组织维护的。</p>
 <p>Windows 上常见的编译器则是 cl.exe，由微软维护。著名的 Visual C++ (MSVC) 即使用了 cl.exe。</p>
-<p>Mac OS X 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
-值得一提的是，Mac OS X 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 <code>gcc -v</code> 即可发现。</p>
+<p>macOS 本身由 BSD 发展而来，也以 gcc 和 clang 为主。
+值得一提的是，macOS 上自带的 gcc 其实是 clang 的别名，在 Terminal 输入 <code>gcc -v</code> 即可发现。</p>
 </div>
 <p>这里我们使用 gcc 对这个文件进行编译，生成二进制文件：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>gcc<span class="w"> </span>main.c<span class="w"> </span>-o<span class="w"> </span>main
@@ -2181,7 +2181,7 @@
 <p>我们假设你对于 C 语言的多文件实现有着基本的认知：
 即能够在之前的系统中的 IDE 内完成 C 语言的多文件开发。</p>
 <p>如果你不会，别急，这里将做一个简单的介绍：</p>
-<p>假设你拥有一下两个文件：</p>
+<p>假设你拥有以下两个文件：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;print.h&quot;</span>
 
@@ -2333,8 +2333,7 @@ CMake 作为一个足够成熟、也足够陈旧的工具，既有历史遗留�
 正如 C++ 和 Modern C++，CMake 也有 Modern CMake，更有像微软 vcpkg 那样新的辅助工具和解决方案。
 如果你想了解 CMake 的一些知识，附录将会有简单的介绍，亦可以考虑看一些较新的、关于 Modern CMake 的博客，以及官方的最新文档。</p>
 <p>另一个值得一提的是 ninja。ninja 和 Makefile、autoconf 较类似，是构建工具，所属抽象层次低于 CMake。
-ninja 的特点的是相较与 Makefile 更快，对于多线程编译的支持更好。
-详细信息可以到 ninja 的官方网站查看。</p>
+此外，<strong>Meson</strong> 也是近年来非常流行的现代构建系统，它通常配合 ninja 使用，语法比 CMake 更加简洁。</p>
 <h3 id="c-for-cpp">至于 C++<a class="headerlink" href="#c-for-cpp" title="Permanent link">&para;</a></h3>
 <p>C++ 的工具链与 C 的是相似的。</p>
 <p>实际上，只需将上面内容中的 <code>gcc</code> 指令改为 <code>g++</code>，你就能同样地完成 C++ 的开发。
@@ -2352,16 +2351,27 @@ Makefile、CMake 这样的构建工具亦可以用于多种编程语言。</p>
 <p>一般的 Python（CPython）程序的运行，依靠的是 Python 解释器（Interpreter）。
 在 Python 解释器中，Python 代码首先被处理成一种字节码（Bytecode，与 JVM 运行的字节码不是一个东西，但有相似之处），
 然后再交由 PVM（Python virtual machine）进行执行，从而实现跨平台和动态等特性。</p>
-<p>由于使用过于广泛，几乎每一份 Linux 都带有 Python 解释器，以命令 <code>python2</code> 或 <code>python3</code> 调用，分别对应两个版本的 Python。</p>
+<p>由于使用过于广泛，几乎每一份 Linux 都带有 Python 解释器，以命令 <code>python3</code> 调用。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>部分更早的发行版中会包含 Python 2，且默认将 <code>python</code> 命令指向 Python 2。</p>
+<p>对于现代的 Linux 发行版，我们建议安装 <code>python-is-python3</code> 包，使得 <code>python</code> 命令指向 <code>python3</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python-is-python3
+</code></pre></div>
+<p>但我们仍建议在脚本和 shebang (<code>#!</code> 开头的行) 中显式使用 <code>python3</code>，以避免上述歧义。</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># rest of the code</span>
+</code></pre></div>
+</div>
 <h3 id="py-pip">包管理器 pip<a class="headerlink" href="#py-pip" title="Permanent link">&para;</a></h3>
 <p>为使用外部的第三方包，Python 提供了一个包管理器：pip。</p>
 <p>pip 和 apt 之类的包管理器有相似之处：完成包的安装和管理，完成依赖的分析，等等。
 不过 pip 管理的是 Python 包，可以在 Python 代码中使用这些包。让我们看下面的例子：</p>
-<div class="highlight"><pre><span></span><code><span class="gp"># </span>安装<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span><span class="w"> </span>和<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span><span class="w"> </span>的<span class="w"> </span>pip。对于<span class="w"> </span>Python<span class="w"> </span><span class="m">2</span><span class="w"> </span>和<span class="w"> </span><span class="m">3</span><span class="w"> </span>间的纠纠缠缠，我们将在之后讲解。
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>安装<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span><span class="w"> </span>和<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span><span class="w"> </span>的<span class="w"> </span>pip。
 <span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-pip
 
 <span class="gp"># </span>测试一下看看，是否能够正常使用它们。
-<span class="gp"># </span>请保证在<span class="w"> </span><span class="sb">`</span>python<span class="sb">`</span><span class="w"> </span>和<span class="w"> </span><span class="sb">`</span>pip<span class="sb">`</span><span class="w"> </span>后有<span class="w"> </span><span class="m">3</span><span class="w"> </span>这个数字。这也是历史遗留问题。
 <span class="gp">$ </span>python3<span class="w"> </span>-V
 <span class="gp">$ </span>pip3<span class="w"> </span>-V
 
@@ -2391,7 +2401,7 @@ Makefile、CMake 这样的构建工具亦可以用于多种编程语言。</p>
 <p>一个软件一般含有众多依赖，尤其是对于追求易用、外部库众多的 Python 而言，使用外部库作为依赖是常事。</p>
 <p>此处我们将尝试给出各种使用较多的 Python 依赖管理方案。</p>
 <h4 id="py-requirements">requirements.txt<a class="headerlink" href="#py-requirements" title="Permanent link">&para;</a></h4>
-<p>在一些项目下，你可能会发现一个名为 <code>requirement.txt</code> 的文件，里面是一行行的 Python 包名和一些对于软件版本的限制，例如：</p>
+<p>在一些项目下，你可能会发现一个名为 <code>requirements.txt</code> 的文件，里面是一行行的 Python 包名和一些对于软件版本的限制。</p>
 <div class="highlight"><pre><span></span><code># requirements.txt
 django
 pytest&gt;=3.0.0
@@ -2404,22 +2414,10 @@ pytest-cov==1.0.0
 <p>此方案简单明了，易于使用，但对于依赖的处理能力不足。</p>
 <h4 id="py-setup">setuptools: setup.py<a class="headerlink" href="#py-setup" title="Permanent link">&para;</a></h4>
 <p>在 PyPI，即 pip 获取 Python 包的来源中，使用 setuptools 是主流选择。
-setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packaging）的事实标准。</p>
-<p>常见状况是目录下会有一个名为 <code>setup.py</code> 的文件。
-要安装依赖，只需：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls
-<span class="go">setup.py</span>
-<span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span>.
-</code></pre></div>
-<p>这种方案特点是使用广泛，易于对接，能提供的信息和配置较全，但配置起来也较复杂。</p>
-<h4 id="py-dep-other">其他的：pip-tools、pipenv……<a class="headerlink" href="#py-dep-other" title="Permanent link">&para;</a></h4>
-<p>pip-tools 可以看作对 requirements.txt 的增强。
-它额外提供了 <code>requirements.dev</code> 文件，从而完成了对于依赖进行版本锁定的支持。</p>
-<p>pipenv 则是一个更加全面的解决方案，它提供了类似于 npm 的配置文件和 lock 文件，对于依赖有非常强的管理功能。
-但其完成度和工业中的稳定性尚有待证明。</p>
-<p>Python 有非常多的依赖管理方案，某种意义上讲是自带的 pip 管理功能不足所造成的。
-一般而言，只需熟悉常用的 requirements.txt 和 setuptools 方案即可。</p>
-<h3 id="py-venv">Virtualenv<a class="headerlink" href="#py-venv" title="Permanent link">&para;</a></h3>
+常见状况是目录下会有一个名为 <code>setup.py</code> 的文件。要安装依赖，只需执行 <code>pip3 install .</code>。</p>
+<h4 id="py-dep-other">其他的：pip-tools、pipenv、uv……<a class="headerlink" href="#py-dep-other" title="Permanent link">&para;</a></h4>
+<p>Python 有非常多的依赖管理方案。其中 <a href="https://github.com/astral-sh/uv">uv</a> 是近年来备受瞩目的新工具，它用 Rust 编写，集成了包管理、虚拟环境管理和 Python 版本管理，速度极快，被认为是 Python 工具链的未来。</p>
+<h3 id="py-venv">Virtualenv 与 venv<a class="headerlink" href="#py-venv" title="Permanent link">&para;</a></h3>
 <p>让我们考虑以下情况：</p>
 <p>Python 通过包管理器如 apt 安装的包，默认安装在系统目录 <code>/usr/lib/python[version]</code> 下，
 而通过 pip 安装的包，默认安装目录在 <code>/usr/local/lib/python[version]</code> 下，
@@ -2435,37 +2433,18 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 <p>在一些 Shell（如 zsh）中，<code>&gt;=</code> 有特殊含义。
 此时上述命令应用引号包裹 <code>&gt;=</code> 部分，如 <code>pip3 install 'a&gt;=2.0.0'</code></p>
 </div>
-<p>为了解决这一问题，允许不同软件使用不同版本的包，Python 提供了 Virtualenv 这个工具。
-其使用方法如下：</p>
-<p>一般 Virtualenv 会带在默认安装的 Python 中。
-如果没有，可以用 <code>sudo apt install python3-venv</code> 来安装。</p>
+<p>为了解决这一问题，允许不同软件使用不同版本的包，Python 有下面的虚拟环境工具：</p>
+<ul>
+<li><strong>venv</strong>：这是 Python 3.3 之后内置的标准模块，通过 <code>python3 -m venv venv</code> 即可创建，是目前的官方推荐方案。</li>
+<li><strong>virtualenv</strong>：一个历史更悠久的第三方工具，在 venv 成为标准之前它是事实上的选择，目前在一些复杂场景或旧版本支持中仍在使用。</li>
+</ul>
 <p>常见的做法是使用 Python 的模块运行来完成在 Shell 中的执行：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 </code></pre></div>
-<p>以上指令中，<code>-m</code> 表示运行一个指定的模块，前一个 <code>venv</code> 指运行 venv 这个包的主模块 <code>__main__</code>，
-后一个 <code>venv</code> 是参数，为生成目录的路径。
-这将使 venv 在当前目录下生成一个名为 <code>venv</code> 的目录。</p>
-<p>在一般的 shell 环境下，我们将使用 <code>source venv/bin/activate</code> 来启用这个 venv。</p>
-<p>完成以上操作后，你就进入了当前目录下 venv 文件夹所对应的 Virtualenv。
-此时，你使用 <code>pip3 install</code> 安装的 Python 包将会被安装在 venv 这个文件夹中，
-这些包也只有在你 <code>source venv/bin/activate</code> 之后才可见，外部无法找到这些包。
-通过 <code>deactivate</code> 可以退出 Virtualenv，回到之前的环境中。</p>
-<p>实际上，由于 Python 是借助一些环境变量来完成包搜索的步骤的，<code>source venv/bin/activate</code>
-其实是配置了一些环境变量，从而达到目的。这样，就实现了程序间依赖的隔离。</p>
+<p>在一般的 shell 环境下，我们将使用 <code>source venv/bin/activate</code> 来启用这个 venv。启用后，你使用 <code>pip3 install</code> 安装的包将被隔离在当前文件夹中。通过 <code>deactivate</code> 可以退出虚拟环境。</p>
 <h3 id="py-versions">Python 的版本<a class="headerlink" href="#py-versions" title="Permanent link">&para;</a></h3>
-<p>正如我们之前所讲，Python 不是一个新的编程语言。
-现在的 Python，最新的版本已到 3.14（截至 2025 年 9 月）。
-实际上还在使用中的 Python 版本，主要在 3.9 以上。</p>
-<p>Python 2 到 3 某种程度上讲不是变革，实际上 Python 2 和 3 基本可以看作两个不同的编程语言。
-在从 2 到 3 的升级中，一方面众多底层语法都发生了改变，使得迁移异常麻烦。
-另一方面，由于 Python 2 的盛行，程序 <code>python</code> 普遍指向 <code>python2</code>。
-因此当 Python 3 出现时，为了有效区分两者，调用解释器时我们需要特地使用 <code>python3</code> 这一指令。
-尽管在某些平台（例如 Arch 系 Linux）上，<code>python</code> 己经变为指向 <code>python3</code>，
-但考虑到 Ubuntu、CentOS、Debian 等发行版上 <code>python</code> 有可能仍指向 <code>python2</code>，
-显式地指定一个版本是更明智的选择。</p>
-<p>实际上，Python 2 已在 2020 年初正式宣告停止维护，
-现在如果我们要使用 Python，最好使用 3 版本。</p>
-<p>而在 Python 3.x 版本中，截至 2025 年下半年，3.9 亦已经 EOL（end of life）。</p>
+<p>Python 2 已在 2020 年初正式宣告停止维护，由于已淘汰多年，所以本教程不再做更多介绍。</p>
+<p>现在的 Python，最新的版本已到 3.14（截至 2025 年 9 月）。实际上还在使用中的 Python 版本，主要在 3.9 以上。</p>
 <div class="admonition tip">
 <p class="admonition-title">我应该选择哪个版本的 Python？</p>
 <p>Python 3.x 已经迭代到一个相对稳定的阶段，如果你没有特殊需求，请使用 Python 3.x 的最新版本。</p>
@@ -2497,27 +2476,20 @@ setuptools 不是 Python 官方的项目，但它已成为 Python 打包（packa
 <p>你可以在 <a href="https://peps.python.org/pep-0602/">PEP 602</a> 查看详细的有关 Python 的生命支持周期的规定。</p>
 </div>
 <h3 id="py-implementations">Python 的其他实现<a class="headerlink" href="#py-implementations" title="Permanent link">&para;</a></h3>
-<p>Python 作为一门编程语言，官方的实现是 CPython，我们一般使用的、成为事实标准的就是这个。
-CPython 中的 C 是指此解释器是用 C 实现。</p>
-<p>相应的，Python 还有其他的一些实现：</p>
+<p>除了官方的 <strong>CPython</strong>，Python 还有其他实现：</p>
 <ul>
-<li>JPython：将 Python 编译到 Java 字节码，由 JVM 来运行；</li>
-<li>PyPy：相较于 CPython，实现了 JIT（just in time）编译器，性能有极大地提升；</li>
-<li>Cython：引入了额外的语法和严密的类型系统，性能也有很大提升；</li>
-<li>Numba：将 Python 编译到机器码，从而直接运行，性能也不错。</li>
+<li><strong>PyPy</strong>：实现了 JIT（just in time）编译器，性能有极大提升；</li>
+<li><strong>Cython</strong>：引入了额外的语法和严密的类型系统；</li>
+<li><strong>Numba</strong>：将 Python 编译到机器码，适合科学计算。</li>
 </ul>
-<p>视情况使用不同的 Python 实现能够很大程度地提升性能。
-但如果你不确定自己的意向，且性能需求不大，使用官方的 CPython 也是明智之选。</p>
 <h3 id="py-conclusion">总结<a class="headerlink" href="#py-conclusion" title="Permanent link">&para;</a></h3>
-<p>外部包引用和依赖管理是程序开发中必不可少的部分。
-如果官方有成熟的方案，跟随他们是明智的选择。
-否则则需根据实际情况，按需选用。</p>
+<p>外部包引用和依赖管理是程序开发中必不可少的部分。如果官方有成熟的方案，跟随他们是明智的选择。</p>
 <h2 id="questions">思考题<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">试试 Rust</p>
 <p>Rust 是一门新兴编译型编程语言。
-尝试查询 Rust 的文档，指出 Rust 的编译器、依赖管理程序，
-介绍一下如何将 Rust 源码变为可执行程序，如何在 Rust 中引用外部包。</p>
+尝试查询 Rust 的文档，了解 Rust 的编译器（rustc）、依赖管理程序（cargo），
+介绍一下如何将 Rust 源码变为可执行程序，并思考为什么 Rust 的包管理体验通常被认为优于 C++？</p>
 </div>
 <h2 class="no-underline" id="references">引用来源<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
@@ -2659,10 +2631,10 @@ CPython 中的 C 是指此解释器是用 C 实现。</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
