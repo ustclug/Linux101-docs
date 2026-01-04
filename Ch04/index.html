@@ -2290,6 +2290,12 @@
 <p>按照 PID 排序时，我们可以观察系统启动的过程。Linux 系统内核从引导程序接手控制权后，开始内核初始化，随后变为 <strong>init_task</strong>，初始化自己的 PID 为 0。随后创建出 1 号进程（init 程序，目前一般为 systemd）衍生出用户空间的所有进程，创建 2 号进程 kthreadd 衍生出所有内核线程。随后 0 号进程成为 idle 进程，1 号、2 号并非特意预留，而是产生进程的自然顺序使然。</p>
 <p>由于 kthreadd 运行于内核空间，故需按大写 K（<span class="keys"><kbd>Shift</kbd></span> + <span class="keys"><kbd>k</kbd></span>）键显示内核进程后才能看到。然而无论如何也不可能在 htop 中看到 0 号进程本体，只能发现 1 号和 2 号进程的 PPID (Parent PID) 是 0。</p>
 </details>
+<details class="question">
+<summary>PID 真的标识的是进程吗？</summary>
+<p>在 Linux 内核中，PID 实际上是被用来唯一标识内核调度的基本单位——<strong>任务</strong>（task），可以将其简单理解为 <strong>线程</strong>（thread）。对于单线程程序来说，一个进程里只有一个线程，因而 PID 就可以唯一标识该进程；但对于多线程程序来说，一个进程里有多个线程，每个线程都有自己的 PID，且所有线程都位于同一个 <strong>线程组</strong>（thread group）中，其唯一标识为 <strong>线程组 ID</strong>（TGID），与主线程的 PID 相同，因而 TGID 可以唯一标识该进程。</p>
+<p>在 htop 中，使用快捷键 <span class="keys"><kbd>Shift</kbd></span> + <span class="keys"><kbd>H</kbd></span> 可以切换是否显示线程，在同时开启了显示线程和树形结构的情况下，可以看到同一进程的其他线程均归属于主线程之下。</p>
+<p><img alt="PID_true" src="images/PID_true.png" /></p>
+</details>
 <h3 id="process-priority-and-stat">进程优先级与状态<a class="headerlink" href="#process-priority-and-stat" title="Permanent link">&para;</a></h3>
 <p>我们平时使用操作系统的时候，可能同时会开启浏览器、聊天软件、音乐播放器、文本编辑器……前面提到它们都是进程，但是单个 CPU 核心一次只能执行一个进程。为了让这些软件看起来「同时」在执行，操作系统需要用非常快的速度将计算资源在这些进程之间切换，这也就引入了进程优先级和进程状态的概念。</p>
 <h4 id="nice">优先级与 nice 值<a class="headerlink" href="#nice" title="Permanent link">&para;</a></h4>
