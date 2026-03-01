@@ -350,6 +350,10 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 : 纪念开源世界的历史与文化，对自己英语听力有自信的同学可以选择收听一下。
 
+[Wonderview Productions 公司制作的纪录片电影 REVOLUTION OS](http://revolution-os.com/)
+
+: 讲述了黑客们反抗专有软件模式并创建 GNU/Linux 和开源运动的内幕故事。
+
 ## 引用来源与备注 {#references .no-underline}
 
 [^1]: 数据来自中国互联网信息中心[第 56 次 《中国互联网络发展状况统计报告》（全文）](https://www.cnnic.net.cn/NMediaFile/2025/0730/MAIN1753846666507QEK67ZS9DH.pdf)。
