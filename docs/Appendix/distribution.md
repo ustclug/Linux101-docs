@@ -291,4 +291,4 @@ $ nix-shell # 使用 shell.nix 文件定义开发环境
 
 NixOS 的学习曲线相对陡峭，但一旦掌握，它提供了传统发行版无法比拟的系统管理体验。特别适合需要可重现环境、频繁实验或需要强系统一致性的用户。
 
-[^2](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
+[^2]: <https://nixos.wiki/wiki/Development_environment_with_nix-shell>
