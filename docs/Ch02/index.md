@@ -4,8 +4,6 @@ icon: fontawesome/solid/circle-user
 
 # 个性化配置与建站体验
 
-!!! success "本文已完稿并通过审阅，是正式版本。"
-
 !!! abstract "导言"
 
     Linux 是一个可以高度个性化定制的系统，当然也包括界面的个性化，因此本章节将带大家解决这些问题：

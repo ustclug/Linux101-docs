@@ -4,8 +4,6 @@ icon: material/puzzle
 
 # 拓展阅读 {#supplement}
 
-!!! success "本文已完稿并通过审阅，是正式版本。"
-
 ## 编译安装 {#compiling-installation}
 
 本节[^1]的操作基于 Ubuntu 18.04 操作系统。

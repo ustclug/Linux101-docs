@@ -4,8 +4,6 @@ icon: material/server-network
 
 # 网络、文本处理工具与 Shell 脚本
 
-!!! success "本文已完稿并通过审阅，是正式版本。"
-
 !!! abstract "导言"
 
     很多 Linux 的初学者都会对以下这些问题感到迷惑：
