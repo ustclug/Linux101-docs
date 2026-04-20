@@ -4,8 +4,6 @@ icon: material/xml
 
 # Linux 上的编程
 
-!!! success "本文已完稿并通过审阅，是正式版本。"
-
 !!! abstract "导言"
 
     作为一个成熟而实用的系统，我们该如何在 Linux 上进行日常的编程开发呢？
