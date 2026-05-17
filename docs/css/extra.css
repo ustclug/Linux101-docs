@@ -47,3 +47,5 @@
 .md-typeset p.caption { text-align: center; font-size: 0.94em; color: grey; margin: -0.7em 0 0; }
 
 .md-typeset .footnote hr { margin-top: 0.2em; }
+
+.highlight .gp { user-select: none; }
