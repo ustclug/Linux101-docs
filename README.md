@@ -20,4 +20,6 @@
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ustclug/Linux101-docs&type=Date)](https://star-history.com/#ustclug/Linux101-docs&Date)
+## Star History
+
+[![Star History Chart](https://api.star-history.com/chart?repos=ustclug/Linux101-docs&type=date&legend=top-left&sealed_token=JwfjxFM4BxMmWD5rSEjCC0aQhg-XeNw-qRGkT2NkTVl4OhUfO3ipd9CmY689uu1KJu8KG4HuRKV6x5V39rgYfktSicvvZdw0d4e_Zisitmque1tF_F6vKAavkfZlxAfq9-gLiFqWuau0ZF_vkS-Sdv34JPk4SpP1j0HoouZa3k7mFqHOuchFnMM2i5oo)](https://www.star-history.com/?repos=ustclug%2FLinux101-docs&type=date&legend=top-left)
