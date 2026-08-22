@@ -26,7 +26,7 @@
 
 ### 在本地随时预览当前主题下的格式 {#local-preview}
 
-目前当前的主题已经确定为 Material，可以使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 <http://127.0.0.1:8000> 来实时预览，这对讲义的编写十分有帮助。
+目前主题已经确定为 Material，可以使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 <http://127.0.0.1:8000> 来实时预览，这对讲义的编写十分有帮助。
 
 更全面的安装和配置信息请参考 [MkDocs 官网](https://www.mkdocs.org) 和 [Material for MkDocs 官网](https://squidfunk.github.io/mkdocs-material/)。
 
