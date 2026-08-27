@@ -2233,12 +2233,12 @@
 </div>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>strace<span class="w"> </span>ps
 <span class="go">...</span>
-<span class="go">openat(AT_FDCWD, &quot;/proc/1/stat&quot;, O_RDONLY) = 6</span>
-<span class="go">read(6, &quot;1 (systemd) S 0 1 1 0 -1 4194560&quot;..., 1024) = 193</span>
+<span class="go">openat(AT_FDCWD, "/proc/1/stat", O_RDONLY) = 6</span>
+<span class="go">read(6, "1 (systemd) S 0 1 1 0 -1 4194560"..., 1024) = 193</span>
 <span class="go">close(6)                                = 0</span>
-<span class="go">openat(AT_FDCWD, &quot;/proc/1/status&quot;, O_RDONLY) = 6</span>
-<span class="go">read(6, &quot;Name:\tsystemd\nUmask:\t0000\nState:&quot;..., 1024) = 1024</span>
-<span class="go">read(6, &quot;00,00000000,00000000,00000000,00&quot;..., 1024) = 295</span>
+<span class="go">openat(AT_FDCWD, "/proc/1/status", O_RDONLY) = 6</span>
+<span class="go">read(6, "Name:\tsystemd\nUmask:\t0000\nState:"..., 1024) = 1024</span>
+<span class="go">read(6, "00,00000000,00000000,00000000,00"..., 1024) = 295</span>
 <span class="go">close(6)</span>
 <span class="go">...</span>
 </code></pre></div>
@@ -2284,7 +2284,7 @@
 <p>通过以下实验，我们可以尝试使用 fork 系统调用体验建立父子进程关系。</p>
 <p>程序文件 <code>forking.c</code>：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  // Unix standard header，提供 POSIX 标准 API</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="w">  </span><span class="c1">// Unix standard header，提供 POSIX 标准 API</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
@@ -2292,13 +2292,13 @@
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span><span class="w">   </span><span class="c1">// fork 系统调用，全面复制父进程所有信息。</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// 子进程返回 pid=0。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m child, forked in %d turn</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">"I'm child, forked in %d turn</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// fork 失败，pid 为负值。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d turn error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d turn error</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w">  </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// 父进程返回子进程 pid。</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">"I'm father of %d turn, child PID = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
@@ -2320,8 +2320,8 @@
 <p>这个实验中，我们使用系统调用 <code>signal()</code> 来重新设置进程对信号的响应函数。</p>
 <p>程序文件 <code>signal_handle.c</code>：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span><span class="c1">   // 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">   // sleep 函数</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span><span class="w">   </span><span class="c1">// 定义了变更信号处理函数的方法以及一些信号对应的常量（如 #define SIGTERM 15）</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="w">   </span><span class="c1">// sleep 函数</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">);</span><span class="w">  </span><span class="c1">// 设置一个处理信号的函数</span>
 
@@ -2338,7 +2338,7 @@
 
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">sig_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hi!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w">     </span><span class="c1">// 在收到信号时输出</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"hi!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span><span class="w">     </span><span class="c1">// 在收到信号时输出</span>
 <span class="w">    </span><span class="c1">// fflush(stdout);   // 如果你的输出内容不包括回车，或许需要刷新缓冲区才能看到效果。因为标准输出是按行缓冲的。</span>
 <span class="p">}</span>
 </code></pre></div>

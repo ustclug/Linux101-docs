@@ -2144,7 +2144,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2180,7 +2180,7 @@
 <p>如果你不会，别急，这里将做一个简单的介绍：</p>
 <p>假设你拥有以下两个文件：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;print.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"print.h"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">print</span><span class="p">();</span>
@@ -2188,12 +2188,12 @@
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// print.c</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;print.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"print.h"</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>那为了在 main.c 中调用 <code>void print()</code> 这个函数，你需要做以下几件事：</p>
@@ -2218,7 +2218,7 @@
 </div>
 <p>假设我们有以下三个文件：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// main.c</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;print.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"print.h"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">print</span><span class="p">();</span>
@@ -2229,7 +2229,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// print.h</span>
@@ -2391,7 +2391,7 @@ Makefile、CMake 这样的构建工具亦可以用于多种编程语言。</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="gp gp-VirtualEnv">(venv)</span><span class="gp">$ </span>python3<span class="w"> </span>main.py
-<span class="go">&lt;module &#39;a&#39; from &#39;...&#39;&gt;</span>
+<span class="go">&lt;module 'a' from '...'&gt;</span>
 </code></pre></div>
 <p>这样，我们就完成了对外部 Python 包的安装和引用。</p>
 <h3 id="py-dep">Python 依赖管理<a class="headerlink" href="#py-dep" title="Permanent link">&para;</a></h3>

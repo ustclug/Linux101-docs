@@ -2486,12 +2486,12 @@
 </code></pre></div>
 <p>重启后打开终端就会发现 shell 已经变成了 zsh。然而这时的 zsh 仍然是黑底白字，要让它变好看，我们需要对 zsh 进行配置。</p>
 <p>oh-my-zsh 是一个管理 zsh 配置的框架，评价也非常好。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">如果无法下载安装脚本</p>
 <p>如果遇到了网络连通性问题，可以使用以下替换命令：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">REMOTE</span><span class="o">=</span>https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://mirrors.ustc.edu.cn/misc/ohmyzsh-install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">REMOTE</span><span class="o">=</span>https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://mirrors.ustc.edu.cn/misc/ohmyzsh-install.sh<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 </div>
 <p>安装完成后就可以看到 shell 不再是黑底白字，让人感到焕然一新，然而也许这样并不能让你满足。</p>
@@ -2518,20 +2518,20 @@
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-sS<span class="w"> </span>https://starship.rs/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
 <p>然后在 <code>~/.bashrc</code> 文件的末尾添加以下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>starship<span class="w"> </span>init<span class="w"> </span>bash<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>starship<span class="w"> </span>init<span class="w"> </span>bash<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <p>可以使用以下命令添加（注意，<code>&gt;&gt;</code> 是追加到文件末尾，因此这条命令只要执行一次即可）：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(starship init bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'eval "$(starship init bash)"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </code></pre></div>
 <p>重新打开一个终端就可以看到效果了。更进一步的修改请参考 <a href="https://starship.rs/config/">starship 的配置文档</a>。</p>
 <p>之后我们配置按下 Ctrl + R 时搜索历史命令的功能。尽管 bash 已经内置了该功能，但是它的交互性非常差，难以使用，因此我们使用 <a href="https://junegunn.github.io/fzf/">fzf</a> 来增强该功能。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>fzf
 </code></pre></div>
 <p>之后同样在 <code>~/.bashrc</code> 文件的末尾添加以下内容：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>fzf<span class="w"> </span>--bash<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>fzf<span class="w"> </span>--bash<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <p>同样可以使用以下命令添加：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(fzf --bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'eval "$(fzf --bash)"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </code></pre></div>
 <p>重新打开一个终端，按下 Ctrl + R 即可使用该功能。</p>
 <h2 id="other-personalizations">其它的个性化<a class="headerlink" href="#other-personalizations" title="Permanent link">&para;</a></h2>
@@ -2613,19 +2613,19 @@ Your MySQL connection id is 2
 Server version: 5.7.29-0ubuntu0.18.04.1 (Ubuntu)
 Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
 Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 </code></pre></div>
 <p>Ubuntu 18.04 默认安装的是 MySQL 5.7。参照下面的命令，输入，其中 <code>&lt;your-password&gt;</code> 替换为你自己设定的密码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">wordpress</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'&lt;your-password&gt;'</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
 <p>Ubuntu 20.04 默认安装的是 MySQL 8.0。由于其不再支持使用 <code>GRANT</code> 直接创建用户，命令需要小幅修改：</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">wordpress</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'&lt;your-password&gt;'</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">INSERT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">DELETE</span><span class="p">,</span><span class="k">CREATE</span><span class="p">,</span><span class="k">DROP</span><span class="p">,</span><span class="k">ALTER</span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">wordpress</span><span class="p">.</span><span class="o">*</span>
 <span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">wordpress</span><span class="nv">@localhost</span><span class="p">;</span>
@@ -2640,12 +2640,12 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <p>编辑我们的 WordPress 配置 <code>/etc/wordpress/config-localhost.php</code></p>
 <p>写入以下内容，其中 <code>&lt;your-password&gt;</code> 为刚才设定的数据库密码。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpress&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;your-password&gt;&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8mb4_general_ci&#39;</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_CONTENT_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/share/wordpress/wp-content&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'DB_NAME'</span><span class="p">,</span> <span class="s1">'wordpress'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'DB_USER'</span><span class="p">,</span> <span class="s1">'wordpress'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'DB_PASSWORD'</span><span class="p">,</span> <span class="s1">'&lt;your-password&gt;'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'DB_HOST'</span><span class="p">,</span> <span class="s1">'localhost'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'DB_COLLATE'</span><span class="p">,</span> <span class="s1">'utf8mb4_general_ci'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'WP_CONTENT_DIR'</span><span class="p">,</span> <span class="s1">'/usr/share/wordpress/wp-content'</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre></div>
 <p>然后输入：</p>

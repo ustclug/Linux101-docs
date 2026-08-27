@@ -2779,11 +2779,11 @@ VMware 与 VirtualBox 的扩容操作可能都不会自动扩大文件系统，�
 </code></pre></div>
 <p>我们可以使用 <code>ssh</code> 命令直接连接到本地（localhost）的 SSH 服务器。其中 <code>@</code> 符号前的是登录的用户名，后面的是服务器的域名或 IP 地址。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>ssh<span class="w"> </span>ustc@localhost
-<span class="go">The authenticity of host &#39;localhost (127.0.0.1)&#39; can&#39;t be established.</span>
+<span class="go">The authenticity of host 'localhost (127.0.0.1)' can't be established.</span>
 <span class="go">ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.</span>
 <span class="go">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
-<span class="go">Warning: Permanently added &#39;localhost&#39; (ECDSA) to the list of known hosts.</span>
-<span class="go">ustc@localhost&#39;s password:</span>
+<span class="go">Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.</span>
+<span class="go">ustc@localhost's password:</span>
 <span class="go">Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.13.0-28-generic x86_64)</span>
 
 <span class="go"> * Documentation:  https://help.ubuntu.com</span>
@@ -2806,7 +2806,7 @@ VMware 与 VirtualBox 的扩容操作可能都不会自动扩大文件系统，�
 <details class="note">
 <summary>第一次连接时的提示</summary>
 <p>在初次连接时会有类似于下面这样的提示，需要输入 <code>yes</code> 才能继续连接：</p>
-<div class="highlight"><pre><span></span><code>The authenticity of host &#39;localhost (127.0.0.1)&#39; can&#39;t be established.
+<div class="highlight"><pre><span></span><code>The authenticity of host 'localhost (127.0.0.1)' can't be established.
 ECDSA key fingerprint is SHA256:czt1KYx+RIkFTpSPQOLq+GqLbLRLZcD1Ffkq4Z3ZR2U.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 </code></pre></div>
@@ -2847,7 +2847,7 @@ Host key verification failed.
 <span class="go">Your public key has been saved in /home/ustc/.ssh/id_rsa.pub</span>
 <span class="go">The key fingerprint is:</span>
 <span class="go">SHA256:/+4tXnjnilyLQvwa+qEKx0IK2jOzHRj0Nbarr3Vot1E ustc@ustclug-linux101</span>
-<span class="go">The key&#39;s randomart image is:</span>
+<span class="go">The key's randomart image is:</span>
 <span class="go">+---[RSA 3072]----+</span>
 <span class="go">|                 |</span>
 <span class="go">|                 |</span>
@@ -2865,11 +2865,11 @@ Host key verification failed.
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>ssh-copy-id<span class="w"> </span>ustc@localhost
 <span class="go">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span>
 <span class="go">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span>
-<span class="go">ustc@localhost&#39;s password:</span>
+<span class="go">ustc@localhost's password:</span>
 
 <span class="go">Number of key(s) added: 1</span>
 
-<span class="go">Now try logging into the machine, with:   &quot;ssh &#39;ustc@localhost&#39;&quot;</span>
+<span class="go">Now try logging into the machine, with:   "ssh 'ustc@localhost'"</span>
 <span class="go">and check to make sure that only the key(s) you wanted were added.</span>
 </code></pre></div>
 <p>如果服务器不允许使用密码登录，可以将用户目录下 <code>.ssh/id_rsa.pub</code> 文件的内容复制到机器对应用户的 <code>.ssh/authorized_keys</code> 文件中。</p>

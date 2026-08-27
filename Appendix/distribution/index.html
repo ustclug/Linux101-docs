@@ -2840,7 +2840,7 @@
   <span class="c1"># 用户配置</span>
   users<span class="o">.</span>users<span class="o">.</span><span class="ss">alice</span> <span class="o">=</span> <span class="p">{</span>
     <span class="ss">isNormalUser</span> <span class="o">=</span> <span class="no">true</span><span class="p">;</span>
-    <span class="ss">extraGroups</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;wheel&quot;</span> <span class="p">];</span>
+    <span class="ss">extraGroups</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"wheel"</span> <span class="p">];</span>
   <span class="p">};</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2895,12 +2895,12 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># flake.nix 示例</span>
 <span class="p">{</span>
   <span class="ss">inputs</span> <span class="o">=</span> <span class="p">{</span>
-    nixpkgs<span class="o">.</span><span class="ss">url</span> <span class="o">=</span> <span class="s2">&quot;github:NixOS/nixpkgs/nixos-unstable&quot;</span><span class="p">;</span>
+    nixpkgs<span class="o">.</span><span class="ss">url</span> <span class="o">=</span> <span class="s2">"github:NixOS/nixpkgs/nixos-unstable"</span><span class="p">;</span>
   <span class="p">};</span>
 
   <span class="ss">outputs</span> <span class="o">=</span> <span class="p">{</span> self<span class="p">,</span> nixpkgs <span class="p">}:</span> <span class="p">{</span>
     nixosConfigurations<span class="o">.</span><span class="ss">mySystem</span> <span class="o">=</span> nixpkgs<span class="o">.</span>lib<span class="o">.</span>nixosSystem <span class="p">{</span>
-      <span class="ss">system</span> <span class="o">=</span> <span class="s2">&quot;x86_64-linux&quot;</span><span class="p">;</span>
+      <span class="ss">system</span> <span class="o">=</span> <span class="s2">"x86_64-linux"</span><span class="p">;</span>
       <span class="ss">modules</span> <span class="o">=</span> <span class="p">[</span> <span class="l">./configuration.nix</span> <span class="p">];</span>
     <span class="p">};</span>
   <span class="p">};</span>

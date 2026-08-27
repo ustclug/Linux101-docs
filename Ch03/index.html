@@ -2438,7 +2438,7 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 <p>通过 apt 安装的软件都来源于相对应的软件源，每个 Linux 发行版一般都带有官方的软件源，在官方的软件源中已经包含了丰富的软件，apt 的软件源列表在 <code>/etc/apt/sources.list</code> 下。</p>
 <details class="example">
 <summary>查看本地的软件源列表</summary>
-<div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v &quot;#&quot;
+<div class="highlight"><pre><span></span><code>$ cat /etc/apt/sources.list | grep -v "#"
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted
 
 deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted
@@ -2497,7 +2497,7 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <p>一般情况下，<code>/etc/apt/sources.list</code> 下的官方源地址为 <code>http://archive.ubuntu.com/</code> ，我们只需要将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可。</p>
 <p>如果你使用 Ubuntu 图形安装器安装，默认的源地址通常不是 <code>http://archive.ubuntu.com/</code> ， 而是 <code>http://&lt;country-code&gt;.archive.ubuntu.com/ubuntu/</code> ，如 <code>http://cn.archive.ubuntu.com/ubuntu/</code>，同样也将其替换为 <code>http://mirrors.ustc.edu.cn</code> 即可。</p>
 <p>可以使用如下命令：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g&#39;</span><span class="w"> </span>/etc/apt/sources.list
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s|//.*archive.ubuntu.com|//mirrors.ustc.edu.cn|g'</span><span class="w"> </span>/etc/apt/sources.list
 </code></pre></div>
 <p>当然也可以直接使用 <code>vim</code>、<code>nano</code> 等文本编辑器进行修改。</p>
 </div>
@@ -2530,8 +2530,8 @@ deb-src http://site.example.com/ubuntu/ distribution component1 component2 compo
 <p>添加 Docker 软件源到 <code>/etc/apt/sources.list.d/</code> 中</p>
 <p>为了方便维护，第三方的 APT 软件源一般都放在 <code>/etc/apt/sources.list.d/</code> 目录下（而非直接编辑 <code>/etc/apt/sources.list</code>）。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-<span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
-<span class="gp">$</span><span class="s2">(lsb_release -cs) stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="gp">$</span><span class="s2">(lsb_release -cs) stable"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 <p>这里通过 <code>dpkg --print-architecture</code> 命令获取系统当前的架构，<code>lsb_release -cs</code> 命令获取当前的系统代号（Codename），通过 Shell 命令拼接后保存到 <code>/etc/apt/sources.list.d/docker.list</code> 文件中。</p>
 </li>
@@ -2593,7 +2593,7 @@ Get:8 http://mirrors.ustc.edu.cn/ubuntu bionic-updates/main Translation-en [298 
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-158 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
+158 packages can be upgraded. Run 'apt list --upgradable' to see them.
 </code></pre></div>
 <p>每一行对应获取一个软件源。</p>
 <p>在最后，<code>158 packages can be upgraded</code> 表示了系统中可以被更新的软件包的数量。</p>
@@ -2678,7 +2678,7 @@ Do you want to continue? [Y/n]
 <span class="gp">$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>*<span class="w"> </span>/usr/local/clang-16.0.0
 </code></pre></div>
 <p>在这里我们需要知道什么是 <code>PATH</code> 变量，当我们在终端输入命令时，终端会优先判断是否为终端的内建命令，如果不是，则会在 <code>$PATH</code> 环境变量中包含的目录下进行查找。因此，只要我们将一个可执行文件放入了 <code>$PATH</code> 中的目录下面，我们就可以在任意地方调用我们的程序。那为什么是不直接将 <code>clang</code> 目录下的内容直接复制到 <code>/usr/local</code> 下呢？这么做虽然能让 <code>clang/bin</code> 目录下的二进制文件与 <code>/usr/local/bin/</code> 合并，从而实现“到处可调用”，但同时也会把解压的 <code>clang</code> 目录下的 <code>lib</code>、<code>include</code>、<code>share</code> 等目录混入系统已有的 <code>/usr/local/lib</code>、<code>/usr/local/include</code> 等目录中。这种方法针对那些只有单一的二进制编译执行程序来说是简单省事的，但由于 <code>clang</code> 有很多版本，并且 <code>clang</code> 软件规模较大、较复杂，有很多文件，这么做会带来麻烦：安装的 <code>clang</code> 无法进行有效的版本管理，后续卸载也很困难，因此像 <code>clang</code> 这样的复杂软件，并不推荐直接安装到 <code>/usr/local</code>。更推荐的做法是单独在 <code>/usr/local/</code> 下单独创建一个属于 <code>clang</code> 的部署目录，并且标注好版本号，这样也更方便后续的版本管理与维护工作：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=/usr/local/clang-16.0.0/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'export PATH=/usr/local/clang-16.0.0/bin:$PATH'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 <span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </code></pre></div>
 <p>这两条命令将当前 <code>clang-16.0.0</code> 目录添加到 PATH 环境变量中。通过这个命令可以看到当前的 PATH 环境变量有哪些目录。</p>
@@ -3048,11 +3048,11 @@ Do you want to continue? [Y/n]
 <p>如果不添加任何其他选项，find 会递归地输出提供的 PATH 下的所有文件。</p>
 <div class="admonition example">
 <p class="admonition-title">搜索示例</p>
-<div class="highlight"><span class="filename">在当前目录搜索名为 report.pdf 的文件</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;report.pdf&#39;</span>
+<div class="highlight"><span class="filename">在当前目录搜索名为 report.pdf 的文件</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">'report.pdf'</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">全盘搜索大于 1G 的文件</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>/<span class="w"> </span>-size<span class="w"> </span>+1G
 </code></pre></div>
-<div class="highlight"><span class="filename">在用户目录搜索所有名为 node_modules 的文件夹</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>~/<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;node_modules&#39;</span><span class="w"> </span>-type<span class="w"> </span>d
+<div class="highlight"><span class="filename">在用户目录搜索所有名为 node_modules 的文件夹</span><pre><span></span><code><span class="gp">$ </span>find<span class="w"> </span>~/<span class="w"> </span>-name<span class="w"> </span><span class="s1">'node_modules'</span><span class="w"> </span>-type<span class="w"> </span>d
 </code></pre></div>
 </div>
 <div class="admonition tip">
@@ -3074,7 +3074,7 @@ md5sum<span class="w"> </span>file3
 <p class="admonition-title">fd</p>
 <p><a href="https://github.com/sharkdp/fd">fd</a> 是 find 的更现代、好用的替代。在 Ubuntu 下需要安装 <code>fd-find</code> 包，并且命令名为 <strong><code>fdfind</code></strong>（而非 <code>fd</code>）。</p>
 <p>其默认接受正则表达式（见<a href="../Ch09/">第九章</a>）作为搜索条件，例如搜索结尾为 <code>.conf</code> 的文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>fdfind<span class="w"> </span><span class="s1">&#39;\.conf$&#39;</span><span class="w"> </span>/etc/
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>fdfind<span class="w"> </span><span class="s1">'\.conf$'</span><span class="w"> </span>/etc/
 <span class="go">/etc/debconf.conf</span>
 <span class="go">/etc/gai.conf</span>
 <span class="go">/etc/host.conf</span>
@@ -3440,7 +3440,7 @@ https://www.gnu.org/software/tar
    tar tvf {{source.tar}}
 
  - Extract files matching a pattern:
-   tar xf {{source.tar}} --wildcards {{&quot;*.html&quot;}}
+   tar xf {{source.tar}} --wildcards {{"*.html"}}
 </code></pre></div>
 <p>可以从输出中快速地了解到：</p>
 <ul>

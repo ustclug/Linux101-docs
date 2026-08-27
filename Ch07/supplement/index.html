@@ -2169,10 +2169,10 @@
 <p>Miniconda 是 Anaconda 的免费迷你版本，只包含了 Conda、Python 及其依赖，以及少量其他有用的包，例如 pip 和 zlib。而 Anaconda 则额外包含了 250 多个自动安装的科学软件包，例如 SciPy 和 NumPy，并且测试了这些软件包之间的兼容性。Anaconda 分为个人版、商业版、团队版、企业版，除了个人版以外，其余版本均为付费产品。</p>
 <h3 id="install-miniconda">安装 Miniconda<a class="headerlink" href="#install-miniconda" title="Permanent link">&para;</a></h3>
 <p>从官网下载安装 Miniconda，并进入虚拟环境。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-O<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-O<span class="w"> </span>-<span class="k">)</span><span class="s2">"</span>
 
 <span class="gp"># </span>前面的选项可以保持默认，也可以自行修改
-<span class="go">please answer &#39;yes&#39; or &#39;no&#39;:</span>
+<span class="go">please answer 'yes' or 'no':</span>
 <span class="go">&gt;&gt;&gt; yes</span>
 <span class="gp"># </span>选择<span class="w"> </span>Miniconda<span class="w"> </span>的安装路径
 <span class="go">Miniconda3 will now be installed into this location:</span>
@@ -2220,7 +2220,7 @@
 <span class="gp">#</span>include<span class="w"> </span>&lt;stdio.h&gt;
 
 <span class="go">int main() {</span>
-<span class="go">    puts(&quot;Hello, world!&quot;);</span>
+<span class="go">    puts("Hello, world!");</span>
 <span class="go">    return 0;</span>
 <span class="go">}</span>
 <span class="gp">$ </span>gcc<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>hello.c
@@ -2276,8 +2276,8 @@
 <p>其次，当运行库出现问题时，用户可以选择更新库，此时所有动态链接的程序都能得到修复，但是静态链接的程序由于不使用系统库，就不得不一个个重新编译。</p>
 <p>最后一点是，Linux 的默认 C 库 glibc 对静态链接并不友好，如果程序使用了一部分函数，在静态链接时会受到限制。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>gcc<span class="w"> </span>-o<span class="w"> </span>getaddrinfo-example<span class="w"> </span>getaddrinfo.c<span class="w"> </span>-static
-<span class="go">/usr/bin/ld: /tmp/ccPZTyKT.o: in function `main&#39;:</span>
-<span class="go">getaddrinfo.c:(.text+0xd2): warning: Using &#39;getaddrinfo&#39; in statically linked applications requires at runtime the shared libraries from the glibc version used for linking</span>
+<span class="go">/usr/bin/ld: /tmp/ccPZTyKT.o: in function `main':</span>
+<span class="go">getaddrinfo.c:(.text+0xd2): warning: Using 'getaddrinfo' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Musl libc</p>
@@ -2326,10 +2326,10 @@
 <span class="go">hello.exe: PE32+ executable (console) x86-64, for MS Windows</span>
 <span class="gp">$ </span>wine<span class="w"> </span>hello.exe<span class="w">  </span><span class="c1"># 使用 wine 运行</span>
 <span class="go">it looks like wine32 is missing, you should install it.</span>
-<span class="go">as root, please execute &quot;apt-get install wine32&quot;</span>
-<span class="go">wine: created the configuration directory &#39;/home/ubuntu/.wine&#39;</span>
+<span class="go">as root, please execute "apt-get install wine32"</span>
+<span class="go">wine: created the configuration directory '/home/ubuntu/.wine'</span>
 <span class="go">（忽略首次配置的输出）</span>
-<span class="go">wine: configuration in L&quot;/home/ubuntu/.wine&quot; has been updated.</span>
+<span class="go">wine: configuration in L"/home/ubuntu/.wine" has been updated.</span>
 <span class="go">Hello, world!</span>
 </code></pre></div>
 <p>MinGW 也可以编译 Windows 下的图形界面应用程序。以下的程序例子来自 <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/windows-hello-world-sample">Windows Hello World Sample</a>（MIT License），稍作修改以符合 C 语言的语法。</p>
@@ -2346,7 +2346,7 @@
 <span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// Register the window class.</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">[]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Sample Window Class&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="n">CLASS_NAME</span><span class="p">[]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">"Sample Window Class"</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">WNDCLASS</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
 
@@ -2361,7 +2361,7 @@
 <span class="w">    </span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateWindowEx</span><span class="p">(</span>
 <span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w">                              </span><span class="c1">// Optional window styles.</span>
 <span class="w">        </span><span class="n">CLASS_NAME</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Window class</span>
-<span class="w">        </span><span class="sa">L</span><span class="s">&quot;Learn to Program Windows&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1">// Window text</span>
+<span class="w">        </span><span class="sa">L</span><span class="s">"Learn to Program Windows"</span><span class="p">,</span><span class="w">    </span><span class="c1">// Window text</span>
 <span class="w">        </span><span class="n">WS_OVERLAPPEDWINDOW</span><span class="p">,</span><span class="w">            </span><span class="c1">// Window style</span>
 
 <span class="w">        </span><span class="c1">// Size and position</span>
@@ -2415,8 +2415,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>x86_64-w64-mingw32-gcc<span class="w"> </span>-o<span class="w"> </span>winhello.exe<span class="w"> </span>winhello.c
-<span class="go">/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main&#39;:</span>
-<span class="go">./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain&#39;</span>
+<span class="go">/usr/bin/x86_64-w64-mingw32-ld: /usr/lib/gcc/x86_64-w64-mingw32/9.3-win32/../../../../x86_64-w64-mingw32/lib/libmingw32.a(lib64_libmingw32_a-crt0_c.o): in function `main':</span>
+<span class="go">./build/x86_64-w64-mingw32-x86_64-w64-mingw32-crt/./mingw-w64-crt/crt/crt0_c.c:18: undefined reference to `WinMain'</span>
 <span class="go">collect2: error: ld returned 1 exit status</span>
 <span class="gp">$ </span><span class="c1"># 编译失败，这是因为编译 Windows Unicode（UTF-16）程序需要额外的参数 -municode。</span>
 <span class="gp">$ </span><span class="c1"># 参见 https://sourceforge.net/p/mingw-w64/wiki2/Unicode%20apps/</span>

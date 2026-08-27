@@ -2340,13 +2340,13 @@
 <h2 id="redirection-and-pipe">I/O 重定向与管道<a class="headerlink" href="#redirection-and-pipe" title="Permanent link">&para;</a></h2>
 <h3 id="redirection">重定向<a class="headerlink" href="#redirection" title="Permanent link">&para;</a></h3>
 <p>一般情况下命令从<strong>标准输入（stdin）</strong>读取输入，并输出到<strong>标准输出（stdout）</strong>，默认情况下两者都是你的终端。使用重定向可以让命令从文件读取输入/输出到文件。下面是以 <code>echo</code> 为例的重定向输出：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello Linux!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>output_file<span class="w"> </span><span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello Linux!"</span><span class="w"> </span>&gt;<span class="w"> </span>output_file<span class="w"> </span><span class="c1"># 将输出写入到文件（覆盖原有内容）</span>
 <span class="gp">$ </span>cat<span class="w"> </span>output_file
 <span class="go">Hello Linux!</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;rewrite it&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>output_file
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"rewrite it"</span><span class="w"> </span>&gt;<span class="w"> </span>output_file
 <span class="gp">$ </span>cat<span class="w"> </span>output_file<span class="w"> </span><span class="c1"># 可以看到原来的 Hello Linux! 被覆盖了。</span>
 <span class="go">rewrite it</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;append it&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>output_file<span class="w"> </span><span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"append it"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>output_file<span class="w"> </span><span class="c1"># 将输出追加到文件（不会覆盖原有内容）</span>
 <span class="gp">$ </span>cat<span class="w"> </span>output_file
 <span class="go">rewrite it</span>
 <span class="go">append it</span>
@@ -2428,7 +2428,7 @@
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>-i<span class="w"> </span>filelist.txt
 </code></pre></div>
 <p>安装 oh-my-zsh：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="w"> </span>-O<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>wget<span class="w"> </span>https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="w"> </span>-O<span class="w"> </span>-<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 </details>
 <h3 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h3>
@@ -2461,19 +2461,19 @@
 <details class="example">
 <summary>范例</summary>
 <p>输出必应主页的代码：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span><span class="s2">&quot;http://cn.bing.com&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span><span class="s2">"http://cn.bing.com"</span>
 </code></pre></div>
 <p>使用重定向把必应页面保存至 <code>bing.html</code> 本地：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span><span class="s2">&quot;http://cn.bing.com&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>bing.html
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span><span class="s2">"http://cn.bing.com"</span><span class="w"> </span>&gt;<span class="w"> </span>bing.html
 </code></pre></div>
 <p>也可以使用 <code>-o</code> 选项指定输出文件：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-o<span class="w"> </span>bing.html<span class="w"> </span><span class="s2">&quot;http://cn.bing.com&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-o<span class="w"> </span>bing.html<span class="w"> </span><span class="s2">"http://cn.bing.com"</span>
 </code></pre></div>
 <p>下载 USTCLUG 的 logo：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-O<span class="w"> </span><span class="s2">"https://ftp.lug.ustc.edu.cn/misc/logo-whiteback-circle.png"</span>
 </code></pre></div>
 <p>只展示 HTTP 响应头内容：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-I<span class="w"> </span><span class="s2">&quot;http://cn.bing.com&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>curl<span class="w"> </span>-I<span class="w"> </span><span class="s2">"http://cn.bing.com"</span>
 </code></pre></div>
 </details>
 <div class="admonition warning">
@@ -2505,12 +2505,12 @@
 <div class="admonition warning">
 <p class="admonition-title">统计中文文本时的问题</p>
 <p><code>wc</code> 在统计中文文本时，会出现一些问题，比如：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;中文测试&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'中文测试'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc
 <span class="go">1       1      13</span>
 </code></pre></div>
 <p>这里显示文本只有 1 个单词，但是有 13 个字符，这显然是不对的。</p>
 <p>对于字符数统计结果，可以使用 <code>wc -m</code> 命令要求 <code>wc</code> 考虑宽字符：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;中文测试&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-m
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'中文测试'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-m
 <span class="go">5</span>
 </code></pre></div>
 <p>换行符也是一个符号，所以结果为 5（而非 4）。</p>
@@ -2549,10 +2549,10 @@
 <p>除此以外，tail 还有一个非常实用的参数 <code>-f</code>：当文件末尾内容增长时，持续输出末尾增加的内容。这个参数常用于动态显示 log 文件的更新（试一试 <code>tail -f /var/log/syslog</code>）。</p>
 <h3 id="grep">文本查找：grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p><code>grep</code> 命令可以查找文本中的字符串：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>grep<span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 查找文件 file 中包含 hello 的行</span>
-<span class="gp">$ </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;file&#39;</span><span class="w">  </span><span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
-<span class="gp">$ </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;Systemd&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
-<span class="gp">$ </span>grep<span class="w"> </span>-R<span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span>.<span class="w">  </span><span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>grep<span class="w"> </span><span class="s1">'hello'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 查找文件 file 中包含 hello 的行</span>
+<span class="gp">$ </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'file'</span><span class="w">  </span><span class="c1"># 查找当前目录下文件名包含 file 的文件</span>
+<span class="gp">$ </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">'Systemd'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 查找文件 file 中包含 Systemd 的行（忽略大小写）</span>
+<span class="gp">$ </span>grep<span class="w"> </span>-R<span class="w"> </span><span class="s1">'hello'</span><span class="w"> </span>.<span class="w">  </span><span class="c1"># 递归查找当前目录下内容包含 hello 的文件</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">不止如此！</p>
@@ -2568,23 +2568,23 @@
 <span class="go">2:::1   localhost</span>
 
 <span class="go">/etc/security/pam_env.conf</span>
-<span class="go">52:# to &quot;localhost&quot; rather than not being set at all</span>
+<span class="go">52:# to "localhost" rather than not being set at all</span>
 <span class="go">53:#REMOTEHOST  DEFAULT=localhost OVERRIDE=@{PAM_RHOST}</span>
 <span class="go">64:#NNTPSERVER  DEFAULT=localhost</span>
 </code></pre></div>
 </div>
 <h3 id="sed">文本替换：sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
 <p><code>sed</code> 命令可以替换文本中的字符串：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>
-<span class="gp">$ </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;helloworld&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w">  </span><span class="c1"># 管道也是可以的</span>
-<span class="gp">$ </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># -i 参数会直接写入文件，操作前记得备份哦！</span>
-<span class="gp">$ </span>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">&#39;s/hello/world/g&#39;</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 当然，也可以让 sed 帮你备份到 file.bak</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="s1">'s/hello/world/g'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 中的 hello 全局（global）替换为 world 后输出</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s1">'s/hello/world/'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 将文件 file 的每一行第一个出现的 hello 替换为 world 后输出</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'helloworld'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s/hello/world/g'</span><span class="w">  </span><span class="c1"># 管道也是可以的</span>
+<span class="gp">$ </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/hello/world/g'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># -i 参数会直接写入文件，操作前记得备份哦！</span>
+<span class="gp">$ </span>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">'s/hello/world/g'</span><span class="w"> </span>file<span class="w">  </span><span class="c1"># 当然，也可以让 sed 帮你备份到 file.bak</span>
 </code></pre></div>
 <p>对于大多数用户来说，最常用 <code>sed</code> 的场合是替换软件源的时候。在阅读了上面的示例之后，以下例子就很简单了：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list
-<span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list
-<span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list
+<span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/archive.ubuntu.com/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list
+<span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/security.ubuntu.com/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">同样不止如此！</p>
@@ -2599,14 +2599,14 @@
 <p>Bash 允许用户定制环境以满足自己需要。通过修改环境文件 <code>.bash_profile</code>、<code>.bashrc</code>、<code>.bash_logout</code>，配置合适的环境变量，可以改变主目录、命令提示符、命令搜索路径等用户工作环境。</p>
 <p>此外，bash 也支持使用 <code>alias</code> 别名代替命令关键字（<code>alias name='命令'</code>）。输入 <code>alias</code>，可以查看目前存在的别名：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">alias</span>
-<span class="go">alias alert=&#39;notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e &#39;\&#39;&#39;s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//&#39;\&#39;&#39;)&quot;&#39;</span>
-<span class="go">alias egrep=&#39;egrep --color=auto&#39;</span>
-<span class="go">alias fgrep=&#39;fgrep --color=auto&#39;</span>
-<span class="go">alias grep=&#39;grep --color=auto&#39;</span>
-<span class="go">alias l=&#39;ls -CF&#39;</span>
-<span class="go">alias la=&#39;ls -A&#39;</span>
-<span class="go">alias ll=&#39;ls -alF&#39;</span>
-<span class="go">alias ls=&#39;ls --color=auto&#39;</span>
+<span class="go">alias alert='notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//'\'')"'</span>
+<span class="go">alias egrep='egrep --color=auto'</span>
+<span class="go">alias fgrep='fgrep --color=auto'</span>
+<span class="go">alias grep='grep --color=auto'</span>
+<span class="go">alias l='ls -CF'</span>
+<span class="go">alias la='ls -A'</span>
+<span class="go">alias ll='ls -alF'</span>
+<span class="go">alias ls='ls --color=auto'</span>
 <span class="gp">$ </span>ll<span class="w">  </span><span class="c1"># 执行 ll 相当于执行 ls -alF</span>
 <span class="go">总用量 128</span>
 <span class="go">drwxr-xr-x 18 ustc ustc 4096 2月  28 00:51 ./</span>
@@ -2624,7 +2624,7 @@
 <p class="admonition-title">检查命令是否被 alias</p>
 <p>如果发现某些命令的行为不符合预期，可以使用 <code>type</code> 命令检查该命令是否被 alias 了：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">type</span><span class="w"> </span>ls
-<span class="go">ls is aliased to `ls --color=auto&#39;</span>
+<span class="go">ls is aliased to `ls --color=auto'</span>
 </code></pre></div>
 </div>
 <h3 id="run-bash-script">Bash 脚本的运行<a class="headerlink" href="#run-bash-script" title="Permanent link">&para;</a></h3>
@@ -2725,7 +2725,7 @@
 <p class="admonition-title">变量使用示例</p>
 <p>变量定义：</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>skill<span class="w"> </span><span class="k">in</span><span class="w"> </span>Ada<span class="w"> </span>Coffee<span class="w"> </span>Action<span class="w"> </span>Java<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"I am good at </span><span class="si">${</span><span class="nv">skill</span><span class="si">}</span><span class="s2">Script"</span>
 <span class="k">done</span>
 </code></pre></div>
 <p>输出：</p>
@@ -2750,7 +2750,7 @@ I am good at JavaScript
 
 <span class="nb">set</span><span class="w"> </span>-u
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$nonexist</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This will never be printed.&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"This will never be printed."</span>
 </code></pre></div>
 <p>执行可以发现输出类似如下的错误：</p>
 <div class="highlight"><pre><span></span><code>example.sh: line 4: nonexist: unbound variable
@@ -2879,11 +2879,11 @@ I am good at JavaScript
 <span class="gp">$ </span><span class="c1"># 可以使用反斜杠来转义空格</span>
 <span class="gp">$ </span>ls<span class="w"> </span>/mnt/c/Program<span class="se">\ </span>Files/<span class="w">  </span><span class="c1"># 输出省略</span>
 <span class="gp">$ </span><span class="c1"># 或者使用双引号或单引号包裹</span>
-<span class="gp">$ </span>ls<span class="w"> </span><span class="s2">&quot;/mnt/c/Program Files/&quot;</span>
-<span class="gp">$ </span>ls<span class="w"> </span><span class="s1">&#39;/mnt/c/Program Files/&#39;</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># 双引号中仍然可以使用各种 shell 特殊符号</span>
+<span class="gp">$ </span>ls<span class="w"> </span><span class="s2">"/mnt/c/Program Files/"</span>
+<span class="gp">$ </span>ls<span class="w"> </span><span class="s1">'/mnt/c/Program Files/'</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">"</span><span class="w">  </span><span class="c1"># 双引号中仍然可以使用各种 shell 特殊符号</span>
 <span class="go">/home/ustc</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;$PWD&#39;</span><span class="w">  </span><span class="c1"># 但是单引号则不行</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'$PWD'</span><span class="w">  </span><span class="c1"># 但是单引号则不行</span>
 <span class="gp">$</span>PWD
 <span class="gp">$ </span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="sb">`</span>which<span class="w"> </span>ls<span class="sb">`</span><span class="w">  </span><span class="c1"># 查看 ls 命令对应的程序信息，使用反引号语法</span>
 <span class="go">-rwxr-xr-x 1 root root 139K Sep  5  2019 /usr/bin/ls</span>
@@ -2894,40 +2894,40 @@ I am good at JavaScript
 <h3 id="bash-input-output">变量输入与输出<a class="headerlink" href="#bash-input-output" title="Permanent link">&para;</a></h3>
 <h4 id="bash-input">输入<a class="headerlink" href="#bash-input" title="Permanent link">&para;</a></h4>
 <p>可以使用 <code>read</code> 命令读取用户输入，并将输入的内容赋值给变量。其中 <code>-p</code> 参数后可以设置输出的提示信息。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your name: &quot;</span><span class="w"> </span>name<span class="w">  </span><span class="c1"># 输出提示，然后从输入读取一个值，存储到 $name 中</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">""</span>
+<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"Enter your name: "</span><span class="w"> </span>name<span class="w">  </span><span class="c1"># 输出提示，然后从输入读取一个值，存储到 $name 中</span>
 <span class="go">Enter your name: linux</span>
 <span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$name</span>
 <span class="go">linux</span>
 </code></pre></div>
 <p>在使用 <code>read</code> 时，建议加上 <code>-r</code> 参数，否则 <code>\</code> 会被视为转义符号。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your message: &quot;</span><span class="w"> </span>message
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">message</span><span class="o">=</span><span class="s2">""</span>
+<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"Enter your message: "</span><span class="w"> </span>message
 <span class="go">Enter your message: \(^o^)/~</span>
 <span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$message</span><span class="w">  </span><span class="c1"># 可以看到，反斜杠被认为是转义符号，结果被丢弃</span>
 <span class="gp gp-VirtualEnv">(^o^)</span><span class="go">/~</span>
-<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your message: &quot;</span><span class="w"> </span>message
+<span class="gp">$ </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>-p<span class="w"> </span><span class="s2">"Enter your message: "</span><span class="w"> </span>message
 <span class="go">Enter your message: \(^o^)/~</span>
 <span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$message</span><span class="w">  </span><span class="c1"># 加上 -r 参数后，反斜杠完好无损</span>
 <span class="go">\(^o^)/~</span>
 </code></pre></div>
 <h4 id="bash-output">输出<a class="headerlink" href="#bash-output" title="Permanent link">&para;</a></h4>
 <p>可以使用 <code>echo</code> 命令输出变量信息。其中 <code>-n</code> 参数不会在结尾输出换行符，而 <code>-e</code> 参数会解析文本中的转义字符（例如 <code>\n</code>）。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"hello"</span>
 <span class="go">hello$ # 由于这里 echo 结尾不输出换行，shell 就会在这里继续接受用户输入</span>
 <span class="gp">$ </span><span class="c1"># 这也是为什么在 C 语言中最后的 printf 输出需要加上 \n 的原因</span>
-<span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;linux&quot;</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!&quot;</span><span class="w">  </span><span class="c1"># 可以看到 \n 没有被转义成换行</span>
+<span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">"linux"</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!"</span><span class="w">  </span><span class="c1"># 可以看到 \n 没有被转义成换行</span>
 <span class="go">Hello linux.\nWelcome to bash!</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!&quot;</span><span class="w">  </span><span class="c1"># 加上 -e 之后就被转义了</span>
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"Hello </span><span class="nv">$name</span><span class="s2">.\nWelcome to bash!"</span><span class="w">  </span><span class="c1"># 加上 -e 之后就被转义了</span>
 <span class="go">Hello linux.</span>
 <span class="go">Welcome to bash!</span>
 </code></pre></div>
 <p>此外，<code>printf</code> 命令也可以用来输出，它的使用方法类似于 C 中的 <code>printf()</code> 函数。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;linux&quot;</span>
-<span class="gp">$ </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Hello %s&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nv">name</span><span class="o">=</span><span class="s2">"linux"</span>
+<span class="gp">$ </span><span class="nb">printf</span><span class="w"> </span><span class="s2">"Hello %s"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$name</span><span class="s2">"</span>
 <span class="go">Hello linux$ # 和 echo 不同，printf 结尾默认不输出换行符</span>
-<span class="gp">$ </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Hello %s\n&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+<span class="gp">$ </span><span class="nb">printf</span><span class="w"> </span><span class="s2">"Hello %s\n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$name</span><span class="s2">"</span>
 <span class="go">Hello linux</span>
 <span class="gp">$ </span><span class="c1"># 所以为了正常显示，需要在结尾补上 \n</span>
 </code></pre></div>
@@ -2947,7 +2947,7 @@ I am good at JavaScript
 <p>使用 <code>$(( 表达式 ))</code> 可以将计算结果用作为命令行的一部分，就像使用变量一样。</p>
 <details class="example">
 <summary><code>expr</code> 和 <code>let</code> 使用示例</summary>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>expr<span class="w"> </span>length<span class="w"> </span><span class="s2">&quot;ustclug&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>expr<span class="w"> </span>length<span class="w"> </span><span class="s2">"ustclug"</span>
 <span class="go">7</span>
 <span class="gp">$ </span><span class="nb">let</span><span class="w"> </span><span class="nv">a</span><span class="o">=</span><span class="m">0</span>
 <span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$a</span>
@@ -3165,9 +3165,9 @@ value3<span class="o">)</span>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="nv">MAX_NO</span><span class="o">=</span><span class="m">0</span>
-<span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter Number between (5 to 9) : &quot;</span><span class="w"> </span>MAX_NO
-<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MAX_NO</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="m">5</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MAX_NO</span><span class="s2">&quot;</span><span class="w"> </span>-le<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I ask to enter number between 5 and 9, Okay&quot;</span>
+<span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>-p<span class="w"> </span><span class="s2">"Enter Number between (5 to 9) : "</span><span class="w"> </span>MAX_NO
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$MAX_NO</span><span class="s2">"</span><span class="w"> </span>-ge<span class="w"> </span><span class="m">5</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">"</span><span class="nv">$MAX_NO</span><span class="s2">"</span><span class="w"> </span>-le<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"I ask to enter number between 5 and 9, Okay"</span>
 <span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 
@@ -3177,26 +3177,26 @@ clear
 <span class="k">do</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$MAX_NO</span><span class="w"> </span>-1<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; &quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">" "</span>
 <span class="w">  </span><span class="k">done</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>j<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; .&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">" ."</span>
 <span class="w">  </span><span class="k">done</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
 <span class="k">done</span>
 
 <span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$MAX_NO</span><span class="w"> </span>-1<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
 <span class="k">do</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="nv">$MAX_NO</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; &quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">" "</span>
 <span class="w">  </span><span class="k">done</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>j<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$i</span><span class="sb">`</span>
 <span class="w">  </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot; .&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">" ."</span>
 <span class="w">  </span><span class="k">done</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
 <span class="k">done</span>
 </code></pre></div>
 <p>输出结果：</p>
@@ -3265,14 +3265,14 @@ name<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <p>某带函数的某脚本程序内容如下：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 hello<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello </span><span class="nv">$1</span><span class="s2">, today&#39;s date is `date`&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"hello </span><span class="nv">$1</span><span class="s2">, today's date is `date`"</span>
 <span class="o">}</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;going to call test function:&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"going to call test function:"</span>
 hello<span class="w"> </span>ustc
 </code></pre></div>
 <p>运行脚本，输出结果：</p>
 <div class="highlight"><pre><span></span><code>going to call test function:
-hello ustc, today&#39;s date is Tue Feb 22 22:22:22 CST 2022
+hello ustc, today's date is Tue Feb 22 22:22:22 CST 2022
 </code></pre></div>
 </details>
 <h3 id="bash-debugging">Bash 脚本调试<a class="headerlink" href="#bash-debugging" title="Permanent link">&para;</a></h3>

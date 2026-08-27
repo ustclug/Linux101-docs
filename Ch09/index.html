@@ -1909,10 +1909,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bre-ere" class="md-nav__link">
+  <a href="#bre-ere-pcre" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基本/扩展正则表达式
+        基本、扩展与 Perl 兼容正则表达式
       
     </span>
   </a>
@@ -2019,9 +2019,6 @@
 
 
 <h1 id="shell">Shell 高级文本处理与正则表达式<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
-</div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
 <p>本章节将介绍一些常用的 shell 文本处理工具，它们可以帮助你更加得心应手地处理大量有规律的文本。</p>
@@ -2037,7 +2034,7 @@
 <li><code>-o [file]</code> 指定输出文件</li>
 <li><code>-n</code> 用于数值排序，否则“15”会排在“2”前</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;snake\nfox\nfish\ncat\nfish\ndog&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>animals
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"snake\nfox\nfish\ncat\nfish\ndog"</span><span class="w"> </span>&gt;<span class="w"> </span>animals
 <span class="gp">$ </span>sort<span class="w"> </span>animals
 <span class="go">cat</span>
 <span class="go">dog</span>
@@ -2065,7 +2062,7 @@
 <span class="go">fish</span>
 <span class="go">fox</span>
 <span class="go">snake</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;1\n2\n15\n3\n4&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>numbers
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"1\n2\n15\n3\n4"</span><span class="w"> </span>&gt;<span class="w"> </span>numbers
 <span class="gp">$ </span>sort<span class="w"> </span>numbers
 <span class="go">1</span>
 <span class="go">15</span>
@@ -2082,10 +2079,10 @@
 <div class="admonition warning">
 <p class="admonition-title">sort 的结果会受到本地化配置的影响</p>
 <p>在使用 sort 时，一个比如容易忽视的问题是当前的本地化配置对结果的影响。</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>sort
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">'a b\naa'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>sort
 <span class="go">a b</span>
 <span class="go">aa</span>
-<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;a b\naa&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span>sort
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">'a b\naa'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span>sort
 <span class="go">aa</span>
 <span class="go">a b</span>
 </code></pre></div>
@@ -2121,7 +2118,7 @@
 <tbody>
 <tr>
 <td><code>[]</code></td>
-<td>方括号表达式，表示匹配的字符集合，例如 <code>[0-9]</code>、<code>[abcde]</code></td>
+<td>方括号表达式，表示匹配的字符集合。例如 <code>[0-9]</code>、<code>[abcde]</code></td>
 </tr>
 <tr>
 <td><code>()</code></td>
@@ -2141,7 +2138,7 @@
 </tr>
 <tr>
 <td><code>\</code></td>
-<td>转义字符，除了常用转义外，还有：<code>\b</code> 匹配单词边界；<code>\B</code> 匹配非单词边界等</td>
+<td>转义字符</td>
 </tr>
 <tr>
 <td><code>.</code></td>
@@ -2161,7 +2158,7 @@
 </tr>
 <tr>
 <td><code>^</code></td>
-<td>匹配字符串的开头，在方括号表达式中表示不接受该方括号表达式中的字符集合</td>
+<td>匹配字符串的开头；在方括号表达式中表示不接受该方括号表达式中的字符集合</td>
 </tr>
 </tbody>
 </table>
@@ -2179,10 +2176,11 @@
 <p>匹配“ter”结尾的单词：</p>
 <div class="highlight"><pre><span></span><code>ter\b
 </code></pre></div>
-<h3 id="bre-ere">基本/扩展正则表达式<a class="headerlink" href="#bre-ere" title="Permanent link">&para;</a></h3>
+<h3 id="bre-ere-pcre">基本、扩展与 Perl 兼容正则表达式<a class="headerlink" href="#bre-ere-pcre" title="Permanent link">&para;</a></h3>
 <p>基本正则表达式（Basic Regular Expressions, BRE）和扩展正则表达式（Extended Regular Expressions, ERE）是两种 POSIX 正则表达式风格。</p>
 <p>BRE 可能是如今最老的正则风格了，对于部分特殊字符（如 <code>+</code>, <code>?</code>, <code>|</code>, <code>{</code>）需要加上转义符 <code>\</code> 才能表达其特殊含义。</p>
 <p>ERE 与如今的现代正则风格较为一致，相比 BRE，上述特殊字符默认发挥特殊作用，加上 <code>\</code> 之后表达普通含义。</p>
+<p>除 POSIX BRE/ERE 外，实际使用中还经常遇到 <a href="https://www.pcre.org/">PCRE（Perl Compatible Regular Expressions）</a>。PCRE 在 ERE 类似语法的基础上提供了更多现代正则表达式功能，例如 <code>\d</code>、<code>\w</code>、非捕获分组 <code>(?:...)</code>、以及惰性匹配 <code>*?</code> 等（具体内容可阅读<a href="supplement/">拓展阅读</a>）。</p>
 <p>具体的例子在下文介绍工具时可以看到。</p>
 <div class="admonition tip">
 <p class="admonition-title">帮助理解正则表达式的工具</p>
@@ -2191,47 +2189,57 @@
 <h2 id="tools-with-re">常用 Shell 文本处理工具（正则）<a class="headerlink" href="#tools-with-re" title="Permanent link">&para;</a></h2>
 <h3 id="grep">grep<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
 <p>grep 全称 Global Regular Expression Print，是一个强大的文本搜索工具，可以在一个或多个文件中搜索指定 pattern 并显示相关行。</p>
-<p>grep 默认使用 BRE，要使用 ERE 可以使用 <code>grep -E</code> 或 egrep。</p>
+<p>grep 默认使用 BRE，要使用 ERE 可以使用 <code>grep -E</code> 或 egrep，要使用 PCRE 可以使用 <code>grep -P</code>。</p>
 <p>命令格式：<code>grep [option] pattern file</code></p>
-<p>一些用法：</p>
+<p>常见参数：</p>
 <ul>
 <li><code>-n</code>：显示匹配到内容的行号</li>
 <li><code>-v</code>：显示不被匹配到的行</li>
 <li><code>-i</code>：忽略字符大小写</li>
+<li><code>-R</code>：递归搜索目录下的所有文件</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^man</span>$<span class="s2">&quot;</span><span class="w">  </span><span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
-<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;[a-z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含小写字母和数字的行</span>
-<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">&quot;[A-Z]\|[0-9]&quot;</span><span class="w">  </span><span class="c1"># 搜索不含字母和数字的行</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">"^man</span>$<span class="s2">"</span><span class="w">  </span><span class="c1"># 搜索内容仅含 man 的行，并且显示行号</span>
+<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">"[a-z]\|[0-9]"</span><span class="w">  </span><span class="c1"># 搜索不含小写字母和数字的行</span>
+<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">"[A-Z]\|[0-9]"</span><span class="w">  </span><span class="c1"># 搜索不含字母和数字的行</span>
+<span class="gp">$ </span>ls<span class="w"> </span>/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-R<span class="w"> </span><span class="s2">"man"</span><span class="w">  </span><span class="c1"># 递归搜索 /bin 下所有文件中含有 man 的行</span>
 </code></pre></div>
 <h3 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h3>
-<p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。</p>
+<p>sed 全称 Stream EDitor，即流编辑器，可以方便地对文件的内容进行逐行处理。sed 每次从文件中读取一行，然后使用指定的命令进行操作，操作完成后输出结果。</p>
 <p>sed 默认使用 BRE，要使用 ERE 可以 sed -E。</p>
 <p>命令格式：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="s1">&#39;command&#39;</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="s1">'command'</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 <span class="gp">$ </span>sed<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>scriptfile<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 </code></pre></div>
 <p>此处的 command 和 scriptfile 中的命令均指的是 sed 命令。</p>
+<p>常见参数：</p>
+<ul>
+<li><code>-i</code>：直接修改文件内容，可以加上后缀 <code>-i[SUFFIX]</code> 备份原文件</li>
+<li><code>-n</code>：不自动输出每一行，通常和 p 命令配合使用，只输出被匹配到的行</li>
+</ul>
 <p>常见 sed 命令：</p>
 <ul>
-<li>s 替换</li>
+<li>s 替换<ul>
+<li>格式为 <code>s/old/new/flag</code>，其中 <code>old</code> 和 <code>new</code> 分别为要替换的内容和替换后的内容（可以使用正则表达式），<code>flag</code> 可选，常用的有 <code>g</code>（全局替换）、<code>p</code>（打印匹配行）、<code>i</code>（忽略大小写），<code>/</code> 表示分隔符，常见的分隔符包括 <code>/</code>、<code>#</code>、<code>@</code>、<code>|</code>、<code>,</code>、<code>;</code>、<code>:</code>、<code>_</code>、<code>^</code>、<code>~</code>、<code>!</code> 等，若要使用分隔符本身，则需要加上转义符 <code>\</code>。</li>
+</ul>
+</li>
 <li>d 删除</li>
 <li>c 选定行改成新文本</li>
 <li>a 当前行下插入文本</li>
 <li>i 当前行上插入文本</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;seD\nIS\ngOod&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>sed_demo
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"seD\nIS\ngOod"</span><span class="w"> </span>&gt;<span class="w"> </span>sed_demo
 <span class="gp">$ </span>cat<span class="w"> </span>sed_demo
 <span class="go">seD</span>
 <span class="go">IS</span>
 <span class="go">gOod</span>
-<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 删除第二行</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">"2d"</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 删除第二行</span>
 <span class="go">seD</span>
 <span class="go">gOod</span>
-<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;s/[a-z]/~/g&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 替换所有小写字母为 ~</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">"s/[a-z]/~/g"</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 替换所有小写字母为 ~</span>
 <span class="go">~~D</span>
 <span class="go">IS</span>
 <span class="go">~O~~</span>
-<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">&quot;3cpErfeCt&quot;</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 选定第三行，改成 pErfeCt</span>
+<span class="gp">$ </span>sed<span class="w"> </span><span class="s2">"3cpErfeCt"</span><span class="w"> </span>sed_demo<span class="w">  </span><span class="c1"># 选定第三行，改成 pErfeCt</span>
 <span class="go">seD</span>
 <span class="go">IS</span>
 <span class="go">pErfeCt</span>
@@ -2250,7 +2258,7 @@
 <span class="go">Mary    5.50    22</span>
 <span class="go">Susie   4.25    18</span>
 <span class="gp">$ </span><span class="c1"># 选择第三列值大于 0 的行，对每一行输出第一列的值和第二第三列的乘积</span>
-<span class="gp">$ </span>awk<span class="w"> </span><span class="s1">&#39;$3 &gt;0 { print $1, $2 * $3 }&#39;</span><span class="w"> </span>awk_demo
+<span class="gp">$ </span>awk<span class="w"> </span><span class="s1">'$3 &gt;0 { print $1, $2 * $3 }'</span><span class="w"> </span>awk_demo
 <span class="go">kathy 40</span>
 <span class="go">Mark 100</span>
 <span class="go">Mary 121</span>
@@ -2258,7 +2266,7 @@
 </code></pre></div>
 <p>示例中 <code>$1</code>，<code>$2</code>，<code>$3</code> 分别指代本行的第 1、2、3 列。特别地，$0 指代本行。</p>
 <p>awk 语言是「图灵完全」的，这意味着理论上它可以做到和其他语言一样的事情。这里我们不仅可以对每行进行操作，还可以定义变量，将前面处理的状态保存下来，以下是一个求和的例子：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }&#39;</span><span class="w"> </span>awk_demo
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>awk<span class="w"> </span><span class="s1">'BEGIN { sum = 0 } { sum += $2 * $3 } END { print sum }'</span><span class="w"> </span>awk_demo
 <span class="go">337.5</span>
 </code></pre></div>
 <p>关于 awk，有一本知名的书籍《The AWK Programming Language》（<a href="https://github.com/wuzhouhui/awk">中文翻译</a>），感兴趣的读者可以考虑阅读。</p>
@@ -2295,9 +2303,9 @@
 <p>可以接受少许的误过滤（false positive）。</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">正则表达式练习 3：Vscode 中的文本批量替换</p>
-<p>Vscode 支持使用正则表达式语法查找与替换文本内容。有一天，你的项目中使用的某个函数更新了：调用方式从 <code>func1(a, b, c)</code> 变成了 <code>func1_new(c, b, a, null)</code>。其中假设 <code>a</code>、<code>b</code>、<code>c</code> 均为不含逗号的表达式。</p>
-<p>尝试写出搜索的正则表达式与替换目标表达式。提示：正则表达式中使用 <code>()</code> 包裹的为一组，在 vscode 的替换目标表达式中可以使用 <code>$1</code>、<code>$2</code> 的格式来引用第一组、第二组等内容。</p>
+<p class="admonition-title">正则表达式练习 3：VS Code 中的文本批量替换</p>
+<p>VS Code 支持使用正则表达式语法查找与替换文本内容。有一天，你的项目中使用的某个函数更新了：调用方式从 <code>func1(a, b, c)</code> 变成了 <code>func1_new(c, b, a, null)</code>。其中假设 <code>a</code>、<code>b</code>、<code>c</code> 均为不含逗号的表达式。</p>
+<p>尝试写出搜索的正则表达式与替换目标表达式。提示：正则表达式中使用 <code>()</code> 包裹的为一组，在 VS Code 的替换目标表达式中可以使用 <code>$1</code>、<code>$2</code> 的格式来引用第一组、第二组等内容。</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">Shell 文本处理工具练习 1：文件内容替换</p>
@@ -2316,7 +2324,7 @@
 <div class="admonition question">
 <p class="admonition-title">Shell 文本处理工具练习 2：Nginx 日志分析</p>
 <p>你的网站最近收到了一大批不正常的请求大量消耗服务器带宽，你希望通过 shell 文本处理工具确认攻击者的来源 IP。Nginx 访问日志的格式类似于如下：</p>
-<div class="highlight"><pre><span></span><code>123.45.67.89 - - [01/Mar/2022:00:58:17 +0800] &quot;GET /downloads/nonexist HTTP/1.1&quot; 404 190 &quot;-&quot; &quot;Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36&quot;
+<div class="highlight"><pre><span></span><code>123.45.67.89 - - [01/Mar/2022:00:58:17 +0800] "GET /downloads/nonexist HTTP/1.1" 404 190 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36"
 </code></pre></div>
 <p>其中我们主要关注 IP（第一列）和下载大小（第 10 列，例子中为 190）。请给出使用 <code>awk</code>、<code>sort</code> 等工具输出下载量最大的前 50 个 IP 的命令。</p>
 </div>

@@ -2161,7 +2161,7 @@ This message shows that your installation appears to be working correctly.
 
 To generate this message, Docker took the following steps:
  1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
     (amd64)
  3. The Docker daemon created a new container from that image which runs the
     executable that produces the output you are currently reading.
@@ -2190,7 +2190,7 @@ For more examples and ideas, visit:
 <p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
 <span class="go">CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
-<span class="go">39d8ef1d4acf   ubuntu:20.04   &quot;bash&quot;    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
+<span class="go">39d8ef1d4acf   ubuntu:20.04   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
 </code></pre></div>
 <p>之后使用 <code>docker start</code> 启动容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>ubuntu-container
@@ -2258,7 +2258,7 @@ For more examples and ideas, visit:
 <span class="go">exit</span>
 <span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
 <span class="go">CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                      PORTS               NAMES</span>
-<span class="go">82d245a5a4a1        ubuntu               &quot;/bin/bash&quot;              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal</span>
+<span class="go">82d245a5a4a1        ubuntu               "/bin/bash"              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal</span>
 <span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>commit<span class="w"> </span>82d245a5a4a1
 <span class="go">sha256:fe0a84d81b867949b27bacec4794303852b05ae76df14818bae85751b14f6e20</span>
 <span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>images
@@ -2275,7 +2275,7 @@ For more examples and ideas, visit:
 <p>这个例子尝试使用 Debian 仓库中的 RISC-V <a href="../Ch07/supplement/#cross-compile-example">交叉编译</a>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:buster-slim</span>
 
-<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39;</span><span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/deb.debian.org/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>gcc-riscv64-linux-gnu<span class="w"> </span>g++-riscv64-linux-gnu<span class="w"> </span>libc6-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
@@ -2285,7 +2285,7 @@ For more examples and ideas, visit:
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace/</span>
 <span class="k">ENV</span><span class="w"> </span><span class="nv">QEMU_LD_PREFIX</span><span class="o">=</span>/usr/riscv64-linux-gnu/
 
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fish&quot;</span><span class="p">]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"fish"</span><span class="p">]</span>
 </code></pre></div>
 <p>通过使用 <code>docker build</code>，我们可以构建出镜像。</p>
 <div class="highlight"><pre><span></span><code><span class="go">sudo docker build -t riscv-cross:example .</span>
@@ -2335,7 +2335,7 @@ For more examples and ideas, visit:
 
 <span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 
-<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/python/python2/&#39;</span><span class="w"> </span>/usr/bin/yum
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/python/python2/'</span><span class="w"> </span>/usr/bin/yum
 
 <span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/Python-3.7.3*
 <span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all
@@ -2359,7 +2359,7 @@ For more examples and ideas, visit:
 <h3 id="use-docker-compose-build-wordpress-with-mysql">使用 Docker Compose 创建 WordPress 博客<a class="headerlink" href="#use-docker-compose-build-wordpress-with-mysql" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。</p>
 <p>新建一个文件夹，在其中放入一个名为 <code>docker-compose.yml</code> 的配置文件：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"3"</span>
 <span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">db</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
@@ -2370,14 +2370,14 @@ For more examples and ideas, visit:
 <span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span>
 <span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span>
-<span class="w">      </span><span class="nt">MYSQL_ROOT_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%&quot;</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">"%"</span>
 
 <span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span>
 <span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"80:80"</span>
 <span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
 <span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>

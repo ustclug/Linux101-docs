@@ -2156,7 +2156,7 @@
 
 <span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.mp4
 <span class="k">do</span>
-<span class="w">  </span>ffmpeg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">i</span><span class="p">%.mp4</span><span class="si">}</span><span class="s2">.mp3&quot;</span>
+<span class="w">  </span>ffmpeg<span class="w"> </span>-i<span class="w"> </span><span class="s2">"</span><span class="nv">$i</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">i</span><span class="p">%.mp4</span><span class="si">}</span><span class="s2">.mp3"</span>
 <span class="k">done</span>
 </code></pre></div>
 <p>这里 <code>"${i%.mp4}.mp3"</code> 实现的是将文件扩展名中的 <code>.mp4</code>（即最后被匹配到的 <code>.mp4</code>）抹去，并在之后的文件名后面加上 <code>.mp3</code>。这个特性被称为<a href="http://mywiki.wooledge.org/BashSheet#Parameter_Operations">参数操作</a>。</p>
@@ -2172,13 +2172,13 @@
 <p>参考脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span>
 <span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;NUMBER&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Usage"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="w"> </span><span class="s2">"NUMBER"</span>
 <span class="k">else</span>
-<span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
 <span class="w">    </span><span class="nv">y</span><span class="o">=</span><span class="k">$((</span><span class="nv">x</span><span class="o">*</span><span class="nv">x</span><span class="k">))</span>
-<span class="w">    </span>./a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$x</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$y</span><span class="s2">&quot;</span>
+<span class="w">    </span>./a<span class="w"> </span><span class="s2">"</span><span class="nv">$x</span><span class="s2">"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span><span class="s2">"</span><span class="nv">$y</span><span class="s2">"</span>
 <span class="k">fi</span>
 </code></pre></div>
 </details>
@@ -2192,12 +2192,12 @@
 <p>参考脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-<span class="nv">url</span><span class="o">=</span><span class="s2">&quot;http://staff.ustc.edu.cn/~bjye/em/student/2019S/2019S.htm&quot;</span>
-<span class="nv">baseurl</span><span class="o">=</span><span class="s2">&quot;http://staff.ustc.edu.cn/~bjye/em/student/2019S/&quot;</span>
-<span class="nv">list</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$url</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Eoi<span class="w"> </span><span class="s1">&#39;href=&quot;.+\.pdf&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">7</span>-<span class="k">)</span>
+<span class="nv">url</span><span class="o">=</span><span class="s2">"http://staff.ustc.edu.cn/~bjye/em/student/2019S/2019S.htm"</span>
+<span class="nv">baseurl</span><span class="o">=</span><span class="s2">"http://staff.ustc.edu.cn/~bjye/em/student/2019S/"</span>
+<span class="nv">list</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$url</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Eoi<span class="w"> </span><span class="s1">'href=".+\.pdf'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">7</span>-<span class="k">)</span>
 <span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$list</span>
 <span class="k">do</span>
-<span class="w">    </span>wget<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$baseurl$i</span><span class="s2">&quot;</span>
+<span class="w">    </span>wget<span class="w"> </span><span class="s2">"</span><span class="nv">$baseurl$i</span><span class="s2">"</span>
 <span class="k">done</span>
 </code></pre></div>
 <p>注意：在不同的环境中，<code>grep</code> 等程序有一些细节上的差异。例如，以上的脚本就无法在 macOS 环境中很好地运行（需要安装 GNU grep）。</p>

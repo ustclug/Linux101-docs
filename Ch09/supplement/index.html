@@ -2052,8 +2052,7 @@
 <p>组号分配规则：</p>
 <ul>
 <li>0 代表整个表达式</li>
-<li>从左至右，按左括号的出现顺序分配，第一个为 1，第二个为 2，以此类推</li>
-<li>扫描两遍，第一次只分配未命名的组，第二次只分配命名的组。即任意命名组的组号都大于未命名的组号</li>
+<li>从左至右，按左括号的出现顺序分配，第一个为 1，第二个为 2，以此类推，命名组与未命名组共享同一编号序列，即命名组同样会占用一个数字组号</li>
 </ul>
 <div class="admonition example">
 <p class="admonition-title">示例</p>
@@ -2065,7 +2064,7 @@
 <div class="admonition example">
 <p class="admonition-title">示例</p>
 <p><code>\b\w+(?=ing\b)</code> 可以匹配 <code>ing</code> 结尾的单词前面的部分。例如 <code>going</code> 中的 <code>go</code> 会被该正则匹配。</p>
-<p><code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开开头的单词的后面一部分。例如 <code>revue</code> 中的 <code>vue</code> 会被该正则匹配。</p>
+<p><code>(?&lt;=\bre)\w+\b</code> 可以匹配 <code>re</code> 开头的单词的后面一部分。例如 <code>revue</code> 中的 <code>vue</code> 会被该正则匹配。</p>
 </div>
 <h3 id="ddos">正则表达式的代价<a class="headerlink" href="#ddos" title="Permanent link">&para;</a></h3>
 <p>为了支持复杂语法，现在的正则表达式引擎一般使用回溯搜索的方法来进行匹配。对于某些特定的正则，攻击者可以构造出能够让其执行很长时间的字符串，从而导致系统崩溃。</p>

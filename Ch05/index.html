@@ -2234,8 +2234,8 @@ ustc is not in the sudoers file.  This incident will be reported.
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>adduser<span class="w"> </span>ustc<span class="w"> </span>sudo
 </code></pre></div>
 <p>再次切换到新的用户即可看到使用 sudo 的提示：</p>
-<div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
-See &quot;man sudo_root&quot; for details.
+<div class="highlight"><pre><span></span><code>To run a command as administrator (user "root"), use "sudo &lt;command&gt;".
+See "man sudo_root" for details.
 </code></pre></div>
 </div>
 <h2 id="file-permission">文件权限<a class="headerlink" href="#file-permission" title="Permanent link">&para;</a></h2>
@@ -2261,19 +2261,19 @@ See &quot;man sudo_root&quot; for details.
 <span class="go">-bash: cd: a_folder/: Permission denied</span>
 <span class="gp">$ </span>（失败了，这说明，如果没有执行权限，我们无法进入这个目录）
 <span class="gp">$ </span>ls<span class="w"> </span>a_folder
-<span class="go">ls: cannot access &#39;a_folder/test&#39;: Permission denied</span>
+<span class="go">ls: cannot access 'a_folder/test': Permission denied</span>
 <span class="go">test</span>
 <span class="gp">$ </span>（列出了这个目录中的文件列表，但是因为没有执行权限，我们没有办法访问到里面的文件<span class="w"> </span>test）
 <span class="gp">$ </span>cat<span class="w"> </span>a_folder/test
 <span class="go">cat: a_folder/test: Permission denied</span>
 <span class="gp">$ </span>cp<span class="w"> </span>a_folder/test<span class="w"> </span><span class="nb">test</span>
-<span class="go">cp: cannot stat &#39;a_folder/test&#39;: Permission denied</span>
+<span class="go">cp: cannot stat 'a_folder/test': Permission denied</span>
 <span class="gp">$ </span>mv<span class="w"> </span>a_folder/test<span class="w"> </span>a_folder/test2
-<span class="go">mv: failed to access &#39;a_folder/test2&#39;: Permission denied</span>
+<span class="go">mv: failed to access 'a_folder/test2': Permission denied</span>
 <span class="gp">$ </span>touch<span class="w"> </span>a_folder/test2
-<span class="go">touch: cannot touch &#39;a_folder/test2&#39;: Permission denied</span>
+<span class="go">touch: cannot touch 'a_folder/test2': Permission denied</span>
 <span class="gp">$ </span>rm<span class="w"> </span>a_folder/test
-<span class="go">rm: cannot remove &#39;a_folder/test&#39;: Permission denied</span>
+<span class="go">rm: cannot remove 'a_folder/test': Permission denied</span>
 <span class="gp">$ </span>（可以看到，即使我们有写入权限，在此目录中进行添加、删除、重命名的操作仍然是不行的）
 </code></pre></div>
 <p>为了更好地理解目录权限的含义，可以把目录视为一个「文件」来看待，这个文件包含了目录中下一层的文件列表——「读取」对应读取文件列表的权限，「写入」对应修改文件列表（添加、删除、重命名文件）的权限，「执行」对应实际去访问列表中文件、以及使用 <code>cd</code> 切换当前目录到此目录的权限。特别地，父目录（<code>..</code>）也在这个列表中，因此将目录移动到其他目录下时，不仅需要该目录所在目录和目标目录的写权限，还需要该目录本身的写权限。例如，将目录 <code>/opt/example/1/</code> 移动为 <code>/opt/1/</code> 时，用户不仅需要对 <code>/opt/example/</code> 和 <code>/opt/</code> 目录有写入权限，被移动的 <code>1</code> 目录也需要有写入权限。</p>
