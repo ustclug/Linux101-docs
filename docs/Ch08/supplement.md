@@ -18,7 +18,7 @@ $ sudo apt install ./dive_0.9.2_linux_amd64.deb
 之后直接使用即可：
 
 ```console
-$ dive ubuntu:20.04  # 查看 Ubuntu 20.04 镜像中的内容
+$ dive ubuntu:26.04  # 查看 Ubuntu 26.04 镜像中的内容
 ```
 
 ## Docker 以外的容器工具 {#other-container-tools}
@@ -31,7 +31,7 @@ Podman 是由 Red Hat 编写的容器工具。相比于 Docker，Podman 是无�
 
 ### LXC {#lxc}
 
-相比于 Docker 专注应用容器化而言，LXC（Linux Containers）更加注重完整 Linux 系统的容器虚拟化，用户可以使用 LXC 启动一个近似完整的 Linux 系统。Canonical 公司基于 LXC 编写的 LXD 工具则为管理员提供了一个方便的管理接口。
+相比于 Docker 专注应用容器化而言，LXC（Linux Containers）更加注重完整 Linux 系统的容器虚拟化，用户可以使用 LXC 启动一个近似完整的 Linux 系统。Canonical 公司基于 LXC 编写的 LXD 工具则为管理员提供了一个方便的管理接口。2023 年 Canonical 收回 LXD 的社区管理权后，Linux Containers 社区从 LXD 分叉出了 Incus，由社区维护。
 
 ### systemd-nspawn {#systemd-nspawn}
 
