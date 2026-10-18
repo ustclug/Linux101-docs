@@ -126,7 +126,7 @@ For more examples and ideas, visit:
 如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
 ```console
-$ docker ps -a
+$ sudo docker ps -a
 CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES
 39d8ef1d4acf   ubuntu:latest   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
 ```
@@ -134,28 +134,28 @@ CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                  
 之后使用 `docker start` 启动容器。
 
 ```console
-$ docker start -ai ubuntu-container
+$ sudo docker start -ai ubuntu-container
 root@39d8ef1d4acf:/#
 ```
 
 `-a` 代表连接输出以及信号。最后的 `ubuntu-container` 代指我们刚刚创建的那个容器。也可以输入容器的 ID 来启动（不需要输入完整的 ID，只需要前几位即可）：
 
 ```console
-$ docker start -ai 39d
+$ sudo docker start -ai 39d
 root@39d8ef1d4acf:/#
 ```
 
 如果忘记加上了参数直接启动，也可以使用 `docker attach` 将容器的主进程的输入输出接上。
 
 ```console
-$ docker attach ubuntu-container
+$ sudo docker attach ubuntu-container
 root@39d8ef1d4acf:/#
 ```
 
 `docker exec` 也可以完成相似的事情：它可以在容器中执行指定的命令（当然也包括 Shell 了）。
 
 ```console
-$ docker exec -it ubuntu-container bash
+$ sudo docker exec -it ubuntu-container bash
 root@39d8ef1d4acf:/#
 ```
 
@@ -164,9 +164,9 @@ root@39d8ef1d4acf:/#
 与 `docker start` 相对应，`docker stop` 可以关闭一个容器，`docker rm` 可以删除一个容器。
 
 ```console
-$ docker stop ubuntu-container
+$ sudo docker stop ubuntu-container
 39d
-$ docker rm ubuntu-container
+$ sudo docker rm ubuntu-container
 39d
 ```
 
@@ -217,20 +217,20 @@ flowchart TD
 `docker commit` 命令可以从当前运行的容器新建镜像。以下是一个简单的例子：
 
 ```console
-$ docker run -it ubuntu
+$ sudo docker run -it ubuntu
 root@82d245a5a4a1:/# apt update && apt install curl
 （输出省略）
 root@82d245a5a4a1:/# exit
 exit
-$ docker ps -a
+$ sudo docker ps -a
 CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                      PORTS               NAMES
 82d245a5a4a1        ubuntu               "/bin/bash"              2 minutes ago       Exited (0) 23 seconds ago                       laughing_elgamal
-$ docker commit 82d245a5a4a1
+$ sudo docker commit 82d245a5a4a1
 sha256:fe0a84d81b867949b27bacec4794303852b05ae76df14818bae85751b14f6e20
-$ docker images
+$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 <none>              <none>              fe0a84d81b86        54 seconds ago      116MB
-$ docker save fe0a84d81b86 > example.tar
+$ sudo docker save fe0a84d81b86 > example.tar
 $ ls -lh example.tar
 -rw-r--r-- 1 ustc ustc 114M Feb 10 17:48 example.tar
 ```
@@ -264,13 +264,13 @@ CMD ["fish"]
 通过使用 `docker build`，我们可以构建出镜像。
 
 ```console
-$ docker build -t riscv-cross:example .
+$ sudo docker build -t riscv-cross:example .
 ```
 
 `-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签，`.` 表示从当前目录下寻找 Dockerfile 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 `docker run` 执行即可：
 
 ```console
-$ docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
+$ sudo docker run -v ${PWD}/workspace:/workspace -it riscv-cross:example
 Welcome to fish, the friendly interactive shell
 root@dec3d33003ee /workspace# vim helloworld.c
 root@dec3d33003ee /workspace# riscv64-linux-gnu-gcc helloworld.c
