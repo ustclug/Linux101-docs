@@ -4,8 +4,6 @@ icon: simple/docker
 
 # Docker
 
-!!! Warning "本文已基本完稿，正在审阅和修订中，不是正式版本。"
-
 !!! abstract "导言"
 
     「容器」，是近年来非常热门的一个概念。它通过操作系统内核提供的隔离技术，实现轻量级的虚拟化环境。目前，它在软件的开发、部署等方面有着非常广泛的应用。
@@ -121,14 +119,14 @@ For more examples and ideas, visit:
 
 `-it` 是为了获得可交互的 Shell 所必须的。`-i` 会将容器的 init（主进程，这里是 `/bin/bash`）的标准输入与 `docker` 这个程序的标准输入相连接；而 `-t` 会告知主进程输入为终端（TTY）设备。
 
-在执行以上命令之后，你会获得一个 Ubuntu（版本为 `latest` 即最新的 LTS；如果需要指定版本，可以使用类似 `20.04` 的版本号替换 `latest`，推荐在生产环境中这么做，因为 `latest` 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。
+在执行以上命令之后，你会获得一个 Ubuntu（版本为 `latest` 即最新的 LTS；如果需要指定版本，可以使用类似 `26.04` 的版本号替换 `latest`，推荐在生产环境中这么做，因为 `latest` 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。
 
 如果没有加上 `--rm`，退出后可以使用 `docker ps -a` 查看系统中所有的容器。
 
 ```console
 $ sudo docker ps -a
-CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES
-39d8ef1d4acf   ubuntu:20.04   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
+CONTAINER ID   IMAGE           COMMAND   CREATED         STATUS                     PORTS     NAMES
+39d8ef1d4acf   ubuntu:latest   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
 ```
 
 之后使用 `docker start` 启动容器。
@@ -246,12 +244,12 @@ Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。�
 这个例子尝试使用 Debian 仓库中的 RISC-V [交叉编译](../Ch07/supplement.md#cross-compile-example)工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。
 
 ```Dockerfile
-FROM debian:buster-slim
+FROM debian:trixie-slim
 
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources && \
     apt update && apt install -y --no-install-recommends \
         gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross \
-        binutils-riscv64-linux-gnu libstdc++-dev-riscv64-cross \
+        binutils-riscv64-linux-gnu libstdc++-14-dev-riscv64-cross \
         qemu-system-misc qemu-user-static qemu-user binfmt-support \
         fish vim
 
@@ -264,7 +262,7 @@ CMD ["fish"]
 通过使用 `docker build`，我们可以构建出镜像。
 
 ```console
-sudo docker build -t riscv-cross:example .
+$ sudo docker build -t riscv-cross:example .
 ```
 
 `-t riscv-cross:example` 代表为这个镜像打上 `riscv-cross:example` 的标签，`.` 表示从当前目录下寻找 Dockerfile 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 `docker run` 执行即可：
@@ -331,7 +329,7 @@ Docker 在根据 Dockerfile 构建时，会从上到下执行这些指令，每�
 Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：
 
 ```dockerfile
-FROM tiangolo/uwsgi-nginx-flask:python3.8
+FROM tiangolo/uwsgi-nginx-flask:python3.12
 
 RUN pip3 config set global.index-url https://mirrors.ustc.edu.cn/pypi/simple
 RUN pip3 install pyopenssl
@@ -343,11 +341,17 @@ COPY ./app /app
 
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
 
-Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
+Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose-v2`，使用以下命令安装：
 
 ```console
-$ sudo apt install docker-compose
+$ sudo apt install docker-compose-v2
 ```
+
+!!! note "`docker-compose` 与 `docker-compose-v2`"
+
+    Docker Compose 有两代实现：Docker Compose V1 提供独立的 `docker-compose` 命令，已于 2023 年停止维护；Docker Compose V2 作为 Docker CLI 插件，提供 `docker compose` 子命令。
+
+    在 Ubuntu 中，Docker Compose V2 由 `docker-compose-v2` 软件包提供。而 `docker-compose` 软件包提供什么，则取决于发行版本和软件源：它可能是 Docker Compose V1 的软件包，也可能是由 `docker-compose-v2` 提供的虚拟包。为了确保安装 Docker Compose V2，建议直接指定 `docker-compose-v2`。
 
 ### 使用 Docker Compose 创建 WordPress 博客 {#use-docker-compose-build-wordpress-with-mysql}
 
@@ -356,7 +360,6 @@ WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创�
 新建一个文件夹，在其中放入一个名为 `docker-compose.yml` 的配置文件：
 
 ```yaml
-version: "3"
 services:
   db:
     image: mysql:5.7
@@ -385,4 +388,4 @@ services:
       WORDPRESS_DB_PASSWORD: linux101-test
 ```
 
-在文件夹中运行 `docker-compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker-compose up -d` 命令可以让容器分离（detach）命令行。运行完成后，可以使用 `docker-compose down` 停止并删除容器。
+在文件夹中运行 `docker compose up` 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 `docker compose up -d` 命令可以让容器分离（detach）命令行。运行完成后，可以使用 `docker compose down` 停止并删除容器。
