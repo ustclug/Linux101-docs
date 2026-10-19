@@ -2540,7 +2540,7 @@ setw<span class="w"> </span>-g<span class="w"> </span>mode-keys<span class="w"> 
 <p>tmux 做了什么呢？它把在上面运行的所有 shell 托管在一个单独的会话中，与当前终端脱离。并且每一个 shell 有不同的 pty (pseudoterminal)。而当前终端下的 tmux，仅仅是一个客户端，需要连接哪个 session，就使用 attach 命令让客户端与服务程序通信，把客户端所在终端的输入定向到由服务端掌控的被绿框框选的特定终端中，从而完成对各个 pane 的交互。</p>
 </details>
 <h2 id="service">服务<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
-<p>说到<strong>「服务」</strong>，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」；Linux 也有服务的概念，下面将作介绍。</p>
+<p>说到**「服务」**，我们可能会想到服务器，上面运行着各式各样的网络服务。但是这里的「服务」不止于此，系统的正常运行也需要关键服务的支撑。在 Windows 中，我们可以从任务管理器一窥 Windows 中的「服务」；Linux 也有服务的概念，下面将作介绍。</p>
 <h3 id="daemon">守护进程<a class="headerlink" href="#daemon" title="Permanent link">&para;</a></h3>
 <p>服务的特征，意味着服务进程必须独立于用户的登录，不能随用户的退出而被终止。根据前面的讲解，只有启动时脱离会话才能避免因为终端的关闭而消失。而这类一直默默工作于后台的进程被称为<strong>守护进程</strong> (daemon)。</p>
 <h3 id="services">服务管理<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>

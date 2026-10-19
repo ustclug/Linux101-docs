@@ -2097,9 +2097,6 @@
 
 
 <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">本文已基本完稿，正在审阅和修订中，不是正式版本。</p>
-</div>
 <div class="admonition abstract">
 <p class="admonition-title">导言</p>
 <p>「容器」，是近年来非常热门的一个概念。它通过操作系统内核提供的隔离技术，实现轻量级的虚拟化环境。目前，它在软件的开发、部署等方面有着非常广泛的应用。</p>
@@ -2186,11 +2183,11 @@ For more examples and ideas, visit:
 </ul>
 <p>这里，<code>--rm</code> 代表容器停止运行（退出）之后，会被立刻删除；<code>--name</code> 参数代表给容器命名，如果没有加这个参数，那么 docker 会给容器随机起一个格式类似于 gracious_brahmagupta 的名字。</p>
 <p><code>-it</code> 是为了获得可交互的 Shell 所必须的。<code>-i</code> 会将容器的 init（主进程，这里是 <code>/bin/bash</code>）的标准输入与 <code>docker</code> 这个程序的标准输入相连接；而 <code>-t</code> 会告知主进程输入为终端（TTY）设备。</p>
-<p>在执行以上命令之后，你会获得一个 Ubuntu（版本为 <code>latest</code> 即最新的 LTS；如果需要指定版本，可以使用类似 <code>20.04</code> 的版本号替换 <code>latest</code>，推荐在生产环境中这么做，因为 <code>latest</code> 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。</p>
+<p>在执行以上命令之后，你会获得一个 Ubuntu（版本为 <code>latest</code> 即最新的 LTS；如果需要指定版本，可以使用类似 <code>26.04</code> 的版本号替换 <code>latest</code>，推荐在生产环境中这么做，因为 <code>latest</code> 指定的最新版本可能随时间变化）的容器环境，退出 Shell 之后容器就会被销毁。</p>
 <p>如果没有加上 <code>--rm</code>，退出后可以使用 <code>docker ps -a</code> 查看系统中所有的容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
-<span class="go">CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
-<span class="go">39d8ef1d4acf   ubuntu:20.04   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
+<span class="go">CONTAINER ID   IMAGE           COMMAND   CREATED         STATUS                     PORTS     NAMES</span>
+<span class="go">39d8ef1d4acf   ubuntu:latest   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container</span>
 </code></pre></div>
 <p>之后使用 <code>docker start</code> 启动容器。</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>ubuntu-container
@@ -2273,12 +2270,12 @@ For more examples and ideas, visit:
 <p>Dockerfile 是构建 Docker 镜像的标准格式，下面会举一些例子。我们会基于这些例子简单介绍 Dockerfile 的语法。</p>
 <h4 id="cross-compile-example">构建简单的交叉编译环境<a class="headerlink" href="#cross-compile-example" title="Permanent link">&para;</a></h4>
 <p>这个例子尝试使用 Debian 仓库中的 RISC-V <a href="../Ch07/supplement/#cross-compile-example">交叉编译</a>工具链与 QEMU 模拟器构建一个简单的用于交叉编译的环境。</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:buster-slim</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian:trixie-slim</span>
 
-<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/deb.debian.org/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/deb.debian.org/mirrors.ustc.edu.cn/g'</span><span class="w"> </span>/etc/apt/sources.list.d/debian.sources<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>gcc-riscv64-linux-gnu<span class="w"> </span>g++-riscv64-linux-gnu<span class="w"> </span>libc6-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
-<span class="w">        </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>binutils-riscv64-linux-gnu<span class="w"> </span>libstdc++-14-dev-riscv64-cross<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>qemu-system-misc<span class="w"> </span>qemu-user-static<span class="w"> </span>qemu-user<span class="w"> </span>binfmt-support<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>fish<span class="w"> </span>vim
 
@@ -2288,7 +2285,7 @@ For more examples and ideas, visit:
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"fish"</span><span class="p">]</span>
 </code></pre></div>
 <p>通过使用 <code>docker build</code>，我们可以构建出镜像。</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo docker build -t riscv-cross:example .</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>riscv-cross:example<span class="w"> </span>.
 </code></pre></div>
 <p><code>-t riscv-cross:example</code> 代表为这个镜像打上 <code>riscv-cross:example</code> 的标签，<code>.</code> 表示从当前目录下寻找 Dockerfile 并以当前目录作为构建过程的“工作路径”。构建完成后，使用 <code>docker run</code> 执行即可：</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/workspace:/workspace<span class="w"> </span>-it<span class="w"> </span>riscv-cross:example
@@ -2344,7 +2341,7 @@ For more examples and ideas, visit:
 </div>
 <h4 id="flask-production-example">在生产环境中运行使用 Flask 编写的简单网站<a class="headerlink" href="#flask-production-example" title="Permanent link">&para;</a></h4>
 <p>Flask 是一个知名的 Python web 框架。本例子包含了一个运行 Flask 编写的网站的简单 Dockerfile（不包含数据库等部分）：</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">tiangolo/uwsgi-nginx-flask:python3.8</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">tiangolo/uwsgi-nginx-flask:python3.12</span>
 
 <span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>global.index-url<span class="w"> </span>https://mirrors.ustc.edu.cn/pypi/simple
 <span class="k">RUN</span><span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>pyopenssl
@@ -2353,14 +2350,18 @@ For more examples and ideas, visit:
 </code></pre></div>
 <p>这里使用了 <code>COPY</code> 指令，将本地的 <code>app</code> 目录复制进容器镜像的 <code>/app</code> 中。</p>
 <h2 id="docker-compose">使用 Docker Compose 自动运行容器<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
-<p>Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 <code>docker.io</code> 软件包，那么系统中可能未安装 <code>docker-compose</code>，使用以下命令安装：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose
+<p>Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 <code>docker.io</code> 软件包，那么系统中可能未安装 <code>docker-compose-v2</code>，使用以下命令安装：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose-v2
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title"><code>docker-compose</code> 与 <code>docker-compose-v2</code></p>
+<p>Docker Compose 有两代实现：Docker Compose V1 提供独立的 <code>docker-compose</code> 命令，已于 2023 年停止维护；Docker Compose V2 作为 Docker CLI 插件，提供 <code>docker compose</code> 子命令。</p>
+<p>在 Ubuntu 中，Docker Compose V2 由 <code>docker-compose-v2</code> 软件包提供。而 <code>docker-compose</code> 软件包提供什么，则取决于发行版本和软件源：它可能是 Docker Compose V1 的软件包，也可能是由 <code>docker-compose-v2</code> 提供的虚拟包。为了确保安装 Docker Compose V2，建议直接指定 <code>docker-compose-v2</code>。</p>
+</div>
 <h3 id="use-docker-compose-build-wordpress-with-mysql">使用 Docker Compose 创建 WordPress 博客<a class="headerlink" href="#use-docker-compose-build-wordpress-with-mysql" title="Permanent link">&para;</a></h3>
 <p>WordPress 是一个知名的博客应用。本例子使用 Docker Compose，创建了一个使用 MySQL 数据库的 WordPress。</p>
 <p>新建一个文件夹，在其中放入一个名为 <code>docker-compose.yml</code> 的配置文件：</p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"3"</span>
-<span class="nt">services</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">db</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
 <span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress_db</span>
@@ -2387,7 +2388,7 @@ For more examples and ideas, visit:
 <span class="w">      </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
 <span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux101-test</span>
 </code></pre></div>
-<p>在文件夹中运行 <code>docker-compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker-compose up -d</code> 命令可以让容器分离（detach）命令行。运行完成后，可以使用 <code>docker-compose down</code> 停止并删除容器。</p>
+<p>在文件夹中运行 <code>docker compose up</code> 命令即可启动样例，在 127.0.0.1:80 上即可看到 WordPress 的初始化界面。用 <code>docker compose up -d</code> 命令可以让容器分离（detach）命令行。运行完成后，可以使用 <code>docker compose down</code> 停止并删除容器。</p>
 
 
 

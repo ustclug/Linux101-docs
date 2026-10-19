@@ -2069,14 +2069,14 @@
 <span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>./dive_0.9.2_linux_amd64.deb
 </code></pre></div>
 <p>之后直接使用即可：</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>dive<span class="w"> </span>ubuntu:20.04<span class="w">  </span><span class="c1"># 查看 Ubuntu 20.04 镜像中的内容</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>dive<span class="w"> </span>ubuntu:26.04<span class="w">  </span><span class="c1"># 查看 Ubuntu 26.04 镜像中的内容</span>
 </code></pre></div>
 <h2 id="other-container-tools">Docker 以外的容器工具<a class="headerlink" href="#other-container-tools" title="Permanent link">&para;</a></h2>
 <p>Docker 目前已几乎是容器的代名词了，但是实际上，用户还可以选择其他的程序来运行容器。其中一些代表性的方案有 Podman、LXC 等。</p>
 <h3 id="podman">Podman<a class="headerlink" href="#podman" title="Permanent link">&para;</a></h3>
 <p>Podman 是由 Red Hat 编写的容器工具。相比于 Docker，Podman 是无守护进程的（daemonless），不需要像 Docker 一样运行系统服务。并且，Podman 的 CLI 工具与 Docker 的语法兼容（甚至可以设置 <code>alias docker=podman</code>），方便用户迁移到 Podman。</p>
 <h3 id="lxc">LXC<a class="headerlink" href="#lxc" title="Permanent link">&para;</a></h3>
-<p>相比于 Docker 专注应用容器化而言，LXC（Linux Containers）更加注重完整 Linux 系统的容器虚拟化，用户可以使用 LXC 启动一个近似完整的 Linux 系统。Canonical 公司基于 LXC 编写的 LXD 工具则为管理员提供了一个方便的管理接口。</p>
+<p>相比于 Docker 专注应用容器化而言，LXC（Linux Containers）更加注重完整 Linux 系统的容器虚拟化，用户可以使用 LXC 启动一个近似完整的 Linux 系统。Canonical 公司基于 LXC 编写的 LXD 工具则为管理员提供了一个方便的管理接口。2023 年 Canonical 收回 LXD 的社区管理权后，Linux Containers 社区从 LXD 分叉出了 Incus，由社区维护。</p>
 <h3 id="systemd-nspawn">systemd-nspawn<a class="headerlink" href="#systemd-nspawn" title="Permanent link">&para;</a></h3>
 <p>systemd-nspawn 是非常轻量级的容器，但「麻雀虽小，五脏俱全」。类似于 Unix 环境中历史悠久的 chroot，它能够很方便地从已有的系统文件启动，并且执行需要的系统管理命令。</p>
 <h3 id="write-a-simple-container-runtime">自制简单的容器运行时<a class="headerlink" href="#write-a-simple-container-runtime" title="Permanent link">&para;</a></h3>
