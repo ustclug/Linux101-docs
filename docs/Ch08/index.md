@@ -127,7 +127,7 @@ For more examples and ideas, visit:
 
 ```console
 $ sudo docker ps -a
-CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS                     PORTS     NAMES
+CONTAINER ID   IMAGE           COMMAND   CREATED         STATUS                     PORTS     NAMES
 39d8ef1d4acf   ubuntu:latest   "bash"    4 seconds ago   Exited (0) 2 seconds ago             ubuntu-container
 ```
 
@@ -343,11 +343,17 @@ COPY ./app /app
 
 ## 使用 Docker Compose 自动运行容器 {#docker-compose}
 
-Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose`，使用以下命令安装：
+Docker Compose 是一个方便的小型容器编排工具。如果前面安装的是 `docker.io` 软件包，那么系统中可能未安装 `docker-compose-v2`，使用以下命令安装：
 
 ```console
 $ sudo apt install docker-compose-v2
 ```
+
+!!! note "`docker-compose` 与 `docker-compose-v2`"
+
+    Docker Compose 有两代实现：Docker Compose V1 提供独立的 `docker-compose` 命令，已于 2023 年停止维护；Docker Compose V2 作为 Docker CLI 插件，提供 `docker compose` 子命令。
+
+    在 Ubuntu 中，Docker Compose V2 由 `docker-compose-v2` 软件包提供。而 `docker-compose` 软件包提供什么，则取决于发行版本和软件源：它可能是 Docker Compose V1 的软件包，也可能是由 `docker-compose-v2` 提供的虚拟包。为了确保安装 Docker Compose V2，建议直接指定 `docker-compose-v2`。
 
 ### 使用 Docker Compose 创建 WordPress 博客 {#use-docker-compose-build-wordpress-with-mysql}
 
