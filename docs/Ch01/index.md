@@ -358,6 +358,6 @@ LUG@USTC 欢迎校内外的朋友加入社群交流。如果你是中国科学�
 
 [^2]: 信息来自维基百科条目：[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。
 
-[^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要付费的 Ubuntu Advantage 订阅，或者最多 3 台设备的个人免费订阅。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
+[^3]: 尽管有许多说法称 Ubuntu LTS 有十年的支持，但是其中前五年为标准支持，后五年实际上是 Extended Security Maintenance (ESM) 阶段，需要 Ubuntu Pro（原 Ubuntu Advantage）订阅。Ubuntu Pro 商用需要付费，个人免费订阅支持最多 5 台设备。ESM 的安全更新仓库与主仓库也是独立的，需要登录后才能访问。
 
 [^4]: 数据来自 Ubuntu 介绍：[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)。

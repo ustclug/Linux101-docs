@@ -6,7 +6,7 @@
 
     在每一章的开始都需要编写章节导言。导言的目的有两个：一是为了铺垫一些前置知识以方便后续展开正文；二是写出一个内容摘要来辅助读者和编者自己快速了解该章节的核心内容和脉络。编写导言时可以自己组织语言，以简练为主，不需要面面俱到。
 
-    “章节编写指导”是一份写给该讲义的创作者所用的参考教程。在接下来的编写中，推荐在本地也安装一个 MkDocs 来实时预览项目。MkDocs 基于 Python，故可以使用诸如 `pip install mkdocs` 等命令完成安装。更全面的安装流程请参考 [MkDocs 官网安装说明](https://www.mkdocs.org/#installation) 实现。
+    “章节编写指导”是一份写给该讲义的创作者所用的参考教程。在接下来的编写中，推荐在本地也安装一个 MkDocs 来实时预览项目。MkDocs 基于 Python，故可以在创建 Python 虚拟环境后使用诸如 `pip install mkdocs` 等命令完成安装。更全面的安装流程请参考 [MkDocs 官网安装说明](https://www.mkdocs.org/#installation) 实现。
 
     使用形如 `!!! abstract "导言"` 的方式添加一个导言框，并在下面若干行通过缩进 1 个制表符或 4 个空格的方式填写导言里的内容，行与行之间请空 1 行。
 
@@ -26,7 +26,7 @@
 
 ### 在本地随时预览当前主题下的格式 {#local-preview}
 
-目前当前的主题已经确定为 Material，可以使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 <http://127.0.0.1:8000> 来实时预览，这对讲义的编写十分有帮助。
+目前主题已经确定为 Material，可以在创建 Python 虚拟环境后使用诸如 `pip install mkdocs-material` 等命令完成主题的安装，并在工作根目录下使用 `mkdocs serve` 命令并访问 <http://127.0.0.1:8000> 来实时预览，这对讲义的编写十分有帮助。
 
 更全面的安装和配置信息请参考 [MkDocs 官网](https://www.mkdocs.org) 和 [Material for MkDocs 官网](https://squidfunk.github.io/mkdocs-material/)。
 
