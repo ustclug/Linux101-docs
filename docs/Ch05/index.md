@@ -317,18 +317,18 @@ drwxrwxr-x 2 ustc ustc 4096 Feb  3 22:38 a_folder
 
 ```mermaid
 graph LR
-    / --> bin
-    / --> boot
-    / --> dev
-    / --> etc
-    / --> home
-    / --> mnt
-    / --> opt
-    / --> proc
-    / --> root
-    / --> usr
-    / --> var
-    / --> tmp
+    slash["/"] --> bin
+    slash --> boot
+    slash --> dev
+    slash --> etc
+    slash --> home
+    slash --> mnt
+    slash --> opt
+    slash --> proc
+    slash --> root
+    slash --> usr
+    slash --> var
+    slash --> tmp
 
     bin --> ls
     bin --> cp
@@ -515,6 +515,6 @@ graph LR
 
 [^1]: 这里的哈希，指经过了[密码哈希函数](https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8) ([Cryptographic hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function)) 的处理。密码哈希函数是一种特殊的单向函数，将任意大小的数据映射到一串长度固定的字符串，并且拥有一些优良的性质（如难以找到两个不同的数据，使得映射后的字符串相同），使其破解难度加大。
 
-[^3]: <https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes>
-
 [^2]: 然而，对于 Linux 内核来说，系统用户和真实的用户其实没有区别，除了 UID = 0 的用户 (root) 以外。「系统用户」是一个约定俗成而产生的概念。
+
+[^3]: <https://www.debian.org/doc/debian-policy/ch-opersys.html#uid-and-gid-classes>
