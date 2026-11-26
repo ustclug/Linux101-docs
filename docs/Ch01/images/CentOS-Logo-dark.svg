@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   viewBox="0 0 161.23486 42.333332"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="centos-whitelogo.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#" width="230" height="60">
+  <sodipodi:namedview
+     id="namedview1443"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     height="163.00002px"
+     inkscape:zoom="2.8458328"
+     inkscape:cx="310.62963"
+     inkscape:cy="80.117145"
+     inkscape:window-width="3440"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2065"
+       spacingx="2.6458333"
+       spacingy="2.6458333"
+       originx="-5.2916709"
+       originy="-5.2916632"
+       visible="true"
+       enabled="true"
+       dotted="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <color-profile
+       name="ThinkPad-E585"
+       xlink:href="../../../../../.local/share/icc/edid-a08b296dca3c3f699c0f4ec6cf0497ee.icc"
+       id="color-profile7859" />
+    <color-profile
+       name="LG-HDR-WQHD"
+       xlink:href="../../../../../.local/share/icc/edid-05e78da98f2c5bf8e3de6f77531dbaea.icc"
+       id="color-profile7861" />
+  </defs>
+  <g
+     aria-label="CentOS"
+     id="text57015"
+     style="font-weight:bold;font-size:29.9666px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.749167"
+     transform="matrix(0.97560972,0,0,0.97560972,-786.11473,-321.81683)">
+    <path
+       d="m 865.94059,362.40602 c 3.65593,0 6.68255,-1.31853 8.66035,-3.74583 l -3.11653,-2.87679 c -1.40843,1.64816 -3.17646,2.48723 -5.27412,2.48723 -3.92563,0 -6.71252,-2.75693 -6.71252,-6.71252 0,-3.95559 2.78689,-6.71252 6.71252,-6.71252 2.09766,0 3.86569,0.83906 5.27412,2.45726 l 3.11653,-2.87679 c -1.9778,-2.39733 -5.00442,-3.71586 -8.63038,-3.71586 -6.53272,0 -11.38731,4.52495 -11.38731,10.84791 0,6.32295 4.85459,10.84791 11.35734,10.84791 z"
+       id="path2097"
+       style="fill:#ffffff" />
+    <path
+       d="m 892.76066,354.04533 c 0,-5.18422 -3.65592,-8.36068 -8.39065,-8.36068 -4.91452,0 -8.60041,3.47613 -8.60041,8.30075 0,4.79466 3.62596,8.30075 9.19974,8.30075 2.90676,0 5.15426,-0.899 6.65259,-2.60709 l -2.48723,-2.697 c -1.10876,1.04883 -2.33739,1.55826 -4.04549,1.55826 -2.45726,0 -4.16536,-1.22863 -4.61486,-3.23639 h 12.19641 c 0.03,-0.38956 0.0899,-0.899 0.0899,-1.2586 z m -8.36068,-4.82462 c 2.09766,0 3.62596,1.31853 3.95559,3.35626 h -7.94115 c 0.32963,-2.06769 1.85793,-3.35626 3.98556,-3.35626 z"
+       id="path2099"
+       style="fill:#ffffff" />
+    <path
+       d="m 905.67622,345.68465 c -2.18756,0 -4.07545,0.74917 -5.33405,2.12763 v -1.88789 h -4.46502 v 16.12203 h 4.67479 v -7.97112 c 0,-2.96669 1.61819,-4.34516 3.86569,-4.34516 2.06769,0 3.26636,1.19867 3.26636,3.80576 v 8.51052 h 4.67479 v -9.22972 c 0,-4.91452 -2.8768,-7.13205 -6.68256,-7.13205 z"
+       id="path2101"
+       style="fill:#ffffff" />
+    <path
+       d="m 925.72388,357.97096 c -0.50943,0.38957 -1.19866,0.59933 -1.8879,0.59933 -1.25859,0 -2.00776,-0.74916 -2.00776,-2.12763 v -6.56268 h 4.01553 v -3.59599 h -4.01553 v -3.92563 h -4.67479 v 3.92563 h -2.48723 v 3.59599 h 2.48723 v 6.62262 c 0,3.83572 2.21753,5.78355 6.02329,5.78355 1.4384,0 2.84683,-0.32963 3.80576,-1.01886 z"
+       id="path2103"
+       style="fill:#ffffff" />
+    <path
+       d="m 940.10783,362.40602 c 6.59266,0 11.47721,-4.58489 11.47721,-10.84791 0,-6.26302 -4.88455,-10.84791 -11.47721,-10.84791 -6.62261,0 -11.4772,4.61485 -11.4772,10.84791 0,6.23305 4.85459,10.84791 11.4772,10.84791 z m 0,-4.13539 c -3.74582,0 -6.56268,-2.72697 -6.56268,-6.71252 0,-3.98556 2.81686,-6.71252 6.56268,-6.71252 3.74583,0 6.56269,2.72696 6.56269,6.71252 0,3.98555 -2.81686,6.71252 -6.56269,6.71252 z"
+       id="path2105"
+       style="fill:#ffffff" />
+    <path
+       d="m 962.13328,362.40602 c 5.99332,0 8.90008,-2.99666 8.90008,-6.50276 0,-7.70141 -12.19641,-5.03438 -12.19641,-8.90008 0,-1.31853 1.10876,-2.39732 3.98556,-2.39732 1.85793,0 3.86569,0.53939 5.81352,1.64816 l 1.49833,-3.68589 c -1.94783,-1.22863 -4.64482,-1.85793 -7.28188,-1.85793 -5.96336,0 -8.84015,2.96669 -8.84015,6.53272 0,7.79131 12.1964,5.09432 12.1964,9.01994 0,1.28857 -1.16869,2.2475 -4.04549,2.2475 -2.51719,0 -5.15425,-0.899 -6.92228,-2.18756 l -1.64816,3.65592 c 1.85792,1.4384 5.21418,2.4273 8.54048,2.4273 z"
+       id="path2107"
+       style="fill:#ffffff" />
+  </g>
+  <metadata
+     id="metadata2067">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g902"
+     transform="matrix(1.0529091,0,0,1.0528867,-387.4921,265.98493)">
+    <ellipse
+       style="fill:#a14f8c;fill-opacity:1;stroke:none;stroke-width:1.32292;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;stop-color:#000000"
+       id="ellipse894"
+       cx="435.07938"
+       cy="-124.14428"
+       inkscape:export-filename="/home/areguera/Pictures/centos-symbol-v10.png"
+       inkscape:export-xdpi="13.06"
+       inkscape:export-ydpi="13.06"
+       rx="20.103001"
+       ry="20.103493"
+       transform="rotate(-15)" />
+    <g
+       id="g907"
+       transform="matrix(1.1500001,0,0,1.1500001,-53.772279,39.324566)">
+      <path
+         id="path896"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:7.93746;stroke-linecap:round;paint-order:fill markers stroke;stop-color:#000000"
+         d="m 384.25717,-249.61659 -3.87493,3.87494 -5.47925,-4.5e-4 -4.5e-4,5.47974 -3.87454,3.87494 3.87454,3.87454 2e-4,5.47989 5.4795,-2e-4 3.87493,3.87493 3.87454,-3.87493 5.47994,-2.5e-4 -2.5e-4,-5.47944 3.87494,-3.87454 -3.87532,-3.87456 -5.47949,-5.47949 z m 1.17607,3.87454 v 4.18045 l -1.17607,1.17608 -1.17607,-1.17608 v -4.18005 z m -6.95928,1.90827 2.95599,2.95639 4.4e-4,1.66269 -1.66359,4.5e-4 -2.95599,-2.95639 z m -3.57142,6.27028 h 4.18045 l 1.17608,1.17608 -1.17608,1.17607 h -4.18045 z m 14.43444,0 h 4.18045 v 2.35215 h -4.18045 l -1.17608,-1.17607 z m -9.50341,3.93651 1.66316,1e-5 v 1.66314 l -2.95599,2.956 -1.66315,-1.66316 z m 7.18429,-2.3e-4 1.6629,2.4e-4 2.95599,2.95599 -1.66314,1.66314 -2.95599,-2.95599 z m -2.76069,1.14353 1.17607,1.17607 v 4.18046 h -2.35214 v -4.18046 z"
+         sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+      <path
+         id="path898"
+         style="fill:#efa724;fill-opacity:1;stroke-width:8.59212;stroke-linecap:round;paint-order:fill markers stroke;stop-color:#000000"
+         d="m 385.43324,-239.08983 -1.17607,1.03926 -1.17607,-1.03961 v 1.52668 h -1.52649 l 1.03941,1.17607 -1.03964,1.17608 h 1.52672 v 1.5264 l 1.17607,-1.03934 1.17607,1.03947 v -1.52653 h 1.52628 l -1.03921,-1.17604 1.0396,-1.17611 h -1.52667 z"
+         inkscape:export-filename="/home/areguera/Pictures/centos-symbol-482380-v3.png"
+         inkscape:export-xdpi="14.35"
+         inkscape:export-ydpi="14.35"
+         sodipodi:nodetypes="ccccccccccccccccc" />
+      <path
+         id="path900"
+         style="fill:#efa724;fill-opacity:1;stroke-width:6.14231;stroke-linecap:round;paint-order:fill markers stroke;stop-color:#000000"
+         d="m 388.13486,-245.73814 1.90493,1.90493 -2.95599,2.95599 7e-5,1.6631 1.66309,5e-5 2.95598,-2.95598 1.91153,1.91153 -0.003,-5.48309 z"
+         inkscape:export-filename="/home/areguera/Pictures/centos-symbol-v10.png"
+         inkscape:export-xdpi="13.06"
+         inkscape:export-ydpi="13.06"
+         sodipodi:nodetypes="ccccccccc" />
+    </g>
+  </g>
+</svg>

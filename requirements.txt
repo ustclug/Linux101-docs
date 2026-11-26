@@ -1,3 +1,4 @@
 mkdocs~=1.6.1
-mkdocs-material>=9.7.3
+--find-links https://github.com/ustclug/mkdocs-material/releases/download/9.8.2%2Bustclug.1/mkdocs_material-9.8.2+ustclug.1-py3-none-any.whl#sha256=e5071948dc1f0a9cea26bd9d84d2ba748576b901654f9f90c273439932a36d54
+mkdocs-material==9.8.2+ustclug.1
 jieba
